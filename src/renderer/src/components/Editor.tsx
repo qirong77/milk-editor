@@ -17,17 +17,15 @@ import { nordDark } from '@milkdown/theme-nord'
 interface MilkdownEditor {
   onHeadersChange: Function
 }
-export const MilkdownEditor: React.FC<MilkdownEditor> = ({
-  onHeadersChange
-}) => {
+export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {
   const [headers, setHeaders] = useState([{}])
   useEffect(() => {
     console.log('headers-change')
     onHeadersChange(headers)
   }, [headers.length])
-  const { editor, getInstance } = useEditor(root =>
+  const { editor, getInstance } = useEditor((root) =>
     Editor.make()
-      .config(ctx => {
+      .config((ctx) => {
         ctx.set(rootCtx, root),
           ctx.set(defaultValueCtx, defaultMarkdown),
           // // 代码的默认形式？
@@ -35,9 +33,7 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({
           //     type:'html',
           //     dom:document.querySelector('#pre') as HTMLElement
           //   })
-          ctx
-            .get(listenerCtx)
-            .markdownUpdated((ctx, markdown, prevMarkdown) => {})
+          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {})
       })
       .use(nord)
       .use(commonmark)
@@ -48,7 +44,7 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({
   )
 
   const instance = getInstance()
-  instance?.action(ctx => {
+  instance?.action((ctx) => {
     ctx.get(themeManagerCtx).switch(ctx, nordDark)
   })
   return <ReactEditor editor={editor} />

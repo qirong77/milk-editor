@@ -8,15 +8,10 @@ interface SideBar {
 export const SideBar: React.FC<SideBar> = ({ headers }) => {
   const updateHeaders = () => {
     const headers =
-      document
-        .querySelector('.milkdown .editor')
-        ?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
+      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
     const Headers = Array.from(headers)
     const trees = useHeaders(Headers as HTMLElement[])
-    const dfs = (
-      tree: HeaderTree,
-      container: HTMLElement | DocumentFragment
-    ) => {
+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
       const id = tree.header.getAttribute('id')
       if (!tree.children.length) {
         const li = document.createElement('li')
@@ -25,10 +20,9 @@ export const SideBar: React.FC<SideBar> = ({ headers }) => {
         container.appendChild(li)
       } else {
         const ul = document.createElement('ul')
-        ul.innerHTML =
-          triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
+        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
         ul.setAttribute('style', `--i: ${tree.tagName[1]}`)
-        tree.children.forEach(child => {
+        tree.children.forEach((child) => {
           dfs(child, ul)
         })
         container.appendChild(ul)
@@ -36,7 +30,7 @@ export const SideBar: React.FC<SideBar> = ({ headers }) => {
       return container
     }
     const headerLists = document.createDocumentFragment()
-    trees.forEach(tree => {
+    trees.forEach((tree) => {
       const fragment = document.createDocumentFragment()
       const headerList = dfs(tree, fragment)
       headerLists.appendChild(headerList)
@@ -53,7 +47,7 @@ export const SideBar: React.FC<SideBar> = ({ headers }) => {
     // clietX就是距离浏览器视口的位置
     const clientX = e.clientX
     const dragLine = document.querySelector('.drag-line') as HTMLElement
-    document.onmousemove = e => {
+    document.onmousemove = (e) => {
       const newClientX = e.clientX
       const moveDistance = newClientX - clientX
       const nextPosition = clientX + moveDistance
@@ -61,7 +55,7 @@ export const SideBar: React.FC<SideBar> = ({ headers }) => {
       return false
     }
     // 释放鼠标的时候解除事件绑定
-    document.onmouseup = e => {
+    document.onmouseup = (e) => {
       const newPosition = e.clientX
       console.log(newPosition)
       if (newPosition < 600 && newPosition > 100) {

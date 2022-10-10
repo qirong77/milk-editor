@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1665385494477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665385579608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+                },
+                {
+                    "date": 1665385597337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+                },
+                {
+                    "date": 1665385618994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+                },
+                {
+                    "date": 1665385628301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+                },
+                {
+                    "date": 1665385636405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+                }
+            ],
+            "date": 1665385494477,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from 'react'\nimport { triangleDown } from '../constant'\nimport { HeaderTree, useHeaders } from '../hooks/useHeaders'\n\ninterface SideBar {\n  headers: HTMLElement[]\n}\nexport const SideBar: React.FC<SideBar> = ({ headers }) => {\n  const updateHeaders = () => {\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n      const id = tree.header.getAttribute('id')\n      if (!tree.children.length) {\n        const li = document.createElement('li')\n        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n        container.appendChild(li)\n      } else {\n        const ul = document.createElement('ul')\n        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n        tree.children.forEach((child) => {\n          dfs(child, ul)\n        })\n        container.appendChild(ul)\n      }\n      return container\n    }\n    const headerLists = document.createDocumentFragment()\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      headerLists.appendChild(headerList)\n    })\n    const sideBarContainer = document.querySelector('.side-bar-container')\n    sideBarContainer!.innerHTML = ''\n    sideBarContainer?.appendChild(headerLists)\n  }\n  useEffect(() => {\n    updateHeaders()\n  }, [])\n  // 按下鼠标\n  const dragLineMove = (e: React.MouseEvent) => {\n    // clietX就是距离浏览器视口的位置\n    const clientX = e.clientX\n    const dragLine = document.querySelector('.drag-line') as HTMLElement\n    document.onmousemove = (e) => {\n      const newClientX = e.clientX\n      const moveDistance = newClientX - clientX\n      const nextPosition = clientX + moveDistance\n      dragLine.style.left = nextPosition + 'px'\n      return false\n    }\n    // 释放鼠标的时候解除事件绑定\n    document.onmouseup = (e) => {\n      const newPosition = e.clientX\n      console.log(newPosition)\n      if (newPosition < 600 && newPosition > 100) {\n        dragLine.style.left = newPosition + 'px'\n        const sideBar = document.querySelector('.side-bar') as HTMLElement\n        sideBar.style.width = newPosition + 'px'\n        // 如果太宽了就返回原来的位置\n      } else {\n        dragLine.style.left = clientX + 'px'\n      }\n\n      document.onmousemove = null\n      document.onmouseup = null\n      return false\n    }\n  }\n\n  return (\n    <div className=\"side-bar\">\n      <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n      <header>\n        {/* <span>大纲</span> */}\n        <span onClick={updateHeaders}>overview</span>\n      </header>\n      <ul className=\"side-bar-container\"></ul>\n    </div>\n  )\n}\n"
+        }
+    ]
+}

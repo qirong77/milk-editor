@@ -1,0 +1,22 @@
+{
+  "sourceFile": "src/renderer/src/hooks/useHeaders.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
+        {
+          "date": 1665385440738,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665385449069,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   let tree: HeaderTree | null\n   let p: HeaderTree\n   let childrenMap: ChildrenMap\n   const trees: HeaderTree[] = []\n-  const initialize = (header: HTMLElement):void => {\n+  const initialize = (header: HTMLElement) => {\n     const tagName = header.tagName\n     tree = {\n       tagName,\n       children: [],\n"
+        }
+      ],
+      "date": 1665385440738,
+      "name": "Commit-0",
+      "content": "export interface HeaderTree {\n  tagName: string\n  children: HeaderTree[]\n  header: HTMLElement\n}\ninterface ChildrenMap {\n  [key: string]: HeaderTree\n}\n/* \n总体思路：\n有一个树表示当前遇到的最大的标题\n用一个map存储这个树遇到的标题\n用一个指针p存储最近的一个header\n如果在遍历的过程中遇到标题是增加的，如果指针p->h3遇到了h3,那就在当前这个从h3到h1不断递减在对应的map中找到对应的（\n肯定会找到，因为如果当前的标题比当前这个树的标题大于等于，就不会进行到那一步\n*/\nexport const useHeaders = (headers: HTMLElement[]) => {\n  let tree: HeaderTree | null\n  let p: HeaderTree\n  let childrenMap: ChildrenMap\n  const trees: HeaderTree[] = []\n  const initialize = (header: HTMLElement):void => {\n    const tagName = header.tagName\n    tree = {\n      tagName,\n      children: [],\n      header\n    }\n    childrenMap = {\n      [tagName]: tree\n    }\n    p = tree\n  }\n  headers.forEach((header, index) => {\n    // 如果没有树，初始化\n    if (!tree) {\n      initialize(header)\n      return\n    }\n    // 遇到的标签大于当前这个树的最大标签就先把当前的这个树推进数组\n    if (header.tagName <= tree.tagName) {\n      trees.push(tree)\n      initialize(header)\n      if (index === headers.length - 1) {\n        trees.push(tree)\n      }\n      return\n    }\n    const node = {\n      tagName: header.tagName,\n      children: [],\n      header\n    }\n    if (header.tagName > p.tagName) {\n      p.children.push(node)\n      p = p.children.at(-1) as HeaderTree\n    } else {\n      const headerNumber = Number(header.tagName[1])\n      for (let i = 1; i < headerNumber; i++) {\n        const key = 'H' + (headerNumber - i)\n        if (childrenMap[key]) {\n          childrenMap[key].children.push(node)\n          // 每次都是和这个标题最接近的建立联系\n          p = childrenMap[key].children.at(-1) as HeaderTree\n          break\n        }\n      }\n    }\n    // 每次遍历在这个树的map中存储一个映射\n    childrenMap[header.tagName] = p\n    if (index === headers.length - 1) trees.push(tree)\n  })\n  return trees\n}\n"
+    }
+  ]
+}
