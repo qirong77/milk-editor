@@ -1,0 +1,56 @@
+$dark-color: rgba(236, 239, 244, 0.87);
+$dark-background: rgba(46, 52, 64, 1);
+.side-bar {
+  color: $dark-color;
+  background-color: $dark-background;
+  border-right: 0.5px solid #748fb0;
+  padding: 0 20px 20px 0;
+  header {
+    height: 50px;
+    text-align: center;
+    line-height: 60px;
+  }
+  .drag-line {
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    left: 200px;
+    z-index: 99;
+    background-color: rgb(210, 111, 111);
+    opacity: 0;
+    &:hover{
+      cursor: ew-resize;
+      opacity: 100%;
+    }
+  }
+  .side-bar-container {
+    overflow-y: scroll;
+    // ul和li是标题，里面有图标，需要一起移动
+    ul,
+    li {
+      margin: 10px 0;
+      margin-left: calc(6px * var(--i));
+      a {
+        text-decoration: none;
+        text-decoration-color: $dark-color;
+        color: $dark-color;
+      }
+    }
+    ul {
+      height: auto;
+      svg {
+        height: 10px;
+        width: 10px;
+        margin: 0 6px;
+        transition: all 0.5s;
+      }
+    }
+  }
+}
+.ul-close {
+  height: 20px !important;
+  overflow: hidden;
+  svg {
+    transform: rotateZ(-90deg);
+  }
+}

@@ -1,0 +1,16 @@
+// this file amis to clear some default styles of the milkdown editor
+.code-fence {
+  position: relative;
+}
+.code-fence_selector-wrapper {
+  position: absolute !important;
+  right: 0;
+  bottom: -12px;
+}
+.code-fence_selector-wrapper .code-fence_selector span:nth-child(2) {
+  display: none !important;
+}
+// 工具输入框？
+.milkdown-sj2pad {
+  display: none !important;
+}
