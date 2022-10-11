@@ -1,0 +1,58 @@
+{
+    "sourceFile": "src/preload/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1665389904992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665389914344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { contextBridge } from 'electron'\n+import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n const api = {}\n@@ -18,4 +18,7 @@\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n+contextBridge.exposeInMainWorld('electronAPI', {\n+  setTitle: (title) => ipcRenderer.send('set-title', title)\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665389962012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,7 @@\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n contextBridge.exposeInMainWorld('electronAPI', {\n-  setTitle: (title) => ipcRenderer.send('set-title', title)\n+  setTitle: (title) => ipcRenderer.send('set-title', title),\n+  minScreen\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665389973178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n   window.api = api\n }\n contextBridge.exposeInMainWorld('electronAPI', {\n   setTitle: (title) => ipcRenderer.send('set-title', title),\n-  minScreen\n+  minScreen:()=>ipcRenderer.send('')\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665389991607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,8 @@\n   window.api = api\n }\n contextBridge.exposeInMainWorld('electronAPI', {\n   setTitle: (title) => ipcRenderer.send('set-title', title),\n-  minScreen:()=>ipcRenderer.send('')\n+  minScreen:()=>ipcRenderer.send('min'),\n+  maxScreen:()=>ipcRenderer.send('max')\n+  \n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665390180009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n contextBridge.exposeInMainWorld('electronAPI', {\n   setTitle: (title) => ipcRenderer.send('set-title', title),\n   minScreen:()=>ipcRenderer.send('min'),\n   maxScreen:()=>ipcRenderer.send('max')\n-  \n+  close\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665390185934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n contextBridge.exposeInMainWorld('electronAPI', {\n   setTitle: (title) => ipcRenderer.send('set-title', title),\n   minScreen:()=>ipcRenderer.send('min'),\n   maxScreen:()=>ipcRenderer.send('max')\n-  close\n+  closeScreen\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665390197637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,6 +22,6 @@\n contextBridge.exposeInMainWorld('electronAPI', {\n   setTitle: (title) => ipcRenderer.send('set-title', title),\n   minScreen:()=>ipcRenderer.send('min'),\n   maxScreen:()=>ipcRenderer.send('max')\n-  closeScreen\n+  closeScreen:()=>ipcRenderer.send('close')\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665390206461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,8 @@\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n contextBridge.exposeInMainWorld('electronAPI', {\n-  setTitle: (title) => ipcRenderer.send('set-title', title),\n   minScreen:()=>ipcRenderer.send('min'),\n-  maxScreen:()=>ipcRenderer.send('max')\n+  maxScreen:()=>ipcRenderer.send('max'),\n   closeScreen:()=>ipcRenderer.send('close')\n })\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665390466900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n-const api = {}\n+const api = {\n+\n+  \n+}\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n if (process.contextIsolated) {\n"
+                },
+                {
+                    "date": 1665390479737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,12 @@\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n const api = {\n+  minScreen:()=>ipcRenderer.send('min'),\n+  maxScreen:()=>ipcRenderer.send('max'),\n+  closeScreen:()=>ipcRenderer.send('close')\n \n-  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n@@ -21,9 +23,4 @@\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n-contextBridge.exposeInMainWorld('electronAPI', {\n-  minScreen:()=>ipcRenderer.send('min'),\n-  maxScreen:()=>ipcRenderer.send('max'),\n-  closeScreen:()=>ipcRenderer.send('close')\n-})\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1665389904992,
+            "name": "Commit-0",
+            "content": "import { contextBridge } from 'electron'\nimport { electronAPI } from '@electron-toolkit/preload'\n\n// Custom APIs for renderer\nconst api = {}\n// Use `contextBridge` APIs to expose Electron APIs to\n// renderer only if context isolation is enabled, otherwise\n// just add to the DOM global.\nif (process.contextIsolated) {\n  try {\n    contextBridge.exposeInMainWorld('electron', electronAPI)\n    contextBridge.exposeInMainWorld('api', api)\n  } catch (error) {\n    console.error(error)\n  }\n} else {\n  // @ts-ignore (define in dts)\n  window.electron = electronAPI\n  // @ts-ignore (define in dts)\n  window.api = api\n}\n"
+        }
+    ]
+}

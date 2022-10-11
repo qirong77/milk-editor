@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/renderer/src/components/Header/styles/index.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1665497313573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665501099842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,6 @@\n       position: fixed;\n       top: 0px;\n       width: 100%;\n       background-color: aqua;\n+      display: flex;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665501131808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n .container > header {\n-    -webkit-app-region: drag;\n+  height: 30px;\n+      -webkit-app-region: drag;\n       position: fixed;\n       top: 0px;\n       width: 100%;\n       background-color: aqua;\n       display: flex;\n+      \n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665501231722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-.container > header {\n+.header {\n   height: 30px;\n       -webkit-app-region: drag;\n       position: fixed;\n       top: 0px;\n"
+                },
+                {
+                    "date": 1665501377551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n .header {\n-  height: 30px;\n-      -webkit-app-region: drag;\n-      position: fixed;\n-      top: 0px;\n-      width: 100%;\n-      background-color: aqua;\n-      display: flex;\n-      \n+  background-color: aqua;\n+  -webkit-app-region: drag;\n+\n+  display: flex;\n+  \n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665502871013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,5 @@\n   background-color: aqua;\n   -webkit-app-region: drag;\n \n   display: flex;\n-  \n-  }\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1665502967259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,11 @@\n+$dark-background: rgba(46, 52, 64, 1);\n+\n .header {\n-  background-color: aqua;\n+  background-color: $dark-background;\n   -webkit-app-region: drag;\n+  display: flex;\n+  justify-content: space-between;\n+  .controlers {\n \n-  display: flex;\n+  }\n }\n"
+                },
+                {
+                    "date": 1665502984895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-background: rgba(46, 52, 64, 1);\n \n .header {\n+  padding: 4px 10px;\n   background-color: $dark-background;\n   -webkit-app-region: drag;\n   display: flex;\n   justify-content: space-between;\n"
+                },
+                {
+                    "date": 1665503046660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,11 @@\n   -webkit-app-region: drag;\n   display: flex;\n   justify-content: space-between;\n   .controlers {\n-\n+    svg {\n+      height: 10px;\n+      width: 10px;\n+      opacity: 0.4;\n+    }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503053364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n   display: flex;\n   justify-content: space-between;\n   .controlers {\n     svg {\n-      height: 10px;\n-      width: 10px;\n+      height: 12px;\n+      width: 12px;\n       opacity: 0.4;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503064729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n   display: flex;\n   justify-content: space-between;\n   .controlers {\n     svg {\n-      height: 12px;\n-      width: 12px;\n-      opacity: 0.4;\n+      height: 14px;\n+      width: 14px;\n+      opacity: 0.6;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503075827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,8 @@\n     svg {\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n+      margin: 0 10px;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503083609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n     svg {\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n-      margin: 0 10px;\n+      margin: 0 3px;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503093241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,8 @@\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n       margin: 0 3px;\n+      cursor: pointer;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503110545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n       margin: 0 3px;\n+      color: black;\n       cursor: pointer;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503118371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n       margin: 0 3px;\n-      color: black;\n+      color: gainsboro;\n       cursor: pointer;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503168772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,10 @@\n       width: 14px;\n       opacity: 0.6;\n       margin: 0 3px;\n       color: gainsboro;\n-      cursor: pointer;\n+      &:hover {\n+        // 修改饱和度\n+      }\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1665503233477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n $dark-background: rgba(46, 52, 64, 1);\n+$dark-color: rgba(236, 239, 244, 0.87);\n \n .header {\n   padding: 4px 10px;\n   background-color: $dark-background;\n   -webkit-app-region: drag;\n   display: flex;\n   justify-content: space-between;\n+  color: $dark-color;\n   .controlers {\n     svg {\n       height: 14px;\n       width: 14px;\n"
+                }
+            ],
+            "date": 1665497313573,
+            "name": "Commit-0",
+            "content": ".container > header {\n    -webkit-app-region: drag;\n      position: fixed;\n      top: 0px;\n      width: 100%;\n      background-color: aqua;\n  }"
+        }
+    ]
+}

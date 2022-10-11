@@ -5,7 +5,7 @@ import { ReactEditor, useEditor } from '@milkdown/react'
 // 通用markdown预设
 import { commonmark } from '@milkdown/preset-commonmark'
 import { history } from '@milkdown/plugin-history'
-import { defaultMarkdown } from '../constant'
+
 import { listenerCtx, listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
@@ -14,20 +14,26 @@ import { themeManagerCtx } from '@milkdown/core'
 import { nordLight } from '@milkdown/theme-nord'
 // 暗色主题
 import { nordDark } from '@milkdown/theme-nord'
-interface MilkdownEditor {
-  onHeadersChange: Function
-}
-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {
-  const [headers, setHeaders] = useState([{}])
-  useEffect(() => {
-    console.log('headers-change')
-    onHeadersChange(headers)
-  }, [headers.length])
+// 官方引用的图标库，如菜单栏需要使用到
+import '@material-design-icons/font'
+// 数学公式渲染
+import 'katex/dist/katex.min.css'
+// 代码高亮
+import 'prism-themes/themes/prism-material-oceanic.min.css'
+interface MilkdownEditor {}
+export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
   const { editor, getInstance } = useEditor((root) =>
     Editor.make()
       .config((ctx) => {
         ctx.set(rootCtx, root),
-          ctx.set(defaultValueCtx, defaultMarkdown),
+          ctx.set(
+            defaultValueCtx,
+            `# H1
+          ## H2
+          ### H3
+          #### H4
+          ###### H5`
+          ),
           // // 代码的默认形式？
           // ctx.set(defaultValueCtx,{
           //     type:'html',

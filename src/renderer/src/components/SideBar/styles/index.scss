@@ -1,0 +1,55 @@
+$dark-color: rgba(236, 239, 244, 0.87);
+$dark-background: rgba(46, 52, 64, 1);
+$side-bar-width: 160px;
+.side-bar {
+  width: $side-bar-width;
+  min-width: $side-bar-width;
+  color: $dark-color;
+  background-color: $dark-background;
+  border-right: 0.5px solid #748fb0;
+  padding: 0 20px 20px 0;
+  .header-list {
+    overflow: scroll;
+    ul,
+    li {
+      margin: 10px 0;
+      margin-left: calc(6px * var(--i));
+      a {
+        text-decoration: none;
+        text-decoration-color: $dark-color;
+        color: $dark-color;
+      }
+    }
+    ul {
+      height: auto;
+      svg {
+        height: 10px;
+        width: 10px;
+        margin: 0 6px;
+        transition: all 0.5s;
+      }
+    }
+    ul.ul-close {
+      height: 20px !important;
+      overflow: hidden;
+      svg {
+        transform: rotateZ(-90deg);
+      }
+    }
+  }
+
+  .drag-line {
+    width: 4px;
+    // 定位为position的元素height为100%不是相对于父元素了
+    height: calc(100vh - 30px);
+    position: absolute;
+    left: $side-bar-width;
+    z-index: 99;
+    background-color: rgb(210, 111, 111);
+    opacity: 0;
+    &:hover {
+      cursor: ew-resize;
+      opacity: 100%;
+    }
+  }
+}

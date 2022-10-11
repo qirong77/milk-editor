@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/Editor.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1665496681443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665496691797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,51 +0,0 @@\n-import React, { useEffect, useState } from 'react'\n-import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n-import { nord } from '@milkdown/theme-nord'\n-import { ReactEditor, useEditor } from '@milkdown/react'\n-// 通用markdown预设\n-import { commonmark } from '@milkdown/preset-commonmark'\n-import { history } from '@milkdown/plugin-history'\n-import { defaultMarkdown } from '../../constant'\n-import { listenerCtx, listener } from '@milkdown/plugin-listener'\n-import { prism } from '@milkdown/plugin-prism'\n-import { menu } from '@milkdown/plugin-menu'\n-import { themeManagerCtx } from '@milkdown/core'\n-// 亮色主题\n-import { nordLight } from '@milkdown/theme-nord'\n-// 暗色主题\n-import { nordDark } from '@milkdown/theme-nord'\n-interface MilkdownEditor {\n-  onHeadersChange: Function\n-}\n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n-  const [headers, setHeaders] = useState([{}])\n-  useEffect(() => {\n-    console.log('headers-change')\n-    onHeadersChange(headers)\n-  }, [headers.length])\n-  const { editor, getInstance } = useEditor((root) =>\n-    Editor.make()\n-      .config((ctx) => {\n-        ctx.set(rootCtx, root),\n-          ctx.set(defaultValueCtx, defaultMarkdown),\n-          // // 代码的默认形式？\n-          // ctx.set(defaultValueCtx,{\n-          //     type:'html',\n-          //     dom:document.querySelector('#pre') as HTMLElement\n-          //   })\n-          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {})\n-      })\n-      .use(nord)\n-      .use(commonmark)\n-      .use(history)\n-      .use(listener)\n-      .use(prism)\n-      .use(menu)\n-  )\n-\n-  const instance = getInstance()\n-  instance?.action((ctx) => {\n-    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n-  })\n-  return <ReactEditor editor={editor} />\n-}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1665496681443,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from 'react'\nimport { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\nimport { nord } from '@milkdown/theme-nord'\nimport { ReactEditor, useEditor } from '@milkdown/react'\n// 通用markdown预设\nimport { commonmark } from '@milkdown/preset-commonmark'\nimport { history } from '@milkdown/plugin-history'\nimport { defaultMarkdown } from '../../constant'\nimport { listenerCtx, listener } from '@milkdown/plugin-listener'\nimport { prism } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { themeManagerCtx } from '@milkdown/core'\n// 亮色主题\nimport { nordLight } from '@milkdown/theme-nord'\n// 暗色主题\nimport { nordDark } from '@milkdown/theme-nord'\ninterface MilkdownEditor {\n  onHeadersChange: Function\n}\nexport const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n  const [headers, setHeaders] = useState([{}])\n  useEffect(() => {\n    console.log('headers-change')\n    onHeadersChange(headers)\n  }, [headers.length])\n  const { editor, getInstance } = useEditor((root) =>\n    Editor.make()\n      .config((ctx) => {\n        ctx.set(rootCtx, root),\n          ctx.set(defaultValueCtx, defaultMarkdown),\n          // // 代码的默认形式？\n          // ctx.set(defaultValueCtx,{\n          //     type:'html',\n          //     dom:document.querySelector('#pre') as HTMLElement\n          //   })\n          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {})\n      })\n      .use(nord)\n      .use(commonmark)\n      .use(history)\n      .use(listener)\n      .use(prism)\n      .use(menu)\n  )\n\n  const instance = getInstance()\n  instance?.action((ctx) => {\n    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n  })\n  return <ReactEditor editor={editor} />\n}\n"
+        }
+    ]
+}

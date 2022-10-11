@@ -1,0 +1,46 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/index.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1665496693570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665496704134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n interface MilkdownEditor {\n   onHeadersChange: Function\n }\n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n-  const [headers, setHeaders] = useState([{}])\n   useEffect(() => {\n     console.log('headers-change')\n     onHeadersChange(headers)\n   }, [headers.length])\n"
+                },
+                {
+                    "date": 1665496710646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,8 @@\n interface MilkdownEditor {\n   onHeadersChange: Function\n }\n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n-  useEffect(() => {\n-    console.log('headers-change')\n-    onHeadersChange(headers)\n-  }, [headers.length])\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root),\n"
+                },
+                {
+                    "date": 1665497543528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { ReactEditor, useEditor } from '@milkdown/react'\n // 通用markdown预设\n import { commonmark } from '@milkdown/preset-commonmark'\n import { history } from '@milkdown/plugin-history'\n-import { defaultMarkdown } from '../../constant'\n+\n import { listenerCtx, listener } from '@milkdown/plugin-listener'\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { themeManagerCtx } from '@milkdown/core'\n"
+                },
+                {
+                    "date": 1665497548834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,13 @@\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root),\n-          ctx.set(defaultValueCtx, defaultMarkdown),\n+          ctx.set(defaultValueCtx, `# H1\n+          ## H2\n+          ### H3\n+          #### H4\n+          ###### H5`),\n           // // 代码的默认形式？\n           // ctx.set(defaultValueCtx,{\n           //     type:'html',\n           //     dom:document.querySelector('#pre') as HTMLElement\n"
+                },
+                {
+                    "date": 1665500699045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,21 +13,30 @@\n // 亮色主题\n import { nordLight } from '@milkdown/theme-nord'\n // 暗色主题\n import { nordDark } from '@milkdown/theme-nord'\n+// 官方引用的图标库，如菜单栏需要使用到\n+import '@material-design-icons/font'\n+// 数学公式渲染\n+import 'katex/dist/katex.min.css'\n+// 代码高亮\n+import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {\n   onHeadersChange: Function\n }\n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root),\n-          ctx.set(defaultValueCtx, `# H1\n+          ctx.set(\n+            defaultValueCtx,\n+            `# H1\n           ## H2\n           ### H3\n           #### H4\n-          ###### H5`),\n+          ###### H5`\n+          ),\n           // // 代码的默认形式？\n           // ctx.set(defaultValueCtx,{\n           //     type:'html',\n           //     dom:document.querySelector('#pre') as HTMLElement\n"
+                },
+                {
+                    "date": 1665500707677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {\n   onHeadersChange: Function\n }\n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n+export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root),\n"
+                },
+                {
+                    "date": 1665500716444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {\n-  onHeadersChange: Function\n }\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n"
+                }
+            ],
+            "date": 1665496693570,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useState } from 'react'\nimport { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\nimport { nord } from '@milkdown/theme-nord'\nimport { ReactEditor, useEditor } from '@milkdown/react'\n// 通用markdown预设\nimport { commonmark } from '@milkdown/preset-commonmark'\nimport { history } from '@milkdown/plugin-history'\nimport { defaultMarkdown } from '../../constant'\nimport { listenerCtx, listener } from '@milkdown/plugin-listener'\nimport { prism } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { themeManagerCtx } from '@milkdown/core'\n// 亮色主题\nimport { nordLight } from '@milkdown/theme-nord'\n// 暗色主题\nimport { nordDark } from '@milkdown/theme-nord'\ninterface MilkdownEditor {\n  onHeadersChange: Function\n}\nexport const MilkdownEditor: React.FC<MilkdownEditor> = ({ onHeadersChange }) => {\n  const [headers, setHeaders] = useState([{}])\n  useEffect(() => {\n    console.log('headers-change')\n    onHeadersChange(headers)\n  }, [headers.length])\n  const { editor, getInstance } = useEditor((root) =>\n    Editor.make()\n      .config((ctx) => {\n        ctx.set(rootCtx, root),\n          ctx.set(defaultValueCtx, defaultMarkdown),\n          // // 代码的默认形式？\n          // ctx.set(defaultValueCtx,{\n          //     type:'html',\n          //     dom:document.querySelector('#pre') as HTMLElement\n          //   })\n          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {})\n      })\n      .use(nord)\n      .use(commonmark)\n      .use(history)\n      .use(listener)\n      .use(prism)\n      .use(menu)\n  )\n\n  const instance = getInstance()\n  instance?.action((ctx) => {\n    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n  })\n  return <ReactEditor editor={editor} />\n}\n"
+        }
+    ]
+}

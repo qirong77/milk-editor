@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow ,ipcMain} from 'electron'
 import * as path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 
@@ -8,6 +8,8 @@ function createWindow(): void {
     width: 900,
     height: 670,
     show: false,
+    // 关闭默认的上面那栏
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux'
       ? {
@@ -19,6 +21,17 @@ function createWindow(): void {
       sandbox: false
     }
   })
+
+  // 监听放大缩小的按键
+  ipcMain.on('min', e => mainWindow.minimize())
+  ipcMain.on('max', e => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+  ipcMain.on('close', e => mainWindow.close())
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
@@ -37,6 +50,11 @@ function createWindow(): void {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
   }
 }
+
+
+
+
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

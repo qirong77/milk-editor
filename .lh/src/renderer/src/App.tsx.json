@@ -1,0 +1,166 @@
+{
+    "sourceFile": "src/renderer/src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 37,
+            "patches": [
+                {
+                    "date": 1665388416110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665388423164,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      \n+      <s\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665388442534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n import { useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n+import { ScreenControlers } from './components/ScrenControlers'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      <s\n+      <ScreenControlers/>\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665388459626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      <ScreenControlers/>\n+      {/* <ScreenControlers/> */}\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665388610737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      {/* <ScreenControlers/> */}\n+      <ScreenControlers/>\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665388625328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      <ScreenControlers/>\n+      {/* <ScreenControlers/> */}\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665390768806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      {/* <ScreenControlers/> */}\n+      <ScreenControlers/>\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665390988279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,11 @@\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n       <ScreenControlers/>\n-      <SideBar headers={headers} />\n+<main>\n+<SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n+</main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665392643210,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,14 @@\n import { useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n-import { ScreenControlers } from './components/ScrenControlers'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n-      <ScreenControlers/>\n-<main>\n-<SideBar headers={headers} />\n+      \n+      <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n-</main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665392666098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,11 @@\n \n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n+    <>\n+    </>\n     <div className=\"container\">\n-      \n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665392690643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-    </>\n-    <div className=\"container\">\n+    <div></div>\n+        <div className=\"container\">\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n+    </>\n+\n   )\n }\n"
+                },
+                {
+                    "date": 1665395702867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-    <div></div>\n         <div className=\"container\">\n       <SideBar headers={headers} />\n       <MilkdownEditor onHeadersChange={setHeaders} />\n     </div>\n"
+                },
+                {
+                    "date": 1665395715404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,11 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-        <div className=\"container\">\n-      <SideBar headers={headers} />\n-      <MilkdownEditor onHeadersChange={setHeaders} />\n-    </div>\n+      <div className=\"container\">\n+        <SideBar headers={headers} />\n+        <MilkdownEditor onHeadersChange={setHeaders} />\n+      </div>\n     </>\n-\n   )\n }\n"
+                },
+                {
+                    "date": 1665397865960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,12 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-      <div className=\"container\">\n+    <header></header>\n+      <main className=\"container\">\n         <SideBar headers={headers} />\n         <MilkdownEditor onHeadersChange={setHeaders} />\n-      </div>\n+      </main>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665397942861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,15 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n+    <div className=\"container\">\n     <header></header>\n       <main className=\"container\">\n         <SideBar headers={headers} />\n         <MilkdownEditor onHeadersChange={setHeaders} />\n       </main>\n+    </div>\n+\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665398270211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     <div className=\"container\">\n     <header></header>\n       <main className=\"container\">\n         <SideBar headers={headers} />\n-        <MilkdownEditor onHeadersChange={setHeaders} />\n+        {/* <MilkdownEditor onHeadersChange={setHeaders} /> */}\n       </main>\n     </div>\n \n     </>\n"
+                },
+                {
+                    "date": 1665398594202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     <div className=\"container\">\n     <header></header>\n       <main className=\"container\">\n         <SideBar headers={headers} />\n-        {/* <MilkdownEditor onHeadersChange={setHeaders} /> */}\n+        <MilkdownEditor onHeadersChange={setHeaders} />\n       </main>\n     </div>\n \n     </>\n"
+                },
+                {
+                    "date": 1665404635142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n import { useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n+import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n     <div className=\"container\">\n-    <header></header>\n+<Header/>\n       <main className=\"container\">\n         <SideBar headers={headers} />\n         <MilkdownEditor onHeadersChange={setHeaders} />\n       </main>\n"
+                },
+                {
+                    "date": 1665413610504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   return (\n     <>\n     <div className=\"container\">\n <Header/>\n-      <main className=\"container\">\n+      <main>\n         <SideBar headers={headers} />\n         <MilkdownEditor onHeadersChange={setHeaders} />\n       </main>\n     </div>\n"
+                },
+                {
+                    "date": 1665414038714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,14 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-    <div className=\"container\">\n-<Header/>\n-      <main>\n-        <SideBar headers={headers} />\n-        <MilkdownEditor onHeadersChange={setHeaders} />\n-      </main>\n-    </div>\n-\n+      <div className=\"container\">\n+        {/* <Header /> */}\n+        <main>\n+          <SideBar headers={headers} />\n+          <MilkdownEditor onHeadersChange={setHeaders} />\n+        </main>\n+      </div>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665414145510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n       <div className=\"container\">\n-        {/* <Header /> */}\n+        <Header />\n         <main>\n           <SideBar headers={headers} />\n           <MilkdownEditor onHeadersChange={setHeaders} />\n         </main>\n"
+                },
+                {
+                    "date": 1665496681332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useState } from 'react'\n-import { MilkdownEditor } from './components/Editor'\n+import { MilkdownEditor } from './components/Editor/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n"
+                },
+                {
+                    "date": 1665497479814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,8 @@\n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <>\n-      <div className=\"container\">\n-        <Header />\n-        <main>\n-          <SideBar headers={headers} />\n-          <MilkdownEditor onHeadersChange={setHeaders} />\n-        </main>\n-      </div>\n+\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665497511216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n \n export const App = () => {\n   const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n-    <>\n+    <div className=\"container\">\n \n-    </>\n+  </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665497518314,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,6 @@\n-import { useState } from 'react'\n-import { MilkdownEditor } from './components/Editor/Editor'\n-import { Header } from './components/Header'\n-import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [headers, setHeaders] = useState([{} as HTMLElement])\n   return (\n     <div className=\"container\">\n \n   </div>\n"
+                },
+                {
+                    "date": 1665500318004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n-\n+      \n   </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500323654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n-      \n+\n   </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500330429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n-\n+<Header/>\n   </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500348494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { Header } from \"./components/Header\"\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665500355430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n-import { Header } from \"./components/Header\"\n+import { Header } from './components/Header'\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n-<Header/>\n-  </div>\n+      <Header />\n+      <\n+    </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500372150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n export const App = () => {\n   return (\n     <div className=\"container\">\n       <Header />\n-      <\n+      <main>\n+        \n+      </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500381872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,14 @@\n import { Header } from './components/Header'\n+import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        \n+        <SideBar/>\n+        <\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665500754171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar/>\n-        <\n+        <SideBar />\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665501252893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n+        <div></div>\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665501732029,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+\n+import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n@@ -6,8 +8,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n+<MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665502395059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,7 +11,8 @@\n         <SideBar />\n <MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n+      <div></div>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665502524611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n         <SideBar />\n <MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n-      <div></div>\n+      <div>aa</div>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665502588638,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,7 @@\n         <SideBar />\n <MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n-      <div>aa</div>\n     </div>\n   )\n }\n"
+                }
+            ],
+            "date": 1665388416110,
+            "name": "Commit-0",
+            "content": "import { useState } from 'react'\nimport { MilkdownEditor } from './components/Editor'\nimport { SideBar } from './components/SideBar'\n\nexport const App = () => {\n  const [headers, setHeaders] = useState([{} as HTMLElement])\n  return (\n    <div className=\"container\">\n      \n      <SideBar headers={headers} />\n      <MilkdownEditor onHeadersChange={setHeaders} />\n    </div>\n  )\n}\n"
+        }
+    ]
+}

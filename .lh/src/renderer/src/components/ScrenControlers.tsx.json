@@ -1,0 +1,106 @@
+{
+    "sourceFile": "src/renderer/src/components/ScrenControlers.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 22,
+            "patches": [
+                {
+                    "date": 1665387401754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665387503435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n export const ScreenControlers = () => {\n+    \n   return (\n-    <div></div>\n+    <div>\n+\n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665387516905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n+const { ipcRenderer } = window.require('electron')\n+\n export const ScreenControlers = () => {\n-    \n   return (\n     <div>\n-\n+        \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665387569645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n-const { ipcRenderer } = window.require('electron')\n-\n+import {ipc}\n export const ScreenControlers = () => {\n   return (\n     <div>\n         \n"
+                },
+                {
+                    "date": 1665387590605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,29 @@\n-import {ipc}\n+import { IpcRenderer } from \"electron\"\n+\n export const ScreenControlers = () => {\n   return (\n     <div>\n-        \n+              <svg\n+        color=\"darkred\"\n+        onClick={() => {\n+          saveData()\n+          ipcRenderer.send('close')\n+        }}\n+        xmlns=\"http://www.w3.org/2000/svg\"\n+        width=\"16\"\n+        height=\"16\"\n+        fill=\"currentColor\"\n+        class=\"bi bi-x-circle-fill\"\n+        viewBox=\"0 0 16 16\"\n+      >\n+        <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n+      </svg>\n+      <svg color=\"orange\" onClick={() => ipcRenderer.send('min')} xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-dash-circle-fill\" viewBox=\"0 0 16 16\">\n+        <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n+      </svg>\n+      <svg color=\"green\" onClick={() => ipcRenderer.send('max')} xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-plus-circle-fill\" viewBox=\"0 0 16 16\">\n+        <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z\" />\n+      </svg>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665387603114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n-import { IpcRenderer } from \"electron\"\n+import { ipcRenderer, IpcRenderer } from \"electron\"\n \n export const ScreenControlers = () => {\n   return (\n     <div>\n               <svg\n         color=\"darkred\"\n         onClick={() => {\n-          saveData()\n           ipcRenderer.send('close')\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n"
+                },
+                {
+                    "date": 1665387609176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-import { ipcRenderer, IpcRenderer } from \"electron\"\n+import { ipcRenderer } from 'electron'\n \n export const ScreenControlers = () => {\n   return (\n     <div>\n-              <svg\n+      <svg\n         color=\"darkred\"\n         onClick={() => {\n           ipcRenderer.send('close')\n         }}\n@@ -16,13 +16,31 @@\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n       </svg>\n-      <svg color=\"orange\" onClick={() => ipcRenderer.send('min')} xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-dash-circle-fill\" viewBox=\"0 0 16 16\">\n+      <svg\n+        color=\"orange\"\n+        onClick={() => ipcRenderer.send('min')}\n+        xmlns=\"http://www.w3.org/2000/svg\"\n+        width=\"16\"\n+        height=\"16\"\n+        fill=\"currentColor\"\n+        class=\"bi bi-dash-circle-fill\"\n\\ No newline at end of file\n+        viewBox=\"0 0 16 16\"\n+      >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n       </svg>\n-      <svg color=\"green\" onClick={() => ipcRenderer.send('max')} xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-plus-circle-fill\" viewBox=\"0 0 16 16\">\n+      <svg\n+        color=\"green\"\n+        onClick={() => ipcRenderer.send('max')}\n+        xmlns=\"http://www.w3.org/2000/svg\"\n+        width=\"16\"\n+        height=\"16\"\n+        fill=\"currentColor\"\n+        class=\"bi bi-plus-circle-fill\"\n+        viewBox=\"0 0 16 16\"\n+      >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z\" />\n       </svg>\n     </div>\n   )\n- }\n+}\n"
+                },
+                {
+                    "date": 1665387616967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n-        class=\"bi bi-x-circle-fill\"\n+        className=\"bi bi-x-circle-fill\"\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n       </svg>\n@@ -42,5 +42,5 @@\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z\" />\n       </svg>\n     </div>\n   )\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1665387625159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n-        class=\"bi bi-dash-circle-fill\"\n+        className=\"bi bi-dash-circle-fill\"\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n       </svg>\n@@ -35,9 +35,9 @@\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n-        class=\"bi bi-plus-circle-fill\"\n+        className=\"bi bi-plus-circle-fill\"\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z\" />\n       </svg>\n"
+                },
+                {
+                    "date": 1665387635979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { ipcRenderer } from 'electron'\n \n export const ScreenControlers = () => {\n   return (\n-    <div>\n+    <div className='screen'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n           ipcRenderer.send('close')\n"
+                },
+                {
+                    "date": 1665390236784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import { ipcRenderer } from 'electron'\n \n export const ScreenControlers = () => {\n   return (\n-    <div className='screen'>\n+    <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-          ipcRenderer.send('close')\n+window.\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390243267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.\n+window.ElectronA\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390251856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.ElectronA\n+window.electronApi\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390363337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electronApi\n+window.electron\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390376361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electron\n+window.electron.\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390418745,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electron.\n+\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390498862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-\n+w\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390503969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-w\n+window.electron.ipcRenderer.\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390554862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electron.ipcRenderer.\n+window.electron.ipcRenderer.c\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390560207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electron.ipcRenderer.c\n+window.electron.\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                },
+                {
+                    "date": 1665390666553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-window.electron.\n+\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n@@ -30,9 +30,9 @@\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n       </svg>\n       <svg\n         color=\"green\"\n-        onClick={() => ipcRenderer.send('max')}\n+        // onClick={() => ipcRenderer.send('max')}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1665390728610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n       </svg>\n       <svg\n         color=\"orange\"\n-        onClick={() => ipcRenderer.send('min')}\n+        // onClick={() => ipcRenderer.send('min')}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1665394708458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n-import { ipcRenderer } from 'electron'\n+// import { ipcRenderer } from 'electron'\n \n export const ScreenControlers = () => {\n   return (\n     <div className='screen-controlers'>\n       <svg\n         color=\"darkred\"\n         onClick={() => {\n-\n         }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n"
+                }
+            ],
+            "date": 1665387401754,
+            "name": "Commit-0",
+            "content": "export const ScreenControlers = () => {\n  return (\n    <div></div>\n  )\n }"
+        }
+    ]
+}

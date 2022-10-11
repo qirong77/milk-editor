@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/index.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1665497140199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665497146354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n-export const  = () => {\n+export const SideBar = () => {\n   return (\n-    <div></div>\n+    <div>\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498963979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div>\n+    <div cla>\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498970942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div cla>\n+    <div className=\"side-bar\">\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498982012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-        \n+      <div></div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498987603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <div></div>\n+      <div>text</div>\n+      <div>\n+        \n+      </div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498993870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <div>text</div>\n-      <div>\n-        \n-      </div>\n+      <div></div>\n+      \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665499009494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n+      <\n       <div>text</div>\n-      <div></div>\n-      \n+\n+\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665499014659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <\n+      <Drag\n       <div>text</div>\n \n \n     </div>\n"
+                },
+                {
+                    "date": 1665499026835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Drag\n+      <Dr\n       <div>text</div>\n \n \n     </div>\n"
+                },
+                {
+                    "date": 1665500275173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n+import { DragLine } from \"./DragLine\"\n+\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Dr\n+      <DragLine/>\n       <div>text</div>\n-\n-\n+      <Header\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665500281636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import { DragLine } from \"./DragLine\"\n+import { Headers } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <DragLine/>\n       <div>text</div>\n-      <Header\n+      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1665497140199,
+            "name": "Commit-0",
+            "content": "export const  = () => {\n  return (\n    <div></div>\n  )\n }"
+        }
+    ]
+}

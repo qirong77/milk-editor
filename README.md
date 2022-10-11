@@ -61,9 +61,16 @@ $ npm run build:linux
 1. electron
 2. milkdown
 3. 别人的学习成果
+https://github.com/CatsAndMice/milkdown
 4. 官方 milkdown-example
 5. blog:electron + vite
    https://dev.to/brojenuel/vite-vue-3-electron-5h4o
 6. npm:electron-vite
    官方 quick-start 依赖有点多，安装比较久需要耐心
    https://cn-evite.netlify.app/
+7. ant-design 大型react项目组织
+- 每个组件都是一个单独的文件夹
+里面固定有一个index作为组合输出
+其他的辅助组件都是在文件夹根目录里面
+- 里面有三个文件夹
+hooks，styles（也有index作为组合输出），text，readme，demo，text

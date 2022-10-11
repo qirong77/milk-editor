@@ -1,0 +1,150 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/Headers.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 33,
+            "patches": [
+                {
+                    "date": 1665497379587,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665497385583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const Headers = () => {\n   return (\n-    <div></div>\n+    <div>\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665497406052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const Headers = () => {\n   return (\n-    <div>\n-        \n+    <div className=\"header-cont\">\n+\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665497417350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n export const Headers = () => {\n   return (\n-    <div className=\"header-cont\">\n-\n-    </div>\n+    ul\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665497423310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const Headers = () => {\n   return (\n-    ul\n+    <ul className=\"headers\">\n+\n+    </ul>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665497999680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,42 @@\n export const Headers = () => {\n+  const updateHeaders = () => {\n+    const headers =\n+      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+    const Headers = Array.from(headers)\n+    const trees = useHeaders(Headers as HTMLElement[])\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+      const id = tree.header.getAttribute('id')\n+      if (!tree.children.length) {\n+        const li = document.createElement('li')\n+        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n+        container.appendChild(li)\n+      } else {\n+        const ul = document.createElement('ul')\n+        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+        tree.children.forEach((child) => {\n+          dfs(child, ul)\n+        })\n+        container.appendChild(ul)\n+        ul.addEventListener\n+      }\n+      return container\n+    }\n+    const headerLists = document.createDocumentFragment()\n+    trees.forEach((tree) => {\n+      const fragment = document.createDocumentFragment()\n+      const headerList = dfs(tree, fragment)\n+      headerLists.appendChild(headerList)\n+    })\n+    const headersContainer = document.querySelector('.headers-container')\n+    headersContainer!.innerHTML = ''\n+    headersContainer?.appendChild(headerLists)\n+  }\n+  useEffect(() => {\n+    updateHeaders()\n+  }, [])\n   return (\n     <ul className=\"headers\">\n \n     </ul>\n"
+                },
+                {
+                    "date": 1665498008895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n+import { useEffect } from \"react\"\n+import { useHeaders } from \"./hooks/useHeaders\"\n+\n export const Headers = () => {\n   const updateHeaders = () => {\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
+                },
+                {
+                    "date": 1665498325876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,8 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         container.appendChild(ul)\n-        ul.addEventListener\n       }\n       return container\n     }\n     const headerLists = document.createDocumentFragment()\n"
+                },
+                {
+                    "date": 1665498638830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useEffect } from \"react\"\n-import { useHeaders } from \"./hooks/useHeaders\"\n+import { HeaderTree, useHeaders } from \"./hooks/useHeaders\"\n \n export const Headers = () => {\n   const updateHeaders = () => {\n     const headers =\n"
+                },
+                {
+                    "date": 1665498706378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { useEffect } from \"react\"\n import { HeaderTree, useHeaders } from \"./hooks/useHeaders\"\n-\n+const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n+<path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n+</svg>`\n export const Headers = () => {\n   const updateHeaders = () => {\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n@@ -20,8 +22,9 @@\n         ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n+        \n         container.appendChild(ul)\n       }\n       return container\n     }\n"
+                },
+                {
+                    "date": 1665498713316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n         ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n-        \n+        ul.addEventListener('click',())\n         container.appendChild(ul)\n       }\n       return container\n     }\n"
+                },
+                {
+                    "date": 1665498719821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n         ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n-        ul.addEventListener('click',())\n+        ul.addEventListener('click',()=>{\n+          ul.tio\n+        })\n         container.appendChild(ul)\n       }\n       return container\n     }\n"
+                },
+                {
+                    "date": 1665498724889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         ul.addEventListener('click',()=>{\n-          ul.tio\n+          ul.cl\n         })\n         container.appendChild(ul)\n       }\n       return container\n"
+                },
+                {
+                    "date": 1665498730368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         ul.addEventListener('click',()=>{\n-          ul.cl\n+          ul.classList.toggle('')\n         })\n         container.appendChild(ul)\n       }\n       return container\n"
+                },
+                {
+                    "date": 1665499037832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,8 @@\n     updateHeaders()\n   }, [])\n   return (\n     <ul className=\"headers\">\n-\n+      \n     </ul>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665499051375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import { useEffect } from \"react\"\n-import { HeaderTree, useHeaders } from \"./hooks/useHeaders\"\n+import { useEffect } from 'react'\n+import { HeaderTree, useHeaders } from './hooks/useHeaders'\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n@@ -22,9 +22,9 @@\n         ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n-        ul.addEventListener('click',()=>{\n+        ul.addEventListener('click', () => {\n           ul.classList.toggle('')\n         })\n         container.appendChild(ul)\n       }\n@@ -42,10 +42,8 @@\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n-  return (\n-    <ul className=\"headers\">\n-      \n-    </ul>\n-  )\n- }\n\\ No newline at end of file\n+  return <ul className=\"headers\">\n+    \n+  </ul>\n+}\n"
+                },
+                {
+                    "date": 1665499060315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,7 +43,7 @@\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n   return <ul className=\"headers\">\n-    \n+    <button></button>\n   </ul>\n }\n"
+                },
+                {
+                    "date": 1665499067195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,7 +43,7 @@\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n   return <ul className=\"headers\">\n-    <button></button>\n+    <button onClick={}>update</button>\n   </ul>\n }\n"
+                },
+                {
+                    "date": 1665499107070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n-  const updateHeaders = () => {\n+  const updateHeaders = (container:HTMLElement) => {\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n@@ -43,7 +43,7 @@\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n   return <ul className=\"headers\">\n-    <button onClick={}>update</button>\n+    <button onClick={updateHeaders}>update</button>\n   </ul>\n }\n"
+                },
+                {
+                    "date": 1665499112934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,8 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n-    const headersContainer = document.querySelector('.headers-container')\n     headersContainer!.innerHTML = ''\n     headersContainer?.appendChild(headerLists)\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1665499119045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n-    headersContainer!.innerHTML = ''\n+    container!.innerHTML = ''\n     headersContainer?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n"
+                },
+                {
+                    "date": 1665499127181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n     container!.innerHTML = ''\n-    headersContainer?.appendChild(headerLists)\n+container?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n"
+                },
+                {
+                    "date": 1665499154651,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n-  const updateHeaders = (container:HTMLElement) => {\n+  const updateHeaders = (container: HTMLElement) => {\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n@@ -29,20 +29,21 @@\n         container.appendChild(ul)\n       }\n       return container\n     }\n-    const headerLists = document.createDocumentFragment()\n     trees.forEach((tree) => {\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n     container!.innerHTML = ''\n-container?.appendChild(headerLists)\n+    container?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n-  return <ul className=\"headers\">\n-    <button onClick={updateHeaders}>update</button>\n-  </ul>\n+  return (\n+    <ul className=\"headers\">\n+      <button onClick={updateHeaders}>update</button>\n+    </ul>\n+  )\n }\n"
+                },
+                {
+                    "date": 1665499161906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,12 +32,11 @@\n     }\n     trees.forEach((tree) => {\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n-      headerLists.appendChild(headerList)\n+      container.appendChild(headerList)\n     })\n     container!.innerHTML = ''\n-    container?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n"
+                },
+                {
+                    "date": 1665499170257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n   const updateHeaders = (container: HTMLElement) => {\n+    container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n@@ -34,9 +35,8 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n-    container!.innerHTML = ''\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n"
+                },
+                {
+                    "date": 1665499185842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n       container.appendChild(headerList)\n     })\n   }\n   useEffect(() => {\n+    const container = document('')\n     updateHeaders()\n   }, [])\n   return (\n     <ul className=\"headers\">\n"
+                },
+                {
+                    "date": 1665499193532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       container.appendChild(headerList)\n     })\n   }\n   useEffect(() => {\n-    const container = document('')\n+    const container = document('header-list')\n     updateHeaders()\n   }, [])\n   return (\n     <ul className=\"headers\">\n"
+                },
+                {
+                    "date": 1665499198918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n     const container = document('header-list')\n     updateHeaders()\n   }, [])\n   return (\n-    <ul className=\"headers\">\n+    <ul className=\"header-list\">\n       <button onClick={updateHeaders}>update</button>\n     </ul>\n   )\n }\n"
+                },
+                {
+                    "date": 1665499217613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,10 @@\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n-  const updateHeaders = (container: HTMLElement) => {\n+  const updateHeaders = (container: HTMLElement||null) => {\n+    if\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n@@ -38,9 +39,9 @@\n     })\n   }\n   useEffect(() => {\n     const container = document('header-list')\n-    updateHeaders()\n+    updateHeaders(container)\n   }, [])\n   return (\n     <ul className=\"header-list\">\n       <button onClick={updateHeaders}>update</button>\n"
+                },
+                {
+                    "date": 1665499223571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n   const updateHeaders = (container: HTMLElement||null) => {\n-    if\n+    if(!cont)\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
+                },
+                {
+                    "date": 1665499235391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,10 @@\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n-  const updateHeaders = (container: HTMLElement||null) => {\n-    if(!cont)\n+  const updateHeaders = (container: HTMLElement|null) => {\n+    if(!container)\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
+                },
+                {
+                    "date": 1665499243142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n   const updateHeaders = (container: HTMLElement|null) => {\n-    if(!container)\n+    if(!container) return\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n@@ -38,9 +38,9 @@\n       container.appendChild(headerList)\n     })\n   }\n   useEffect(() => {\n-    const container = document('header-list')\n+    const container = document.querySelector('header-list')\n     updateHeaders(container)\n   }, [])\n   return (\n     <ul className=\"header-list\">\n"
+                },
+                {
+                    "date": 1665499254723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n       container.appendChild(headerList)\n     })\n   }\n   useEffect(() => {\n-    const container = document.querySelector('header-list')\n+    const container = document.querySelector('header-list') as HTMLE\n     updateHeaders(container)\n   }, [])\n   return (\n     <ul className=\"header-list\">\n"
+                },
+                {
+                    "date": 1665499336871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n const triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>`\n export const Headers = () => {\n-  const updateHeaders = (container？: HTMLElement | null) => {\n+  const updateHeaders = (container: HTMLElement | null) => {\n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
+                }
+            ],
+            "date": 1665497379587,
+            "name": "Commit-0",
+            "content": "export const Headers = () => {\n  return (\n    <div></div>\n  )\n }"
+        }
+    ]
+}
