@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -48,6 +48,18 @@
                 {
                     "date": 1665555348436,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,11 @@\n   instance?.action((ctx) => {\n     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n   })\n   useEffect(() => {\n-    const handleRightClick = () => {}\n+    const handleRightClick = () => {\n+      console.log('right-click')\n+    }\n     const editor = document.querySelector('.editor')\n     editor?.addEventListener('contextmenu', handleRightClick)\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n"
+                },
+                {
+                    "date": 1665589054134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n ## H2\n ### H3\n #### H4\n ###### H5`\n+window.api.onUpdateEditor\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
+                },
+                {
+                    "date": 1665590638679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,11 @@\n ## H2\n ### H3\n #### H4\n ###### H5`\n-window.api.onUpdateEditor\n+window.api.onUpdateEditor((e: any,value: any)=>{\n+  console.log(value)\n+})\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
+                },
+                {
+                    "date": 1665591176549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,10 @@\n ## H2\n ### H3\n #### H4\n ###### H5`\n-window.api.onUpdateEditor((e: any,value: any)=>{\n+window.api.onUpdateEditor((e,value)=>{\n+  console.log(e)\n   console.log(value)\n })\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n"
                 }
             ],
             "date": 1665496693570,

@@ -43,7 +43,7 @@ $ npm run build:linux
 6. 主题切换
 7. git 管理
 8. 原生功能菜单结合（关闭，缩小，全屏）
-
+9. 进程通信
 ### 待完成功能
 
 1. slash 斜杠命令
@@ -55,7 +55,8 @@ $ npm run build:linux
 2. 一键启动 vite 和 electron
    "electron": "tsc ./main.ts && vite & electron .",会有问题
 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大
-
+### 学习笔记
+1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀
 ### 参考学习文档
 
 1. electron

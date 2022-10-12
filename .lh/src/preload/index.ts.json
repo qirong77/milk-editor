@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 34,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -124,6 +124,26 @@
                 {
                     "date": 1665564714134,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n-// 导入的时候不能有扩展名！\n+// 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n const api: Api = {\n   say: () => {\n"
+                },
+                {
+                    "date": 1665587497755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n // 默认情况下electron是隔离的，就是在preload中定义的window属性在render中是访问不到的\n+// 仔细看下面两个，反正不管你是怎么设置的，最终window上都会挂载到electronAPI和自己定义的\n if (process.contextIsolated) {\n   try {\n     contextBridge.exposeInMainWorld('electron', electronAPI)\n     contextBridge.exposeInMainWorld('api', api)\n"
+                },
+                {
+                    "date": 1665588904011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from '../main/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n const api: Api = {\n@@ -16,8 +16,11 @@\n     ipcRenderer.send(MIN_SCREEN)\n   },\n   closeScreen: () => {\n     ipcRenderer.send(CLOSE_SCREEN)\n+  },\n+  updateEditor:(content)=>{\n+    ipcRenderer.on(UPDATE_CONTENT,content)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665589056160,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n   },\n   closeScreen: () => {\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n-  updateEditor:(content)=>{\n-    ipcRenderer.on(UPDATE_CONTENT,content)\n+  onUpdateEditor: (content) => {\n+    ipcRenderer.on(UPDATE_CONTENT, content)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665590635062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n   },\n   closeScreen: () => {\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n-  onUpdateEditor: (content) => {\n-    ipcRenderer.on(UPDATE_CONTENT, content)\n+  onUpdateEditor: (callback) => {\n+    ipcRenderer.on(UPDATE_CONTENT, callback)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665591142680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from '../main/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n+\n const api: Api = {\n   say: () => {\n     console.log('hello')\n   },\n"
                 }
             ],
             "date": 1665389904992,

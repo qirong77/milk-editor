@@ -1,8 +1,18 @@
-import { app, shell, BrowserWindow, ipcMain, Menu, dialog } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Menu} from 'electron'
 import * as path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'
-let window:BrowserWindow
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from './constant'
+import { openFileSelector } from './utils'
+import { readFileSync } from 'fs'
+const openFile = async (window:BrowserWindow) =>{
+  const paths = await openFileSelector(window)
+  if(paths) {
+    const path = paths[0]
+    const content = readFileSync(path,'utf-8')
+    window.webContents.send(UPDATE_CONTENT,content)
+  } 
+}
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -22,32 +32,6 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  window = mainWindow
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-
-  // HMR for renderer base on electron-vite cli.
-  // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
-  }
-}
-async function openFileSelector(window:BrowserWindow) {
-  const { canceled, filePaths } = await dialog.showOpenDialog(window)
-  if (canceled) {
-    return
-  } else {
-    return filePaths[0]
-  }
-}
-function setMainMenu() {
   const menu = Menu.buildFromTemplate([
     {
       label: app.name,
@@ -77,7 +61,7 @@ function setMainMenu() {
         },
         {
           label: '打开',
-          click: ()=>{openFileSelector(window)}
+          click: ()=>{openFile(mainWindow)}
         }
       ]
     },
@@ -96,7 +80,23 @@ function setMainMenu() {
     }
   ])
   Menu.setApplicationMenu(menu)
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+  })
+  mainWindow.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url)
+    return { action: 'deny' }
+  })
+
+  // HMR for renderer base on electron-vite cli.
+  // Load the remote URL for development or the local html file for production.
+  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+  } else {
+    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
+  }
 }
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -118,7 +118,6 @@ app.whenReady().then(() => {
       }
     })
     ipcMain.on(CLOSE_SCREEN, () => window.close())
-    setMainMenu()
   })
 
   createWindow()

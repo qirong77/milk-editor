@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 30,
             "patches": [
                 {
                     "date": 1665545139788,
@@ -100,6 +100,34 @@
                 {
                     "date": 1665564913424,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,7 @@\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-\n+    api:Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665588746742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-\n+  updateEditor:(content:string)=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665589051403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  updateEditor:(content:string)=>void\n+  onUpdateEditor:(content:string)=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665589333295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-\n+import { IpcRendererEvent } from 'electron'\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n // export interface Api {\n //   say: () => void\n //   minScreen:()=>void\n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(content:string)=>void\n+  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665589749906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n+  // onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665589986607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  // onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n+  onUpdateEditor:() => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665590029623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:() => void\n+  onUpdateEditor:(callback:IpcRendererEvent) => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665590092486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(callback:IpcRendererEvent) => void\n+  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
                 }
             ],
             "date": 1665545139788,

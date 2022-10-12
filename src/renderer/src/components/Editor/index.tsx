@@ -26,6 +26,10 @@ const DEFAULT_MARKDOWN = `# H1
 ### H3
 #### H4
 ###### H5`
+window.api.onUpdateEditor((e,value)=>{
+  console.log(e)
+  console.log(value)
+})
 export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
   const { editor, getInstance } = useEditor((root) =>
     Editor.make()

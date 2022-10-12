@@ -1,10 +1,11 @@
 import { contextBridge, ipcRenderer } from 'electron'
 // 渲染进程中可以使用的API
 import { electronAPI } from '@electron-toolkit/preload'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from '../main/constant'
 // 导入.d.ts类型文件的时候不能有扩展名！
 import { Api } from './index.d'
 // Custom APIs for renderer
+
 const api: Api = {
   say: () => {
     console.log('hello')
@@ -17,12 +18,16 @@ const api: Api = {
   },
   closeScreen: () => {
     ipcRenderer.send(CLOSE_SCREEN)
+  },
+  onUpdateEditor: (callback) => {
+    ipcRenderer.on(UPDATE_CONTENT, callback)
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
 // 默认情况下electron是隔离的，就是在preload中定义的window属性在render中是访问不到的
+// 仔细看下面两个，反正不管你是怎么设置的，最终window上都会挂载到electronAPI和自己定义的
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI)
