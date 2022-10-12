@@ -14,8 +14,10 @@ $dark-color: rgba(236, 239, 244, 0.87);
       width: 14px;
       opacity: 0.6;
       margin: 0 3px;
-      color: gainsboro;
+      color: azure;
+      filter: saturate(30%);
       &:hover {
+        filter: saturate(100%);
         // 修改饱和度
       }
     }

@@ -1,0 +1,110 @@
+{
+    "sourceFile": "src/preload/index.d.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1665545139788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665545148666,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import {Api} from './index.ts'\n+import { Api } from './index.ts'\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-    api:Ap\n+    api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665545172508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n import { Api } from './index.ts'\n declare global {\n   interface Window {\n-    electron: ElectronAPI\n+    electron: ElectronAPI,\n     api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665545222540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { Api } from './index.ts'\n+\n declare global {\n   interface Window {\n-    electron: ElectronAPI,\n-    api: Api\n+    electron: ElectronAPI\n+    api: unknown\n   }\n }\n"
+                },
+                {
+                    "date": 1665545269513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-\n declare global {\n   interface Window {\n     electron: ElectronAPI\n     api: unknown\n"
+                },
+                {
+                    "date": 1665545304506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n+export interface Api {\n+  say:()=>void\n+}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-    api: unknown\n+    api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665545452584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n+import { name } from './index.ts'\n export interface Api {\n-  say:()=>void\n+  say: () => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665545495982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { name } from './index.ts'\n-export interface Api {\n-  say: () => void\n-}\n+import { Api } from './index.ts'\n+\n declare global {\n   interface Window {\n     electron: ElectronAPI\n     api: Api\n"
+                },
+                {
+                    "date": 1665545535502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { Api } from './index.ts'\n-\n+import { name } from './index.ts'\n+export interface Api {\n+  say: () => void\n+  x:name\n+}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n     api: Api\n"
+                },
+                {
+                    "date": 1665545566840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { name } from './index.ts'\n export interface Api {\n   say: () => void\n-  x:name\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665545778337,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n+// 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n export interface Api {\n   say: () => void\n }\n declare global {\n"
+                },
+                {
+                    "date": 1665546096522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n export interface Api {\n   say: () => void\n+  minScreen:()=>void\n+  maxScreen:()=>void\n+  closeScreen:()=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665546178199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n-export interface Api {\n+interface Api {\n   say: () => void\n   minScreen:()=>void\n   maxScreen:()=>void\n   closeScreen:()=>void\n"
+                },
+                {
+                    "date": 1665562374642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n-interface Api {\n+export interface Api {\n   say: () => void\n   minScreen:()=>void\n   maxScreen:()=>void\n   closeScreen:()=>void\n"
+                },
+                {
+                    "date": 1665563067092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-    api: Api\n+    api: import('./index.ts').\n   }\n }\n"
+                },
+                {
+                    "date": 1665563109989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n+import {Api} from './index.ts'\n+\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n-export interface Api {\n-  say: () => void\n-  minScreen:()=>void\n-  maxScreen:()=>void\n-  closeScreen:()=>void\n-}\n+// export interface Api {\n+//   say: () => void\n+//   minScreen:()=>void\n+//   maxScreen:()=>void\n+//   closeScreen:()=>void\n+// }\n declare global {\n   interface Window {\n-    electron: ElectronAPI\n-    api: import('./index.ts').\n+    electron: ElectronAPI,\n+    api:Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665563165103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import {Api} from './index.ts'\n+import { Api } from './index.ts'\n \n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n // export interface Api {\n //   say: () => void\n@@ -9,8 +9,8 @@\n //   closeScreen:()=>void\n // }\n declare global {\n   interface Window {\n-    electron: ElectronAPI,\n-    api:Api\n+    electron: ElectronAPI\n+    api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665563198271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,7 +10,8 @@\n // }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n+    \n     api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665563382619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,16 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { Api } from './index.ts'\n-\n+import { type } from 'os'\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n // export interface Api {\n //   say: () => void\n //   minScreen:()=>void\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n+import {Api} from './index.ts'\n+export type name= {}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-    \n-    api: Api\n   }\n }\n"
+                },
+                {
+                    "date": 1665563405178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n import {Api} from './index.ts'\n-export type name= {}\n+export type DTS= {}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n   }\n"
+                },
+                {
+                    "date": 1665563683692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-import { type } from 'os'\n+/// <reference types=\"./index.ts\" />\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n // export interface Api {\n //   say: () => void\n //   minScreen:()=>void\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n-import {Api} from './index.ts'\n-export type DTS= {}\n+export type DTS = {}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n+    \n   }\n }\n"
+                },
+                {
+                    "date": 1665564556905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n-/// <reference types=\"./index.ts\" />\n+\n // 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n // export interface Api {\n //   say: () => void\n //   minScreen:()=>void\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n-export type DTS = {}\n+export declare const thing: number;\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-    \n+\n   }\n }\n"
+                },
+                {
+                    "date": 1665564636376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,15 @@\n //   minScreen:()=>void\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n-export declare const thing: number;\n+export interface Api {\n+  say: () => void\n+  minScreen: () => void\n+  maxScreen: () => void\n+  closeScreen: () => void\n+\n+}\n declare global {\n   interface Window {\n     electron: ElectronAPI\n \n"
+                },
+                {
+                    "date": 1665564913424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,7 @@\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n-\n+    api:Api\n   }\n }\n"
+                }
+            ],
+            "date": 1665545139788,
+            "name": "Commit-0",
+            "content": "import { ElectronAPI } from '@electron-toolkit/preload'\nimport {Api} from './index.ts'\ndeclare global {\n  interface Window {\n    electron: ElectronAPI\n    api:Ap\n  }\n}\n"
+        }
+    ]
+}

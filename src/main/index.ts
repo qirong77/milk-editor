@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow ,ipcMain} from 'electron'
+import { app, shell, BrowserWindow, ipcMain, Menu, dialog } from 'electron'
 import * as path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'
+let window:BrowserWindow
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -21,22 +22,10 @@ function createWindow(): void {
       sandbox: false
     }
   })
-
-  // 监听放大缩小的按键
-  ipcMain.on('min', e => mainWindow.minimize())
-  ipcMain.on('max', e => {
-    if (mainWindow.isMaximized()) {
-      mainWindow.unmaximize()
-    } else {
-      mainWindow.maximize()
-    }
-  })
-  ipcMain.on('close', e => mainWindow.close())
-
+  window = mainWindow
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
@@ -50,12 +39,64 @@ function createWindow(): void {
     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
   }
 }
-
-
-
-
-
-
+async function openFileSelector(window:BrowserWindow) {
+  const { canceled, filePaths } = await dialog.showOpenDialog(window)
+  if (canceled) {
+    return
+  } else {
+    return filePaths[0]
+  }
+}
+function setMainMenu() {
+  const menu = Menu.buildFromTemplate([
+    {
+      label: app.name,
+      submenu: [
+        {
+          click: () => {},
+          label: 'Increment'
+        },
+        {
+          click: () => {},
+          label: 'Decrement'
+        }
+      ]
+    },
+    {
+      label: '文件',
+      submenu: [
+        {
+          click: () => {},
+          label: '新建',
+          accelerator: 'Shift+CmdOrCtrl+H'
+        },
+        {
+          click: () => {},
+          label: '新建标签页',
+          accelerator: 'Shift+CmdOrCtrl+H'
+        },
+        {
+          label: '打开',
+          click: ()=>{openFileSelector(window)}
+        }
+      ]
+    },
+    {
+      label: app.name,
+      submenu: [
+        {
+          click: () => {},
+          label: 'Increment'
+        },
+        {
+          click: () => {},
+          label: 'Decrement'
+        }
+      ]
+    }
+  ])
+  Menu.setApplicationMenu(menu)
+}
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -68,6 +109,16 @@ app.whenReady().then(() => {
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
+    ipcMain.on(MIN_SCREEN, () => window.minimize())
+    ipcMain.on(MAX_SCREEN, () => {
+      if (window.isMaximized()) {
+        window.unmaximize()
+      } else {
+        window.maximize()
+      }
+    })
+    ipcMain.on(CLOSE_SCREEN, () => window.close())
+    setMainMenu()
   })
 
   createWindow()

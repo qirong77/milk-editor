@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1665496085720,
@@ -20,6 +20,14 @@
                 {
                     "date": 1665500470360,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n       </svg>\n+      \n       <svg\n         color=\"orange\"\n         // onClick={() => ipcRenderer.send('min')}\n         xmlns=\"http://www.w3.org/2000/svg\"\n"
+                },
+                {
+                    "date": 1665546288121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,11 @@\n   return (\n     <div className=\"controlers\">\n       <svg\n         color=\"darkred\"\n-        onClick={() => {}}\n+        onClick={() => {\n+          window.api.closeScreen()\n+        }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -15,9 +17,11 @@\n       </svg>\n       \n       <svg\n         color=\"orange\"\n-        // onClick={() => ipcRenderer.send('min')}\n+        onClick={() => {\n+          window.api.minScreen()\n+        }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -27,9 +31,9 @@\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n       </svg>\n       <svg\n         color=\"green\"\n-        // onClick={() => ipcRenderer.send('max')}\n+        onClick={() => {window.api.closeScreen()}}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1665551450885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n         viewBox=\"0 0 16 16\"\n       >\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z\" />\n       </svg>\n-      \n+\n       <svg\n         color=\"orange\"\n         onClick={() => {\n           window.api.minScreen()\n@@ -31,9 +31,11 @@\n         <path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7z\" />\n       </svg>\n       <svg\n         color=\"green\"\n-        onClick={() => {window.api.closeScreen()}}\n+        onClick={() => {\n+          window.api.maxScreen()\n+        }}\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
                 }
             ],
             "date": 1665496085720,

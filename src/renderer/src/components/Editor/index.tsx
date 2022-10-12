@@ -21,19 +21,17 @@ import 'katex/dist/katex.min.css'
 // 代码高亮
 import 'prism-themes/themes/prism-material-oceanic.min.css'
 interface MilkdownEditor {}
+const DEFAULT_MARKDOWN = `# H1
+## H2
+### H3
+#### H4
+###### H5`
 export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
   const { editor, getInstance } = useEditor((root) =>
     Editor.make()
       .config((ctx) => {
         ctx.set(rootCtx, root),
-          ctx.set(
-            defaultValueCtx,
-            `# H1
-          ## H2
-          ### H3
-          #### H4
-          ###### H5`
-          ),
+          ctx.set(defaultValueCtx, DEFAULT_MARKDOWN),
           // // 代码的默认形式？
           // ctx.set(defaultValueCtx,{
           //     type:'html',
@@ -48,10 +46,17 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
       .use(prism)
       .use(menu)
   )
-
   const instance = getInstance()
   instance?.action((ctx) => {
     ctx.get(themeManagerCtx).switch(ctx, nordDark)
+  })
+  useEffect(() => {
+    const handleRightClick = () => {
+      console.log('right-click')
+    }
+    const editor = document.querySelector('.editor')
+    editor?.addEventListener('contextmenu', handleRightClick)
+    return editor?.removeEventListener('contextmenu', handleRightClick)
   })
   return <ReactEditor editor={editor} />
 }

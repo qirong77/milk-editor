@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -36,6 +36,18 @@
                 {
                     "date": 1665500716444,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {\n-  onHeadersChange: Function\n }\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n"
+                },
+                {
+                    "date": 1665503483477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,23 +19,20 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-interface MilkdownEditor {\n-}\n+interface MilkdownEditor {}\n+const DEFAULT_MARKDOWN = `# H1\n+## H2\n+### H3\n+#### H4\n+###### H5`\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root),\n-          ctx.set(\n-            defaultValueCtx,\n-            `# H1\n-          ## H2\n-          ### H3\n-          #### H4\n-          ###### H5`\n-          ),\n+          ctx.set(defaultValueCtx, DEFAULT_MARKDOWN),\n           // // 代码的默认形式？\n           // ctx.set(defaultValueCtx,{\n           //     type:'html',\n           //     dom:document.querySelector('#pre') as HTMLElement\n"
+                },
+                {
+                    "date": 1665555339805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,16 @@\n       .use(listener)\n       .use(prism)\n       .use(menu)\n   )\n-\n   const instance = getInstance()\n   instance?.action((ctx) => {\n     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n   })\n+  useEffect(() => {\n+    const handleRightClick = () => {}\n+    const editor = document.querySelector('.editor')\n+    editor?.addEventListener('contextmenu', handleRightClick)\n+    return editor?.removeEventListener('contextmenu', handleRightClick)\n+  })\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1665555348436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,11 @@\n   instance?.action((ctx) => {\n     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n   })\n   useEffect(() => {\n-    const handleRightClick = () => {}\n+    const handleRightClick = () => {\n+      console.log('right-click')\n+    }\n     const editor = document.querySelector('.editor')\n     editor?.addEventListener('contextmenu', handleRightClick)\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n"
                 }
             ],
             "date": 1665496693570,

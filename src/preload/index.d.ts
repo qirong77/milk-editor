@@ -1,8 +1,22 @@
 import { ElectronAPI } from '@electron-toolkit/preload'
 
+// 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了
+// export interface Api {
+//   say: () => void
+//   minScreen:()=>void
+//   maxScreen:()=>void
+//   closeScreen:()=>void
+// }
+export interface Api {
+  say: () => void
+  minScreen: () => void
+  maxScreen: () => void
+  closeScreen: () => void
+
+}
 declare global {
   interface Window {
     electron: ElectronAPI
-    api: unknown
+    api:Api
   }
 }

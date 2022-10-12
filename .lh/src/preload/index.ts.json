@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -48,6 +48,82 @@
                 {
                     "date": 1665390479737,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,12 @@\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n const api = {\n+  minScreen:()=>ipcRenderer.send('min'),\n+  maxScreen:()=>ipcRenderer.send('max'),\n+  closeScreen:()=>ipcRenderer.send('close')\n \n-  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n@@ -21,9 +23,4 @@\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n-contextBridge.exposeInMainWorld('electronAPI', {\n-  minScreen:()=>ipcRenderer.send('min'),\n-  maxScreen:()=>ipcRenderer.send('max'),\n-  closeScreen:()=>ipcRenderer.send('close')\n-})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665538909278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n   } catch (error) {\n     console.error(error)\n   }\n } else {\n+  console.log('not isolate')\n   // @ts-ignore (define in dts)\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n"
+                },
+                {
+                    "date": 1665544555090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n const api = {\n-  minScreen:()=>ipcRenderer.send('min'),\n-  maxScreen:()=>ipcRenderer.send('max'),\n-  closeScreen:()=>ipcRenderer.send('close')\n+  \n \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665544938150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import { contextBridge, ipcRenderer } from 'electron'\n+// 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n const api = {\n-  \n-\n+  say:()=>{\n+    console.log('hello')\n+  }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1665545107872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-\n+export interface Api {\n+  say:()=>void\n+}\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n     console.log('hello')\n"
+                },
+                {
+                    "date": 1665545120671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export interface Api {\n   say:()=>void\n }\n // Custom APIs for renderer\n-const api = {\n+const api:Api = {\n   say:()=>{\n     console.log('hello')\n   }\n }\n"
+                },
+                {
+                    "date": 1665545312012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,10 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-export interface Api {\n-  say:()=>void\n-}\n+\n // Custom APIs for renderer\n-const api:Api = {\n+const api = {\n   say:()=>{\n     console.log('hello')\n   }\n }\n"
+                },
+                {
+                    "date": 1665545427628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-\n+type name = {\n+  x :string\n+}\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n     console.log('hello')\n"
+                },
+                {
+                    "date": 1665545487930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-type name = {\n-  x :string\n+export interface Api {\n+  say: () => void\n+  x:name\n }\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n"
+                },
+                {
+                    "date": 1665545541047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-export interface Api {\n-  say: () => void\n-  x:name\n+export type name = {\n+  x :string\n }\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n"
+                },
+                {
+                    "date": 1665545571006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-export type name = {\n-  x :string\n-}\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n     console.log('hello')\n"
+                },
+                {
+                    "date": 1665545927985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,12 @@\n // Custom APIs for renderer\n const api = {\n   say:()=>{\n     console.log('hello')\n-  }\n+  },\n+  maxScreen:()=>{ipcRenderer.send('max')},\n+  minScreen:()=>{ipcRenderer.send('min')},\n+  closeScreent:()=>{ipcRenderer.send('close')}\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1665545933258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,20 @@\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n // Custom APIs for renderer\n const api = {\n-  say:()=>{\n+  say: () => {\n     console.log('hello')\n   },\n-  maxScreen:()=>{ipcRenderer.send('max')},\n-  minScreen:()=>{ipcRenderer.send('min')},\n-  closeScreent:()=>{ipcRenderer.send('close')}\n+  maxScreen: () => {\n+    ipcRenderer.send('max')\n+  },\n+  minScreen: () => {\n+    ipcRenderer.send('min')\n+  },\n+  closeScreen: () => {\n+    ipcRenderer.send('close')\n+  }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1665546152183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n+// 默认情况下electron是隔离的，就是在preload中定义的window属性在render中是访问不到的\n if (process.contextIsolated) {\n   try {\n     contextBridge.exposeInMainWorld('electron', electronAPI)\n     contextBridge.exposeInMainWorld('api', api)\n"
+                },
+                {
+                    "date": 1665546179767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,15 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n // Custom APIs for renderer\n-const api = {\n+interface Api {\n+  say: () => void\n+  minScreen:()=>void\n+  maxScreen:()=>void\n+  closeScreen:()=>void\n+}\n+const api:Api = {\n   say: () => {\n     console.log('hello')\n   },\n   maxScreen: () => {\n"
+                },
+                {
+                    "date": 1665551683974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,27 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n // Custom APIs for renderer\n interface Api {\n   say: () => void\n-  minScreen:()=>void\n-  maxScreen:()=>void\n-  closeScreen:()=>void\n+  minScreen: () => void\n+  maxScreen: () => void\n+  closeScreen: () => void\n }\n-const api:Api = {\n+const api: Api = {\n   say: () => {\n     console.log('hello')\n   },\n   maxScreen: () => {\n-    ipcRenderer.send('max')\n+    ipcRenderer.send(MAX_SCREEN)\n   },\n   minScreen: () => {\n-    ipcRenderer.send('min')\n+    ipcRenderer.send(MIN_SCREEN)\n   },\n   closeScreen: () => {\n-    ipcRenderer.send('close')\n+    ipcRenderer.send(CLOSE_SCREEN)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665562981812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n+// import('./index.d.ts')\n // Custom APIs for renderer\n-interface Api {\n+export interface Api {\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n"
+                },
+                {
+                    "date": 1665564660779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,11 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n+import { Api } from './index.d'\n // import('./index.d.ts')\n // Custom APIs for renderer\n-export interface Api {\n-  say: () => void\n-  minScreen: () => void\n-  maxScreen: () => void\n-  closeScreen: () => void\n-}\n const api: Api = {\n   say: () => {\n     console.log('hello')\n   },\n"
+                },
+                {
+                    "date": 1665564702073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n+// 导入的时候不能有扩展名！\n import { Api } from './index.d'\n-// import('./index.d.ts')\n // Custom APIs for renderer\n const api: Api = {\n   say: () => {\n     console.log('hello')\n"
+                },
+                {
+                    "date": 1665564714134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../main/constant'\n-// 导入的时候不能有扩展名！\n+// 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n const api: Api = {\n   say: () => {\n"
                 }
             ],
             "date": 1665389904992,
