@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
+import React, { useEffect, useRef, useState } from 'react'
+import { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'
 import { nord } from '@milkdown/theme-nord'
-import { ReactEditor, useEditor } from '@milkdown/react'
+import { EditorRef, ReactEditor, useEditor } from '@milkdown/react'
 // 通用markdown预设
 import { commonmark } from '@milkdown/preset-commonmark'
 import { history } from '@milkdown/plugin-history'
-
-import { listenerCtx, listener } from '@milkdown/plugin-listener'
+import { useConfig } from './hooks/useConfig'
+import { listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
 import { themeManagerCtx } from '@milkdown/core'
@@ -20,28 +20,18 @@ import '@material-design-icons/font'
 import 'katex/dist/katex.min.css'
 // 代码高亮
 import 'prism-themes/themes/prism-material-oceanic.min.css'
+import { Slice } from 'prosemirror-model'
 interface MilkdownEditor {}
-const DEFAULT_MARKDOWN = `# H1
-## H2
-### H3
-#### H4
-###### H5`
-window.api.onUpdateEditor((e,value)=>{
-  console.log(e)
-  console.log(value)
-})
+
+
+
 export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
+  const [content, setContent] = useState('')
   const { editor, getInstance } = useEditor((root) =>
     Editor.make()
       .config((ctx) => {
-        ctx.set(rootCtx, root),
-          ctx.set(defaultValueCtx, DEFAULT_MARKDOWN),
-          // // 代码的默认形式？
-          // ctx.set(defaultValueCtx,{
-          //     type:'html',
-          //     dom:document.querySelector('#pre') as HTMLElement
-          //   })
-          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {})
+        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)
+        useConfig(ctx)
       })
       .use(nord)
       .use(commonmark)
@@ -54,13 +44,31 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
   instance?.action((ctx) => {
     ctx.get(themeManagerCtx).switch(ctx, nordDark)
   })
+  // 右键菜单
   useEffect(() => {
     const handleRightClick = () => {
       console.log('right-click')
     }
-    const editor = document.querySelector('.editor')
+    const editor = document.querySelector('.milkdown')
     editor?.addEventListener('contextmenu', handleRightClick)
     return editor?.removeEventListener('contextmenu', handleRightClick)
   })
+  useEffect(()=>{
+    window.api.onUpdateEditor((e, value) => {
+      setContent(value)
+    })
+  },[])
+  console.log(window.api)
+  // 更新内容
+  useEffect(() => {
+    instance?.action((ctx) => {
+      const view = ctx.get(editorViewCtx)
+      const parser = ctx.get(parserCtx)
+      const doc = parser(content)
+      if (!doc) return
+      const state = view.state
+      view.dispatch(state.tr.replace(0, state.doc.content.size, new Slice(doc.content, 0, 0)))
+    })
+  }, [content])
   return <ReactEditor editor={editor} />
 }

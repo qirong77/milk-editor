@@ -7,12 +7,15 @@ import { IpcRendererEvent } from 'electron'
 //   maxScreen:()=>void
 //   closeScreen:()=>void
 // }
+interface Listener {
+  (event: IpcRendererEvent, ...args: any[]):void
+}
 export interface Api {
   say: () => void
   minScreen: () => void
   maxScreen: () => void
   closeScreen: () => void
-  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void
+  onUpdateEditor:(callback:Listener)=>void
 }
 declare global {
   interface Window {

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 33,
+            "activePatchIndex": 36,
             "patches": [
                 {
                     "date": 1665388140026,
@@ -140,6 +140,18 @@
                 {
                     "date": 1665592653149,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,11 @@\n   if(paths) {\n     const path = paths[0]\n     const content = readFileSync(path,'utf-8')\n     window.webContents.send(UPDATE_CONTENT,content)\n-  }\n+  } \n+}\n \n-}\n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n     width: 900,\n"
+                },
+                {
+                    "date": 1665644473689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,10 @@\n import { app, shell, BrowserWindow, ipcMain, Menu} from 'electron'\n import * as path from 'path'\n import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from './constant'\n-import { openFileSelector } from './utils'\n-import { readFileSync } from 'fs'\n-const openFile = async (window:BrowserWindow) =>{\n-  const paths = await openFileSelector(window)\n-  if(paths) {\n-    const path = paths[0]\n-    const content = readFileSync(path,'utf-8')\n-    window.webContents.send(UPDATE_CONTENT,content)\n-  } \n-}\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'\n \n+\n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n     width: 900,\n@@ -31,56 +22,9 @@\n       preload: path.join(__dirname, '../preload/index.js'),\n       sandbox: false\n     }\n   })\n-  const menu = Menu.buildFromTemplate([\n-    {\n-      label: app.name,\n-      submenu: [\n-        {\n-          click: () => {},\n-          label: 'Increment'\n-        },\n-        {\n-          click: () => {},\n-          label: 'Decrement'\n-        }\n-      ]\n-    },\n-    {\n-      label: '文件',\n-      submenu: [\n-        {\n-          click: () => {},\n-          label: '新建',\n-          accelerator: 'Shift+CmdOrCtrl+H'\n-        },\n-        {\n-          click: () => {},\n-          label: '新建标签页',\n-          accelerator: 'Shift+CmdOrCtrl+H'\n-        },\n-        {\n-          label: '打开',\n-          click: ()=>{openFile(mainWindow)}\n-        }\n-      ]\n-    },\n-    {\n-      label: app.name,\n-      submenu: [\n-        {\n-          click: () => {},\n-          label: 'Increment'\n-        },\n-        {\n-          click: () => {},\n-          label: 'Decrement'\n-        }\n-      ]\n-    }\n-  ])\n-  Menu.setApplicationMenu(menu)\n+\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                },
+                {
+                    "date": 1665645545134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-import { app, shell, BrowserWindow, ipcMain, Menu} from 'electron'\n+import { app, shell, BrowserWindow, ipcMain} from 'electron'\n import * as path from 'path'\n import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'\n \n \n+\n function createWindow(): void {\n   // Create the browser window.\n   const mainWindow = new BrowserWindow({\n     width: 900,\n@@ -22,17 +22,15 @@\n       preload: path.join(__dirname, '../preload/index.js'),\n       sandbox: false\n     }\n   })\n-\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n     shell.openExternal(details.url)\n     return { action: 'deny' }\n   })\n-\n   // HMR for renderer base on electron-vite cli.\n   // Load the remote URL for development or the local html file for production.\n   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {\n     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n"
+                },
+                {
+                    "date": 1665646145182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { app, shell, BrowserWindow, ipcMain} from 'electron'\n import * as path from 'path'\n import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'\n+import { useMenu } from './useMenu'\n \n \n \n function createWindow(): void {\n@@ -22,8 +24,9 @@\n       preload: path.join(__dirname, '../preload/index.js'),\n       sandbox: false\n     }\n   })\n+  useMenu(mainWindow)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
                 }
             ],
             "date": 1665388140026,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 30,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1665545139788,
@@ -128,6 +128,10 @@
                 {
                     "date": 1665590092486,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(callback:IpcRendererEvent) => void\n+  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665632673142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,17 @@\n //   minScreen:()=>void\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n+interface Listener {\n+  (event: IpcRendererEvent, ...args: any[]):void\n+}\n export interface Api {\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(event: IpcRendererEvent, ...args: any[]) => void\n+  onUpdateEditor:(callback:Listener)=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
                 }
             ],
             "date": 1665545139788,

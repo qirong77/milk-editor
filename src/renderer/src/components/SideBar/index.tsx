@@ -1,12 +1,13 @@
 import { DragLine } from "./DragLine"
-import { Headers } from "./Headers"
+import { HeaderList } from "./HeaderList"
 
 export const SideBar = () => {
   return (
+
     <div className="side-bar">
+    <header><span>文件</span></header>
       <DragLine/>
-      <div>text</div>
-      <Headers/>
+      <HeaderList/>
     </div>
   )
  }

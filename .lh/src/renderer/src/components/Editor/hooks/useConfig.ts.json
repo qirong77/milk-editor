@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/hooks/useConfig.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1665632485404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1665632485404,
+            "name": "Commit-0",
+            "content": "import { Ctx, Editor } from \"@milkdown/core\";\nimport { listenerCtx } from \"@milkdown/plugin-listener\";\n\nexport const conifgEdirot = (ctx:Ctx) => {\n    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n        console.log(markdown)\n      })\n}"
+        }
+    ]
+}

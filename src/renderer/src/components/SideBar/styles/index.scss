@@ -1,13 +1,19 @@
 $dark-color: rgba(236, 239, 244, 0.87);
-$dark-background: rgba(46, 52, 64, 1);
+$dark-background: rgb(39, 44, 55);
 $side-bar-width: 160px;
 .side-bar {
   width: $side-bar-width;
-  min-width: $side-bar-width;
+  min-width: 100px;
   color: $dark-color;
   background-color: $dark-background;
   border-right: 0.5px solid #748fb0;
-  padding: 0 20px 20px 0;
+  padding: 30px 0 20px 0;
+  font-weight: normal;
+  font-size: small;
+  header {
+    display: flex;
+    justify-content: space-around;
+  }
   .header-list {
     overflow: scroll;
     ul,
@@ -41,7 +47,6 @@ $side-bar-width: 160px;
   .drag-line {
     width: 4px;
     // 定位为position的元素height为100%不是相对于父元素了
-    height: calc(100vh - 30px);
     position: absolute;
     left: $side-bar-width;
     z-index: 99;

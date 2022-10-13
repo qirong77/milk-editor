@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 37,
+            "activePatchIndex": 50,
             "patches": [
                 {
                     "date": 1665388416110,
@@ -156,6 +156,58 @@
                 {
                     "date": 1665502588638,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,7 @@\n         <SideBar />\n <MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n-      <div>aa</div>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665633735901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-<MilkdownEditor></MilkdownEditor>\n+<MilkdownEditor markdown='xxxx'></MilkdownEditor>\n         <div></div>\n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665633862406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n@@ -8,9 +7,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-<MilkdownEditor markdown='xxxx'></MilkdownEditor>\n+        <MilkdownEditor markdown={'xxx'}></MilkdownEditor>\n         <div></div>\n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665633921597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,20 @@\n+import { useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n+  const [state,setState] = useState('xx')\n+  setTimeout(()=>{\n+    setState('bbb')\n+  })\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        <MilkdownEditor markdown={'xxx'}></MilkdownEditor>\n+        <MilkdownEditor markdown={state}></MilkdownEditor>\n         <div></div>\n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665633934838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n export const App = () => {\n   const [state,setState] = useState('xx')\n   setTimeout(()=>{\n     setState('bbb')\n-  })\n+  },2000)\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665633946300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n export const App = () => {\n   const [state,setState] = useState('xx')\n   setTimeout(()=>{\n     setState('bbb')\n+    console.log(state)\n   },2000)\n   return (\n     <div className=\"container\">\n       <Header />\n"
+                },
+                {
+                    "date": 1665634031926,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const [state,setState] = useState('xx')\n   setTimeout(()=>{\n     setState('bbb')\n     console.log(state)\n-  },2000)\n+  },3000)\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665635139558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        <MilkdownEditor markdown={state}></MilkdownEditor>\n+        <MilkdownEditor></MilkdownEditor>\n         <div></div>\n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665636544232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,11 @@\n-import { useState } from 'react'\n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [state,setState] = useState('xx')\n-  setTimeout(()=>{\n-    setState('bbb')\n-    console.log(state)\n-  },3000)\n+\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665643155987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar />\n+        {/* <SideBar />\n         <MilkdownEditor></MilkdownEditor>\n-        <div></div>\n+        <div></div> */}\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665643181232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        {/* <SideBar />\n-        <MilkdownEditor></MilkdownEditor>\n-        <div></div> */}\n+        <SideBar />\n+        {/* <MilkdownEditor></MilkdownEditor> */}\n+\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665643226947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        {/* <MilkdownEditor></MilkdownEditor> */}\n+        <MilkdownEditor></MilkdownEditor>\n \n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665643266456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        <MilkdownEditor></MilkdownEditor>\n+        {/* <MilkdownEditor></MilkdownEditor> */}\n \n       </main>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665643274911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        {/* <MilkdownEditor></MilkdownEditor> */}\n+        <MilkdownEditor></MilkdownEditor>\n \n       </main>\n     </div>\n   )\n"
                 }
             ],
             "date": 1665388416110,

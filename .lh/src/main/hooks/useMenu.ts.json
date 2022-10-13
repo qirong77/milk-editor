@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/main/hooks/useMenu.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1665644213764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665644251176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { app, BrowserWindow, Menu } from \"electron\"\n+import { openFileSelector } from \"./openFile\"\n \n export const useMenu = (window:BrowserWindow) => {\n     const menu = Menu.buildFromTemplate([\n         {\n@@ -29,9 +30,9 @@\n               accelerator: 'Shift+CmdOrCtrl+H'\n             },\n             {\n               label: '打开',\n-              click: ()=>{openFile(window)}\n+              click: ()=>{openFileSelector(window)}\n             }\n           ]\n         },\n         {\n"
+                },
+                {
+                    "date": 1665644272172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,17 +35,17 @@\n             }\n           ]\n         },\n         {\n-          label: app.name,\n+          label: '显示',\n           submenu: [\n             {\n               click: () => {},\n-              label: 'Increment'\n+              label: '侧边栏'\n             },\n             {\n               click: () => {},\n-              label: 'Decrement'\n+              label: '工具栏'\n             }\n           ]\n         }\n       ])\n"
+                },
+                {
+                    "date": 1665645500721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,16 @@\n import { app, BrowserWindow, Menu } from \"electron\"\n+import { readFileSync } from \"fs\"\n+import { UPDATE_CONTENT } from \"../../common/constant\"\n import { openFileSelector } from \"./openFile\"\n-\n+const openFile = async (window:BrowserWindow) =>{\n+    const paths = await openFileSelector(window)\n+    if(paths) {\n+      const path = paths[0]\n+      const content = readFileSync(path,'utf-8')\n+      window.webContents.send(UPDATE_CONTENT,content)\n+    } \n+  }\n export const useMenu = (window:BrowserWindow) => {\n     const menu = Menu.buildFromTemplate([\n         {\n           label: app.name,\n@@ -30,9 +39,9 @@\n               accelerator: 'Shift+CmdOrCtrl+H'\n             },\n             {\n               label: '打开',\n-              click: ()=>{openFileSelector(window)}\n+              click: ()=>{openFile(window)}\n             }\n           ]\n         },\n         {\n"
+                },
+                {
+                    "date": 1665645864023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow, Menu } from \"electron\"\n import { readFileSync } from \"fs\"\n import { UPDATE_CONTENT } from \"../../common/constant\"\n-import { openFileSelector } from \"./openFile\"\n+import { openFileSelector } from \"../openFile\"\n const openFile = async (window:BrowserWindow) =>{\n     const paths = await openFileSelector(window)\n     if(paths) {\n       const path = paths[0]\n"
+                }
+            ],
+            "date": 1665644213764,
+            "name": "Commit-0",
+            "content": "import { app, BrowserWindow, Menu } from \"electron\"\n\nexport const useMenu = (window:BrowserWindow) => {\n    const menu = Menu.buildFromTemplate([\n        {\n          label: app.name,\n          submenu: [\n            {\n              click: () => {},\n              label: 'Increment'\n            },\n            {\n              click: () => {},\n              label: 'Decrement'\n            }\n          ]\n        },\n        {\n          label: '文件',\n          submenu: [\n            {\n              click: () => {},\n              label: '新建',\n              accelerator: 'Shift+CmdOrCtrl+H'\n            },\n            {\n              click: () => {},\n              label: '新建标签页',\n              accelerator: 'Shift+CmdOrCtrl+H'\n            },\n            {\n              label: '打开',\n              click: ()=>{openFile(window)}\n            }\n          ]\n        },\n        {\n          label: app.name,\n          submenu: [\n            {\n              click: () => {},\n              label: 'Increment'\n            },\n            {\n              click: () => {},\n              label: 'Decrement'\n            }\n          ]\n        }\n      ])\n      Menu.setApplicationMenu(menu)\n}"
+        }
+    ]
+}

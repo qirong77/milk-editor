@@ -1,17 +1,10 @@
-import { app, shell, BrowserWindow, ipcMain, Menu} from 'electron'
+import { app, shell, BrowserWindow, ipcMain} from 'electron'
 import * as path from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, UPDATE_CONTENT } from './constant'
-import { openFileSelector } from './utils'
-import { readFileSync } from 'fs'
-const openFile = async (window:BrowserWindow) =>{
-  const paths = await openFileSelector(window)
-  if(paths) {
-    const path = paths[0]
-    const content = readFileSync(path,'utf-8')
-    window.webContents.send(UPDATE_CONTENT,content)
-  } 
-}
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'
+import { useMenu } from './useMenu'
+
+
 
 function createWindow(): void {
   // Create the browser window.
@@ -32,54 +25,7 @@ function createWindow(): void {
       sandbox: false
     }
   })
-  const menu = Menu.buildFromTemplate([
-    {
-      label: app.name,
-      submenu: [
-        {
-          click: () => {},
-          label: 'Increment'
-        },
-        {
-          click: () => {},
-          label: 'Decrement'
-        }
-      ]
-    },
-    {
-      label: '文件',
-      submenu: [
-        {
-          click: () => {},
-          label: '新建',
-          accelerator: 'Shift+CmdOrCtrl+H'
-        },
-        {
-          click: () => {},
-          label: '新建标签页',
-          accelerator: 'Shift+CmdOrCtrl+H'
-        },
-        {
-          label: '打开',
-          click: ()=>{openFile(mainWindow)}
-        }
-      ]
-    },
-    {
-      label: app.name,
-      submenu: [
-        {
-          click: () => {},
-          label: 'Increment'
-        },
-        {
-          click: () => {},
-          label: 'Decrement'
-        }
-      ]
-    }
-  ])
-  Menu.setApplicationMenu(menu)
+  useMenu(mainWindow)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
@@ -87,7 +33,6 @@ function createWindow(): void {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

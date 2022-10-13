@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/hooks/useConfig.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1665632578590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665632801550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,14 @@\n-import { Ctx, Editor } from \"@milkdown/core\";\n-import { listenerCtx } from \"@milkdown/plugin-listener\";\n+import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n+const DEFAULT_MARKDOWN = `# H1\n+## H2\n+### H3\n+#### H4\n\\ No newline at end of file\n+###### H5`\n+export const useConfig = (ctx: Ctx) => {\n+  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n-export const useConfig = (ctx:Ctx) => {\n-    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-        console.log(markdown)\n-      })\n-}\n+  ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n+  })\n+}\n"
+                },
+                {
+                    "date": 1665636554671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { Ctx, defaultValueCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n const DEFAULT_MARKDOWN = `# H1\n ## H2\n ### H3\n@@ -8,7 +8,6 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n   })\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1665636561673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n   })\n }\n"
+                },
+                {
+                    "date": 1665636567049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n+\n   })\n }\n"
+                },
+                {
+                    "date": 1665636578752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-\n+    // console.log(ctx)\n   })\n }\n"
+                }
+            ],
+            "date": 1665632578590,
+            "name": "Commit-0",
+            "content": "import { Ctx, Editor } from \"@milkdown/core\";\nimport { listenerCtx } from \"@milkdown/plugin-listener\";\n\nexport const useConfig = (ctx:Ctx) => {\n    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n        console.log(markdown)\n      })\n}"
+        }
+    ]
+}

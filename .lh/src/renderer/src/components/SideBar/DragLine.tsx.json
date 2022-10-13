@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1665497075280,
@@ -36,6 +36,14 @@
                 {
                     "date": 1665500429824,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,4 +31,23 @@\n     }\n   }\n   return <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n }\n+ul,\n+li {\n+  margin: 10px 0;\n+  margin-left: calc(6px * var(--i));\n+  a {\n+    text-decoration: none;\n+    text-decoration-color: $dark-color;\n+    color: $dark-color;\n+  }\n+}\n+ul {\n+  height: auto;\n+  svg {\n+    height: 10px;\n+    width: 10px;\n+    margin: 0 6px;\n+    transition: all 0.5s;\n+  }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642163508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       const newPosition = e.clientX\n       // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n-      if (newPosition <= 100 || newPosition > 600) {\n+      if (newPosition <= 160 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n       } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n@@ -31,23 +31,4 @@\n     }\n   }\n   return <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n }\n-ul,\n-li {\n-  margin: 10px 0;\n-  margin-left: calc(6px * var(--i));\n-  a {\n-    text-decoration: none;\n-    text-decoration-color: $dark-color;\n-    color: $dark-color;\n-  }\n-}\n-ul {\n-  height: auto;\n-  svg {\n-    height: 10px;\n-    width: 10px;\n-    margin: 0 6px;\n-    transition: all 0.5s;\n-  }\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642197841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       const newPosition = e.clientX\n       // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n-      if (newPosition <= 160 || newPosition > 600) {\n+      if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n       } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n"
                 }
             ],
             "date": 1665497075280,

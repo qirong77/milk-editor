@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/HeaderList.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1665642915003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1665642915003,
+            "name": "Commit-0",
+            "content": "import { useEffect, useRef } from 'react'\nimport { HeaderTree, useHeaders } from './hooks/useHeaders'\nconst triangleDown = `<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n<path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n</svg>`\nexport const HeaderList = () => {\n  const headerListRef = useRef(null)\n  const CLASS_NAME = 'header-list'\n  const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n    const id = tree.header.getAttribute('id')\n    if (!tree.children.length) {\n      const li = document.createElement('li')\n      li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n      li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n      container.appendChild(li)\n    } else {\n      const ul = document.createElement('ul')\n      ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n      ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n      tree.children.forEach((child) => {\n        dfs(child, ul)\n      })\n      ul.addEventListener('click', () => {\n        ul.classList.toggle(CLASS_NAME)\n      })\n      container.appendChild(ul)\n    }\n    return container\n  }\n  const updateHeaders = (container: HTMLElement | null) => {\n    if (!container) return\n    container!.innerHTML = ''\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      container.appendChild(headerList)\n    })\n  }\n  useEffect(() => {\n    updateHeaders(headerListRef.current)\n  }, [])\n  return (\n\n    <>\n        <ul className={CLASS_NAME} ref={headerListRef}>\n    </ul>\n      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>\n    \n    </>\n  )\n}\n"
+        }
+    ]
+}

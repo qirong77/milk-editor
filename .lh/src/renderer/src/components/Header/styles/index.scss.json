@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 44,
             "patches": [
                 {
                     "date": 1665497313573,
@@ -104,6 +104,86 @@
                 {
                     "date": 1665551408551,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n       height: 14px;\n       width: 14px;\n       opacity: 0.6;\n       margin: 0 3px;\n+      color: azure;\n       filter: saturate(30%);\n       &:hover {\n         filter: saturate(100%);\n         // 修改饱和度\n"
+                },
+                {
+                    "date": 1665637867517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,18 +8,26 @@\n   display: flex;\n   justify-content: space-between;\n   color: $dark-color;\n   .controlers {\n-    svg {\n-      height: 14px;\n-      width: 14px;\n-      opacity: 0.6;\n-      margin: 0 3px;\n-      color: azure;\n-      filter: saturate(30%);\n-      &:hover {\n-        filter: saturate(100%);\n-        // 修改饱和度\n+    ul {\n+      display: flex; \n+      li {\n+        border-radius: 50%;\n+        background-color: beige;\n+        svg {\n+          height: 14px;\n+          width: 14px;\n+          opacity: 0.6;\n+          margin: 0 3px;\n+          color: azure;\n+          filter: saturate(30%);\n+          &:hover {\n+            filter: saturate(100%);\n+            // 修改饱和度\n+          }\n+        }\n       }\n     }\n+\n   }\n }\n"
+                },
+                {
+                    "date": 1665638002789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,13 +11,13 @@\n   .controlers {\n     ul {\n       display: flex; \n       li {\n+        height: 10px;\n+        width: 10px;\n         border-radius: 50%;\n         background-color: beige;\n         svg {\n-          height: 14px;\n-          width: 14px;\n           opacity: 0.6;\n           margin: 0 3px;\n           color: azure;\n           filter: saturate(30%);\n"
+                },
+                {
+                    "date": 1665638032561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,15 +11,16 @@\n   .controlers {\n     ul {\n       display: flex; \n       li {\n-        height: 10px;\n-        width: 10px;\n+        height: 12px;\n+        width: 12px;\n         border-radius: 50%;\n         background-color: beige;\n         svg {\n+          width: 100%;\n+          height: 100%;\n           opacity: 0.6;\n-          margin: 0 3px;\n           color: azure;\n           filter: saturate(30%);\n           &:hover {\n             filter: saturate(100%);\n"
+                },
+                {
+                    "date": 1665638182692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,11 @@\n         height: 12px;\n         width: 12px;\n         border-radius: 50%;\n         background-color: beige;\n+        display: flex;\n+        justify-content: center;\n+        align-items: center;\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0.6;\n"
+                },
+                {
+                    "date": 1665638193499,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0.6;\n-          color: azure;\n           filter: saturate(30%);\n           &:hover {\n             filter: saturate(100%);\n             // 修改饱和度\n"
+                },
+                {
+                    "date": 1665638212021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n   .controlers {\n     ul {\n       display: flex; \n       li {\n-        height: 12px;\n-        width: 12px;\n+        height: 14px;\n+        width: 14px;\n         border-radius: 50%;\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n"
+                },
+                {
+                    "date": 1665638230695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,12 @@\n         align-items: center;\n         svg {\n           width: 100%;\n           height: 100%;\n-          opacity: 0.6;\n+          opacity: 0;\n           filter: saturate(30%);\n           &:hover {\n+            opacity: 1;\n             filter: saturate(100%);\n             // 修改饱和度\n           }\n         }\n"
+                },
+                {
+                    "date": 1665638288002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,27 +10,21 @@\n   color: $dark-color;\n   .controlers {\n     ul {\n       display: flex; \n+      &:hover {\n+        svg {\n+          opacity: 1;\n+        }\n+      }\n       li {\n         height: 14px;\n         width: 14px;\n         border-radius: 50%;\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n-        svg {\n-          width: 100%;\n-          height: 100%;\n-          opacity: 0;\n-          filter: saturate(30%);\n-          &:hover {\n-            opacity: 1;\n-            filter: saturate(100%);\n-            // 修改饱和度\n-          }\n-        }\n       }\n     }\n \n   }\n"
+                },
+                {
+                    "date": 1665638300939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,13 @@\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n+        svg {\n+          width: 100%;\n+          height: 100%;\n+          opacity: 0;\n+        }\n       }\n     }\n \n   }\n"
+                },
+                {
+                    "date": 1665638313065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,10 @@\n         display: flex;\n         justify-content: center;\n         align-items: center;\n         svg {\n-          width: 100%;\n-          height: 100%;\n+          width: 90%;\n+          height: 90%;\n           opacity: 0;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1665638329828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,10 @@\n         display: flex;\n         justify-content: center;\n         align-items: center;\n         svg {\n-          width: 90%;\n-          height: 90%;\n+          width: 100%;\n+          height: 100%;\n           opacity: 0;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1665638341226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   justify-content: space-between;\n   color: $dark-color;\n   .controlers {\n     ul {\n-      display: flex; \n+      display: flex;\n       &:hover {\n         svg {\n           opacity: 1;\n         }\n@@ -30,7 +30,6 @@\n           opacity: 0;\n         }\n       }\n     }\n-\n   }\n }\n"
+                },
+                {
+                    "date": 1665638393693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n           opacity: 1;\n         }\n       }\n       li {\n+        margin: 4px 50x;\n         height: 14px;\n         width: 14px;\n         border-radius: 50%;\n         background-color: beige;\n"
+                },
+                {
+                    "date": 1665638404829,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n           opacity: 1;\n         }\n       }\n       li {\n-        margin: 4px 50x;\n+        margin: 4px 4px;\n         height: 14px;\n         width: 14px;\n         border-radius: 50%;\n         background-color: beige;\n"
+                },
+                {
+                    "date": 1665638413351,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n           opacity: 1;\n         }\n       }\n       li {\n-        margin: 4px 4px;\n+        margin: 4px 3px;\n         height: 14px;\n         width: 14px;\n         border-radius: 50%;\n         background-color: beige;\n"
+                },
+                {
+                    "date": 1665638422235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n         }\n       }\n       li {\n         margin: 4px 3px;\n-        height: 14px;\n-        width: 14px;\n+        height: 12px;\n+        width: 12px;\n         border-radius: 50%;\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n"
+                },
+                {
+                    "date": 1665638443511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n+        filter: brightness(50%);\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0;\n"
+                },
+                {
+                    "date": 1665638454491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n-        filter: brightness(50%);\n+        filter: brightness(30%);\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0;\n"
+                },
+                {
+                    "date": 1665638473836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n-        filter: brightness(30%);\n+        background-color: gainsboro;\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0;\n"
+                },
+                {
+                    "date": 1665638483918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         background-color: beige;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n-        background-color: gainsboro;\n+        background-color: lightgray;\n         svg {\n           width: 100%;\n           height: 100%;\n           opacity: 0;\n"
                 }
             ],
             "date": 1665497313573,
