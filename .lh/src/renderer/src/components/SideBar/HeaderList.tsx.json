@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1665642915003,
@@ -16,6 +16,98 @@
                 {
                     "date": 1665648382703,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,17 +38,16 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n-    container.innerHTML += ` <button onClick={() => updateHeaders(headerListRef.current)}>update</button>`\n   }\n \n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-     \n+      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665667380776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,8 @@\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>\n+      <button style={{position:'absolute'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665667400217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,8 @@\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-      <button style={{position:'absolute'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n+      <button style={{position:'absolute',top:'0px'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665667407239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,8 @@\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-      <button style={{position:'absolute',top:'0px'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n+      <button style={{position:'absolute',top:'30px'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665667855442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', () => {\n-        ul.classList.toggle(CLASS_NAME)\n+        ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n     }\n     return container\n"
+                },
+                {
+                    "date": 1665667877079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n-      ul.addEventListener('click', () => {\n+      ul.addEventListener('click', (e) => {\n+        e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n     }\n"
+                },
+                {
+                    "date": 1665668112397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,14 +14,15 @@\n       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n       container.appendChild(li)\n     } else {\n       const ul = document.createElement('ul')\n-      ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+      ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n+        ul.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n"
+                },
+                {
+                    "date": 1665668336871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        ul.scrollIntoView()\n+        tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n"
+                },
+                {
+                    "date": 1665668387137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n+        console.log(tree.header.scrollHeight)\n         tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n"
+                },
+                {
+                    "date": 1665669192293,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n </svg>`\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n+  const editor = document.querySelector('.milkdown') as HTMLElement\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n@@ -20,10 +21,11 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        console.log(tree.header.scrollHeight)\n-        tree.header.scrollIntoView()\n+        editor.scrollTop = tree.header.offsetTop\n+        console.log(tree.header.offsetHeight)\n+        // tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n"
+                },
+                {
+                    "date": 1665669307743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,14 +10,15 @@\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n-      li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+      li.innerHTML = `<span href=${'#' + id}>${tree.header.innerText}</span>`\n       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n       container.appendChild(li)\n     } else {\n       const ul = document.createElement('ul')\n-      ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n+      ul.innerHTML = triangleDown + `<span hreeef=${'#' + id}>${tree.header.innerText}</span>`\n+      // ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n"
+                },
+                {
+                    "date": 1665669345195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n   const editor = document.querySelector('.milkdown') as HTMLElement\n+  console.log(editor)\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n"
+                },
+                {
+                    "date": 1665669378457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        editor.scrollTop = tree.header.offsetTop\n+        editor.scrollTop = 200\n         console.log(tree.header.offsetHeight)\n         // tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n"
+                },
+                {
+                    "date": 1665669411767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        editor.scrollTop = 200\n+        editor.scrollTop = 300\n         console.log(tree.header.offsetHeight)\n         // tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n"
+                },
+                {
+                    "date": 1665669438710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n         editor.scrollTop = 300\n+        console.log(tree.header.scrollHeight)\n         console.log(tree.header.offsetHeight)\n         // tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n"
+                },
+                {
+                    "date": 1665669444989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n       })\n       ul.addEventListener('click', (e) => {\n         editor.scrollTop = 300\n         console.log(tree.header.scrollHeight)\n-        console.log(tree.header.offsetHeight)\n+        // console.log(tree.header.offsetHeight)\n         // tree.header.scrollIntoView()\n         e.stopPropagation()\n         ul.classList.toggle('ul-close')\n       })\n"
+                },
+                {
+                    "date": 1665669559311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,12 @@\n </svg>`\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n+setTimeout(()=>{\n   const editor = document.querySelector('.milkdown') as HTMLElement\n   console.log(editor)\n+},300)\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n"
+                },
+                {
+                    "date": 1665669570272,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,12 @@\n </svg>`\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-setTimeout(()=>{\n-  const editor = document.querySelector('.milkdown') as HTMLElement\n-  console.log(editor)\n-},300)\n+  setTimeout(() => {\n+    const editor = document.querySelector('.milkdown') as HTMLElement\n+    console.log(editor)\n+  }, 3000)\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n@@ -56,8 +56,13 @@\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-      <button style={{position:'absolute',top:'30px'}} onClick={() => updateHeaders(headerListRef.current)}>update</button>\n+      <button\n+        style={{ position: 'absolute', top: '30px' }}\n+        onClick={() => updateHeaders(headerListRef.current)}\n+      >\n+        update\n+      </button>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665669590004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n </svg>`\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n+  let editor\n   setTimeout(() => {\n-    const editor = document.querySelector('.milkdown') as HTMLElement\n-    console.log(editor)\n+    const editors = document.querySelector('.milkdown') as HTMLElement\n+    editor = editors\n+    console.log(editors)\n   }, 3000)\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n"
+                },
+                {
+                    "date": 1665669781495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         console.log(tree.header.scrollHeight)\n         // console.log(tree.header.offsetHeight)\n         // tree.header.scrollIntoView()\n         e.stopPropagation()\n-        ul.classList.toggle('ul-close')\n+        // ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n     }\n     return container\n"
+                },
+                {
+                    "date": 1665670029284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,12 +27,12 @@\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        editor.scrollTop = 300\n-        console.log(tree.header.scrollHeight)\n+        // editor.scrollTop = 300\n+        // console.log(tree.header.scrollHeight)\n         // console.log(tree.header.offsetHeight)\n-        // tree.header.scrollIntoView()\n+        tree.header.scrollIntoView()\n         e.stopPropagation()\n         // ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n"
+                },
+                {
+                    "date": 1665670049601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,19 +20,19 @@\n       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n       container.appendChild(li)\n     } else {\n       const ul = document.createElement('ul')\n-      ul.innerHTML = triangleDown + `<span hreeef=${'#' + id}>${tree.header.innerText}</span>`\n-      // ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n+      // ul.innerHTML = triangleDown + `<span hreeef=${'#' + id}>${tree.header.innerText}</span>`\n+      ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n         // editor.scrollTop = 300\n         // console.log(tree.header.scrollHeight)\n         // console.log(tree.header.offsetHeight)\n-        tree.header.scrollIntoView()\n+        // tree.header.scrollIntoView()\n         e.stopPropagation()\n         // ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n"
+                },
+                {
+                    "date": 1665670104716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,36 +5,25 @@\n </svg>`\n export const HeaderList = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-  let editor\n-  setTimeout(() => {\n-    const editors = document.querySelector('.milkdown') as HTMLElement\n-    editor = editors\n-    console.log(editors)\n-  }, 3000)\n   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     if (!tree.children.length) {\n       const li = document.createElement('li')\n-      li.innerHTML = `<span href=${'#' + id}>${tree.header.innerText}</span>`\n+      li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n       container.appendChild(li)\n     } else {\n       const ul = document.createElement('ul')\n-      // ul.innerHTML = triangleDown + `<span hreeef=${'#' + id}>${tree.header.innerText}</span>`\n-      ul.innerHTML = triangleDown + `<a hreeef=${'#' + id}>${tree.header.innerText}</a>`\n+      ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n       tree.children.forEach((child) => {\n         dfs(child, ul)\n       })\n       ul.addEventListener('click', (e) => {\n-        // editor.scrollTop = 300\n-        // console.log(tree.header.scrollHeight)\n-        // console.log(tree.header.offsetHeight)\n-        // tree.header.scrollIntoView()\n         e.stopPropagation()\n-        // ul.classList.toggle('ul-close')\n+        ul.classList.toggle('ul-close')\n       })\n       container.appendChild(ul)\n     }\n     return container\n"
+                },
+                {
+                    "date": 1665670222093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,11 @@\n       const li = document.createElement('li')\n       li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n       container.appendChild(li)\n+      li.addEventListener('click',e=>{\n+        e.stopPropagation()\n+      })\n     } else {\n       const ul = document.createElement('ul')\n       ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n       ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n"
                 }
             ],
             "date": 1665642915003,

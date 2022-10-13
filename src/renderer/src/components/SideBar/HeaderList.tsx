@@ -13,6 +13,9 @@ export const HeaderList = () => {
       li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`
       li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)
       container.appendChild(li)
+      li.addEventListener('click',e=>{
+        e.stopPropagation()
+      })
     } else {
       const ul = document.createElement('ul')
       ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
@@ -20,8 +23,9 @@ export const HeaderList = () => {
       tree.children.forEach((child) => {
         dfs(child, ul)
       })
-      ul.addEventListener('click', () => {
-        ul.classList.toggle(CLASS_NAME)
+      ul.addEventListener('click', (e) => {
+        e.stopPropagation()
+        ul.classList.toggle('ul-close')
       })
       container.appendChild(ul)
     }
@@ -47,7 +51,12 @@ export const HeaderList = () => {
   return (
     <>
       <ul className={CLASS_NAME} ref={headerListRef}></ul>
-      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>
+      <button
+        style={{ position: 'absolute', top: '30px' }}
+        onClick={() => updateHeaders(headerListRef.current)}
+      >
+        update
+      </button>
     </>
   )
 }

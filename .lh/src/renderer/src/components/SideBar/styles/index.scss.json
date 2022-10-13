@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 46,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -112,6 +112,86 @@
                 {
                     "date": 1665649892162,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: ;\n+// $max-height: n;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
+                },
+                {
+                    "date": 1665667081183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: n;\n+$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -43,14 +43,15 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+                },
+                {
+                    "date": 1665667115207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -46,9 +45,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n+    height: calc(100vh-30px);\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
+                },
+                {
+                    "date": 1665667148136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+$max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -45,9 +46,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh-30px);\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
+                },
+                {
+                    "date": 1665667182089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,12 +46,11 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+                },
+                {
+                    "date": 1665667236866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n+  max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n"
+                },
+                {
+                    "date": 1665667312697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n+    height: 30px;\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n"
+                },
+                {
+                    "date": 1665667328232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 30px 0 20px 0;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n"
+                },
+                {
+                    "date": 1665667352505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n       margin-left: calc(6px * var(--i));\n"
+                },
+                {
+                    "date": 1665667485341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665667494232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     max-height: $max-height;\n-    z-index: 99;\n+    z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
+                },
+                {
+                    "date": 1665667683336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n"
+                },
+                {
+                    "date": 1665669962247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    // height: $max-height;\n     max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665669972002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: $max-height;\n-    max-height: $max-height;\n+    height: $max-height;\n+    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+                },
+                {
+                    "date": 1665669981425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    height: 500px;\n+    // height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665670281043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: 500px;\n-    // height: $max-height;\n+    // height: 500px;\n+    height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665670544327,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -17,8 +16,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
+                },
+                {
+                    "date": 1665670571077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -16,9 +17,8 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n-    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
+                },
+                {
+                    "date": 1665670604468,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: $max-height;\n+    height: 90vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665670629394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: 90vh;\n+    height: 80vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+                },
+                {
+                    "date": 1665670654514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,11 @@\n     }\n   }\n   .drag-line {\n     width: 4px;\n-    // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: 500px;\n     height: 80vh;\n-    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
                 }
             ],
             "date": 1665500010365,

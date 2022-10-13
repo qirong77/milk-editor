@@ -1,1 +1,4 @@
-@use './normalize.scss'
+@use './normalize.scss';
+.milkdown-menu-wrapper .milkdown-menu {
+    display: none;
+}

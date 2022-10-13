@@ -12,11 +12,6 @@ function createWindow(): void {
     // 关闭默认的上面那栏
     frame: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux'
-      ? {
-          icon: path.join(__dirname, '../../build/icon.png')
-        }
-      : {}),
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -71,10 +66,9 @@ app.whenReady().then(() => {
   })
 })
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+
 app.on('window-all-closed', () => {
+  // mac的plateform是darwin
   if (process.platform !== 'darwin') {
     app.quit()
   }

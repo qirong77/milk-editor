@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1665500583988,
@@ -12,6 +12,14 @@
                 {
                     "date": 1665500589495,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-@\n\\ No newline at end of file\n+@use './normalize.scss'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665667575205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,4 @@\n-@use './normalize.scss'\n\\ No newline at end of file\n+@use './normalize.scss';\n+.milkdown-menu {\n+    display: none;\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665667623049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n @use './normalize.scss';\n-.milkdown-menu {\n+.milkdown-menu-wrapper .milkdown-menu {\n     display: none;\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1665500583988,

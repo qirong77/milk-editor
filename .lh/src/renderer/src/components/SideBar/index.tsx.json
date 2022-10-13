@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -76,6 +76,18 @@
                 {
                     "date": 1665642863189,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./Headers\"\n+import { HeaderList } from \"./HeaderList\"\n \n export const SideBar = () => {\n   return (\n \n"
+                },
+                {
+                    "date": 1665670403908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n-import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./HeaderList\"\n+import { DragLine } from './DragLine'\n+import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-\n     <div className=\"side-bar\">\n-    <header><span>文件</span></header>\n-      <DragLine/>\n-      <HeaderList/>\n+      <header>\n\\ No newline at end of file\n+        <span>文件</span>\n+      </header>\n+      <DragLine />\n+      <HeaderList />\n     </div>\n   )\n- }\n+}\n"
+                },
+                {
+                    "date": 1665670422075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,16 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <div className=\"side-bar\">\n-      <header>\n-        <span>文件</span>\n-      </header>\n+    <>\n       <DragLine />\n-      <HeaderList />\n-    </div>\n+      <div className=\"side-bar\">\n\\ No newline at end of file\n+        <header>\n+          <span>文件</span>\n+        </header>\n+\n+        <HeaderList />\n+      </div>\n+    </>\n   )\n-}\n+}\n"
+                },
+                {
+                    "date": 1665670493257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,13 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <>\n+    <div className=\"side-bar\">\n+      <header>\n+        <span>文件</span>\n+      </header>\n       <DragLine />\n-      <div className=\"side-bar\">\n-        <header>\n-          <span>文件</span>\n-        </header>\n-\n-        <HeaderList />\n\\ No newline at end of file\n-      </div>\n-    </>\n+      <HeaderList />\n+    </div>\n   )\n-}\n+}\n"
                 }
             ],
             "date": 1665497140199,

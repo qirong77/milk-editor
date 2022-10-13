@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665497075280,
@@ -44,6 +44,10 @@
                 {
                     "date": 1665642197841,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       const newPosition = e.clientX\n       // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n-      if (newPosition <= 160 || newPosition > 600) {\n+      if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n       } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n"
+                },
+                {
+                    "date": 1665670168463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n       // 如果太宽了就返回原来的位置\n-      console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n       if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n       } else {\n"
                 }
             ],
             "date": 1665497075280,

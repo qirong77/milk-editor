@@ -1,22 +1,24 @@
 $dark-color: rgba(236, 239, 244, 0.87);
 $dark-background: rgb(39, 44, 55);
 $side-bar-width: 160px;
-// $max-height: n;
+$max-height: calc(100vh - 30px);
 .side-bar {
   width: $side-bar-width;
+  max-height: $max-height;
   min-width: 100px;
   color: $dark-color;
   background-color: $dark-background;
-  border-right: 0.5px solid #748fb0;
-  padding: 30px 0 20px 0;
+  padding: 0 0 20px 0;
   font-weight: normal;
   font-size: small;
   header {
     display: flex;
+    height: 30px;
     justify-content: space-around;
   }
   .header-list {
     overflow: scroll;
+    max-height: calc(100vh - 60px);
     ul,
     li {
       margin: 10px 0;
@@ -44,13 +46,12 @@ $side-bar-width: 160px;
       }
     }
   }
-
   .drag-line {
     width: 4px;
-    // 定位为position的元素height为100%不是相对于父元素了
     position: absolute;
     left: $side-bar-width;
-    z-index: 99;
+    height: 80vh;
+    z-index: 99999;
     background-color: rgb(210, 111, 111);
     opacity: 0;
     &:hover {

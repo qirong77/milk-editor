@@ -15,7 +15,6 @@ export const DragLine = () => {
     document.onmouseup = (e) => {
       const newPosition = e.clientX
       // 如果太宽了就返回原来的位置
-      console.log(newPosition)
       // 小于等于100是侧边栏的最少宽度
       if (newPosition <= 100 || newPosition > 600) {
         dragLine.style.left = clientX + 'px'
