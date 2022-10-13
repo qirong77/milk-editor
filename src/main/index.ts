@@ -4,10 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'
 import { useMenu } from './useMenu'
 
-
-
 function createWindow(): void {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,

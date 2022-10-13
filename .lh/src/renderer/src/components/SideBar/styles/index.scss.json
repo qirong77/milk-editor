@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 26,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -104,6 +104,14 @@
                 {
                     "date": 1665643218212,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n"
+                },
+                {
+                    "date": 1665648319028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+// $max-height: ;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
+                },
+                {
+                    "date": 1665649892162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: ;\n+// $max-height: n;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
                 }
             ],
             "date": 1665500010365,

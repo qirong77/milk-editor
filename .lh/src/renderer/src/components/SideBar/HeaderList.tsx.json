@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1665642915003,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665646565843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,18 +38,17 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n+    container.innerHTML += ` <button onClick={() => updateHeaders(headerListRef.current)}>update</button>`\n   }\n+\n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n   }, [])\n   return (\n-\n     <>\n-        <ul className={CLASS_NAME} ref={headerListRef}>\n-    </ul>\n-      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>\n-    \n+      <ul className={CLASS_NAME} ref={headerListRef}></ul>\n+     \n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665648382703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,17 +38,16 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n-    container.innerHTML += ` <button onClick={() => updateHeaders(headerListRef.current)}>update</button>`\n   }\n \n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n   }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-     \n+      <button onClick={() => updateHeaders(headerListRef.current)}>update</button>\n     </>\n   )\n }\n"
                 }
             ],
             "date": 1665642915003,

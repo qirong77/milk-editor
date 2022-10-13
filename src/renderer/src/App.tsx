@@ -11,8 +11,8 @@ export const App = () => {
       <main>
         <SideBar />
         <MilkdownEditor></MilkdownEditor>
-
       </main>
+
     </div>
   )
 }

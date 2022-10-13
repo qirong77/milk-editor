@@ -40,6 +40,7 @@ export const HeaderList = () => {
       container.appendChild(headerList)
     })
   }
+
   useEffect(() => {
     updateHeaders(headerListRef.current)
   }, [])

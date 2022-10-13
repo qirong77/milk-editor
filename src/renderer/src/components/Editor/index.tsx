@@ -10,8 +10,9 @@ import { listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
 import { themeManagerCtx } from '@milkdown/core'
+import { clipboard } from '@milkdown/plugin-clipboard';
 // 亮色主题
-import { nordLight } from '@milkdown/theme-nord'
+// import { nordLight } from '@milkdown/theme-nord'
 // 暗色主题
 import { nordDark } from '@milkdown/theme-nord'
 // 官方引用的图标库，如菜单栏需要使用到
@@ -39,6 +40,7 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
       .use(listener)
       .use(prism)
       .use(menu)
+      .use(clipboard)
   )
   const instance = getInstance()
   instance?.action((ctx) => {
@@ -58,7 +60,6 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
       setContent(value)
     })
   },[])
-  console.log(window.api)
   // 更新内容
   useEffect(() => {
     instance?.action((ctx) => {
