@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1665645961862,
@@ -36,6 +36,30 @@
                 {
                     "date": 1665672745419,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,12 @@\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const path = paths[0]\n     const content = readFileSync(path, 'utf-8')\n-    window.webContents.send(UPDATE_CONTENT, content)\n+    window.webContents.send(UPDATE_CONTENT, {\n+      path,\n+      content\n+    })\n   }\n }\n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n@@ -120,5 +123,5 @@\n     helpMenuTemplate\n   ]\n   const menu = Menu.buildFromTemplate(template)\n   Menu.setApplicationMenu(menu)\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1665737050566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n       }\n     ]\n   }\n   const aboutMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'Electron',\n+    label: 'About',\n     submenu: [\n       //下一层子菜单\n       { label: 'Services' },\n       //分割线\n"
+                },
+                {
+                    "date": 1665737096043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n \n export const useMenu = (window: BrowserWindow) => {\n+  const defaultMenuTemplate = {}\n   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n     label:'文件',\n     submenu:[\n       {\n@@ -115,8 +116,9 @@\n       }\n     ]\n   }\n   const template: DarwinMenuItemConstructorOptions[] = [\n+    defaultMenuTemplate,\n     fileMenuTemplate,\n     aboutMenuTemplate,\n     editMenuTemplate,\n     viewMenuTemplate,\n"
+                },
+                {
+                    "date": 1665737121070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n \n export const useMenu = (window: BrowserWindow) => {\n-  const defaultMenuTemplate = {}\n+  const defaultMenuTemplate = {\n+    lable:'app'\n+  }\n   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n     label:'文件',\n     submenu:[\n       {\n"
+                },
+                {
+                    "date": 1665737139491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,10 @@\n }\n \n export const useMenu = (window: BrowserWindow) => {\n   const defaultMenuTemplate = {\n-    lable:'app'\n+    lable:'app',\n+    submenu:[]\n   }\n   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n     label:'文件',\n     submenu:[\n"
+                },
+                {
+                    "date": 1665737158249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,19 @@\n }\n \n export const useMenu = (window: BrowserWindow) => {\n   const defaultMenuTemplate = {\n-    lable:'app',\n-    submenu:[]\n+    label:'文件',\n+    submenu:[\n+      {\n+        label:'新建',\n+        click:()=>{}\n+      },\n+      {\n+        label:'打开',\n+        click:()=>{openFile(window)}\n+      }\n+    ]\n   }\n   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n     label:'文件',\n     submenu:[\n"
+                },
+                {
+                    "date": 1665737180767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,18 +24,14 @@\n }\n \n export const useMenu = (window: BrowserWindow) => {\n   const defaultMenuTemplate = {\n-    label:'文件',\n+    label:app.name,\n     submenu:[\n       {\n         label:'新建',\n         click:()=>{}\n       },\n-      {\n-        label:'打开',\n-        click:()=>{openFile(window)}\n-      }\n     ]\n   }\n   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n     label:'文件',\n"
                 }
             ],
             "date": 1665645961862,

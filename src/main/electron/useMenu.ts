@@ -1,7 +1,7 @@
 import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
 import { readFileSync } from 'fs'
-import { UPDATE_CONTENT } from './constant'
-import { openFileSelector } from './openFile'
+import { UPDATE_CONTENT } from '../constant'
+import { openFileSelector } from './openFileDialog'
 
 /* 
 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123
@@ -24,6 +24,15 @@ interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
 }
 
 export const useMenu = (window: BrowserWindow) => {
+  const defaultMenuTemplate = {
+    label:app.name,
+    submenu:[
+      {
+        label:'新建',
+        click:()=>{}
+      },
+    ]
+  }
   const fileMenuTemplate:DarwinMenuItemConstructorOptions = {
     label:'文件',
     submenu:[
@@ -38,7 +47,7 @@ export const useMenu = (window: BrowserWindow) => {
     ]
   }
   const aboutMenuTemplate: DarwinMenuItemConstructorOptions = {
-    label: 'Electron',
+    label: 'About',
     submenu: [
       //下一层子菜单
       { label: 'Services' },
@@ -116,6 +125,7 @@ export const useMenu = (window: BrowserWindow) => {
     ]
   }
   const template: DarwinMenuItemConstructorOptions[] = [
+    defaultMenuTemplate,
     fileMenuTemplate,
     aboutMenuTemplate,
     editMenuTemplate,

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/electron/IpcMainEvents.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1665755172524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1665755172524,
+            "name": "Commit-0",
+            "content": "import { BrowserWindow, ipcMain } from \"electron\"\nimport { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from \"../constant\"\n\nexport const onIpcMainEvents= (window:BrowserWindow) => {\n    ipcMain.on(MIN_SCREEN, () => window.minimize())\n    ipcMain.on(MAX_SCREEN, () => {\n      if (window.isMaximized()) {\n        window.unmaximize()\n      } else {\n        window.maximize()\n      }\n    })\n    ipcMain.on(CLOSE_SCREEN, () => window.close())\n}"
+        }
+    ]
+}

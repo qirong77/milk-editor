@@ -1,42 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain} from 'electron'
-import * as path from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from './constant'
-import { useMenu } from './useMenu'
+import { app, BrowserWindow } from 'electron'
+import { electronApp, optimizer } from '@electron-toolkit/utils'
+import { createWindow } from './electron/createWindow'
 
-function createWindow(): void {
-  const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
-    show: false,
-    // 关闭默认的上面那栏
-    frame: false,
-    autoHideMenuBar: true,
-    webPreferences: {
-      preload: path.join(__dirname, '../preload/index.js'),
-      sandbox: false
-    }
-  })
-  useMenu(mainWindow)
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show()
-  })
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-  // HMR for renderer base on electron-vite cli.
-  // Load the remote URL for development or the local html file for production.
-  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
-  } else {
-    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
-  }
-}
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
+// electron初始化，可以创建窗口
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
@@ -46,15 +13,7 @@ app.whenReady().then(() => {
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
-    ipcMain.on(MIN_SCREEN, () => window.minimize())
-    ipcMain.on(MAX_SCREEN, () => {
-      if (window.isMaximized()) {
-        window.unmaximize()
-      } else {
-        window.maximize()
-      }
-    })
-    ipcMain.on(CLOSE_SCREEN, () => window.close())
+
   })
 
   createWindow()
@@ -73,6 +32,3 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
-// In this file you can include the rest of your app"s specific main process
-// code. You can also put them in separate files and require them here.
