@@ -1,4 +1,12 @@
-export const UPDATE_CONTENT = 'update-milk-editor-content' as string
+
+import { getDefaultOpenDir } from './node/getDir'
+// 一些监听事件的时间名称
+export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string
 export const CLOSE_SCREEN = 'close'
 export const MAX_SCREEN = 'max'
 export const MIN_SCREEN = 'min'
+export const INITIALIZE_DEFAULT_DIR = 'open a dictory and initialize'
+
+
+
+export const DEFAULT_OPEN_DIR = getDefaultOpenDir()

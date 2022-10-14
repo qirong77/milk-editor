@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/electron/onIpcMainEvents.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1665761591036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665762487265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,6 +10,6 @@\n         window.maximize()\n       }\n     })\n     ipcMain.on(CLOSE_SCREEN, () => window.close())\n-    ipcMain.on(INITIALIZE_DEFAULT_DIR)\n+    // ipcMain.on(INITIALIZE_DEFAULT_DIR)\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1665761591036,
+            "name": "Commit-0",
+            "content": "import { BrowserWindow, ipcMain } from \"electron\"\nimport { CLOSE_SCREEN, INITIALIZE_DEFAULT_DIR, MAX_SCREEN, MIN_SCREEN } from \"../constant\"\n\nexport const onIpcMainEvents= (window:BrowserWindow) => {\n    ipcMain.on(MIN_SCREEN, () => window.minimize())\n    ipcMain.on(MAX_SCREEN, () => {\n      if (window.isMaximized()) {\n        window.unmaximize()\n      } else {\n        window.maximize()\n      }\n    })\n    ipcMain.on(CLOSE_SCREEN, () => window.close())\n    ipcMain.on(INITIALIZE_DEFAULT_DIR)\n}"
+        }
+    ]
+}

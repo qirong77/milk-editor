@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 36,
             "patches": [
                 {
                     "date": 1665545139788,
@@ -136,6 +136,22 @@
                 {
                     "date": 1665674597174,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,12 @@\n //   maxScreen:()=>void\n //   closeScreen:()=>void\n // }\n interface Listener {\n-  (event: IpcRendererEvent, ...args: any[]):void\n+  (event: IpcRendererEvent,paylod:{\n+    path:string,\n+    content:string\n+  }):void\n }\n export interface Api {\n   say: () => void\n   minScreen: () => void\n"
+                },
+                {
+                    "date": 1665755735214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,6 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n import { IpcRendererEvent } from 'electron'\n-// 自定义声明API用来传递事件，在全局上定义这个的类型就可以访问到了\n-// export interface Api {\n-//   say: () => void\n-//   minScreen:()=>void\n-//   maxScreen:()=>void\n-//   closeScreen:()=>void\n-// }\n interface Listener {\n   (event: IpcRendererEvent,paylod:{\n     path:string,\n     content:string\n"
+                },
+                {
+                    "date": 1665761860521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   say: () => void\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n-  onUpdateEditor:(callback:Listener)=>void\n+  onOpenFile:(callback:Listener)=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665764075798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { IpcRendererEvent } from 'electron'\n interface Listener {\n   (event: IpcRendererEvent,paylod:{\n     path:string,\n-    content:string\n+    filecContent:string\n   }):void\n }\n export interface Api {\n   say: () => void\n"
+                },
+                {
+                    "date": 1665764101062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n import { IpcRendererEvent } from 'electron'\n interface Listener {\n   (event: IpcRendererEvent,paylod:{\n-    path:string,\n-    filecContent:string\n+    filePath:string,\n+    fileContent:string\n   }):void\n }\n export interface Api {\n   say: () => void\n"
                 }
             ],
             "date": 1665545139788,

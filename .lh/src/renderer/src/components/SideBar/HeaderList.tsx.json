@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 41,
+            "activePatchIndex": 57,
             "patches": [
                 {
                     "date": 1665642915003,
@@ -172,6 +172,70 @@
                 {
                     "date": 1665736568948,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n       ul.classList.toggle('ul-close')\n     })\n     if(tree.children.length>=1) {\n       ul.classList.add('show-list')\n+    } else {\n+      ul.classList.add('not-list')\n     }\n     tree.children.forEach((child) => {\n       dfs(child, ul)\n     })\n"
+                },
+                {
+                    "date": 1665760694145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,51 +7,65 @@\n </div>`\n interface IHeaderList {\n   shouldUpdate: number\n }\n+const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+  const id = tree.header.getAttribute('id')\n+  const ul = document.createElement('ul')\n+  const li = document.createElement('li')\n+  li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+  li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+  ul.appendChild(li)\n+  ul.addEventListener('click', (e) => {\n+    e.stopPropagation()\n+    ul.classList.toggle('ul-close')\n+  })\n+  if(tree.children.length>=1) {\n+    ul.classList.add('show-list')\n+  } else {\n+    ul.classList.add('not-list')\n+  }\n+  tree.children.forEach((child) => {\n+    dfs(child, ul)\n+  })\n+  container.appendChild(ul)\n+  return container\n+}\n+const updateHeaders = (container: HTMLElement | null) => {\n+  console.log('update-headers')\n+  if (!container) return\n+  container!.innerHTML = ''\n+  const headers =\n+    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+  const Headers = Array.from(headers)\n+  const trees = useHeaders(Headers as HTMLElement[])\n+  trees.forEach((tree) => {\n+    const fragment = document.createDocumentFragment()\n+    const headerList = dfs(tree, fragment)\n+    container.appendChild(headerList)\n+  })\n+}\n export const HeaderList: React.FC<IHeaderList> = ({ shouldUpdate }) => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-  const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-    const id = tree.header.getAttribute('id')\n-    const ul = document.createElement('ul')\n-    const li = document.createElement('li')\n-    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-    li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-    ul.appendChild(li)\n-    ul.addEventListener('click', (e) => {\n-      e.stopPropagation()\n-      ul.classList.toggle('ul-close')\n-    })\n-    if(tree.children.length>=1) {\n-      ul.classList.add('show-list')\n-    } else {\n-      ul.classList.add('not-list')\n-    }\n-    tree.children.forEach((child) => {\n-      dfs(child, ul)\n-    })\n-    container.appendChild(ul)\n-    return container\n-  }\n-  const updateHeaders = (container: HTMLElement | null) => {\n-    console.log('update-headers')\n-    if (!container) return\n-    container!.innerHTML = ''\n-    const headers =\n-      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-    const Headers = Array.from(headers)\n-    const trees = useHeaders(Headers as HTMLElement[])\n-    trees.forEach((tree) => {\n-      const fragment = document.createDocumentFragment()\n-      const headerList = dfs(tree, fragment)\n-      container.appendChild(headerList)\n-    })\n-  }\n \n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n   }, [shouldUpdate])\n+  useEffect(() => {\n+    /* \n+    1.打开了文件\n+    2.触发了api的事件\n+    3.发送请求，获取编辑器实例\n+    4.使用异步等待编辑器渲染完毕再获取标题\n+    */\n+    window.api.onUpdateEditor(() => {\n+      // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n+      setTimeout(() => {\n+        // setUpdate(Math.random())\n+      })\n+    })\n+  }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n     </>\n"
+                },
+                {
+                    "date": 1665760728448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   ul.addEventListener('click', (e) => {\n     e.stopPropagation()\n     ul.classList.toggle('ul-close')\n   })\n-  if(tree.children.length>=1) {\n+  if (tree.children.length >= 1) {\n     ul.classList.add('show-list')\n   } else {\n     ul.classList.add('not-list')\n   }\n@@ -59,11 +59,12 @@\n     4.使用异步等待编辑器渲染完毕再获取标题\n     */\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(() => {\n-        // setUpdate(Math.random())\n-      })\n+      // setTimeout(() => {\n+      //   // setUpdate(Math.random())\n+      // })\n+      updateHeaders()\n     })\n   }, [])\n   return (\n     <>\n"
+                },
+                {
+                    "date": 1665760746075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,12 +59,12 @@\n     4.使用异步等待编辑器渲染完毕再获取标题\n     */\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      // setTimeout(() => {\n-      //   // setUpdate(Math.random())\n-      // })\n-      updateHeaders()\n+      setTimeout(() => {\n+        updateHeaders()\n+\n+      })\n     })\n   }, [])\n   return (\n     <>\n"
+                },
+                {
+                    "date": 1665760755763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,10 +60,11 @@\n     */\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n       setTimeout(() => {\n-        updateHeaders()\n+        updateHeaders(headerListRef.current)\n \n+\n       })\n     })\n   }, [])\n   return (\n"
+                },
+                {
+                    "date": 1665760771814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,8 @@\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n       setTimeout(() => {\n         updateHeaders(headerListRef.current)\n-\n-\n       })\n     })\n   }, [])\n   return (\n"
+                },
+                {
+                    "date": 1665761793688,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n <path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n interface IHeaderList {\n-  shouldUpdate: number\n }\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n   const id = tree.header.getAttribute('id')\n   const ul = document.createElement('ul')\n@@ -43,29 +42,16 @@\n     const headerList = dfs(tree, fragment)\n     container.appendChild(headerList)\n   })\n }\n-export const HeaderList: React.FC<IHeaderList> = ({ shouldUpdate }) => {\n+export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n \n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n-  }, [shouldUpdate])\n-  useEffect(() => {\n-    /* \n-    1.打开了文件\n-    2.触发了api的事件\n-    3.发送请求，获取编辑器实例\n-    4.使用异步等待编辑器渲染完毕再获取标题\n-    */\n-    window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(() => {\n-        updateHeaders(headerListRef.current)\n-      })\n-    })\n   }, [])\n+\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n     </>\n"
+                },
+                {
+                    "date": 1665762528998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-\n+console.log('headerlist')\n   useEffect(() => {\n     updateHeaders(headerListRef.current)\n   }, [])\n \n"
+                },
+                {
+                    "date": 1665762651282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React, { useEffect, useRef } from 'react'\n import { HeaderTree, useHeaders } from './hooks/useHeaders'\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n-<path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n+<path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n interface IHeaderList {\n }\n"
+                },
+                {
+                    "date": 1665762796173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,11 @@\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n console.log('headerlist')\n   useEffect(() => {\n-    updateHeaders(headerListRef.current)\n+    setTimeout(()=>{\n+      updateHeaders(headerListRef.current)\n+    })\n   }, [])\n \n   return (\n     <>\n"
+                },
+                {
+                    "date": 1665762875516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,9 @@\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n-interface IHeaderList {\n-}\n+interface IHeaderList {}\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n   const id = tree.header.getAttribute('id')\n   const ul = document.createElement('ul')\n   const li = document.createElement('li')\n@@ -45,15 +44,16 @@\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-console.log('headerlist')\n+  console.log('headerlist')\n   useEffect(() => {\n-    setTimeout(()=>{\n-      updateHeaders(headerListRef.current)\n+    window.api.onOpenFile(() => {\n+      setTimeout(() => {\n+        updateHeaders(headerListRef.current)\n+      })\n     })\n   }, [])\n-\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n     </>\n"
+                },
+                {
+                    "date": 1665762920359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,12 +44,14 @@\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-  console.log('headerlist')\n   useEffect(() => {\n     window.api.onOpenFile(() => {\n+\n+\n       setTimeout(() => {\n+        console.log('headerlist')\n         updateHeaders(headerListRef.current)\n       })\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1665762941748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,10 +46,8 @@\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n   useEffect(() => {\n     window.api.onOpenFile(() => {\n-\n-\n       setTimeout(() => {\n         console.log('headerlist')\n         updateHeaders(headerListRef.current)\n       })\n"
+                },
+                {
+                    "date": 1665763093162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,8 @@\n   container.appendChild(ul)\n   return container\n }\n const updateHeaders = (container: HTMLElement | null) => {\n-  console.log('update-headers')\n   if (!container) return\n   container!.innerHTML = ''\n   const headers =\n     document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
+                },
+                {
+                    "date": 1665763204341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,16 +43,16 @@\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-  useEffect(() => {\n-    window.api.onOpenFile(() => {\n-      setTimeout(() => {\n-        console.log('headerlist')\n-        updateHeaders(headerListRef.current)\n-      })\n-    })\n-  }, [])\n+  // useEffect(() => {\n+  //   window.api.onOpenFile(() => {\n+  //     setTimeout(() => {\n+  //       console.log('headerlist')\n+  //       updateHeaders(headerListRef.current)\n+  //     })\n+  //   })\n+  // }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n     </>\n"
+                },
+                {
+                    "date": 1665763575629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,16 +43,20 @@\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   const CLASS_NAME = 'header-list'\n-  // useEffect(() => {\n-  //   window.api.onOpenFile(() => {\n-  //     setTimeout(() => {\n-  //       console.log('headerlist')\n-  //       updateHeaders(headerListRef.current)\n-  //     })\n-  //   })\n-  // }, [])\n+  useEffect(() => {\n+    const sideBar = document.querySelector('.side-bar') as HTMLElement\n+    const hanldeHideBar = (e: KeyboardEvent) => {\n+      if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n+        updateHeaders(headerListRef.current)\n+        sideBar.classList.toggle('side-bar-close')\n+      }\n+    }\n+    document.addEventListener('keydown', hanldeHideBar)\n+    return () => document.removeEventListener('keydown', hanldeHideBar)\n+  }, [])\n   return (\n     <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n     </>\n"
+                },
+                {
+                    "date": 1665763680873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,7 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   return (\n-    <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-    </>\n   )\n }\n"
                 }
             ],
             "date": 1665642915003,

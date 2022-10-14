@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
 import { readFileSync } from 'fs'
-import { UPDATE_CONTENT } from '../constant'
+import { OPEN_NEW_FILE } from '../constant'
 import { openFileSelector } from './openFileDialog'
 
 /* 
@@ -10,11 +10,11 @@ import { openFileSelector } from './openFileDialog'
 const openFile = async (window: BrowserWindow) => {
   const paths = await openFileSelector(window)
   if (paths) {
-    const path = paths[0]
-    const content = readFileSync(path, 'utf-8')
-    window.webContents.send(UPDATE_CONTENT, {
-      path,
-      content
+    const filePath = paths[0]
+    const fileContent = readFileSync(filePath, 'utf-8')
+    window.webContents.send(OPEN_NEW_FILE, {
+      filePath,
+      fileContent
     })
   }
 }

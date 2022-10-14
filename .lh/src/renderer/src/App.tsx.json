@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 58,
+            "activePatchIndex": 102,
             "patches": [
                 {
                     "date": 1665388416110,
@@ -240,6 +240,182 @@
                 {
                     "date": 1665674676485,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,17 @@\n-\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n         <MilkdownEditor></MilkdownEditor>\n       </main>\n-      <Search/>\n+      <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665761221709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,27 @@\n+import { LegacyRef, useEffect, useRef } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n+  const sideBarRef = useRef<HTMLElement>()\n+  useEffect(() => {\n+    const hanldeHideBar = (e: KeyboardEvent) => {\n+      if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n+        sideBarRef.current?.classList.toggle('side-bar-close')\n+      }\n+    }\n+    document.addEventListener('keydown', hanldeHideBar)\n+    return () => document.removeEventListener('keydown', hanldeHideBar)\n+  }, [])\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar />\n+        <SideBar ref={sideBarRef as LegacyRef<HTMLDivElement>}/>\n         <MilkdownEditor></MilkdownEditor>\n       </main>\n       <Search />\n     </div>\n"
+                },
+                {
+                    "date": 1665761591043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,13 @@\n \n export const App = () => {\n   const sideBarRef = useRef<HTMLElement>()\n   useEffect(() => {\n+    const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n-        sideBarRef.current?.classList.toggle('side-bar-close')\n+        sideBar.classList.toggle('side-bar-close')\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665761620761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar ref={sideBarRef as LegacyRef<HTMLDivElement>}/>\n+        <SideBar/>\n         <MilkdownEditor></MilkdownEditor>\n       </main>\n       <Search />\n     </div>\n"
+                },
+                {
+                    "date": 1665761862380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n-import { LegacyRef, useEffect, useRef } from 'react'\n+import {  useEffect} from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const sideBarRef = useRef<HTMLElement>()\n   useEffect(() => {\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n@@ -16,8 +15,22 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n+  // useEffect(() => {\n+  //   /* \n+  //   1.打开了文件\n+  //   2.触发了api的事件\n+  //   3.发送请求，获取编辑器实例\n+  //   4.使用异步等待编辑器渲染完毕再获取标题\n+  //   */\n+  //   window.api.onUpdateEditor(() => {\n+  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n+  //     setTimeout(() => {\n+  //       updateHeaders(headerListRef.current)\n+  //     })\n+  //   })\n+  // }, [])\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665762016411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n-import {  useEffect} from 'react'\n+import {  useEffect, useState} from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n+  const [content, setContent] = useState('')\n+\n   useEffect(() => {\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n@@ -15,8 +17,13 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n+  useEffect(() => {\n+    window.api.onOpenFile((e, { content }) => {\n+      setContent(content)\n+    })\n+  }, [])\n   // useEffect(() => {\n   //   /* \n   //   1.打开了文件\n   //   2.触发了api的事件\n@@ -34,9 +41,9 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar/>\n-        <MilkdownEditor></MilkdownEditor>\n+        <MilkdownEditor content={content}/>\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665762143853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import {  useEffect, useState} from 'react'\n+import { useEffect, useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n@@ -23,9 +23,9 @@\n       setContent(content)\n     })\n   }, [])\n   // useEffect(() => {\n-  //   /* \n+  //   /*\n   //   1.打开了文件\n   //   2.触发了api的事件\n   //   3.发送请求，获取编辑器实例\n   //   4.使用异步等待编辑器渲染完毕再获取标题\n@@ -40,10 +40,10 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar/>\n-        <MilkdownEditor content={content}/>\n+        <SideBar content={content}/>\n+        <MilkdownEditor content={content} />\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665762448264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,11 +18,11 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n-    window.api.onOpenFile((e, { content }) => {\n-      setContent(content)\n-    })\n+    // window.api.onOpenFile((e, { content }) => {\n+    //   setContent(content)\n+    // })\n   }, [])\n   // useEffect(() => {\n   //   /*\n   //   1.打开了文件\n"
+                },
+                {
+                    "date": 1665762506043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,11 +18,11 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n-    // window.api.onOpenFile((e, { content }) => {\n-    //   setContent(content)\n-    // })\n+    window.api.onOpenFile((e, { content }) => {\n+      setContent(content)\n+    })\n   }, [])\n   // useEffect(() => {\n   //   /*\n   //   1.打开了文件\n"
+                },
+                {
+                    "date": 1665763013719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n-        <SideBar content={content}/>\n+        <SideBar />\n         <MilkdownEditor content={content} />\n       </main>\n       <Search />\n     </div>\n"
+                },
+                {
+                    "date": 1665763170180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onOpenFile((e, { content }) => {\n+      console.log('app')\n       setContent(content)\n     })\n   }, [])\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1665763282033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,13 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n-    window.api.onOpenFile((e, { content }) => {\n-      console.log('app')\n-      setContent(content)\n-    })\n+    console.log('effect')\n+    // window.api.onOpenFile((e, { content }) => {\n+    //   console.log('app')\n+    //   setContent(content)\n+    // })\n   }, [])\n   // useEffect(() => {\n   //   /*\n   //   1.打开了文件\n"
+                },
+                {
+                    "date": 1665763328431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,11 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     console.log('effect')\n+    setTimeout(()=>{\n+setContent('xxx')\n+    },1000)\n     // window.api.onOpenFile((e, { content }) => {\n     //   console.log('app')\n     //   setContent(content)\n     // })\n"
+                },
+                {
+                    "date": 1665763661433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,23 +6,13 @@\n \n export const App = () => {\n   const [content, setContent] = useState('')\n \n+\n   useEffect(() => {\n-    const sideBar = document.querySelector('.side-bar') as HTMLElement\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        sideBar.classList.toggle('side-bar-close')\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n-  useEffect(() => {\n     console.log('effect')\n     setTimeout(()=>{\n-setContent('xxx')\n+    setContent('xxx')\n     },1000)\n     // window.api.onOpenFile((e, { content }) => {\n     //   console.log('app')\n     //   setContent(content)\n"
+                },
+                {
+                    "date": 1665763829790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,44 +1,17 @@\n-import { useEffect, useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [content, setContent] = useState('')\n-\n-\n-  useEffect(() => {\n-    console.log('effect')\n-    setTimeout(()=>{\n-    setContent('xxx')\n-    },1000)\n-    // window.api.onOpenFile((e, { content }) => {\n-    //   console.log('app')\n-    //   setContent(content)\n-    // })\n-  }, [])\n-  // useEffect(() => {\n-  //   /*\n-  //   1.打开了文件\n-  //   2.触发了api的事件\n-  //   3.发送请求，获取编辑器实例\n-  //   4.使用异步等待编辑器渲染完毕再获取标题\n-  //   */\n-  //   window.api.onUpdateEditor(() => {\n-  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-  //     setTimeout(() => {\n-  //       updateHeaders(headerListRef.current)\n-  //     })\n-  //   })\n-  // }, [])\n+  const [c]\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n-        <MilkdownEditor content={content} />\n+        <MilkdownEditor></MilkdownEditor>\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665763843106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n+import { useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [c]\n+  const [content,setContent] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665763853672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [content,setContent] = useState('')\n+  const [title,setTitle] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1665763861879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('')\n   return (\n     <div className=\"container\">\n-      <Header />\n+      <Header title={title}/>\n       <main>\n         <SideBar />\n         <MilkdownEditor></MilkdownEditor>\n       </main>\n"
+                },
+                {
+                    "date": 1665763868340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     <div className=\"container\">\n       <Header title={title}/>\n       <main>\n         <SideBar />\n-        <MilkdownEditor></MilkdownEditor>\n+        <MilkdownEditor content=''/>\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665763905353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,15 +5,15 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [content,setContent] = useState('')\n-  const [title,setTitle] = useState('')\n+  const [title,setTitle] = useState('title')\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n       <main>\n         <SideBar />\n-        <MilkdownEditor content=''/>\n+        <MilkdownEditor content={content}/>\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665763918793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n \n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n+  \n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n       <main>\n"
+                },
+                {
+                    "date": 1665763924029,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n-  \n+  useEffect(()=>{\n+    \n+  })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n       <main>\n"
+                },
+                {
+                    "date": 1665763929627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n-    \n+    window.api.\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n"
+                },
+                {
+                    "date": 1665763937703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,11 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n-    window.api.\n+    window.api.onOpenFile(()=>{\n+      \n+    })\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n"
+                },
+                {
+                    "date": 1665763944677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n-    window.api.onOpenFile(()=>{\n+    window.api.onOpenFile((e,{content})=>{\n       \n     })\n   })\n   return (\n"
+                },
+                {
+                    "date": 1665763949760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     window.api.onOpenFile((e,{content})=>{\n-      \n+      console.log('e')\n     })\n   })\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665763975111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [content,setContent] = useState('')\n+\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     window.api.onOpenFile((e,{content})=>{\n       console.log('e')\n"
+                },
+                {
+                    "date": 1665764015493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,13 +4,13 @@\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-\n+  const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     window.api.onOpenFile((e,{content})=>{\n-      console.log('e')\n+      set\n     })\n   })\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665764022350,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     window.api.onOpenFile((e,{content})=>{\n-      set\n+      setContent(content)\n     })\n   })\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665764030200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n-    window.api.onOpenFile((e,{content})=>{\n+    window.api.onOpenFile((e,{content:fileContent})=>{\n       setContent(content)\n     })\n   })\n   return (\n"
+                },
+                {
+                    "date": 1665764036200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     window.api.onOpenFile((e,{content:fileContent})=>{\n-      setContent(content)\n+      setContent(fileContent)\n     })\n   })\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665764092694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n-    window.api.onOpenFile((e,{content:fileContent})=>{\n+    window.api.onOpenFile((e,{fileContent})=>{\n       setContent(fileContent)\n     })\n   })\n   return (\n"
+                },
+                {
+                    "date": 1665764261811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n export const App = () => {\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n+    console.log('effect')\n     window.api.onOpenFile((e,{fileContent})=>{\n       setContent(fileContent)\n     })\n   })\n"
+                },
+                {
+                    "date": 1665764303698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n-    window.api.onOpenFile((e,{fileContent})=>{\n-      setContent(fileContent)\n-    })\n+    // window.api.onOpenFile((e,{fileContent})=>{\n+    //   setContent(fileContent)\n+    // })\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n"
+                },
+                {
+                    "date": 1665764328052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,13 @@\n     // })\n   })\n   return (\n     <div className=\"container\">\n-      <Header title={title}/>\n+      {/* <Header title={title}/>\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main>\n-      <Search />\n+      <Search /> */}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764339388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,13 @@\n     // })\n   })\n   return (\n     <div className=\"container\">\n-      {/* <Header title={title}/>\n+      <Header title={title}/>\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main>\n-      <Search /> */}\n+      <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764345924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,12 @@\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n-      <main>\n+      {/* <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n-      </main>\n+      </main> */}\n       <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764351950,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,12 @@\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n-      {/* <main>\n+      <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n-      </main> */}\n+      </main>\n       <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764370458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,12 @@\n   })\n   return (\n     <div className=\"container\">\n       <Header title={title}/>\n-      <main>\n+      {/* <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n-      </main>\n+      </main> */}\n       <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764380115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,8 @@\n       {/* <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main> */}\n-      <Search />\n+      {/* <Search /> */}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665764387298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     // })\n   })\n   return (\n     <div className=\"container\">\n-      <Header title={title}/>\n+      {/* <Header title={title}/> */}\n       {/* <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main> */}\n"
+                },
+                {
+                    "date": 1665764402415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     console.log('effect')\n     // window.api.onOpenFile((e,{fileContent})=>{\n     //   setContent(fileContent)\n     // })\n-  })\n+  },[])\n   return (\n     <div className=\"container\">\n       {/* <Header title={title}/> */}\n       {/* <main>\n"
+                },
+                {
+                    "date": 1665764429058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [content,setContent] = useState('')\n-  const [title,setTitle] = useState('title')\n+  // const [content,setContent] = useState('')\n+  // const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n     // window.api.onOpenFile((e,{fileContent})=>{\n     //   setContent(fileContent)\n"
+                },
+                {
+                    "date": 1665764491274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n     console.log('effect')\n     // window.api.onOpenFile((e,{fileContent})=>{\n     //   setContent(fileContent)\n     // })\n+    return ()=>{}\n   },[])\n   return (\n     <div className=\"container\">\n       {/* <Header title={title}/> */}\n"
+                },
+                {
+                    "date": 1665764516750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,17 @@\n \n export const App = () => {\n   // const [content,setContent] = useState('')\n   // const [title,setTitle] = useState('title')\n-  useEffect(()=>{\n-    console.log('effect')\n-    // window.api.onOpenFile((e,{fileContent})=>{\n-    //   setContent(fileContent)\n-    // })\n-    return ()=>{}\n-  },[])\n+  // useEffect(()=>{\n+  //   console.log('effect')\n+  //   // window.api.onOpenFile((e,{fileContent})=>{\n+  //   //   setContent(fileContent)\n+  //   // })\n+  //   return ()=>{\n+  //     console.log('return')\n+  //   }\n+  // },[])\n   return (\n     <div className=\"container\">\n       {/* <Header title={title}/> */}\n       {/* <main>\n"
                 }
             ],
             "date": 1665388416110,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 94,
+            "activePatchIndex": 97,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -384,6 +384,18 @@
                 {
                     "date": 1665736780607,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n-$title-height:40px;\n+$title-height:30px;\n .side-bar {\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n"
+                },
+                {
+                    "date": 1665757534131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,14 @@\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n+    svg {\n+      display: none;\n+    }\n+    &:hover {\n+      display: block;\n+    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n"
+                },
+                {
+                    "date": 1665757552206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n     svg {\n       display: none;\n     }\n     &:hover {\n-      display: block;\n+      svg {\n+        display: block;\n+      }\n     }\n   }\n   .header-list {\n     overflow: scroll;\n"
+                },
+                {
+                    "date": 1665757562435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n+      cursor: pointer;\n     }\n     &:hover {\n       svg {\n         display: block;\n"
                 }
             ],
             "date": 1665500010365,

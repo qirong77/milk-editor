@@ -1,5 +1,5 @@
 import { BrowserWindow, ipcMain } from "electron"
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from "../constant"
+import { CLOSE_SCREEN, INITIALIZE_DEFAULT_DIR, MAX_SCREEN, MIN_SCREEN } from "../constant"
 
 export const onIpcMainEvents= (window:BrowserWindow) => {
     ipcMain.on(MIN_SCREEN, () => window.minimize())
@@ -11,4 +11,5 @@ export const onIpcMainEvents= (window:BrowserWindow) => {
       }
     })
     ipcMain.on(CLOSE_SCREEN, () => window.close())
+    // ipcMain.on(INITIALIZE_DEFAULT_DIR)
 }

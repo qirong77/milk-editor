@@ -16,6 +16,15 @@ $title-height:30px;
     display: flex;
     height: 30px;
     justify-content: space-around;
+    svg {
+      display: none;
+      cursor: pointer;
+    }
+    &:hover {
+      svg {
+        display: block;
+      }
+    }
   }
   .header-list {
     overflow: scroll;

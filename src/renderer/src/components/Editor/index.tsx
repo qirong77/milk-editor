@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'
+import React, { useEffect,} from 'react'
+import {  defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { nord } from '@milkdown/theme-nord'
-import { EditorRef, ReactEditor, useEditor } from '@milkdown/react'
+import {  ReactEditor, useEditor } from '@milkdown/react'
 // 通用markdown预设
 import { commonmark } from '@milkdown/preset-commonmark'
 import { history } from '@milkdown/plugin-history'
@@ -22,10 +22,11 @@ import '@material-design-icons/font'
 import 'katex/dist/katex.min.css'
 // 代码高亮
 import 'prism-themes/themes/prism-material-oceanic.min.css'
-interface MilkdownEditor {}
+interface MilkdownEditor {
+  content:string
+}
 
-export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
-  const [content, setContent] = useState('')
+export const MilkdownEditor: React.FC<MilkdownEditor> = ({content}) => {
   const { editor, getInstance } = useEditor((root) =>
     Editor.make()
       .config((ctx) => {
@@ -53,11 +54,6 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
     editor?.addEventListener('contextmenu', handleRightClick)
     return editor?.removeEventListener('contextmenu', handleRightClick)
   })
-  useEffect(() => {
-    window.api.onUpdateEditor((e, { content }) => {
-      setContent(content)
-    })
-  }, [])
   // 更新内容
   useEffect(() => {
     instance?.action(replaceAll(content))

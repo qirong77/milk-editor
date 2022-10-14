@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 58,
+            "activePatchIndex": 61,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -240,6 +240,18 @@
                 {
                     "date": 1665672886189,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n import { listener } from '@milkdown/plugin-listener'\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { themeManagerCtx } from '@milkdown/core'\n-import { clipboard } from '@milkdown/plugin-clipboard';\n-import { replaceAll } from '@milkdown/utils';\n+import { clipboard } from '@milkdown/plugin-clipboard'\n+import { replaceAll } from '@milkdown/utils'\n // 亮色主题\n // import { nordLight } from '@milkdown/theme-nord'\n // 暗色主题\n import { nordDark } from '@milkdown/theme-nord'\n@@ -21,13 +21,10 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-import { Slice } from 'prosemirror-model'\n interface MilkdownEditor {}\n \n-\n-\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n@@ -55,13 +52,13 @@\n     const editor = document.querySelector('.milkdown')\n     editor?.addEventListener('contextmenu', handleRightClick)\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n-  useEffect(()=>{\n-    window.api.onUpdateEditor((e, value) => {\n-      setContent(value)\n+  useEffect(() => {\n+    window.api.onUpdateEditor((e, { content }) => {\n+      setContent(content)\n     })\n-  },[])\n+  }, [])\n   // 更新内容\n   useEffect(() => {\n     instance?.action(replaceAll(content))\n   }, [content])\n"
+                },
+                {
+                    "date": 1665762113741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,12 +21,13 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-interface MilkdownEditor {}\n+interface MilkdownEditor {\n+  content:string\n+}\n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n-  const [content, setContent] = useState('')\n+export const MilkdownEditor: React.FC<MilkdownEditor> = ({content}) => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n         ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)\n@@ -52,13 +53,8 @@\n     const editor = document.querySelector('.milkdown')\n     editor?.addEventListener('contextmenu', handleRightClick)\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n-  useEffect(() => {\n-    window.api.onUpdateEditor((e, { content }) => {\n-      setContent(content)\n-    })\n-  }, [])\n   // 更新内容\n   useEffect(() => {\n     instance?.action(replaceAll(content))\n   }, [content])\n"
+                },
+                {
+                    "date": 1665762159059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { useEffect, useRef, useState } from 'react'\n import { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'\n import { nord } from '@milkdown/theme-nord'\n-import { EditorRef, ReactEditor, useEditor } from '@milkdown/react'\n+import {  ReactEditor, useEditor } from '@milkdown/react'\n // 通用markdown预设\n import { commonmark } from '@milkdown/preset-commonmark'\n import { history } from '@milkdown/plugin-history'\n import { useConfig } from './hooks/useConfig'\n"
+                },
+                {
+                    "date": 1665762175947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import React, { useEffect, useRef, useState } from 'react'\n-import { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'\n+import React, { useEffect,} from 'react'\n+import {  defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { nord } from '@milkdown/theme-nord'\n import {  ReactEditor, useEditor } from '@milkdown/react'\n // 通用markdown预设\n import { commonmark } from '@milkdown/preset-commonmark'\n"
                 }
             ],
             "date": 1665496693570,

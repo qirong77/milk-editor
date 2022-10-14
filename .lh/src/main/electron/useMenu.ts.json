@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1665737701969,
@@ -12,6 +12,22 @@
                 {
                     "date": 1665737725600,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { readFileSync } from 'fs'\n import { UPDATE_CONTENT } from '../constant'\n-import { openFileSelector } from './openFile'\n+import { openFileSelector } from './openFileDialog'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n"
+                },
+                {
+                    "date": 1665756724990,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { readFileSync } from 'fs'\n-import { UPDATE_CONTENT } from '../constant'\n+import { OPEN_NEW_FILE } from '../constant'\n import { openFileSelector } from './openFileDialog'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n@@ -11,9 +11,9 @@\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const path = paths[0]\n     const content = readFileSync(path, 'utf-8')\n-    window.webContents.send(UPDATE_CONTENT, {\n+    window.webContents.send(OPEN_NEW_FILE, {\n       path,\n       content\n     })\n   }\n"
+                },
+                {
+                    "date": 1665764195881,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   if (paths) {\n     const path = paths[0]\n     const content = readFileSync(path, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n-      path,\n+      filepath,\n       content\n     })\n   }\n }\n"
+                },
+                {
+                    "date": 1665764205248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,12 @@\n */\n const openFile = async (window: BrowserWindow) => {\n   const paths = await openFileSelector(window)\n   if (paths) {\n-    const path = paths[0]\n+    const filePath = paths[0]\n     const content = readFileSync(path, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n-      filepath,\n+      filePath,\n       content\n     })\n   }\n }\n"
+                },
+                {
+                    "date": 1665764212086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,12 @@\n const openFile = async (window: BrowserWindow) => {\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const filePath = paths[0]\n-    const content = readFileSync(path, 'utf-8')\n+    const fileContent = readFileSync(path, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n-      content\n+      fileContent\n     })\n   }\n }\n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
                 }
             ],
             "date": 1665737701969,

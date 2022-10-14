@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/main/node/getDir.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1665758231482,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665758357915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import { homedir } from 'os';\n import { existsSync } from 'fs';\n import { resolve } from 'path';\n \n-const getDesktopOrHomeDir = () => {\n-  const homeDir = resolve(homedir())\n-  const desktopDir = resolve(homedir(), 'Desktop')\n-  if (!existsSync(desktopDir)) {\n-    return homeDir;\n-  }\n-  return d\n\\ No newline at end of file\n+const getDeskDir = () => {\n+    const desktopDir = resolve(homedir(), 'Desktop')\n+    if(existsSync(desktopDir)) {\n+        return desktopDir\n+    } else {\n+        return resolve(homedir())\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665758537095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,8 @@\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n+}\n+const getDefaultOpenDir = () => {\n+    const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665758543833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,5 +11,6 @@\n     }\n }\n const getDefaultOpenDir = () => {\n     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n+    return path\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665758773720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { homedir } from 'os';\n import { existsSync } from 'fs';\n import { resolve } from 'path';\n \n-const getDeskDir = () => {\n+export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n }\n-const getDefaultOpenDir = () => {\n+export const getDefaultOpenDir = () => {\n     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n     return path\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1665758231482,
+            "name": "Commit-0",
+            "content": "import { homedir } from 'os';\nimport { existsSync } from 'fs';\nimport { resolve } from 'path';\n\nconst getDesktopOrHomeDir = () => {\n  const homeDir = resolve(homedir())\n  const desktopDir = resolve(homedir(), 'Desktop')\n  if (!existsSync(desktopDir)) {\n    return homeDir;\n  }\n  return d"
+        }
+    ]
+}
