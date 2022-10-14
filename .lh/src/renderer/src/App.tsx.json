@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 102,
+            "activePatchIndex": 116,
             "patches": [
                 {
                     "date": 1665388416110,
@@ -416,6 +416,62 @@
                 {
                     "date": 1665764516750,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,15 +6,17 @@\n \n export const App = () => {\n   // const [content,setContent] = useState('')\n   // const [title,setTitle] = useState('title')\n-  useEffect(()=>{\n-    console.log('effect')\n-    // window.api.onOpenFile((e,{fileContent})=>{\n-    //   setContent(fileContent)\n-    // })\n-    return ()=>{}\n-  },[])\n+  // useEffect(()=>{\n+  //   console.log('effect')\n+  //   // window.api.onOpenFile((e,{fileContent})=>{\n+  //   //   setContent(fileContent)\n+  //   // })\n+  //   return ()=>{\n+  //     console.log('return')\n+  //   }\n+  // },[])\n   return (\n     <div className=\"container\">\n       {/* <Header title={title}/> */}\n       {/* <main>\n"
+                },
+                {
+                    "date": 1665765126580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,19 +4,19 @@\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  // const [content,setContent] = useState('')\n-  // const [title,setTitle] = useState('title')\n-  // useEffect(()=>{\n-  //   console.log('effect')\n-  //   // window.api.onOpenFile((e,{fileContent})=>{\n-  //   //   setContent(fileContent)\n-  //   // })\n-  //   return ()=>{\n-  //     console.log('return')\n-  //   }\n-  // },[])\n+  const [content,setContent] = useState('')\n+  const [title,setTitle] = useState('title')\n+  useEffect(()=>{\n+    console.log('effect')\n+    // window.api.onOpenFile((e,{fileContent})=>{\n+    //   setContent(fileContent)\n+    // })\n+    return ()=>{\n+      console.log('return')\n+    }\n+  },[])\n   return (\n     <div className=\"container\">\n       {/* <Header title={title}/> */}\n       {/* <main>\n"
+                },
+                {
+                    "date": 1665765131695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n     }\n   },[])\n   return (\n     <div className=\"container\">\n-      {/* <Header title={title}/> */}\n-      {/* <main>\n+      <Header title={title}/> */}\n+      {/* {/* <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main> */}\n       {/* <Search /> */}\n"
+                },
+                {
+                    "date": 1665765138934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,13 +17,13 @@\n     }\n   },[])\n   return (\n     <div className=\"container\">\n-      <Header title={title}/> */}\n-      {/* {/* <main>\n+      <Header title={title}/>\n+      <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n-      </main> */}\n-      {/* <Search /> */}\n+      </main>\n+      {/* <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665765145042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,11 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n-    // window.api.onOpenFile((e,{fileContent})=>{\n-    //   setContent(fileContent)\n-    // })\n+    window.api.onOpenFile((e,{fileContent})=>{\n+      setContent(fileContent)\n+    })\n     return ()=>{\n       console.log('return')\n     }\n   },[])\n@@ -22,8 +22,8 @@\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content}/>\n       </main>\n-      {/* <Search />\n+      <Search />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665765157556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n     window.api.onOpenFile((e,{fileContent})=>{\n+      console.log('onOpenFile')\n       setContent(fileContent)\n     })\n     return ()=>{\n       console.log('return')\n"
+                },
+                {
+                    "date": 1665765226404,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,14 @@\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n     window.api.onOpenFile((e,{fileContent})=>{\n-      console.log('onOpenFile')\n+          //   const MARKDOWN_FILE = /([^\\/]+)\\.md/i\n+    //   const regexArray = path.match(MARKDOWN_FILE)\n+    //   if(regexArray) {\n+    //     setTitle(regexArray[0])\n+    //   }\n+      console.log('onOpenFileAPI')\n       setContent(fileContent)\n     })\n     return ()=>{\n       console.log('return')\n"
+                },
+                {
+                    "date": 1665765237145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,14 @@\n   const [content,setContent] = useState('')\n   const [title,setTitle] = useState('title')\n   useEffect(()=>{\n     console.log('effect')\n-    window.api.onOpenFile((e,{fileContent})=>{\n-          //   const MARKDOWN_FILE = /([^\\/]+)\\.md/i\n-    //   const regexArray = path.match(MARKDOWN_FILE)\n-    //   if(regexArray) {\n-    //     setTitle(regexArray[0])\n-    //   }\n+    window.api.onOpenFile((e,{filePath,fileContent})=>{\n+            const MARKDOWN_FILE = /([^\\/]+)\\.md/i\n+      const regexArray = path.match(MARKDOWN_FILE)\n+      if(regexArray) {\n+        setTitle(regexArray[0])\n+      }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n     })\n     return ()=>{\n"
+                },
+                {
+                    "date": 1665765254984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,31 +4,28 @@\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [content,setContent] = useState('')\n-  const [title,setTitle] = useState('title')\n-  useEffect(()=>{\n+  const [content, setContent] = useState('')\n+  const [title, setTitle] = useState('title')\n+  useEffect(() => {\n     console.log('effect')\n-    window.api.onOpenFile((e,{filePath,fileContent})=>{\n-            const MARKDOWN_FILE = /([^\\/]+)\\.md/i\n-      const regexArray = path.match(MARKDOWN_FILE)\n-      if(regexArray) {\n+    window.api.onOpenFile((e, { filePath, fileContent }) => {\n+      const MARKDOWN_FILE = /([^\\/]+)\\.md/i\n+      const regexArray = filePath.match(MARKDOWN_FILE)\n+      if (regexArray) {\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n     })\n-    return ()=>{\n-      console.log('return')\n-    }\n-  },[])\n+  }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={title}/>\n+      <Header title={title} />\n       <main>\n         <SideBar />\n-        <MilkdownEditor content={content}/>\n+        <MilkdownEditor content={content} />\n       </main>\n       <Search />\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665765865804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n+      \n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665765871253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n-      \n+      up\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665766014444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n+import { useUpdateHeaders } from './components/SideBar/hooks/useUpdateHeader'\n \n export const App = () => {\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('title')\n@@ -16,9 +17,9 @@\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n-      up\n+      setTi\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665766021089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { useEffect, useState } from 'react'\n+import { setTimeout } from 'timers'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { Search } from './components/Search'\n import { SideBar } from './components/SideBar'\n@@ -17,9 +18,11 @@\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n-      setTi\n+      setTimeout(()=>{\n+        \n+      })\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1665766028595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n       setTimeout(()=>{\n-        use\n+        useUpdateHeaders\n       })\n     })\n   }, [])\n   return (\n"
+                },
+                {
+                    "date": 1665766142776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         setTitle(regexArray[0])\n       }\n       console.log('onOpenFileAPI')\n       setContent(fileContent)\n-      // 因为你更新markdown的内容后，可能页面hai'w\n+      // 因为你更新markdown的内容后，可能页面hai\n       setTimeout(()=>{\n         useUpdateHeaders()\n       },3000)\n     })\n"
                 }
             ],
             "date": 1665388416110,

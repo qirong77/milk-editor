@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 61,
+            "activePatchIndex": 63,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -252,6 +252,14 @@
                 {
                     "date": 1665762175947,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import React, { useEffect, useRef, useState } from 'react'\n-import { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'\n+import React, { useEffect,} from 'react'\n+import {  defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { nord } from '@milkdown/theme-nord'\n import {  ReactEditor, useEditor } from '@milkdown/react'\n // 通用markdown预设\n import { commonmark } from '@milkdown/preset-commonmark'\n"
+                },
+                {
+                    "date": 1665765847050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,8 @@\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n   // 更新内容\n   useEffect(() => {\n-    instance?.action(replaceAll(content))\n+    instance?.action(replaceAll(content)).\n   }, [content])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1665765854787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,8 @@\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n   // 更新内容\n   useEffect(() => {\n-    instance?.action(replaceAll(content)).\n+    instance?.action(replaceAll(content).)\n   }, [content])\n   return <ReactEditor editor={editor} />\n }\n"
                 }
             ],
             "date": 1665496693570,

@@ -75,3 +75,5 @@ https://github.com/CatsAndMice/milkdown
 其他的辅助组件都是在文件夹根目录里面
 - 里面有三个文件夹
 hooks，styles（也有index作为组合输出），text，readme，demo，text
+8. electron life cycle
+https://vastiny.com/post/tech/electron-lifecycle

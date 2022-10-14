@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 57,
+            "activePatchIndex": 63,
             "patches": [
                 {
                     "date": 1665642915003,
@@ -236,6 +236,30 @@
                 {
                     "date": 1665763680873,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,7 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   return (\n-    <>\n       <ul className={CLASS_NAME} ref={headerListRef}></ul>\n-    </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665765411862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,30 +5,9 @@\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n interface IHeaderList {}\n-const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-  const id = tree.header.getAttribute('id')\n-  const ul = document.createElement('ul')\n-  const li = document.createElement('li')\n-  li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-  li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-  ul.appendChild(li)\n-  ul.addEventListener('click', (e) => {\n-    e.stopPropagation()\n-    ul.classList.toggle('ul-close')\n-  })\n-  if (tree.children.length >= 1) {\n-    ul.classList.add('show-list')\n-  } else {\n-    ul.classList.add('not-list')\n-  }\n-  tree.children.forEach((child) => {\n-    dfs(child, ul)\n-  })\n-  container.appendChild(ul)\n-  return container\n-}\n+\n const updateHeaders = (container: HTMLElement | null) => {\n   if (!container) return\n   container!.innerHTML = ''\n   const headers =\n"
+                },
+                {
+                    "date": 1665765422244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,7 @@\n import React, { useEffect, useRef } from 'react'\n import { HeaderTree, useHeaders } from './hooks/useHeaders'\n-const triangleDown = `<div>\n-<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n-<path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n-</svg>\n-</div>`\n+\n interface IHeaderList {}\n \n const updateHeaders = (container: HTMLElement | null) => {\n   if (!container) return\n"
+                },
+                {
+                    "date": 1665765503979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n   })\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n-  const CLASS_NAME = 'header-list'\n+  const CLASS_NAME = \n   useEffect(() => {\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n"
+                },
+                {
+                    "date": 1665765566644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,21 +17,20 @@\n   })\n }\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n-  const CLASS_NAME = \n   useEffect(() => {\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n-        updateHeaders(headerListRef.current)\n+        use\n         sideBar.classList.toggle('side-bar-close')\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   return (\n-      <ul className={CLASS_NAME} ref={headerListRef}></ul>\n+      <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n }\n"
+                },
+                {
+                    "date": 1665765571883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,21 +2,8 @@\n import { HeaderTree, useHeaders } from './hooks/useHeaders'\n \n interface IHeaderList {}\n \n-const updateHeaders = (container: HTMLElement | null) => {\n-  if (!container) return\n-  container!.innerHTML = ''\n-  const headers =\n-    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-  const Headers = Array.from(headers)\n-  const trees = useHeaders(Headers as HTMLElement[])\n-  trees.forEach((tree) => {\n-    const fragment = document.createDocumentFragment()\n-    const headerList = dfs(tree, fragment)\n-    container.appendChild(headerList)\n-  })\n-}\n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n"
+                },
+                {
+                    "date": 1665765586910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import React, { useEffect, useRef } from 'react'\n import { HeaderTree, useHeaders } from './hooks/useHeaders'\n+import { useUpdateHeaders } from './hooks/useUpdateHeader'\n \n interface IHeaderList {}\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n@@ -9,9 +10,9 @@\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n-        use\n+        useUpdateHeaders()\n         sideBar.classList.toggle('side-bar-close')\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
                 }
             ],
             "date": 1665642915003,
