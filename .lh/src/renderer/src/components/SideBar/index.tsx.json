@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 25,
+            "activePatchIndex": 33,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -108,6 +108,38 @@
                 {
                     "date": 1665728943494,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n-        console.log('commend + b')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665729513633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665735184808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n+        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735284746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,17 @@\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n-  const [update, setUpdate] = useState(false)\n+  const [update, setUpdate] = useState(0)\n \n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n-        setUpdate(!update)\n+        setUpdate(Math.random())\n         console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735328109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(Math.random())\n-        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735673062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   const [update, setUpdate] = useState(0)\n-\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n@@ -15,9 +14,14 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  },[])\n+  }, [])\n+  useEffect(() => {\n+    window.api.onUpdateEditor(() => {\n+      setUpdate(Math.random())\n+    })\n+  }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n"
+                },
+                {
+                    "date": 1665735780853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n+      console.log('update')\n       setUpdate(Math.random())\n     })\n   }, [])\n   return (\n"
+                },
+                {
+                    "date": 1665735828705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,12 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      console.log('update')\n-      setUpdate(Math.random())\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      setTimeout(()=>{\n+        setUpdate(Math.random())\n+      })\n     })\n   }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n"
+                },
+                {
+                    "date": 1665735865259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n       setTimeout(()=>{\n         setUpdate(Math.random())\n       })\n     })\n"
                 }
             ],
             "date": 1665497140199,

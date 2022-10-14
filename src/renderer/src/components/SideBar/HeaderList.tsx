@@ -1,40 +1,40 @@
 import React, { useEffect, useRef } from 'react'
 import { HeaderTree, useHeaders } from './hooks/useHeaders'
-const triangleDown = `<svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+const triangleDown = `<div>
+<svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-</svg>`
+</svg>
+</div>`
 interface IHeaderList {
-  shouldUpdate:boolean
+  shouldUpdate: number
 }
-export const HeaderList:React.FC<IHeaderList> = ({shouldUpdate}) => {
+export const HeaderList: React.FC<IHeaderList> = ({ shouldUpdate }) => {
   const headerListRef = useRef(null)
   const CLASS_NAME = 'header-list'
   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
     const id = tree.header.getAttribute('id')
-    if (!tree.children.length) {
-      const li = document.createElement('li')
-      li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`
-      li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)
-      container.appendChild(li)
-      li.addEventListener('click',e=>{
-        e.stopPropagation()
-      })
+    const ul = document.createElement('ul')
+    const li = document.createElement('li')
+    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
+    li.setAttribute('style', `--i: ${tree.tagName[1]}`)
+    ul.appendChild(li)
+    ul.addEventListener('click', (e) => {
+      e.stopPropagation()
+      ul.classList.toggle('ul-close')
+    })
+    if(tree.children.length>=1) {
+      ul.classList.add('show-list')
     } else {
-      const ul = document.createElement('ul')
-      ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
-      ul.setAttribute('style', `--i: ${tree.tagName[1]}`)
-      tree.children.forEach((child) => {
-        dfs(child, ul)
-      })
-      ul.addEventListener('click', (e) => {
-        e.stopPropagation()
-        ul.classList.toggle('ul-close')
-      })
-      container.appendChild(ul)
+      ul.classList.add('not-list')
     }
+    tree.children.forEach((child) => {
+      dfs(child, ul)
+    })
+    container.appendChild(ul)
     return container
   }
   const updateHeaders = (container: HTMLElement | null) => {
+    console.log('update-headers')
     if (!container) return
     container!.innerHTML = ''
     const headers =
