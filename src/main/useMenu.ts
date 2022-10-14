@@ -12,7 +12,10 @@ const openFile = async (window: BrowserWindow) => {
   if (paths) {
     const path = paths[0]
     const content = readFileSync(path, 'utf-8')
-    window.webContents.send(UPDATE_CONTENT, content)
+    window.webContents.send(UPDATE_CONTENT, {
+      path,
+      content
+    })
   }
 }
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1665632578590,
@@ -28,6 +28,10 @@
                 {
                     "date": 1665636578752,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-\n+    // console.log(ctx)\n   })\n }\n"
+                },
+                {
+                    "date": 1665671356868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n ### H3\n #### H4\n ###### H5`\n export const useConfig = (ctx: Ctx) => {\n-  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-\n+  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n     // console.log(ctx)\n   })\n }\n"
                 }
             ],
             "date": 1665632578590,

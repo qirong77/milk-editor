@@ -2,5 +2,9 @@
 @import '../components/Editor/styles/index.scss';
 @import '../components/Header/styles/index.scss';
 @import '../components/SideBar/styles/index.scss';
+@import '../components/Search/styles/index.scss';
 @import './layout.scss';
 @import './normalize.scss';
+.container {
+    font-weight: 300;
+}

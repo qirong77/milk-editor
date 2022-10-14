@@ -8,7 +8,10 @@ import { IpcRendererEvent } from 'electron'
 //   closeScreen:()=>void
 // }
 interface Listener {
-  (event: IpcRendererEvent, ...args: any[]):void
+  (event: IpcRendererEvent,paylod:{
+    path:string,
+    content:string
+  }):void
 }
 export interface Api {
   say: () => void

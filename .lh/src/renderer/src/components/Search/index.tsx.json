@@ -1,0 +1,178 @@
+{
+    "sourceFile": "src/renderer/src/components/Search/index.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 40,
+            "patches": [
+                {
+                    "date": 1665674500749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665674815232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n         //   }\n     })\n   })\n   return (\n-    <div className=\".search-wrapper\">\n+    <div className=\"search-wrapper\">\n       <input type=\"text\" />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665674935570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n-import { useEffect, useState } from \"react\"\n+import { useEffect, useState } from 'react'\n \n export const Search = () => {\n-  const [show,setShow] = useState(false)\n-  useEffect(()=>{\n-    document.addEventListener('keydown',e=>{\n-        console.log(e)\n-        // if(e.metaKey&&e.k===67){\n-        //     console.log('Ctrl+c');\n-        //   }\n+  const [show, setShow] = useState(false)\n+  useEffect(() => {\n+    document.addEventListener('keydown', (e) => {\n+      console.log(e)\n+\n+      if (e.metaKey && e.code === 'KeyK') {\n+        console.log('Ctrl+c')\n+      }\n     })\n   })\n   return (\n     <div className=\"search-wrapper\">\n"
+                },
+                {
+                    "date": 1665676371570,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,19 @@\n-import { useEffect, useState } from 'react'\n+import React, { useEffect, useState } from 'react'\n \n export const Search = () => {\n   const [show, setShow] = useState(false)\n   useEffect(() => {\n-    document.addEventListener('keydown', (e) => {\n-      console.log(e)\n-\n+    const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyK') {\n-        console.log('Ctrl+c')\n+        setShow(!show)\n       }\n-    })\n+    }\n+    document.addEventListener('keydown',hanldeSearch)\n+    return ()=>document.removeEventListener('keydown',hanldeSearch)\n   })\n   return (\n-    <div className=\"search-wrapper\">\n+    <div className={show ? '.search-wrapper-close' : 'search-wrapper'}>\n       <input type=\"text\" />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665676393583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import React, { useEffect, useState } from 'react'\n \n export const Search = () => {\n-  const [show, setShow] = useState(false)\n+  const [show, setShow] = useState(true)\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyK') {\n         setShow(!show)\n       }\n     }\n-    document.addEventListener('keydown',hanldeSearch)\n-    return ()=>document.removeEventListener('keydown',hanldeSearch)\n+    document.addEventListener('keydown', hanldeSearch)\n+    return () => document.removeEventListener('keydown', hanldeSearch)\n   })\n   return (\n     <div className={show ? '.search-wrapper-close' : 'search-wrapper'}>\n       <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1665676726943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n   })\n   return (\n-    <div className={show ? '.search-wrapper-close' : 'search-wrapper'}>\n+    <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n       <input type=\"text\" />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665676741600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n   const [show, setShow] = useState(true)\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyK') {\n+        console.log('done')\n         setShow(!show)\n       }\n     }\n     document.addEventListener('keydown', hanldeSearch)\n"
+                },
+                {
+                    "date": 1665676754721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export const Search = () => {\n   const [show, setShow] = useState(true)\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyK') {\n+      if (e.metaKey && e.code === 'KeyF') {\n         console.log('done')\n         setShow(!show)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665676859035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n   const [show, setShow] = useState(true)\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyF') {\n-        console.log('done')\n         setShow(!show)\n       }\n     }\n     document.addEventListener('keydown', hanldeSearch)\n"
+                },
+                {
+                    "date": 1665677483887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,21 @@\n-import React, { useEffect, useState } from 'react'\n+import { LegacyRef, useEffect, useRef, useState } from 'react'\n \n export const Search = () => {\n   const [show, setShow] = useState(true)\n+  const iptRef = useRef<HTMLInputElement>()\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n+        show && iptRef.current?.focus()\n       }\n     }\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n   })\n   return (\n-    <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n-      <input type=\"text\" />\n+    <div className={show ? 'search-wrapper ' : 'search-wrapper search-wrapper-close'}>\n+      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>}/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665677498964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n   })\n   return (\n-    <div className={show ? 'search-wrapper ' : 'search-wrapper search-wrapper-close'}>\n+    <div className={show ? 'search-wrapper' : 'search-wrapper search-wrapper-close'}>\n       <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>}/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665677519606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n   })\n   return (\n-    <div className={show ? 'search-wrapper' : 'search-wrapper search-wrapper-close'}>\n+    <div className={show ? 'search-wrapper search-wrapper-close' :'search-wrapper'}>\n       <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>}/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665677561270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n         show && iptRef.current?.focus()\n+        console.log(iptRef.current)\n       }\n     }\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n"
+                },
+                {
+                    "date": 1665677588782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n   useEffect(() => {\n     const hanldeSearch = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n+        // 不生效？\n         show && iptRef.current?.focus()\n-        console.log(iptRef.current)\n       }\n     }\n     document.addEventListener('keydown', hanldeSearch)\n     return () => document.removeEventListener('keydown', hanldeSearch)\n"
+                },
+                {
+                    "date": 1665677852157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,18 +2,33 @@\n \n export const Search = () => {\n   const [show, setShow] = useState(true)\n   const iptRef = useRef<HTMLInputElement>()\n+  const serarchStr = () =>{\n+    const editor = document.querySelector('.milkdown') as HTMLElement;\n+    [...editor.childNodes].forEach(node =>{\n+        console.log(node)\n+    })\n+  }\n   useEffect(() => {\n-    const hanldeSearch = (e: KeyboardEvent) => {\n+    const handleCommandK = (e: KeyboardEvent) => {\n+        console.log(e)\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n         // 不生效？\n         show && iptRef.current?.focus()\n+      } else if (e.code) {\n+\n       }\n     }\n-    document.addEventListener('keydown', hanldeSearch)\n-    return () => document.removeEventListener('keydown', hanldeSearch)\n+    const hanldeEnter = (e:KeyboardEvent) => {\n+        console.log(e)\n+    }\n+    document.addEventListener('keydown', handleCommandK)\n+    document.addEventListener('keydown',hanldeEnter)\n+    return () => {\n+        document.removeEventListener('keydown', handleCommandK)\n+    }\n   })\n   return (\n     <div className={show ? 'search-wrapper search-wrapper-close' :'search-wrapper'}>\n       <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>}/>\n"
+                },
+                {
+                    "date": 1665677880955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,36 +2,36 @@\n \n export const Search = () => {\n   const [show, setShow] = useState(true)\n   const iptRef = useRef<HTMLInputElement>()\n-  const serarchStr = () =>{\n-    const editor = document.querySelector('.milkdown') as HTMLElement;\n-    [...editor.childNodes].forEach(node =>{\n-        console.log(node)\n+  const serarchStr = () => {\n+    const editor = document.querySelector('.milkdown') as HTMLElement\n+    ;[...editor.childNodes].forEach((node) => {\n+      console.log(node)\n     })\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n-        console.log(e)\n+      console.log(e)\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n         // 不生效？\n         show && iptRef.current?.focus()\n-      } else if (e.code) {\n-\n+      } else if (e.code === 'Enter') {\n+        serarchStr()\n       }\n     }\n-    const hanldeEnter = (e:KeyboardEvent) => {\n-        console.log(e)\n+    const hanldeEnter = (e: KeyboardEvent) => {\n+      console.log(e)\n     }\n     document.addEventListener('keydown', handleCommandK)\n-    document.addEventListener('keydown',hanldeEnter)\n+    document.addEventListener('keydown', hanldeEnter)\n     return () => {\n-        document.removeEventListener('keydown', handleCommandK)\n+      document.removeEventListener('keydown', handleCommandK)\n     }\n   })\n   return (\n-    <div className={show ? 'search-wrapper search-wrapper-close' :'search-wrapper'}>\n-      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>}/>\n+    <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n+      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>} />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665677888479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,9 @@\n       } else if (e.code === 'Enter') {\n         serarchStr()\n       }\n     }\n-    const hanldeEnter = (e: KeyboardEvent) => {\n-      console.log(e)\n-    }\n     document.addEventListener('keydown', handleCommandK)\n-    document.addEventListener('keydown', hanldeEnter)\n     return () => {\n       document.removeEventListener('keydown', handleCommandK)\n     }\n   })\n"
+                },
+                {
+                    "date": 1665677962365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export const Search = () => {\n   const [show, setShow] = useState(true)\n   const iptRef = useRef<HTMLInputElement>()\n   const serarchStr = () => {\n-    const editor = document.querySelector('.milkdown') as HTMLElement\n+    const editor = document.querySelector('.ProseMirror') as HTMLElement\n     ;[...editor.childNodes].forEach((node) => {\n       console.log(node)\n     })\n   }\n"
+                },
+                {
+                    "date": 1665678616387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,13 @@\n   const [show, setShow] = useState(true)\n   const iptRef = useRef<HTMLInputElement>()\n   const serarchStr = () => {\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n+    const searchText = iptRef.current?.value\n+    const dfs = (nodes: NodeListOf<ChildNode>) => {\n+    }\n     ;[...editor.childNodes].forEach((node) => {\n-      console.log(node)\n+        node.textContent = '<div></div>'\n     })\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n@@ -26,8 +29,11 @@\n     }\n   })\n   return (\n     <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n-      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>} />\n+      <input\n+        type=\"text\"\n+        ref={iptRef as LegacyRef<HTMLInputElement>}\n+      />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665678839966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,13 @@\n     const searchText = iptRef.current?.value\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n     }\n     ;[...editor.childNodes].forEach((node) => {\n-        node.textContent = '<div></div>'\n+        node.textContent = '<div>xxx</div>'\n+        if(node.parentNode) {\n+            node.insertBefore(node.parentNode,node)\n+            node.parentNode?.removeChild(node)\n+        }\n     })\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n"
+                },
+                {
+                    "date": 1665719654132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,25 @@\n   const iptRef = useRef<HTMLInputElement>()\n   const serarchStr = () => {\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n+    const matchs:HTMLElement[] = []\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n+      nodes.forEach((node) => {\n+        if (node.nodeType === 1) {\n+            if(node.textContent?.includes(searchText||'')) {\n+                (node as HTMLElement).iner\n+            }\n+        }\n+      })\n     }\n-    ;[...editor.childNodes].forEach((node) => {\n-        node.textContent = '<div>xxx</div>'\n-        if(node.parentNode) {\n-            node.insertBefore(node.parentNode,node)\n-            node.parentNode?.removeChild(node)\n-        }\n-    })\n+    // ;[...editor.childNodes].forEach((node) => {\n+    //   node.textContent = '<div>xxx</div>'\n+    //   if (node.parentNode) {\n+    //     node.insertBefore(node, node.parentNode)\n+    //     node.parentNode?.removeChild(node)\n+    //   }\n+    // })\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n       console.log(e)\n@@ -33,11 +41,8 @@\n     }\n   })\n   return (\n     <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n-      <input\n-        type=\"text\"\n-        ref={iptRef as LegacyRef<HTMLInputElement>}\n-      />\n+      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>} />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665720066455,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,22 +8,21 @@\n     const searchText = iptRef.current?.value\n     const matchs:HTMLElement[] = []\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n       nodes.forEach((node) => {\n+        // element \n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n-                (node as HTMLElement).iner\n+                matchs.push(node as HTMLElement)            \n             }\n         }\n+        dfs(node.childNodes)\n       })\n     }\n-    // ;[...editor.childNodes].forEach((node) => {\n-    //   node.textContent = '<div>xxx</div>'\n-    //   if (node.parentNode) {\n-    //     node.insertBefore(node, node.parentNode)\n-    //     node.parentNode?.removeChild(node)\n-    //   }\n-    // })\n+    dfs(editor.childNodes)\n+    matchs.forEach(element => {\n+        element.classList.add('match')\n+    })\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n       console.log(e)\n"
+                },
+                {
+                    "date": 1665720146740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n     const matchs:HTMLElement[] = []\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n+        console.log('dfs')\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n"
+                },
+                {
+                    "date": 1665720158865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n         console.log('dfs')\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n+            console.log(searchText)\n             if(node.textContent?.includes(searchText||'')) {\n                 matchs.push(node as HTMLElement)            \n             }\n         }\n"
+                },
+                {
+                    "date": 1665720214593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n         console.log('dfs')\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n-            console.log(searchText)\n+            console.log('123'.includes('3'))\n             if(node.textContent?.includes(searchText||'')) {\n                 matchs.push(node as HTMLElement)            \n             }\n         }\n"
+                },
+                {
+                    "date": 1665720229141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n     dfs(editor.childNodes)\n     matchs.forEach(element => {\n         element.classList.add('match')\n     })\n+    console.log(matchs)\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n       console.log(e)\n"
+                },
+                {
+                    "date": 1665720264451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,11 @@\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n     const matchs:HTMLElement[] = []\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n-        console.log('dfs')\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n-            console.log('123'.includes('3'))\n             if(node.textContent?.includes(searchText||'')) {\n                 matchs.push(node as HTMLElement)            \n             }\n         }\n@@ -21,8 +19,9 @@\n       })\n     }\n     dfs(editor.childNodes)\n     matchs.forEach(element => {\n+        console.log(element)\n         element.classList.add('match')\n     })\n     console.log(matchs)\n   }\n"
+                },
+                {
+                    "date": 1665720330800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n     dfs(editor.childNodes)\n     matchs.forEach(element => {\n         console.log(element)\n         element.classList.add('match')\n+        element.parentElement?.removeChild(element)\n     })\n     console.log(matchs)\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1665720368550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n       })\n     }\n     dfs(editor.childNodes)\n     matchs.forEach(element => {\n-        console.log(element)\n-        element.classList.add('match')\n-        element.parentElement?.removeChild(element)\n+        // element.classList.add('match')\n+        element.classList.toggle('match')\n+        // element.parentElement?.removeChild(element)\n     })\n     console.log(matchs)\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1665720463459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n-                matchs.push(node as HTMLElement)            \n+                (node as HTMLElement).classList.toggle('xxx')\n+                // matchs.push(node as HTMLElement)            \n             }\n         }\n         dfs(node.childNodes)\n       })\n"
+                },
+                {
+                    "date": 1665720497111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n         // element \n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n                 (node as HTMLElement).classList.toggle('xxx')\n+                console.log(node)\n                 // matchs.push(node as HTMLElement)            \n             }\n         }\n         dfs(node.childNodes)\n"
+                },
+                {
+                    "date": 1665720513376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,11 @@\n       nodes.forEach((node) => {\n         // element \n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n+                console.log(node);\n+\n                 (node as HTMLElement).classList.toggle('xxx')\n-                console.log(node)\n                 // matchs.push(node as HTMLElement)            \n             }\n         }\n         dfs(node.childNodes)\n"
+                },
+                {
+                    "date": 1665720540207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n         if (node.nodeType === 1) {\n             if(node.textContent?.includes(searchText||'')) {\n                 console.log(node);\n \n-                (node as HTMLElement).classList.toggle('xxx')\n+                (node as HTMLElement).classList.toggle('match')\n+                console.log(node)\n                 // matchs.push(node as HTMLElement)            \n             }\n         }\n         dfs(node.childNodes)\n"
+                },
+                {
+                    "date": 1665720631509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,10 @@\n             if(node.textContent?.includes(searchText||'')) {\n                 console.log(node);\n \n                 (node as HTMLElement).classList.toggle('match')\n+                const x = document.createElement('li')\n+                node.appendChild(x)\n                 console.log(node)\n                 // matchs.push(node as HTMLElement)            \n             }\n         }\n"
+                },
+                {
+                    "date": 1665720645080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,31 +5,31 @@\n   const iptRef = useRef<HTMLInputElement>()\n   const serarchStr = () => {\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n-    const matchs:HTMLElement[] = []\n+    const matchs: HTMLElement[] = []\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n       nodes.forEach((node) => {\n-        // element \n+        // element\n         if (node.nodeType === 1) {\n-            if(node.textContent?.includes(searchText||'')) {\n-                console.log(node);\n+          if (node.textContent?.includes(searchText || '')) {\n+            console.log(node)\n \n-                (node as HTMLElement).classList.toggle('match')\n-                const x = document.createElement('li')\n-                node.appendChild(x)\n-                console.log(node)\n-                // matchs.push(node as HTMLElement)            \n-            }\n+            ;(node as HTMLElement).classList.toggle('match')\n+            const x = document.createElement('li')\n+            node.appendChild(x)\n+            console.log(node)\n+            // matchs.push(node as HTMLElement)\n+          }\n         }\n         dfs(node.childNodes)\n       })\n     }\n     dfs(editor.childNodes)\n-    matchs.forEach(element => {\n-        // element.classList.add('match')\n-        element.classList.toggle('match')\n-        // element.parentElement?.removeChild(element)\n+    matchs.forEach((element) => {\n+      // element.classList.add('match')\n+      element.classList.toggle('match')\n+      // element.parentElement?.removeChild(element)\n     })\n     console.log(matchs)\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1665720697548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,10 @@\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n       nodes.forEach((node) => {\n         // element\n         if (node.nodeType === 1) {\n-          if (node.textContent?.includes(searchText || '')) {\n+          if (node.textContent?.includes(searchText || 'xxxxxx')) {\n             console.log(node)\n-\n             ;(node as HTMLElement).classList.toggle('match')\n             const x = document.createElement('li')\n             node.appendChild(x)\n             console.log(node)\n"
+                },
+                {
+                    "date": 1665720738400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n           if (node.textContent?.includes(searchText || 'xxxxxx')) {\n             console.log(node)\n             ;(node as HTMLElement).classList.toggle('match')\n             const x = document.createElement('li')\n+            x.innerText = 'xxxxxxx'\n             node.appendChild(x)\n             console.log(node)\n             // matchs.push(node as HTMLElement)\n           }\n"
+                },
+                {
+                    "date": 1665720876234,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,13 @@\n         if (node.nodeType === 1) {\n           if (node.textContent?.includes(searchText || 'xxxxxx')) {\n             console.log(node)\n             ;(node as HTMLElement).classList.toggle('match')\n-            const x = document.createElement('li')\n-            x.innerText = 'xxxxxxx'\n-            node.appendChild(x)\n+            const y =document.createDocumentFragment()\n+            const span = document.createElement('span')\n+            span.innerText = 'span'\n+            y.appendChild(span)\n+            node.appendChild(y)\n             console.log(node)\n             // matchs.push(node as HTMLElement)\n           }\n         }\n"
+                },
+                {
+                    "date": 1665721062537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,25 +6,14 @@\n   const serarchStr = () => {\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n     const matchs: HTMLElement[] = []\n+    // 好像是不能直接操作milkdown上面的元素，比如改变类名，增加用fragment增加标签，需要看文档\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n       nodes.forEach((node) => {\n         // element\n         if (node.nodeType === 1) {\n-          if (node.textContent?.includes(searchText || 'xxxxxx')) {\n-            console.log(node)\n-            ;(node as HTMLElement).classList.toggle('match')\n-            const y =document.createDocumentFragment()\n-            const span = document.createElement('span')\n-            span.innerText = 'span'\n-            y.appendChild(span)\n-            node.appendChild(y)\n-            console.log(node)\n-            // matchs.push(node as HTMLElement)\n-          }\n         }\n-        dfs(node.childNodes)\n       })\n     }\n     dfs(editor.childNodes)\n     matchs.forEach((element) => {\n"
+                },
+                {
+                    "date": 1665721068996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n   const iptRef = useRef<HTMLInputElement>()\n   const serarchStr = () => {\n     const editor = document.querySelector('.ProseMirror') as HTMLElement\n     const searchText = iptRef.current?.value\n-    const matchs: HTMLElement[] = []\n     // 好像是不能直接操作milkdown上面的元素，比如改变类名，增加用fragment增加标签，需要看文档\n     const dfs = (nodes: NodeListOf<ChildNode>) => {\n       nodes.forEach((node) => {\n         // element\n"
+                },
+                {
+                    "date": 1665721101190,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,18 +14,11 @@\n         }\n       })\n     }\n     dfs(editor.childNodes)\n-    matchs.forEach((element) => {\n-      // element.classList.add('match')\n-      element.classList.toggle('match')\n-      // element.parentElement?.removeChild(element)\n-    })\n-    console.log(matchs)\n   }\n   useEffect(() => {\n     const handleCommandK = (e: KeyboardEvent) => {\n-      console.log(e)\n       if (e.metaKey && e.code === 'KeyF') {\n         setShow(!show)\n         // 不生效？\n         show && iptRef.current?.focus()\n"
+                }
+            ],
+            "date": 1665674500749,
+            "name": "Commit-0",
+            "content": "import { useEffect, useState } from \"react\"\n\nexport const Search = () => {\n  const [show,setShow] = useState(false)\n  useEffect(()=>{\n    document.addEventListener('keydown',e=>{\n        console.log(e)\n        // if(e.metaKey&&e.k===67){\n        //     console.log('Ctrl+c');\n        //   }\n    })\n  })\n  return (\n    <div className=\".search-wrapper\">\n      <input type=\"text\" />\n    </div>\n  )\n}\n"
+        }
+    ]
+}

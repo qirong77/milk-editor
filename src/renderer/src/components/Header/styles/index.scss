@@ -13,7 +13,17 @@ $dark-color: rgba(236, 239, 244, 0.87);
       display: flex;
       &:hover {
         svg {
-          opacity: 1;
+          display: block;
+          color: black;
+        }
+        .li-close {
+          background-color:#fc605c
+        }
+        .li-min {
+          background-color:#fcbb40
+        }
+        .li-max {
+          background-color:#34c648
         }
       }
       li {
@@ -21,15 +31,12 @@ $dark-color: rgba(236, 239, 244, 0.87);
         height: 12px;
         width: 12px;
         border-radius: 50%;
-        background-color: beige;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: lightgray;
         svg {
-          width: 100%;
-          height: 100%;
-          opacity: 0;
+          display: none;
         }
       }
     }

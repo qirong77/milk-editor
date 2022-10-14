@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 55,
+            "activePatchIndex": 58,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -228,6 +228,18 @@
                 {
                     "date": 1665648641679,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,8 @@\n     window.api.onUpdateEditor((e, value) => {\n       setContent(value)\n     })\n   },[])\n-  console.log(window.api)\n   // 更新内容\n   useEffect(() => {\n     instance?.action((ctx) => {\n       const view = ctx.get(editorViewCtx)\n"
+                },
+                {
+                    "date": 1665671183875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { themeManagerCtx } from '@milkdown/core'\n import { clipboard } from '@milkdown/plugin-clipboard';\n+import { replaceAll } from '@milkdown/utils';\n // 亮色主题\n // import { nordLight } from '@milkdown/theme-nord'\n // 暗色主题\n import { nordDark } from '@milkdown/theme-nord'\n@@ -59,8 +60,9 @@\n     window.api.onUpdateEditor((e, value) => {\n       setContent(value)\n     })\n   },[])\n+instance?.action(replaceAll('# 12'))\n   // 更新内容\n   useEffect(() => {\n     instance?.action((ctx) => {\n       const view = ctx.get(editorViewCtx)\n"
+                },
+                {
+                    "date": 1665671215647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,18 +60,10 @@\n     window.api.onUpdateEditor((e, value) => {\n       setContent(value)\n     })\n   },[])\n-instance?.action(replaceAll('# 12'))\n   // 更新内容\n   useEffect(() => {\n-    instance?.action((ctx) => {\n-      const view = ctx.get(editorViewCtx)\n-      const parser = ctx.get(parserCtx)\n-      const doc = parser(content)\n-      if (!doc) return\n-      const state = view.state\n-      view.dispatch(state.tr.replace(0, state.doc.content.size, new Slice(doc.content, 0, 0)))\n-    })\n+    instance?.action(replaceAll(content))\n   }, [content])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1665672886189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n import { listener } from '@milkdown/plugin-listener'\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { themeManagerCtx } from '@milkdown/core'\n-import { clipboard } from '@milkdown/plugin-clipboard';\n-import { replaceAll } from '@milkdown/utils';\n+import { clipboard } from '@milkdown/plugin-clipboard'\n+import { replaceAll } from '@milkdown/utils'\n // 亮色主题\n // import { nordLight } from '@milkdown/theme-nord'\n // 暗色主题\n import { nordDark } from '@milkdown/theme-nord'\n@@ -21,13 +21,10 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-import { Slice } from 'prosemirror-model'\n interface MilkdownEditor {}\n \n-\n-\n export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n   const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n@@ -55,13 +52,13 @@\n     const editor = document.querySelector('.milkdown')\n     editor?.addEventListener('contextmenu', handleRightClick)\n     return editor?.removeEventListener('contextmenu', handleRightClick)\n   })\n-  useEffect(()=>{\n-    window.api.onUpdateEditor((e, value) => {\n-      setContent(value)\n+  useEffect(() => {\n+    window.api.onUpdateEditor((e, { content }) => {\n+      setContent(content)\n     })\n-  },[])\n+  }, [])\n   // 更新内容\n   useEffect(() => {\n     instance?.action(replaceAll(content))\n   }, [content])\n"
                 }
             ],
             "date": 1665496693570,

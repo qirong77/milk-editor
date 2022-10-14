@@ -10,7 +10,8 @@ import { listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
 import { themeManagerCtx } from '@milkdown/core'
-import { clipboard } from '@milkdown/plugin-clipboard';
+import { clipboard } from '@milkdown/plugin-clipboard'
+import { replaceAll } from '@milkdown/utils'
 // 亮色主题
 // import { nordLight } from '@milkdown/theme-nord'
 // 暗色主题
@@ -21,10 +22,7 @@ import '@material-design-icons/font'
 import 'katex/dist/katex.min.css'
 // 代码高亮
 import 'prism-themes/themes/prism-material-oceanic.min.css'
-import { Slice } from 'prosemirror-model'
 interface MilkdownEditor {}
-
-
 
 export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
   const [content, setContent] = useState('')
@@ -55,21 +53,14 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = () => {
     editor?.addEventListener('contextmenu', handleRightClick)
     return editor?.removeEventListener('contextmenu', handleRightClick)
   })
-  useEffect(()=>{
-    window.api.onUpdateEditor((e, value) => {
-      setContent(value)
+  useEffect(() => {
+    window.api.onUpdateEditor((e, { content }) => {
+      setContent(content)
     })
-  },[])
+  }, [])
   // 更新内容
   useEffect(() => {
-    instance?.action((ctx) => {
-      const view = ctx.get(editorViewCtx)
-      const parser = ctx.get(parserCtx)
-      const doc = parser(content)
-      if (!doc) return
-      const state = view.state
-      view.dispatch(state.tr.replace(0, state.doc.content.size, new Slice(doc.content, 0, 0)))
-    })
+    instance?.action(replaceAll(content))
   }, [content])
   return <ReactEditor editor={editor} />
 }

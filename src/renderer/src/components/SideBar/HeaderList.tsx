@@ -1,9 +1,12 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { HeaderTree, useHeaders } from './hooks/useHeaders'
 const triangleDown = `<svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 </svg>`
-export const HeaderList = () => {
+interface IHeaderList {
+  shouldUpdate:boolean
+}
+export const HeaderList:React.FC<IHeaderList> = ({shouldUpdate}) => {
   const headerListRef = useRef(null)
   const CLASS_NAME = 'header-list'
   const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
@@ -47,16 +50,10 @@ export const HeaderList = () => {
 
   useEffect(() => {
     updateHeaders(headerListRef.current)
-  }, [])
+  }, [shouldUpdate])
   return (
     <>
       <ul className={CLASS_NAME} ref={headerListRef}></ul>
-      <button
-        style={{ position: 'absolute', top: '30px' }}
-        onClick={() => updateHeaders(headerListRef.current)}
-      >
-        update
-      </button>
     </>
   )
 }

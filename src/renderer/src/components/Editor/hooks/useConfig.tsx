@@ -6,8 +6,7 @@ const DEFAULT_MARKDOWN = `# H1
 #### H4
 ###### H5`
 export const useConfig = (ctx: Ctx) => {
-  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)
-
+  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)
   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {
     // console.log(ctx)
   })

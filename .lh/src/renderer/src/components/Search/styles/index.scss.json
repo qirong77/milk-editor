@@ -1,0 +1,142 @@
+{
+    "sourceFile": "src/renderer/src/components/Search/styles/index.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 31,
+            "patches": [
+                {
+                    "date": 1665674461277,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665674754687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n .search-wrapper {\n+    background-color: black;\n     position: absolute;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665674770109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n .search-wrapper {\n+    height: 300px;\n+    width: 300px;\n     background-color: black;\n     position: absolute;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665674818495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n .search-wrapper {\n-    height: 300px;\n-    width: 300px;\n-    background-color: black;\n+\n     position: absolute;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665675126621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,7 @@\n .search-wrapper {\n-\n     position: absolute;\n+    display: block;\n+}\n+.search-wrapper-close {\n+    display: none;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665676692944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,7 @@\n     position: absolute;\n     display: block;\n }\n .search-wrapper-close {\n+    position: absolute;\n     display: none;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665676983505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,7 +2,6 @@\n     position: absolute;\n     display: block;\n }\n .search-wrapper-close {\n-    position: absolute;\n     display: none;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665677010718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n .search-wrapper {\n+    height: 40px;\n+    width: 100px;\n+    border-radius: 4px;\n     position: absolute;\n     display: block;\n }\n .search-wrapper-close {\n"
+                },
+                {
+                    "date": 1665677070905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,12 @@\n     width: 100px;\n     border-radius: 4px;\n     position: absolute;\n     display: block;\n+    input {\n+        height: 100%;\n+        width: 100$;\n+    }\n }\n .search-wrapper-close {\n     display: none;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665677083954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n .search-wrapper {\n-    height: 40px;\n-    width: 100px;\n+    height: 60px;\n+    width: 200px;\n     border-radius: 4px;\n     position: absolute;\n     display: block;\n     input {\n         height: 100%;\n-        width: 100$;\n+        width: 100%;\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665677105367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n .search-wrapper {\n-    height: 60px;\n+    height: 40px;\n     width: 200px;\n-    border-radius: 4px;\n+    border-radius: 10px;\n     position: absolute;\n     display: block;\n     input {\n         height: 100%;\n"
+                },
+                {
+                    "date": 1665677126437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,10 @@\n     display: block;\n     input {\n         height: 100%;\n         width: 100%;\n+        padding-left: 6px;\n+        font-size: 30px;\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665720064509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,13 @@\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 6px;\n-        font-size: 30px;\n+        font-size: 20px;\n     }\n }\n .search-wrapper-close {\n     display: none;\n+}\n+.match {\n+    background-color: aqua !important;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665721268276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+$dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgb(39, 44, 55);\n .search-wrapper {\n     height: 40px;\n     width: 200px;\n     border-radius: 10px;\n@@ -8,8 +10,11 @@\n         height: 100%;\n         width: 100%;\n         padding-left: 6px;\n         font-size: 20px;\n+        border-radius: 6px;\n+        color: $dark-color;\n+        background-color: rgb(65, 74, 94)\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665721282423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n         padding-left: 6px;\n         font-size: 20px;\n         border-radius: 6px;\n         color: $dark-color;\n-        background-color: rgb(65, 74, 94)\n+        background-color: rgb(65, 74, 94);\n+        border:none\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665721357072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n         font-size: 20px;\n         border-radius: 6px;\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n-        border:none\n+        border:none;\n+        outline: none;\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665721409543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,11 @@\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n         border:none;\n         outline: none;\n+        &:hover{\n+            cursor: text;\n+        }\n     }\n }\n .search-wrapper-close {\n     display: none;\n"
+                },
+                {
+                    "date": 1665721514953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n         background-color: rgb(65, 74, 94);\n         border:none;\n         outline: none;\n         &:hover{\n-            cursor: text;\n+            cursor: pointer;\n         }\n     }\n }\n .search-wrapper-close {\n"
+                },
+                {
+                    "date": 1665721534591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 6px;\n-        font-size: 20px;\n+        font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n         border:none;\n"
+                },
+                {
+                    "date": 1665721545002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     display: block;\n     input {\n         height: 100%;\n         width: 100%;\n-        padding-left: 6px;\n+        padding-left: 12px;\n         font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n"
+                },
+                {
+                    "date": 1665721561659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n         font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n+        top: 60px;\n+        left: 60vw;\n         border:none;\n         outline: none;\n         &:hover{\n             cursor: pointer;\n"
+                },
+                {
+                    "date": 1665721571886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n     height: 40px;\n     width: 200px;\n     border-radius: 10px;\n     position: absolute;\n+    top: 60px;\n+    left: 60vw;\n     display: block;\n     input {\n         height: 100%;\n         width: 100%;\n@@ -13,10 +15,9 @@\n         font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n         background-color: rgb(65, 74, 94);\n-        top: 60px;\n-        left: 60vw;\n+\n         border:none;\n         outline: none;\n         &:hover{\n             cursor: pointer;\n"
+                },
+                {
+                    "date": 1665721580862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     width: 200px;\n     border-radius: 10px;\n     position: absolute;\n     top: 60px;\n-    left: 60vw;\n+    left: 80vw;\n     display: block;\n     input {\n         height: 100%;\n         width: 100%;\n"
+                },
+                {
+                    "date": 1665721801207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,12 @@\n     width: 200px;\n     border-radius: 10px;\n     position: absolute;\n     top: 60px;\n-    left: 80vw;\n+    left: 60vw;\n     display: block;\n+    box-shadow:  25px 25px 92px #cacaca,\n+             -25px -25px 92px #f6f6f6;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721874401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  25px 25px 92px #cacaca,\n-             -25px -25px 92px #f6f6f6;\n+    box-shadow:  5px 5px 10px #433467,\n+             -5px -5px 10px #4f3c79;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721903127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  5px 5px 10px #433467,\n-             -5px -5px 10px #4f3c79;\n+    box-shadow:  5px 5px 2px #48376e,\n+    -5px -5px 2px #4a3972;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721917364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,10 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  5px 5px 2px #48376e,\n-    -5px -5px 2px #4a3972;\n+    box-shadow:  1px 2px 2px #48376e,\n+    -2px -3px 2px #4a3972;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721939726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  1px 2px 2px #48376e,\n+    box-shadow:  1px 2px 2px #64517b,\n     -2px -3px 2px #4a3972;\n     input {\n         height: 100%;\n         width: 100%;\n"
+                },
+                {
+                    "date": 1665721949902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     top: 60px;\n     left: 60vw;\n     display: block;\n     box-shadow:  1px 2px 2px #64517b,\n-    -2px -3px 2px #4a3972;\n+    -2px -3px 2px #5c4f7a;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721972358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgb(39, 44, 55);\n+$dark-background: #272c37;\n .search-wrapper {\n     height: 40px;\n     width: 200px;\n     border-radius: 10px;\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  1px 2px 2px #64517b,\n-    -2px -3px 2px #5c4f7a;\n+    box-shadow:  1px 2px 2px #272c37,\n+    -2px -3px 2px #272c37;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665721982657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  1px 2px 2px #272c37,\n+    box-shadow:  1px 2px 2px #3c4454,\n     -2px -3px 2px #272c37;\n     input {\n         height: 100%;\n         width: 100%;\n"
+                },
+                {
+                    "date": 1665721990055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     top: 60px;\n     left: 60vw;\n     display: block;\n     box-shadow:  1px 2px 2px #3c4454,\n-    -2px -3px 2px #272c37;\n+    -2px -3px 2px #3a4151;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                }
+            ],
+            "date": 1665674461277,
+            "name": "Commit-0",
+            "content": ".search-wrapper {\n    position: absolute;\n}"
+        }
+    ]
+}
