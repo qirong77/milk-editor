@@ -28,7 +28,6 @@ export const App = () => {
   useEffect(() => {
     const fn = async () => {
       const file = await window.api.openDefaultDir()
-      console.log(file)
     }
     fn()
   }, [])

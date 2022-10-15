@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 40,
+            "activePatchIndex": 48,
             "patches": [
                 {
                     "date": 1665545139788,
@@ -168,6 +168,38 @@
                 {
                     "date": 1665767506084,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefaultDir:()=>void\n+  openDefaultDir:()=>any\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665813507715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefaultDir:()=>any\n+  openDefaultDir:()=>{}\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665813515462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,12 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefaultDir:()=>{}\n+  openDefaultDir:()=>{\n+    fileName:string,\n+    \n+  }[]\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665813531434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,10 @@\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n   openDefaultDir:()=>{\n-    fileName:string,\n-    \n+    file:string,\n+\n   }[]\n }\n declare global {\n   interface Window {\n"
+                },
+                {
+                    "date": 1665813549685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n   openDefaultDir:()=>{\n-    file:string,\n+    fileName:string,\n \n   }[]\n }\n declare global {\n"
+                },
+                {
+                    "date": 1665813556071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n   openDefaultDir:()=>{\n     fileName:string,\n-\n+    fileContent:string\n   }[]\n }\n declare global {\n   interface Window {\n"
+                },
+                {
+                    "date": 1665813622966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,9 @@\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n   openDefaultDir:()=>{\n-    fileName:string,\n-    fileContent:string\n+\n   }[]\n }\n declare global {\n   interface Window {\n"
+                },
+                {
+                    "date": 1665813730039,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n   openDefaultDir:()=>{\n-\n+    fileName:string,\n+    fileContent:string\n   }[]\n }\n declare global {\n   interface Window {\n"
+                },
+                {
+                    "date": 1665814039227,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,12 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefaultDir:()=>Array<>\n+  openDefaultDir:()=>Array<{\n+    fileName:string,\n+    fileContent:string\n+  }[>\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
                 }
             ],
             "date": 1665545139788,

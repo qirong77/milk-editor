@@ -22,10 +22,10 @@ const api: Api = {
   onOpenFile: (callback) => {
     ipcRenderer.on(OPEN_NEW_FILE, callback)
   },
+
   openDefaultDir:async ()=>{
     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)
-    return defaultDirContents
-    // return defaultDirContents
+    return defaultDirContents 
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

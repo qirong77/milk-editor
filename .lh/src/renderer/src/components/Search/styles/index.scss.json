@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 31,
+            "activePatchIndex": 36,
             "patches": [
                 {
                     "date": 1665674461277,
@@ -132,6 +132,26 @@
                 {
                     "date": 1665721990055,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n     top: 60px;\n     left: 60vw;\n     display: block;\n     box-shadow:  1px 2px 2px #3c4454,\n-    -2px -3px 2px #272c37;\n+    -2px -3px 2px #3a4151;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665815539127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: #272c37;\n+$dark-background: rgb(39, 44, 55);\n+\n .search-wrapper {\n     height: 40px;\n     width: 200px;\n     border-radius: 10px;\n"
+                },
+                {
+                    "date": 1665815550601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n     position: absolute;\n     top: 60px;\n     left: 60vw;\n     display: block;\n-    box-shadow:  1px 2px 2px #3c4454,\n-    -2px -3px 2px #3a4151;\n     input {\n         height: 100%;\n         width: 100%;\n         padding-left: 12px;\n"
+                },
+                {
+                    "date": 1665815561837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,10 @@\n         padding-left: 12px;\n         font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n-        background-color: rgb(65, 74, 94);\n+$dark-background: rgb(39, 44, 55);\n+background-color: \n \n         border:none;\n         outline: none;\n         &:hover{\n"
+                },
+                {
+                    "date": 1665815568887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,11 @@\n         padding-left: 12px;\n         font-size: 16px;\n         border-radius: 6px;\n         color: $dark-color;\n-$dark-background: rgb(39, 44, 55);\n background-color: \n \n+\n         border:none;\n         outline: none;\n         &:hover{\n             cursor: pointer;\n"
+                },
+                {
+                    "date": 1665815596604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,34 +1,33 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n \n .search-wrapper {\n-    height: 40px;\n-    width: 200px;\n-    border-radius: 10px;\n-    position: absolute;\n-    top: 60px;\n-    left: 60vw;\n-    display: block;\n-    input {\n-        height: 100%;\n-        width: 100%;\n-        padding-left: 12px;\n-        font-size: 16px;\n-        border-radius: 6px;\n-        color: $dark-color;\n-background-color: \n+  height: 40px;\n+  width: 200px;\n+  border-radius: 10px;\n+  position: absolute;\n+  top: 60px;\n+  left: 60vw;\n+  display: block;\n+  input {\n+    height: 100%;\n+    width: 100%;\n+    padding-left: 12px;\n+    font-size: 16px;\n+    border-radius: 6px;\n+    color: $dark-color;\n+    background-color: $dark-background;\n\\ No newline at end of file\n \n-\n-        border:none;\n-        outline: none;\n-        &:hover{\n-            cursor: pointer;\n-        }\n+    border: none;\n+    outline: none;\n+    &:hover {\n+      cursor: pointer;\n     }\n+  }\n }\n .search-wrapper-close {\n-    display: none;\n+  display: none;\n }\n .match {\n-    background-color: aqua !important;\n-}\n+  background-color: aqua !important;\n+}\n"
                 }
             ],
             "date": 1665674461277,
