@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 36,
+            "activePatchIndex": 40,
             "patches": [
                 {
                     "date": 1665545139788,
@@ -152,6 +152,22 @@
                 {
                     "date": 1665764101062,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { ElectronAPI } from '@electron-toolkit/preload'\n import { IpcRendererEvent } from 'electron'\n interface Listener {\n   (event: IpcRendererEvent,paylod:{\n-    path:string,\n-    filecContent:string\n+    filePath:string,\n+    fileContent:string\n   }):void\n }\n export interface Api {\n   say: () => void\n"
+                },
+                {
+                    "date": 1665766557249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n+  \n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665766564168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  \n+  openDefault\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665766569865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefault\n+  openDefaultDir:()=>void\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
+                },
+                {
+                    "date": 1665767506084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   minScreen: () => void\n   maxScreen: () => void\n   closeScreen: () => void\n   onOpenFile:(callback:Listener)=>void\n-  openDefaultDir:()=>void\n+  openDefaultDir:()=>any\n }\n declare global {\n   interface Window {\n     electron: ElectronAPI\n"
                 }
             ],
             "date": 1665545139788,

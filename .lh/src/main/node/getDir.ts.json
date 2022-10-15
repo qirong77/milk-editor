@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 77,
             "patches": [
                 {
                     "date": 1665758231482,
@@ -24,6 +24,298 @@
                 {
                     "date": 1665758773720,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,16 @@\n import { homedir } from 'os';\n import { existsSync } from 'fs';\n import { resolve } from 'path';\n \n-const getDeskDir = () => {\n+export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n }\n-const getDefaultOpenDir = () => {\n+export const getDefaultOpenDir = () => {\n     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n     return path\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665807997866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n+        \n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808037264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        \n+        fstat.\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808043869,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        fstat.\n+        readDi\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808054307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n import { homedir } from 'os';\n-import { existsSync } from 'fs';\n+import { existsSync, readdir } from 'fs';\n import { resolve } from 'path';\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        readDi\n+        readdirSy\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808059443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n import { homedir } from 'os';\n-import { existsSync, readdir } from 'fs';\n+import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        readdirSy\n+        readdirSync\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808077925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,11 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        readdirSync\n+        readdirSync(desktopDir).forEach(file => {\n+            console.log()\n+        })\n         return desktopDir\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665808093487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        readdirSync(desktopDir).forEach(file => {\n-            console.log()\n+        const readdirSync(desktopDir).forEach(file => {\n+            console.log(file)\n         })\n         return desktopDir\n     } else {\n         return resolve(homedir())\n"
+                },
+                {
+                    "date": 1665808116114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n-        const readdirSync(desktopDir).forEach(file => {\n+        const contents = readdirSync(desktopDir).map(file => {\n             console.log(file)\n         })\n         return desktopDir\n     } else {\n"
+                },
+                {
+                    "date": 1665808122511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,11 @@\n export const getDeskDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n+            return {\n+                \n+            }\n             console.log(file)\n         })\n         return desktopDir\n     } else {\n"
+                },
+                {
+                    "date": 1665808129377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n-                \n+                file_p\n             }\n             console.log(file)\n         })\n         return desktopDir\n"
+                },
+                {
+                    "date": 1665808136053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n-                file_p\n+                fileName:file,\n+                con\n             }\n             console.log(file)\n         })\n         return desktopDir\n"
+                },
+                {
+                    "date": 1665808143417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n                 fileName:file,\n-                con\n+                fileContent:\n             }\n             console.log(file)\n         })\n         return desktopDir\n"
+                },
+                {
+                    "date": 1665808149458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n                 fileName:file,\n-                fileContent:\n+                fileContent:readdirSync()\n             }\n             console.log(file)\n         })\n         return desktopDir\n"
+                },
+                {
+                    "date": 1665808160027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n                 fileName:file,\n-                fileContent:readdirSync()\n+                fileContent:readdirSync(file,)\n             }\n             console.log(file)\n         })\n         return desktopDir\n"
+                },
+                {
+                    "date": 1665808165322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n             return {\n                 fileName:file,\n                 fileContent:readdirSync(file,)\n             }\n-            console.log(file)\n         })\n         return desktopDir\n     } else {\n         return resolve(homedir())\n"
+                },
+                {
+                    "date": 1665808179876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n                 fileName:file,\n-                fileContent:readdirSync(file,)\n+                fileContent:readdirSync(file,'u')\n             }\n         })\n         return desktopDir\n     } else {\n"
+                },
+                {
+                    "date": 1665808186340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,12 @@\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n                 fileName:file,\n-                fileContent:readdirSync(file,'u')\n+                fileContent:readdirSync(file,'utf-8')\n             }\n         })\n-        return desktopDir\n+        return contents\n     } else {\n         return resolve(homedir())\n     }\n }\n"
+                },
+                {
+                    "date": 1665808196495,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n     } else {\n         return resolve(homedir())\n     }\n }\n-export const getDefaultOpenDir = () => {\n-    const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n-    return path\n-}\n\\ No newline at end of file\n+// export const getDefaultOpenDir = () => {\n+//     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n+//     return path\n+// }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665808212716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { homedir } from 'os';\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n-export const getDeskDir = () => {\n+export const getDefaultDir = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n"
+                },
+                {
+                    "date": 1665808229575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { homedir } from 'os';\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n-export const getDefaultDir = () => {\n+export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             return {\n"
+                },
+                {
+                    "date": 1665808320754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n+            console.log(file)\n             return {\n                 fileName:file,\n                 fileContent:readdirSync(file,'utf-8')\n             }\n"
+                },
+                {
+                    "date": 1665808343188,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n+    const default\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             console.log(file)\n             return {\n"
+                },
+                {
+                    "date": 1665808350505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n-    const default\n+    const defaultDirPath = \n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             console.log(file)\n             return {\n"
+                },
+                {
+                    "date": 1665808361191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n-    const defaultDirPath = \n+    const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     if(existsSync(desktopDir)) {\n         const contents = readdirSync(desktopDir).map(file => {\n             console.log(file)\n             return {\n"
+                },
+                {
+                    "date": 1665808369574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n \n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n-    if(existsSync(desktopDir)) {\n-        const contents = readdirSync(desktopDir).map(file => {\n+    if(existsSync(defaultDirPath)) {\n+        const contents = readdirSync(defaultDirPath).map(file => {\n             console.log(file)\n             return {\n                 fileName:file,\n                 fileContent:readdirSync(file,'utf-8')\n"
+                },
+                {
+                    "date": 1665811874854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n                 fileName:file,\n                 fileContent:readdirSync(file,'utf-8')\n             }\n         })\n-        return contents\n+        return 'x'\n     } else {\n         return resolve(homedir())\n     }\n }\n"
+                },
+                {
+                    "date": 1665811890183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,15 +5,15 @@\n export const getDefaultDirContents = () => {\n     const desktopDir = resolve(homedir(), 'Desktop')\n     const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     if(existsSync(defaultDirPath)) {\n-        const contents = readdirSync(defaultDirPath).map(file => {\n-            console.log(file)\n-            return {\n-                fileName:file,\n-                fileContent:readdirSync(file,'utf-8')\n-            }\n-        })\n+        // const contents = readdirSync(defaultDirPath).map(file => {\n+        //     console.log(file)\n+        //     return {\n+        //         fileName:file,\n+        //         fileContent:readdirSync(file,'utf-8')\n+        //     }\n+        // })\n         return 'x'\n     } else {\n         return resolve(homedir())\n     }\n"
+                },
+                {
+                    "date": 1665811902011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n-    const desktopDir = resolve(homedir(), 'Desktop')\n-    const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n+    // const desktopDir = resolve(homedir(), 'Desktop')\n+    // const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     if(existsSync(defaultDirPath)) {\n         // const contents = readdirSync(defaultDirPath).map(file => {\n         //     console.log(file)\n         //     return {\n"
+                },
+                {
+                    "date": 1665811908780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,20 +4,20 @@\n \n export const getDefaultDirContents = () => {\n     // const desktopDir = resolve(homedir(), 'Desktop')\n     // const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n-    if(existsSync(defaultDirPath)) {\n-        // const contents = readdirSync(defaultDirPath).map(file => {\n-        //     console.log(file)\n-        //     return {\n-        //         fileName:file,\n-        //         fileContent:readdirSync(file,'utf-8')\n-        //     }\n-        // })\n-        return 'x'\n-    } else {\n-        return resolve(homedir())\n-    }\n+    // if(existsSync(defaultDirPath)) {\n+    //     // const contents = readdirSync(defaultDirPath).map(file => {\n+    //     //     console.log(file)\n+    //     //     return {\n+    //     //         fileName:file,\n+    //     //         fileContent:readdirSync(file,'utf-8')\n+    //     //     }\n+    //     // })\n+    //     return 'x'\n+    // } else {\n+    //     return resolve(homedir())\n+    // }\n }\n // export const getDefaultOpenDir = () => {\n //     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n //     return path\n"
+                },
+                {
+                    "date": 1665811937207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,8 @@\n     // } else {\n     //     return resolve(homedir())\n     // }\n }\n-// export const getDefaultOpenDir = () => {\n-//     const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n-//     return path\n-// }\n\\ No newline at end of file\n+export const getDefaultOpenDir = () => {\n+    const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n+    return path\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665811942776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n-    // const desktopDir = resolve(homedir(), 'Desktop')\n+    // \n     // const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     // if(existsSync(defaultDirPath)) {\n     //     // const contents = readdirSync(defaultDirPath).map(file => {\n     //     //     console.log(file)\n"
+                },
+                {
+                    "date": 1665811950050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,7 +18,8 @@\n     //     return resolve(homedir())\n     // }\n }\n export const getDefaultOpenDir = () => {\n-    const path = resolve(getDeskDir(),'front-end-book','Markdowns')\n+    const desktopDir = resolve(homedir(), 'Desktop')\n+    const path = resolve(desktopDir,'front-end-book','Markdowns')\n     return path\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665812025532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,7 @@\n     //     return resolve(homedir())\n     // }\n }\n export const getDefaultOpenDir = () => {\n-    const desktopDir = resolve(homedir(), 'Desktop')\n-    const path = resolve(desktopDir,'front-end-book','Markdowns')\n+\n     return path\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665812033240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n-    // \n+    //  const desktopDir = resolve(homedir(), 'Desktop')\n     // const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     // if(existsSync(defaultDirPath)) {\n     //     // const contents = readdirSync(defaultDirPath).map(file => {\n     //     //     console.log(file)\n@@ -18,7 +18,8 @@\n     //     return resolve(homedir())\n     // }\n }\n export const getDefaultOpenDir = () => {\n-\n+   \n+    const path = resolve(desktopDir,'front-end-book','Markdowns')\n     return path\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665812057708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,24 +2,19 @@\n import { existsSync, readdirSync } from 'fs';\n import { resolve } from 'path';\n \n export const getDefaultDirContents = () => {\n-    //  const desktopDir = resolve(homedir(), 'Desktop')\n-    // const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n-    // if(existsSync(defaultDirPath)) {\n-    //     // const contents = readdirSync(defaultDirPath).map(file => {\n-    //     //     console.log(file)\n-    //     //     return {\n-    //     //         fileName:file,\n-    //     //         fileContent:readdirSync(file,'utf-8')\n-    //     //     }\n-    //     // })\n-    //     return 'x'\n-    // } else {\n-    //     return resolve(homedir())\n-    // }\n+     const desktopDir = resolve(homedir(), 'Desktop')\n+    const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n+    if(existsSync(defaultDirPath)) {\n+        // const contents = readdirSync(defaultDirPath).map(file => {\n+        //     console.log(file)\n+        //     return {\n\\ No newline at end of file\n+        //         fileName:file,\n+        //         fileContent:readdirSync(file,'utf-8')\n+        //     }\n+        // })\n+        return 'x'\n+    } else {\n+        return resolve(homedir())\n+    }\n }\n-export const getDefaultOpenDir = () => {\n-   \n-    const path = resolve(desktopDir,'front-end-book','Markdowns')\n-    return path\n-}\n"
+                },
+                {
+                    "date": 1665812063931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,16 +5,16 @@\n export const getDefaultDirContents = () => {\n      const desktopDir = resolve(homedir(), 'Desktop')\n     const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n     if(existsSync(defaultDirPath)) {\n-        // const contents = readdirSync(defaultDirPath).map(file => {\n-        //     console.log(file)\n-        //     return {\n-        //         fileName:file,\n-        //         fileContent:readdirSync(file,'utf-8')\n-        //     }\n-        // })\n-        return 'x'\n+        const contents = readdirSync(defaultDirPath).map(file => {\n+            console.log(file)\n+            return {\n+                fileName:file,\n\\ No newline at end of file\n+                fileContent:readdirSync(file,'utf-8')\n+            }\n+        })\n+        return contents\n     } else {\n         return resolve(homedir())\n     }\n-}\n+}\n"
+                },
+                {
+                    "date": 1665812112284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n                 fileName:file,\n                 fileContent:readdirSync(file,'utf-8')\n             }\n         })\n+        console.log(c)\n         return contents\n     } else {\n         return resolve(homedir())\n     }\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1665812127832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,20 @@\n-import { homedir } from 'os';\n-import { existsSync, readdirSync } from 'fs';\n-import { resolve } from 'path';\n+import { homedir } from 'os'\n+import { existsSync, readdirSync } from 'fs'\n+import { resolve } from 'path'\n \n export const getDefaultDirContents = () => {\n-     const desktopDir = resolve(homedir(), 'Desktop')\n-    const defaultDirPath = resolve(desktopDir,'front-end-book','Markdowns')\n-    if(existsSync(defaultDirPath)) {\n-        const contents = readdirSync(defaultDirPath).map(file => {\n-            console.log(file)\n-            return {\n-                fileName:file,\n-                fileContent:readdirSync(file,'utf-8')\n-            }\n-        })\n-        console.log(c)\n-        return contents\n-    } else {\n\\ No newline at end of file\n-        return resolve(homedir())\n-    }\n-}\n+  const desktopDir = resolve(homedir(), 'Desktop')\n+  const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n+  if (existsSync(defaultDirPath)) {\n+    const contents = readdirSync(defaultDirPath).map((file) => {\n+      console.log(file)\n+      return {\n+        fileName: file,\n+        fileContent: readdirSync(file, 'utf-8')\n+      }\n+    })\n+    return contents\n+  } else {\n+    return resolve(homedir())\n+  }\n+}\n"
+                },
+                {
+                    "date": 1665812133831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,18 @@\n \n export const getDefaultDirContents = () => {\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n-  if (existsSync(defaultDirPath)) {\n-    const contents = readdirSync(defaultDirPath).map((file) => {\n-      console.log(file)\n-      return {\n-        fileName: file,\n-        fileContent: readdirSync(file, 'utf-8')\n-      }\n-    })\n-    return contents\n-  } else {\n-    return resolve(homedir())\n-  }\n+  console.log(defaultDirPath)\n+//   if (existsSync(defaultDirPath)) {\n+//     const contents = readdirSync(defaultDirPath).map((file) => {\n+//       console.log(file)\n+//       return {\n+//         fileName: file,\n+//         fileContent: readdirSync(file, 'utf-8')\n+//       }\n+//     })\n+//     return contents\n+//   } else {\n+//     return resolve(homedir())\n+//   }\n }\n"
+                },
+                {
+                    "date": 1665812170288,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,17 @@\n export const getDefaultDirContents = () => {\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n-//   if (existsSync(defaultDirPath)) {\n-//     const contents = readdirSync(defaultDirPath).map((file) => {\n-//       console.log(file)\n-//       return {\n-//         fileName: file,\n-//         fileContent: readdirSync(file, 'utf-8')\n-//       }\n-//     })\n-//     return contents\n-//   } else {\n-//     return resolve(homedir())\n-//   }\n+  if (existsSync(defaultDirPath)) {\n+    const contents = readdirSync(defaultDirPath).map((file) => {\n+      console.log(file)\n+      return {\n+        fileName: file,\n+        fileContent: readdirSync(file, 'utf-8')\n+      }\n+    })\n+    return contents\n+  } else {\n+    return resolve(homedir())\n+  }\n }\n"
+                },
+                {
+                    "date": 1665812179446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,14 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const contents = readdirSync(defaultDirPath).map((file) => {\n       console.log(file)\n-      return {\n-        fileName: file,\n-        fileContent: readdirSync(file, 'utf-8')\n-      }\n+    //   return {\n+    //     fileName: file,\n+    //     fileContent: readdirSync(file, 'utf-8')\n+    //   }\n     })\n-    return contents\n+    // return contents\n   } else {\n     return resolve(homedir())\n   }\n }\n"
+                },
+                {
+                    "date": 1665812203095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,12 +8,12 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const contents = readdirSync(defaultDirPath).map((file) => {\n       console.log(file)\n-    //   return {\n-    //     fileName: file,\n-    //     fileContent: readdirSync(file, 'utf-8')\n-    //   }\n+      return {\n+        fileName: file,\n+        fileContent: readdirSync(file, 'utf-8')\n+      }\n     })\n     // return contents\n   } else {\n     return resolve(homedir())\n"
+                },
+                {
+                    "date": 1665812220218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,15 +7,15 @@\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const contents = readdirSync(defaultDirPath).map((file) => {\n-      console.log(file)\n+    const filePath = resolve()\n       return {\n         fileName: file,\n         fileContent: readdirSync(file, 'utf-8')\n       }\n     })\n-    // return contents\n+    return contents\n   } else {\n     return resolve(homedir())\n   }\n }\n"
+                },
+                {
+                    "date": 1665812225377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const contents = readdirSync(defaultDirPath).map((file) => {\n-    const filePath = resolve()\n+    const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n         fileContent: readdirSync(file, 'utf-8')\n       }\n"
+                },
+                {
+                    "date": 1665812230520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const contents = readdirSync(defaultDirPath).map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n-        fileContent: readdirSync(file, 'utf-8')\n+        fileContent: readdirSync(filePath, 'utf-8')\n       }\n     })\n     return contents\n   } else {\n"
+                },
+                {
+                    "date": 1665812262830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n+    const Markdowns\n     const contents = readdirSync(defaultDirPath).map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n"
+                },
+                {
+                    "date": 1665812268224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const Markdowns\n+    const MarkdownFiles = \n     const contents = readdirSync(defaultDirPath).map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n"
+                },
+                {
+                    "date": 1665812273903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const MarkdownFiles = \n-    const contents = readdirSync(defaultDirPath).map((file) => {\n+    const MarkdownFiles = readdirSync(defaultDirPath).fi\n+    const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n         fileContent: readdirSync(filePath, 'utf-8')\n"
+                },
+                {
+                    "date": 1665812279903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const MarkdownFiles = readdirSync(defaultDirPath).fi\n+    const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n+        \n+    })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n"
+                },
+                {
+                    "date": 1665812288379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n-        \n+        if()\n     })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n"
+                },
+                {
+                    "date": 1665812296985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n+    const IS_\n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n-        if()\n+\n     })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n"
+                },
+                {
+                    "date": 1665812302424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const IS_\n+    const IS_MARKDOWN = \n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n \n     })\n     const contents = .map((file) => {\n"
+                },
+                {
+                    "date": 1665812309846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const IS_MARKDOWN = \n+    const IS_MARKDOWN = /$\\.md/\n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n \n     })\n     const contents = .map((file) => {\n"
+                },
+                {
+                    "date": 1665812318720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n-\n+        if(IS_MARKDOWN.test(path)) \n     })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n"
+                },
+                {
+                    "date": 1665812325995,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n-        if(IS_MARKDOWN.test(path)) \n+        if(IS_MARKDOWN.test(path)) return path\n     })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n"
+                },
+                {
+                    "date": 1665812346667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n-    const MarkdownFiles = readdirSync(defaultDirPath).filter(path=>{\n+    const markdownFiles = readdirSync(defaultDirPath).filter(path=>{\n         if(IS_MARKDOWN.test(path)) return path\n     })\n     const contents = .map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n"
+                },
+                {
+                    "date": 1665812352303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter(path=>{\n         if(IS_MARKDOWN.test(path)) return path\n     })\n-    const contents = .map((file) => {\n+    const contents = markdownFiles.map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n         fileName: file,\n         fileContent: readdirSync(filePath, 'utf-8')\n"
+                },
+                {
+                    "date": 1665812394172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter(path=>{\n         if(IS_MARKDOWN.test(path)) return path\n+        e\n     })\n     const contents = markdownFiles.map((file) => {\n     const filePath = resolve(defaultDirPath,file)\n       return {\n"
+                },
+                {
+                    "date": 1665812399907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,14 +7,14 @@\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n-    const markdownFiles = readdirSync(defaultDirPath).filter(path=>{\n-        if(IS_MARKDOWN.test(path)) return path\n-        e\n+    const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n+      if (IS_MARKDOWN.test(path)) return path\n+      else return false\n     })\n     const contents = markdownFiles.map((file) => {\n-    const filePath = resolve(defaultDirPath,file)\n+      const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n         fileContent: readdirSync(filePath, 'utf-8')\n       }\n"
+                },
+                {
+                    "date": 1665812414268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return path\n+      if (IS_MARKDOWN.test(path)) return true\n       else return false\n     })\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n"
+                },
+                {
+                    "date": 1665812425883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,12 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return true\n+      if (IS_MARKDOWN.test(path)) return re\n       else return false\n     })\n+    console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n"
+                },
+                {
+                    "date": 1665812432996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return re\n+      if (IS_MARKDOWN.test(path)) return resolve(defaultDirPath,)\n       else return false\n     })\n     console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n"
+                },
+                {
+                    "date": 1665812440771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return resolve(defaultDirPath,)\n+      if (IS_MARKDOWN.test(path)) return resolve(de)\n       else return false\n     })\n     console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n"
+                },
+                {
+                    "date": 1665812448347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,20 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return resolve(de)\n+      if (IS_MARKDOWN.test(path)) return true\n       else return false\n     })\n     console.log(markdownFiles)\n-    const contents = markdownFiles.map((file) => {\n-      const filePath = resolve(defaultDirPath, file)\n-      return {\n-        fileName: file,\n-        fileContent: readdirSync(filePath, 'utf-8')\n-      }\n-    })\n-    return contents\n+    // const contents = markdownFiles.map((file) => {\n+    //   const filePath = resolve(defaultDirPath, file)\n+    //   return {\n+    //     fileName: file,\n+    //     fileContent: readdirSync(filePath, 'utf-8')\n+    //   }\n+    // })\n+    // return contents\n   } else {\n     return resolve(homedir())\n   }\n }\n"
+                },
+                {
+                    "date": 1665812487514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,20 +8,20 @@\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n-      if (IS_MARKDOWN.test(path)) return true\n+      if (IS_MARKDOWN.test(path)) return path\n       else return false\n     })\n     console.log(markdownFiles)\n-    // const contents = markdownFiles.map((file) => {\n-    //   const filePath = resolve(defaultDirPath, file)\n-    //   return {\n-    //     fileName: file,\n-    //     fileContent: readdirSync(filePath, 'utf-8')\n-    //   }\n-    // })\n-    // return contents\n+    const contents = markdownFiles.map((file) => {\n+      const filePath = resolve(defaultDirPath, file)\n+      return {\n+        fileName: file,\n+        fileContent: readdirSync(filePath, 'utf-8')\n+      }\n+    })\n+    return contents\n   } else {\n     return resolve(homedir())\n   }\n }\n"
+                },
+                {
+                    "date": 1665812685062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /$\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n-      else return false\n     })\n     console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n"
+                },
+                {
+                    "date": 1665812699838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const IS_MARKDOWN = /$\\.md/\n+    const IS_MARKDOWN = /\\.md/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n     })\n     console.log(markdownFiles)\n"
+                },
+                {
+                    "date": 1665812726240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n   console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n-    const IS_MARKDOWN = /\\.md/\n+    const IS_MARKDOWN = /\\.md$/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n+      e\n     })\n     console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n"
+                },
+                {
+                    "date": 1665812752051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,16 +9,16 @@\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /\\.md$/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n-      e\n+      else return false\n     })\n     console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n-        fileContent: readdirSync(filePath, 'utf-8')\n+        fileContent: readFSync(filePath, 'utf-8')\n       }\n     })\n     return contents\n   } else {\n"
+                },
+                {
+                    "date": 1665812757359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n-        fileContent: readFSync(filePath, 'utf-8')\n+        fileContent: readFi (filePath, 'utf-8')\n       }\n     })\n     return contents\n   } else {\n"
+                },
+                {
+                    "date": 1665812776989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,11 @@\n import { homedir } from 'os'\n-import { existsSync, readdirSync } from 'fs'\n+import { existsSync, readdirSync, readFileSync } from 'fs'\n import { resolve } from 'path'\n \n export const getDefaultDirContents = () => {\n   const desktopDir = resolve(homedir(), 'Desktop')\n   const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n-  console.log(defaultDirPath)\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /\\.md$/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n@@ -16,9 +15,9 @@\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n-        fileContent: readFi (filePath, 'utf-8')\n+        fileContent: readFileSync(filePath, 'utf-8')\n       }\n     })\n     return contents\n   } else {\n"
+                },
+                {
+                    "date": 1665812997608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n       else return false\n     })\n-    console.log(markdownFiles)\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n       return {\n         fileName: file,\n"
+                },
+                {
+                    "date": 1665813044092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   if (existsSync(defaultDirPath)) {\n     const IS_MARKDOWN = /\\.md$/\n     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n       if (IS_MARKDOWN.test(path)) return path\n-      // filter\n+      // filter可以\n       else return false\n     })\n     const contents = markdownFiles.map((file) => {\n       const filePath = resolve(defaultDirPath, file)\n"
                 }
             ],
             "date": 1665758231482,

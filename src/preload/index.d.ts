@@ -12,6 +12,7 @@ export interface Api {
   maxScreen: () => void
   closeScreen: () => void
   onOpenFile:(callback:Listener)=>void
+  openDefaultDir:()=>any
 }
 declare global {
   interface Window {

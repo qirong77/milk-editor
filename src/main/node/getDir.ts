@@ -1,16 +1,26 @@
-import { homedir } from 'os';
-import { existsSync } from 'fs';
-import { resolve } from 'path';
+import { homedir } from 'os'
+import { existsSync, readdirSync, readFileSync } from 'fs'
+import { resolve } from 'path'
 
-export const getDeskDir = () => {
-    const desktopDir = resolve(homedir(), 'Desktop')
-    if(existsSync(desktopDir)) {
-        return desktopDir
-    } else {
-        return resolve(homedir())
-    }
-}
-export const getDefaultOpenDir = () => {
-    const path = resolve(getDeskDir(),'front-end-book','Markdowns')
-    return path
+export const getDefaultDirContents = () => {
+  const desktopDir = resolve(homedir(), 'Desktop')
+  const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')
+  if (existsSync(defaultDirPath)) {
+    const IS_MARKDOWN = /\.md$/
+    const markdownFiles = readdirSync(defaultDirPath).filter((path) => {
+      if (IS_MARKDOWN.test(path)) return path
+      // filter可以return flase？
+      else return false
+    })
+    const contents = markdownFiles.map((file) => {
+      const filePath = resolve(defaultDirPath, file)
+      return {
+        fileName: file,
+        fileContent: readFileSync(filePath, 'utf-8')
+      }
+    })
+    return contents
+  } else {
+    return resolve(homedir())
+  }
 }

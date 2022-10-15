@@ -19,15 +19,19 @@ export const App = () => {
       console.log('onOpenFileAPI')
       setContent(fileContent)
       // 因为你更新markdown的内容后，可能页面还没渲染完，现在暂时用定时器解决一下
-      setTimeout(()=>{
+      setTimeout(() => {
         useUpdateHeaders()
-      },1200)
+      }, 1200)
     })
   }, [])
   // 打开默认文件夹
-  useEffect(()=>{
-
-  },[])
+  useEffect(() => {
+    const fn = async () => {
+      const file = await window.api.openDefaultDir()
+      console.log(file)
+    }
+    fn()
+  }, [])
   return (
     <div className="container">
       <Header title={title} />

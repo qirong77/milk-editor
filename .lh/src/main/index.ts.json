@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 56,
+            "activePatchIndex": 59,
             "patches": [
                 {
                     "date": 1665388140026,
@@ -232,6 +232,18 @@
                 {
                     "date": 1665755575029,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { app, BrowserWindow } from 'electron'\n-import { electronApp, optimizer, is } from '@electron-toolkit/utils'\n+import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/createWindow'\n \n \n // electron初始化，可以创建窗口\n"
+                },
+                {
+                    "date": 1665766790573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n \n \n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n+        // 官方是在createWindow的位置事件监听\n+        onIpcMainEvents(mainWindow)\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1665766802484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,9 @@\n \n \n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n-        // 官方是在createWindow的位置事件监听\n-        onIpcMainEvents(mainWindow)\n+  \n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
+                },
+                {
+                    "date": 1665766821223,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n \n \n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n-  \n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n \n   // Default open or close DevTools by F12 in development\n"
                 }
             ],
             "date": 1665388140026,

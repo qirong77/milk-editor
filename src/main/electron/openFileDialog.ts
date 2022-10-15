@@ -5,6 +5,6 @@ export async function openFileSelector(window: BrowserWindow) {
     if (canceled) {
       return
     } else {
-      return filePaths
+      return filePaths[0]
     }
   }

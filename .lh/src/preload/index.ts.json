@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 37,
+            "activePatchIndex": 53,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -156,6 +156,70 @@
                 {
                     "date": 1665761862375,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   },\n   closeScreen: () => {\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n-  onUpdateEditor: (callback) => {\n+  onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665766580755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   }\n+  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1665766588101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,12 @@\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n+  },\n+  openDefaultDir:()=>{\n+    \n   }\n-  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1665766598904,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    \n+    ipcRenderer.invoke('')\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665767015236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_NEW_FILE } from '../main/constant'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_DEFAULT_DIR, OPEN_NEW_FILE } from '../main/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    ipcRenderer.invoke('')\n+    ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665767355601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  openDefaultDir:()=>{\n+  openDefaultDir:async()=>{\n     ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665767394543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  openDefaultDir:async()=>{\n+  openDefaultDir:()=>{\n     ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665807273608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    ipcRenderer.invoke(OPEN_DEFAULT_DIR).\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665807281858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    ipcRenderer.invoke(OPEN_DEFAULT_DIR).\n+    ipcRenderer.invoke(OPEN_DEFAULT_DIR).then(res=)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665807290116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    ipcRenderer.invoke(OPEN_DEFAULT_DIR).then(res=)\n+    ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665807314783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:()=>{\n-    ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    const x = ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665807324081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  openDefaultDir:()=>{\n+  openDefaultDir:async ()=>{\n     const x = ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665807333710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,10 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:async ()=>{\n-    const x = ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    const x = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    return x\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665808284128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:async ()=>{\n-    const x = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    const  = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return x\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665808296839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:async ()=>{\n-    const  = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return x\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1665812102590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:async ()=>{\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n-    return x\n+    // return defaultDirContents\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1665812783886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,9 @@\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   openDefaultDir:async ()=>{\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n+    return f\n     // return defaultDirContents\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
                 }
             ],
             "date": 1665389904992,

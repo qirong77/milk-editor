@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/electron/openFileDialog.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1665767315266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665767453243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n-      return 'xxxx'\n+      return filePaths\n     }\n   }\n"
+                },
+                {
+                    "date": 1665806621834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n-      return filePaths\n+      return filePaths[0]\n     }\n   }\n"
+                }
+            ],
+            "date": 1665767315266,
+            "name": "Commit-0",
+            "content": "import { BrowserWindow, dialog } from \"electron\"\n\nexport async function openFileSelector(window: BrowserWindow) {\n    const { canceled, filePaths } = await dialog.showOpenDialog(window)\n    if (canceled) {\n      return\n    } else {\n      return 'xxxx'\n    }\n  }\n"
+        }
+    ]
+}
