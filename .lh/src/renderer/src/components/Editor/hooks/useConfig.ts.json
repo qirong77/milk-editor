@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665632485404,
@@ -20,6 +20,34 @@
                 {
                     "date": 1665765087112,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import { Ctx, defaultValueCtx } from '@milkdown/core'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n+// import { Ctx, defaultValueCtx } from '@milkdown/core'\n+// import { listenerCtx } from '@milkdown/plugin-listener'\n export const useConfig = (ctx: Ctx) => {\n   // // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n   // ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n   //   // console.log(ctx)\n"
+                },
+                {
+                    "date": 1665909915336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,8 @@\n // import { Ctx, defaultValueCtx } from '@milkdown/core'\n+\n+import { Ctx } from \"@milkdown/core\";\n+\n // import { listenerCtx } from '@milkdown/plugin-listener'\n export const useConfig = (ctx: Ctx) => {\n   // // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n   // ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n"
+                },
+                {
+                    "date": 1665910642808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,30 @@\n-// import { Ctx, defaultValueCtx } from '@milkdown/core'\n+import { listener, listenerCtx } from '@milkdown/plugin-listener'\n \n-import { Ctx } from \"@milkdown/core\";\n+import { Ctx } from '@milkdown/core'\n \n // import { listenerCtx } from '@milkdown/plugin-listener'\n export const useConfig = (ctx: Ctx) => {\n-  // // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-  // ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-  //   // console.log(ctx)\n-  // })\n+  ctx\n+    .get(listenerCtx)\n+    .beforeMount((ctx) => {\n+      console.log('before the editor mounts')\n+    })\n+    .mounted((ctx) => {\n+      console.log('after the editor mounts')\n+    })\n+    .updated((ctx, doc, prevDoc) => {\n+      console.log('when editor state updates')\n+    })\n+    .markdownUpdated((ctx, markdown, prevMarkdown) => {\n+      console.log('when markdown updates')\n+    })\n+    .blur((ctx) => {\n+      console.log('when editor loses focus')\n+    })\n+    .focus((ctx) => {\n+      console.log(' when focus editor')\n+    })\n+    .destroy((ctx) => {\n+      console.log('when editor is being destroyed')\n+    })\n }\n"
+                },
+                {
+                    "date": 1665910657610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { listener, listenerCtx } from '@milkdown/plugin-listener'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n \n // import { listenerCtx } from '@milkdown/plugin-listener'\n"
+                },
+                {
+                    "date": 1665921775734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n \n-// import { listenerCtx } from '@milkdown/plugin-listener'\n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n"
+                },
+                {
+                    "date": 1665923460550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n+import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n@@ -15,8 +16,9 @@\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n+      useUpdateHeaders()\n     })\n     .blur((ctx) => {\n       console.log('when editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1665923610155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,12 +19,12 @@\n       console.log('when markdown updates')\n       useUpdateHeaders()\n     })\n     .blur((ctx) => {\n-      console.log('when editor loses focus')\n+      // console.log('when editor loses focus')\n     })\n     .focus((ctx) => {\n-      console.log(' when focus editor')\n+      // console.log(' when focus editor')\n     })\n     .destroy((ctx) => {\n       console.log('when editor is being destroyed')\n     })\n"
+                },
+                {
+                    "date": 1665924558599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n+import { useDebounce } from '@renderer/common/useDebouce'\n \n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n@@ -16,9 +17,9 @@\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n-      useUpdateHeaders()\n+      useDebounce(useUpdateHeaders,3000)\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
                 }
             ],
             "date": 1665632485404,

@@ -44,35 +44,42 @@ export const useMenu = (window: BrowserWindow) => {
       }
     ]
   }
-  const aboutMenuTemplate: DarwinMenuItemConstructorOptions = {
-    label: 'About',
-    submenu: [
-      //下一层子菜单
-      { label: 'Services' },
-      //分割线
-      { type: 'separator' },
-      { label: 'Show All', selector: 'unhideAllApplications:' },
-      {
-        label: 'Quit',
-        //快捷键
-        accelerator: 'Command+Q',
-        //点击事件
-        click: () => {
-          app.quit()
-        }
-      }
-    ]
-  }
   const editMenuTemplate: DarwinMenuItemConstructorOptions = {
     label: 'Edit',
     submenu: [
-      { label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
-      { label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
-      { label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
       {
-        label: 'new BrowserWindow',
-        click: () => {}
-      }
+        label: 'Undo',
+        accelerator: 'Command+Z',
+        selector: 'undo:'
+      },
+      {
+        label: 'Redo',
+        accelerator: 'Shift+Command+Z',
+        selector: 'redo:'
+      },
+      {
+        type: 'separator'
+      },
+      {
+        label: 'Cut',
+        accelerator: 'Command+X',
+        selector: 'cut:'
+      },
+      {
+        label: 'Copy',
+        accelerator: 'Command+C',
+        selector: 'copy:'
+      },
+      {
+        label: 'Paste',
+        accelerator: 'Command+V',
+        selector: 'paste:'
+      },
+      {
+        label: 'Select All',
+        accelerator: 'Command+A',
+        selector: 'selectAll:'
+      },
     ]
   }
   const viewMenuTemplate: DarwinMenuItemConstructorOptions = {
@@ -125,7 +132,6 @@ export const useMenu = (window: BrowserWindow) => {
   const template: DarwinMenuItemConstructorOptions[] = [
     defaultMenuTemplate,
     fileMenuTemplate,
-    aboutMenuTemplate,
     editMenuTemplate,
     viewMenuTemplate,
     helpMenuTemplate

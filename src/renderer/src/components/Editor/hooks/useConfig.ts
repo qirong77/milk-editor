@@ -1,8 +1,32 @@
-// import { Ctx, defaultValueCtx } from '@milkdown/core'
-// import { listenerCtx } from '@milkdown/plugin-listener'
+import { listenerCtx } from '@milkdown/plugin-listener'
+
+import { Ctx } from '@milkdown/core'
+import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'
+import { useDebounce } from '@renderer/common/useDebouce'
+
 export const useConfig = (ctx: Ctx) => {
-  // // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)
-  // ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {
-  //   // console.log(ctx)
-  // })
+  ctx
+    .get(listenerCtx)
+    .beforeMount((ctx) => {
+      console.log('before the editor mounts')
+    })
+    .mounted((ctx) => {
+      console.log('after the editor mounts')
+    })
+    .updated((ctx, doc, prevDoc) => {
+      console.log('when editor state updates')
+    })
+    .markdownUpdated((ctx, markdown, prevMarkdown) => {
+      console.log('when markdown updates')
+      useDebounce(useUpdateHeaders,3000)
+    })
+    .blur((ctx) => {
+      // console.log('when editor loses focus')
+    })
+    .focus((ctx) => {
+      // console.log(' when focus editor')
+    })
+    .destroy((ctx) => {
+      console.log('when editor is being destroyed')
+    })
 }

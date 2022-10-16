@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1665755537992,
@@ -36,6 +36,10 @@
                 {
                     "date": 1665766879289,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n       onIpcMainEvents(mainWindow)\n       mainWindow.on('ready-to-show', () => {\n         mainWindow.show()\n       })\n-      mainWindow.ha\n       mainWindow.webContents.setWindowOpenHandler((details) => {\n         shell.openExternal(details.url)\n         return { action: 'deny' }\n       })\n"
+                },
+                {
+                    "date": 1665921734135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,6 +33,5 @@\n         mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n       } else {\n         mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n       }\n-\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1665755537992,

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/hooks/useMarkdown.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1665921801680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1665921801680,
+            "name": "Commit-0",
+            "content": "import { Editor, editorViewCtx, serializerCtx } from \"@milkdown/core\";\n\nexport const useMarkdown = (editor:Editor) =>\neditor.action((ctx) => {\n    const editorView = ctx.get(editorViewCtx);\n    const serializer = ctx.get(serializerCtx);\n    return serializer(editorView.state.doc);\n});\n"
+        }
+    ]
+}

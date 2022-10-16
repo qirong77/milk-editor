@@ -1,3 +1,4 @@
+import { useDebounce } from '@renderer/common/useDebouce'
 import { HeaderTree, useHeaders } from './useHeaders'
 const triangleDown = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -26,7 +27,8 @@ const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
   container.appendChild(ul)
   return container
 }
-export const useUpdateHeaders = () => {
+export const updateHeaders = () => {
+  console.log('update-headers')
   const container = document.querySelector('.header-list')
   if(container) {
     container.innerHTML = ''
@@ -40,5 +42,5 @@ export const useUpdateHeaders = () => {
       container.appendChild(headerList)
     })
   }
-
 }
+export const useUpdateHeaders = useDebounce(updateHeaders,3000)

@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/renderer/src/common/useDebouce.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1665924169282,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665924264494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,6 @@\n let timer\n-export const useDebounce = (fn:Function,delay:number)=>{\n-    if(!timer) {\n-        fn()\n-    } else {\n-        timer = setTimeout(()=>{\n-            fn()\n-        },delay)\n-    }\n-}\n\\ No newline at end of file\n+export const useDebounce = (fn: Function, delay: number) => {\n+  timer = setTimeout(() => {\n+    fn()\n+  }, delay)\n+}\n"
+                },
+                {
+                    "date": 1665924365614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,9 @@\n let timer\n export const useDebounce = (fn: Function, delay: number) => {\n+  if(!timer) {\n+    timer\n+  }\n   timer = setTimeout(() => {\n     fn()\n   }, delay)\n }\n"
+                },
+                {
+                    "date": 1665924373935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n let timer\n export const useDebounce = (fn: Function, delay: number) => {\n   if(!timer) {\n-    timer\n+    fn()\n   }\n   timer = setTimeout(() => {\n     fn()\n   }, delay)\n"
+                },
+                {
+                    "date": 1665924461433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,6 @@\n let timer\n export const useDebounce = (fn: Function, delay: number) => {\n-  if(!timer) {\n-    fn()\n-  }\n   timer = setTimeout(() => {\n     fn()\n   }, delay)\n }\n"
+                },
+                {
+                    "date": 1665924473842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n let timer\n export const useDebounce = (fn: Function, delay: number) => {\n   timer = setTimeout(() => {\n+    console.log('debouce timer done')\n     fn()\n   }, delay)\n }\n"
+                },
+                {
+                    "date": 1665924634062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n let timer\n export const useDebounce = (fn: Function, delay: number) => {\n+// 不能直接给定时器重新达到清除的目标，必须使用清除\n+  if(timer) clearTimeout(timer)\n   timer = setTimeout(() => {\n     console.log('debouce timer done')\n     fn()\n   }, delay)\n"
+                },
+                {
+                    "date": 1665925479208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,11 @@\n-let timer\n export const useDebounce = (fn: Function, delay: number) => {\n-// 不能直接给定时器重新达到清除的目标，必须使用清除\n-  if(timer) clearTimeout(timer)\n-  timer = setTimeout(() => {\n-    console.log('debouce timer done')\n-    fn()\n-  }, delay)\n+  return () => {\n+    let timer\n+    if (timer) clearTimeout(timer)\n+    timer = setTimeout(() => {\n+      console.log('debouce timer done')\n+      fn()\n+    }, delay)\n+  }\n+  // 不能直接给定时器重新达到清除的目标，必须使用清除\n }\n"
+                },
+                {
+                    "date": 1665925486440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,5 @@\n       console.log('debouce timer done')\n       fn()\n     }, delay)\n   }\n-  // 不能直接给定时器重新达到清除的目标，必须使用清除\n }\n"
+                },
+                {
+                    "date": 1665928112012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const useDebounce = (fn: Function, delay: number) => {\n+  let timer\n   return () => {\n-    let timer\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('debouce timer done')\n       fn()\n"
+                }
+            ],
+            "date": 1665924169282,
+            "name": "Commit-0",
+            "content": "let timer\nexport const useDebounce = (fn:Function,delay:number)=>{\n    if(!timer) {\n        fn()\n    } else {\n        timer = setTimeout(()=>{\n            fn()\n        },delay)\n    }\n}"
+        }
+    ]
+}

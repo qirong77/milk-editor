@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665737701969,
@@ -40,6 +40,14 @@
                 {
                     "date": 1665899594752,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n-import { readFileSync } from 'fs'\n-import { OPEN_NEW_FILE } from '../constant'\n import { openFileSelector, openNewFile } from './utils'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n"
+                },
+                {
+                    "date": 1665908736552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,15 +65,41 @@\n   }\n   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n     label: 'Edit',\n     submenu: [\n-      { label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },\n-      { label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },\n-      { label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },\n       {\n-        label: 'new BrowserWindow',\n-        click: () => {}\n-      }\n+        label: 'Undo',\n+        accelerator: 'Command+Z',\n+        selector: 'undo:'\n+      },\n+      {\n+        label: 'Redo',\n+        accelerator: 'Shift+Command+Z',\n+        selector: 'redo:'\n+      },\n+      {\n+        type: 'separator'\n+      },\n+      {\n+        label: 'Cut',\n+        accelerator: 'Command+X',\n+        selector: 'cut:'\n+      },\n+      {\n+        label: 'Copy',\n+        accelerator: 'Command+C',\n+        selector: 'copy:'\n+      },\n+      {\n+        label: 'Paste',\n+        accelerator: 'Command+V',\n+        selector: 'paste:'\n+      },\n+      {\n+        label: 'Select All',\n+        accelerator: 'Command+A',\n+        selector: 'selectAll:'\n+      },\n     ]\n   }\n   const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n     label: 'View',\n"
+                },
+                {
+                    "date": 1665909095985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,27 +43,8 @@\n         }\n       }\n     ]\n   }\n-  const aboutMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'About',\n-    submenu: [\n-      //下一层子菜单\n-      { label: 'Services' },\n-      //分割线\n-      { type: 'separator' },\n-      { label: 'Show All', selector: 'unhideAllApplications:' },\n-      {\n-        label: 'Quit',\n-        //快捷键\n-        accelerator: 'Command+Q',\n-        //点击事件\n-        click: () => {\n-          app.quit()\n-        }\n-      }\n-    ]\n-  }\n   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n     label: 'Edit',\n     submenu: [\n       {\n@@ -150,9 +131,8 @@\n   }\n   const template: DarwinMenuItemConstructorOptions[] = [\n     defaultMenuTemplate,\n     fileMenuTemplate,\n-    aboutMenuTemplate,\n     editMenuTemplate,\n     viewMenuTemplate,\n     helpMenuTemplate\n   ]\n"
                 }
             ],
             "date": 1665737701969,
