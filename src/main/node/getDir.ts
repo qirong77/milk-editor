@@ -1,5 +1,5 @@
 import { homedir } from 'os'
-import { existsSync, readdirSync, readFileSync } from 'fs'
+import { existsSync, readdirSync} from 'fs'
 import { resolve } from 'path'
 
 export const getDefaultDirContents = () => {
@@ -16,7 +16,7 @@ export const getDefaultDirContents = () => {
       const filePath = resolve(defaultDirPath, file)
       return {
         fileName: file,
-        fileContent: readFileSync(filePath, 'utf-8')
+        filePath:filePath
       }
     })
     return contents

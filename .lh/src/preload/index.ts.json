@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 82,
+            "activePatchIndex": 83,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -336,6 +336,10 @@
                 {
                     "date": 1665814469242,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n \n-  // Promise的ts使用 ? \n   openDefaultDir:async ()=>{\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents \n   }\n"
+                },
+                {
+                    "date": 1665899767384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,15 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_DEFAULT_DIR, OPEN_NEW_FILE } from '../main/constant'\n+import {\n+  CLICK_FILE_LIST,\n+  CLOSE_SCREEN,\n+  MAX_SCREEN,\n+  MIN_SCREEN,\n+  OPEN_DEFAULT_DIR,\n+  OPEN_NEW_FILE\n+} from '../main/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n \n@@ -21,12 +28,14 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-\n-  openDefaultDir:async ()=>{\n+  clickFileList(filePath) {\n+    ipcRenderer.send(CLICK_FILE_LIST, filePath)\n+  },\n+  openDefaultDir: async () => {\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n-    return defaultDirContents \n+    return defaultDirContents\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
                 }
             ],
             "date": 1665389904992,

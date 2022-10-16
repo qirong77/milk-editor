@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1665737701969,
@@ -28,6 +28,18 @@
                 {
                     "date": 1665764212086,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,12 @@\n const openFile = async (window: BrowserWindow) => {\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const filePath = paths[0]\n-    const content = readFileSync(path, 'utf-8')\n+    const fileContent = readFileSync(path, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n-      content\n+      fileContent\n     })\n   }\n }\n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
+                },
+                {
+                    "date": 1665899396999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { readFileSync } from 'fs'\n import { OPEN_NEW_FILE } from '../constant'\n-import { openFileSelector } from './openFileDialog'\n+import { openFileSelector } from './utils'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n@@ -10,40 +10,49 @@\n const openFile = async (window: BrowserWindow) => {\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const filePath = paths[0]\n-    const fileContent = readFileSync(path, 'utf-8')\n+    const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n       fileContent\n     })\n   }\n }\n+const openNewFile = (filePath: string, window: BrowserWindow) => {\n+  const fileContent = readFileSync(filePath, 'utf-8')\n+  window.webContents.send(OPEN_NEW_FILE, {\n+    filePath,\n+    fileContent\n+  })\n+}\n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n \n export const useMenu = (window: BrowserWindow) => {\n   const defaultMenuTemplate = {\n-    label:app.name,\n-    submenu:[\n+    label: app.name,\n+    submenu: [\n       {\n-        label:'新建',\n-        click:()=>{}\n-      },\n+        label: '新建',\n+        click: () => {}\n+      }\n     ]\n   }\n-  const fileMenuTemplate:DarwinMenuItemConstructorOptions = {\n-    label:'文件',\n-    submenu:[\n+  const fileMenuTemplate: DarwinMenuItemConstructorOptions = {\n+    label: '文件',\n+    submenu: [\n       {\n-        label:'新建',\n-        click:()=>{}\n+        label: '新建',\n+        click: () => {}\n       },\n       {\n-        label:'打开',\n-        click:()=>{openFile(window)}\n+        label: '打开',\n+        click: () => {\n+          openFile(window)\n+        }\n       }\n     ]\n   }\n   const aboutMenuTemplate: DarwinMenuItemConstructorOptions = {\n"
+                },
+                {
+                    "date": 1665899587606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,31 +1,22 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { readFileSync } from 'fs'\n import { OPEN_NEW_FILE } from '../constant'\n-import { openFileSelector } from './utils'\n+import { openFileSelector, openNewFile } from './utils'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n-const openFile = async (window: BrowserWindow) => {\n+\n+const clickOpenFile = async (window: BrowserWindow) => {\n   const paths = await openFileSelector(window)\n   if (paths) {\n     const filePath = paths[0]\n-    const fileContent = readFileSync(filePath, 'utf-8')\n-    window.webContents.send(OPEN_NEW_FILE, {\n-      filePath,\n-      fileContent\n-    })\n+    openNewFile(filePath, window)\n   }\n }\n-const openNewFile = (filePath: string, window: BrowserWindow) => {\n-  const fileContent = readFileSync(filePath, 'utf-8')\n-  window.webContents.send(OPEN_NEW_FILE, {\n-    filePath,\n-    fileContent\n-  })\n-}\n+\n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n@@ -49,9 +40,9 @@\n       },\n       {\n         label: '打开',\n         click: () => {\n-          openFile(window)\n+          clickOpenFile(window)\n         }\n       }\n     ]\n   }\n"
+                },
+                {
+                    "date": 1665899594752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,5 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n-import { readFileSync } from 'fs'\n-import { OPEN_NEW_FILE } from '../constant'\n import { openFileSelector, openNewFile } from './utils'\n \n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n"
                 }
             ],
             "date": 1665737701969,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 63,
+            "activePatchIndex": 64,
             "patches": [
                 {
                     "date": 1665642915003,
@@ -260,6 +260,10 @@
                 {
                     "date": 1665765586910,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import React, { useEffect, useRef } from 'react'\n import { HeaderTree, useHeaders } from './hooks/useHeaders'\n+import { useUpdateHeaders } from './hooks/useUpdateHeader'\n \n interface IHeaderList {}\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n@@ -9,9 +10,9 @@\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n-        use\n+        useUpdateHeaders()\n         sideBar.classList.toggle('side-bar-close')\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665900967484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import React, { useEffect, useRef } from 'react'\n-import { HeaderTree, useHeaders } from './hooks/useHeaders'\n import { useUpdateHeaders } from './hooks/useUpdateHeader'\n \n interface IHeaderList {}\n \n@@ -17,8 +16,11 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n+  useEffect(()=>{\n+    useUpdateHeaders()\n+  },[])\n   return (\n       <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n }\n"
                 }
             ],
             "date": 1665642915003,

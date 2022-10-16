@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 45,
+            "activePatchIndex": 47,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -188,6 +188,14 @@
                 {
                     "date": 1665763644359,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,39 +1,15 @@\n \n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n+import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n   return (\n     <div className=\"side-bar\">\n-      <header>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-list\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path\n-            fillRule=\"evenodd\"\n-            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n-          />\n-        </svg>\n-        <span>文件</span>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-search\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n-        </svg>\n-      </header>\n+      <SideBarHeader/>\n       <DragLine />\n       <HeaderList/>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665891813750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,19 @@\n \n+import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n+  const [showFileList,setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader/>\n+      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n       <DragLine />\n-      <HeaderList/>\n+      {!showFileList && <FileList/>}\n+      {showFileList && <HeaderList/>}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665898439883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,20 @@\n-\n import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n+import { FileList } from './FileList'\n+import { IFileList } from 'src/preload/index.d'\n interface ISideBar {\n-\n+  fileList: IFileList\n }\n-export const SideBar:React.FC<ISideBar> = () => {\n-  const [showFileList,setShowFileList] = useState(false)\n+export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n+  const [showFileList, setShowFileList] = useState(true)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n+      <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList/>}\n-      {showFileList && <HeaderList/>}\n+      {!showFileList && <FileList fileList={fileList} />}\n+      {showFileList && <HeaderList />}\n     </div>\n   )\n }\n"
                 }
             ],
             "date": 1665497140199,

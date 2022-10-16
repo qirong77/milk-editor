@@ -1,23 +1,19 @@
 import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
-import { readFileSync } from 'fs'
-import { OPEN_NEW_FILE } from '../constant'
-import { openFileSelector } from './openFileDialog'
+import { openFileSelector, openNewFile } from './utils'
 
 /* 
 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123
 快捷键类型：https://juejin.cn/post/7116906625964720159#comment
 */
-const openFile = async (window: BrowserWindow) => {
+
+const clickOpenFile = async (window: BrowserWindow) => {
   const paths = await openFileSelector(window)
   if (paths) {
     const filePath = paths[0]
-    const fileContent = readFileSync(filePath, 'utf-8')
-    window.webContents.send(OPEN_NEW_FILE, {
-      filePath,
-      fileContent
-    })
+    openNewFile(filePath, window)
   }
 }
+
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string
   submenu?: DarwinMenuItemConstructorOptions[] | Menu
@@ -25,24 +21,26 @@ interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
 
 export const useMenu = (window: BrowserWindow) => {
   const defaultMenuTemplate = {
-    label:app.name,
-    submenu:[
+    label: app.name,
+    submenu: [
       {
-        label:'新建',
-        click:()=>{}
-      },
+        label: '新建',
+        click: () => {}
+      }
     ]
   }
-  const fileMenuTemplate:DarwinMenuItemConstructorOptions = {
-    label:'文件',
-    submenu:[
+  const fileMenuTemplate: DarwinMenuItemConstructorOptions = {
+    label: '文件',
+    submenu: [
       {
-        label:'新建',
-        click:()=>{}
+        label: '新建',
+        click: () => {}
       },
       {
-        label:'打开',
-        click:()=>{openFile(window)}
+        label: '打开',
+        click: () => {
+          clickOpenFile(window)
+        }
       }
     ]
   }

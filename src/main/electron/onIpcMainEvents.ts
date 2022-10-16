@@ -1,6 +1,13 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { CLOSE_SCREEN, OPEN_DEFAULT_DIR, MAX_SCREEN, MIN_SCREEN } from '../constant'
+import {
+  CLOSE_SCREEN,
+  OPEN_DEFAULT_DIR,
+  MAX_SCREEN,
+  MIN_SCREEN,
+  CLICK_FILE_LIST
+} from '../constant'
 import { getDefaultDirContents } from '../node/getDir'
+import { openNewFile } from './utils'
 
 export const onIpcMainEvents = (window: BrowserWindow) => {
   ipcMain.on(MIN_SCREEN, () => window.minimize())
@@ -12,5 +19,8 @@ export const onIpcMainEvents = (window: BrowserWindow) => {
     }
   })
   ipcMain.on(CLOSE_SCREEN, () => window.close())
-  ipcMain.handle(OPEN_DEFAULT_DIR,getDefaultDirContents)
+  ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)
+  ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {
+    openNewFile(filePath, window)
+  })
 }

@@ -9,18 +9,18 @@ interface Listener {
     }
   ): void
 }
+export type IFileList = Array<{
+  fileName: string
+  filePath: string
+}>
 export interface Api {
   say: () => void
   minScreen: () => void
   maxScreen: () => void
   closeScreen: () => void
   onOpenFile: (callback: Listener) => void
-  openDefaultDir: () => Promise<
-    Array<{
-      fileName: string
-      fileContent: string
-    }>
-  >
+  openDefaultDir: () => Promise<IFileList>
+  clickFileList:(filePath:string)=>void
 }
 declare global {
   interface Window {

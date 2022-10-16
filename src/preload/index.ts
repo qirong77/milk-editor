@@ -1,7 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron'
 // 渲染进程中可以使用的API
 import { electronAPI } from '@electron-toolkit/preload'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_DEFAULT_DIR, OPEN_NEW_FILE } from '../main/constant'
+import {
+  CLICK_FILE_LIST,
+  CLOSE_SCREEN,
+  MAX_SCREEN,
+  MIN_SCREEN,
+  OPEN_DEFAULT_DIR,
+  OPEN_NEW_FILE
+} from '../main/constant'
 // 导入.d.ts类型文件的时候不能有扩展名！
 import { Api } from './index.d'
 // Custom APIs for renderer
@@ -22,10 +29,12 @@ const api: Api = {
   onOpenFile: (callback) => {
     ipcRenderer.on(OPEN_NEW_FILE, callback)
   },
-
-  openDefaultDir:async ()=>{
+  clickFileList(filePath) {
+    ipcRenderer.send(CLICK_FILE_LIST, filePath)
+  },
+  openDefaultDir: async () => {
     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)
-    return defaultDirContents 
+    return defaultDirContents
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

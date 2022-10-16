@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1665496829721,
@@ -44,6 +44,22 @@
                 {
                     "date": 1665671968407,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,24 +2,20 @@\n // this file amis to clear some default styles of the milkdown editor\n .code-fence {\n   position: relative;\n   // 代码块的语言框大小\n-  .milkdown div.code-fence_selector {\n+   div.code-fence_selector {\n     width: 90px;\n     height: 30px;\n     opacity: 0%;\n   }\n   &:hover {\n-    .milkdown div.code-fence_selector {\n+     div.code-fence_selector {\n       opacity: 100%;\n     }\n   }\n }\n-.milkdown div.code-fence_selector {\n-  width: 90px;\n-  height: 30px;\n-  opacity: 0%;\n-}\n+\n .code-fence_selector-wrapper {\n   position: absolute !important;\n   right: 0;\n   bottom: -12px;\n"
+                },
+                {
+                    "date": 1665817384375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,4 +30,5 @@\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n }\n+ console.warn('Unsupported language detected, this language has not been supported by prism: ', language);\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665817395635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,5 +30,7 @@\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n }\n- console.warn('Unsupported language detected, this language has not been supported by prism: ', language);\n\\ No newline at end of file\n+.milkdown .editor .code-inline {\n+  \n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665817423703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,7 +30,7 @@\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n }\n-.milkdown .editor .code-inline {\n-  \n+.milkdown .editor c.code-inline {\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665817534717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n // 清除默认编辑器我不喜欢的样式\n // this file amis to clear some default styles of the milkdown editor\n+$dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgb(39, 44, 55);\n .code-fence {\n   position: relative;\n   // 代码块的语言框大小\n    div.code-fence_selector {\n@@ -30,7 +32,9 @@\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n }\n-.milkdown .editor c.code-inline {\n-\n+.milkdown .editor code.code-inline {\n+  color: $dark-color;\n+  background-color: $dark-background;\n+  font-family: 'Times New Roman', Times, serif;\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1665496829721,

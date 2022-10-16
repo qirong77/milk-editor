@@ -27,15 +27,18 @@ const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
   return container
 }
 export const useUpdateHeaders = () => {
-  const container = document.querySelector('.header-list') as HTMLElement
-  container!.innerHTML = ''
-  const headers =
-    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
-  const Headers = Array.from(headers)
-  const trees = useHeaders(Headers as HTMLElement[])
-  trees.forEach((tree) => {
-    const fragment = document.createDocumentFragment()
-    const headerList = dfs(tree, fragment)
-    container.appendChild(headerList)
-  })
+  const container = document.querySelector('.header-list')
+  if(container) {
+    container.innerHTML = ''
+    const headers =
+      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
+    const Headers = Array.from(headers)
+    const trees = useHeaders(Headers as HTMLElement[])
+    trees.forEach((tree) => {
+      const fragment = document.createDocumentFragment()
+      const headerList = dfs(tree, fragment)
+      container.appendChild(headerList)
+    })
+  }
+
 }

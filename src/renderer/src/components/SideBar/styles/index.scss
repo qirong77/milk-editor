@@ -78,6 +78,23 @@ $title-height:30px;
       }
     }
   }
+  .file-list {
+    overflow: scroll;
+    max-height: calc(100vh - 100px);
+    li {
+      display: flex;
+      padding-left: 20px;
+      min-height: $title-height;
+      // 避免标题太长重叠
+      height: auto;
+      line-height: $title-height;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(56, 62, 77);
+      }
+    }
+  }
+
   .drag-line {
     width: 3px;
     position: absolute;
