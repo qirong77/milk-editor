@@ -3,9 +3,12 @@ import { IFileList } from 'src/preload/index.d'
 
 export const FileList: React.FC<{
   fileList: IFileList
-}> = ({ fileList }) => {
+  show:boolean
+  setShowFileList:(show:boolean)=>void
+}> = ({ fileList,setShowFileList,show }) => {
   const openFile = (filePath) => {
     window.api.clickFileList(filePath)
+    setShowFileList(!show)
   }
   return (
     <ul className="file-list">

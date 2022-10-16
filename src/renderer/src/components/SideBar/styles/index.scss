@@ -12,6 +12,17 @@ $title-height:30px;
   padding: 30px 0 20px 0;
   transition: 0.4s;
   font-size: smaller;
+  position: relative;
+  &:hover {
+    footer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    header svg {
+      display: block;
+    }
+  }
   header {
     display: flex;
     height: 30px;
@@ -19,11 +30,6 @@ $title-height:30px;
     svg {
       display: none;
       cursor: pointer;
-    }
-    &:hover {
-      svg {
-        display: block;
-      }
     }
   }
   .header-list {
@@ -94,7 +100,6 @@ $title-height:30px;
       }
     }
   }
-
   .drag-line {
     width: 3px;
     position: absolute;
@@ -107,6 +112,18 @@ $title-height:30px;
     &:hover {
       cursor: ew-resize;
       opacity: 100%;
+    }
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $title-height;
+    border-top: 1px solid rgb(111, 109, 109);
+    background-color: $dark-background;
+    display: none;
+    svg {
+      cursor: pointer;
     }
   }
 }

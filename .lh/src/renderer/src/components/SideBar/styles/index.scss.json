@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 102,
+            "activePatchIndex": 117,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -416,6 +416,66 @@
                 {
                     "date": 1665898642350,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      padding-left: 10px;\n+      padding-left: 20px;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+                },
+                {
+                    "date": 1665901829207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,8 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n@@ -108,8 +107,16 @@\n       cursor: ew-resize;\n       opacity: 100%;\n     }\n   }\n+  footer {\n+    position: absolute;\n+    bottom: 0;\n+    width: 100%;\n+    border-top: 1px solid lightgray;\n+    background-color: $dark-color;\n+    display: flex;\n+  }\n }\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n"
+                },
+                {
+                    "date": 1665901985517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,8 +111,9 @@\n   footer {\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n+    height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-color;\n     display: flex;\n   }\n"
+                },
+                {
+                    "date": 1665902077872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid lightgray;\n-    background-color: $dark-color;\n+    background-color: $dark-background;\n     display: flex;\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1665902098437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,8 +115,9 @@\n     height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n+    justify-content: space-between;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+                },
+                {
+                    "date": 1665902125419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n+  position: relative;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+                },
+                {
+                    "date": 1665902133447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,8 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n+    justify-content: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+                },
+                {
+                    "date": 1665902138852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n-    justify-content: center;\n+    align-items: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+                },
+                {
+                    "date": 1665902148646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid lightgray;\n+    border-top: 1px solid rgb(152, 151, 151);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
+                },
+                {
+                    "date": 1665902154620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid rgb(152, 151, 151);\n+    border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
+                },
+                {
+                    "date": 1665902171815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -116,9 +116,9 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n-    justify-content: space-between;\n+    justify-content: space-around;\n     align-items: center;\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1665903435051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,21 +12,24 @@\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n   position: relative;\n+  &:hover {\n+    footer {\n+      display: block !important;\n+    }\n+    header svg {\n+      display: block;\n+    }\n+  }\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n       cursor: pointer;\n     }\n-    &:hover {\n-      svg {\n-        display: block;\n-      }\n-    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n@@ -118,8 +121,9 @@\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-around;\n     align-items: center;\n+    display: none;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+                },
+                {
+                    "date": 1665903450748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block !important;\n+      display: block\n     }\n     header svg {\n       display: block;\n     }\n"
+                },
+                {
+                    "date": 1665903457917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block\n+      display: flex\n     }\n     header svg {\n       display: block;\n     }\n"
+                },
+                {
+                    "date": 1665903491012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: flex\n+      display: flex;\n+      justify-content: space-around;\n+      align-items: center;\n     }\n     header svg {\n       display: block;\n     }\n@@ -118,11 +120,8 @@\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n-    display: flex;\n-    justify-content: space-around;\n-    align-items: center;\n     display: none;\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1665903510562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,8 +121,11 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: none;\n+    svg {\n+      cursor: pointer;\n+    }\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
                 }
             ],
             "date": 1665500010365,

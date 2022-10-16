@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/components/SideBarBottom.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1665901837701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665901929126,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,35 @@\n-export const SideBarBottom = () => {\n+import React from 'react'\n+\n+export const SideBarBottom: React.FC<{\n+  show: boolean\n+}> = ({ show }) => {\n   return (\n-    <footer>\n-      <svg\n-        xmlns=\"http://www.w3.org/2000/svg\"\n-        width=\"16\"\n-        height=\"16\"\n-        fill=\"currentColor\"\n-        className=\"bi bi-plus\"\n-        viewBox=\"0 0 16 16\"\n-      >\n-        <path d=\"M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z\" />\n-      </svg>\n-      <span>Markdowns</span>\n-      <svg\n-        xmlns=\"http://www.w3.org/2000/svg\"\n-        width=\"16\"\n-        height=\"16\"\n-        fill=\"currentColor\"\n-        className=\"bi bi-three-dots-vertical\"\n-        viewBox=\"0 0 16 16\"\n-      >\n-        <path d=\"M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z\" />\n-      </svg>\n-    </footer>\n+    <>\n+      {show && (\n+        <footer>\n+          <svg\n+            xmlns=\"http://www.w3.org/2000/svg\"\n+            width=\"16\"\n+            height=\"16\"\n+            fill=\"currentColor\"\n+            className=\"bi bi-plus\"\n+            viewBox=\"0 0 16 16\"\n+          >\n+            <path d=\"M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z\" />\n+          </svg>\n+          <span>Markdowns</span>\n+          <svg\n+            xmlns=\"http://www.w3.org/2000/svg\"\n+            width=\"16\"\n+            height=\"16\"\n+            fill=\"currentColor\"\n+            className=\"bi bi-three-dots-vertical\"\n+            viewBox=\"0 0 16 16\"\n+          >\n+            <path d=\"M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z\" />\n+          </svg>\n+        </footer>\n+      )}\n+    </>\n   )\n }\n"
+                },
+                {
+                    "date": 1665902245331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   show: boolean\n }> = ({ show }) => {\n   return (\n     <>\n-      {show && (\n+      {!show && (\n         <footer>\n           <svg\n             xmlns=\"http://www.w3.org/2000/svg\"\n             width=\"16\"\n"
+                }
+            ],
+            "date": 1665901837701,
+            "name": "Commit-0",
+            "content": "export const SideBarBottom = () => {\n  return (\n    <footer>\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"16\"\n        height=\"16\"\n        fill=\"currentColor\"\n        className=\"bi bi-plus\"\n        viewBox=\"0 0 16 16\"\n      >\n        <path d=\"M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z\" />\n      </svg>\n      <span>Markdowns</span>\n      <svg\n        xmlns=\"http://www.w3.org/2000/svg\"\n        width=\"16\"\n        height=\"16\"\n        fill=\"currentColor\"\n        className=\"bi bi-three-dots-vertical\"\n        viewBox=\"0 0 16 16\"\n      >\n        <path d=\"M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z\" />\n      </svg>\n    </footer>\n  )\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/components/HeaderList.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1665901494093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1665901494093,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useRef } from 'react'\nimport { useUpdateHeaders } from '../hooks/useUpdateHeader'\n\ninterface IHeaderList {}\n\nexport const HeaderList: React.FC<IHeaderList> = () => {\n  const headerListRef = useRef(null)\n  useEffect(() => {\n    const sideBar = document.querySelector('.side-bar') as HTMLElement\n    const hanldeHideBar = (e: KeyboardEvent) => {\n      if (e.metaKey && e.code === 'KeyB') {\n        console.log('command + B')\n        useUpdateHeaders()\n        sideBar.classList.toggle('side-bar-close')\n      }\n    }\n    document.addEventListener('keydown', hanldeHideBar)\n    return () => document.removeEventListener('keydown', hanldeHideBar)\n  }, [])\n  useEffect(()=>{\n    useUpdateHeaders()\n  },[])\n  return (\n      <ul className={'header-list'} ref={headerListRef}></ul>\n  )\n}\n"
+        }
+    ]
+}

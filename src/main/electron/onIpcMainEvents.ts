@@ -4,7 +4,8 @@ import {
   OPEN_DEFAULT_DIR,
   MAX_SCREEN,
   MIN_SCREEN,
-  CLICK_FILE_LIST
+  CLICK_FILE_LIST,
+  UPDATE_FILE
 } from '../constant'
 import { getDefaultDirContents } from '../node/getDir'
 import { openNewFile } from './utils'
@@ -22,5 +23,8 @@ export const onIpcMainEvents = (window: BrowserWindow) => {
   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)
   ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {
     openNewFile(filePath, window)
+  })
+  ipcMain.on(UPDATE_FILE,(e,{})=>{
+
   })
 }

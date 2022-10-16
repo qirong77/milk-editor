@@ -35,6 +35,10 @@ const api: Api = {
   openDefaultDir: async () => {
     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)
     return defaultDirContents
+  },
+  updateFile: ({ filePath, newFileContent }) => {
+    console.log(filePath)
+    console.log(newFileContent)
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

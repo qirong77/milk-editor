@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { useUpdateHeaders } from './hooks/useUpdateHeader'
+import { useUpdateHeaders } from '../hooks/useUpdateHeader'
 
 interface IHeaderList {}
 
