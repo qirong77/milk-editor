@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/electron/events/onRender.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1665989999429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665991018672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,17 +12,8 @@\n import { clickOpenFile } from './useMenu'\n import { openNewFile } from './fileHelper'\n \n export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(MIN_SCREEN, () => window.minimize())\n-    ipcMain.on(MAX_SCREEN, () => {\n-      if (window.isMaximized()) {\n-        window.unmaximize()\n-      } else {\n-        window.maximize()\n-      }\n-    })\n-    ipcMain.on(CLOSE_SCREEN, () => window.close())\n     ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n         // clickOpenFile(window,filePath)\n         // openNewFile(filePath, window)\n       })\n"
+                },
+                {
+                    "date": 1665991113693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,32 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { writeFileSync } from 'fs'\n import {\n   CLOSE_SCREEN,\n-  OPEN_DEFAULT_DIR,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n // import { getDefaultDirContents } from '../node/getDir'\n-import { clickOpenFile } from './useMenu'\n-import { openNewFile } from './fileHelper'\n \n-export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n-        // clickOpenFile(window,filePath)\n-        // openNewFile(filePath, window)\n-      })\n-      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n-        console.log('update file')\n-        writeFileSync(filePath,newContent)\n-      })\n+\n+export const onRender = (window: BrowserWindow) => {\n+  ipcMain.on(MIN_SCREEN, () => window.minimize())\n+  ipcMain.on(MAX_SCREEN, () => {\n+    if (window.isMaximized()) {\n+      window.unmaximize()\n+    } else {\n+      window.maximize()\n+    }\n+  })\n+  ipcMain.on(CLOSE_SCREEN, () => window.close())\n+  ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n+    // clickOpenFile(window,filePath)\n+    // openNewFile(filePath, window)\n+  })\n+  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n+    console.log('update file')\n+    writeFileSync(filePath, newContent)\n+  })\n }\n-// export const onIpcMainEvents = (window: BrowserWindow) => {\n \n-//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n-\n-// }\n"
+                },
+                {
+                    "date": 1665993081961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n-// import { getDefaultDirContents } from '../node/getDir'\n+import { openNewFile } from './onSendToRender'\n \n \n+\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -20,10 +21,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n-    // clickOpenFile(window,filePath)\n-    // openNewFile(filePath, window)\n+    openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n     writeFileSync(filePath, newContent)\n"
+                }
+            ],
+            "date": 1665989999429,
+            "name": "Commit-0",
+            "content": "import { BrowserWindow, ipcMain } from 'electron'\nimport { writeFileSync } from 'fs'\nimport {\n  CLOSE_SCREEN,\n  OPEN_DEFAULT_DIR,\n  MAX_SCREEN,\n  MIN_SCREEN,\n  CLICK_FILE_LIST,\n  UPDATE_FILE\n} from './constant'\n// import { getDefaultDirContents } from '../node/getDir'\nimport { clickOpenFile } from './useMenu'\nimport { openNewFile } from './fileHelper'\n\nexport const onRender = (window:BrowserWindow) => {\n    ipcMain.on(MIN_SCREEN, () => window.minimize())\n    ipcMain.on(MAX_SCREEN, () => {\n      if (window.isMaximized()) {\n        window.unmaximize()\n      } else {\n        window.maximize()\n      }\n    })\n    ipcMain.on(CLOSE_SCREEN, () => window.close())\n    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n        // clickOpenFile(window,filePath)\n        // openNewFile(filePath, window)\n      })\n      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n        console.log('update file')\n        writeFileSync(filePath,newContent)\n      })\n}\n// export const onIpcMainEvents = (window: BrowserWindow) => {\n\n//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n\n// }\n"
+        }
+    ]
+}

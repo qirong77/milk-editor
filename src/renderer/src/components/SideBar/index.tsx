@@ -9,7 +9,7 @@ interface ISideBar {
   fileList: IFileList
 }
 export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
-  const [showFileList, setShowFileList] = useState(true)
+  const [showFileList, setShowFileList] = useState(false)
   return (
     <div className="side-bar">
       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />

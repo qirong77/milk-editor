@@ -1,16 +1,17 @@
 import { BrowserWindow, ipcMain } from 'electron'
+import { writeFileSync } from 'fs'
 import {
   CLOSE_SCREEN,
-  OPEN_DEFAULT_DIR,
   MAX_SCREEN,
   MIN_SCREEN,
   CLICK_FILE_LIST,
   UPDATE_FILE
-} from '../constant'
-import { getDefaultDirContents } from '../node/getDir'
-import { openNewFile } from './utils'
+} from './constant'
+import { openNewFile } from './onSendToRender'
 
-export const onIpcMainEvents = (window: BrowserWindow) => {
+
+
+export const onRender = (window: BrowserWindow) => {
   ipcMain.on(MIN_SCREEN, () => window.minimize())
   ipcMain.on(MAX_SCREEN, () => {
     if (window.isMaximized()) {
@@ -20,11 +21,12 @@ export const onIpcMainEvents = (window: BrowserWindow) => {
     }
   })
   ipcMain.on(CLOSE_SCREEN, () => window.close())
-  ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)
-  ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {
+  ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {
     openNewFile(filePath, window)
   })
-  ipcMain.on(UPDATE_FILE,(e,{})=>{
-
+  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {
+    console.log('update file')
+    writeFileSync(filePath, newContent)
   })
 }
+

@@ -3,6 +3,9 @@ import { listenerCtx } from '@milkdown/plugin-listener'
 import { Ctx } from '@milkdown/core'
 import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'
 import { useDebounce } from '@renderer/common/useDebouce'
+const nofifyUpdateFile = (filePath,newFileContent) => {
+  window.api.updateFile({filePath,newFileContent})
+}
 
 export const useConfig = (ctx: Ctx) => {
   ctx
@@ -18,7 +21,8 @@ export const useConfig = (ctx: Ctx) => {
     })
     .markdownUpdated((ctx, markdown, prevMarkdown) => {
       console.log('when markdown updates')
-      useDebounce(useUpdateHeaders,3000)
+      useUpdateHeaders()
+      // useDebounce(nofifyUpdateFile('',markdown),1000)
     })
     .blur((ctx) => {
       // console.log('when editor loses focus')

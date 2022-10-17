@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1665632485404,
@@ -48,6 +48,22 @@
                 {
                     "date": 1665924558599,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n+import { useDebounce } from '@renderer/common/useDebouce'\n \n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n@@ -16,9 +17,9 @@\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n-      useUpdateHeaders()\n+      useDebounce(useUpdateHeaders,3000)\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1665929793013,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n-import { useDebounce } from '@renderer/common/useDebouce'\n \n+\n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n@@ -17,9 +17,8 @@\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n-      useDebounce(useUpdateHeaders,3000)\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1665929825915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n+      useUpdateHeaders()\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1665930232851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n+const nofifyUpdateFile = () => {\n+  // window.api.e\n+}\n \n-\n export const useConfig = (ctx: Ctx) => {\n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n"
+                },
+                {
+                    "date": 1665989999439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n-const nofifyUpdateFile = () => {\n-  // window.api.e\n+import { useDebounce } from '@renderer/common/useDebouce'\n+const nofifyUpdateFile = (filePath,newFileContent) => {\n+  window.api.updateFile({filePath,newFileContent})\n }\n \n export const useConfig = (ctx: Ctx) => {\n   ctx\n@@ -20,8 +21,9 @@\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n       useUpdateHeaders()\n+      // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
                 }
             ],
             "date": 1665632485404,

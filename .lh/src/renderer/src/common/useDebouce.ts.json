@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665924169282,
@@ -44,6 +44,10 @@
                 {
                     "date": 1665928112012,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const useDebounce = (fn: Function, delay: number) => {\n+  let timer\n   return () => {\n-    let timer\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('debouce timer done')\n       fn()\n"
+                },
+                {
+                    "date": 1665986648960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n-export const useDebounce = (fn: Function, delay: number) => {\n+export const useDebounce = (fn: Function, delay: number,...args:any[]) => {\n   let timer\n   return () => {\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('debouce timer done')\n-      fn()\n+      fn(args)\n     }, delay)\n   }\n }\n"
                 }
             ],
             "date": 1665924169282,

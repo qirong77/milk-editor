@@ -1,17 +1,16 @@
 import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
-import { openFileSelector, openNewFile } from './utils'
+import { openFileDialog } from '../api/dialog'
+import { openNewFile } from '../events/onSendToRender'
+
 
 /* 
 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123
 快捷键类型：https://juejin.cn/post/7116906625964720159#comment
 */
 
-const clickOpenFile = async (window: BrowserWindow) => {
-  const paths = await openFileSelector(window)
-  if (paths) {
-    const filePath = paths[0]
-    openNewFile(filePath, window)
-  }
+export const clickOpenFile = async (window: BrowserWindow) => {
+  const path = await openFileDialog(window)
+  path && openNewFile(path, window)
 }
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
@@ -79,7 +78,7 @@ export const useMenu = (window: BrowserWindow) => {
         label: 'Select All',
         accelerator: 'Command+A',
         selector: 'selectAll:'
-      },
+      }
     ]
   }
   const viewMenuTemplate: DarwinMenuItemConstructorOptions = {

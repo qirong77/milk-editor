@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Controlers } from './Controlers'
 interface IHeader {
-  title:string
+  opendFilePath: string
 }
-export const Header:React.FC<IHeader> = ({title}) => {
-  useEffect(() => {
-    // window.api.onOpenFile((e, { path }) => {
-    //   const MARKDOWN_FILE = /([^\/]+)\.md/i
-    //   const regexArray = path.match(MARKDOWN_FILE)
-    //   if(regexArray) {
-    //     setTitle(regexArray[0])
-    //   }
-    // })
-  }, [])
+export const Header: React.FC<IHeader> = ({ opendFilePath }) => {
+  const setTitle = (filePath: string) => {
+    const MARKDOWN_FILE = /([^\/]+)\.md/i
+    const regexArray = filePath.match(MARKDOWN_FILE)
+    if (regexArray) {
+      return regexArray[0]
+    } else return 'match-error'
+  }
+  const title = setTitle(opendFilePath)
   return (
     <header className="header">
       <Controlers />

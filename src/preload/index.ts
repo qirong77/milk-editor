@@ -7,8 +7,9 @@ import {
   MAX_SCREEN,
   MIN_SCREEN,
   OPEN_DEFAULT_DIR,
-  OPEN_NEW_FILE
-} from '../main/constant'
+  OPEN_NEW_FILE,
+  UPDATE_FILE
+} from '../main/electron/events/constant'
 // 导入.d.ts类型文件的时候不能有扩展名！
 import { Api } from './index.d'
 // Custom APIs for renderer
@@ -37,8 +38,7 @@ const api: Api = {
     return defaultDirContents
   },
   updateFile: ({ filePath, newFileContent }) => {
-    console.log(filePath)
-    console.log(newFileContent)
+    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

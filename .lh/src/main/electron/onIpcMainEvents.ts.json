@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 31,
+            "activePatchIndex": 34,
             "patches": [
                 {
                     "date": 1665761591036,
@@ -132,6 +132,18 @@
                 {
                     "date": 1665903205621,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,10 @@\n   CLOSE_SCREEN,\n   OPEN_DEFAULT_DIR,\n   MAX_SCREEN,\n   MIN_SCREEN,\n-  CLICK_FILE_LIST\n+  CLICK_FILE_LIST,\n+  UPDATE_FILE\n } from '../constant'\n import { getDefaultDirContents } from '../node/getDir'\n import { openNewFile } from './utils'\n \n@@ -22,5 +23,8 @@\n   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n   ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n     openNewFile(filePath, window)\n   })\n+  ipcMain.on(UPDATE_FILE,(e,{})=>{\n+\n+  })\n }\n"
+                },
+                {
+                    "date": 1665929994680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n+import { writeFileSync } from 'fs'\n import {\n   CLOSE_SCREEN,\n   OPEN_DEFAULT_DIR,\n   MAX_SCREEN,\n@@ -23,8 +24,9 @@\n   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n   ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE,(e,{})=>{\n-\n+  ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n+    console.log('update file')\n+    writeFileSync(filePath,newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1665988259631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from '../constant'\n import { getDefaultDirContents } from '../node/getDir'\n+import { clickOpenFile } from './useMenu'\n import { openNewFile } from './utils'\n \n export const onIpcMainEvents = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -22,9 +23,10 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n   ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n-    openNewFile(filePath, window)\n+    clickOpenFile(window,filePath)\n+    // openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n     console.log('update file')\n     writeFileSync(filePath,newContent)\n"
+                },
+                {
+                    "date": 1665989999438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,12 @@\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n-} from '../constant'\n+} from './events/constant'\n import { getDefaultDirContents } from '../node/getDir'\n import { clickOpenFile } from './useMenu'\n-import { openNewFile } from './utils'\n+import { openNewFile } from './fileHelper'\n \n export const onIpcMainEvents = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n"
                 }
             ],
             "date": 1665761591036,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 51,
+            "activePatchIndex": 52,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -212,6 +212,10 @@
                 {
                     "date": 1665902014135,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n       {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom/>\n+      <SideBarBottom show={showFileList}/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665929607419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  const [showFileList, setShowFileList] = useState(true)\n+  const [showFileList, setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
                 }
             ],
             "date": 1665497140199,
