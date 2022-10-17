@@ -9,7 +9,7 @@ export const Header: React.FC<IHeader> = ({ opendFilePath }) => {
     const regexArray = filePath.match(MARKDOWN_FILE)
     if (regexArray) {
       return regexArray[0]
-    } else return 'match-error'
+    } else return 'title'
   }
   const title = setTitle(opendFilePath)
   return (

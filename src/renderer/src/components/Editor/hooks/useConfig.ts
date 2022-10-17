@@ -1,36 +1,41 @@
+import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
-
-import { Ctx } from '@milkdown/core'
 import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'
-import { useDebounce } from '@renderer/common/useDebouce'
-const nofifyUpdateFile = (filePath,newFileContent) => {
-  window.api.updateFile({filePath,newFileContent})
-}
 
-export const useConfig = (ctx: Ctx) => {
-  ctx
-    .get(listenerCtx)
-    .beforeMount((ctx) => {
-      console.log('before the editor mounts')
+export const useConfig = (editor: Editor, root: HTMLElement) => {
+  editor
+    .config((ctx) => {
+      ctx.set(rootCtx, root)
     })
-    .mounted((ctx) => {
-      console.log('after the editor mounts')
+    // 默认值
+    .config((ctx) => {
+      ctx.set(defaultValueCtx, '')
     })
-    .updated((ctx, doc, prevDoc) => {
-      console.log('when editor state updates')
-    })
-    .markdownUpdated((ctx, markdown, prevMarkdown) => {
-      console.log('when markdown updates')
-      useUpdateHeaders()
-      // useDebounce(nofifyUpdateFile('',markdown),1000)
-    })
-    .blur((ctx) => {
-      // console.log('when editor loses focus')
-    })
-    .focus((ctx) => {
-      // console.log(' when focus editor')
-    })
-    .destroy((ctx) => {
-      console.log('when editor is being destroyed')
+    // 生命周期
+    .config((ctx) => {
+      ctx
+        .get(listenerCtx)
+        .beforeMount(() => {
+          console.log('before the editor mounts')
+        })
+        .mounted(() => {
+          console.log('after the editor mounts')
+        })
+        .updated(() => {
+          console.log('when editor state updates')
+        })
+        .markdownUpdated(() => {
+          console.log('when markdown updates')
+          useUpdateHeaders()
+        })
+        .blur(() => {
+        //   window.api.updateFile({ filePath, newFileContent:content })
+        })
+        .focus(() => {
+          console.log(' when focus editor')
+        })
+        .destroy(() => {
+          console.log('when editor is being destroyed')
+        })
     })
 }

@@ -4,7 +4,7 @@ export const useDebounce = (fn: Function, delay: number,...args:any[]) => {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       console.log('debouce timer done')
-      fn(args)
+      fn(...args)
     }, delay)
   }
 }

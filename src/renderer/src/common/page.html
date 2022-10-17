@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>click</button>
+  </body>
+
+  <script>
+    const btn = document.querySelector('button')
+    const useDebounce = (fn, delay, ...args) => {
+      let timer
+      return () => {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(() => {
+          console.log('debouce timer done')
+          fn(...args)
+        }, delay)
+      }
+    }
+    const fn1 = (x, y) => {
+      console.log(x)
+      console.log(y)
+    }
+    const fnx = useDebounce(fn1,1001,1,1)
+    btn.addEventListener('click', () => {
+      console.log('click')
+      fnx()
+    })
+  </script>
+</html>

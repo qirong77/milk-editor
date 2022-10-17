@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1665632485404,
@@ -64,6 +64,78 @@
                 {
                     "date": 1665989999439,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n-const nofifyUpdateFile = () => {\n-  // window.api.e\n+import { useDebounce } from '@renderer/common/useDebouce'\n+const nofifyUpdateFile = (filePath,newFileContent) => {\n+  window.api.updateFile({filePath,newFileContent})\n }\n \n export const useConfig = (ctx: Ctx) => {\n   ctx\n@@ -20,8 +21,9 @@\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n       useUpdateHeaders()\n+      // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n       // console.log('when editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1665995862002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,14 @@\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n import { useDebounce } from '@renderer/common/useDebouce'\n-const nofifyUpdateFile = (filePath,newFileContent) => {\n+\n+const updateFile = (filePath,newFileContent) =>{\n   window.api.updateFile({filePath,newFileContent})\n }\n-\n-export const useConfig = (ctx: Ctx) => {\n+const useUpdateFile = useDebounce(updateFile,10000,)\n+export const useConfig = (ctx: Ctx) => { \n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n       console.log('before the editor mounts')\n"
+                },
+                {
+                    "date": 1665999586283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n \n const updateFile = (filePath,newFileContent) =>{\n   window.api.updateFile({filePath,newFileContent})\n }\n-const useUpdateFile = useDebounce(updateFile,10000,)\n+\n export const useConfig = (ctx: Ctx) => { \n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n"
+                },
+                {
+                    "date": 1665999593004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n \n const updateFile = (filePath,newFileContent) =>{\n   window.api.updateFile({filePath,newFileContent})\n }\n-\n export const useConfig = (ctx: Ctx) => { \n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n"
+                },
+                {
+                    "date": 1665999666989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n-      // console.log('when editor loses focus')\n+      console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n       // console.log(' when focus editor')\n     })\n"
+                },
+                {
+                    "date": 1666000044430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n-import { useDebounce } from '@renderer/common/useDebouce'\n \n-const updateFile = (filePath,newFileContent) =>{\n-  window.api.updateFile({filePath,newFileContent})\n-}\n+\n+let isFileChange = false\n export const useConfig = (ctx: Ctx) => { \n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n@@ -16,16 +14,20 @@\n     .mounted((ctx) => {\n       console.log('after the editor mounts')\n     })\n     .updated((ctx, doc, prevDoc) => {\n+      isFileChange = true\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n+      if(isFileChange) {\n+        console.log('update-file')\n+      }\n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n       // console.log(' when focus editor')\n"
+                },
+                {
+                    "date": 1666000302101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n \n let isFileChange = false\n-export const useConfig = (ctx: Ctx) => { \n+export const useConfig = (ctx: Ctx,file:{filePath:string,content:string}) => { \n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n       console.log('before the editor mounts')\n"
+                },
+                {
+                    "date": 1666000485535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     })\n     .blur((ctx) => {\n       if(isFileChange) {\n         console.log('update-file')\n+        window.api.updateFile({filePath,newFileContent:})\n       }\n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n"
+                },
+                {
+                    "date": 1666012355674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     })\n     .blur((ctx) => {\n       if(isFileChange) {\n         console.log('update-file')\n-        window.api.updateFile({filePath,newFileContent:})\n+        window.api.updateFile({filePath:file.content,newFileContent:file.content})\n       }\n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n"
+                },
+                {
+                    "date": 1666012441726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,9 @@\n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n \n-let isFileChange = false\n-export const useConfig = (ctx: Ctx,file:{filePath:string,content:string}) => { \n+export const useConfig = (ctx: Ctx, file: { filePath: string; content: string }) => {\n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n       console.log('before the editor mounts')\n@@ -23,12 +22,11 @@\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n-      if(isFileChange) {\n         console.log('update-file')\n-        window.api.updateFile({filePath:file.content,newFileContent:file.content})\n-      }\n+        window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n+      \n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n       // console.log(' when focus editor')\n"
+                },
+                {
+                    "date": 1666012452461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \n import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-\n+let isFileChange = false\n export const useConfig = (ctx: Ctx, file: { filePath: string; content: string }) => {\n   ctx\n     .get(listenerCtx)\n     .beforeMount((ctx) => {\n@@ -22,11 +22,12 @@\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n+      if (isFileChange) {\n         console.log('update-file')\n         window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n-      \n+      }\n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n       // console.log(' when focus editor')\n"
+                },
+                {
+                    "date": 1666012644014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     .mounted((ctx) => {\n       console.log('after the editor mounts')\n     })\n     .updated((ctx, doc, prevDoc) => {\n-      isFileChange = true\n+      // isFileChange = true\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n"
+                },
+                {
+                    "date": 1666012742721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     .mounted((ctx) => {\n       console.log('after the editor mounts')\n     })\n     .updated((ctx, doc, prevDoc) => {\n-      // isFileChange = true\n+      isFileChange = true\n       console.log('when editor state updates')\n     })\n     .markdownUpdated((ctx, markdown, prevMarkdown) => {\n       console.log('when markdown updates')\n"
+                },
+                {
+                    "date": 1666012855088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     .blur((ctx) => {\n       if (isFileChange) {\n         console.log('update-file')\n         window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n+        isFileChange = false\n       }\n       console.log(' editor loses focus')\n     })\n     .focus((ctx) => {\n"
+                },
+                {
+                    "date": 1666012998309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,8 @@\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n       if (isFileChange) {\n-        console.log('update-file')\n         window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n         isFileChange = false\n       }\n       console.log(' editor loses focus')\n"
+                },
+                {
+                    "date": 1666013067528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n+      console.log(isFileChange)\n       if (isFileChange) {\n         window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n         isFileChange = false\n       }\n"
+                },
+                {
+                    "date": 1666013289901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     })\n     .blur((ctx) => {\n       console.log(isFileChange)\n       if (isFileChange) {\n-        window.api.updateFile({ filePath: file.content, newFileContent: file.content })\n+        window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n         isFileChange = false\n       }\n       console.log(' editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1666013357051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n       useUpdateHeaders()\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n-      console.log(isFileChange)\n       if (isFileChange) {\n         window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n         isFileChange = false\n       }\n"
+                },
+                {
+                    "date": 1666013800028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n       if (isFileChange) {\n-        window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+        console.log(file.content)\n+        console.log(file.filePath)\n+        // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n         isFileChange = false\n       }\n       console.log(' editor loses focus')\n     })\n"
                 }
             ],
             "date": 1665632485404,

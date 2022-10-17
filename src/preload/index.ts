@@ -38,6 +38,8 @@ const api: Api = {
     return defaultDirContents
   },
   updateFile: ({ filePath, newFileContent }) => {
+    console.log(filePath)
+    console.log(newFileContent)
     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })
   }
 }

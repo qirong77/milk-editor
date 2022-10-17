@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1665989999429,
@@ -20,6 +20,18 @@
                 {
                     "date": 1665993081961,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n-// import { getDefaultDirContents } from '../node/getDir'\n+import { openNewFile } from './onSendToRender'\n \n \n+\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -20,10 +21,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n-    // clickOpenFile(window,filePath)\n-    // openNewFile(filePath, window)\n+    openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n     writeFileSync(filePath, newContent)\n"
+                },
+                {
+                    "date": 1666012735547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { writeFileSync } from 'fs'\n-import {\n-  CLOSE_SCREEN,\n-  MAX_SCREEN,\n-  MIN_SCREEN,\n-  CLICK_FILE_LIST,\n-  UPDATE_FILE\n-} from './constant'\n+import { existsSync, writeFileSync } from 'fs'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n \n-\n-\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -25,8 +17,7 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n-    writeFileSync(filePath, newContent)\n+    if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n-\n"
+                },
+                {
+                    "date": 1666012976794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,8 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n+    console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666013043664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n-    console.log('update file')\n+    console.log('update file in main')\n     console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
                 }
             ],
             "date": 1665989999429,

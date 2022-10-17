@@ -21,7 +21,7 @@ export interface Api {
   onOpenFile: (callback: Listener) => void
   openDefaultDir: () => Promise<IFileList>
   clickFileList:(filePath:string)=>void
-  updateFile:({filePath:string,newFileContent:string})=>void
+  updateFile:(File:{filePath:string,newFileContent:string})=>void
 }
 declare global {
   interface Window {

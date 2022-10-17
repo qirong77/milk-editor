@@ -31,7 +31,7 @@ export const App = () => {
       <Header opendFilePath={filePath} />
       <main>
         <SideBar fileList={fileList} />
-        <MilkdownEditor content={content} />
+        <MilkdownEditor content={content} filePath={filePath} />
       </main>
       <Search />
     </div>

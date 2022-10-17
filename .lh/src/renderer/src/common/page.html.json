@@ -1,0 +1,62 @@
+{
+    "sourceFile": "src/renderer/src/common/page.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1665998662723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665998893752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n+    const fnx = useDebounce(fn1,1000,1,2)\n     const fny = (a, b) => {\n      useDebounce(fn1, 1000, a, b)()\n     }\n     btn.addEventListener('click', () => {\n"
+                },
+                {
+                    "date": 1665998899150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,11 +26,8 @@\n       console.log(x)\n       console.log(y)\n     }\n     const fnx = useDebounce(fn1,1000,1,2)\n-    const fny = (a, b) => {\n-     useDebounce(fn1, 1000, a, b)()\n-    }\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fny(9, 8)\n     })\n"
+                },
+                {
+                    "date": 1665998904876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,8 @@\n     }\n     const fnx = useDebounce(fn1,1000,1,2)\n     btn.addEventListener('click', () => {\n       console.log('click')\n-      fny(9, 8)\n+      fnx()\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1665999065777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,11 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = useDebounce(fn1,1000,1,2)\n     btn.addEventListener('click', () => {\n       console.log('click')\n-      fnx()\n+useDebounce(fn1,1000,1,2)()\n+\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1665999079818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,11 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n+    const fnx = useDebounce(fn1,1000,1,2)()\n     btn.addEventListener('click', () => {\n       console.log('click')\n-useDebounce(fn1,1000,1,2)()\n-\n+      fnx()\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1665999111442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,12 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = useDebounce(fn1,1000,1,2)()\n     btn.addEventListener('click', () => {\n       console.log('click')\n+    const fnx = useDebounce(fn1,1000,1,2)()\n+\n       fnx()\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1665999126938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n       console.log(y)\n     }\n     btn.addEventListener('click', () => {\n       console.log('click')\n-    const fnx = useDebounce(fn1,1000,1,2)()\n+    const fnx = useDebounce(fn1,1000,1,2)\n \n       fnx()\n     })\n   </script>\n"
+                },
+                {
+                    "date": 1665999200968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,12 +25,11 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n+    const fnx = useDebounce(fn1,1000,1,2)()\n     btn.addEventListener('click', () => {\n       console.log('click')\n-    const fnx = useDebounce(fn1,1000,1,2)\n-\n       fnx()\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1665999224037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,11 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = useDebounce(fn1,1000,1,2)()\n+    const fnx = ()=>{\n+        return useDebounce(fn1,1000,1,2)\n+    }\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n     })\n"
+                },
+                {
+                    "date": 1665999336918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = ()=>{\n-        return useDebounce(fn1,1000,1,2)\n+    const fnx = () => {\n+      return useDebounce(fn1, 1000, 1, 2)\n     }\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n"
+                },
+                {
+                    "date": 1665999358098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,9 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = () => {\n-      return useDebounce(fn1, 1000, 1, 2)\n-    }\n+    const fnx = useDebounce(fn1,1001,1,1)\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n     })\n"
+                }
+            ],
+            "date": 1665998662723,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Document</title>\n  </head>\n  <body>\n    <button>click</button>\n  </body>\n\n  <script>\n    const btn = document.querySelector('button')\n    const useDebounce = (fn, delay, ...args) => {\n      let timer\n      return () => {\n        if (timer) clearTimeout(timer)\n        timer = setTimeout(() => {\n          console.log('debouce timer done')\n          fn(...args)\n        }, delay)\n      }\n    }\n    const fn1 = (x, y) => {\n      console.log(x)\n      console.log(y)\n    }\n    const fny = (a, b) => {\n     useDebounce(fn1, 1000, a, b)()\n    }\n    btn.addEventListener('click', () => {\n      console.log('click')\n      fny(9, 8)\n    })\n  </script>\n</html>\n"
+        }
+    ]
+}

@@ -1,15 +1,7 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { writeFileSync } from 'fs'
-import {
-  CLOSE_SCREEN,
-  MAX_SCREEN,
-  MIN_SCREEN,
-  CLICK_FILE_LIST,
-  UPDATE_FILE
-} from './constant'
+import { existsSync, writeFileSync } from 'fs'
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'
 import { openNewFile } from './onSendToRender'
-
-
 
 export const onRender = (window: BrowserWindow) => {
   ipcMain.on(MIN_SCREEN, () => window.minimize())
@@ -25,8 +17,8 @@ export const onRender = (window: BrowserWindow) => {
     openNewFile(filePath, window)
   })
   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {
-    console.log('update file')
-    writeFileSync(filePath, newContent)
+    console.log('update file in main')
+    console.log(filePath)
+    if(existsSync(filePath)) writeFileSync(filePath, newContent)
   })
 }
-

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 87,
+            "activePatchIndex": 90,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -356,6 +356,18 @@
                 {
                     "date": 1665989999436,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   MIN_SCREEN,\n   OPEN_DEFAULT_DIR,\n   OPEN_NEW_FILE,\n   UPDATE_FILE\n-} from '../main/constant'\n+} from '../main/electron/events/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n \n@@ -37,9 +37,9 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n-    ipcRenderer.send(UPDATE_FILE,{filePath,newFileContent})\n+    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1666013226316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n+    console.log(filePath)\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1666015838557,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,8 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n-    console.log(filePath)\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1666016279877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,10 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n+    console.log(filePath)\n+    console.log(newFileContent)\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
                 }
             ],
             "date": 1665389904992,
