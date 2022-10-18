@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 33,
             "patches": [
                 {
                     "date": 1665632485404,
@@ -136,6 +136,10 @@
                 {
                     "date": 1666013800028,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n       // useDebounce(nofifyUpdateFile('',markdown),1000)\n     })\n     .blur((ctx) => {\n       if (isFileChange) {\n-        window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+        console.log(file.content)\n+        console.log(file.filePath)\n+        // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n         isFileChange = false\n       }\n       console.log(' editor loses focus')\n     })\n"
+                },
+                {
+                    "date": 1666018016601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,41 @@\n+import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n-\n-import { Ctx } from '@milkdown/core'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-let isFileChange = false\n-export const useConfig = (ctx: Ctx, file: { filePath: string; content: string }) => {\n-  ctx\n-    .get(listenerCtx)\n-    .beforeMount((ctx) => {\n-      console.log('before the editor mounts')\n+export const useConfig = (editor: Editor, root: HTMLElement) => {\n+  editor\n+    .config((ctx) => {\n+      ctx.set(rootCtx, root)\n     })\n-    .mounted((ctx) => {\n-      console.log('after the editor mounts')\n+    // 默认值\n+    .config((ctx) => {\n+      ctx.set(defaultValueCtx, '')\n     })\n-    .updated((ctx, doc, prevDoc) => {\n-      isFileChange = true\n-      console.log('when editor state updates')\n+    // 生命周期\n+    .config((ctx) => {\n+      ctx\n+        .get(listenerCtx)\n+        .beforeMount(() => {\n+          console.log('before the editor mounts')\n+        })\n+        .mounted(() => {\n+          console.log('after the editor mounts')\n+        })\n+        .updated(() => {\n+          console.log('when editor state updates')\n+        })\n+        .markdownUpdated(() => {\n+          console.log('when markdown updates')\n+          useUpdateHeaders()\n+        })\n+        .blur(() => {\n+        //   window.api.updateFile({ filePath, newFileContent:content })\n+        })\n+        .focus(() => {\n+          console.log(' when focus editor')\n+        })\n+        .destroy(() => {\n+          console.log('when editor is being destroyed')\n+        })\n     })\n-    .markdownUpdated((ctx, markdown, prevMarkdown) => {\n-      console.log('when markdown updates')\n-      useUpdateHeaders()\n-      // useDebounce(nofifyUpdateFile('',markdown),1000)\n-    })\n-    .blur((ctx) => {\n-      if (isFileChange) {\n-        console.log(file.content)\n-        console.log(file.filePath)\n-        // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n-        isFileChange = false\n-      }\n-      console.log(' editor loses focus')\n-    })\n-    .focus((ctx) => {\n-      // console.log(' when focus editor')\n-    })\n-    .destroy((ctx) => {\n-      console.log('when editor is being destroyed')\n-    })\n }\n"
                 }
             ],
             "date": 1665632485404,

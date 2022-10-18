@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1665998662723,
@@ -52,6 +52,34 @@
                 {
                     "date": 1665999358098,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,9 @@\n     const fn1 = (x, y) => {\n       console.log(x)\n       console.log(y)\n     }\n-    const fnx = () => {\n-      return useDebounce(fn1, 1000, 1, 2)\n-    }\n+    const fnx = useDebounce(fn1,1001,1,1)\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n     })\n"
+                },
+                {
+                    "date": 1666056610033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay, ...args) => {\n       let timer\n       return () => {\n+        if(!timer) fn()\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn(...args)\n"
+                },
+                {
+                    "date": 1666056632836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,15 +22,14 @@\n           fn(...args)\n         }, delay)\n       }\n     }\n-    const fn1 = (x, y) => {\n+    const fn1 = (x) => {\n       console.log(x)\n-      console.log(y)\n     }\n     const fnx = useDebounce(fn1,1001,1,1)\n     btn.addEventListener('click', () => {\n       console.log('click')\n-      fnx()\n+      fnx(1)\n     })\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1666056646462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay, ...args) => {\n       let timer\n       return () => {\n-        if(!timer) fn()\n+        if(!timer) fn(1)\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn(...args)\n"
+                },
+                {
+                    "date": 1666056694118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn(...args)\n+          clearTimeout(timer)\n         }, delay)\n       }\n     }\n     const fn1 = (x) => {\n"
+                },
+                {
+                    "date": 1666056725281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     }\n     const fn1 = (x) => {\n       console.log(x)\n     }\n-    const fnx = useDebounce(fn1,1001,1,1)\n+    const fnx = useDebounce(fn1,1001,1)\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx(1)\n     })\n"
+                },
+                {
+                    "date": 1666056766590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     }\n     const fn1 = (x) => {\n       console.log(x)\n     }\n-    const fnx = useDebounce(fn1,1001,1)\n+    const fnx = useDebounce(fn1,2001,1)\n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx(1)\n     })\n"
+                },
+                {
+                    "date": 1666056811565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn(...args)\n-          clearTimeout(timer)\n+          timer = null\n         }, delay)\n       }\n     }\n     const fn1 = (x) => {\n"
                 }
             ],
             "date": 1665998662723,

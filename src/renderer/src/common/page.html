@@ -15,21 +15,22 @@
     const useDebounce = (fn, delay, ...args) => {
       let timer
       return () => {
+        if(!timer) fn(1)
         if (timer) clearTimeout(timer)
         timer = setTimeout(() => {
           console.log('debouce timer done')
           fn(...args)
+          timer = null
         }, delay)
       }
     }
-    const fn1 = (x, y) => {
+    const fn1 = (x) => {
       console.log(x)
-      console.log(y)
     }
-    const fnx = useDebounce(fn1,1001,1,1)
+    const fnx = useDebounce(fn1,2001,1)
     btn.addEventListener('click', () => {
       console.log('click')
-      fnx()
+      fnx(1)
     })
   </script>
 </html>
