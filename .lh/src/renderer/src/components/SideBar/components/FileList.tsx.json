@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/components/FileList.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1666066869538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666066923654,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,22 @@\n-import React, { useEffect } from 'react'\n+import React, { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n import { useUpdateHeaders } from '../hooks/useUpdateHeader'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n   show: boolean\n   setShowFileList: (show: boolean) => void\n }> = ({ fileList, setShowFileList, show }) => {\n+  const [file,setFile] = useState(0)\n   const openFile = (filePath) => {\n     window.api.clickFileList(filePath)\n     setShowFileList(!show)\n+    setFile(Math.random())\n   }\n   useEffect(() => {\n     useUpdateHeaders()\n-  }, [])\n+  }, [file])\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n         return (\n"
+                },
+                {
+                    "date": 1666066937610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     setShowFileList(!show)\n     setFile(Math.random())\n   }\n   useEffect(() => {\n+    console.log('effff')\n     useUpdateHeaders()\n   }, [file])\n   return (\n     <ul className=\"file-list\">\n"
+                },
+                {
+                    "date": 1666067054765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,18 +6,12 @@\n   fileList: IFileList\n   show: boolean\n   setShowFileList: (show: boolean) => void\n }> = ({ fileList, setShowFileList, show }) => {\n-  const [file,setFile] = useState(0)\n   const openFile = (filePath) => {\n     window.api.clickFileList(filePath)\n     setShowFileList(!show)\n-    setFile(Math.random())\n   }\n-  useEffect(() => {\n-    console.log('effff')\n-    useUpdateHeaders()\n-  }, [file])\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n         return (\n"
+                },
+                {
+                    "date": 1666067068424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n-import React, { useEffect, useState } from 'react'\n+import React from 'react'\n import { IFileList } from 'src/preload/index.d'\n-import { useUpdateHeaders } from '../hooks/useUpdateHeader'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n   show: boolean\n"
+                }
+            ],
+            "date": 1666066869538,
+            "name": "Commit-0",
+            "content": "import React, { useEffect } from 'react'\nimport { IFileList } from 'src/preload/index.d'\nimport { useUpdateHeaders } from '../hooks/useUpdateHeader'\n\nexport const FileList: React.FC<{\n  fileList: IFileList\n  show: boolean\n  setShowFileList: (show: boolean) => void\n}> = ({ fileList, setShowFileList, show }) => {\n  const openFile = (filePath) => {\n    window.api.clickFileList(filePath)\n    setShowFileList(!show)\n  }\n  useEffect(() => {\n    useUpdateHeaders()\n  }, [])\n  return (\n    <ul className=\"file-list\">\n      {fileList.map(({ fileName, filePath }) => {\n        return (\n          <li\n            key={filePath}\n            onClick={(e) => {\n              e.stopPropagation()\n              openFile(filePath)\n            }}\n          >\n            <div></div>\n            <span>{fileName}</span>\n          </li>\n        )\n      })}\n    </ul>\n  )\n}\n"
+        }
+    ]
+}

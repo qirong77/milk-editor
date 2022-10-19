@@ -17,9 +17,6 @@ export const HeaderList: React.FC<IHeaderList> = () => {
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
   }, [])
-  useEffect(()=>{
-    useUpdateHeaders()
-  },[])
   return (
       <ul className={'header-list'} ref={headerListRef}></ul>
   )

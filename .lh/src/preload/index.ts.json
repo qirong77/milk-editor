@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 90,
+            "activePatchIndex": 95,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -368,6 +368,26 @@
                 {
                     "date": 1666016279877,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,10 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n+    console.log(filePath)\n+    console.log(newFileContent)\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                },
+                {
+                    "date": 1666058403267,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n+    console.log('onOpenFile')\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n"
+                },
+                {
+                    "date": 1666058415007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,12 +28,13 @@\n     ipcRenderer.send(CLOSE_SCREEN)\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n-    console.log('onOpenFile')\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n+    console.log('onOpenFile')\n+\n   },\n   openDefaultDir: async () => {\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n"
+                },
+                {
+                    "date": 1666058440762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,8 @@\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n-    console.log('onOpenFile')\n-\n   },\n   openDefaultDir: async () => {\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n"
+                },
+                {
+                    "date": 1666145090159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n     console.log(filePath)\n     console.log(newFileContent)\n-    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n+    // ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1666151156162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,11 +37,9 @@\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n-    console.log(filePath)\n-    console.log(newFileContent)\n-    // ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n+    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
                 }
             ],
             "date": 1665389904992,

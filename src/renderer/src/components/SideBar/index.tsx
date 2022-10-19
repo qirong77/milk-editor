@@ -14,9 +14,11 @@ export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
     <div className="side-bar">
       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />
       <DragLine />
-      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}
+      {!showFileList && (
+        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />
+      )}
       {showFileList && <HeaderList />}
-      <SideBarBottom show={showFileList}/>
+      <SideBarBottom show={showFileList} />
     </div>
   )
 }

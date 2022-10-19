@@ -43,4 +43,4 @@ export const updateHeaders = () => {
     })
   }
 }
-export const useUpdateHeaders = useDebounce(updateHeaders,3000)
+export const useUpdateHeaders = useDebounce(updateHeaders,1000)

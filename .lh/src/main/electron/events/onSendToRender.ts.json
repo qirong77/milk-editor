@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1665989999429,
@@ -36,6 +36,14 @@
                 {
                     "date": 1665994042883,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,8 @@\n import { readFileSync } from \"fs\"\n import { OPEN_NEW_FILE } from \"./constant\"\n \n export const openNewFile = (filePath: string, window: BrowserWindow) => {\n-    console.log(filePath)\n     const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n       fileContent\n"
+                },
+                {
+                    "date": 1666058350800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { OPEN_NEW_FILE } from \"./constant\"\n \n export const openNewFile = (filePath: string, window: BrowserWindow) => {\n     const fileContent = readFileSync(filePath, 'utf-8')\n+    console.log('main listener openNewFile')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n       fileContent\n     })\n"
+                },
+                {
+                    "date": 1666058369589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import { OPEN_NEW_FILE } from \"./constant\"\n \n export const openNewFile = (filePath: string, window: BrowserWindow) => {\n     const fileContent = readFileSync(filePath, 'utf-8')\n-    console.log('main listener openNewFile')\n     window.webContents.send(OPEN_NEW_FILE, {\n       filePath,\n       fileContent\n     })\n"
                 }
             ],
             "date": 1665989999429,

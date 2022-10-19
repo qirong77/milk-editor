@@ -9,15 +9,16 @@ export const App = () => {
   const [content, setContent] = useState('')
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
+
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
-  useEffect(() => {
-    console.log('effect')
-    window.api.onOpenFile((e, { filePath, fileContent }) => {
-      setPath(filePath)
-      console.log('onOpenFileAPI')
-      setContent(fileContent)
-    })
-  }, [])
+useEffect(()=>{
+  window.api.onOpenFile((e, { filePath, fileContent }) => {
+    setPath(filePath)
+    console.log('onOpenFileAPI')
+    setContent(fileContent)
+  })
+},[])
+
   // 打开默认文件夹
   useEffect(() => {
     const useDefaulteDir = async () => {
@@ -31,7 +32,7 @@ export const App = () => {
       <Header opendFilePath={filePath} />
       <main>
         <SideBar fileList={fileList} />
-        <MilkdownEditor content={content} filePath={filePath} />
+        <MilkdownEditor content={content} filePath={filePath}/>
       </main>
       <Search />
     </div>

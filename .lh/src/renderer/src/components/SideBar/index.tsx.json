@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 52,
+            "activePatchIndex": 55,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -216,6 +216,18 @@
                 {
                     "date": 1665929607419,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  const [showFileList, setShowFileList] = useState(true)\n+  const [showFileList, setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067099757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,20 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { DragLine } from './components/DragLine'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n+import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n+  useEffect(()=>{\n+useUpdateHeaders()\n+  },showFileList)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067105135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n   useEffect(()=>{\n useUpdateHeaders()\n-  },showFileList)\n+  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067147376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,23 +4,21 @@\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n-import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n-  useEffect(()=>{\n-useUpdateHeaders()\n-  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n+      {!showFileList && (\n+        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />\n+      )}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom show={showFileList}/>\n+      <SideBarBottom show={showFileList} />\n     </div>\n   )\n }\n"
                 }
             ],
             "date": 1665497140199,

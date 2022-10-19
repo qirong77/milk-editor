@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 102,
+            "activePatchIndex": 233,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -416,6 +416,530 @@
                 {
                     "date": 1666016944366,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,12 @@\n   filePath:string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content,filePath}) => {\n+  // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n-  console.log('MilkdownEditor-component-updated')\n     const newEditor = Editor.make()\n-    useConfig(newEditor,root,content,filePath)\n+    useConfig(newEditor,root)\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n"
+                },
+                {
+                    "date": 1666060327892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,10 @@\n import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n+import { forceUpdate } from '@milkdown/utils';\n+\n interface MilkdownEditor {\n   content: string\n   filePath:string\n }\n@@ -19,8 +21,12 @@\n     useConfig(newEditor,root)\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n+  setTimeout(()=>{\n+    const instance = getInstance()\n+    instance?.action(forceUpdate())\n+  },5000)\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666060382089,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n-import { forceUpdate } from '@milkdown/utils';\n+import { forceUpdate,outline } from '@milkdown/utils';\n \n interface MilkdownEditor {\n   content: string\n   filePath:string\n"
+                },
+                {
+                    "date": 1666066160212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n-import { forceUpdate,outline } from '@milkdown/utils';\n+import { forceUpdate} from '@milkdown/utils';\n \n interface MilkdownEditor {\n   content: string\n   filePath:string\n@@ -21,12 +21,8 @@\n     useConfig(newEditor,root)\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n-  setTimeout(()=>{\n-    const instance = getInstance()\n-    instance?.action(forceUpdate())\n-  },5000)\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666066294396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n-import { forceUpdate} from '@milkdown/utils';\n \n+\n interface MilkdownEditor {\n   content: string\n   filePath:string\n }\n"
+                },
+                {
+                    "date": 1666081554380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,11 @@\n     useConfig(newEditor,root)\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n+  useEffect(()=>{\n+console.log('change opend file')\n+  },[filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666081588032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n   useEffect(()=>{\n-console.log('change opend file')\n+console.log(filePath)\n   },[filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n"
+                },
+                {
+                    "date": 1666081670726,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n   useEffect(()=>{\n+    console.log(document.querySelector('h1'))\n console.log(filePath)\n   },[filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666081857430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,16 +22,17 @@\n     usePlugins(newEditor)\n     return newEditor\n   },[])\n   useEffect(()=>{\n-    console.log(document.querySelector('h1'))\n console.log(filePath)\n   },[filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+    console.log(document.querySelector('h1'))\n+\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n"
+                },
+                {
+                    "date": 1666081957250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n+import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n \n \n interface MilkdownEditor {\n   content: string\n@@ -29,9 +30,9 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-    console.log(document.querySelector('h1'))\n+      useUpdateHeaders()\n \n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n"
+                },
+                {
+                    "date": 1666082180888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useEffect } from 'react'\n-import { Editor} from '@milkdown/core'\n+import { Editor } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n@@ -8,32 +8,31 @@\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n \n-\n interface MilkdownEditor {\n   content: string\n-  filePath:string\n+  filePath: string\n }\n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content,filePath}) => {\n+export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  console.log('MilkdownEditor-update')\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n-    useConfig(newEditor,root)\n+    useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n-  },[])\n-  useEffect(()=>{\n-console.log(filePath)\n-  },[filePath])\n+  }, [])\n+  useEffect(() => {\n+    console.log(filePath)\n+  }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n-\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n"
+                },
+                {
+                    "date": 1666082217856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,16 +14,17 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  console.log('MilkdownEditor-update')\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n+  console.log('MilkdownEditor-update')\n+\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n-  }, [])\n+  }, [content])\n   useEffect(() => {\n     console.log(filePath)\n   }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n"
+                },
+                {
+                    "date": 1666082272144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,11 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  console.log('MilkdownEditor-update')\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n-  console.log('MilkdownEditor-update')\n-\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n"
+                },
+                {
+                    "date": 1666082397999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,13 +17,14 @@\n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   console.log('MilkdownEditor-update')\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n+    console.log('usesssss')\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n-  }, [content])\n+  })\n   useEffect(() => {\n     console.log(filePath)\n   }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n"
+                },
+                {
+                    "date": 1666082429330,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   console.log('MilkdownEditor-update')\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n-    console.log('usesssss')\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n"
+                },
+                {
+                    "date": 1666083089012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -31,8 +32,34 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n+instance?.config((ctx) => {\n+  ctx.get(listenerCtx)\n+    .beforeMount(() => {\n+      console.log('before the editor mounts')\n+    })\n+    .mounted(() => {\n+      console.log('after the editor mounts')\n+    })\n+    .updated(() => {\n+      console.log('when editor state updates')\n+    })\n+    // 点击文件列表后会两次调用，导致第一次渲染标题的时候还是旧的\n+    .markdownUpdated(() => {\n+      console.log('when markdown updates')\n+    })\n+    .blur(() => {\n+      console.log('blur editor')\n+    //   window.api.updateFile({ filePath, newFileContent:content })\n+    })\n+    .focus(() => {\n+      console.log(' when focus editor')\n+    })\n+    .destroy(() => {\n+      console.log('when editor is being destroyed')\n+    })\n+})\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n"
+                },
+                {
+                    "date": 1666083263871,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,11 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n+    document.addEventListener('input',()=>{\n+      console.log('xx')\n+    })\n   }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n"
+                },
+                {
+                    "date": 1666083890043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n-    document.addEventListener('input',()=>{\n+    document.addEventListener('input', () => {\n       console.log('xx')\n     })\n   }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n@@ -35,34 +35,8 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n-instance?.config((ctx) => {\n-  ctx.get(listenerCtx)\n-    .beforeMount(() => {\n-      console.log('before the editor mounts')\n-    })\n-    .mounted(() => {\n-      console.log('after the editor mounts')\n-    })\n-    .updated(() => {\n-      console.log('when editor state updates')\n-    })\n-    // 点击文件列表后会两次调用，导致第一次渲染标题的时候还是旧的\n-    .markdownUpdated(() => {\n-      console.log('when markdown updates')\n-    })\n-    .blur(() => {\n-      console.log('blur editor')\n-    //   window.api.updateFile({ filePath, newFileContent:content })\n-    })\n-    .focus(() => {\n-      console.log(' when focus editor')\n-    })\n-    .destroy(() => {\n-      console.log('when editor is being destroyed')\n-    })\n-})\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n"
+                },
+                {
+                    "date": 1666084023041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,8 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n-    document.addEventListener('input', () => {\n-      console.log('xx')\n-    })\n   }, [filePath])\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n"
+                },
+                {
+                    "date": 1666084094663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n-        ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+        // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666084393919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -33,9 +32,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n-        // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+        ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666105778218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,20 +3,22 @@\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n-import { replaceAll } from '@milkdown/utils'\n+import { replaceAll,getMarkdown } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n+import { useMarkdown } from './hooks/useMarkdown'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   console.log('MilkdownEditor-update')\n+\n   // 组件更新时，useEditor不会被重新调用\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n"
+                },
+                {
+                    "date": 1666106032799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n import { replaceAll,getMarkdown } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n-import { useMarkdown } from './hooks/useMarkdown'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -32,8 +31,10 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+      console.log(instance?.action(getMarkdown()))\n+      console.log(content)\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n"
+                },
+                {
+                    "date": 1666106097885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,9 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-      console.log(instance?.action(getMarkdown()))\n-      console.log(content)\n+      console.log(instance?.action(getMarkdown()) === content)\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n"
+                },
+                {
+                    "date": 1666106325841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import { replaceAll,getMarkdown } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -31,9 +32,13 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-      console.log(instance?.action(getMarkdown()) === content)\n+      instance?.action(ctx =>{\n+        ctx.get(listenerCtx).markdownUpdated(()=>{\n+          console.log('change')\n+        })\n+      })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n"
+                },
+                {
+                    "date": 1666106344927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       instance?.action(ctx =>{\n         ctx.get(listenerCtx).markdownUpdated(()=>{\n-          console.log('change')\n+          console.log('changexxxxxxxxxxxxxxxxxxx')\n         })\n       })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666106520679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         })\n       })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n-        ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+        // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666106611189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         })\n       })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n-        // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+        ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666106767093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n-import { replaceAll,getMarkdown } from '@milkdown/utils'\n+import { replaceAll, getMarkdown } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n import { listenerCtx } from '@milkdown/plugin-listener'\n@@ -27,22 +27,26 @@\n   })\n   useEffect(() => {\n     console.log(filePath)\n   }, [filePath])\n+\n   // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-      instance?.action(ctx =>{\n-        ctx.get(listenerCtx).markdownUpdated(()=>{\n-          console.log('changexxxxxxxxxxxxxxxxxxx')\n-        })\n-      })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n+  useEffect(() => {\n+    const instance = getInstance()\n+    instance?.action((ctx) => {\n+      ctx.get(listenerCtx).markdownUpdated(() => {\n+        console.log('changexxxxxxxxxxxxxxxxxxx')\n+      })\n+    })\n+  }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666106879952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   console.log('MilkdownEditor-update')\n \n-  // 组件更新时，useEditor不会被重新调用\n+  // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -39,8 +39,9 @@\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n   }, [loading, content])\n+  // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated(() => {\n"
+                },
+                {
+                    "date": 1666106986797,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,10 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated(() => {\n         console.log('changexxxxxxxxxxxxxxxxxxx')\n+      }).updated(()=>{\n+        console.log('up')\n       })\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666107004953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,8 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated(() => {\n         console.log('changexxxxxxxxxxxxxxxxxxx')\n-      }).updated(()=>{\n-        console.log('up')\n       })\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666107024976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,10 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated(() => {\n         console.log('changexxxxxxxxxxxxxxxxxxx')\n+      }).updated(()=>{\n+        console.log('up')\n       })\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666107154862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,16 @@\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n-      ctx.get(listenerCtx).markdownUpdated(() => {\n-        console.log('changexxxxxxxxxxxxxxxxxxx')\n-      }).updated(()=>{\n-        console.log('up')\n-      })\n+      ctx\n+        .get(listenerCtx)\n+        .markdownUpdated(() => {\n+          console.log('changexxxxxxxxxxxxxxxxxxx')\n+        })\n+        .updated(() => {\n+          console.log('up')\n+        })\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107225888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,7 +52,7 @@\n         .updated(() => {\n           console.log('up')\n         })\n     })\n-  }, [])\n+  }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107280520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,7 +52,7 @@\n         .updated(() => {\n           console.log('up')\n         })\n     })\n-  }, [loading])\n+  }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107491348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,11 @@\n   useEffect(() => {\n     console.log(filePath)\n   }, [filePath])\n \n-  // 这个组件更新内容不会随着prop变化，需要手动设置\n   useEffect(() => {\n     if (!loading) {\n+      console.log('xxxx')\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666107610419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,7 +52,7 @@\n         .updated(() => {\n           console.log('up')\n         })\n     })\n-  }, [])\n+  }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107625212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n   }, [filePath])\n \n   useEffect(() => {\n     if (!loading) {\n-      console.log('xxxx')\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666107653074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,11 +47,8 @@\n         .get(listenerCtx)\n         .markdownUpdated(() => {\n           console.log('changexxxxxxxxxxxxxxxxxxx')\n         })\n-        .updated(() => {\n-          console.log('up')\n-        })\n     })\n   }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107703020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,15 +40,18 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-    const instance = getInstance()\n-    instance?.action((ctx) => {\n-      ctx\n-        .get(listenerCtx)\n-        .markdownUpdated(() => {\n-          console.log('changexxxxxxxxxxxxxxxxxxx')\n-        })\n-    })\n+    if(!loading) {\n+      const instance = getInstance()\n+      instance?.action((ctx) => {\n+        ctx\n+          .get(listenerCtx)\n+          .markdownUpdated(() => {\n+            console.log('changexxxxxxxxxxxxxxxxxxx')\n+          })\n+      })\n+    }\n+\n   }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107756230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n           })\n       })\n     }\n \n-  }, [loading])\n+  }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107774001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,9 @@\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     if(!loading) {\n       const instance = getInstance()\n+      console.log(instance)\n       instance?.action((ctx) => {\n         ctx\n           .get(listenerCtx)\n           .markdownUpdated(() => {\n"
+                },
+                {
+                    "date": 1666107793886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,11 +40,12 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n+    const instance = getInstance()\n+    console.log(instance)\n+\n     if(!loading) {\n-      const instance = getInstance()\n-      console.log(instance)\n       instance?.action((ctx) => {\n         ctx\n           .get(listenerCtx)\n           .markdownUpdated(() => {\n"
+                },
+                {
+                    "date": 1666107902461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,12 +40,10 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n+    if(!loading) {\n     const instance = getInstance()\n-    console.log(instance)\n-\n-    if(!loading) {\n       instance?.action((ctx) => {\n         ctx\n           .get(listenerCtx)\n           .markdownUpdated(() => {\n@@ -53,7 +51,7 @@\n           })\n       })\n     }\n \n-  }, [])\n+  }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107939335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,18 +40,15 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-    if(!loading) {\n-    const instance = getInstance()\n+    if (!loading) {\n+      const instance = getInstance()\n       instance?.action((ctx) => {\n-        ctx\n-          .get(listenerCtx)\n-          .markdownUpdated(() => {\n-            console.log('changexxxxxxxxxxxxxxxxxxx')\n-          })\n+        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+          console.log(markdown===preMarkdown)\n+        })\n       })\n     }\n-\n   }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666107979826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,10 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+          console.log(markdown)\n+          console.log(preMarkdown)\n           console.log(markdown===preMarkdown)\n         })\n       })\n     }\n"
+                },
+                {
+                    "date": 1666108015189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,10 +44,9 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          console.log(markdown)\n-          console.log(preMarkdown)\n+          if(!preMarkdown) preMarkdown = markdown\n           console.log(markdown===preMarkdown)\n         })\n       })\n     }\n"
+                },
+                {
+                    "date": 1666108099692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,14 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+      instance?.action((ctx) => {\n+        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+          if(!preMarkdown) preMarkdown = markdown\n+          console.log(markdown===preMarkdown)\n+        })\n+      })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n@@ -42,14 +48,9 @@\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n-      instance?.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          if(!preMarkdown) preMarkdown = markdown\n-          console.log(markdown===preMarkdown)\n-        })\n-      })\n+\n     }\n   }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108148248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,14 +32,8 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-      instance?.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          if(!preMarkdown) preMarkdown = markdown\n-          console.log(markdown===preMarkdown)\n-        })\n-      })\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n@@ -48,9 +42,14 @@\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n-\n+      instance?.action((ctx) => {\n+        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+          if(!preMarkdown) preMarkdown = markdown\n+          console.log(markdown===preMarkdown)\n+        })\n+      })\n     }\n   }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108168208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,7 +49,7 @@\n           console.log(markdown===preMarkdown)\n         })\n       })\n     }\n-  }, [loading])\n+  }, [getInstance()])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108201542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n+    console.log('instance change')\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n"
+                },
+                {
+                    "date": 1666108264159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,10 @@\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n           if(!preMarkdown) preMarkdown = markdown\n-          console.log(markdown===preMarkdown)\n+          console.log(markdown)\n+          console.log(preMarkdown)\n         })\n       })\n     }\n   }, [getInstance()])\n"
+                },
+                {
+                    "date": 1666108395689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,9 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          if(!preMarkdown) preMarkdown = markdown\n           console.log(markdown)\n-          console.log(preMarkdown)\n         })\n       })\n     }\n   }, [getInstance()])\n"
+                },
+                {
+                    "date": 1666108485772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,7 +49,7 @@\n           console.log(markdown)\n         })\n       })\n     }\n-  }, [getInstance()])\n+  }, [loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108575845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,14 +40,13 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-    console.log('instance change')\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          console.log(markdown)\n+          console.log('changexxxxx')\n         })\n       })\n     }\n   }, [loading])\n"
+                },
+                {
+                    "date": 1666108603521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,7 @@\n           console.log('changexxxxx')\n         })\n       })\n     }\n-  }, [loading])\n+  })\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108622355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,7 @@\n           console.log('changexxxxx')\n         })\n       })\n     }\n-  })\n+  },[])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108732423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n-      instance?.action((ctx) => {\n+      instance!.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n           console.log('changexxxxx')\n         })\n       })\n"
+                },
+                {
+                    "date": 1666108740956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,15 +40,14 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-    if (!loading) {\n       const instance = getInstance()\n       instance!.action((ctx) => {\n         ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n           console.log('changexxxxx')\n         })\n       })\n-    }\n+\n   },[])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108757038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  console.log('MilkdownEditor-update')\n \n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n"
+                },
+                {
+                    "date": 1666108814028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,13 @@\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n+    newEditor!.action((ctx) => {\n+      ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+        console.log('changexxxxx')\n+      })\n+    })\n     usePlugins(newEditor)\n     return newEditor\n   })\n   useEffect(() => {\n@@ -39,14 +44,14 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-      const instance = getInstance()\n-      instance!.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          console.log('changexxxxx')\n-        })\n-      })\n+      // const instance = getInstance()\n+      // instance!.action((ctx) => {\n+      //   ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+      //     console.log('changexxxxx')\n+      //   })\n+      // })\n \n   },[])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666108834605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,13 +20,9 @@\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n-    newEditor!.action((ctx) => {\n-      ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-        console.log('changexxxxx')\n-      })\n-    })\n+    \n     usePlugins(newEditor)\n     return newEditor\n   })\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666108883409,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,14 +40,14 @@\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   useEffect(() => {\n-      // const instance = getInstance()\n-      // instance!.action((ctx) => {\n-      //   ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-      //     console.log('changexxxxx')\n-      //   })\n-      // })\n+      const instance = getInstance()\n+      instance?.action((ctx) => {\n+        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+          console.log('changexxxxx')\n+        })\n+      })\n \n-  },[])\n+  },[loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666141864927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,15 +39,15 @@\n       })\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n-  useEffect(() => {\n-      const instance = getInstance()\n-      instance?.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-          console.log('changexxxxx')\n-        })\n-      })\n+  // useEffect(() => {\n+  //     const instance = getInstance()\n+  //     instance?.action((ctx) => {\n+  //       ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n+  //         console.log('changexxxxx')\n+  //       })\n+  //     })\n \n-  },[loading])\n+  // },[loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666142059255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,18 @@\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n+      document.addEventListener('input',()=>{\n+        console.log('input')\n+      })\n+      document.addEventListener('paste',()=>{\n+        console.log('past')\n+      })\n     }\n+    return ()=>{\n+\n+    }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666142225585,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,17 +36,11 @@\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n-      document.addEventListener('input',()=>{\n-        console.log('input')\n-      })\n-      document.addEventListener('paste',()=>{\n-        console.log('past')\n-      })\n     }\n     return ()=>{\n-\n+      console.log('组件卸载了')\n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666142304474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n+    return ()=>{\n+      console.log('组件卸载了')\n+    }\n   }, [filePath])\n \n   useEffect(() => {\n     if (!loading) {\n@@ -38,9 +41,9 @@\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n     }\n     return ()=>{\n-      console.log('组件卸载了')\n+      \n     }\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666142477127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n-    \n     usePlugins(newEditor)\n     return newEditor\n   })\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666142601131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useEffect } from 'react'\n-import { Editor } from '@milkdown/core'\n+import { Editor, editorStateCtx } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n@@ -15,9 +15,8 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n@@ -25,10 +24,10 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n-    return ()=>{\n-      console.log('组件卸载了')\n+    return () => {\n+      const newMarkdown = console.log('组件卸载了')\n     }\n   }, [filePath])\n \n   useEffect(() => {\n@@ -37,13 +36,16 @@\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+        const state = ctx.get(editorStateCtx)\n+\n+        const { doc, schema } = state\n+        console.log(doc)\n+        console.log(schema)\n       })\n     }\n-    return ()=>{\n-      \n-    }\n+    return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666142811972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import React, { useEffect } from 'react'\n+import React, { useEffect, useState } from 'react'\n import { Editor, editorStateCtx } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n@@ -15,8 +15,9 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  const [m,setM] = useState('')\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n@@ -36,14 +37,11 @@\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n-        const state = ctx.get(editorStateCtx)\n-\n-        const { doc, schema } = state\n-        console.log(doc)\n-        console.log(schema)\n       })\n+      const markdown = instance?.action(getMarkdown())\n+      setM(markdown)\n     }\n     return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666142838477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,11 @@\n   })\n   useEffect(() => {\n     console.log(filePath)\n     return () => {\n-      const newMarkdown = console.log('组件卸载了')\n+      const instance = getInstance()\n+      const newMarkdown = instance?.action(getMarkdown())\n+      console.log(newMarkdown===m)\n     }\n   }, [filePath])\n \n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666142886103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n-      const markdown = instance?.action(getMarkdown())\n+      const markdown = instance?.action(getMarkdown()) as string\n       setM(markdown)\n     }\n     return () => {}\n   }, [loading, content])\n"
+                },
+                {
+                    "date": 1666142926296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,11 @@\n     console.log(filePath)\n     return () => {\n       const instance = getInstance()\n       const newMarkdown = instance?.action(getMarkdown())\n-      console.log(newMarkdown===m)\n+      console.log(newMarkdown)\n+      console.log(m)\n+      // console.log(newMarkdown===m)\n     }\n   }, [filePath])\n \n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666143149877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,13 +26,8 @@\n   })\n   useEffect(() => {\n     console.log(filePath)\n     return () => {\n-      const instance = getInstance()\n-      const newMarkdown = instance?.action(getMarkdown())\n-      console.log(newMarkdown)\n-      console.log(m)\n-      // console.log(newMarkdown===m)\n     }\n   }, [filePath])\n \n   useEffect(() => {\n@@ -42,10 +37,8 @@\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n-      const markdown = instance?.action(getMarkdown()) as string\n-      setM(markdown)\n     }\n     return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666143519058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,13 @@\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n+      instance?.action(ctx=>{\n+        ctx.get(listenerCtx).markdownUpdated((ctx,markdown) =>{\n+          console.log(markdown)\n+        })\n+      })\n     }\n     return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666143600802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,22 +28,26 @@\n     console.log(filePath)\n     return () => {\n     }\n   }, [filePath])\n+  useEffect(()=>{\n+    const instance = getInstance()\n \n+    instance?.action(ctx=>{\n+      ctx.get(listenerCtx).markdownUpdated((ctx,markdown) =>{\n+        console.log(markdown)\n+      })\n+    })\n+  },[loading])\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n-      instance?.action(ctx=>{\n-        ctx.get(listenerCtx).markdownUpdated((ctx,markdown) =>{\n-          console.log(markdown)\n-        })\n-      })\n+\n     }\n     return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666143651949,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  const [m,setM] = useState('')\n+  const [m, setM] = useState('')\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n@@ -25,29 +25,27 @@\n     return newEditor\n   })\n   useEffect(() => {\n     console.log(filePath)\n-    return () => {\n-    }\n+    return () => {}\n   }, [filePath])\n-  useEffect(()=>{\n+  useEffect(() => {\n     const instance = getInstance()\n \n-    instance?.action(ctx=>{\n-      ctx.get(listenerCtx).markdownUpdated((ctx,markdown) =>{\n+    instance?.action((ctx) => {\n+      ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n       })\n     })\n-  },[loading])\n+  }, [loading])\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n       instance?.action((ctx) => {\n         ctx.get(themeManagerCtx).switch(ctx, nordDark)\n       })\n-\n     }\n     return () => {}\n   }, [loading, content])\n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666143704038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n       })\n     })\n-  }, [loading])\n+  }, [])\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n"
+                },
+                {
+                    "date": 1666143805478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,11 +29,11 @@\n     return () => {}\n   }, [filePath])\n   useEffect(() => {\n     const instance = getInstance()\n-\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+        if(!loading)\n         console.log(markdown)\n       })\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1666143854046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        if(!loading)\n         console.log(markdown)\n       })\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1666143932417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n+        console.log(instance.action(getMarkdown())\n       })\n     })\n   }, [])\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666143940392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n-        console.log(instance.action(getMarkdown())\n+        console.log(instance.action(getMarkdown()))\n       })\n     })\n   }, [])\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666143978518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,17 +28,8 @@\n     console.log(filePath)\n     return () => {}\n   }, [filePath])\n   useEffect(() => {\n-    const instance = getInstance()\n-    instance?.action((ctx) => {\n-      ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(markdown)\n-        console.log(instance.action(getMarkdown()))\n-      })\n-    })\n-  }, [])\n-  useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n@@ -47,8 +38,18 @@\n       })\n     }\n     return () => {}\n   }, [loading, content])\n+  useEffect(() => {\n+    const instance = getInstance()\n+    instance?.action((ctx) => {\n+      ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+        console.log(markdown)\n+        console.log(instance.action(getMarkdown()))\n+      })\n+    })\n+  }, [])\n+\n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n   //     instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666144044526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,11 +43,14 @@\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n-        console.log(instance.action(getMarkdown()))\n       })\n     })\n+    return ()=>{\n+      console.log(instance.action(getMarkdown()))\n+\n+    }\n   }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666144054316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n         console.log(markdown)\n       })\n     })\n     return ()=>{\n-      console.log(instance.action(getMarkdown()))\n+      console.log(instance?.action(getMarkdown()))\n \n     }\n   }, [])\n \n"
+                },
+                {
+                    "date": 1666144087077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,17 +39,18 @@\n     }\n     return () => {}\n   }, [loading, content])\n   useEffect(() => {\n+    let now\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(markdown)\n+        if(!now) now = markdown\n       })\n     })\n-    return ()=>{\n+    return () => {\n+      console.log(now)\n       console.log(instance?.action(getMarkdown()))\n-\n     }\n   }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n"
+                },
+                {
+                    "date": 1666144112074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,9 @@\n         if(!now) now = markdown\n       })\n     })\n     return () => {\n+      console.log('111')\n       console.log(now)\n       console.log(instance?.action(getMarkdown()))\n     }\n   }, [])\n"
+                },
+                {
+                    "date": 1666144121130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n       console.log('111')\n       console.log(now)\n       console.log(instance?.action(getMarkdown()))\n     }\n-  }, [])\n+  }, [content])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666144154254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,14 +46,9 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         if(!now) now = markdown\n       })\n     })\n-    return () => {\n-      console.log('111')\n-      console.log(now)\n-      console.log(instance?.action(getMarkdown()))\n-    }\n-  }, [content])\n+  }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666144182527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,13 +39,12 @@\n     }\n     return () => {}\n   }, [loading, content])\n   useEffect(() => {\n-    let now\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        if(!now) now = markdown\n+        console.log(markdown)\n       })\n     })\n   }, [])\n \n"
+                },
+                {
+                    "date": 1666144270427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,11 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n       })\n     })\n+    return ()=>{\n+      console.log('组件销毁 了')\n+    }\n   }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666144427862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,11 +32,9 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n-      instance?.action((ctx) => {\n-        ctx.get(themeManagerCtx).switch(ctx, nordDark)\n-      })\n+\n     }\n     return () => {}\n   }, [loading, content])\n   useEffect(() => {\n@@ -45,8 +43,11 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n       })\n     })\n+    instance?.action((ctx) => {\n+      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+    })\n     return ()=>{\n       console.log('组件销毁 了')\n     }\n   }, [])\n"
+                },
+                {
+                    "date": 1666144953154,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,18 +40,22 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(markdown)\n+        console.log('markdownUpdated')\n+        window.api.updateFile({\n+          filePath,\n+          newFileContent:markdown\n+        })\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n     return ()=>{\n       console.log('组件销毁 了')\n     }\n-  }, [])\n+  }, [filePath])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666144981652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log('markdownUpdated')\n+        console.log(markdown)\n         window.api.updateFile({\n           filePath,\n           newFileContent:markdown\n         })\n@@ -50,11 +50,8 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n-    return ()=>{\n-      console.log('组件销毁 了')\n-    }\n   }, [filePath])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666145006512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n-  }, [filePath])\n+  }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666145072740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  const [m, setM] = useState('')\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n"
+                },
+                {
+                    "date": 1666145151434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(markdown)\n+        console.log(filePath)\n         window.api.updateFile({\n           filePath,\n           newFileContent:markdown\n         })\n"
+                },
+                {
+                    "date": 1666145164999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,12 +23,8 @@\n     usePlugins(newEditor)\n     return newEditor\n   })\n   useEffect(() => {\n-    console.log(filePath)\n-    return () => {}\n-  }, [filePath])\n-  useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n"
+                },
+                {
+                    "date": 1666145219971,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n   })\n+  const [file,setFile] = useState('')\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n@@ -35,9 +36,9 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(filePath)\n+        console.log(file)\n         window.api.updateFile({\n           filePath,\n           newFileContent:markdown\n         })\n"
+                },
+                {
+                    "date": 1666145233677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,11 @@\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n   })\n-  const [file,setFile] = useState('')\n+  const [file,setFile] = useState(0)\n   useEffect(() => {\n+    setFile(Math.random())\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n"
+                },
+                {
+                    "date": 1666145311700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n-  }, [])\n+  }, [filePath])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666145346214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,13 +37,13 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(file)\n-        window.api.updateFile({\n-          filePath,\n-          newFileContent:markdown\n-        })\n+        console.log(markdown)\n+        // window.api.updateFile({\n+        //   filePath,\n+        //   newFileContent:markdown\n+        // })\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+                },
+                {
+                    "date": 1666145456018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,15 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n+    return () =>{\n+      instance?.action((ctx) => {\n+        ctx.get(listenerCtx).markdownUpdated(()=>{\n+\n+        })\n+      })\n+    }\n   }, [filePath])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666145487518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,11 +49,9 @@\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n     return () =>{\n       instance?.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated(()=>{\n-\n-        })\n+        ctx.get(listenerCtx).markdownUpdated=null\n       })\n     }\n   }, [filePath])\n \n"
+                },
+                {
+                    "date": 1666145521367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,13 +47,8 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n-    return () =>{\n-      instance?.action((ctx) => {\n-        ctx.get(listenerCtx).markdownUpdated=null\n-      })\n-    }\n   }, [filePath])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n"
+                },
+                {
+                    "date": 1666145717338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n     return newEditor\n   })\n-  const [file,setFile] = useState(0)\n   useEffect(() => {\n     setFile(Math.random())\n     if (!loading) {\n       const instance = getInstance()\n@@ -47,9 +46,9 @@\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n-  }, [filePath])\n+  }, [])\n \n   // 使用空数组，就算后面更新了也不会执行\n   // useEffect(() => {\n   //     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666145725138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,14 +23,12 @@\n     usePlugins(newEditor)\n     return newEditor\n   })\n   useEffect(() => {\n-    setFile(Math.random())\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n-\n     }\n     return () => {}\n   }, [loading, content])\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666146783393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,16 +26,21 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+      instance?.action(remove())\n       useUpdateHeaders()\n     }\n-    return () => {}\n+    return () => {\n+    const instance = getInstance()\n+instance?.action(remove)\n+    }\n   }, [loading, content])\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+      \n         console.log(markdown)\n         // window.api.updateFile({\n         //   filePath,\n         //   newFileContent:markdown\n"
+                },
+                {
+                    "date": 1666146879786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,14 +26,12 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n-      instance?.action(remove())\n       useUpdateHeaders()\n     }\n     return () => {\n     const instance = getInstance()\n-instance?.action(remove)\n     }\n   }, [loading, content])\n   useEffect(() => {\n     const instance = getInstance()\n"
+                },
+                {
+                    "date": 1666147046158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,8 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-      \n         console.log(markdown)\n         // window.api.updateFile({\n         //   filePath,\n         //   newFileContent:markdown\n@@ -48,17 +47,6 @@\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n-\n-  // 使用空数组，就算后面更新了也不会执行\n-  // useEffect(() => {\n-  //     const instance = getInstance()\n-  //     instance?.action((ctx) => {\n-  //       ctx.get(listenerCtx).markdownUpdated((ctx,markdown,preMarkdown) =>{\n-  //         console.log('changexxxxx')\n-  //       })\n-  //     })\n-\n-  // },[loading])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666147116182,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,20 +29,25 @@\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n     }\n     return () => {\n-    const instance = getInstance()\n+      const instance = getInstance()\n     }\n   }, [loading, content])\n+  const update = (markdown: string) => {\n+    console.log('xxxxxxx')\n+    console.log(markdown)\n+    window.api.updateFile({\n+      filePath,\n+      newFileContent: markdown\n+    })\n+  }\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log(markdown)\n-        // window.api.updateFile({\n-        //   filePath,\n-        //   newFileContent:markdown\n-        // })\n+        update(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+                },
+                {
+                    "date": 1666147122866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n     }\n   }, [loading, content])\n   const update = (markdown: string) => {\n     console.log('xxxxxxx')\n-    console.log(markdown)\n+    console.log(filePath)\n     window.api.updateFile({\n       filePath,\n       newFileContent: markdown\n     })\n@@ -44,9 +44,8 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(markdown)\n         update(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666147273784,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n     return () => {\n       const instance = getInstance()\n     }\n   }, [loading, content])\n+  console.log('gggggggg')\n   const update = (markdown: string) => {\n     console.log('xxxxxxx')\n     console.log(filePath)\n     window.api.updateFile({\n"
+                },
+                {
+                    "date": 1666147379224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,12 @@\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n+  update:Function\n }\n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath,update }) => {\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n@@ -33,16 +34,9 @@\n       const instance = getInstance()\n     }\n   }, [loading, content])\n   console.log('gggggggg')\n-  const update = (markdown: string) => {\n-    console.log('xxxxxxx')\n-    console.log(filePath)\n-    window.api.updateFile({\n-      filePath,\n-      newFileContent: markdown\n-    })\n-  }\n+\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n"
+                },
+                {
+                    "date": 1666149277047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n     }\n-    return () => {\n-      const instance = getInstance()\n-    }\n   }, [loading, content])\n-  console.log('gggggggg')\n \n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666149485504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,10 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        update(markdown)\n+        console.log(filePath)\n+        // update(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+                },
+                {
+                    "date": 1666149628848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,12 +12,11 @@\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n-  update:Function\n }\n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath,update }) => {\n+export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n@@ -35,10 +34,8 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log(filePath)\n-        // update(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+                },
+                {
+                    "date": 1666149772106,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,14 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  // 组件更新时，useEditor不会被重新调用，可能是用了类似useCallback\n+  useEffect(() => {\n+    window.api.updateFile({\n+      filePath:filePath,\n+      newFileContent: ''\n+    })\n+  }, [filePath])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n"
+                },
+                {
+                    "date": 1666149796300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  const [markdown,setMarkdown] = useState('')\n   useEffect(() => {\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: ''\n"
+                },
+                {
+                    "date": 1666149816721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: ''\n     })\n-  }, [filePath])\n+  }, [markdown])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -40,8 +40,9 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+        setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+                },
+                {
+                    "date": 1666149823851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,11 +17,12 @@\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   const [markdown,setMarkdown] = useState('')\n   useEffect(() => {\n+    console.log(filePath)\n     window.api.updateFile({\n       filePath:filePath,\n-      newFileContent: ''\n+      newFileContent: markdown\n     })\n   }, [markdown])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n"
+                },
+                {
+                    "date": 1666149845516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: markdown\n     })\n-  }, [markdown])\n+  }, [filePath])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n"
+                },
+                {
+                    "date": 1666149969549,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: markdown\n     })\n-  }, [filePath])\n+  }, [filePath,markdown])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n"
+                },
+                {
+                    "date": 1666150099456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   const [markdown,setMarkdown] = useState('')\n   useEffect(() => {\n-    console.log(filePath)\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: markdown\n     })\n"
+                },
+                {
+                    "date": 1666150403509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     window.api.updateFile({\n       filePath:filePath,\n       newFileContent: markdown\n     })\n-  }, [filePath,markdown])\n+  }, [markdown])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -34,9 +34,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n     }\n-  }, [loading, content])\n+  }, [loading, filePath])\n \n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666150743825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n     }\n-  }, [loading, filePath])\n+  }, [loading, content])\n \n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n"
+                },
+                {
+                    "date": 1666150803565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,14 +16,8 @@\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   const [markdown,setMarkdown] = useState('')\n-  useEffect(() => {\n-    window.api.updateFile({\n-      filePath:filePath,\n-      newFileContent: markdown\n-    })\n-  }, [markdown])\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -35,9 +29,17 @@\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n     }\n   }, [loading, content])\n+  useEffect(() => {\n+    window.api.updateFile({\n+      filePath:filePath,\n+      newFileContent: markdown\n+    })\n+  }, [markdown])\n \n+\n+\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n"
+                },
+                {
+                    "date": 1666150967271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   const [markdown,setMarkdown] = useState('')\n+  const [isOpend,setOpend] = useState(false)\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -26,16 +27,19 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+      setOpend(true)\n       useUpdateHeaders()\n     }\n   }, [loading, content])\n   useEffect(() => {\n-    window.api.updateFile({\n-      filePath:filePath,\n-      newFileContent: markdown\n-    })\n+    if(isOpend) {\n+      window.api.updateFile({\n+        filePath:filePath,\n+        newFileContent: markdown\n+      })\n+    }\n   }, [markdown])\n \n \n \n"
+                },
+                {
+                    "date": 1666150982125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,10 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  const [markdown,setMarkdown] = useState('')\n-  const [isOpend,setOpend] = useState(false)\n+  const [markdown, setMarkdown] = useState('')\n+  const [isOpend, setOpend] = useState(false)\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -32,18 +32,16 @@\n       useUpdateHeaders()\n     }\n   }, [loading, content])\n   useEffect(() => {\n-    if(isOpend) {\n+    if (isOpend) {\n       window.api.updateFile({\n-        filePath:filePath,\n+        filePath: filePath,\n         newFileContent: markdown\n       })\n     }\n   }, [markdown])\n \n-\n-\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n"
+                },
+                {
+                    "date": 1666151024228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,11 @@\n   useEffect(() => {\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n+      useUpdateHeaders()\n       setOpend(true)\n-      useUpdateHeaders()\n+\n     }\n   }, [loading, content])\n   useEffect(() => {\n     if (isOpend) {\n"
+                },
+                {
+                    "date": 1666151084864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,8 @@\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n   const [markdown, setMarkdown] = useState('')\n-  const [isOpend, setOpend] = useState(false)\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root)\n     usePlugins(newEditor)\n@@ -28,19 +27,15 @@\n     if (!loading) {\n       const instance = getInstance()\n       instance?.action(replaceAll(content))\n       useUpdateHeaders()\n-      setOpend(true)\n-\n     }\n   }, [loading, content])\n   useEffect(() => {\n-    if (isOpend) {\n-      window.api.updateFile({\n-        filePath: filePath,\n-        newFileContent: markdown\n-      })\n-    }\n+    window.api.updateFile({\n+      filePath: filePath,\n+      newFileContent: markdown\n+    })\n   }, [markdown])\n \n   useEffect(() => {\n     const instance = getInstance()\n"
                 }
             ],
             "date": 1665496693570,

@@ -1,6 +1,6 @@
-import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
+import { defaultValueCtx, Editor, rootCtx, themeManagerCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
-import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'
+import { nordDark } from '@milkdown/theme-nord'
 
 export const useConfig = (editor: Editor, root: HTMLElement) => {
   editor
@@ -24,12 +24,13 @@ export const useConfig = (editor: Editor, root: HTMLElement) => {
         .updated(() => {
           console.log('when editor state updates')
         })
-        .markdownUpdated(() => {
-          console.log('when markdown updates')
-          useUpdateHeaders()
+        // 点击文件列表后会两次调用，导致第一次渲染标题的时候还是旧的
+        .markdownUpdated((ctx,Markdown,preMarkdown) => {
+          // console.log('when markdown updates')
+          // console.log(Markdown)
         })
         .blur(() => {
-        //   window.api.updateFile({ filePath, newFileContent:content })
+          console.log('blur editor')
         })
         .focus(() => {
           console.log(' when focus editor')
