@@ -1,6 +1,6 @@
 import { LegacyRef, useEffect, useRef, useState } from 'react'
 
-export const Search = () => {
+export const SearchWord = () => {
   const [show, setShow] = useState(true)
   const iptRef = useRef<HTMLInputElement>()
   const serarchStr = () => {
@@ -17,23 +17,8 @@ export const Search = () => {
     }
     dfs(editor.childNodes)
   }
-  useEffect(() => {
-    const handleCommandK = (e: KeyboardEvent) => {
-      if (e.metaKey && e.code === 'KeyF') {
-        setShow(!show)
-        // 不生效？
-        show && iptRef.current?.focus()
-      } else if (e.code === 'Enter') {
-        serarchStr()
-      }
-    }
-    document.addEventListener('keydown', handleCommandK)
-    return () => {
-      document.removeEventListener('keydown', handleCommandK)
-    }
-  })
   return (
-    <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>
+    <div className="search-word search-word-close">
       <input type="text" ref={iptRef as LegacyRef<HTMLInputElement>} />
     </div>
   )

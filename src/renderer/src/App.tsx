@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
+import { useKeyBoard } from './common/useKeyBoard'
 import { MilkdownEditor } from './components/Editor'
 import { Header } from './components/Header'
-import { Search } from './components/Search'
+import { SearchFile } from './components/Search/SearchFile'
+import { SearchWord } from './components/Search/SearchWord'
 import { SideBar } from './components/SideBar'
 
 export const App = () => {
   const [content, setContent] = useState('')
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
-
+  useKeyBoard()
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
     window.api.onOpenFile((e, { filePath, fileContent }) => {
@@ -34,7 +36,8 @@ export const App = () => {
         <SideBar fileList={fileList} />
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
-      <Search />
+      <SearchWord />
+      <SearchFile fileList={fileList} />
     </div>
   )
 }

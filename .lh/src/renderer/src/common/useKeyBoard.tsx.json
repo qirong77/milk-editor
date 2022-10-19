@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/renderer/src/common/useKeyBoard.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1666163303847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666163314425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n       if (e.code === 'KeyP' && e.metaKey) {\n         console.log('commend + P')\n         searchFile?.classList.toggle('search-file-close')\n       }\n-      console.log(e)\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n"
+                },
+                {
+                    "date": 1666163390146,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n       if (e.code === 'ArrowDown') {\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n         console.log('commend + P')\n+        console.log(searchFile)\n         searchFile?.classList.toggle('search-file-close')\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1666164017888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,25 +2,29 @@\n import { useEffect } from 'react'\n \n export const useKeyBoard = () => {\n   useEffect(() => {\n-    const sideBar = document.querySelector('.side-bar')\n-    const searchFile = document.querySelector('.search-file')\n+    const SideBar = document.querySelector('.side-bar')\n+    const SearchFile = document.querySelector('.search-file')\n+    const SearchWord = document.querySelector('.search-word')\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n-        sideBar?.classList.toggle('side-bar-close')\n+        SideBar?.classList.toggle('side-bar-close')\n       }\n       if (e.code === 'ArrowUp') {\n       }\n       if (e.code === 'ArrowDown') {\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n         console.log('commend + P')\n-        console.log(searchFile)\n-        searchFile?.classList.toggle('search-file-close')\n+        console.log(SearchFile)\n+        SearchFile?.classList.toggle('search-file-close')\n       }\n+      if (e.metaKey && e.code === 'KeyF') {\n+        SearchWord?.classList.toggle('search-word-close')\n+      }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n"
+                },
+                {
+                    "date": 1666164177655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,18 +2,19 @@\n import { useEffect } from 'react'\n \n export const useKeyBoard = () => {\n   useEffect(() => {\n-    const SideBar = document.querySelector('.side-bar')\n+    const SideBar = document.querySelector('.side-bar') as HTMLElement\n     const SearchFile = document.querySelector('.search-file')\n     const SearchWord = document.querySelector('.search-word')\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n         SideBar?.classList.toggle('side-bar-close')\n       }\n-      if (e.code === 'ArrowUp') {\n+      if (e.code === 'ArrowUp' && SideBar.style.display !=='none') \n+      { console.log('up')\n       }\n       if (e.code === 'ArrowDown') {\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n"
+                },
+                {
+                    "date": 1666164189734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n         console.log('command + B')\n         useUpdateHeaders()\n         SideBar?.classList.toggle('side-bar-close')\n       }\n-      if (e.code === 'ArrowUp' && SideBar.style.display !=='none') \n-      { console.log('up')\n+      if (e.code === 'ArrowUp' && SideBar.style.display !== 'none') {\n+        console.log('up')\n       }\n       if (e.code === 'ArrowDown') {\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n"
+                }
+            ],
+            "date": 1666163303847,
+            "name": "Commit-0",
+            "content": "import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\nimport { useEffect } from 'react'\n\nexport const useKeyBoard = () => {\n  useEffect(() => {\n    const sideBar = document.querySelector('.side-bar')\n    const searchFile = document.querySelector('.search-file')\n    const hanldeHideBar = (e: KeyboardEvent) => {\n      if (e.metaKey && e.code === 'KeyB') {\n        console.log('command + B')\n        useUpdateHeaders()\n        sideBar?.classList.toggle('side-bar-close')\n      }\n      if (e.code === 'ArrowUp') {\n      }\n      if (e.code === 'ArrowDown') {\n      }\n      if (e.code === 'KeyP' && e.metaKey) {\n        console.log('commend + P')\n        searchFile?.classList.toggle('search-file-close')\n      }\n      console.log(e)\n    }\n    document.addEventListener('keydown', hanldeHideBar)\n    return () => document.removeEventListener('keydown', hanldeHideBar)\n  }, [])\n}\n"
+        }
+    ]
+}

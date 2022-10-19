@@ -1,38 +1,42 @@
 {
-  "sourceFile": "src/renderer/src/components/SideBar/components/HeaderList.tsx",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 5,
-      "patches": [
+    "sourceFile": "src/renderer/src/components/SideBar/components/HeaderList.tsx",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1665901494093,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1666057417823,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(()=>{\n-    useUpdateHeaders()\n+    // useUpdateHeaders()\n   },[])\n   return (\n       <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n"
-        },
-        {
-          "date": 1666058444100,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,8 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  useEffect(()=>{\n-    // useUpdateHeaders()\n-  },[])\n   return (\n       <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n }\n"
-        },
-        {
-          "date": 1666067009916,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n+    useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
-        },
-        {
-          "date": 1666067023722,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n+    console.log('11')\n     useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n"
-        },
-        {
-          "date": 1666067041723,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,8 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n-    console.log('11')\n-    useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1665901494093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666057417823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(()=>{\n-    useUpdateHeaders()\n+    // useUpdateHeaders()\n   },[])\n   return (\n       <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n"
+                },
+                {
+                    "date": 1666058444100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,8 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  useEffect(()=>{\n-    // useUpdateHeaders()\n-  },[])\n   return (\n       <ul className={'header-list'} ref={headerListRef}></ul>\n   )\n }\n"
+                },
+                {
+                    "date": 1666067009916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n+    useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
+                },
+                {
+                    "date": 1666067023722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n+    console.log('11')\n     useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n"
+                },
+                {
+                    "date": 1666067041723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,8 @@\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n   useEffect(() => {\n-    console.log('11')\n-    useUpdateHeaders()\n     const sideBar = document.querySelector('.side-bar') as HTMLElement\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
+                },
+                {
+                    "date": 1666163260996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,9 @@\n-import React, { useEffect, useRef } from 'react'\n-import { useUpdateHeaders } from '../hooks/useUpdateHeader'\n+import React, { useRef } from 'react'\n \n+\n interface IHeaderList {}\n \n export const HeaderList: React.FC<IHeaderList> = () => {\n   const headerListRef = useRef(null)\n-  useEffect(() => {\n-    const sideBar = document.querySelector('.side-bar') as HTMLElement\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        useUpdateHeaders()\n-        sideBar.classList.toggle('side-bar-close')\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n-  return (\n-      <ul className={'header-list'} ref={headerListRef}></ul>\n-  )\n+  return <ul className={'header-list'} ref={headerListRef}></ul>\n }\n"
+                }
+            ],
+            "date": 1665901494093,
+            "name": "Commit-0",
+            "content": "import React, { useEffect, useRef } from 'react'\nimport { useUpdateHeaders } from '../hooks/useUpdateHeader'\n\ninterface IHeaderList {}\n\nexport const HeaderList: React.FC<IHeaderList> = () => {\n  const headerListRef = useRef(null)\n  useEffect(() => {\n    const sideBar = document.querySelector('.side-bar') as HTMLElement\n    const hanldeHideBar = (e: KeyboardEvent) => {\n      if (e.metaKey && e.code === 'KeyB') {\n        console.log('command + B')\n        useUpdateHeaders()\n        sideBar.classList.toggle('side-bar-close')\n      }\n    }\n    document.addEventListener('keydown', hanldeHideBar)\n    return () => document.removeEventListener('keydown', hanldeHideBar)\n  }, [])\n  useEffect(()=>{\n    useUpdateHeaders()\n  },[])\n  return (\n      <ul className={'header-list'} ref={headerListRef}></ul>\n  )\n}\n"
         }
-      ],
-      "date": 1665901494093,
-      "name": "Commit-0",
-      "content": "import React, { useEffect, useRef } from 'react'\nimport { useUpdateHeaders } from '../hooks/useUpdateHeader'\n\ninterface IHeaderList {}\n\nexport const HeaderList: React.FC<IHeaderList> = () => {\n  const headerListRef = useRef(null)\n  useEffect(() => {\n    const sideBar = document.querySelector('.side-bar') as HTMLElement\n    const hanldeHideBar = (e: KeyboardEvent) => {\n      if (e.metaKey && e.code === 'KeyB') {\n        console.log('command + B')\n        useUpdateHeaders()\n        sideBar.classList.toggle('side-bar-close')\n      }\n    }\n    document.addEventListener('keydown', hanldeHideBar)\n    return () => document.removeEventListener('keydown', hanldeHideBar)\n  }, [])\n  useEffect(()=>{\n    useUpdateHeaders()\n  },[])\n  return (\n      <ul className={'header-list'} ref={headerListRef}></ul>\n  )\n}\n"
-    }
-  ]
+    ]
 }

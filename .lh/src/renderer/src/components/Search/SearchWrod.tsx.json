@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/Search/SearchWrod.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1666160819826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1666160819826,
+            "name": "Commit-0",
+            "content": "import { LegacyRef, useEffect, useRef, useState } from 'react'\n\nexport const SearchWord = () => {\n  const [show, setShow] = useState(true)\n  const iptRef = useRef<HTMLInputElement>()\n  const serarchStr = () => {\n    // 需要配置electron 的全选快捷键再能在输入框全选\n    const editor = document.querySelector('.ProseMirror') as HTMLElement\n    const searchText = iptRef.current?.value\n    // 好像是不能直接操作milkdown上面的元素，比如改变类名，增加用fragment增加标签，需要看文档\n    const dfs = (nodes: NodeListOf<ChildNode>) => {\n      nodes.forEach((node) => {\n        // element\n        if (node.nodeType === 1) {\n        }\n      })\n    }\n    dfs(editor.childNodes)\n  }\n  useEffect(() => {\n    const handleCommandK = (e: KeyboardEvent) => {\n      if (e.metaKey && e.code === 'KeyF') {\n        setShow(!show)\n        // 不生效？\n        show && iptRef.current?.focus()\n      } else if (e.code === 'Enter') {\n        serarchStr()\n      }\n    }\n    document.addEventListener('keydown', handleCommandK)\n    return () => {\n      document.removeEventListener('keydown', handleCommandK)\n    }\n  })\n  return (\n    <div className={show ? 'search-wrapper search-wrapper-close' : 'search-wrapper'}>\n      <input type=\"text\" ref={iptRef as LegacyRef<HTMLInputElement>} />\n    </div>\n  )\n}\n"
+        }
+    ]
+}

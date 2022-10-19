@@ -1,7 +1,7 @@
 $dark-color: rgba(236, 239, 244, 0.87);
 $dark-background: rgb(39, 44, 55);
 
-.search-wrapper {
+.search-word {
   height: 40px;
   width: 200px;
   border-radius: 10px;
@@ -17,7 +17,6 @@ $dark-background: rgb(39, 44, 55);
     border-radius: 6px;
     color: $dark-color;
     background-color: $dark-background;
-
     border: none;
     outline: none;
     &:hover {
@@ -25,9 +24,19 @@ $dark-background: rgb(39, 44, 55);
     }
   }
 }
-.search-wrapper-close {
+.search-word-close {
   display: none;
 }
 .match {
   background-color: aqua !important;
+}
+
+.search-file {
+  top: 10px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.search-file-close {
+  display: none;
 }

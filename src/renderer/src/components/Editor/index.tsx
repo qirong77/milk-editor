@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Editor, editorStateCtx } from '@milkdown/core'
+import { Editor } from '@milkdown/core'
 
 import { ReactEditor, useEditor } from '@milkdown/react'
 import { usePlugins } from './hooks/usePlugins'
 import { themeManagerCtx } from '@milkdown/core'
-import { replaceAll, getMarkdown } from '@milkdown/utils'
+import { replaceAll } from '@milkdown/utils'
 import { nordDark } from '@milkdown/theme-nord'
 import { useConfig } from './hooks/useConfig'
 import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'

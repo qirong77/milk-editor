@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/renderer/src/common/hightLight.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1666157876326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666157904118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,41 @@\n <!DOCTYPE html>\n <html lang=\"en\">\n-<head>\n-    <meta charset=\"UTF-8\">\n-    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n+  <head>\n+    <meta charset=\"UTF-8\" />\n+    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n     <title>Document</title>\n-</head>\n\\ No newline at end of file\n-<body>\n-    \n-</body>\n-</html>\n+  </head>\n+  <style>\n+    #highlight {\n+      background: yellow;\n+      position: absolute;\n+      z-index: -1;\n+    }\n+\n+    p {\n+      width: 200px;\n+    }\n+  </style>\n+  <body>\n+    <div id=\"highlight\"></div>\n+    <p>\n+      This example positions a \"highlight\" rectangle behind the contents of a range. The range's\n+      content <b>starts here</b> and continues on until it <b>ends here</b>. The bounding client\n+      rectangle contains everything selected in the range.\n+    </p>\n+  </body>\n+  <script>\n+    const range = document.createRange();\n+range.setStartBefore(document.getElementsByTagName('b').item(0), 0);\n+range.setEndAfter(document.getElementsByTagName('b').item(1), 0);\n+\n+const clientRect = range.getBoundingClientRect();\n+const highlight = document.getElementById('highlight');\n+highlight.style.left = `${clientRect.x}px`;\n+highlight.style.top = `${clientRect.y}px`;\n+highlight.style.width = `${clientRect.width}px`;\n+highlight.style.height = `${clientRect.height}px`;\n+\n+  </script>\n+</html>\n"
+                },
+                {
+                    "date": 1666158071081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,24 +18,23 @@\n     }\n   </style>\n   <body>\n     <div id=\"highlight\"></div>\n-    <p>\n+    <p contenteditable>\n       This example positions a \"highlight\" rectangle behind the contents of a range. The range's\n       content <b>starts here</b> and continues on until it <b>ends here</b>. The bounding client\n       rectangle contains everything selected in the range.\n     </p>\n   </body>\n   <script>\n-    const range = document.createRange();\n-range.setStartBefore(document.getElementsByTagName('b').item(0), 0);\n-range.setEndAfter(document.getElementsByTagName('b').item(1), 0);\n+    const range = document.createRange()\n+    range.setStartBefore(document.getElementsByTagName('b').item(0), 0)\n+    range.setEndAfter(document.getElementsByTagName('b').item(1), 0)\n \n-const clientRect = range.getBoundingClientRect();\n-const highlight = document.getElementById('highlight');\n-highlight.style.left = `${clientRect.x}px`;\n-highlight.style.top = `${clientRect.y}px`;\n-highlight.style.width = `${clientRect.width}px`;\n-highlight.style.height = `${clientRect.height}px`;\n-\n+    const clientRect = range.getBoundingClientRect()\n+    const highlight = document.getElementById('highlight')\n+    highlight.style.left = `${clientRect.x}px`\n+    highlight.style.top = `${clientRect.y}px`\n+    highlight.style.width = `${clientRect.width}px`\n+    highlight.style.height = `${clientRect.height}px`\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1666158099528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,6 +35,7 @@\n     highlight.style.left = `${clientRect.x}px`\n     highlight.style.top = `${clientRect.y}px`\n     highlight.style.width = `${clientRect.width}px`\n     highlight.style.height = `${clientRect.height}px`\n+    document.querySelector('p').value\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1666158113639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,7 +35,7 @@\n     highlight.style.left = `${clientRect.x}px`\n     highlight.style.top = `${clientRect.y}px`\n     highlight.style.width = `${clientRect.width}px`\n     highlight.style.height = `${clientRect.height}px`\n-    document.querySelector('p').value\n+    console.log(document.querySelector('p').value)\n   </script>\n </html>\n"
+                },
+                {
+                    "date": 1666160877456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,8 @@\n   <script>\n     const range = document.createRange()\n     range.setStartBefore(document.getElementsByTagName('b').item(0), 0)\n     range.setEndAfter(document.getElementsByTagName('b').item(1), 0)\n-\n     const clientRect = range.getBoundingClientRect()\n     const highlight = document.getElementById('highlight')\n     highlight.style.left = `${clientRect.x}px`\n     highlight.style.top = `${clientRect.y}px`\n"
+                }
+            ],
+            "date": 1666157876326,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n</head>\n<body>\n    \n</body>\n</html>"
+        }
+    ]
+}
