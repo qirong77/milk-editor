@@ -1,130 +1,130 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 28,
+      "patches": [
         {
-            "activePatchIndex": 28,
-            "patches": [
-                {
-                    "date": 1665385494477,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665385579608,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
-                },
-                {
-                    "date": 1665385597337,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
-                },
-                {
-                    "date": 1665385618994,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
-                },
-                {
-                    "date": 1665385628301,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
-                },
-                {
-                    "date": 1665385636405,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
-                },
-                {
-                    "date": 1665391686636,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,8 +76,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n+        \n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n"
-                },
-                {
-                    "date": 1665391696394,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        \n+        <Sc\n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n"
-                },
-                {
-                    "date": 1665392052251,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n+import { ScreenControlers } from './ScrenControlers'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n@@ -76,12 +77,12 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        <Sc\n+        <ScreenControlers/>\n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n-      </header>\n+<dir></dir>      </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
-                },
-                {
-                    "date": 1665392058178,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,10 +79,9 @@\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         <ScreenControlers/>\n         {/* <span>大纲</span> */}\n-        <span onClick={updateHeaders}>overview</span>\n-<dir></dir>      </header>\n+    </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
-                },
-                {
-                    "date": 1665392065986,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,8 +78,12 @@\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         <ScreenControlers/>\n+        <div>\n+<span onClick={updateHeaders}>overview</span>\n+  \n+  </div>  \n         {/* <span>大纲</span> */}\n     </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n"
-                },
-                {
-                    "date": 1665392631665,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        <ScreenControlers/>\n+        {/* <ScreenControlers/> */}\n         <div>\n <span onClick={updateHeaders}>overview</span>\n   \n   </div>  \n"
-                },
-                {
-                    "date": 1665394765167,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         container.appendChild(ul)\n+        ul.ad\n       }\n       return container\n     }\n     const headerLists = document.createDocumentFragment()\n@@ -79,13 +80,12 @@\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         {/* <ScreenControlers/> */}\n         <div>\n-<span onClick={updateHeaders}>overview</span>\n-  \n-  </div>  \n+          <span onClick={updateHeaders}>overview</span>\n+        </div>\n         {/* <span>大纲</span> */}\n-    </header>\n+      </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
-                },
-                {
-                    "date": 1665398328699,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         container.appendChild(ul)\n-        ul.ad\n+        ul.addEventListener\n       }\n       return container\n     }\n     const headerLists = document.createDocumentFragment()\n@@ -59,9 +59,9 @@\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n       console.log(newPosition)\n-      if (newPosition < 600 && newPosition > 100) {\n+      if (newPosition < 600|| newPosition > 100) {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n         // 如果太宽了就返回原来的位置\n"
-                },
-                {
-                    "date": 1665398342913,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,8 @@\n         // 如果太宽了就返回原来的位置\n       } else {\n         dragLine.style.left = clientX + 'px'\n       }\n-\n       document.onmousemove = null\n       document.onmouseup = null\n       return false\n     }\n"
-                },
-                {
-                    "date": 1665398385043,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,17 +58,19 @@\n     }\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n+        // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if (newPosition < 600|| newPosition > 100) {\n+      if(newPosition<100 || newPosition >600) {\n+        dragLine.style.left = clientX + 'px'\n+\n+      } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n-        // 如果太宽了就返回原来的位置\n-      } else {\n-        dragLine.style.left = clientX + 'px'\n       }\n+\n       document.onmousemove = null\n       document.onmouseup = null\n       return false\n     }\n"
-                },
-                {
-                    "date": 1665398431771,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n         // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if(newPosition<100 || newPosition >600) {\n+      if(newPosition<=200 || newPosition >600) {\n         dragLine.style.left = clientX + 'px'\n \n       } else {\n         dragLine.style.left = newPosition + 'px'\n"
-                },
-                {
-                    "date": 1665398548626,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,10 @@\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n         // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if(newPosition<=200 || newPosition >600) {\n+      // 小于等于100是侧边栏的最少宽度\n+      if(newPosition<=100 || newPosition >600) {\n         dragLine.style.left = clientX + 'px'\n \n       } else {\n         dragLine.style.left = newPosition + 'px'\n"
-                },
-                {
-                    "date": 1665404635144,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n-import { ScreenControlers } from './ScrenControlers'\n \n+\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n"
-                },
-                {
-                    "date": 1665407604519,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,8 +78,9 @@\n   }\n \n   return (\n     <div className=\"side-bar\">\n+      <div className=\"fixed\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         {/* <ScreenControlers/> */}\n         <div>\n@@ -87,7 +88,9 @@\n         </div>\n         {/* <span>大纲</span> */}\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n+      </div>\n+\n     </div>\n   )\n }\n"
-                },
-                {
-                    "date": 1665407857068,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,11 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n-    const sideBarContainer = document.querySelector('.side-bar-container')\n-    sideBarContainer!.innerHTML = ''\n-    sideBarContainer?.appendChild(headerLists)\n+    const headersContainer = document.querySelector('.headers-container')\n+    headersContainer!.innerHTML = ''\n+    headersContainer?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n"
-                },
-                {
-                    "date": 1665407891280,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n           <span onClick={updateHeaders}>overview</span>\n         </div>\n         {/* <span>大纲</span> */}\n       </header>\n-      <ul className=\"side-bar-container\"></ul>\n+      <ul className=\"headers-container\"></ul>\n       </div>\n \n     </div>\n   )\n"
-                },
-                {
-                    "date": 1665497233621,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n \n-\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n@@ -58,14 +57,13 @@\n     }\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n-        // 如果太宽了就返回原来的位置\n+      // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n-      if(newPosition<=100 || newPosition >600) {\n+      if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n-\n       } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n@@ -79,18 +77,17 @@\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n-      <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n-      <header>\n-        {/* <ScreenControlers/> */}\n-        <div>\n-          <span onClick={updateHeaders}>overview</span>\n-        </div>\n-        {/* <span>大纲</span> */}\n-      </header>\n-      <ul className=\"headers-container\"></ul>\n+        <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n+        <header>\n+          {/* <ScreenControlers/> */}\n+          <div>\n+            <span onClick={updateHeaders}>overview</span>\n+          </div>\n+          {/* <span>大纲</span> */}\n+        </header>\n+        <ul className=\"headers-container\"></ul>\n       </div>\n-\n     </div>\n   )\n }\n"
-                },
-                {
-                    "date": 1665497654011,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,38 +43,9 @@\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n   // 按下鼠标\n-  const dragLineMove = (e: React.MouseEvent) => {\n-    // clietX就是距离浏览器视口的位置\n-    const clientX = e.clientX\n-    const dragLine = document.querySelector('.drag-line') as HTMLElement\n-    document.onmousemove = (e) => {\n-      const newClientX = e.clientX\n-      const moveDistance = newClientX - clientX\n-      const nextPosition = clientX + moveDistance\n-      dragLine.style.left = nextPosition + 'px'\n-      return false\n-    }\n-    // 释放鼠标的时候解除事件绑定\n-    document.onmouseup = (e) => {\n-      const newPosition = e.clientX\n-      // 如果太宽了就返回原来的位置\n-      console.log(newPosition)\n-      // 小于等于100是侧边栏的最少宽度\n-      if (newPosition <= 100 || newPosition > 600) {\n-        dragLine.style.left = clientX + 'px'\n-      } else {\n-        dragLine.style.left = newPosition + 'px'\n-        const sideBar = document.querySelector('.side-bar') as HTMLElement\n-        sideBar.style.width = newPosition + 'px'\n-      }\n \n-      document.onmousemove = null\n-      document.onmouseup = null\n-      return false\n-    }\n-  }\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n"
-                },
-                {
-                    "date": 1665497668299,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,8 @@\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n-        <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n         <header>\n           {/* <ScreenControlers/> */}\n           <div>\n             <span onClick={updateHeaders}>overview</span>\n"
-                },
-                {
-                    "date": 1665497862235,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n+import { HeaderTree, useHeaders } from './SideBar/hooks/hooks/useHeaders'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n"
-                },
-                {
-                    "date": 1665497867680,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from './SideBar/hooks/hooks/useHeaders'\n+import { HeaderTree, useHeaders } from './SideBar/hooks/useHeaders'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n"
-                },
-                {
-                    "date": 1665497995147,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,45 +5,9 @@\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n-  const updateHeaders = () => {\n-    const headers =\n-      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-    const Headers = Array.from(headers)\n-    const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-      const id = tree.header.getAttribute('id')\n-      if (!tree.children.length) {\n-        const li = document.createElement('li')\n-        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n-        container.appendChild(li)\n-      } else {\n-        const ul = document.createElement('ul')\n-        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-        tree.children.forEach((child) => {\n-          dfs(child, ul)\n-        })\n-        container.appendChild(ul)\n-        ul.addEventListener\n-      }\n-      return container\n-    }\n-    const headerLists = document.createDocumentFragment()\n-    trees.forEach((tree) => {\n-      const fragment = document.createDocumentFragment()\n-      const headerList = dfs(tree, fragment)\n-      headerLists.appendChild(headerList)\n-    })\n-    const headersContainer = document.querySelector('.headers-container')\n-    headersContainer!.innerHTML = ''\n-    headersContainer?.appendChild(headerLists)\n-  }\n-  useEffect(() => {\n-    updateHeaders()\n-  }, [])\n+\n   // 按下鼠标\n \n \n   return (\n"
-                },
-                {
-                    "date": 1665498030816,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +0,0 @@\n-import React, { useEffect, useState } from 'react'\n-import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from './SideBar/hooks/useHeaders'\n-\n-interface SideBar {\n-  headers: HTMLElement[]\n-}\n-export const SideBar: React.FC<SideBar> = ({ headers }) => {\n-\n-  // 按下鼠标\n-\n-\n-  return (\n-    <div className=\"side-bar\">\n-      <div className=\"fixed\">\n-        <header>\n-          {/* <ScreenControlers/> */}\n-          <div>\n-            <span onClick={updateHeaders}>overview</span>\n-          </div>\n-          {/* <span>大纲</span> */}\n-        </header>\n-        <ul className=\"headers-container\"></ul>\n-      </div>\n-    </div>\n-  )\n-}\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665385494477,
-            "name": "Commit-0",
-            "content": "import React, { useEffect, useState } from 'react'\nimport { triangleDown } from '../constant'\nimport { HeaderTree, useHeaders } from '../hooks/useHeaders'\n\ninterface SideBar {\n  headers: HTMLElement[]\n}\nexport const SideBar: React.FC<SideBar> = ({ headers }) => {\n  const updateHeaders = () => {\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n      const id = tree.header.getAttribute('id')\n      if (!tree.children.length) {\n        const li = document.createElement('li')\n        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n        container.appendChild(li)\n      } else {\n        const ul = document.createElement('ul')\n        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n        tree.children.forEach((child) => {\n          dfs(child, ul)\n        })\n        container.appendChild(ul)\n      }\n      return container\n    }\n    const headerLists = document.createDocumentFragment()\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      headerLists.appendChild(headerList)\n    })\n    const sideBarContainer = document.querySelector('.side-bar-container')\n    sideBarContainer!.innerHTML = ''\n    sideBarContainer?.appendChild(headerLists)\n  }\n  useEffect(() => {\n    updateHeaders()\n  }, [])\n  // 按下鼠标\n  const dragLineMove = (e: React.MouseEvent) => {\n    // clietX就是距离浏览器视口的位置\n    const clientX = e.clientX\n    const dragLine = document.querySelector('.drag-line') as HTMLElement\n    document.onmousemove = (e) => {\n      const newClientX = e.clientX\n      const moveDistance = newClientX - clientX\n      const nextPosition = clientX + moveDistance\n      dragLine.style.left = nextPosition + 'px'\n      return false\n    }\n    // 释放鼠标的时候解除事件绑定\n    document.onmouseup = (e) => {\n      const newPosition = e.clientX\n      console.log(newPosition)\n      if (newPosition < 600 && newPosition > 100) {\n        dragLine.style.left = newPosition + 'px'\n        const sideBar = document.querySelector('.side-bar') as HTMLElement\n        sideBar.style.width = newPosition + 'px'\n        // 如果太宽了就返回原来的位置\n      } else {\n        dragLine.style.left = clientX + 'px'\n      }\n\n      document.onmousemove = null\n      document.onmouseup = null\n      return false\n    }\n  }\n\n  return (\n    <div className=\"side-bar\">\n      <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n      <header>\n        {/* <span>大纲</span> */}\n        <span onClick={updateHeaders}>overview</span>\n      </header>\n      <ul className=\"side-bar-container\"></ul>\n    </div>\n  )\n}\n"
+          "date": 1665385494477,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665385579608,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+        },
+        {
+          "date": 1665385597337,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+        },
+        {
+          "date": 1665385618994,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+        },
+        {
+          "date": 1665385628301,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):void => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+        },
+        {
+          "date": 1665385636405,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n     const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment):HTMLElement => {\n+    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n       const id = tree.header.getAttribute('id')\n       if (!tree.children.length) {\n         const li = document.createElement('li')\n         li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n"
+        },
+        {
+          "date": 1665391686636,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,8 +76,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n+        \n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n"
+        },
+        {
+          "date": 1665391696394,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -76,9 +76,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        \n+        <Sc\n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n"
+        },
+        {
+          "date": 1665392052251,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n+import { ScreenControlers } from './ScrenControlers'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n@@ -76,12 +77,12 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        <Sc\n+        <ScreenControlers/>\n         {/* <span>大纲</span> */}\n         <span onClick={updateHeaders}>overview</span>\n-      </header>\n+<dir></dir>      </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
+        },
+        {
+          "date": 1665392058178,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,10 +79,9 @@\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         <ScreenControlers/>\n         {/* <span>大纲</span> */}\n-        <span onClick={updateHeaders}>overview</span>\n-<dir></dir>      </header>\n+    </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
+        },
+        {
+          "date": 1665392065986,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,8 +78,12 @@\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         <ScreenControlers/>\n+        <div>\n+<span onClick={updateHeaders}>overview</span>\n+  \n+  </div>  \n         {/* <span>大纲</span> */}\n     </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n"
+        },
+        {
+          "date": 1665392631665,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,9 +77,9 @@\n   return (\n     <div className=\"side-bar\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n-        <ScreenControlers/>\n+        {/* <ScreenControlers/> */}\n         <div>\n <span onClick={updateHeaders}>overview</span>\n   \n   </div>  \n"
+        },
+        {
+          "date": 1665394765167,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         container.appendChild(ul)\n+        ul.ad\n       }\n       return container\n     }\n     const headerLists = document.createDocumentFragment()\n@@ -79,13 +80,12 @@\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         {/* <ScreenControlers/> */}\n         <div>\n-<span onClick={updateHeaders}>overview</span>\n-  \n-  </div>  \n+          <span onClick={updateHeaders}>overview</span>\n+        </div>\n         {/* <span>大纲</span> */}\n-    </header>\n+      </header>\n       <ul className=\"side-bar-container\"></ul>\n     </div>\n   )\n }\n"
+        },
+        {
+          "date": 1665398328699,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         tree.children.forEach((child) => {\n           dfs(child, ul)\n         })\n         container.appendChild(ul)\n-        ul.ad\n+        ul.addEventListener\n       }\n       return container\n     }\n     const headerLists = document.createDocumentFragment()\n@@ -59,9 +59,9 @@\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n       console.log(newPosition)\n-      if (newPosition < 600 && newPosition > 100) {\n+      if (newPosition < 600|| newPosition > 100) {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n         // 如果太宽了就返回原来的位置\n"
+        },
+        {
+          "date": 1665398342913,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,8 @@\n         // 如果太宽了就返回原来的位置\n       } else {\n         dragLine.style.left = clientX + 'px'\n       }\n-\n       document.onmousemove = null\n       document.onmouseup = null\n       return false\n     }\n"
+        },
+        {
+          "date": 1665398385043,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,17 +58,19 @@\n     }\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n+        // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if (newPosition < 600|| newPosition > 100) {\n+      if(newPosition<100 || newPosition >600) {\n+        dragLine.style.left = clientX + 'px'\n+\n+      } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n-        // 如果太宽了就返回原来的位置\n-      } else {\n-        dragLine.style.left = clientX + 'px'\n       }\n+\n       document.onmousemove = null\n       document.onmouseup = null\n       return false\n     }\n"
+        },
+        {
+          "date": 1665398431771,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n         // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if(newPosition<100 || newPosition >600) {\n+      if(newPosition<=200 || newPosition >600) {\n         dragLine.style.left = clientX + 'px'\n \n       } else {\n         dragLine.style.left = newPosition + 'px'\n"
+        },
+        {
+          "date": 1665398548626,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,10 @@\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n         // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n-      if(newPosition<=200 || newPosition >600) {\n+      // 小于等于100是侧边栏的最少宽度\n+      if(newPosition<=100 || newPosition >600) {\n         dragLine.style.left = clientX + 'px'\n \n       } else {\n         dragLine.style.left = newPosition + 'px'\n"
+        },
+        {
+          "date": 1665404635144,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n-import { ScreenControlers } from './ScrenControlers'\n \n+\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n"
+        },
+        {
+          "date": 1665407604519,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,8 +78,9 @@\n   }\n \n   return (\n     <div className=\"side-bar\">\n+      <div className=\"fixed\">\n       <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n       <header>\n         {/* <ScreenControlers/> */}\n         <div>\n@@ -87,7 +88,9 @@\n         </div>\n         {/* <span>大纲</span> */}\n       </header>\n       <ul className=\"side-bar-container\"></ul>\n+      </div>\n+\n     </div>\n   )\n }\n"
+        },
+        {
+          "date": 1665407857068,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,11 +36,11 @@\n       const fragment = document.createDocumentFragment()\n       const headerList = dfs(tree, fragment)\n       headerLists.appendChild(headerList)\n     })\n-    const sideBarContainer = document.querySelector('.side-bar-container')\n-    sideBarContainer!.innerHTML = ''\n-    sideBarContainer?.appendChild(headerLists)\n+    const headersContainer = document.querySelector('.headers-container')\n+    headersContainer!.innerHTML = ''\n+    headersContainer?.appendChild(headerLists)\n   }\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n"
+        },
+        {
+          "date": 1665407891280,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -87,9 +87,9 @@\n           <span onClick={updateHeaders}>overview</span>\n         </div>\n         {/* <span>大纲</span> */}\n       </header>\n-      <ul className=\"side-bar-container\"></ul>\n+      <ul className=\"headers-container\"></ul>\n       </div>\n \n     </div>\n   )\n"
+        },
+        {
+          "date": 1665497233621,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n \n-\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n@@ -58,14 +57,13 @@\n     }\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n-        // 如果太宽了就返回原来的位置\n+      // 如果太宽了就返回原来的位置\n       console.log(newPosition)\n       // 小于等于100是侧边栏的最少宽度\n-      if(newPosition<=100 || newPosition >600) {\n+      if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n-\n       } else {\n         dragLine.style.left = newPosition + 'px'\n         const sideBar = document.querySelector('.side-bar') as HTMLElement\n         sideBar.style.width = newPosition + 'px'\n@@ -79,18 +77,17 @@\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n-      <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n-      <header>\n-        {/* <ScreenControlers/> */}\n-        <div>\n-          <span onClick={updateHeaders}>overview</span>\n-        </div>\n-        {/* <span>大纲</span> */}\n-      </header>\n-      <ul className=\"headers-container\"></ul>\n+        <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n+        <header>\n+          {/* <ScreenControlers/> */}\n+          <div>\n+            <span onClick={updateHeaders}>overview</span>\n+          </div>\n+          {/* <span>大纲</span> */}\n+        </header>\n+        <ul className=\"headers-container\"></ul>\n       </div>\n-\n     </div>\n   )\n }\n"
+        },
+        {
+          "date": 1665497654011,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,38 +43,9 @@\n   useEffect(() => {\n     updateHeaders()\n   }, [])\n   // 按下鼠标\n-  const dragLineMove = (e: React.MouseEvent) => {\n-    // clietX就是距离浏览器视口的位置\n-    const clientX = e.clientX\n-    const dragLine = document.querySelector('.drag-line') as HTMLElement\n-    document.onmousemove = (e) => {\n-      const newClientX = e.clientX\n-      const moveDistance = newClientX - clientX\n-      const nextPosition = clientX + moveDistance\n-      dragLine.style.left = nextPosition + 'px'\n-      return false\n-    }\n-    // 释放鼠标的时候解除事件绑定\n-    document.onmouseup = (e) => {\n-      const newPosition = e.clientX\n-      // 如果太宽了就返回原来的位置\n-      console.log(newPosition)\n-      // 小于等于100是侧边栏的最少宽度\n-      if (newPosition <= 100 || newPosition > 600) {\n-        dragLine.style.left = clientX + 'px'\n-      } else {\n-        dragLine.style.left = newPosition + 'px'\n-        const sideBar = document.querySelector('.side-bar') as HTMLElement\n-        sideBar.style.width = newPosition + 'px'\n-      }\n \n-      document.onmousemove = null\n-      document.onmouseup = null\n-      return false\n-    }\n-  }\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n"
+        },
+        {
+          "date": 1665497668299,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,8 @@\n \n   return (\n     <div className=\"side-bar\">\n       <div className=\"fixed\">\n-        <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n         <header>\n           {/* <ScreenControlers/> */}\n           <div>\n             <span onClick={updateHeaders}>overview</span>\n"
+        },
+        {
+          "date": 1665497862235,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from '../hooks/useHeaders'\n+import { HeaderTree, useHeaders } from './SideBar/hooks/hooks/useHeaders'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n"
+        },
+        {
+          "date": 1665497867680,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React, { useEffect, useState } from 'react'\n import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from './SideBar/hooks/hooks/useHeaders'\n+import { HeaderTree, useHeaders } from './SideBar/hooks/useHeaders'\n \n interface SideBar {\n   headers: HTMLElement[]\n }\n"
+        },
+        {
+          "date": 1665497995147,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,45 +5,9 @@\n interface SideBar {\n   headers: HTMLElement[]\n }\n export const SideBar: React.FC<SideBar> = ({ headers }) => {\n-  const updateHeaders = () => {\n-    const headers =\n-      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-    const Headers = Array.from(headers)\n-    const trees = useHeaders(Headers as HTMLElement[])\n-    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-      const id = tree.header.getAttribute('id')\n-      if (!tree.children.length) {\n-        const li = document.createElement('li')\n-        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n-        container.appendChild(li)\n-      } else {\n-        const ul = document.createElement('ul')\n-        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-        tree.children.forEach((child) => {\n-          dfs(child, ul)\n-        })\n-        container.appendChild(ul)\n-        ul.addEventListener\n-      }\n-      return container\n-    }\n-    const headerLists = document.createDocumentFragment()\n-    trees.forEach((tree) => {\n-      const fragment = document.createDocumentFragment()\n-      const headerList = dfs(tree, fragment)\n-      headerLists.appendChild(headerList)\n-    })\n-    const headersContainer = document.querySelector('.headers-container')\n-    headersContainer!.innerHTML = ''\n-    headersContainer?.appendChild(headerLists)\n-  }\n-  useEffect(() => {\n-    updateHeaders()\n-  }, [])\n+\n   // 按下鼠标\n \n \n   return (\n"
+        },
+        {
+          "date": 1665498030816,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +0,0 @@\n-import React, { useEffect, useState } from 'react'\n-import { triangleDown } from '../constant'\n-import { HeaderTree, useHeaders } from './SideBar/hooks/useHeaders'\n-\n-interface SideBar {\n-  headers: HTMLElement[]\n-}\n-export const SideBar: React.FC<SideBar> = ({ headers }) => {\n-\n-  // 按下鼠标\n-\n-\n-  return (\n-    <div className=\"side-bar\">\n-      <div className=\"fixed\">\n-        <header>\n-          {/* <ScreenControlers/> */}\n-          <div>\n-            <span onClick={updateHeaders}>overview</span>\n-          </div>\n-          {/* <span>大纲</span> */}\n-        </header>\n-        <ul className=\"headers-container\"></ul>\n-      </div>\n-    </div>\n-  )\n-}\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665385494477,
+      "name": "Commit-0",
+      "content": "import React, { useEffect, useState } from 'react'\nimport { triangleDown } from '../constant'\nimport { HeaderTree, useHeaders } from '../hooks/useHeaders'\n\ninterface SideBar {\n  headers: HTMLElement[]\n}\nexport const SideBar: React.FC<SideBar> = ({ headers }) => {\n  const updateHeaders = () => {\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n      const id = tree.header.getAttribute('id')\n      if (!tree.children.length) {\n        const li = document.createElement('li')\n        li.innerHTML = `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        li.setAttribute('style', `--i: ${Number(tree.tagName[1]) - 0.5}`)\n        container.appendChild(li)\n      } else {\n        const ul = document.createElement('ul')\n        ul.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n        ul.setAttribute('style', `--i: ${tree.tagName[1]}`)\n        tree.children.forEach((child) => {\n          dfs(child, ul)\n        })\n        container.appendChild(ul)\n      }\n      return container\n    }\n    const headerLists = document.createDocumentFragment()\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      headerLists.appendChild(headerList)\n    })\n    const sideBarContainer = document.querySelector('.side-bar-container')\n    sideBarContainer!.innerHTML = ''\n    sideBarContainer?.appendChild(headerLists)\n  }\n  useEffect(() => {\n    updateHeaders()\n  }, [])\n  // 按下鼠标\n  const dragLineMove = (e: React.MouseEvent) => {\n    // clietX就是距离浏览器视口的位置\n    const clientX = e.clientX\n    const dragLine = document.querySelector('.drag-line') as HTMLElement\n    document.onmousemove = (e) => {\n      const newClientX = e.clientX\n      const moveDistance = newClientX - clientX\n      const nextPosition = clientX + moveDistance\n      dragLine.style.left = nextPosition + 'px'\n      return false\n    }\n    // 释放鼠标的时候解除事件绑定\n    document.onmouseup = (e) => {\n      const newPosition = e.clientX\n      console.log(newPosition)\n      if (newPosition < 600 && newPosition > 100) {\n        dragLine.style.left = newPosition + 'px'\n        const sideBar = document.querySelector('.side-bar') as HTMLElement\n        sideBar.style.width = newPosition + 'px'\n        // 如果太宽了就返回原来的位置\n      } else {\n        dragLine.style.left = clientX + 'px'\n      }\n\n      document.onmousemove = null\n      document.onmouseup = null\n      return false\n    }\n  }\n\n  return (\n    <div className=\"side-bar\">\n      <div className=\"drag-line\" onMouseDown={dragLineMove}></div>\n      <header>\n        {/* <span>大纲</span> */}\n        <span onClick={updateHeaders}>overview</span>\n      </header>\n      <ul className=\"side-bar-container\"></ul>\n    </div>\n  )\n}\n"
+    }
+  ]
 }

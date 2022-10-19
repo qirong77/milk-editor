@@ -1,18 +1,18 @@
 {
-    "sourceFile": "src/main/hooks/constant.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/hooks/constant.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 0,
+      "patches": [
         {
-            "activePatchIndex": 0,
-            "patches": [
-                {
-                    "date": 1665737274156,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                }
-            ],
-            "date": 1665737274156,
-            "name": "Commit-0",
-            "content": "export const name = '1'"
+          "date": 1665737274156,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
         }
-    ]
+      ],
+      "date": 1665737274156,
+      "name": "Commit-0",
+      "content": "export const name = '1'"
+    }
+  ]
 }

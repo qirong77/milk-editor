@@ -1,42 +1,42 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar/SideBarHeader.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar/SideBarHeader.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 6,
+      "patches": [
         {
-            "activePatchIndex": 6,
-            "patches": [
-                {
-                    "date": 1665763652336,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665891650201,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-export const SideBarHeader = ()=>{\n+import React from \"react\"\n+\n+interface ISideBarHeader {\n+  setShowFileList:(show:boolean)=>void,\n+  title:''\n+}\n+export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n     return (\n         <header>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n@@ -13,9 +19,9 @@\n             fillRule=\"evenodd\"\n             d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n           />\n         </svg>\n-        <span>文件</span>\n+        <span>{title}</span>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n"
-                },
-                {
-                    "date": 1665891814565,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from \"react\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n-  title:''\n+  title:string\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n     return (\n         <header>\n"
-                },
-                {
-                    "date": 1665898424955,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n import React from \"react\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n-  title:string\n+  title:string,\n+  show:boolean\n }\n-export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n+export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     return (\n         <header>\n         <svg\n+        onClick={()=>{setShowFileList(!show)}}\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n           fill=\"currentColor\"\n"
-                },
-                {
-                    "date": 1665900813135,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,21 @@\n import React from \"react\"\n+import { useUpdateHeaders } from \"./hooks/useUpdateHeader\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n   title:string,\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n+    const clickMenu = ()=>{\n+      useUpdateHeaders()\n+      setShowFileList(!show)\n+    }\n     return (\n         <header>\n         <svg\n-        onClick={()=>{setShowFileList(!show)}}\n+        onClick={clickMenu}\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n           fill=\"currentColor\"\n"
-                },
-                {
-                    "date": 1665900874269,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,12 @@\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     const clickMenu = ()=>{\n-      useUpdateHeaders()\n       setShowFileList(!show)\n+      if(show){\n+        useUpdateHeaders()\n+      }\n     }\n     return (\n         <header>\n         <svg\n"
-                },
-                {
-                    "date": 1665901086895,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,15 @@\n import React from \"react\"\n-import { useUpdateHeaders } from \"./hooks/useUpdateHeader\"\n \n+\n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n   title:string,\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     const clickMenu = ()=>{\n       setShowFileList(!show)\n-      if(show){\n-        useUpdateHeaders()\n-      }\n     }\n     return (\n         <header>\n         <svg\n"
-                }
-            ],
-            "date": 1665763652336,
-            "name": "Commit-0",
-            "content": "export const SideBarHeader = ()=>{\n    return (\n        <header>\n        <svg\n          xmlns=\"http://www.w3.org/2000/svg\"\n          width=\"16\"\n          height=\"16\"\n          fill=\"currentColor\"\n          className=\"bi bi-list\"\n          viewBox=\"0 0 16 16\"\n        >\n          <path\n            fillRule=\"evenodd\"\n            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n          />\n        </svg>\n        <span>文件</span>\n        <svg\n          xmlns=\"http://www.w3.org/2000/svg\"\n          width=\"16\"\n          height=\"16\"\n          fill=\"currentColor\"\n          className=\"bi bi-search\"\n          viewBox=\"0 0 16 16\"\n        >\n          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n        </svg>\n      </header>\n    )\n}"
+          "date": 1665763652336,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665891650201,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-export const SideBarHeader = ()=>{\n+import React from \"react\"\n+\n+interface ISideBarHeader {\n+  setShowFileList:(show:boolean)=>void,\n+  title:''\n+}\n+export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n     return (\n         <header>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n@@ -13,9 +19,9 @@\n             fillRule=\"evenodd\"\n             d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n           />\n         </svg>\n-        <span>文件</span>\n+        <span>{title}</span>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n"
+        },
+        {
+          "date": 1665891814565,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import React from \"react\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n-  title:''\n+  title:string\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n     return (\n         <header>\n"
+        },
+        {
+          "date": 1665898424955,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n import React from \"react\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n-  title:string\n+  title:string,\n+  show:boolean\n }\n-export const SideBarHeader:React.FC<ISideBarHeader> = ({title})=>{\n+export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     return (\n         <header>\n         <svg\n+        onClick={()=>{setShowFileList(!show)}}\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n           fill=\"currentColor\"\n"
+        },
+        {
+          "date": 1665900813135,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,21 @@\n import React from \"react\"\n+import { useUpdateHeaders } from \"./hooks/useUpdateHeader\"\n \n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n   title:string,\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n+    const clickMenu = ()=>{\n+      useUpdateHeaders()\n+      setShowFileList(!show)\n+    }\n     return (\n         <header>\n         <svg\n-        onClick={()=>{setShowFileList(!show)}}\n+        onClick={clickMenu}\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n           height=\"16\"\n           fill=\"currentColor\"\n"
+        },
+        {
+          "date": 1665900874269,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,12 @@\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     const clickMenu = ()=>{\n-      useUpdateHeaders()\n       setShowFileList(!show)\n+      if(show){\n+        useUpdateHeaders()\n+      }\n     }\n     return (\n         <header>\n         <svg\n"
+        },
+        {
+          "date": 1665901086895,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,15 @@\n import React from \"react\"\n-import { useUpdateHeaders } from \"./hooks/useUpdateHeader\"\n \n+\n interface ISideBarHeader {\n   setShowFileList:(show:boolean)=>void,\n   title:string,\n   show:boolean\n }\n export const SideBarHeader:React.FC<ISideBarHeader> = ({title,setShowFileList,show})=>{\n     const clickMenu = ()=>{\n       setShowFileList(!show)\n-      if(show){\n-        useUpdateHeaders()\n-      }\n     }\n     return (\n         <header>\n         <svg\n"
         }
-    ]
+      ],
+      "date": 1665763652336,
+      "name": "Commit-0",
+      "content": "export const SideBarHeader = ()=>{\n    return (\n        <header>\n        <svg\n          xmlns=\"http://www.w3.org/2000/svg\"\n          width=\"16\"\n          height=\"16\"\n          fill=\"currentColor\"\n          className=\"bi bi-list\"\n          viewBox=\"0 0 16 16\"\n        >\n          <path\n            fillRule=\"evenodd\"\n            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n          />\n        </svg>\n        <span>文件</span>\n        <svg\n          xmlns=\"http://www.w3.org/2000/svg\"\n          width=\"16\"\n          height=\"16\"\n          fill=\"currentColor\"\n          className=\"bi bi-search\"\n          viewBox=\"0 0 16 16\"\n        >\n          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n        </svg>\n      </header>\n    )\n}"
+    }
+  ]
 }

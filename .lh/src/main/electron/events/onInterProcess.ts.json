@@ -1,34 +1,34 @@
 {
-    "sourceFile": "src/main/electron/events/onInterProcess.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/events/onInterProcess.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 4,
+      "patches": [
         {
-            "activePatchIndex": 4,
-            "patches": [
-                {
-                    "date": 1665989999429,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665990948376,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,30 @@\n-import { BrowserWindow } from \"electron\";\n-\n+import { homedir } from 'os'\n+import { existsSync, readdirSync} from 'fs'\n+import { resolve } from 'path'\n+import { BrowserWindow, ipcMain } from \"electron\";\n+import { OPEN_DEFAULT_DIR } from \"./constant\";\n+const defultDirConteng = () =>{\n+    const desktopDir = resolve(homedir(), 'Desktop')\n+    const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n+    if (existsSync(defaultDirPath)) {\n+      const IS_MARKDOWN = /\\.md$/\n+      const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n+        if (IS_MARKDOWN.test(path)) return path\n+        // filter可以return flase？\n+        else return false\n+      })\n+      const contents = markdownFiles.map((file) => {\n+        const filePath = resolve(defaultDirPath, file)\n+        return {\n+          fileName: file,\n+          filePath:filePath\n+        }\n+      })\n+      return contents\n+    } else {\n+      return resolve(homedir())\n+    }\n+}\n export const onInterProcess = (window:BrowserWindow) =>{\n-    \n+    ipcMain.on(OPEN_DEFAULT_DIR,defultDirConteng)\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665990961157,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n     if (existsSync(defaultDirPath)) {\n       const IS_MARKDOWN = /\\.md$/\n       const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n         if (IS_MARKDOWN.test(path)) return path\n-        // filter可以return flase？\n         else return false\n       })\n       const contents = markdownFiles.map((file) => {\n         const filePath = resolve(defaultDirPath, file)\n"
-                },
-                {
-                    "date": 1665993357536,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { existsSync, readdirSync} from 'fs'\n import { resolve } from 'path'\n import { BrowserWindow, ipcMain } from \"electron\";\n import { OPEN_DEFAULT_DIR } from \"./constant\";\n-const defultDirConteng = () =>{\n+const defultDirContent = () =>{\n     const desktopDir = resolve(homedir(), 'Desktop')\n     const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n     if (existsSync(defaultDirPath)) {\n       const IS_MARKDOWN = /\\.md$/\n@@ -24,6 +24,6 @@\n       return resolve(homedir())\n     }\n }\n export const onInterProcess = (window:BrowserWindow) =>{\n-    ipcMain.on(OPEN_DEFAULT_DIR,defultDirConteng)\n+    ipcMain.on(OPEN_DEFAULT_DIR,defultDirContent)\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665993449967,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,6 +24,6 @@\n       return resolve(homedir())\n     }\n }\n export const onInterProcess = (window:BrowserWindow) =>{\n-    ipcMain.on(OPEN_DEFAULT_DIR,defultDirContent)\n+    ipcMain.handle(OPEN_DEFAULT_DIR,defultDirContent)\n }\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665989999429,
-            "name": "Commit-0",
-            "content": "import { BrowserWindow } from \"electron\";\n\nexport const onInterProcess = (window:BrowserWindow) =>{\n    \n}"
+          "date": 1665989999429,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665990948376,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,30 @@\n-import { BrowserWindow } from \"electron\";\n-\n+import { homedir } from 'os'\n+import { existsSync, readdirSync} from 'fs'\n+import { resolve } from 'path'\n+import { BrowserWindow, ipcMain } from \"electron\";\n+import { OPEN_DEFAULT_DIR } from \"./constant\";\n+const defultDirConteng = () =>{\n+    const desktopDir = resolve(homedir(), 'Desktop')\n+    const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n+    if (existsSync(defaultDirPath)) {\n+      const IS_MARKDOWN = /\\.md$/\n+      const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n+        if (IS_MARKDOWN.test(path)) return path\n+        // filter可以return flase？\n+        else return false\n+      })\n+      const contents = markdownFiles.map((file) => {\n+        const filePath = resolve(defaultDirPath, file)\n+        return {\n+          fileName: file,\n+          filePath:filePath\n+        }\n+      })\n+      return contents\n+    } else {\n+      return resolve(homedir())\n+    }\n+}\n export const onInterProcess = (window:BrowserWindow) =>{\n-    \n+    ipcMain.on(OPEN_DEFAULT_DIR,defultDirConteng)\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665990961157,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n     if (existsSync(defaultDirPath)) {\n       const IS_MARKDOWN = /\\.md$/\n       const markdownFiles = readdirSync(defaultDirPath).filter((path) => {\n         if (IS_MARKDOWN.test(path)) return path\n-        // filter可以return flase？\n         else return false\n       })\n       const contents = markdownFiles.map((file) => {\n         const filePath = resolve(defaultDirPath, file)\n"
+        },
+        {
+          "date": 1665993357536,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { existsSync, readdirSync} from 'fs'\n import { resolve } from 'path'\n import { BrowserWindow, ipcMain } from \"electron\";\n import { OPEN_DEFAULT_DIR } from \"./constant\";\n-const defultDirConteng = () =>{\n+const defultDirContent = () =>{\n     const desktopDir = resolve(homedir(), 'Desktop')\n     const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')\n     if (existsSync(defaultDirPath)) {\n       const IS_MARKDOWN = /\\.md$/\n@@ -24,6 +24,6 @@\n       return resolve(homedir())\n     }\n }\n export const onInterProcess = (window:BrowserWindow) =>{\n-    ipcMain.on(OPEN_DEFAULT_DIR,defultDirConteng)\n+    ipcMain.on(OPEN_DEFAULT_DIR,defultDirContent)\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665993449967,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,6 +24,6 @@\n       return resolve(homedir())\n     }\n }\n export const onInterProcess = (window:BrowserWindow) =>{\n-    ipcMain.on(OPEN_DEFAULT_DIR,defultDirContent)\n+    ipcMain.handle(OPEN_DEFAULT_DIR,defultDirContent)\n }\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665989999429,
+      "name": "Commit-0",
+      "content": "import { BrowserWindow } from \"electron\";\n\nexport const onInterProcess = (window:BrowserWindow) =>{\n    \n}"
+    }
+  ]
 }

@@ -1,5 +1,5 @@
-import { Editor } from "@milkdown/core";
-import { nord } from "@milkdown/theme-nord";
+import { Editor } from '@milkdown/core'
+import { nord } from '@milkdown/theme-nord'
 import { listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
@@ -11,19 +11,19 @@ import '@material-design-icons/font'
 import 'katex/dist/katex.min.css'
 // 代码高亮
 import 'prism-themes/themes/prism-material-oceanic.min.css'
-import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from "@milkdown/preset-gfm";
+import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from '@milkdown/preset-gfm'
 const gitHubCommonMark = gfm
-.configure(blockquote, {
-  keymap: {
-    [SupportedKeys.Blockquote]: 'Mod-Shift-q'
-  }
-})
-.configure(taskListItem, {})
-.configure(codeFence, {
-  languageList: ['scss', 'javascript', 'css', 'html', 'typescript']
-})
-export const usePlugins = (Editor:Editor) =>{
-    Editor.use(nord)
+  .configure(blockquote, {
+    keymap: {
+      [SupportedKeys.Blockquote]: 'Mod-Shift-q'
+    }
+  })
+  .configure(taskListItem, {})
+  .configure(codeFence, {
+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript']
+  })
+export const usePlugins = (Editor: Editor) => {
+  Editor.use(nord)
     .use(history)
     .use(listener)
     .use(prism)

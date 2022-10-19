@@ -1,78 +1,78 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar/hooks/useUpdateHeader.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar/hooks/useUpdateHeader.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 15,
+      "patches": [
         {
-            "activePatchIndex": 15,
-            "patches": [
-                {
-                    "date": 1665765387253,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665765394370,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import { useHeaders } from \"./useHeaders\"\n+\n const updateHeaders = (container: HTMLElement | null) => {\n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n"
-                },
-                {
-                    "date": 1665765414595,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,27 @@\n import { useHeaders } from \"./useHeaders\"\n-\n+const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const id = tree.header.getAttribute('id')\n+    const ul = document.createElement('ul')\n+    const li = document.createElement('li')\n+    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+    li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+    ul.appendChild(li)\n+    ul.addEventListener('click', (e) => {\n+      e.stopPropagation()\n+      ul.classList.toggle('ul-close')\n+    })\n+    if (tree.children.length >= 1) {\n+      ul.classList.add('show-list')\n+    } else {\n+      ul.classList.add('not-list')\n+    }\n+    tree.children.forEach((child) => {\n+      dfs(child, ul)\n+    })\n+    container.appendChild(ul)\n+    return container\n+  }\n const updateHeaders = (container: HTMLElement | null) => {\n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n"
-                },
-                {
-                    "date": 1665765425532,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n import { useHeaders } from \"./useHeaders\"\n+const triangleDown = `<div>\n+<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n+<path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n+</svg>\n+</div>`\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     const ul = document.createElement('ul')\n     const li = document.createElement('li')\n"
-                },
-                {
-                    "date": 1665765438076,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useHeaders } from \"./useHeaders\"\n+import { HeaderTree, useHeaders } from \"./useHeaders\"\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n"
-                },
-                {
-                    "date": 1665765463087,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     container.appendChild(ul)\n     return container\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n+    \n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
-                },
-                {
-                    "date": 1665765469758,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,10 +26,11 @@\n     container.appendChild(ul)\n     return container\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n-    \n+\n     if (!container) return\n+    const con\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
-                },
-                {
-                    "date": 1665765477499,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n \n     if (!container) return\n-    const con\n+    const container = document.querySelector('')\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
-                },
-                {
-                    "date": 1665765524981,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n \n     if (!container) return\n-    const container = document.querySelector('')\n+    const container = document.querySelector('.header-list') as HTMLElement\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
-                },
-                {
-                    "date": 1665765530094,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,9 @@\n     })\n     container.appendChild(ul)\n     return container\n   }\n-const updateHeaders = (container: HTMLElement | null) => {\n-\n-    if (!container) return\n+const updateHeaders = () => {=\n     const container = document.querySelector('.header-list') as HTMLElement\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
-                },
-                {
-                    "date": 1665765545638,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,41 +1,41 @@\n-import { HeaderTree, useHeaders } from \"./useHeaders\"\n+import { HeaderTree, useHeaders } from './useHeaders'\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-    const id = tree.header.getAttribute('id')\n-    const ul = document.createElement('ul')\n-    const li = document.createElement('li')\n-    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-    li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-    ul.appendChild(li)\n-    ul.addEventListener('click', (e) => {\n-      e.stopPropagation()\n-      ul.classList.toggle('ul-close')\n-    })\n-    if (tree.children.length >= 1) {\n-      ul.classList.add('show-list')\n-    } else {\n-      ul.classList.add('not-list')\n-    }\n-    tree.children.forEach((child) => {\n-      dfs(child, ul)\n-    })\n-    container.appendChild(ul)\n-    return container\n+  const id = tree.header.getAttribute('id')\n+  const ul = document.createElement('ul')\n+  const li = document.createElement('li')\n+  li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+  li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+  ul.appendChild(li)\n+  ul.addEventListener('click', (e) => {\n+    e.stopPropagation()\n+    ul.classList.toggle('ul-close')\n+  })\n+  if (tree.children.length >= 1) {\n+    ul.classList.add('show-list')\n+  } else {\n\\ No newline at end of file\n+    ul.classList.add('not-list')\n   }\n-const updateHeaders = () => {=\n-    const container = document.querySelector('.header-list') as HTMLElement\n-    container!.innerHTML = ''\n-    const headers =\n-      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-    const Headers = Array.from(headers)\n-    const trees = useHeaders(Headers as HTMLElement[])\n-    trees.forEach((tree) => {\n-      const fragment = document.createDocumentFragment()\n-      const headerList = dfs(tree, fragment)\n-      container.appendChild(headerList)\n-    })\n-  }\n+  tree.children.forEach((child) => {\n+    dfs(child, ul)\n+  })\n+  container.appendChild(ul)\n+  return container\n+}\n+export const updateHeaders = () => {\n+  const container = document.querySelector('.header-list') as HTMLElement\n+  container!.innerHTML = ''\n+  const headers =\n+    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+  const Headers = Array.from(headers)\n+  const trees = useHeaders(Headers as HTMLElement[])\n+  trees.forEach((tree) => {\n+    const fragment = document.createDocumentFragment()\n+    const headerList = dfs(tree, fragment)\n+    container.appendChild(headerList)\n+  })\n+}\n"
-                },
-                {
-                    "date": 1665765581197,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   })\n   container.appendChild(ul)\n   return container\n }\n-export const updateHeaders = () => {\n+export const useUpdateHeaders = () => {\n   const container = document.querySelector('.header-list') as HTMLElement\n   container!.innerHTML = ''\n   const headers =\n     document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n@@ -37,5 +37,5 @@\n     const fragment = document.createDocumentFragment()\n     const headerList = dfs(tree, fragment)\n     container.appendChild(headerList)\n   })\n-}\n\\ No newline at end of file\n+}\n"
-                },
-                {
-                    "date": 1665900673894,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,16 +26,19 @@\n   container.appendChild(ul)\n   return container\n }\n export const useUpdateHeaders = () => {\n-  const container = document.querySelector('.header-list') as HTMLElement\n-  container!.innerHTML = ''\n-  const headers =\n-    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-  const Headers = Array.from(headers)\n-  const trees = useHeaders(Headers as HTMLElement[])\n-  trees.forEach((tree) => {\n-    const fragment = document.createDocumentFragment()\n-    const headerList = dfs(tree, fragment)\n-    container.appendChild(headerList)\n-  })\n+  const container = document.querySelector('.header-list')\n+  if(container) {\n+    container.innerHTML = ''\n+    const headers =\n+      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+    const Headers = Array.from(headers)\n+    const trees = useHeaders(Headers as HTMLElement[])\n+    trees.forEach((tree) => {\n+      const fragment = document.createDocumentFragment()\n+      const headerList = dfs(tree, fragment)\n+      container.appendChild(headerList)\n+    })\n+  }\n+\n }\n"
-                },
-                {
-                    "date": 1665923629855,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n   container.appendChild(ul)\n   return container\n }\n export const useUpdateHeaders = () => {\n+  console.log('update-headers')\n   const container = document.querySelector('.header-list')\n   if(container) {\n     container.innerHTML = ''\n     const headers =\n"
-                },
-                {
-                    "date": 1665928205320,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useDebounce } from '@renderer/common/useDebouce'\n import { HeaderTree, useHeaders } from './useHeaders'\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n@@ -25,9 +26,9 @@\n   })\n   container.appendChild(ul)\n   return container\n }\n-export const useUpdateHeaders = () => {\n+export const updateHeaders = () => {\n   console.log('update-headers')\n   const container = document.querySelector('.header-list')\n   if(container) {\n     container.innerHTML = ''\n@@ -40,6 +41,6 @@\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n   }\n-\n }\n+export const useUpdateHeaders = useDebounce(updateHeaders,3000)\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1666081995529,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,5 @@\n       container.appendChild(headerList)\n     })\n   }\n }\n-export const useUpdateHeaders = useDebounce(updateHeaders,3000)\n\\ No newline at end of file\n+export const useUpdateHeaders = useDebounce(updateHeaders,1000)\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665765387253,
-            "name": "Commit-0",
-            "content": "const updateHeaders = (container: HTMLElement | null) => {\n    if (!container) return\n    container!.innerHTML = ''\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      container.appendChild(headerList)\n    })\n  }"
+          "date": 1665765387253,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665765394370,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import { useHeaders } from \"./useHeaders\"\n+\n const updateHeaders = (container: HTMLElement | null) => {\n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n"
+        },
+        {
+          "date": 1665765414595,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,27 @@\n import { useHeaders } from \"./useHeaders\"\n-\n+const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n+    const id = tree.header.getAttribute('id')\n+    const ul = document.createElement('ul')\n+    const li = document.createElement('li')\n+    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+    li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+    ul.appendChild(li)\n+    ul.addEventListener('click', (e) => {\n+      e.stopPropagation()\n+      ul.classList.toggle('ul-close')\n+    })\n+    if (tree.children.length >= 1) {\n+      ul.classList.add('show-list')\n+    } else {\n+      ul.classList.add('not-list')\n+    }\n+    tree.children.forEach((child) => {\n+      dfs(child, ul)\n+    })\n+    container.appendChild(ul)\n+    return container\n+  }\n const updateHeaders = (container: HTMLElement | null) => {\n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n"
+        },
+        {
+          "date": 1665765425532,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n import { useHeaders } from \"./useHeaders\"\n+const triangleDown = `<div>\n+<svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n+<path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n+</svg>\n+</div>`\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n     const id = tree.header.getAttribute('id')\n     const ul = document.createElement('ul')\n     const li = document.createElement('li')\n"
+        },
+        {
+          "date": 1665765438076,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useHeaders } from \"./useHeaders\"\n+import { HeaderTree, useHeaders } from \"./useHeaders\"\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n"
+        },
+        {
+          "date": 1665765463087,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     container.appendChild(ul)\n     return container\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n+    \n     if (!container) return\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
+        },
+        {
+          "date": 1665765469758,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,10 +26,11 @@\n     container.appendChild(ul)\n     return container\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n-    \n+\n     if (!container) return\n+    const con\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
+        },
+        {
+          "date": 1665765477499,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n \n     if (!container) return\n-    const con\n+    const container = document.querySelector('')\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
+        },
+        {
+          "date": 1665765524981,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   }\n const updateHeaders = (container: HTMLElement | null) => {\n \n     if (!container) return\n-    const container = document.querySelector('')\n+    const container = document.querySelector('.header-list') as HTMLElement\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n     const Headers = Array.from(headers)\n"
+        },
+        {
+          "date": 1665765530094,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,11 +25,9 @@\n     })\n     container.appendChild(ul)\n     return container\n   }\n-const updateHeaders = (container: HTMLElement | null) => {\n-\n-    if (!container) return\n+const updateHeaders = () => {=\n     const container = document.querySelector('.header-list') as HTMLElement\n     container!.innerHTML = ''\n     const headers =\n       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n"
+        },
+        {
+          "date": 1665765545638,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,41 +1,41 @@\n-import { HeaderTree, useHeaders } from \"./useHeaders\"\n+import { HeaderTree, useHeaders } from './useHeaders'\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n </svg>\n </div>`\n const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {\n-    const id = tree.header.getAttribute('id')\n-    const ul = document.createElement('ul')\n-    const li = document.createElement('li')\n-    li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n-    li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n-    ul.appendChild(li)\n-    ul.addEventListener('click', (e) => {\n-      e.stopPropagation()\n-      ul.classList.toggle('ul-close')\n-    })\n-    if (tree.children.length >= 1) {\n-      ul.classList.add('show-list')\n-    } else {\n-      ul.classList.add('not-list')\n-    }\n-    tree.children.forEach((child) => {\n-      dfs(child, ul)\n-    })\n-    container.appendChild(ul)\n-    return container\n+  const id = tree.header.getAttribute('id')\n+  const ul = document.createElement('ul')\n+  const li = document.createElement('li')\n+  li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`\n+  li.setAttribute('style', `--i: ${tree.tagName[1]}`)\n+  ul.appendChild(li)\n+  ul.addEventListener('click', (e) => {\n+    e.stopPropagation()\n+    ul.classList.toggle('ul-close')\n+  })\n+  if (tree.children.length >= 1) {\n+    ul.classList.add('show-list')\n+  } else {\n\\ No newline at end of file\n+    ul.classList.add('not-list')\n   }\n-const updateHeaders = () => {=\n-    const container = document.querySelector('.header-list') as HTMLElement\n-    container!.innerHTML = ''\n-    const headers =\n-      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-    const Headers = Array.from(headers)\n-    const trees = useHeaders(Headers as HTMLElement[])\n-    trees.forEach((tree) => {\n-      const fragment = document.createDocumentFragment()\n-      const headerList = dfs(tree, fragment)\n-      container.appendChild(headerList)\n-    })\n-  }\n+  tree.children.forEach((child) => {\n+    dfs(child, ul)\n+  })\n+  container.appendChild(ul)\n+  return container\n+}\n+export const updateHeaders = () => {\n+  const container = document.querySelector('.header-list') as HTMLElement\n+  container!.innerHTML = ''\n+  const headers =\n+    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+  const Headers = Array.from(headers)\n+  const trees = useHeaders(Headers as HTMLElement[])\n+  trees.forEach((tree) => {\n+    const fragment = document.createDocumentFragment()\n+    const headerList = dfs(tree, fragment)\n+    container.appendChild(headerList)\n+  })\n+}\n"
+        },
+        {
+          "date": 1665765581197,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   })\n   container.appendChild(ul)\n   return container\n }\n-export const updateHeaders = () => {\n+export const useUpdateHeaders = () => {\n   const container = document.querySelector('.header-list') as HTMLElement\n   container!.innerHTML = ''\n   const headers =\n     document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n@@ -37,5 +37,5 @@\n     const fragment = document.createDocumentFragment()\n     const headerList = dfs(tree, fragment)\n     container.appendChild(headerList)\n   })\n-}\n\\ No newline at end of file\n+}\n"
+        },
+        {
+          "date": 1665900673894,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,16 +26,19 @@\n   container.appendChild(ul)\n   return container\n }\n export const useUpdateHeaders = () => {\n-  const container = document.querySelector('.header-list') as HTMLElement\n-  container!.innerHTML = ''\n-  const headers =\n-    document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n-  const Headers = Array.from(headers)\n-  const trees = useHeaders(Headers as HTMLElement[])\n-  trees.forEach((tree) => {\n-    const fragment = document.createDocumentFragment()\n-    const headerList = dfs(tree, fragment)\n-    container.appendChild(headerList)\n-  })\n+  const container = document.querySelector('.header-list')\n+  if(container) {\n+    container.innerHTML = ''\n+    const headers =\n+      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n+    const Headers = Array.from(headers)\n+    const trees = useHeaders(Headers as HTMLElement[])\n+    trees.forEach((tree) => {\n+      const fragment = document.createDocumentFragment()\n+      const headerList = dfs(tree, fragment)\n+      container.appendChild(headerList)\n+    })\n+  }\n+\n }\n"
+        },
+        {
+          "date": 1665923629855,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n   container.appendChild(ul)\n   return container\n }\n export const useUpdateHeaders = () => {\n+  console.log('update-headers')\n   const container = document.querySelector('.header-list')\n   if(container) {\n     container.innerHTML = ''\n     const headers =\n"
+        },
+        {
+          "date": 1665928205320,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useDebounce } from '@renderer/common/useDebouce'\n import { HeaderTree, useHeaders } from './useHeaders'\n const triangleDown = `<div>\n <svg class='triangle-down' xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-chevron-down\" viewBox=\"0 0 16 16\">\n <path fillRule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"/>\n@@ -25,9 +26,9 @@\n   })\n   container.appendChild(ul)\n   return container\n }\n-export const useUpdateHeaders = () => {\n+export const updateHeaders = () => {\n   console.log('update-headers')\n   const container = document.querySelector('.header-list')\n   if(container) {\n     container.innerHTML = ''\n@@ -40,6 +41,6 @@\n       const headerList = dfs(tree, fragment)\n       container.appendChild(headerList)\n     })\n   }\n-\n }\n+export const useUpdateHeaders = useDebounce(updateHeaders,3000)\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1666081995529,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,5 @@\n       container.appendChild(headerList)\n     })\n   }\n }\n-export const useUpdateHeaders = useDebounce(updateHeaders,3000)\n\\ No newline at end of file\n+export const useUpdateHeaders = useDebounce(updateHeaders,1000)\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665765387253,
+      "name": "Commit-0",
+      "content": "const updateHeaders = (container: HTMLElement | null) => {\n    if (!container) return\n    container!.innerHTML = ''\n    const headers =\n      document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []\n    const Headers = Array.from(headers)\n    const trees = useHeaders(Headers as HTMLElement[])\n    trees.forEach((tree) => {\n      const fragment = document.createDocumentFragment()\n      const headerList = dfs(tree, fragment)\n      container.appendChild(headerList)\n    })\n  }"
+    }
+  ]
 }

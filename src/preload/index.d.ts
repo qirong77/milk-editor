@@ -20,8 +20,8 @@ export interface Api {
   closeScreen: () => void
   onOpenFile: (callback: Listener) => void
   openDefaultDir: () => Promise<IFileList>
-  clickFileList:(filePath:string)=>void
-  updateFile:(File:{filePath:string,newFileContent:string})=>void
+  clickFileList: (filePath: string) => void
+  updateFile: (File: { filePath: string; newFileContent: string }) => void
 }
 declare global {
   interface Window {

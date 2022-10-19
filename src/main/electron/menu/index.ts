@@ -2,7 +2,6 @@ import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
 import { openFileDialog } from '../api/dialog'
 import { openNewFile } from '../events/onSendToRender'
 
-
 /* 
 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123
 快捷键类型：https://juejin.cn/post/7116906625964720159#comment

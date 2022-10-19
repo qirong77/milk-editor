@@ -5,13 +5,13 @@ $dark-background: rgb(39, 44, 55);
 .code-fence {
   position: relative;
   // 代码块的语言框大小
-   div.code-fence_selector {
+  div.code-fence_selector {
     width: 90px;
     height: 30px;
     opacity: 0%;
   }
   &:hover {
-     div.code-fence_selector {
+    div.code-fence_selector {
       opacity: 100%;
     }
   }

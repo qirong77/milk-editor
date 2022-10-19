@@ -17,7 +17,5 @@ export const HeaderList: React.FC<IHeaderList> = () => {
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
   }, [])
-  return (
-      <ul className={'header-list'} ref={headerListRef}></ul>
-  )
+  return <ul className={'header-list'} ref={headerListRef}></ul>
 }

@@ -1,90 +1,90 @@
 {
-    "sourceFile": "README.md",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "README.md",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 18,
+      "patches": [
         {
-            "activePatchIndex": 18,
-            "patches": [
-                {
-                    "date": 1665385034338,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665385051135,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n-3. milkdown工具栏\n+3. 工具栏\n 4. 生成类似于typora的header列表\n 5. 点击header跳转\n 6. 主题切换\n \n"
-                },
-                {
-                    "date": 1665385059453,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n-3. 工具栏\n+3. milkdown通用工具栏\n 4. 生成类似于typora的header列表\n 5. 点击header跳转\n 6. 主题切换\n \n"
-                },
-                {
-                    "date": 1665385076733,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. \n+2. 侧边栏收缩\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
-                },
-                {
-                    "date": 1665385086615,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,16 +37,16 @@\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n 3. milkdown通用工具栏\n-4. 生成类似于typora的header列表\n+4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. 侧边栏收缩\n+2. 侧边栏\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
-                },
-                {
-                    "date": 1665385139622,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,13 +40,13 @@\n 3. milkdown通用工具栏\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n-\n+7. git \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. 侧边栏\n+2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
-                },
-                {
-                    "date": 1665385150912,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,10 @@\n 3. milkdown通用工具栏\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n-7. git \n+7. git管理\n+8. \n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665385167533,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. \n+8. 原生功能菜单和\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665385185301,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单和\n+8. 原生功能菜单结合（\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665385192161,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单结合（\n+8. 原生功能菜单结合（关闭，缩小\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665385197897,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单结合（关闭，缩小\n+8. 原生功能菜单结合（关闭，缩小，全屏）\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665387340140,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,34 +35,36 @@\n \n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n-2. 集成milkdown\n-3. milkdown通用工具栏\n-4. 生成类似于typora的header侧边栏\n-5. 点击header跳转\n+2. 集成 milkdown\n+3. milkdown 通用工具栏\n+4. 生成类似于 typora 的 header 侧边栏\n+5. 点击 header 跳转\n 6. 主题切换\n-7. git管理\n+7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n+\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n \n-1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n-2. 一键启动vite和electron \n+1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n+2. 一键启动 vite 和 electron\n    \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n \n ### 参考学习文档\n \n 1. electron\n\\ No newline at end of file\n 2. milkdown\n 3. 别人的学习成果\n-4. 官方milkdown-example\n+https://github.com/CatsAndMice/milkdown\n+4. 官方 milkdown-example\n 5. blog:electron + vite\n    https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n-   官方quick-start依赖有点多，安装比较久需要耐心\n-   https://cn-evite.netlify.app/\n+   官方 quick-start 依赖有点多，安装比较久需要耐心\n+   https://cn-evite.netlify.app/\n"
-                },
-                {
-                    "date": 1665495358937,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,5 +66,11 @@\n 5. blog:electron + vite\n    https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n-   https://cn-evite.netlify.app/\n\\ No newline at end of file\n+   https://cn-evite.netlify.app/\n+7. ant-design 大型react项目组织\n+- 每个组件都是一个单独的文件夹\n+里面固定有一个index作为组合输出\n+其他的辅助组件都是在文件夹根目录里面\n+- 里面有三个文件夹\n+hooks，styles（也有index作为组合输出），text，readme，demo，text\n"
-                },
-                {
-                    "date": 1665586953362,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n 5. 点击 header 跳转\n 6. 主题切换\n 7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n-\n+9. 进程通信\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
-                },
-                {
-                    "date": 1665587013679,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,10 @@\n 1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n 2. 一键启动 vite 和 electron\n    \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n-\n+### 学习笔记\n+1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀\n ### 参考学习文档\n \n 1. electron\n 2. milkdown\n"
-                },
-                {
-                    "date": 1665766363083,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,4 +74,5 @@\n 里面固定有一个index作为组合输出\n 其他的辅助组件都是在文件夹根目录里面\n - 里面有三个文件夹\n hooks，styles（也有index作为组合输出），text，readme，demo，text\n+8. electron life scycle\n"
-                },
-                {
-                    "date": 1665909475922,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,36 +43,30 @@\n 6. 主题切换\n 7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n 9. 进程通信\n+10. 文件切换\n+11. 侧边栏显示隐藏切换\n ### 待完成功能\n-\n 1. slash 斜杠命令\n-2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n-\n-1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n-2. 一键启动 vite 和 electron\n-   \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n ### 学习笔记\n 1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀\n ### 参考学习文档\n \n 1. electron\n+https://www.electronjs.org/zh/docs/latest\n 2. milkdown\n-3. 别人的学习成果\n+https://milkdown.dev/zh-hans/getting-started\n+3. 别人的项目\n https://github.com/CatsAndMice/milkdown\n 4. 官方 milkdown-example\n 5. blog:electron + vite\n-   https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n+https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n    https://cn-evite.netlify.app/\n-7. ant-design 大型react项目组织\n-- 每个组件都是一个单独的文件夹\n-里面固定有一个index作为组合输出\n-其他的辅助组件都是在文件夹根目录里面\n-- 里面有三个文件夹\n-hooks，styles（也有index作为组合输出），text，readme，demo，text\n-8. electron life scycle\n+7. ant-design react项目组织\n+8. electron life cycle\n+https://vastiny.com/post/tech/electron-lifecycle\n"
-                },
-                {
-                    "date": 1665909562363,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n # milk-editor\n \n-An Electron application with React and TypeScript\n+An typora like application with Electron,React and TypeScript\n \n ## Recommended IDE Setup\n \n - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\n"
-                },
-                {
-                    "date": 1665911239563,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,10 @@\n 2. milkdown\n https://milkdown.dev/zh-hans/getting-started\n 3. 别人的项目\n https://github.com/CatsAndMice/milkdown\n-4. 官方 milkdown-example\n+4. 官方 example\n+https://github.com/Saul-Mirone/milkdown\n 5. blog:electron + vite\n https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n"
-                }
-            ],
-            "date": 1665385034338,
-            "name": "Commit-0",
-            "content": "# milk-editor\n\nAn Electron application with React and TypeScript\n\n## Recommended IDE Setup\n\n- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\n\n## Project Setup\n\n### Install\n\n```bash\n$ npm install\n```\n\n### Development\n\n```bash\n$ npm run dev\n```\n\n### Build\n\n```bash\n# For windows\n$ npm run build:win\n\n# For macOS\n$ npm run build:mac\n\n# For Linux\n$ npm run build:linux\n```\n\n### 已完成功能\n\n1. 拖拽侧边栏改变大小\n2. 集成milkdown\n3. milkdown工具栏\n4. 生成类似于typora的header列表\n5. 点击header跳转\n6. 主题切换\n\n### 待完成功能\n\n1. slash 斜杠命令\n2. \n\n### 遇到的坑\n\n1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n2. 一键启动vite和electron \n   \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n\n### 参考学习文档\n\n1. electron\n2. milkdown\n3. 别人的学习成果\n4. 官方milkdown-example\n5. blog:electron + vite\n   https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n6. npm:electron-vite\n   官方quick-start依赖有点多，安装比较久需要耐心\n   https://cn-evite.netlify.app/"
+          "date": 1665385034338,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665385051135,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n-3. milkdown工具栏\n+3. 工具栏\n 4. 生成类似于typora的header列表\n 5. 点击header跳转\n 6. 主题切换\n \n"
+        },
+        {
+          "date": 1665385059453,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n-3. 工具栏\n+3. milkdown通用工具栏\n 4. 生成类似于typora的header列表\n 5. 点击header跳转\n 6. 主题切换\n \n"
+        },
+        {
+          "date": 1665385076733,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. \n+2. 侧边栏收缩\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
+        },
+        {
+          "date": 1665385086615,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,16 +37,16 @@\n \n 1. 拖拽侧边栏改变大小\n 2. 集成milkdown\n 3. milkdown通用工具栏\n-4. 生成类似于typora的header列表\n+4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. 侧边栏收缩\n+2. 侧边栏\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
+        },
+        {
+          "date": 1665385139622,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,13 +40,13 @@\n 3. milkdown通用工具栏\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n-\n+7. git \n ### 待完成功能\n \n 1. slash 斜杠命令\n-2. 侧边栏\n+2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n \n 1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n"
+        },
+        {
+          "date": 1665385150912,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,10 @@\n 3. milkdown通用工具栏\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n-7. git \n+7. git管理\n+8. \n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665385167533,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. \n+8. 原生功能菜单和\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665385185301,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单和\n+8. 原生功能菜单结合（\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665385192161,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单结合（\n+8. 原生功能菜单结合（关闭，缩小\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665385197897,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n 4. 生成类似于typora的header侧边栏\n 5. 点击header跳转\n 6. 主题切换\n 7. git管理\n-8. 原生功能菜单结合（关闭，缩小\n+8. 原生功能菜单结合（关闭，缩小，全屏）\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665387340140,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,34 +35,36 @@\n \n ### 已完成功能\n \n 1. 拖拽侧边栏改变大小\n-2. 集成milkdown\n-3. milkdown通用工具栏\n-4. 生成类似于typora的header侧边栏\n-5. 点击header跳转\n+2. 集成 milkdown\n+3. milkdown 通用工具栏\n+4. 生成类似于 typora 的 header 侧边栏\n+5. 点击 header 跳转\n 6. 主题切换\n-7. git管理\n+7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n+\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n \n-1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n-2. 一键启动vite和electron \n+1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n+2. 一键启动 vite 和 electron\n    \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n \n ### 参考学习文档\n \n 1. electron\n\\ No newline at end of file\n 2. milkdown\n 3. 别人的学习成果\n-4. 官方milkdown-example\n+https://github.com/CatsAndMice/milkdown\n+4. 官方 milkdown-example\n 5. blog:electron + vite\n    https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n-   官方quick-start依赖有点多，安装比较久需要耐心\n-   https://cn-evite.netlify.app/\n+   官方 quick-start 依赖有点多，安装比较久需要耐心\n+   https://cn-evite.netlify.app/\n"
+        },
+        {
+          "date": 1665495358937,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,5 +66,11 @@\n 5. blog:electron + vite\n    https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n-   https://cn-evite.netlify.app/\n\\ No newline at end of file\n+   https://cn-evite.netlify.app/\n+7. ant-design 大型react项目组织\n+- 每个组件都是一个单独的文件夹\n+里面固定有一个index作为组合输出\n+其他的辅助组件都是在文件夹根目录里面\n+- 里面有三个文件夹\n+hooks，styles（也有index作为组合输出），text，readme，demo，text\n"
+        },
+        {
+          "date": 1665586953362,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n 5. 点击 header 跳转\n 6. 主题切换\n 7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n-\n+9. 进程通信\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 侧边栏显示隐藏切换\n"
+        },
+        {
+          "date": 1665587013679,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,10 @@\n 1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n 2. 一键启动 vite 和 electron\n    \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n-\n+### 学习笔记\n+1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀\n ### 参考学习文档\n \n 1. electron\n 2. milkdown\n"
+        },
+        {
+          "date": 1665766363083,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,4 +74,5 @@\n 里面固定有一个index作为组合输出\n 其他的辅助组件都是在文件夹根目录里面\n - 里面有三个文件夹\n hooks，styles（也有index作为组合输出），text，readme，demo，text\n+8. electron life scycle\n"
+        },
+        {
+          "date": 1665909475922,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,36 +43,30 @@\n 6. 主题切换\n 7. git 管理\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n 9. 进程通信\n+10. 文件切换\n+11. 侧边栏显示隐藏切换\n ### 待完成功能\n-\n 1. slash 斜杠命令\n-2. 侧边栏显示隐藏切换\n \n ### 遇到的坑\n-\n-1. tsc 无法输出到指定路径（将和 electron 相关的都放到一个文件夹\n-2. 一键启动 vite 和 electron\n-   \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n ### 学习笔记\n 1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀\n ### 参考学习文档\n \n 1. electron\n+https://www.electronjs.org/zh/docs/latest\n 2. milkdown\n-3. 别人的学习成果\n+https://milkdown.dev/zh-hans/getting-started\n+3. 别人的项目\n https://github.com/CatsAndMice/milkdown\n 4. 官方 milkdown-example\n 5. blog:electron + vite\n-   https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n+https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n    https://cn-evite.netlify.app/\n-7. ant-design 大型react项目组织\n-- 每个组件都是一个单独的文件夹\n-里面固定有一个index作为组合输出\n-其他的辅助组件都是在文件夹根目录里面\n-- 里面有三个文件夹\n-hooks，styles（也有index作为组合输出），text，readme，demo，text\n-8. electron life scycle\n+7. ant-design react项目组织\n+8. electron life cycle\n+https://vastiny.com/post/tech/electron-lifecycle\n"
+        },
+        {
+          "date": 1665909562363,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n # milk-editor\n \n-An Electron application with React and TypeScript\n+An typora like application with Electron,React and TypeScript\n \n ## Recommended IDE Setup\n \n - [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\n"
+        },
+        {
+          "date": 1665911239563,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,10 @@\n 2. milkdown\n https://milkdown.dev/zh-hans/getting-started\n 3. 别人的项目\n https://github.com/CatsAndMice/milkdown\n-4. 官方 milkdown-example\n+4. 官方 example\n+https://github.com/Saul-Mirone/milkdown\n 5. blog:electron + vite\n https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n"
         }
-    ]
+      ],
+      "date": 1665385034338,
+      "name": "Commit-0",
+      "content": "# milk-editor\n\nAn Electron application with React and TypeScript\n\n## Recommended IDE Setup\n\n- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\n\n## Project Setup\n\n### Install\n\n```bash\n$ npm install\n```\n\n### Development\n\n```bash\n$ npm run dev\n```\n\n### Build\n\n```bash\n# For windows\n$ npm run build:win\n\n# For macOS\n$ npm run build:mac\n\n# For Linux\n$ npm run build:linux\n```\n\n### 已完成功能\n\n1. 拖拽侧边栏改变大小\n2. 集成milkdown\n3. milkdown工具栏\n4. 生成类似于typora的header列表\n5. 点击header跳转\n6. 主题切换\n\n### 待完成功能\n\n1. slash 斜杠命令\n2. \n\n### 遇到的坑\n\n1. tsc无法输出到指定路径（将和electron相关的都放到一个文件夹\n2. 一键启动vite和electron \n   \"electron\": \"tsc ./main.ts && vite & electron .\",会有问题\n3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n\n### 参考学习文档\n\n1. electron\n2. milkdown\n3. 别人的学习成果\n4. 官方milkdown-example\n5. blog:electron + vite\n   https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n6. npm:electron-vite\n   官方quick-start依赖有点多，安装比较久需要耐心\n   https://cn-evite.netlify.app/"
+    }
+  ]
 }

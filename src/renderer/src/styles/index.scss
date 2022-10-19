@@ -6,10 +6,9 @@
 @import './layout.scss';
 @import './normalize.scss';
 .container {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .container .milkdown .editor .code-fence pre code {
-    font-family: -apple-system,BlinkMacSystemFont,PingFang SC,Hiragino Sans GB,sans-serif;
-
+  font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;
 }

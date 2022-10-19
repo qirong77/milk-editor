@@ -2,7 +2,7 @@ $dark-color: rgba(236, 239, 244, 0.87);
 $dark-background: rgb(39, 44, 55);
 $side-bar-width: 160px;
 $max-height: calc(100vh - 30px);
-$title-height:30px;
+$title-height: 30px;
 .side-bar {
   width: $side-bar-width;
   max-height: $max-height;
@@ -39,7 +39,7 @@ $title-height:30px;
       height: auto;
       li {
         display: flex;
-        padding-left:  calc(10px * var(--i));;
+        padding-left: calc(10px * var(--i));
         min-height: $title-height;
         // 避免标题太长重叠
         height: auto;
@@ -58,7 +58,7 @@ $title-height:30px;
         }
         a {
           //占满剩余部分
-          flex:auto;
+          flex: auto;
           text-decoration: none;
           text-decoration-color: $dark-color;
           color: $dark-color;
@@ -72,8 +72,8 @@ $title-height:30px;
       }
     }
     ul.show-list > li {
-      svg{
-        opacity: 100% ;
+      svg {
+        opacity: 100%;
       }
     }
     ul.ul-close {

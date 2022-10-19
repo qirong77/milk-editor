@@ -1,38 +1,38 @@
 {
-    "sourceFile": "src/renderer/src/styles/index.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/styles/index.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 5,
+      "patches": [
         {
-            "activePatchIndex": 5,
-            "patches": [
-                {
-                    "date": 1665390963363,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665390968617,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n .container {\n   display: flex;\n   width: 100vw;\n   height: 100vh;\n-  \n+  .main {}\n   .side-bar {\n     width: 200px;\n     min-width: 200px;\n   }\n"
-                },
-                {
-                    "date": 1665390982946,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,31 +10,33 @@\n .container {\n   display: flex;\n   width: 100vw;\n   height: 100vh;\n-  .main {}\n-  .side-bar {\n-    width: 200px;\n-    min-width: 200px;\n-  }\n-  // 装edtor的容器\n-  > div:nth-child(2) {\n-    flex: auto;\n-    display: flex;\n-    justify-content: center;\n-    align-items: center;\n-    background-color: #edeff3;\n-    .milkdown-menu-wrapper {\n-      width: 100%;\n-      height: 100%;\n+  main {\n+    .side-bar {\n+      width: 200px;\n+      min-width: 200px;\n+    }\n+    // 装edtor的容器\n+    > div:nth-child(2) {\n+      flex: auto;\n       display: flex;\n-      flex-direction: column;\n-      .milkdown {\n+      justify-content: center;\n+      align-items: center;\n+      background-color: #edeff3;\n+      .milkdown-menu-wrapper {\n+        width: 100%;\n         height: 100%;\n-        width: 100%;\n-        // border-radius: 6px;\n-        padding-top: 10px;\n-        overflow: scroll;\n+        display: flex;\n+        flex-direction: column;\n+        .milkdown {\n+          height: 100%;\n+          width: 100%;\n+          // border-radius: 6px;\n+          padding-top: 10px;\n+          overflow: scroll;\n+        }\n       }\n     }\n   }\n+\n }\n"
-                },
-                {
-                    "date": 1665391000197,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n }\n \n .container {\n   display: flex;\n+  fle\n   width: 100vw;\n   height: 100vh;\n   main {\n     .side-bar {\n"
-                },
-                {
-                    "date": 1665391019871,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   main {\n     .side-bar {\n       width: 200px;\n       min-width: 200px;\n-      di\n+      display: ;\n     }\n     // 装edtor的容器\n     > div:nth-child(2) {\n       flex: auto;\n"
-                },
-                {
-                    "date": 1665500635977,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n @use '../components/Editor/styles/index.scss';\n-@use '../components/';\n\\ No newline at end of file\n+@use '../components';\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665390963363,
-            "name": "Commit-0",
-            "content": "@use './normalize.scss';\n@use './SideBar.scss';\n* {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  box-sizing: border-box;\n}\n\n.container {\n  display: flex;\n  width: 100vw;\n  height: 100vh;\n  \n  .side-bar {\n    width: 200px;\n    min-width: 200px;\n  }\n  // 装edtor的容器\n  > div:nth-child(2) {\n    flex: auto;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    background-color: #edeff3;\n    .milkdown-menu-wrapper {\n      width: 100%;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      .milkdown {\n        height: 100%;\n        width: 100%;\n        // border-radius: 6px;\n        padding-top: 10px;\n        overflow: scroll;\n      }\n    }\n  }\n}\n"
+          "date": 1665390963363,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665390968617,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n .container {\n   display: flex;\n   width: 100vw;\n   height: 100vh;\n-  \n+  .main {}\n   .side-bar {\n     width: 200px;\n     min-width: 200px;\n   }\n"
+        },
+        {
+          "date": 1665390982946,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,31 +10,33 @@\n .container {\n   display: flex;\n   width: 100vw;\n   height: 100vh;\n-  .main {}\n-  .side-bar {\n-    width: 200px;\n-    min-width: 200px;\n-  }\n-  // 装edtor的容器\n-  > div:nth-child(2) {\n-    flex: auto;\n-    display: flex;\n-    justify-content: center;\n-    align-items: center;\n-    background-color: #edeff3;\n-    .milkdown-menu-wrapper {\n-      width: 100%;\n-      height: 100%;\n+  main {\n+    .side-bar {\n+      width: 200px;\n+      min-width: 200px;\n+    }\n+    // 装edtor的容器\n+    > div:nth-child(2) {\n+      flex: auto;\n       display: flex;\n-      flex-direction: column;\n-      .milkdown {\n+      justify-content: center;\n+      align-items: center;\n+      background-color: #edeff3;\n+      .milkdown-menu-wrapper {\n+        width: 100%;\n         height: 100%;\n-        width: 100%;\n-        // border-radius: 6px;\n-        padding-top: 10px;\n-        overflow: scroll;\n+        display: flex;\n+        flex-direction: column;\n+        .milkdown {\n+          height: 100%;\n+          width: 100%;\n+          // border-radius: 6px;\n+          padding-top: 10px;\n+          overflow: scroll;\n+        }\n       }\n     }\n   }\n+\n }\n"
+        },
+        {
+          "date": 1665391000197,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n }\n \n .container {\n   display: flex;\n+  fle\n   width: 100vw;\n   height: 100vh;\n   main {\n     .side-bar {\n"
+        },
+        {
+          "date": 1665391019871,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n   main {\n     .side-bar {\n       width: 200px;\n       min-width: 200px;\n-      di\n+      display: ;\n     }\n     // 装edtor的容器\n     > div:nth-child(2) {\n       flex: auto;\n"
+        },
+        {
+          "date": 1665500635977,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,2 +1,2 @@\n @use '../components/Editor/styles/index.scss';\n-@use '../components/';\n\\ No newline at end of file\n+@use '../components';\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665390963363,
+      "name": "Commit-0",
+      "content": "@use './normalize.scss';\n@use './SideBar.scss';\n* {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  box-sizing: border-box;\n}\n\n.container {\n  display: flex;\n  width: 100vw;\n  height: 100vh;\n  \n  .side-bar {\n    width: 200px;\n    min-width: 200px;\n  }\n  // 装edtor的容器\n  > div:nth-child(2) {\n    flex: auto;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    background-color: #edeff3;\n    .milkdown-menu-wrapper {\n      width: 100%;\n      height: 100%;\n      display: flex;\n      flex-direction: column;\n      .milkdown {\n        height: 100%;\n        width: 100%;\n        // border-radius: 6px;\n        padding-top: 10px;\n        overflow: scroll;\n      }\n    }\n  }\n}\n"
+    }
+  ]
 }

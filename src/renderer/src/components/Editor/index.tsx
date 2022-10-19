@@ -23,13 +23,16 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     usePlugins(newEditor)
     return newEditor
   })
+  // 全部替换，点击文件列表的时候起作用
   useEffect(() => {
     if (!loading) {
       const instance = getInstance()
       instance?.action(replaceAll(content))
+      // 更新完成后再渲染标题
       useUpdateHeaders()
     }
   }, [loading, content])
+  // 存储的函数必须根据副作用实时修改，否则不会更新
   useEffect(() => {
     window.api.updateFile({
       filePath: filePath,

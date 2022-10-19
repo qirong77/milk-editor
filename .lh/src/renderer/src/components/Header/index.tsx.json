@@ -1,30 +1,30 @@
 {
-    "sourceFile": "src/renderer/src/components/Header/index.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Header/index.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 3,
+      "patches": [
         {
-            "activePatchIndex": 3,
-            "patches": [
-                {
-                    "date": 1665496554536,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665496560348,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,5 @@\n-TextDecoderStream\n\\ No newline at end of file\n+export const Header = () => {\n+  return (\n+    <div></div>\n+  )\n+ }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665496566843,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const Header = () => {\n   return (\n-    <div className=\"header\"></div>\n+    <div className=\"header\">\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665496577454,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n-        <Controlers></Controlers>\n+        <Controlers>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665496554536,
-            "name": "Commit-0",
-            "content": "TextDecoderStream"
+          "date": 1665496554536,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665496560348,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,5 @@\n-TextDecoderStream\n\\ No newline at end of file\n+export const Header = () => {\n+  return (\n+    <div></div>\n+  )\n+ }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665496566843,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const Header = () => {\n   return (\n-    <div className=\"header\"></div>\n+    <div className=\"header\">\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665496577454,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,8 @@\n \n export const Header = () => {\n   return (\n     <div className=\"header\">\n-        <Controlers></Controlers>\n+        <Controlers>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665496554536,
+      "name": "Commit-0",
+      "content": "TextDecoderStream"
+    }
+  ]
 }

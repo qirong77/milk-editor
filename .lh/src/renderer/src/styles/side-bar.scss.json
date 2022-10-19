@@ -1,62 +1,62 @@
 {
-    "sourceFile": "src/renderer/src/styles/side-bar.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/styles/side-bar.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 11,
+      "patches": [
         {
-            "activePatchIndex": 11,
-            "patches": [
-                {
-                    "date": 1665407204802,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665407604510,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width:180px;\n+$side-bar-width:160px;\n .side-bar {\n   width: $side-bar-width;\n-  min-width: 160px;\n+  min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n+  position: relative;\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n@@ -20,31 +21,36 @@\n       cursor: ew-resize;\n       opacity: 100%;\n     }\n   }\n-  .side-bar-container {\n-    overflow-y: scroll;\n-    // ul和li是标题，里面有图标，需要一起移动\n-    ul,\n-    li {\n-      margin: 10px 0;\n-      margin-left: calc(6px * var(--i));\n-      a {\n-        text-decoration: none;\n-        text-decoration-color: $dark-color;\n-        color: $dark-color;\n+  .fixed {\n+    position: fixed;\n+\n+    .side-bar-container {\n+      overflow-y: scroll;\n+      // ul和li是标题，里面有图标，需要一起移动\n+      ul,\n+      li {\n+        margin: 10px 0;\n+        margin-left: calc(6px * var(--i));\n+        a {\n+          text-decoration: none;\n+          text-decoration-color: $dark-color;\n+          color: $dark-color;\n+        }\n       }\n-    }\n-    ul {\n-      height: auto;\n-      svg {\n-        height: 10px;\n-        width: 10px;\n-        margin: 0 6px;\n-        transition: all 0.5s;\n+      ul {\n+        height: auto;\n+        svg {\n+          height: 10px;\n+          width: 10px;\n+          margin: 0 6px;\n+          transition: all 0.5s;\n+        }\n       }\n     }\n   }\n+\n }\n .ul-close {\n   height: 20px !important;\n   overflow: hidden;\n"
-                },
-                {
-                    "date": 1665407647735,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n-\n+left: 0;\n+top: 0;\n+height: 100%;\n     .side-bar-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n"
-                },
-                {
-                    "date": 1665407857061,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     position: fixed;\n left: 0;\n top: 0;\n height: 100%;\n-    .side-bar-container {\n+    .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n       li {\n"
-                },
-                {
-                    "date": 1665408130415,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-  position: relative;\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n@@ -23,11 +22,12 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n+    width: $side-bar-width;\n left: 0;\n top: 0;\n-height: 100%;\n+height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n"
-                },
-                {
-                    "date": 1665408159905,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n+    margin-top: 30px;\n     width: $side-bar-width;\n left: 0;\n top: 0;\n height: 96vh;\n"
-                },
-                {
-                    "date": 1665408173302,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width:160px;\n+$side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n@@ -24,11 +24,11 @@\n   .fixed {\n     position: fixed;\n     margin-top: 30px;\n     width: $side-bar-width;\n-left: 0;\n-top: 0;\n-height: 96vh;\n+    left: 0;\n+    top: 0;\n+    height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n@@ -51,9 +51,8 @@\n         }\n       }\n     }\n   }\n-\n }\n .ul-close {\n   height: 20px !important;\n   overflow: hidden;\n"
-                },
-                {
-                    "date": 1665413690384,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n-    margin-top: 30px;\n     width: $side-bar-width;\n     left: 0;\n     top: 0;\n     height: 96vh;\n"
-                },
-                {
-                    "date": 1665500044447,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,5 @@\n       }\n     }\n   }\n }\n-.ul-close {\n-  height: 20px !important;\n-  overflow: hidden;\n-  svg {\n-    transform: rotateZ(-90deg);\n-  }\n-}\n+\n"
-                },
-                {
-                    "date": 1665500108156,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,21 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-  .drag-line {\n-    width: 4px;\n-    height: 100%;\n-    position: absolute;\n-    left: $side-bar-width;\n-    z-index: 99;\n-    background-color: rgb(210, 111, 111);\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n-  }\n+\n   .fixed {\n     position: fixed;\n     width: $side-bar-width;\n     left: 0;\n"
-                },
-                {
-                    "date": 1665500164717,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,6 @@\n-$dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width: 160px;\n-.side-bar {\n-  width: $side-bar-width;\n-  min-width: $side-bar-width;\n-  color: $dark-color;\n-  background-color: $dark-background;\n-  border-right: 0.5px solid #748fb0;\n-  padding: 0 20px 20px 0;\n \n+\n   .fixed {\n     position: fixed;\n     width: $side-bar-width;\n     left: 0;\n"
-                },
-                {
-                    "date": 1665500409645,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,27 +8,9 @@\n     height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n-      ul,\n-      li {\n-        margin: 10px 0;\n-        margin-left: calc(6px * var(--i));\n-        a {\n-          text-decoration: none;\n-          text-decoration-color: $dark-color;\n-          color: $dark-color;\n-        }\n-      }\n-      ul {\n-        height: auto;\n-        svg {\n-          height: 10px;\n-          width: 10px;\n-          margin: 0 6px;\n-          transition: all 0.5s;\n-        }\n-      }\n+\n     }\n   }\n }\n \n"
-                }
-            ],
-            "date": 1665407204802,
-            "name": "Commit-0",
-            "content": "$dark-color: rgba(236, 239, 244, 0.87);\n$dark-background: rgba(46, 52, 64, 1);\n$side-bar-width:180px;\n.side-bar {\n  width: $side-bar-width;\n  min-width: 160px;\n  color: $dark-color;\n  background-color: $dark-background;\n  border-right: 0.5px solid #748fb0;\n  padding: 0 20px 20px 0;\n  .drag-line {\n    width: 4px;\n    height: 100%;\n    position: absolute;\n    left: $side-bar-width;\n    z-index: 99;\n    background-color: rgb(210, 111, 111);\n    opacity: 0;\n    &:hover {\n      cursor: ew-resize;\n      opacity: 100%;\n    }\n  }\n  .side-bar-container {\n    overflow-y: scroll;\n    // ul和li是标题，里面有图标，需要一起移动\n    ul,\n    li {\n      margin: 10px 0;\n      margin-left: calc(6px * var(--i));\n      a {\n        text-decoration: none;\n        text-decoration-color: $dark-color;\n        color: $dark-color;\n      }\n    }\n    ul {\n      height: auto;\n      svg {\n        height: 10px;\n        width: 10px;\n        margin: 0 6px;\n        transition: all 0.5s;\n      }\n    }\n  }\n}\n.ul-close {\n  height: 20px !important;\n  overflow: hidden;\n  svg {\n    transform: rotateZ(-90deg);\n  }\n}\n"
+          "date": 1665407204802,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665407604510,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width:180px;\n+$side-bar-width:160px;\n .side-bar {\n   width: $side-bar-width;\n-  min-width: 160px;\n+  min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n+  position: relative;\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n@@ -20,31 +21,36 @@\n       cursor: ew-resize;\n       opacity: 100%;\n     }\n   }\n-  .side-bar-container {\n-    overflow-y: scroll;\n-    // ul和li是标题，里面有图标，需要一起移动\n-    ul,\n-    li {\n-      margin: 10px 0;\n-      margin-left: calc(6px * var(--i));\n-      a {\n-        text-decoration: none;\n-        text-decoration-color: $dark-color;\n-        color: $dark-color;\n+  .fixed {\n+    position: fixed;\n+\n+    .side-bar-container {\n+      overflow-y: scroll;\n+      // ul和li是标题，里面有图标，需要一起移动\n+      ul,\n+      li {\n+        margin: 10px 0;\n+        margin-left: calc(6px * var(--i));\n+        a {\n+          text-decoration: none;\n+          text-decoration-color: $dark-color;\n+          color: $dark-color;\n+        }\n       }\n-    }\n-    ul {\n-      height: auto;\n-      svg {\n-        height: 10px;\n-        width: 10px;\n-        margin: 0 6px;\n-        transition: all 0.5s;\n+      ul {\n+        height: auto;\n+        svg {\n+          height: 10px;\n+          width: 10px;\n+          margin: 0 6px;\n+          transition: all 0.5s;\n+        }\n       }\n     }\n   }\n+\n }\n .ul-close {\n   height: 20px !important;\n   overflow: hidden;\n"
+        },
+        {
+          "date": 1665407647735,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,11 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n-\n+left: 0;\n+top: 0;\n+height: 100%;\n     .side-bar-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n"
+        },
+        {
+          "date": 1665407857061,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     position: fixed;\n left: 0;\n top: 0;\n height: 100%;\n-    .side-bar-container {\n+    .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n       li {\n"
+        },
+        {
+          "date": 1665408130415,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-  position: relative;\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n@@ -23,11 +22,12 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n+    width: $side-bar-width;\n left: 0;\n top: 0;\n-height: 100%;\n+height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n"
+        },
+        {
+          "date": 1665408159905,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n+    margin-top: 30px;\n     width: $side-bar-width;\n left: 0;\n top: 0;\n height: 96vh;\n"
+        },
+        {
+          "date": 1665408173302,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width:160px;\n+$side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n@@ -24,11 +24,11 @@\n   .fixed {\n     position: fixed;\n     margin-top: 30px;\n     width: $side-bar-width;\n-left: 0;\n-top: 0;\n-height: 96vh;\n+    left: 0;\n+    top: 0;\n+    height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n       ul,\n@@ -51,9 +51,8 @@\n         }\n       }\n     }\n   }\n-\n }\n .ul-close {\n   height: 20px !important;\n   overflow: hidden;\n"
+        },
+        {
+          "date": 1665413690384,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n     }\n   }\n   .fixed {\n     position: fixed;\n-    margin-top: 30px;\n     width: $side-bar-width;\n     left: 0;\n     top: 0;\n     height: 96vh;\n"
+        },
+        {
+          "date": 1665500044447,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,11 +51,5 @@\n       }\n     }\n   }\n }\n-.ul-close {\n-  height: 20px !important;\n-  overflow: hidden;\n-  svg {\n-    transform: rotateZ(-90deg);\n-  }\n-}\n+\n"
+        },
+        {
+          "date": 1665500108156,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,21 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-  .drag-line {\n-    width: 4px;\n-    height: 100%;\n-    position: absolute;\n-    left: $side-bar-width;\n-    z-index: 99;\n-    background-color: rgb(210, 111, 111);\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n-  }\n+\n   .fixed {\n     position: fixed;\n     width: $side-bar-width;\n     left: 0;\n"
+        },
+        {
+          "date": 1665500164717,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,6 @@\n-$dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width: 160px;\n-.side-bar {\n-  width: $side-bar-width;\n-  min-width: $side-bar-width;\n-  color: $dark-color;\n-  background-color: $dark-background;\n-  border-right: 0.5px solid #748fb0;\n-  padding: 0 20px 20px 0;\n \n+\n   .fixed {\n     position: fixed;\n     width: $side-bar-width;\n     left: 0;\n"
+        },
+        {
+          "date": 1665500409645,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,27 +8,9 @@\n     height: 96vh;\n     .headers-container {\n       overflow-y: scroll;\n       // ul和li是标题，里面有图标，需要一起移动\n-      ul,\n-      li {\n-        margin: 10px 0;\n-        margin-left: calc(6px * var(--i));\n-        a {\n-          text-decoration: none;\n-          text-decoration-color: $dark-color;\n-          color: $dark-color;\n-        }\n-      }\n-      ul {\n-        height: auto;\n-        svg {\n-          height: 10px;\n-          width: 10px;\n-          margin: 0 6px;\n-          transition: all 0.5s;\n-        }\n-      }\n+\n     }\n   }\n }\n \n"
         }
-    ]
+      ],
+      "date": 1665407204802,
+      "name": "Commit-0",
+      "content": "$dark-color: rgba(236, 239, 244, 0.87);\n$dark-background: rgba(46, 52, 64, 1);\n$side-bar-width:180px;\n.side-bar {\n  width: $side-bar-width;\n  min-width: 160px;\n  color: $dark-color;\n  background-color: $dark-background;\n  border-right: 0.5px solid #748fb0;\n  padding: 0 20px 20px 0;\n  .drag-line {\n    width: 4px;\n    height: 100%;\n    position: absolute;\n    left: $side-bar-width;\n    z-index: 99;\n    background-color: rgb(210, 111, 111);\n    opacity: 0;\n    &:hover {\n      cursor: ew-resize;\n      opacity: 100%;\n    }\n  }\n  .side-bar-container {\n    overflow-y: scroll;\n    // ul和li是标题，里面有图标，需要一起移动\n    ul,\n    li {\n      margin: 10px 0;\n      margin-left: calc(6px * var(--i));\n      a {\n        text-decoration: none;\n        text-decoration-color: $dark-color;\n        color: $dark-color;\n      }\n    }\n    ul {\n      height: auto;\n      svg {\n        height: 10px;\n        width: 10px;\n        margin: 0 6px;\n        transition: all 0.5s;\n      }\n    }\n  }\n}\n.ul-close {\n  height: 20px !important;\n  overflow: hidden;\n  svg {\n    transform: rotateZ(-90deg);\n  }\n}\n"
+    }
+  ]
 }

@@ -1,78 +1,78 @@
 {
-    "sourceFile": "src/renderer/src/components/Editor/hooks/useConfig.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Editor/hooks/useConfig.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 15,
+      "patches": [
         {
-            "activePatchIndex": 15,
-            "patches": [
-                {
-                    "date": 1665632578590,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665632801550,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,14 @@\n-import { Ctx, Editor } from \"@milkdown/core\";\n-import { listenerCtx } from \"@milkdown/plugin-listener\";\n+import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n+const DEFAULT_MARKDOWN = `# H1\n+## H2\n+### H3\n+#### H4\n\\ No newline at end of file\n+###### H5`\n+export const useConfig = (ctx: Ctx) => {\n+  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n-export const useConfig = (ctx:Ctx) => {\n-    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-        console.log(markdown)\n-      })\n-}\n+  ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n+  })\n+}\n"
-                },
-                {
-                    "date": 1665636554671,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { Ctx, defaultValueCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n const DEFAULT_MARKDOWN = `# H1\n ## H2\n ### H3\n@@ -8,7 +8,6 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n   })\n-}\n\\ No newline at end of file\n+}\n"
-                },
-                {
-                    "date": 1665636561673,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n   })\n }\n"
-                },
-                {
-                    "date": 1665636567049,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n+\n   })\n }\n"
-                },
-                {
-                    "date": 1665636578752,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-\n+    // console.log(ctx)\n   })\n }\n"
-                },
-                {
-                    "date": 1665671356868,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n ### H3\n #### H4\n ###### H5`\n export const useConfig = (ctx: Ctx) => {\n-  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-\n+  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n     // console.log(ctx)\n   })\n }\n"
-                },
-                {
-                    "date": 1666015036300,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n-import { Ctx, defaultValueCtx } from '@milkdown/core'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n-const DEFAULT_MARKDOWN = `# H1\n-## H2\n-### H3\n-#### H4\n-###### H5`\n-export const useConfig = (ctx: Ctx) => {\n-  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-  ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    // console.log(ctx)\n-  })\n+import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n+\n+export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n+  editor\n+    .config((ctx) => {\n+      ctx.set(rootCtx, root)\n+    })\n+    .config((ctx) => {\n+      ctx.set(defaultValueCtx, content)\n+    })\n }\n"
-                },
-                {
-                    "date": 1666015837394,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n+import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n   editor\n     .config((ctx) => {\n@@ -7,5 +9,30 @@\n     })\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n+    .config((ctx) =>{\n+        ctx.get(listenerCtx).beforeMount(()=>{\n+            console.log('before the editor mounts')\n+        })\n+        .mounted(() => {\n+          console.log('after the editor mounts')\n+        })\n+        .updated(() => {\n+          console.log('when editor state updates')\n+        })\n+        .markdownUpdated(() => {\n+          console.log('when markdown updates')\n+          useUpdateHeaders()\n+        })\n+        .blur(() => {\n+            // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+          console.log(' editor loses focus')\n+        })\n+        .focus(() => {\n+          console.log(' when focus editor')\n+        })\n+        .destroy(() => {\n+          console.log('when editor is being destroyed')\n+        })\n+    })\n }\n"
-                },
-                {
-                    "date": 1666015883330,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,13 @@\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n+    // 默认值\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n+    // 生命周期\n     .config((ctx) =>{\n         ctx.get(listenerCtx).beforeMount(()=>{\n             console.log('before the editor mounts')\n         })\n"
-                },
-                {
-                    "date": 1666016243331,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-            // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+            window.api.updateFile({ filePath: 'xxx', newFileContent: 'yyy' })\n           console.log(' editor loses focus')\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n"
-                },
-                {
-                    "date": 1666016466852,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n+export const useConfig = (editor: Editor, root: HTMLElement, content: string,filePath:string) => {\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n@@ -11,11 +11,13 @@\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n     // 生命周期\n-    .config((ctx) =>{\n-        ctx.get(listenerCtx).beforeMount(()=>{\n-            console.log('before the editor mounts')\n+    .config((ctx) => {\n+      ctx\n+        .get(listenerCtx)\n+        .beforeMount(() => {\n+          console.log('before the editor mounts')\n         })\n         .mounted(() => {\n           console.log('after the editor mounts')\n         })\n@@ -26,9 +28,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-            window.api.updateFile({ filePath: 'xxx', newFileContent: 'yyy' })\n+          window.api.updateFile({ filePath, newFileContent:content })\n           console.log(' editor loses focus')\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n"
-                },
-                {
-                    "date": 1666016545576,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,10 @@\n           useUpdateHeaders()\n         })\n         .blur(() => {\n           window.api.updateFile({ filePath, newFileContent:content })\n-          console.log(' editor loses focus')\n+          console.log('editor loses focus')\n+          console.log(filePath)\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n         })\n"
-                },
-                {
-                    "date": 1666016926087,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-export const useConfig = (editor: Editor, root: HTMLElement, content: string,filePath:string) => {\n+export const useConfig = (editor: Editor, root: HTMLElement) => {\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n"
-                },
-                {
-                    "date": 1666016933668,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       ctx.set(rootCtx, root)\n     })\n     // 默认值\n     .config((ctx) => {\n-      ctx.set(defaultValueCtx, content)\n+      ctx.set(defaultValueCtx, '')\n     })\n     // 生命周期\n     .config((ctx) => {\n       ctx\n"
-                },
-                {
-                    "date": 1666016942039,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-          window.api.updateFile({ filePath, newFileContent:content })\n-          console.log('editor loses focus')\n-          console.log(filePath)\n+        //   window.api.updateFile({ filePath, newFileContent:content })\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n         })\n"
-                }
-            ],
-            "date": 1665632578590,
-            "name": "Commit-0",
-            "content": "import { Ctx, Editor } from \"@milkdown/core\";\nimport { listenerCtx } from \"@milkdown/plugin-listener\";\n\nexport const useConfig = (ctx:Ctx) => {\n    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n        console.log(markdown)\n      })\n}"
+          "date": 1665632578590,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665632801550,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,14 @@\n-import { Ctx, Editor } from \"@milkdown/core\";\n-import { listenerCtx } from \"@milkdown/plugin-listener\";\n+import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n+const DEFAULT_MARKDOWN = `# H1\n+## H2\n+### H3\n+#### H4\n\\ No newline at end of file\n+###### H5`\n+export const useConfig = (ctx: Ctx) => {\n+  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n-export const useConfig = (ctx:Ctx) => {\n-    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-        console.log(markdown)\n-      })\n-}\n+  ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n+  })\n+}\n"
+        },
+        {
+          "date": 1665636554671,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Ctx, defaultValueCtx, Editor } from '@milkdown/core'\n+import { Ctx, defaultValueCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n const DEFAULT_MARKDOWN = `# H1\n ## H2\n ### H3\n@@ -8,7 +8,6 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n   })\n-}\n\\ No newline at end of file\n+}\n"
+        },
+        {
+          "date": 1665636561673,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,6 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n+    console.log(ctx)\n   })\n }\n"
+        },
+        {
+          "date": 1665636567049,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    console.log(ctx)\n+\n   })\n }\n"
+        },
+        {
+          "date": 1665636578752,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,7 +8,7 @@\n export const useConfig = (ctx: Ctx) => {\n   ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n \n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-\n+    // console.log(ctx)\n   })\n }\n"
+        },
+        {
+          "date": 1665671356868,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,9 @@\n ### H3\n #### H4\n ###### H5`\n export const useConfig = (ctx: Ctx) => {\n-  ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-\n+  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n   ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n     // console.log(ctx)\n   })\n }\n"
+        },
+        {
+          "date": 1666015036300,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,11 @@\n-import { Ctx, defaultValueCtx } from '@milkdown/core'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n-const DEFAULT_MARKDOWN = `# H1\n-## H2\n-### H3\n-#### H4\n-###### H5`\n-export const useConfig = (ctx: Ctx) => {\n-  // ctx.set(defaultValueCtx, DEFAULT_MARKDOWN)\n-  ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n-    // console.log(ctx)\n-  })\n+import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n+\n+export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n+  editor\n+    .config((ctx) => {\n+      ctx.set(rootCtx, root)\n+    })\n+    .config((ctx) => {\n+      ctx.set(defaultValueCtx, content)\n+    })\n }\n"
+        },
+        {
+          "date": 1666015837394,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n+import { listenerCtx } from '@milkdown/plugin-listener'\n+import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n   editor\n     .config((ctx) => {\n@@ -7,5 +9,30 @@\n     })\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n+    .config((ctx) =>{\n+        ctx.get(listenerCtx).beforeMount(()=>{\n+            console.log('before the editor mounts')\n+        })\n+        .mounted(() => {\n+          console.log('after the editor mounts')\n+        })\n+        .updated(() => {\n+          console.log('when editor state updates')\n+        })\n+        .markdownUpdated(() => {\n+          console.log('when markdown updates')\n+          useUpdateHeaders()\n+        })\n+        .blur(() => {\n+            // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+          console.log(' editor loses focus')\n+        })\n+        .focus(() => {\n+          console.log(' when focus editor')\n+        })\n+        .destroy(() => {\n+          console.log('when editor is being destroyed')\n+        })\n+    })\n }\n"
+        },
+        {
+          "date": 1666015883330,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,13 @@\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n+    // 默认值\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n+    // 生命周期\n     .config((ctx) =>{\n         ctx.get(listenerCtx).beforeMount(()=>{\n             console.log('before the editor mounts')\n         })\n"
+        },
+        {
+          "date": 1666016243331,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-            // window.api.updateFile({ filePath: file.filePath, newFileContent: file.content })\n+            window.api.updateFile({ filePath: 'xxx', newFileContent: 'yyy' })\n           console.log(' editor loses focus')\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n"
+        },
+        {
+          "date": 1666016466852,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-export const useConfig = (editor: Editor, root: HTMLElement, content: string) => {\n+export const useConfig = (editor: Editor, root: HTMLElement, content: string,filePath:string) => {\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n@@ -11,11 +11,13 @@\n     .config((ctx) => {\n       ctx.set(defaultValueCtx, content)\n     })\n     // 生命周期\n-    .config((ctx) =>{\n-        ctx.get(listenerCtx).beforeMount(()=>{\n-            console.log('before the editor mounts')\n+    .config((ctx) => {\n+      ctx\n+        .get(listenerCtx)\n+        .beforeMount(() => {\n+          console.log('before the editor mounts')\n         })\n         .mounted(() => {\n           console.log('after the editor mounts')\n         })\n@@ -26,9 +28,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-            window.api.updateFile({ filePath: 'xxx', newFileContent: 'yyy' })\n+          window.api.updateFile({ filePath, newFileContent:content })\n           console.log(' editor loses focus')\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n"
+        },
+        {
+          "date": 1666016545576,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,10 @@\n           useUpdateHeaders()\n         })\n         .blur(() => {\n           window.api.updateFile({ filePath, newFileContent:content })\n-          console.log(' editor loses focus')\n+          console.log('editor loses focus')\n+          console.log(filePath)\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n         })\n"
+        },
+        {
+          "date": 1666016926087,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n \n-export const useConfig = (editor: Editor, root: HTMLElement, content: string,filePath:string) => {\n+export const useConfig = (editor: Editor, root: HTMLElement) => {\n   editor\n     .config((ctx) => {\n       ctx.set(rootCtx, root)\n     })\n"
+        },
+        {
+          "date": 1666016933668,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       ctx.set(rootCtx, root)\n     })\n     // 默认值\n     .config((ctx) => {\n-      ctx.set(defaultValueCtx, content)\n+      ctx.set(defaultValueCtx, '')\n     })\n     // 生命周期\n     .config((ctx) => {\n       ctx\n"
+        },
+        {
+          "date": 1666016942039,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,11 +28,9 @@\n           console.log('when markdown updates')\n           useUpdateHeaders()\n         })\n         .blur(() => {\n-          window.api.updateFile({ filePath, newFileContent:content })\n-          console.log('editor loses focus')\n-          console.log(filePath)\n+        //   window.api.updateFile({ filePath, newFileContent:content })\n         })\n         .focus(() => {\n           console.log(' when focus editor')\n         })\n"
         }
-    ]
+      ],
+      "date": 1665632578590,
+      "name": "Commit-0",
+      "content": "import { Ctx, Editor } from \"@milkdown/core\";\nimport { listenerCtx } from \"@milkdown/plugin-listener\";\n\nexport const useConfig = (ctx:Ctx) => {\n    ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {\n        console.log(markdown)\n      })\n}"
+    }
+  ]
 }

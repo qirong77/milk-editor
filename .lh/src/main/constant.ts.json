@@ -1,78 +1,78 @@
 {
-    "sourceFile": "src/main/constant.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/constant.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 15,
+      "patches": [
         {
-            "activePatchIndex": 15,
-            "patches": [
-                {
-                    "date": 1665551626253,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665588534310,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n-export const MIN_SCREEN = 'min'\n\\ No newline at end of file\n+export const MIN_SCREEN = 'min'\n+export const UPDATE_CONTENT = 'update-milk-editor-content'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665590130319,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const UPDATE_CONTENT = 'update-milk-editor-content'\n\\ No newline at end of file\n+export const UPDATE_CONTENT = 'update-milk-editor-content' as string\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665756784726,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+// 一些监听事件的时间名称\n+export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n\\ No newline at end of file\n export const MIN_SCREEN = 'min'\n-export const UPDATE_CONTENT = 'update-milk-editor-content' as string\n+export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665758004372,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n+export const INITIALIZE_DIR = 'open a dictory and initialize'\n+export const DEFAULT_OPEN_DIR = ''\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665758626491,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n+import os from 'os'\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n-export const DEFAULT_OPEN_DIR = ''\n+export const DEFAULT_OPEN_DIR = \n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665758790396,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n-import os from 'os'\n+\n+import { getDefaultOpenDir } from './node/getDir'\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n\\ No newline at end of file\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n-export const DEFAULT_OPEN_DIR = \n+export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665758813831,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,8 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n+\n+\n+\n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665761591043,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DIR = 'open a dictory and initialize'\n+export const INITIALIZE_DEFAULT_DIR = 'open a dictory and initialize'\n \n \n \n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665766912972,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DEFAULT_DIR = 'open a dictory and initialize'\n+export const _DEFAULT_DIR = 'open a dictory and initialize'\n \n \n \n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665811994970,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,7 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const _DEFAULT_DIR = 'open a dictory and initialize'\n+export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n \n \n-\n\\ No newline at end of file\n-export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n"
-                },
-                {
-                    "date": 1665812041660,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \n-import { getDefaultOpenDir } from './node/getDir'\n+\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n"
-                },
-                {
-                    "date": 1665899397001,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \n \n-// 一些监听事件的时间名称\n-export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n+// 渲染进程 -> 主进程\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n \n-\n+// 主进程 -> 渲染进程\n+export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
-                },
-                {
-                    "date": 1665899680312,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n-\n+export const CLICK_FILE_LIST = 'click file list and open a new file'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
-                },
-                {
-                    "date": 1665903205621,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,7 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n+export const UPDATE_FILE = 'edite and should file update'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
-                },
-                {
-                    "date": 1665929871042,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,7 @@\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n export const UPDATE_FILE = 'edite and should file update'\n+\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
-                }
-            ],
-            "date": 1665551626253,
-            "name": "Commit-0",
-            "content": "export const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'"
+          "date": 1665551626253,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665588534310,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,4 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n-export const MIN_SCREEN = 'min'\n\\ No newline at end of file\n+export const MIN_SCREEN = 'min'\n+export const UPDATE_CONTENT = 'update-milk-editor-content'\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665590130319,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,4 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const UPDATE_CONTENT = 'update-milk-editor-content'\n\\ No newline at end of file\n+export const UPDATE_CONTENT = 'update-milk-editor-content' as string\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665756784726,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+// 一些监听事件的时间名称\n+export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n\\ No newline at end of file\n export const MIN_SCREEN = 'min'\n-export const UPDATE_CONTENT = 'update-milk-editor-content' as string\n+export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665758004372,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n+export const INITIALIZE_DIR = 'open a dictory and initialize'\n+export const DEFAULT_OPEN_DIR = ''\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665758626491,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n+import os from 'os'\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n\\ No newline at end of file\n-export const DEFAULT_OPEN_DIR = ''\n+export const DEFAULT_OPEN_DIR = \n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665758790396,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n-import os from 'os'\n+\n+import { getDefaultOpenDir } from './node/getDir'\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n\\ No newline at end of file\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n-export const DEFAULT_OPEN_DIR = \n+export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665758813831,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,8 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const INITIALIZE_DIR = 'open a dictory and initialize'\n+\n+\n+\n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665761591043,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DIR = 'open a dictory and initialize'\n+export const INITIALIZE_DEFAULT_DIR = 'open a dictory and initialize'\n \n \n \n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665766912972,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const INITIALIZE_DEFAULT_DIR = 'open a dictory and initialize'\n+export const _DEFAULT_DIR = 'open a dictory and initialize'\n \n \n \n export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665811994970,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,7 @@\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const _DEFAULT_DIR = 'open a dictory and initialize'\n+export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n \n \n-\n\\ No newline at end of file\n-export const DEFAULT_OPEN_DIR = getDefaultOpenDir()\n"
+        },
+        {
+          "date": 1665812041660,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n \n-import { getDefaultOpenDir } from './node/getDir'\n+\n // 一些监听事件的时间名称\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n"
+        },
+        {
+          "date": 1665899397001,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n \n \n-// 一些监听事件的时间名称\n-export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n+// 渲染进程 -> 主进程\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n \n-\n+// 主进程 -> 渲染进程\n+export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+        },
+        {
+          "date": 1665899680312,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n-\n+export const CLICK_FILE_LIST = 'click file list and open a new file'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+        },
+        {
+          "date": 1665903205621,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,7 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n+export const UPDATE_FILE = 'edite and should file update'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+        },
+        {
+          "date": 1665929871042,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,7 @@\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n export const UPDATE_FILE = 'edite and should file update'\n+\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
         }
-    ]
+      ],
+      "date": 1665551626253,
+      "name": "Commit-0",
+      "content": "export const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'"
+    }
+  ]
 }

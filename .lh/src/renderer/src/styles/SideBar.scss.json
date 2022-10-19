@@ -1,158 +1,158 @@
 {
-    "sourceFile": "src/renderer/src/styles/SideBar.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/styles/SideBar.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 35,
+      "patches": [
         {
-            "activePatchIndex": 35,
-            "patches": [
-                {
-                    "date": 1665388008220,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665388023632,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,5 +53,26 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.\n\\ No newline at end of file\n+.side-bar-container {\n+  height: 30px;\n+  width: 100vw;\n+  -webkit-app-region: drag;\n+  display: flex;\n+  align-items: center;\n+  padding-left: 10px;\n+  border-bottom: 0.5px solid gray;\n+  $dark-background: rgba(46, 52, 64, 1);\n+\n+  opacity: 0.7;\n+  svg {\n+    margin-left: 6px;\n+    height: 14px;\n+    width: 14px;\n+  }\n+  span {\n+    position: absolute;\n+    left: 50%;\n+    transform: translateX(-50%);\n+  }\n+}\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665388035056,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,12 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  $dark-background: rgba(46, 52, 64, 1);\n-\n+  background-color: \n+$dark-background: rgba(46, 52, 64, 1);\n+  \n+  ;\n   opacity: 0.7;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n"
-                },
-                {
-                    "date": 1665388041357,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,11 +61,10 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  background-color: \n-$dark-background: rgba(46, 52, 64, 1);\n-  \n+  background-color: $dark-background: rgba(46, 52, 64, 1);\n+\n   ;\n   opacity: 0.7;\n   svg {\n     margin-left: 6px;\n"
-                },
-                {
-                    "date": 1665388049656,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,12 +61,9 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  background-color: $dark-background: rgba(46, 52, 64, 1);\n-\n-  ;\n-  opacity: 0.7;\n+  background-color: $dark-background;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n     width: 14px;\n@@ -75,5 +72,5 @@\n     position: absolute;\n     left: 50%;\n     transform: translateX(-50%);\n   }\n-}\n\\ No newline at end of file\n+}\n"
-                },
-                {
-                    "date": 1665390823737,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  \n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -60,9 +61,8 @@\n   -webkit-app-region: drag;\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n-  border-bottom: 0.5px solid gray;\n   background-color: $dark-background;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n"
-                },
-                {
-                    "date": 1665390833104,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  \n+\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -55,8 +55,9 @@\n     transform: rotateZ(-90deg);\n   }\n }\n .side-bar-container {\n+  po\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
-                },
-                {
-                    "date": 1665391255740,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -55,9 +54,9 @@\n     transform: rotateZ(-90deg);\n   }\n }\n .side-bar-container {\n-  po\n+  position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
-                },
-                {
-                    "date": 1665391268381,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.side-bar-container {\n+. {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
-                },
-                {
-                    "date": 1665391274762,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-. {\n+ {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
-                },
-                {
-                    "date": 1665391287657,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n- {\n+screen-controlers {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
-                },
-                {
-                    "date": 1665391308291,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-screen-controlers {\n-  position: absolute;\n+.screen-controlers {\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
-                },
-                {
-                    "date": 1665391365421,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,8 @@\n   }\n }\n .screen-controlers {\n   height: 30px;\n-  width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665391773533,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,27 @@\n   header {\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n+    height: 30px;\n+    width: 100vw;\n+    -webkit-app-region: drag;\n+    display: flex;\n+    align-items: center;\n+    padding-left: 10px;\n+    border-bottom: 0.5px solid gray;\n+    background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n+    opacity: 0.7;\n+    svg {\n+      margin-left: 6px;\n+      height: 14px;\n+      width: 14px;\n+    }\n+    span {\n+      position: absolute;\n+      left: 50%;\n+      transform: translateX(-50%);\n+    }\n   }\n   .drag-line {\n     width: 4px;\n     height: 100%;\n@@ -53,22 +72,4 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.screen-controlers {\n-  height: 30px;\n-  -webkit-app-region: drag;\n-  display: flex;\n-  align-items: center;\n-  padding-left: 10px;\n-  background-color: $dark-background;\n-  svg {\n-    margin-left: 6px;\n-    height: 14px;\n-    width: 14px;\n-  }\n-  span {\n-    position: absolute;\n-    left: 50%;\n-    transform: translateX(-50%);\n-  }\n-}\n"
-                },
-                {
-                    "date": 1665391786402,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,27 +8,11 @@\n   header {\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n-    height: 30px;\n-    width: 100vw;\n-    -webkit-app-region: drag;\n-    display: flex;\n-    align-items: center;\n-    padding-left: 10px;\n-    border-bottom: 0.5px solid gray;\n-    background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n-    opacity: 0.7;\n-    svg {\n-      margin-left: 6px;\n-      height: 14px;\n-      width: 14px;\n+    .screen-controlers {\n+      \n     }\n-    span {\n-      position: absolute;\n-      left: 50%;\n-      transform: translateX(-50%);\n-    }\n   }\n   .drag-line {\n     width: 4px;\n     height: 100%;\n"
-                },
-                {
-                    "date": 1665391822417,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,26 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      \n+      height: 30px;\n+      -webkit-app-region: drag;\n+      display: flex;\n+      align-items: center;\n+      padding-left: 10px;\n+      border-bottom: 0.5px solid gray;\n+      background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n+      opacity: 0.7;\n+      svg {\n+        margin-left: 6px;\n+        height: 14px;\n+        width: 14px;\n+      }\n+      span {\n+        position: absolute;\n+        left: 50%;\n+        transform: translateX(-50%);\n+      }\n     }\n   }\n   .drag-line {\n     width: 4px;\n"
-                },
-                {
-                    "date": 1665391833893,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n       border-bottom: 0.5px solid gray;\n-      background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n       opacity: 0.7;\n       svg {\n         margin-left: 6px;\n         height: 14px;\n"
-                },
-                {
-                    "date": 1665391846819,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n-      border-bottom: 0.5px solid gray;\n       opacity: 0.7;\n       svg {\n         margin-left: 6px;\n         height: 14px;\n"
-                },
-                {
-                    "date": 1665391867956,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      height: 30px;\n+      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665391892151,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665391906897,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,8 @@\n         margin-left: 6px;\n         height: 14px;\n         width: 14px;\n       }\n-      span {\n-        position: absolute;\n-        left: 50%;\n-        transform: translateX(-50%);\n-      }\n     }\n   }\n   .drag-line {\n     width: 4px;\n"
-                },
-                {
-                    "date": 1665392149781,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n+      margin: 10px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392156784,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 10px;\n+      margin-top: 10px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392170283,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin-top: 10px;\n+      margin: ;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392181326,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: ;\n+      margin: 20px 0 ;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392188969,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 20px 0 ;\n+      margin: 20px 0 0 6px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392197824,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 20px 0 0 6px;\n+      margin: 16px 0 0 6px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392202934,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 16px 0 0 6px;\n+      margin: 16px 0 0 2px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392271740,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 16px 0 0 2px;\n+      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
-                },
-                {
-                    "date": 1665392439751,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  -webkit-app-region: drag;\n+\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
-                },
-                {
-                    "date": 1665392458002,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  -webkit-app-region: drag;\n-\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
-                },
-                {
-                    "date": 1665398539132,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  width: 200px;\n+  min-width: 200px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
-                },
-                {
-                    "date": 1665398545235,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n   width: 200px;\n-  min-width: 200px;\n+  min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
-                },
-                {
-                    "date": 1665398758224,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  width: 200px;\n-  min-width: 100px;\n+  width: 160px;\n+  min-width: 160px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
-                },
-                {
-                    "date": 1665398767917,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n-    left: 200px;\n+    left: 160px;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665398923676,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  width: 160px;\n+  width: 360px;\n   min-width: 160px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n"
-                }
-            ],
-            "date": 1665388008220,
-            "name": "Commit-0",
-            "content": "$dark-color: rgba(236, 239, 244, 0.87);\n$dark-background: rgba(46, 52, 64, 1);\n.side-bar {\n  color: $dark-color;\n  background-color: $dark-background;\n  border-right: 0.5px solid #748fb0;\n  padding: 0 20px 20px 0;\n  header {\n    height: 50px;\n    text-align: center;\n    line-height: 60px;\n  }\n  .drag-line {\n    width: 4px;\n    height: 100%;\n    position: absolute;\n    left: 200px;\n    z-index: 99;\n    background-color: rgb(210, 111, 111);\n    opacity: 0;\n    &:hover {\n      cursor: ew-resize;\n      opacity: 100%;\n    }\n  }\n  .side-bar-container {\n    overflow-y: scroll;\n    // ul和li是标题，里面有图标，需要一起移动\n    ul,\n    li {\n      margin: 10px 0;\n      margin-left: calc(6px * var(--i));\n      a {\n        text-decoration: none;\n        text-decoration-color: $dark-color;\n        color: $dark-color;\n      }\n    }\n    ul {\n      height: auto;\n      svg {\n        height: 10px;\n        width: 10px;\n        margin: 0 6px;\n        transition: all 0.5s;\n      }\n    }\n  }\n}\n.ul-close {\n  height: 20px !important;\n  overflow: hidden;\n  svg {\n    transform: rotateZ(-90deg);\n  }\n}\n."
+          "date": 1665388008220,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665388023632,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,5 +53,26 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.\n\\ No newline at end of file\n+.side-bar-container {\n+  height: 30px;\n+  width: 100vw;\n+  -webkit-app-region: drag;\n+  display: flex;\n+  align-items: center;\n+  padding-left: 10px;\n+  border-bottom: 0.5px solid gray;\n+  $dark-background: rgba(46, 52, 64, 1);\n+\n+  opacity: 0.7;\n+  svg {\n+    margin-left: 6px;\n+    height: 14px;\n+    width: 14px;\n+  }\n+  span {\n+    position: absolute;\n+    left: 50%;\n+    transform: translateX(-50%);\n+  }\n+}\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665388035056,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,10 +61,12 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  $dark-background: rgba(46, 52, 64, 1);\n-\n+  background-color: \n+$dark-background: rgba(46, 52, 64, 1);\n+  \n+  ;\n   opacity: 0.7;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n"
+        },
+        {
+          "date": 1665388041357,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,11 +61,10 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  background-color: \n-$dark-background: rgba(46, 52, 64, 1);\n-  \n+  background-color: $dark-background: rgba(46, 52, 64, 1);\n+\n   ;\n   opacity: 0.7;\n   svg {\n     margin-left: 6px;\n"
+        },
+        {
+          "date": 1665388049656,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,12 +61,9 @@\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n   border-bottom: 0.5px solid gray;\n-  background-color: $dark-background: rgba(46, 52, 64, 1);\n-\n-  ;\n-  opacity: 0.7;\n+  background-color: $dark-background;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n     width: 14px;\n@@ -75,5 +72,5 @@\n     position: absolute;\n     left: 50%;\n     transform: translateX(-50%);\n   }\n-}\n\\ No newline at end of file\n+}\n"
+        },
+        {
+          "date": 1665390823737,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  \n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -60,9 +61,8 @@\n   -webkit-app-region: drag;\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n-  border-bottom: 0.5px solid gray;\n   background-color: $dark-background;\n   svg {\n     margin-left: 6px;\n     height: 14px;\n"
+        },
+        {
+          "date": 1665390833104,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  \n+\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -55,8 +55,9 @@\n     transform: rotateZ(-90deg);\n   }\n }\n .side-bar-container {\n+  po\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
+        },
+        {
+          "date": 1665391255740,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n@@ -55,9 +54,9 @@\n     transform: rotateZ(-90deg);\n   }\n }\n .side-bar-container {\n-  po\n+  position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
+        },
+        {
+          "date": 1665391268381,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.side-bar-container {\n+. {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
+        },
+        {
+          "date": 1665391274762,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-. {\n+ {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
+        },
+        {
+          "date": 1665391287657,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n- {\n+screen-controlers {\n   position: absolute;\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n"
+        },
+        {
+          "date": 1665391308291,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,10 +53,9 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-screen-controlers {\n-  position: absolute;\n+.screen-controlers {\n   height: 30px;\n   width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n"
+        },
+        {
+          "date": 1665391365421,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,8 @@\n   }\n }\n .screen-controlers {\n   height: 30px;\n-  width: 100vw;\n   -webkit-app-region: drag;\n   display: flex;\n   align-items: center;\n   padding-left: 10px;\n"
+        },
+        {
+          "date": 1665391773533,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,27 @@\n   header {\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n+    height: 30px;\n+    width: 100vw;\n+    -webkit-app-region: drag;\n+    display: flex;\n+    align-items: center;\n+    padding-left: 10px;\n+    border-bottom: 0.5px solid gray;\n+    background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n+    opacity: 0.7;\n+    svg {\n+      margin-left: 6px;\n+      height: 14px;\n+      width: 14px;\n+    }\n+    span {\n+      position: absolute;\n+      left: 50%;\n+      transform: translateX(-50%);\n+    }\n   }\n   .drag-line {\n     width: 4px;\n     height: 100%;\n@@ -53,22 +72,4 @@\n   svg {\n     transform: rotateZ(-90deg);\n   }\n }\n-.screen-controlers {\n-  height: 30px;\n-  -webkit-app-region: drag;\n-  display: flex;\n-  align-items: center;\n-  padding-left: 10px;\n-  background-color: $dark-background;\n-  svg {\n-    margin-left: 6px;\n-    height: 14px;\n-    width: 14px;\n-  }\n-  span {\n-    position: absolute;\n-    left: 50%;\n-    transform: translateX(-50%);\n-  }\n-}\n"
+        },
+        {
+          "date": 1665391786402,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,27 +8,11 @@\n   header {\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n-    height: 30px;\n-    width: 100vw;\n-    -webkit-app-region: drag;\n-    display: flex;\n-    align-items: center;\n-    padding-left: 10px;\n-    border-bottom: 0.5px solid gray;\n-    background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n-    opacity: 0.7;\n-    svg {\n-      margin-left: 6px;\n-      height: 14px;\n-      width: 14px;\n+    .screen-controlers {\n+      \n     }\n-    span {\n-      position: absolute;\n-      left: 50%;\n-      transform: translateX(-50%);\n-    }\n   }\n   .drag-line {\n     width: 4px;\n     height: 100%;\n"
+        },
+        {
+          "date": 1665391822417,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,26 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      \n+      height: 30px;\n+      -webkit-app-region: drag;\n+      display: flex;\n+      align-items: center;\n+      padding-left: 10px;\n+      border-bottom: 0.5px solid gray;\n+      background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n+      opacity: 0.7;\n+      svg {\n+        margin-left: 6px;\n+        height: 14px;\n+        width: 14px;\n+      }\n+      span {\n+        position: absolute;\n+        left: 50%;\n+        transform: translateX(-50%);\n+      }\n     }\n   }\n   .drag-line {\n     width: 4px;\n"
+        },
+        {
+          "date": 1665391833893,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n       border-bottom: 0.5px solid gray;\n-      background: linear-gradient(rgb(134, 174, 233), rgb(104, 168, 221));\n       opacity: 0.7;\n       svg {\n         margin-left: 6px;\n         height: 14px;\n"
+        },
+        {
+          "date": 1665391846819,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n-      border-bottom: 0.5px solid gray;\n       opacity: 0.7;\n       svg {\n         margin-left: 6px;\n         height: 14px;\n"
+        },
+        {
+          "date": 1665391867956,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      height: 30px;\n+      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665391892151,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665391906897,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,13 +19,8 @@\n         margin-left: 6px;\n         height: 14px;\n         width: 14px;\n       }\n-      span {\n-        position: absolute;\n-        left: 50%;\n-        transform: translateX(-50%);\n-      }\n     }\n   }\n   .drag-line {\n     width: 4px;\n"
+        },
+        {
+          "date": 1665392149781,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n+      margin: 10px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392156784,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 10px;\n+      margin-top: 10px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392170283,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin-top: 10px;\n+      margin: ;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392181326,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: ;\n+      margin: 20px 0 ;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392188969,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 20px 0 ;\n+      margin: 20px 0 0 6px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392197824,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 20px 0 0 6px;\n+      margin: 16px 0 0 6px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392202934,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 16px 0 0 6px;\n+      margin: 16px 0 0 2px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392271740,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n     height: 50px;\n     text-align: center;\n     line-height: 60px;\n     .screen-controlers {\n-      margin: 16px 0 0 2px;\n+      height: 40px;\n       -webkit-app-region: drag;\n       display: flex;\n       align-items: center;\n       padding-left: 10px;\n"
+        },
+        {
+          "date": 1665392439751,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  -webkit-app-region: drag;\n+\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
+        },
+        {
+          "date": 1665392458002,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  -webkit-app-region: drag;\n-\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
+        },
+        {
+          "date": 1665398539132,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n+  width: 200px;\n+  min-width: 200px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
+        },
+        {
+          "date": 1665398545235,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n   width: 200px;\n-  min-width: 200px;\n+  min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
+        },
+        {
+          "date": 1665398758224,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  width: 200px;\n-  min-width: 100px;\n+  width: 160px;\n+  min-width: 160px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n"
+        },
+        {
+          "date": 1665398767917,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   .drag-line {\n     width: 4px;\n     height: 100%;\n     position: absolute;\n-    left: 200px;\n+    left: 160px;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665398923676,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgba(46, 52, 64, 1);\n .side-bar {\n-  width: 160px;\n+  width: 360px;\n   min-width: 160px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n"
         }
-    ]
+      ],
+      "date": 1665388008220,
+      "name": "Commit-0",
+      "content": "$dark-color: rgba(236, 239, 244, 0.87);\n$dark-background: rgba(46, 52, 64, 1);\n.side-bar {\n  color: $dark-color;\n  background-color: $dark-background;\n  border-right: 0.5px solid #748fb0;\n  padding: 0 20px 20px 0;\n  header {\n    height: 50px;\n    text-align: center;\n    line-height: 60px;\n  }\n  .drag-line {\n    width: 4px;\n    height: 100%;\n    position: absolute;\n    left: 200px;\n    z-index: 99;\n    background-color: rgb(210, 111, 111);\n    opacity: 0;\n    &:hover {\n      cursor: ew-resize;\n      opacity: 100%;\n    }\n  }\n  .side-bar-container {\n    overflow-y: scroll;\n    // ul和li是标题，里面有图标，需要一起移动\n    ul,\n    li {\n      margin: 10px 0;\n      margin-left: calc(6px * var(--i));\n      a {\n        text-decoration: none;\n        text-decoration-color: $dark-color;\n        color: $dark-color;\n      }\n    }\n    ul {\n      height: auto;\n      svg {\n        height: 10px;\n        width: 10px;\n        margin: 0 6px;\n        transition: all 0.5s;\n      }\n    }\n  }\n}\n.ul-close {\n  height: 20px !important;\n  overflow: hidden;\n  svg {\n    transform: rotateZ(-90deg);\n  }\n}\n."
+    }
+  ]
 }

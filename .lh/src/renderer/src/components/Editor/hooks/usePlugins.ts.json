@@ -1,30 +1,30 @@
 {
-    "sourceFile": "src/renderer/src/components/Editor/hooks/usePlugins.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Editor/hooks/usePlugins.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 3,
+      "patches": [
         {
-            "activePatchIndex": 3,
-            "patches": [
-                {
-                    "date": 1666014070104,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1666014130940,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,11 @@\n-export const usePlugins = () =>{\n-  \n+import { Editor } from \"@milkdown/core\";\n+\n+export const usePlugins = (Editor:Editor) =>{\n+    Editor.use(nord)\n+    .use(history)\n+    .use(listener)\n+    .use(prism)\n+    .use(menu)\n+    .use(clipboard)\n+    .use(gitHubCommonMark)\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1666014303523,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,32 @@\n import { Editor } from \"@milkdown/core\";\n-\n+import { nord } from \"@milkdown/theme-nord\";\n+import { listener } from '@milkdown/plugin-listener'\n+import { prism } from '@milkdown/plugin-prism'\n+import { menu } from '@milkdown/plugin-menu'\n+import { history } from '@milkdown/plugin-history'\n+import { clipboard } from '@milkdown/plugin-clipboard'\n+// 亮色主题\n+// import { nordLight } from '@milkdown/theme-nord'\n+// 暗色主题\n+import { nordDark } from '@milkdown/theme-nord'\n+// 官方引用的图标库，如菜单栏需要使用到\n+import '@material-design-icons/font'\n+// 数学公式渲染\n+import 'katex/dist/katex.min.css'\n+// 代码高亮\n+import 'prism-themes/themes/prism-material-oceanic.min.css'\n+import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from \"@milkdown/preset-gfm\";\n+const gitHubCommonMark = gfm\n+.configure(blockquote, {\n+  keymap: {\n+    [SupportedKeys.Blockquote]: 'Mod-Shift-q'\n+  }\n+})\n+.configure(taskListItem, {})\n+.configure(codeFence, {\n+  languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n+})\n export const usePlugins = (Editor:Editor) =>{\n     Editor.use(nord)\n     .use(history)\n     .use(listener)\n"
-                },
-                {
-                    "date": 1666016096334,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,8 @@\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { history } from '@milkdown/plugin-history'\n import { clipboard } from '@milkdown/plugin-clipboard'\n-// 亮色主题\n-// import { nordLight } from '@milkdown/theme-nord'\n-// 暗色主题\n-import { nordDark } from '@milkdown/theme-nord'\n // 官方引用的图标库，如菜单栏需要使用到\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n"
-                }
-            ],
-            "date": 1666014070104,
-            "name": "Commit-0",
-            "content": "export const usePlugins = () =>{\n  \n}"
+          "date": 1666014070104,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1666014130940,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,11 @@\n-export const usePlugins = () =>{\n-  \n+import { Editor } from \"@milkdown/core\";\n+\n+export const usePlugins = (Editor:Editor) =>{\n+    Editor.use(nord)\n+    .use(history)\n+    .use(listener)\n+    .use(prism)\n+    .use(menu)\n+    .use(clipboard)\n+    .use(gitHubCommonMark)\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1666014303523,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,32 @@\n import { Editor } from \"@milkdown/core\";\n-\n+import { nord } from \"@milkdown/theme-nord\";\n+import { listener } from '@milkdown/plugin-listener'\n+import { prism } from '@milkdown/plugin-prism'\n+import { menu } from '@milkdown/plugin-menu'\n+import { history } from '@milkdown/plugin-history'\n+import { clipboard } from '@milkdown/plugin-clipboard'\n+// 亮色主题\n+// import { nordLight } from '@milkdown/theme-nord'\n+// 暗色主题\n+import { nordDark } from '@milkdown/theme-nord'\n+// 官方引用的图标库，如菜单栏需要使用到\n+import '@material-design-icons/font'\n+// 数学公式渲染\n+import 'katex/dist/katex.min.css'\n+// 代码高亮\n+import 'prism-themes/themes/prism-material-oceanic.min.css'\n+import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from \"@milkdown/preset-gfm\";\n+const gitHubCommonMark = gfm\n+.configure(blockquote, {\n+  keymap: {\n+    [SupportedKeys.Blockquote]: 'Mod-Shift-q'\n+  }\n+})\n+.configure(taskListItem, {})\n+.configure(codeFence, {\n+  languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n+})\n export const usePlugins = (Editor:Editor) =>{\n     Editor.use(nord)\n     .use(history)\n     .use(listener)\n"
+        },
+        {
+          "date": 1666016096334,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,8 @@\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { history } from '@milkdown/plugin-history'\n import { clipboard } from '@milkdown/plugin-clipboard'\n-// 亮色主题\n-// import { nordLight } from '@milkdown/theme-nord'\n-// 暗色主题\n-import { nordDark } from '@milkdown/theme-nord'\n // 官方引用的图标库，如菜单栏需要使用到\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n"
         }
-    ]
+      ],
+      "date": 1666014070104,
+      "name": "Commit-0",
+      "content": "export const usePlugins = () =>{\n  \n}"
+    }
+  ]
 }

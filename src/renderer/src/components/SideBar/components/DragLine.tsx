@@ -10,7 +10,7 @@ export const DragLine = () => {
       dragLine.style.left = nextPosition + 'px'
       return false
     }
-    
+
     // 释放鼠标的时候解除事件绑定
     document.onmouseup = (e) => {
       const newPosition = e.clientX

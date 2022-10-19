@@ -1,62 +1,62 @@
 {
-    "sourceFile": "page.html",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "page.html",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 11,
+      "patches": [
         {
-            "activePatchIndex": 11,
-            "patches": [
-                {
-                    "date": 1665927665326,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665927696774,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n   <script>\n     const btn = document.querySelector('button')\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n-        useDebounce(fn)\n+        console.log('1')\n+        useDebounce(fn,1000)\n     })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n"
-                },
-                {
-                    "date": 1665927724898,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,14 @@\n   </body>\n \n   <script>\n     const btn = document.querySelector('button')\n+    const fnx  = useDebounce(fn,1000)\n+\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n-        useDebounce(fn,1000)\n+        fnx()\n     })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n"
-                },
-                {
-                    "date": 1665927738608,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,8 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const fnx  = useDebounce(fn,1000)\n-\n-    const fn = ()=>{console.log('1')}\n-    btn.addEventListener('click',()=>{\n-        console.log('1')\n-        fnx()\n-    })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n         if (timer) clearTimeout(timer)\n@@ -28,6 +22,12 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fn = ()=>{console.log('1')}\n+    btn.addEventListener('click',()=>{\n+        console.log('1')\n+        fnx()\n+    })\n+  \n   </script>\n </html>\n"
-                },
-                {
-                    "date": 1665927749898,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n   </body>\n \n   <script>\n     const btn = document.querySelector('button')\n-    const fnx  = useDebounce(fn,1000)\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n         if (timer) clearTimeout(timer)\n@@ -22,8 +21,10 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fnx  = useDebounce(fn,1000)\n+\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n         fnx()\n"
-                },
-                {
-                    "date": 1665927774151,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,12 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fn = ()=>{console.log('1')}\n+\n     const fnx  = useDebounce(fn,1000)\n \n-    const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n         fnx()\n     })\n"
-                },
-                {
-                    "date": 1665927788014,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \n     const fnx  = useDebounce(fn,1000)\n \n     btn.addEventListener('click',()=>{\n-        console.log('1')\n+        console.log('click')\n         fnx()\n     })\n   \n   </script>\n"
-                },
-                {
-                    "date": 1665927807164,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,11 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay) => {\n+        let timer\n+\n       return () => {\n-        let timer\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn()\n"
-                },
-                {
-                    "date": 1665927909094,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,25 +12,25 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay) => {\n-        let timer\n-\n+      let timer\n       return () => {\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn()\n         }, delay)\n       }\n     }\n-    const fn = ()=>{console.log('1')}\n+    const fn1 = () => {\n+      console.log('1')\n+    }\n+    const fnx2 = useDebounce(()=>{console.log('2'),1000})\n+    const fnx = useDebounce(fn1, 1000)\n \n-    const fnx  = useDebounce(fn,1000)\n-\n-    btn.addEventListener('click',()=>{\n-        console.log('click')\n-        fnx()\n+    btn.addEventListener('click', () => {\n+      console.log('click')\n+      fnx()\n     })\n-  \n   </script>\n </html>\n"
-                },
-                {
-                    "date": 1665927918368,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,16 @@\n     }\n     const fn1 = () => {\n       console.log('1')\n     }\n-    const fnx2 = useDebounce(()=>{console.log('2'),1000})\n+    const fnx2 = useDebounce(() => {\n+      console.log('2'), 1000\n+    })\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n+      fnx2()\n     })\n   </script>\n </html>\n"
-                },
-                {
-                    "date": 1665927930393,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n     const fn1 = () => {\n       console.log('1')\n     }\n     const fnx2 = useDebounce(() => {\n-      console.log('2'), 1000\n-    })\n+      console.log('2')\n+    },1000)\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n"
-                },
-                {
-                    "date": 1665927990948,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,12 @@\n     }\n     const fn1 = () => {\n       console.log('1')\n     }\n-    const fnx2 = useDebounce(() => {\n-      console.log('2')\n-    },1000)\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n-      fnx2()\n     })\n   </script>\n </html>\n"
-                }
-            ],
-            "date": 1665927665326,
-            "name": "Commit-0",
-            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Document</title>\n  </head>\n  <body>\n    <button>click</button>\n  </body>\n\n  <script>\n    const btn = document.querySelector('button')\n    const fn = ()=>{console.log('1')}\n    btn.addEventListener('click',()=>{\n        useDebounce(fn)\n    })\n    const useDebounce = (fn, delay) => {\n      return () => {\n        let timer\n        if (timer) clearTimeout(timer)\n        timer = setTimeout(() => {\n          console.log('debouce timer done')\n          fn()\n        }, delay)\n      }\n    }\n  </script>\n</html>\n"
+          "date": 1665927665326,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665927696774,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,10 @@\n   <script>\n     const btn = document.querySelector('button')\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n-        useDebounce(fn)\n+        console.log('1')\n+        useDebounce(fn,1000)\n     })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n"
+        },
+        {
+          "date": 1665927724898,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,12 +11,14 @@\n   </body>\n \n   <script>\n     const btn = document.querySelector('button')\n+    const fnx  = useDebounce(fn,1000)\n+\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n-        useDebounce(fn,1000)\n+        fnx()\n     })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n"
+        },
+        {
+          "date": 1665927738608,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,14 +12,8 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const fnx  = useDebounce(fn,1000)\n-\n-    const fn = ()=>{console.log('1')}\n-    btn.addEventListener('click',()=>{\n-        console.log('1')\n-        fnx()\n-    })\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n         if (timer) clearTimeout(timer)\n@@ -28,6 +22,12 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fn = ()=>{console.log('1')}\n+    btn.addEventListener('click',()=>{\n+        console.log('1')\n+        fnx()\n+    })\n+  \n   </script>\n </html>\n"
+        },
+        {
+          "date": 1665927749898,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n   </body>\n \n   <script>\n     const btn = document.querySelector('button')\n-    const fnx  = useDebounce(fn,1000)\n     const useDebounce = (fn, delay) => {\n       return () => {\n         let timer\n         if (timer) clearTimeout(timer)\n@@ -22,8 +21,10 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fnx  = useDebounce(fn,1000)\n+\n     const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n         fnx()\n"
+        },
+        {
+          "date": 1665927774151,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,12 @@\n           fn()\n         }, delay)\n       }\n     }\n+    const fn = ()=>{console.log('1')}\n+\n     const fnx  = useDebounce(fn,1000)\n \n-    const fn = ()=>{console.log('1')}\n     btn.addEventListener('click',()=>{\n         console.log('1')\n         fnx()\n     })\n"
+        },
+        {
+          "date": 1665927788014,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \n     const fnx  = useDebounce(fn,1000)\n \n     btn.addEventListener('click',()=>{\n-        console.log('1')\n+        console.log('click')\n         fnx()\n     })\n   \n   </script>\n"
+        },
+        {
+          "date": 1665927807164,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,11 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay) => {\n+        let timer\n+\n       return () => {\n-        let timer\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn()\n"
+        },
+        {
+          "date": 1665927909094,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,25 +12,25 @@\n \n   <script>\n     const btn = document.querySelector('button')\n     const useDebounce = (fn, delay) => {\n-        let timer\n-\n+      let timer\n       return () => {\n         if (timer) clearTimeout(timer)\n         timer = setTimeout(() => {\n           console.log('debouce timer done')\n           fn()\n         }, delay)\n       }\n     }\n-    const fn = ()=>{console.log('1')}\n+    const fn1 = () => {\n+      console.log('1')\n+    }\n+    const fnx2 = useDebounce(()=>{console.log('2'),1000})\n+    const fnx = useDebounce(fn1, 1000)\n \n-    const fnx  = useDebounce(fn,1000)\n-\n-    btn.addEventListener('click',()=>{\n-        console.log('click')\n-        fnx()\n+    btn.addEventListener('click', () => {\n+      console.log('click')\n+      fnx()\n     })\n-  \n   </script>\n </html>\n"
+        },
+        {
+          "date": 1665927918368,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,16 @@\n     }\n     const fn1 = () => {\n       console.log('1')\n     }\n-    const fnx2 = useDebounce(()=>{console.log('2'),1000})\n+    const fnx2 = useDebounce(() => {\n+      console.log('2'), 1000\n+    })\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n+      fnx2()\n     })\n   </script>\n </html>\n"
+        },
+        {
+          "date": 1665927930393,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n     const fn1 = () => {\n       console.log('1')\n     }\n     const fnx2 = useDebounce(() => {\n-      console.log('2'), 1000\n-    })\n+      console.log('2')\n+    },1000)\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n"
+        },
+        {
+          "date": 1665927990948,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,12 @@\n     }\n     const fn1 = () => {\n       console.log('1')\n     }\n-    const fnx2 = useDebounce(() => {\n-      console.log('2')\n-    },1000)\n     const fnx = useDebounce(fn1, 1000)\n \n     btn.addEventListener('click', () => {\n       console.log('click')\n       fnx()\n-      fnx2()\n     })\n   </script>\n </html>\n"
         }
-    ]
+      ],
+      "date": 1665927665326,
+      "name": "Commit-0",
+      "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Document</title>\n  </head>\n  <body>\n    <button>click</button>\n  </body>\n\n  <script>\n    const btn = document.querySelector('button')\n    const fn = ()=>{console.log('1')}\n    btn.addEventListener('click',()=>{\n        useDebounce(fn)\n    })\n    const useDebounce = (fn, delay) => {\n      return () => {\n        let timer\n        if (timer) clearTimeout(timer)\n        timer = setTimeout(() => {\n          console.log('debouce timer done')\n          fn()\n        }, delay)\n      }\n    }\n  </script>\n</html>\n"
+    }
+  ]
 }

@@ -2,7 +2,6 @@ import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './electron/createWindow'
 
-
 // electron初始化，可以创建窗口
 app.whenReady().then(() => {
   // Set app user model id for windows
@@ -13,7 +12,6 @@ app.whenReady().then(() => {
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
-
   })
 
   createWindow()
@@ -24,7 +22,6 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
-
 
 app.on('window-all-closed', () => {
   // mac的plateform是darwin

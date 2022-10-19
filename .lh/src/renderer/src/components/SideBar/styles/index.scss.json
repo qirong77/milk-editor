@@ -1,486 +1,486 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar/styles/index.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar/styles/index.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 117,
+      "patches": [
         {
-            "activePatchIndex": 117,
-            "patches": [
-                {
-                    "date": 1665500010365,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665500016297,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-.side\n\\ No newline at end of file\n+.header-list {\n+    \n+}\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665500062543,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,9 @@\n .header-list {\n-    \n+    .ul-close {\n+        height: 20px !important;\n+        overflow: hidden;\n+        svg {\n+          transform: rotateZ(-90deg);\n+        }\n+      }\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665500071656,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .header-list {\n-    .ul-close {\n-        height: 20px !important;\n-        overflow: hidden;\n-        svg {\n-          transform: rotateZ(-90deg);\n-        }\n-      }\n-}\n\\ No newline at end of file\n+  ul.ul-close {\n+    height: 20px !important;\n+    overflow: hidden;\n+    svg {\n+      transform: rotateZ(-90deg);\n+    }\n+  }\n+}\n"
-                },
-                {
-                    "date": 1665500123739,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,17 @@\n       transform: rotateZ(-90deg);\n     }\n   }\n }\n+.drag-line {\n+    width: 4px;\n+    height: 100%;\n+    position: absolute;\n+    left: $side-bar-width;\n+    z-index: 99;\n+    background-color: rgb(210, 111, 111);\n+    opacity: 0;\n+    &:hover {\n+      cursor: ew-resize;\n+      opacity: 100%;\n+    }\n+  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665500141344,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,25 @@\n-.header-list {\n-  ul.ul-close {\n-    height: 20px !important;\n-    overflow: hidden;\n-    svg {\n-      transform: rotateZ(-90deg);\n-    }\n-  }\n-}\n-.drag-line {\n-    width: 4px;\n-    height: 100%;\n-    position: absolute;\n-    left: $side-bar-width;\n-    z-index: 99;\n-    background-color: rgb(210, 111, 111);\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n-  }\n\\ No newline at end of file\n+.side-bar {\n+    .header-list {\n+        ul.ul-close {\n+          height: 20px !important;\n+          overflow: hidden;\n+          svg {\n+            transform: rotateZ(-90deg);\n+          }\n+        }\n+      }\n+      .drag-line {\n+        width: 4px;\n+        height: 100%;\n+        position: absolute;\n+        left: $side-bar-width;\n+        z-index: 99;\n+        background-color: rgb(210, 111, 111);\n+        opacity: 0;\n+        &:hover {\n+          cursor: ew-resize;\n+          opacity: 100%;\n+        }\n+      }\n+      \n+}\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665500156434,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n .side-bar {\n     .header-list {\n+        overflow: scroll;\n         ul.ul-close {\n           height: 20px !important;\n           overflow: hidden;\n           svg {\n"
-                },
-                {
-                    "date": 1665500181561,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,15 @@\n .side-bar {\n+    $dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgba(46, 52, 64, 1);\n+$side-bar-width: 160px;\n+.side-bar {\n+  width: $side-bar-width;\n+  min-width: $side-bar-width;\n+  color: $dark-color;\n+  background-color: $dark-background;\n+  border-right: 0.5px solid #748fb0;\n+  padding: 0 20px 20px 0;\n     .header-list {\n         overflow: scroll;\n         ul.ul-close {\n           height: 20px !important;\n"
-                },
-                {
-                    "date": 1665500187425,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n+\n .side-bar {\n-    $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width: 160px;\n-.side-bar {\n+\n+\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n"
-                },
-                {
-                    "date": 1665500483210,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,35 +1,35 @@\n-\n+$dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgba(46, 52, 64, 1);\n+$side-bar-width: 160px;\n .side-bar {\n-\n-\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-    .header-list {\n-        overflow: scroll;\n-        ul.ul-close {\n-          height: 20px !important;\n-          overflow: hidden;\n-          svg {\n-            transform: rotateZ(-90deg);\n-          }\n-        }\n+  .header-list {\n+    overflow: scroll;\n+    ul.ul-close {\n+      height: 20px !important;\n+      overflow: hidden;\n+      svg {\n+        transform: rotateZ(-90deg);\n       }\n-      .drag-line {\n-        width: 4px;\n-        height: 100%;\n-        position: absolute;\n-        left: $side-bar-width;\n\\ No newline at end of file\n-        z-index: 99;\n-        background-color: rgb(210, 111, 111);\n-        opacity: 0;\n-        &:hover {\n-          cursor: ew-resize;\n-          opacity: 100%;\n-        }\n-      }\n-      \n-}\n+    }\n+  }\n+  \n+  .drag-line {\n+    width: 4px;\n+    height: 100%;\n+    position: absolute;\n+    left: $side-bar-width;\n+    z-index: 99;\n+    background-color: rgb(210, 111, 111);\n+    opacity: 0;\n+    &:hover {\n+      cursor: ew-resize;\n+      opacity: 100%;\n+    }\n+  }\n+}\n"
-                },
-                {
-                    "date": 1665500494208,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,27 @@\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n   .header-list {\n     overflow: scroll;\n+    ul,\n+    li {\n+      margin: 10px 0;\n+      margin-left: calc(6px * var(--i));\n+      a {\n+        text-decoration: none;\n+        text-decoration-color: $dark-color;\n+        color: $dark-color;\n+      }\n+    }\n+    ul {\n+      height: auto;\n+      svg {\n+        height: 10px;\n+        width: 10px;\n+        margin: 0 6px;\n+        transition: all 0.5s;\n+      }\n+    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
-                },
-                {
-                    "date": 1665501617054,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,14 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-  \n+\n   .drag-line {\n     width: 4px;\n-    height: 100%;\n+    height: calc(100vh-30px);\n     position: absolute;\n     left: $side-bar-width;\n-    z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
-                },
-                {
-                    "date": 1665501688750,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,10 @@\n   }\n \n   .drag-line {\n     width: 4px;\n-    height: calc(100vh-30px);\n+    // 定位为position的元素height为100%不是相对于父元素了\n+    height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665501795303,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n+    z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
-                },
-                {
-                    "date": 1665638566778,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n+$dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n"
-                },
-                {
-                    "date": 1665638791209,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,12 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n+  header {\n+    display: flex;\n+    justify-content: space-between;\n+  }\n   .header-list {\n     overflow: scroll;\n     ul,\n     li {\n"
-                },
-                {
-                    "date": 1665638975737,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 0 20px 20px 0;\n+  padding: 0 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-between;\n   }\n"
-                },
-                {
-                    "date": 1665642208100,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n-  min-width: $side-bar-width;\n+  min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n"
-                },
-                {
-                    "date": 1665642276387,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n   header {\n     display: flex;\n-    justify-content: space-between;\n+    justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n     ul,\n"
-                },
-                {
-                    "date": 1665642287642,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 0 0 20px 0;\n+  padding: 30 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
-                },
-                {
-                    "date": 1665642293820,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 30 0 20px 0;\n+  padding: 30px 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
-                },
-                {
-                    "date": 1665642394646,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n+  font-weight: lighter;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
-                },
-                {
-                    "date": 1665642407447,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n   font-weight: lighter;\n+  font-size: small;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
-                },
-                {
-                    "date": 1665642414040,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n-  font-weight: lighter;\n+  font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665643218212,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n"
-                },
-                {
-                    "date": 1665648319028,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+// $max-height: ;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
-                },
-                {
-                    "date": 1665649892162,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: ;\n+// $max-height: n;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
-                },
-                {
-                    "date": 1665667081183,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: n;\n+$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -43,14 +43,15 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665667115207,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -46,9 +45,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n+    height: calc(100vh-30px);\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
-                },
-                {
-                    "date": 1665667148136,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+$max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -45,9 +46,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh-30px);\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
-                },
-                {
-                    "date": 1665667182089,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,12 +46,11 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665667236866,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n+  max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n"
-                },
-                {
-                    "date": 1665667312697,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n+    height: 30px;\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n"
-                },
-                {
-                    "date": 1665667328232,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 30px 0 20px 0;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n"
-                },
-                {
-                    "date": 1665667352505,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n       margin-left: calc(6px * var(--i));\n"
-                },
-                {
-                    "date": 1665667485341,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665667494232,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     max-height: $max-height;\n-    z-index: 99;\n+    z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
-                },
-                {
-                    "date": 1665667683336,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n"
-                },
-                {
-                    "date": 1665669962247,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    // height: $max-height;\n     max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665669972002,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: $max-height;\n-    max-height: $max-height;\n+    height: $max-height;\n+    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665669981425,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    height: 500px;\n+    // height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665670281043,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: 500px;\n-    // height: $max-height;\n+    // height: 500px;\n+    height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665670544327,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -17,8 +16,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
-                },
-                {
-                    "date": 1665670571077,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -16,9 +17,8 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n-    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
-                },
-                {
-                    "date": 1665670604468,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: $max-height;\n+    height: 90vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665670629394,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: 90vh;\n+    height: 80vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
-                },
-                {
-                    "date": 1665670654514,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,11 @@\n     }\n   }\n   .drag-line {\n     width: 4px;\n-    // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: 500px;\n     height: 80vh;\n-    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665672113851,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 0 0 20px 0;\n+  padding: 20px 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n"
-                },
-                {
-                    "date": 1665672134548,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 20px 0 20px 0;\n+  padding: 30px 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -49,9 +49,9 @@\n   .drag-line {\n     width: 4px;\n     position: absolute;\n     left: $side-bar-width;\n-    height: 80vh;\n+    height: 90vh;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665672151415,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,9 @@\n     width: 4px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n+    top: 30px;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
-                },
-                {
-                    "date": 1665722137748,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   font-weight: normal;\n-  font-size: small;\n+  font-size: smaler;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665722238528,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   font-weight: normal;\n-  font-size: smaler;\n+  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n-    max-height: calc(100vh - 60px);\n+    max-height: calc(100vh - 100px);\n     ul,\n     li {\n       margin: 10px 0;\n       margin-left: calc(6px * var(--i));\n"
-                },
-                {
-                    "date": 1665722409468,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n     }\n     ul {\n       height: auto;\n       svg {\n-        height: 10px;\n-        width: 10px;\n+        height: 8px;\n+        width: 8px;\n         margin: 0 6px;\n         transition: all 0.5s;\n       }\n     }\n"
-                },
-                {
-                    "date": 1665722704812,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n-  font-weight: normal;\n-  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665723539128,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n+  transition: 0.4s;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n@@ -58,4 +59,7 @@\n       opacity: 100%;\n     }\n   }\n }\n+.side-bar-close {\n+  width: 0;\n+}\n"
-                },
-                {
-                    "date": 1665723562653,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,6 +60,7 @@\n     }\n   }\n }\n .side-bar-close {\n+  min-width: 0;\n   width: 0;\n }\n"
-                },
-                {
-                    "date": 1665727157412,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n+  font-size: small;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665727164931,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n-  font-size: small;\n+  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665727220877,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     max-height: calc(100vh - 100px);\n     ul,\n     li {\n       margin: 10px 0;\n-      margin-left: calc(6px * var(--i));\n+      margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
-                },
-                {
-                    "date": 1665729610087,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,6 +62,7 @@\n   }\n }\n .side-bar-close {\n   min-width: 0;\n-  width: 0;\n+  // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n+  width: 0 !important;\n }\n"
-                },
-                {
-                    "date": 1665731368292,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,26 +18,29 @@\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n+    svg {\n+      height: 8px;\n+      width: 8px;\n+      margin: 0 6px;\n+      transition: all 0.5s;\n+    }\n     ul,\n     li {\n       margin: 10px 0;\n-      margin-left: calc(8px * var(--i));\n+      // margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n       }\n+      svg  {\n+        opacity: 0%;\n+      }\n     }\n     ul {\n       height: auto;\n-      svg {\n-        height: 8px;\n-        width: 8px;\n-        margin: 0 6px;\n-        transition: all 0.5s;\n-      }\n     }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n"
-                },
-                {
-                    "date": 1665731392989,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     svg {\n-      height: 8px;\n-      width: 8px;\n-      margin: 0 6px;\n+      height: 18px;\n+      width: 18px;\n+      // margin: 0 6px;\n       transition: all 0.5s;\n     }\n     ul,\n     li {\n"
-                },
-                {
-                    "date": 1665731471706,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,24 +24,27 @@\n       width: 18px;\n       // margin: 0 6px;\n       transition: all 0.5s;\n     }\n+    ul {\n+      height: auto;\n+\n+    }\n+    li {\n+      svg  {\n+        opacity: 0%;\n+      }\n+    }\n     ul,\n     li {\n-      margin: 10px 0;\n       // margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n       }\n-      svg  {\n-        opacity: 0%;\n-      }\n+\n     }\n-    ul {\n-      height: auto;\n-    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
-                },
-                {
-                    "date": 1665731488405,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,10 @@\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     svg {\n-      height: 18px;\n-      width: 18px;\n+      height: 8px;\n+      width: 8px;\n       // margin: 0 6px;\n       transition: all 0.5s;\n     }\n     ul {\n"
-                },
-                {
-                    "date": 1665731594933,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     }\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n+      display: flex;\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
-                },
-                {
-                    "date": 1665731620197,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,8 @@\n     }\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n-      display: flex;\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
-                },
-                {
-                    "date": 1665733532116,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,16 @@\n       transition: all 0.5s;\n     }\n     ul {\n       height: auto;\n-\n-    }\n-    li {\n-      svg  {\n-        opacity: 0%;\n+      li {\n+        display: flex;\n+        svg  {\n+          opacity: 0%;\n+        }\n       }\n     }\n+\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n       a {\n"
-                },
-                {
-                    "date": 1665733558090,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,24 +28,21 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n+               // margin-left: calc(8px * var(--i));\n+               a {\n+                text-decoration: none;\n+                text-decoration-color: $dark-color;\n+                color: $dark-color;\n+              }\n         svg  {\n           opacity: 0%;\n         }\n+\n       }\n     }\n \n-    ul,\n-    li {\n-      // margin-left: calc(8px * var(--i));\n-      a {\n-        text-decoration: none;\n-        text-decoration-color: $dark-color;\n-        color: $dark-color;\n-      }\n-\n-    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
-                },
-                {
-                    "date": 1665733627681,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,18 +28,21 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-               // margin-left: calc(8px * var(--i));\n-               a {\n-                text-decoration: none;\n-                text-decoration-color: $dark-color;\n-                color: $dark-color;\n-              }\n-        svg  {\n+        // margin-left: calc(8px * var(--i));\n+        height: 30px;\n+        div {\n+          height: 100%;\n+        }\n+        a {\n+          text-decoration: none;\n+          text-decoration-color: $dark-color;\n+          color: $dark-color;\n+        }\n+        svg {\n           opacity: 0%;\n         }\n-\n       }\n     }\n \n     ul.ul-close {\n"
-                },
-                {
-                    "date": 1665733635612,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n         // margin-left: calc(8px * var(--i));\n         height: 30px;\n         div {\n           height: 100%;\n+          width: 30px;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
-                },
-                {
-                    "date": 1665733647525,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n-          opacity: 0%;\n+          opacity: 100%;\n         }\n       }\n     }\n \n"
-                },
-                {
-                    "date": 1665733660619,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,11 @@\n         height: 30px;\n         div {\n           height: 100%;\n           width: 30px;\n+          display: flex;\n+          justify-content: center;\n+          align-items: center;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
-                },
-                {
-                    "date": 1665733697100,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n         height: 30px;\n+        line-height: 30px;\n         div {\n           height: 100%;\n           width: 30px;\n           display: flex;\n"
-                },
-                {
-                    "date": 1665733764193,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n+$title-height:40px;\n .side-bar {\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n@@ -29,10 +30,10 @@\n       height: auto;\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n-        height: 30px;\n-        line-height: 30px;\n+        height: $title-height;\n+        line-height: $title-height;\n         div {\n           height: 100%;\n           width: 30px;\n           display: flex;\n@@ -50,9 +51,9 @@\n       }\n     }\n \n     ul.ul-close {\n-      height: 20px !important;\n+      height: $title-height !important;\n       overflow: hidden;\n       svg {\n         transform: rotateZ(-90deg);\n       }\n"
-                },
-                {
-                    "date": 1665733829520,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,8 @@\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n-    svg {\n-      height: 8px;\n-      width: 8px;\n-      // margin: 0 6px;\n-      transition: all 0.5s;\n-    }\n     ul {\n       height: auto;\n       li {\n         display: flex;\n@@ -34,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n-          width: 30px;\n+          width: 20px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n         }\n@@ -45,8 +39,12 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n+          height: 10px;\n+          width: 10px;\n+          // margin: 0 6px;\n+          transition: all 0.5s;\n           opacity: 100%;\n         }\n       }\n     }\n"
-                },
-                {
-                    "date": 1665733846599,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n-          width: 20px;\n+          width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n         }\n@@ -39,10 +39,10 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n-          height: 10px;\n-          width: 10px;\n+          height: 8px;\n+          width: 8px;\n           // margin: 0 6px;\n           transition: all 0.5s;\n           opacity: 100%;\n         }\n"
-                },
-                {
-                    "date": 1665734054297,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n           width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n+          margin: 0 4px;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
-                },
-                {
-                    "date": 1665734164996,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,8 @@\n         }\n         svg {\n           height: 8px;\n           width: 8px;\n-          // margin: 0 6px;\n           transition: all 0.5s;\n           opacity: 100%;\n         }\n       }\n"
-                },
-                {
-                    "date": 1665734396146,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,17 @@\n         svg {\n           height: 8px;\n           width: 8px;\n           transition: all 0.5s;\n-          opacity: 100%;\n+          opacity: 0%;\n         }\n       }\n     }\n-\n+    ul.show-list {\n+      svg{\n+        opacity: 100% !important;\n+      }\n+    }\n     ul.ul-close {\n       height: $title-height !important;\n       overflow: hidden;\n       svg {\n"
-                },
-                {
-                    "date": 1665734484861,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n           opacity: 0%;\n         }\n       }\n     }\n-    ul.show-list {\n+    ul.show-list > li {\n       svg{\n         opacity: 100% !important;\n       }\n     }\n"
-                },
-                {
-                    "date": 1665734569666,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n       }\n     }\n     ul.show-list > li {\n       svg{\n-        opacity: 100% !important;\n+        opacity: 100% ;\n       }\n     }\n     ul.ul-close {\n       height: $title-height !important;\n"
-                },
-                {
-                    "date": 1665734587337,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n       height: auto;\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n+        padding-left: 10px;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
-                },
-                {
-                    "date": 1665734640890,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,9 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-        // margin-left: calc(8px * var(--i));\n-        padding-left: 10px;\n+        padding-left:  calc(8px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
-                },
-                {
-                    "date": 1665734875253,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-        padding-left:  calc(8px * var(--i));;\n+        padding-left:  calc(10px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
-                },
-                {
-                    "date": 1665735023547,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n+        &:hover {\n+          cursor: pointer;\n+        }\n         div {\n           height: 100%;\n           width: 10px;\n           display: flex;\n"
-                },
-                {
-                    "date": 1665735035529,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n+          background-color: lightgray;\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
-                },
-                {
-                    "date": 1665735062640,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n-          background-color: lightgray;\n+          background-color: rgb(67, 75, 93);\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
-                },
-                {
-                    "date": 1665735081244,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n-          background-color: rgb(67, 75, 93);\n+          background-color: rgb(56, 62, 77);\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
-                },
-                {
-                    "date": 1665735918723,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,15 +65,15 @@\n       }\n     }\n   }\n   .drag-line {\n-    width: 4px;\n+    width: 2px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n     top: 30px;\n     z-index: 99999;\n-    background-color: rgb(210, 111, 111);\n+    background-color: rgb(68, 77, 95);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n       opacity: 100%;\n"
-                },
-                {
-                    "date": 1665735929631,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n       }\n     }\n   }\n   .drag-line {\n-    width: 2px;\n+    width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n     top: 30px;\n"
-                },
-                {
-                    "date": 1665736021868,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,11 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        height: $title-height;\n+        min-height: $title-height;\n+        // 避免标题太长重叠\n+        height: auto;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n           background-color: rgb(56, 62, 77);\n"
-                },
-                {
-                    "date": 1665736051485,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        min-height: $title-height;\n+        // min-height: $title-height;\n         // 避免标题太长重叠\n         height: auto;\n         line-height: $title-height;\n         &:hover {\n"
-                },
-                {
-                    "date": 1665736135459,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,18 +24,18 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        // min-height: $title-height;\n+        min-height: $title-height;\n         // 避免标题太长重叠\n         height: auto;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n           background-color: rgb(56, 62, 77);\n         }\n         div {\n-          height: 100%;\n+          height: $title-height;\n           width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n"
-                },
-                {
-                    "date": 1665736198451,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,10 @@\n           align-items: center;\n           margin: 0 4px;\n         }\n         a {\n+          //占满剩余部分\n+          flex:auto;\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n"
-                },
-                {
-                    "date": 1665736780607,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n-$title-height:40px;\n+$title-height:30px;\n .side-bar {\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n"
-                },
-                {
-                    "date": 1665757534131,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,14 @@\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n+    svg {\n+      display: none;\n+    }\n+    &:hover {\n+      display: block;\n+    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n"
-                },
-                {
-                    "date": 1665757552206,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n     svg {\n       display: none;\n     }\n     &:hover {\n-      display: block;\n+      svg {\n+        display: block;\n+      }\n     }\n   }\n   .header-list {\n     overflow: scroll;\n"
-                },
-                {
-                    "date": 1665757562435,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n+      cursor: pointer;\n     }\n     &:hover {\n       svg {\n         display: block;\n"
-                },
-                {
-                    "date": 1665898217338,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,16 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n+  .file-list {\n+    overflow: scroll;\n+    max-height: calc(100vh - 100px);\n+    li {\n+      display: flex;\n+      \n+    }\n+  }\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
-                },
-                {
-                    "date": 1665898315430,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,11 +82,19 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      \n+      min-height: $title-height;\n+      // 避免标题太长重叠\n+      height: auto;\n+      line-height: $title-height;\n+      &:hover {\n+        cursor: pointer;\n+        background-color: rgb(56, 62, 77);\n+      }\n     }\n   }\n+\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
-                },
-                {
-                    "date": 1665898599880,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n+      justify-content: center;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
-                },
-                {
-                    "date": 1665898636076,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      justify-content: center;\n+      padding-left: 10px;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
-                },
-                {
-                    "date": 1665898642350,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      padding-left: 10px;\n+      padding-left: 20px;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
-                },
-                {
-                    "date": 1665901829207,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,8 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n@@ -108,8 +107,16 @@\n       cursor: ew-resize;\n       opacity: 100%;\n     }\n   }\n+  footer {\n+    position: absolute;\n+    bottom: 0;\n+    width: 100%;\n+    border-top: 1px solid lightgray;\n+    background-color: $dark-color;\n+    display: flex;\n+  }\n }\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n"
-                },
-                {
-                    "date": 1665901985517,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,8 +111,9 @@\n   footer {\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n+    height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-color;\n     display: flex;\n   }\n"
-                },
-                {
-                    "date": 1665902077872,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid lightgray;\n-    background-color: $dark-color;\n+    background-color: $dark-background;\n     display: flex;\n   }\n }\n .side-bar-close {\n"
-                },
-                {
-                    "date": 1665902098437,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,8 +115,9 @@\n     height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n+    justify-content: space-between;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
-                },
-                {
-                    "date": 1665902125419,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n+  position: relative;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
-                },
-                {
-                    "date": 1665902133447,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,8 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n+    justify-content: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
-                },
-                {
-                    "date": 1665902138852,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n-    justify-content: center;\n+    align-items: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
-                },
-                {
-                    "date": 1665902148646,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid lightgray;\n+    border-top: 1px solid rgb(152, 151, 151);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
-                },
-                {
-                    "date": 1665902154620,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid rgb(152, 151, 151);\n+    border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
-                },
-                {
-                    "date": 1665902171815,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -116,9 +116,9 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n-    justify-content: space-between;\n+    justify-content: space-around;\n     align-items: center;\n   }\n }\n .side-bar-close {\n"
-                },
-                {
-                    "date": 1665903435051,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,21 +12,24 @@\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n   position: relative;\n+  &:hover {\n+    footer {\n+      display: block !important;\n+    }\n+    header svg {\n+      display: block;\n+    }\n+  }\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n       cursor: pointer;\n     }\n-    &:hover {\n-      svg {\n-        display: block;\n-      }\n-    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n@@ -118,8 +121,9 @@\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-around;\n     align-items: center;\n+    display: none;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
-                },
-                {
-                    "date": 1665903450748,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block !important;\n+      display: block\n     }\n     header svg {\n       display: block;\n     }\n"
-                },
-                {
-                    "date": 1665903457917,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block\n+      display: flex\n     }\n     header svg {\n       display: block;\n     }\n"
-                },
-                {
-                    "date": 1665903491012,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: flex\n+      display: flex;\n+      justify-content: space-around;\n+      align-items: center;\n     }\n     header svg {\n       display: block;\n     }\n@@ -118,11 +120,8 @@\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n-    display: flex;\n-    justify-content: space-around;\n-    align-items: center;\n     display: none;\n   }\n }\n .side-bar-close {\n"
-                },
-                {
-                    "date": 1665903510562,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,8 +121,11 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: none;\n+    svg {\n+      cursor: pointer;\n+    }\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
-                }
-            ],
-            "date": 1665500010365,
-            "name": "Commit-0",
-            "content": ".side"
+          "date": 1665500010365,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665500016297,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-.side\n\\ No newline at end of file\n+.header-list {\n+    \n+}\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665500062543,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,9 @@\n .header-list {\n-    \n+    .ul-close {\n+        height: 20px !important;\n+        overflow: hidden;\n+        svg {\n+          transform: rotateZ(-90deg);\n+        }\n+      }\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665500071656,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n .header-list {\n-    .ul-close {\n-        height: 20px !important;\n-        overflow: hidden;\n-        svg {\n-          transform: rotateZ(-90deg);\n-        }\n-      }\n-}\n\\ No newline at end of file\n+  ul.ul-close {\n+    height: 20px !important;\n+    overflow: hidden;\n+    svg {\n+      transform: rotateZ(-90deg);\n+    }\n+  }\n+}\n"
+        },
+        {
+          "date": 1665500123739,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,4 +6,17 @@\n       transform: rotateZ(-90deg);\n     }\n   }\n }\n+.drag-line {\n+    width: 4px;\n+    height: 100%;\n+    position: absolute;\n+    left: $side-bar-width;\n+    z-index: 99;\n+    background-color: rgb(210, 111, 111);\n+    opacity: 0;\n+    &:hover {\n+      cursor: ew-resize;\n+      opacity: 100%;\n+    }\n+  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665500141344,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,25 @@\n-.header-list {\n-  ul.ul-close {\n-    height: 20px !important;\n-    overflow: hidden;\n-    svg {\n-      transform: rotateZ(-90deg);\n-    }\n-  }\n-}\n-.drag-line {\n-    width: 4px;\n-    height: 100%;\n-    position: absolute;\n-    left: $side-bar-width;\n-    z-index: 99;\n-    background-color: rgb(210, 111, 111);\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n-  }\n\\ No newline at end of file\n+.side-bar {\n+    .header-list {\n+        ul.ul-close {\n+          height: 20px !important;\n+          overflow: hidden;\n+          svg {\n+            transform: rotateZ(-90deg);\n+          }\n+        }\n+      }\n+      .drag-line {\n+        width: 4px;\n+        height: 100%;\n+        position: absolute;\n+        left: $side-bar-width;\n+        z-index: 99;\n+        background-color: rgb(210, 111, 111);\n+        opacity: 0;\n+        &:hover {\n+          cursor: ew-resize;\n+          opacity: 100%;\n+        }\n+      }\n+      \n+}\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665500156434,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n .side-bar {\n     .header-list {\n+        overflow: scroll;\n         ul.ul-close {\n           height: 20px !important;\n           overflow: hidden;\n           svg {\n"
+        },
+        {
+          "date": 1665500181561,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,15 @@\n .side-bar {\n+    $dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgba(46, 52, 64, 1);\n+$side-bar-width: 160px;\n+.side-bar {\n+  width: $side-bar-width;\n+  min-width: $side-bar-width;\n+  color: $dark-color;\n+  background-color: $dark-background;\n+  border-right: 0.5px solid #748fb0;\n+  padding: 0 20px 20px 0;\n     .header-list {\n         overflow: scroll;\n         ul.ul-close {\n           height: 20px !important;\n"
+        },
+        {
+          "date": 1665500187425,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n+\n .side-bar {\n-    $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n-$side-bar-width: 160px;\n-.side-bar {\n+\n+\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n"
+        },
+        {
+          "date": 1665500483210,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,35 +1,35 @@\n-\n+$dark-color: rgba(236, 239, 244, 0.87);\n+$dark-background: rgba(46, 52, 64, 1);\n+$side-bar-width: 160px;\n .side-bar {\n-\n-\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n-    .header-list {\n-        overflow: scroll;\n-        ul.ul-close {\n-          height: 20px !important;\n-          overflow: hidden;\n-          svg {\n-            transform: rotateZ(-90deg);\n-          }\n-        }\n+  .header-list {\n+    overflow: scroll;\n+    ul.ul-close {\n+      height: 20px !important;\n+      overflow: hidden;\n+      svg {\n+        transform: rotateZ(-90deg);\n       }\n-      .drag-line {\n-        width: 4px;\n-        height: 100%;\n-        position: absolute;\n-        left: $side-bar-width;\n\\ No newline at end of file\n-        z-index: 99;\n-        background-color: rgb(210, 111, 111);\n-        opacity: 0;\n-        &:hover {\n-          cursor: ew-resize;\n-          opacity: 100%;\n-        }\n-      }\n-      \n-}\n+    }\n+  }\n+  \n+  .drag-line {\n+    width: 4px;\n+    height: 100%;\n+    position: absolute;\n+    left: $side-bar-width;\n+    z-index: 99;\n+    background-color: rgb(210, 111, 111);\n+    opacity: 0;\n+    &:hover {\n+      cursor: ew-resize;\n+      opacity: 100%;\n+    }\n+  }\n+}\n"
+        },
+        {
+          "date": 1665500494208,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,27 @@\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n   .header-list {\n     overflow: scroll;\n+    ul,\n+    li {\n+      margin: 10px 0;\n+      margin-left: calc(6px * var(--i));\n+      a {\n+        text-decoration: none;\n+        text-decoration-color: $dark-color;\n+        color: $dark-color;\n+      }\n+    }\n+    ul {\n+      height: auto;\n+      svg {\n+        height: 10px;\n+        width: 10px;\n+        margin: 0 6px;\n+        transition: all 0.5s;\n+      }\n+    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
+        },
+        {
+          "date": 1665501617054,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,14 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-  \n+\n   .drag-line {\n     width: 4px;\n-    height: 100%;\n+    height: calc(100vh-30px);\n     position: absolute;\n     left: $side-bar-width;\n-    z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
+        },
+        {
+          "date": 1665501688750,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,10 @@\n   }\n \n   .drag-line {\n     width: 4px;\n-    height: calc(100vh-30px);\n+    // 定位为position的元素height为100%不是相对于父元素了\n+    height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665501795303,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n+    z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
+        },
+        {
+          "date": 1665638566778,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgba(46, 52, 64, 1);\n+$dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n   min-width: $side-bar-width;\n"
+        },
+        {
+          "date": 1665638791209,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,12 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 20px 20px 0;\n+  header {\n+    display: flex;\n+    justify-content: space-between;\n+  }\n   .header-list {\n     overflow: scroll;\n     ul,\n     li {\n"
+        },
+        {
+          "date": 1665638975737,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: $side-bar-width;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 0 20px 20px 0;\n+  padding: 0 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-between;\n   }\n"
+        },
+        {
+          "date": 1665642208100,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n .side-bar {\n   width: $side-bar-width;\n-  min-width: $side-bar-width;\n+  min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n"
+        },
+        {
+          "date": 1665642276387,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n   header {\n     display: flex;\n-    justify-content: space-between;\n+    justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n     ul,\n"
+        },
+        {
+          "date": 1665642287642,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 0 0 20px 0;\n+  padding: 30 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
+        },
+        {
+          "date": 1665642293820,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 30 0 20px 0;\n+  padding: 30px 0 20px 0;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
+        },
+        {
+          "date": 1665642394646,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n+  font-weight: lighter;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
+        },
+        {
+          "date": 1665642407447,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n   font-weight: lighter;\n+  font-size: small;\n   header {\n     display: flex;\n     justify-content: space-around;\n   }\n"
+        },
+        {
+          "date": 1665642414040,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n   padding: 30px 0 20px 0;\n-  font-weight: lighter;\n+  font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665643218212,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh - 30px);\n     position: absolute;\n     left: $side-bar-width;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n"
+        },
+        {
+          "date": 1665648319028,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+// $max-height: ;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
+        },
+        {
+          "date": 1665649892162,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: ;\n+// $max-height: n;\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n"
+        },
+        {
+          "date": 1665667081183,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-// $max-height: n;\n+$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -43,14 +43,15 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665667115207,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n-$max-height: calc(100vh-30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -46,9 +45,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n+    height: calc(100vh-30px);\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
+        },
+        {
+          "date": 1665667148136,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n+$max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n   min-width: 100px;\n   color: $dark-color;\n@@ -45,9 +46,9 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: calc(100vh-30px);\n+    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     z-index: 99;\n"
+        },
+        {
+          "date": 1665667182089,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,12 +46,11 @@\n   }\n   .drag-line {\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n-    height: $max-height;\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665667236866,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n .side-bar {\n   width: $side-bar-width;\n+  max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n"
+        },
+        {
+          "date": 1665667312697,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n+    height: 30px;\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n"
+        },
+        {
+          "date": 1665667328232,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   border-right: 0.5px solid #748fb0;\n-  padding: 30px 0 20px 0;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n"
+        },
+        {
+          "date": 1665667352505,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n       margin-left: calc(6px * var(--i));\n"
+        },
+        {
+          "date": 1665667485341,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n+    height: $max-height;\n     max-height: $max-height;\n     z-index: 99;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665667494232,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     position: absolute;\n     left: $side-bar-width;\n     height: $max-height;\n     max-height: $max-height;\n-    z-index: 99;\n+    z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n"
+        },
+        {
+          "date": 1665667683336,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  border-right: 0.5px solid #748fb0;\n   padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n"
+        },
+        {
+          "date": 1665669962247,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    // height: $max-height;\n     max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665669972002,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: $max-height;\n-    max-height: $max-height;\n+    height: $max-height;\n+    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665669981425,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: $max-height;\n+    height: 500px;\n+    // height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665670281043,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,10 +50,10 @@\n     width: 4px;\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    height: 500px;\n-    // height: $max-height;\n+    // height: 500px;\n+    height: $max-height;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665670544327,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -17,8 +16,9 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n+    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
+        },
+        {
+          "date": 1665670571077,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n+  padding: 0 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -16,9 +17,8 @@\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n-    margin-bottom: 60;\n     max-height: calc(100vh - 60px);\n     ul,\n     li {\n       margin: 10px 0;\n"
+        },
+        {
+          "date": 1665670604468,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: $max-height;\n+    height: 90vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665670629394,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n     // height: 500px;\n-    height: 90vh;\n+    height: 80vh;\n     // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n"
+        },
+        {
+          "date": 1665670654514,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,14 +47,11 @@\n     }\n   }\n   .drag-line {\n     width: 4px;\n-    // 定位为position的元素height为100%不是相对于父元素了\n     position: absolute;\n     left: $side-bar-width;\n-    // height: 500px;\n     height: 80vh;\n-    // max-height: $max-height;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665672113851,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 0 0 20px 0;\n+  padding: 20px 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n"
+        },
+        {
+          "date": 1665672134548,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n-  padding: 20px 0 20px 0;\n+  padding: 30px 0 20px 0;\n   font-weight: normal;\n   font-size: small;\n   header {\n     display: flex;\n@@ -49,9 +49,9 @@\n   .drag-line {\n     width: 4px;\n     position: absolute;\n     left: $side-bar-width;\n-    height: 80vh;\n+    height: 90vh;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665672151415,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,9 @@\n     width: 4px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n+    top: 30px;\n     z-index: 99999;\n     background-color: rgb(210, 111, 111);\n     opacity: 0;\n     &:hover {\n"
+        },
+        {
+          "date": 1665722137748,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   font-weight: normal;\n-  font-size: small;\n+  font-size: smaler;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665722238528,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,17 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   font-weight: normal;\n-  font-size: smaler;\n+  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n   }\n   .header-list {\n     overflow: scroll;\n-    max-height: calc(100vh - 60px);\n+    max-height: calc(100vh - 100px);\n     ul,\n     li {\n       margin: 10px 0;\n       margin-left: calc(6px * var(--i));\n"
+        },
+        {
+          "date": 1665722409468,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,10 +31,10 @@\n     }\n     ul {\n       height: auto;\n       svg {\n-        height: 10px;\n-        width: 10px;\n+        height: 8px;\n+        width: 8px;\n         margin: 0 6px;\n         transition: all 0.5s;\n       }\n     }\n"
+        },
+        {
+          "date": 1665722704812,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n-  font-weight: normal;\n-  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665723539128,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   min-width: 100px;\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n+  transition: 0.4s;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n@@ -58,4 +59,7 @@\n       opacity: 100%;\n     }\n   }\n }\n+.side-bar-close {\n+  width: 0;\n+}\n"
+        },
+        {
+          "date": 1665723562653,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,6 +60,7 @@\n     }\n   }\n }\n .side-bar-close {\n+  min-width: 0;\n   width: 0;\n }\n"
+        },
+        {
+          "date": 1665727157412,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n+  font-size: small;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665727164931,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   color: $dark-color;\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n-  font-size: small;\n+  font-size: smaller;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665727220877,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     max-height: calc(100vh - 100px);\n     ul,\n     li {\n       margin: 10px 0;\n-      margin-left: calc(6px * var(--i));\n+      margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
+        },
+        {
+          "date": 1665729610087,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,6 +62,7 @@\n   }\n }\n .side-bar-close {\n   min-width: 0;\n-  width: 0;\n+  // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n+  width: 0 !important;\n }\n"
+        },
+        {
+          "date": 1665731368292,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,26 +18,29 @@\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n+    svg {\n+      height: 8px;\n+      width: 8px;\n+      margin: 0 6px;\n+      transition: all 0.5s;\n+    }\n     ul,\n     li {\n       margin: 10px 0;\n-      margin-left: calc(8px * var(--i));\n+      // margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n       }\n+      svg  {\n+        opacity: 0%;\n+      }\n     }\n     ul {\n       height: auto;\n-      svg {\n-        height: 8px;\n-        width: 8px;\n-        margin: 0 6px;\n-        transition: all 0.5s;\n-      }\n     }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n"
+        },
+        {
+          "date": 1665731392989,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     svg {\n-      height: 8px;\n-      width: 8px;\n-      margin: 0 6px;\n+      height: 18px;\n+      width: 18px;\n+      // margin: 0 6px;\n       transition: all 0.5s;\n     }\n     ul,\n     li {\n"
+        },
+        {
+          "date": 1665731471706,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,24 +24,27 @@\n       width: 18px;\n       // margin: 0 6px;\n       transition: all 0.5s;\n     }\n+    ul {\n+      height: auto;\n+\n+    }\n+    li {\n+      svg  {\n+        opacity: 0%;\n+      }\n+    }\n     ul,\n     li {\n-      margin: 10px 0;\n       // margin-left: calc(8px * var(--i));\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n       }\n-      svg  {\n-        opacity: 0%;\n-      }\n+\n     }\n-    ul {\n-      height: auto;\n-    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
+        },
+        {
+          "date": 1665731488405,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,10 @@\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     svg {\n-      height: 18px;\n-      width: 18px;\n+      height: 8px;\n+      width: 8px;\n       // margin: 0 6px;\n       transition: all 0.5s;\n     }\n     ul {\n"
+        },
+        {
+          "date": 1665731594933,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     }\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n+      display: flex;\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
+        },
+        {
+          "date": 1665731620197,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,8 @@\n     }\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n-      display: flex;\n       a {\n         text-decoration: none;\n         text-decoration-color: $dark-color;\n         color: $dark-color;\n"
+        },
+        {
+          "date": 1665733532116,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,15 +26,16 @@\n       transition: all 0.5s;\n     }\n     ul {\n       height: auto;\n-\n-    }\n-    li {\n-      svg  {\n-        opacity: 0%;\n+      li {\n+        display: flex;\n+        svg  {\n+          opacity: 0%;\n+        }\n       }\n     }\n+\n     ul,\n     li {\n       // margin-left: calc(8px * var(--i));\n       a {\n"
+        },
+        {
+          "date": 1665733558090,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,24 +28,21 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n+               // margin-left: calc(8px * var(--i));\n+               a {\n+                text-decoration: none;\n+                text-decoration-color: $dark-color;\n+                color: $dark-color;\n+              }\n         svg  {\n           opacity: 0%;\n         }\n+\n       }\n     }\n \n-    ul,\n-    li {\n-      // margin-left: calc(8px * var(--i));\n-      a {\n-        text-decoration: none;\n-        text-decoration-color: $dark-color;\n-        color: $dark-color;\n-      }\n-\n-    }\n     ul.ul-close {\n       height: 20px !important;\n       overflow: hidden;\n       svg {\n"
+        },
+        {
+          "date": 1665733627681,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,18 +28,21 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-               // margin-left: calc(8px * var(--i));\n-               a {\n-                text-decoration: none;\n-                text-decoration-color: $dark-color;\n-                color: $dark-color;\n-              }\n-        svg  {\n+        // margin-left: calc(8px * var(--i));\n+        height: 30px;\n+        div {\n+          height: 100%;\n+        }\n+        a {\n+          text-decoration: none;\n+          text-decoration-color: $dark-color;\n+          color: $dark-color;\n+        }\n+        svg {\n           opacity: 0%;\n         }\n-\n       }\n     }\n \n     ul.ul-close {\n"
+        },
+        {
+          "date": 1665733635612,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n         // margin-left: calc(8px * var(--i));\n         height: 30px;\n         div {\n           height: 100%;\n+          width: 30px;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
+        },
+        {
+          "date": 1665733647525,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n-          opacity: 0%;\n+          opacity: 100%;\n         }\n       }\n     }\n \n"
+        },
+        {
+          "date": 1665733660619,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,11 @@\n         height: 30px;\n         div {\n           height: 100%;\n           width: 30px;\n+          display: flex;\n+          justify-content: center;\n+          align-items: center;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
+        },
+        {
+          "date": 1665733697100,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n         height: 30px;\n+        line-height: 30px;\n         div {\n           height: 100%;\n           width: 30px;\n           display: flex;\n"
+        },
+        {
+          "date": 1665733764193,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n+$title-height:40px;\n .side-bar {\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n@@ -29,10 +30,10 @@\n       height: auto;\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n-        height: 30px;\n-        line-height: 30px;\n+        height: $title-height;\n+        line-height: $title-height;\n         div {\n           height: 100%;\n           width: 30px;\n           display: flex;\n@@ -50,9 +51,9 @@\n       }\n     }\n \n     ul.ul-close {\n-      height: 20px !important;\n+      height: $title-height !important;\n       overflow: hidden;\n       svg {\n         transform: rotateZ(-90deg);\n       }\n"
+        },
+        {
+          "date": 1665733829520,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,14 +19,8 @@\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n-    svg {\n-      height: 8px;\n-      width: 8px;\n-      // margin: 0 6px;\n-      transition: all 0.5s;\n-    }\n     ul {\n       height: auto;\n       li {\n         display: flex;\n@@ -34,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n-          width: 30px;\n+          width: 20px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n         }\n@@ -45,8 +39,12 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n+          height: 10px;\n+          width: 10px;\n+          // margin: 0 6px;\n+          transition: all 0.5s;\n           opacity: 100%;\n         }\n       }\n     }\n"
+        },
+        {
+          "date": 1665733846599,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n-          width: 20px;\n+          width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n         }\n@@ -39,10 +39,10 @@\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n         svg {\n-          height: 10px;\n-          width: 10px;\n+          height: 8px;\n+          width: 8px;\n           // margin: 0 6px;\n           transition: all 0.5s;\n           opacity: 100%;\n         }\n"
+        },
+        {
+          "date": 1665734054297,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n           width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n+          margin: 0 4px;\n         }\n         a {\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n"
+        },
+        {
+          "date": 1665734164996,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,8 @@\n         }\n         svg {\n           height: 8px;\n           width: 8px;\n-          // margin: 0 6px;\n           transition: all 0.5s;\n           opacity: 100%;\n         }\n       }\n"
+        },
+        {
+          "date": 1665734396146,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,17 @@\n         svg {\n           height: 8px;\n           width: 8px;\n           transition: all 0.5s;\n-          opacity: 100%;\n+          opacity: 0%;\n         }\n       }\n     }\n-\n+    ul.show-list {\n+      svg{\n+        opacity: 100% !important;\n+      }\n+    }\n     ul.ul-close {\n       height: $title-height !important;\n       overflow: hidden;\n       svg {\n"
+        },
+        {
+          "date": 1665734484861,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n           opacity: 0%;\n         }\n       }\n     }\n-    ul.show-list {\n+    ul.show-list > li {\n       svg{\n         opacity: 100% !important;\n       }\n     }\n"
+        },
+        {
+          "date": 1665734569666,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n       }\n     }\n     ul.show-list > li {\n       svg{\n-        opacity: 100% !important;\n+        opacity: 100% ;\n       }\n     }\n     ul.ul-close {\n       height: $title-height !important;\n"
+        },
+        {
+          "date": 1665734587337,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n       height: auto;\n       li {\n         display: flex;\n         // margin-left: calc(8px * var(--i));\n+        padding-left: 10px;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
+        },
+        {
+          "date": 1665734640890,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,9 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-        // margin-left: calc(8px * var(--i));\n-        padding-left: 10px;\n+        padding-left:  calc(8px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
+        },
+        {
+          "date": 1665734875253,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     ul {\n       height: auto;\n       li {\n         display: flex;\n-        padding-left:  calc(8px * var(--i));;\n+        padding-left:  calc(10px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n         div {\n           height: 100%;\n"
+        },
+        {
+          "date": 1665735023547,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n         height: $title-height;\n         line-height: $title-height;\n+        &:hover {\n+          cursor: pointer;\n+        }\n         div {\n           height: 100%;\n           width: 10px;\n           display: flex;\n"
+        },
+        {
+          "date": 1665735035529,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n+          background-color: lightgray;\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
+        },
+        {
+          "date": 1665735062640,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n-          background-color: lightgray;\n+          background-color: rgb(67, 75, 93);\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
+        },
+        {
+          "date": 1665735081244,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n         height: $title-height;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n-          background-color: rgb(67, 75, 93);\n+          background-color: rgb(56, 62, 77);\n         }\n         div {\n           height: 100%;\n           width: 10px;\n"
+        },
+        {
+          "date": 1665735918723,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,15 +65,15 @@\n       }\n     }\n   }\n   .drag-line {\n-    width: 4px;\n+    width: 2px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n     top: 30px;\n     z-index: 99999;\n-    background-color: rgb(210, 111, 111);\n+    background-color: rgb(68, 77, 95);\n     opacity: 0;\n     &:hover {\n       cursor: ew-resize;\n       opacity: 100%;\n"
+        },
+        {
+          "date": 1665735929631,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n       }\n     }\n   }\n   .drag-line {\n-    width: 2px;\n+    width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n     height: 90vh;\n     top: 30px;\n"
+        },
+        {
+          "date": 1665736021868,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,11 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        height: $title-height;\n+        min-height: $title-height;\n+        // 避免标题太长重叠\n+        height: auto;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n           background-color: rgb(56, 62, 77);\n"
+        },
+        {
+          "date": 1665736051485,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        min-height: $title-height;\n+        // min-height: $title-height;\n         // 避免标题太长重叠\n         height: auto;\n         line-height: $title-height;\n         &:hover {\n"
+        },
+        {
+          "date": 1665736135459,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,18 +24,18 @@\n       height: auto;\n       li {\n         display: flex;\n         padding-left:  calc(10px * var(--i));;\n-        // min-height: $title-height;\n+        min-height: $title-height;\n         // 避免标题太长重叠\n         height: auto;\n         line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n           background-color: rgb(56, 62, 77);\n         }\n         div {\n-          height: 100%;\n+          height: $title-height;\n           width: 10px;\n           display: flex;\n           justify-content: center;\n           align-items: center;\n"
+        },
+        {
+          "date": 1665736198451,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,10 @@\n           align-items: center;\n           margin: 0 4px;\n         }\n         a {\n+          //占满剩余部分\n+          flex:auto;\n           text-decoration: none;\n           text-decoration-color: $dark-color;\n           color: $dark-color;\n         }\n"
+        },
+        {
+          "date": 1665736780607,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n $side-bar-width: 160px;\n $max-height: calc(100vh - 30px);\n-$title-height:40px;\n+$title-height:30px;\n .side-bar {\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n"
+        },
+        {
+          "date": 1665757534131,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,14 @@\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n+    svg {\n+      display: none;\n+    }\n+    &:hover {\n+      display: block;\n+    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n"
+        },
+        {
+          "date": 1665757552206,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,11 @@\n     svg {\n       display: none;\n     }\n     &:hover {\n-      display: block;\n+      svg {\n+        display: block;\n+      }\n     }\n   }\n   .header-list {\n     overflow: scroll;\n"
+        },
+        {
+          "date": 1665757562435,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n+      cursor: pointer;\n     }\n     &:hover {\n       svg {\n         display: block;\n"
+        },
+        {
+          "date": 1665898217338,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,16 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n+  .file-list {\n+    overflow: scroll;\n+    max-height: calc(100vh - 100px);\n+    li {\n+      display: flex;\n+      \n+    }\n+  }\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+        },
+        {
+          "date": 1665898315430,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,11 +82,19 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      \n+      min-height: $title-height;\n+      // 避免标题太长重叠\n+      height: auto;\n+      line-height: $title-height;\n+      &:hover {\n+        cursor: pointer;\n+        background-color: rgb(56, 62, 77);\n+      }\n     }\n   }\n+\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+        },
+        {
+          "date": 1665898599880,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n+      justify-content: center;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+        },
+        {
+          "date": 1665898636076,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      justify-content: center;\n+      padding-left: 10px;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+        },
+        {
+          "date": 1665898642350,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n       display: flex;\n-      padding-left: 10px;\n+      padding-left: 20px;\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+        },
+        {
+          "date": 1665901829207,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,9 +93,8 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n-\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n@@ -108,8 +107,16 @@\n       cursor: ew-resize;\n       opacity: 100%;\n     }\n   }\n+  footer {\n+    position: absolute;\n+    bottom: 0;\n+    width: 100%;\n+    border-top: 1px solid lightgray;\n+    background-color: $dark-color;\n+    display: flex;\n+  }\n }\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n"
+        },
+        {
+          "date": 1665901985517,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -111,8 +111,9 @@\n   footer {\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n+    height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-color;\n     display: flex;\n   }\n"
+        },
+        {
+          "date": 1665902077872,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid lightgray;\n-    background-color: $dark-color;\n+    background-color: $dark-background;\n     display: flex;\n   }\n }\n .side-bar-close {\n"
+        },
+        {
+          "date": 1665902098437,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -115,8 +115,9 @@\n     height: $title-height;\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n+    justify-content: space-between;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+        },
+        {
+          "date": 1665902125419,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   background-color: $dark-background;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n+  position: relative;\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n"
+        },
+        {
+          "date": 1665902133447,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,8 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n+    justify-content: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+        },
+        {
+          "date": 1665902138852,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n     border-top: 1px solid lightgray;\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n-    justify-content: center;\n+    align-items: center;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+        },
+        {
+          "date": 1665902148646,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid lightgray;\n+    border-top: 1px solid rgb(152, 151, 151);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
+        },
+        {
+          "date": 1665902154620,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -113,9 +113,9 @@\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n     height: $title-height;\n-    border-top: 1px solid rgb(152, 151, 151);\n+    border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-between;\n     align-items: center;\n"
+        },
+        {
+          "date": 1665902171815,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -116,9 +116,9 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: flex;\n-    justify-content: space-between;\n+    justify-content: space-around;\n     align-items: center;\n   }\n }\n .side-bar-close {\n"
+        },
+        {
+          "date": 1665903435051,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,21 +12,24 @@\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: smaller;\n   position: relative;\n+  &:hover {\n+    footer {\n+      display: block !important;\n+    }\n+    header svg {\n+      display: block;\n+    }\n+  }\n   header {\n     display: flex;\n     height: 30px;\n     justify-content: space-around;\n     svg {\n       display: none;\n       cursor: pointer;\n     }\n-    &:hover {\n-      svg {\n-        display: block;\n-      }\n-    }\n   }\n   .header-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n@@ -118,8 +121,9 @@\n     background-color: $dark-background;\n     display: flex;\n     justify-content: space-around;\n     align-items: center;\n+    display: none;\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+        },
+        {
+          "date": 1665903450748,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block !important;\n+      display: block\n     }\n     header svg {\n       display: block;\n     }\n"
+        },
+        {
+          "date": 1665903457917,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: block\n+      display: flex\n     }\n     header svg {\n       display: block;\n     }\n"
+        },
+        {
+          "date": 1665903491012,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n   font-size: smaller;\n   position: relative;\n   &:hover {\n     footer {\n-      display: flex\n+      display: flex;\n+      justify-content: space-around;\n+      align-items: center;\n     }\n     header svg {\n       display: block;\n     }\n@@ -118,11 +120,8 @@\n     width: 100%;\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n-    display: flex;\n-    justify-content: space-around;\n-    align-items: center;\n     display: none;\n   }\n }\n .side-bar-close {\n"
+        },
+        {
+          "date": 1665903510562,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -121,8 +121,11 @@\n     height: $title-height;\n     border-top: 1px solid rgb(111, 109, 109);\n     background-color: $dark-background;\n     display: none;\n+    svg {\n+      cursor: pointer;\n+    }\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
         }
-    ]
+      ],
+      "date": 1665500010365,
+      "name": "Commit-0",
+      "content": ".side"
+    }
+  ]
 }

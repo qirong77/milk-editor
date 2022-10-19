@@ -1,5 +1,7 @@
 out
 dist
+.lh
+.vscode
 pnpm-lock.yaml
 LICENSE.md
 tsconfig.json

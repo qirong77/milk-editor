@@ -30,7 +30,7 @@ const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
 export const updateHeaders = () => {
   console.log('update-headers')
   const container = document.querySelector('.header-list')
-  if(container) {
+  if (container) {
     container.innerHTML = ''
     const headers =
       document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
@@ -43,4 +43,4 @@ export const updateHeaders = () => {
     })
   }
 }
-export const useUpdateHeaders = useDebounce(updateHeaders,1000)
+export const useUpdateHeaders = useDebounce(updateHeaders, 1000)

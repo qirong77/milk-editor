@@ -1,38 +1,38 @@
 {
-    "sourceFile": "src/renderer/src/E.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/E.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 5,
+      "patches": [
         {
-            "activePatchIndex": 5,
-            "patches": [
-                {
-                    "date": 1665648896773,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665648911797,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n interface MilkdownEditor {}\n \n \n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n+export const M: React.FC<MilkdownEditor> = () => {\n   const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
-                },
-                {
-                    "date": 1665648973184,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,12 @@\n \n \n \n export const M: React.FC<MilkdownEditor> = () => {\n-  const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n-        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)\n+        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, 'xxx')\n       })\n       .use(nord)\n       .use(commonmark)\n       .use(history)\n"
-                },
-                {
-                    "date": 1665649090572,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {}\n \n \n-\n+document.addEventListener('copy',()=>{\n+    console.log('copy')\n+})\n export const M: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
-                },
-                {
-                    "date": 1665649138137,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,8 @@\n       .use(commonmark)\n       .use(history)\n       .use(listener)\n       .use(prism)\n-      .use(menu)\n-      .use(clipboard)\n   )\n   const instance = getInstance()\n   instance?.action((ctx) => {\n     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
-                },
-                {
-                    "date": 1665649160503,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n       .use(history)\n       .use(listener)\n       .use(prism)\n   )\n-  const instance = getInstance()\n-  instance?.action((ctx) => {\n-    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n-  })\n+//   const instance = getInstance()\n+//   instance?.action((ctx) => {\n+//     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+//   })\n   return <ReactEditor editor={editor} />\n }\n"
-                }
-            ],
-            "date": 1665648896773,
-            "name": "Commit-0",
-            "content": "import React, { useEffect, useRef, useState } from 'react'\nimport { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'\nimport { nord } from '@milkdown/theme-nord'\nimport { EditorRef, ReactEditor, useEditor } from '@milkdown/react'\n// 通用markdown预设\nimport { commonmark } from '@milkdown/preset-commonmark'\nimport { history } from '@milkdown/plugin-history'\nimport { listener } from '@milkdown/plugin-listener'\nimport { prism } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { themeManagerCtx } from '@milkdown/core'\nimport { clipboard } from '@milkdown/plugin-clipboard';\n// 亮色主题\n// import { nordLight } from '@milkdown/theme-nord'\n// 暗色主题\nimport { nordDark } from '@milkdown/theme-nord'\n// 官方引用的图标库，如菜单栏需要使用到\nimport '@material-design-icons/font'\n// 数学公式渲染\nimport 'katex/dist/katex.min.css'\n// 代码高亮\nimport 'prism-themes/themes/prism-material-oceanic.min.css'\ninterface MilkdownEditor {}\n\n\n\nexport const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n  const [content, setContent] = useState('')\n  const { editor, getInstance } = useEditor((root) =>\n    Editor.make()\n      .config((ctx) => {\n        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)\n      })\n      .use(nord)\n      .use(commonmark)\n      .use(history)\n      .use(listener)\n      .use(prism)\n      .use(menu)\n      .use(clipboard)\n  )\n  const instance = getInstance()\n  instance?.action((ctx) => {\n    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n  })\n  return <ReactEditor editor={editor} />\n}\n"
+          "date": 1665648896773,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665648911797,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n interface MilkdownEditor {}\n \n \n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n+export const M: React.FC<MilkdownEditor> = () => {\n   const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
+        },
+        {
+          "date": 1665648973184,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,13 +24,12 @@\n \n \n \n export const M: React.FC<MilkdownEditor> = () => {\n-  const [content, setContent] = useState('')\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n-        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)\n+        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, 'xxx')\n       })\n       .use(nord)\n       .use(commonmark)\n       .use(history)\n"
+        },
+        {
+          "date": 1665649090572,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n interface MilkdownEditor {}\n \n \n-\n+document.addEventListener('copy',()=>{\n+    console.log('copy')\n+})\n export const M: React.FC<MilkdownEditor> = () => {\n   const { editor, getInstance } = useEditor((root) =>\n     Editor.make()\n       .config((ctx) => {\n"
+        },
+        {
+          "date": 1665649138137,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,10 +36,8 @@\n       .use(commonmark)\n       .use(history)\n       .use(listener)\n       .use(prism)\n-      .use(menu)\n-      .use(clipboard)\n   )\n   const instance = getInstance()\n   instance?.action((ctx) => {\n     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n"
+        },
+        {
+          "date": 1665649160503,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n       .use(history)\n       .use(listener)\n       .use(prism)\n   )\n-  const instance = getInstance()\n-  instance?.action((ctx) => {\n-    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n-  })\n+//   const instance = getInstance()\n+//   instance?.action((ctx) => {\n+//     ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+//   })\n   return <ReactEditor editor={editor} />\n }\n"
         }
-    ]
+      ],
+      "date": 1665648896773,
+      "name": "Commit-0",
+      "content": "import React, { useEffect, useRef, useState } from 'react'\nimport { Ctx, defaultValueCtx, Editor, editorViewCtx, parserCtx, rootCtx } from '@milkdown/core'\nimport { nord } from '@milkdown/theme-nord'\nimport { EditorRef, ReactEditor, useEditor } from '@milkdown/react'\n// 通用markdown预设\nimport { commonmark } from '@milkdown/preset-commonmark'\nimport { history } from '@milkdown/plugin-history'\nimport { listener } from '@milkdown/plugin-listener'\nimport { prism } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { themeManagerCtx } from '@milkdown/core'\nimport { clipboard } from '@milkdown/plugin-clipboard';\n// 亮色主题\n// import { nordLight } from '@milkdown/theme-nord'\n// 暗色主题\nimport { nordDark } from '@milkdown/theme-nord'\n// 官方引用的图标库，如菜单栏需要使用到\nimport '@material-design-icons/font'\n// 数学公式渲染\nimport 'katex/dist/katex.min.css'\n// 代码高亮\nimport 'prism-themes/themes/prism-material-oceanic.min.css'\ninterface MilkdownEditor {}\n\n\n\nexport const MilkdownEditor: React.FC<MilkdownEditor> = () => {\n  const [content, setContent] = useState('')\n  const { editor, getInstance } = useEditor((root) =>\n    Editor.make()\n      .config((ctx) => {\n        ctx.set(rootCtx, root), ctx.set(defaultValueCtx, content)\n      })\n      .use(nord)\n      .use(commonmark)\n      .use(history)\n      .use(listener)\n      .use(prism)\n      .use(menu)\n      .use(clipboard)\n  )\n  const instance = getInstance()\n  instance?.action((ctx) => {\n    ctx.get(themeManagerCtx).switch(ctx, nordDark)\n  })\n  return <ReactEditor editor={editor} />\n}\n"
+    }
+  ]
 }

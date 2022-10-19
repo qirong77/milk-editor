@@ -1,38 +1,38 @@
 {
-    "sourceFile": "src/main/electron/menu/index.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/menu/index.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 5,
+      "patches": [
         {
-            "activePatchIndex": 5,
-            "patches": [
-                {
-                    "date": 1665989999429,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665992790626,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,10 @@\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n export const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n-  if (path) {\n-    openNewFile(path,window)\n-  } else {\n-    const paths = await openFileSelector(window)\n-    paths && openNewFile(paths[0], window)\n-  }\n+  const paths = await openFileSelector(window)\n+  paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
-                },
-                {
-                    "date": 1665993026520,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n-import { openFileSelector, openNewFile } from './fileHelper'\n+import { openFileDialog } from '../api/dialog'\n+import { openNewFile } from '../events/onSendToRender'\n \n+\n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n-export const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n-  const paths = await openFileSelector(window)\n+export const clickOpenFile = async (window: BrowserWindow) => {\n+  const paths = await openFileDialog(window)\n   paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
-                },
-                {
-                    "date": 1665993820854,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n */\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n   const paths = await openFileDialog(window)\n+  console.log(paths)\n   paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
-                },
-                {
-                    "date": 1665993870772,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n   const paths = await openFileDialog(window)\n   console.log(paths)\n-  paths && openNewFile(paths[0], window)\n+  // paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
-                },
-                {
-                    "date": 1665993900372,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,10 @@\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n-  const paths = await openFileDialog(window)\n-  console.log(paths)\n-  // paths && openNewFile(paths[0], window)\n+  const path = await openFileDialog(window)\n+  path && openNewFile(path, window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
-                }
-            ],
-            "date": 1665989999429,
-            "name": "Commit-0",
-            "content": "import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\nimport { openFileSelector, openNewFile } from './fileHelper'\n\n/* \n快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n*/\n\nexport const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n  if (path) {\n    openNewFile(path,window)\n  } else {\n    const paths = await openFileSelector(window)\n    paths && openNewFile(paths[0], window)\n  }\n}\n\ninterface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n  selector?: string\n  submenu?: DarwinMenuItemConstructorOptions[] | Menu\n}\n\nexport const useMenu = (window: BrowserWindow) => {\n  const defaultMenuTemplate = {\n    label: app.name,\n    submenu: [\n      {\n        label: '新建',\n        click: () => {}\n      }\n    ]\n  }\n  const fileMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: '文件',\n    submenu: [\n      {\n        label: '新建',\n        click: () => {}\n      },\n      {\n        label: '打开',\n        click: () => {\n          clickOpenFile(window)\n        }\n      }\n    ]\n  }\n  const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Edit',\n    submenu: [\n      {\n        label: 'Undo',\n        accelerator: 'Command+Z',\n        selector: 'undo:'\n      },\n      {\n        label: 'Redo',\n        accelerator: 'Shift+Command+Z',\n        selector: 'redo:'\n      },\n      {\n        type: 'separator'\n      },\n      {\n        label: 'Cut',\n        accelerator: 'Command+X',\n        selector: 'cut:'\n      },\n      {\n        label: 'Copy',\n        accelerator: 'Command+C',\n        selector: 'copy:'\n      },\n      {\n        label: 'Paste',\n        accelerator: 'Command+V',\n        selector: 'paste:'\n      },\n      {\n        label: 'Select All',\n        accelerator: 'Command+A',\n        selector: 'selectAll:'\n      }\n    ]\n  }\n  const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'View',\n    submenu: [\n      {\n        label: 'Reload',\n        accelerator: 'Command+R',\n        //刷新页面\n        click: () => {\n          // this.mainWindow.webContents.reload();\n        }\n      },\n      {\n        label: 'Toggle Full Screen',\n        accelerator: 'Ctrl+Command+F',\n        //全屏\n        click: () => {\n          // this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());\n        }\n      },\n      {\n        label: 'Toggle Developer Tools',\n        accelerator: 'Alt+Command+I',\n        //打开开发工具\n        click: () => {\n          // this.mainWindow.webContents.toggleDevTools();\n        }\n      }\n    ]\n  }\n  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Help',\n    submenu: [\n      {\n        label: '&设置',\n        accelerator: 'Ctrl+S',\n        click: () => {\n          // createSettingWindow()\n        }\n      },\n      {\n        label: 'Learn More',\n        click() {\n          // shell.openExternal('https://electronjs.org');\n        }\n      }\n    ]\n  }\n  const template: DarwinMenuItemConstructorOptions[] = [\n    defaultMenuTemplate,\n    fileMenuTemplate,\n    editMenuTemplate,\n    viewMenuTemplate,\n    helpMenuTemplate\n  ]\n  const menu = Menu.buildFromTemplate(template)\n  Menu.setApplicationMenu(menu)\n}\n"
+          "date": 1665989999429,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665992790626,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,14 +6,10 @@\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n export const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n-  if (path) {\n-    openNewFile(path,window)\n-  } else {\n-    const paths = await openFileSelector(window)\n-    paths && openNewFile(paths[0], window)\n-  }\n+  const paths = await openFileSelector(window)\n+  paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
+        },
+        {
+          "date": 1665993026520,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n-import { openFileSelector, openNewFile } from './fileHelper'\n+import { openFileDialog } from '../api/dialog'\n+import { openNewFile } from '../events/onSendToRender'\n \n+\n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n-export const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n-  const paths = await openFileSelector(window)\n+export const clickOpenFile = async (window: BrowserWindow) => {\n+  const paths = await openFileDialog(window)\n   paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
+        },
+        {
+          "date": 1665993820854,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n */\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n   const paths = await openFileDialog(window)\n+  console.log(paths)\n   paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n"
+        },
+        {
+          "date": 1665993870772,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n   const paths = await openFileDialog(window)\n   console.log(paths)\n-  paths && openNewFile(paths[0], window)\n+  // paths && openNewFile(paths[0], window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
+        },
+        {
+          "date": 1665993900372,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,11 +8,10 @@\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n \n export const clickOpenFile = async (window: BrowserWindow) => {\n-  const paths = await openFileDialog(window)\n-  console.log(paths)\n-  // paths && openNewFile(paths[0], window)\n+  const path = await openFileDialog(window)\n+  path && openNewFile(path, window)\n }\n \n interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n"
         }
-    ]
+      ],
+      "date": 1665989999429,
+      "name": "Commit-0",
+      "content": "import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\nimport { openFileSelector, openNewFile } from './fileHelper'\n\n/* \n快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n*/\n\nexport const clickOpenFile = async (window: BrowserWindow, path?: string) => {\n  if (path) {\n    openNewFile(path,window)\n  } else {\n    const paths = await openFileSelector(window)\n    paths && openNewFile(paths[0], window)\n  }\n}\n\ninterface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n  selector?: string\n  submenu?: DarwinMenuItemConstructorOptions[] | Menu\n}\n\nexport const useMenu = (window: BrowserWindow) => {\n  const defaultMenuTemplate = {\n    label: app.name,\n    submenu: [\n      {\n        label: '新建',\n        click: () => {}\n      }\n    ]\n  }\n  const fileMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: '文件',\n    submenu: [\n      {\n        label: '新建',\n        click: () => {}\n      },\n      {\n        label: '打开',\n        click: () => {\n          clickOpenFile(window)\n        }\n      }\n    ]\n  }\n  const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Edit',\n    submenu: [\n      {\n        label: 'Undo',\n        accelerator: 'Command+Z',\n        selector: 'undo:'\n      },\n      {\n        label: 'Redo',\n        accelerator: 'Shift+Command+Z',\n        selector: 'redo:'\n      },\n      {\n        type: 'separator'\n      },\n      {\n        label: 'Cut',\n        accelerator: 'Command+X',\n        selector: 'cut:'\n      },\n      {\n        label: 'Copy',\n        accelerator: 'Command+C',\n        selector: 'copy:'\n      },\n      {\n        label: 'Paste',\n        accelerator: 'Command+V',\n        selector: 'paste:'\n      },\n      {\n        label: 'Select All',\n        accelerator: 'Command+A',\n        selector: 'selectAll:'\n      }\n    ]\n  }\n  const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'View',\n    submenu: [\n      {\n        label: 'Reload',\n        accelerator: 'Command+R',\n        //刷新页面\n        click: () => {\n          // this.mainWindow.webContents.reload();\n        }\n      },\n      {\n        label: 'Toggle Full Screen',\n        accelerator: 'Ctrl+Command+F',\n        //全屏\n        click: () => {\n          // this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());\n        }\n      },\n      {\n        label: 'Toggle Developer Tools',\n        accelerator: 'Alt+Command+I',\n        //打开开发工具\n        click: () => {\n          // this.mainWindow.webContents.toggleDevTools();\n        }\n      }\n    ]\n  }\n  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Help',\n    submenu: [\n      {\n        label: '&设置',\n        accelerator: 'Ctrl+S',\n        click: () => {\n          // createSettingWindow()\n        }\n      },\n      {\n        label: 'Learn More',\n        click() {\n          // shell.openExternal('https://electronjs.org');\n        }\n      }\n    ]\n  }\n  const template: DarwinMenuItemConstructorOptions[] = [\n    defaultMenuTemplate,\n    fileMenuTemplate,\n    editMenuTemplate,\n    viewMenuTemplate,\n    helpMenuTemplate\n  ]\n  const menu = Menu.buildFromTemplate(template)\n  Menu.setApplicationMenu(menu)\n}\n"
+    }
+  ]
 }

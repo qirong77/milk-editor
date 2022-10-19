@@ -1,42 +1,42 @@
 {
-    "sourceFile": "src/renderer/src/styles/header.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/styles/header.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 6,
+      "patches": [
         {
-            "activePatchIndex": 6,
-            "patches": [
-                {
-                    "date": 1665404635048,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665408289568,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n header {\n-    \n+    position: fixed;\n+    top: 30px;\n+    width: 100%;\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665408305206,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n header {\n     position: fixed;\n-    top: 30px;\n+    top: 0px;\n     width: 100%;\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665408656966,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-header {\n+.container > header {\n     position: fixed;\n     top: 0px;\n     width: 100%;\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665409023407,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n .container > header {\n     position: fixed;\n     top: 0px;\n     width: 100%;\n+    background-color: aqua;\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665413909060,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n .container > header {\n+  -webkit-app-region: drag;\n     position: fixed;\n     top: 0px;\n     width: 100%;\n     background-color: aqua;\n"
-                },
-                {
-                    "date": 1665497301126,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +0,0 @@\n-.container > header {\n-  -webkit-app-region: drag;\n-    position: fixed;\n-    top: 0px;\n-    width: 100%;\n-    background-color: aqua;\n-}\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665404635048,
-            "name": "Commit-0",
-            "content": "header {\n    \n}"
+          "date": 1665404635048,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665408289568,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n header {\n-    \n+    position: fixed;\n+    top: 30px;\n+    width: 100%;\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665408305206,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n header {\n     position: fixed;\n-    top: 30px;\n+    top: 0px;\n     width: 100%;\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665408656966,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-header {\n+.container > header {\n     position: fixed;\n     top: 0px;\n     width: 100%;\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665409023407,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n .container > header {\n     position: fixed;\n     top: 0px;\n     width: 100%;\n+    background-color: aqua;\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665413909060,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n .container > header {\n+  -webkit-app-region: drag;\n     position: fixed;\n     top: 0px;\n     width: 100%;\n     background-color: aqua;\n"
+        },
+        {
+          "date": 1665497301126,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +0,0 @@\n-.container > header {\n-  -webkit-app-region: drag;\n-    position: fixed;\n-    top: 0px;\n-    width: 100%;\n-    background-color: aqua;\n-}\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665404635048,
+      "name": "Commit-0",
+      "content": "header {\n    \n}"
+    }
+  ]
 }

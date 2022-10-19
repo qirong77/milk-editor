@@ -1,7 +1,5 @@
-import { defaultValueCtx, Editor, rootCtx, themeManagerCtx } from '@milkdown/core'
+import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
-import { nordDark } from '@milkdown/theme-nord'
-
 export const useConfig = (editor: Editor, root: HTMLElement) => {
   editor
     .config((ctx) => {
@@ -25,10 +23,7 @@ export const useConfig = (editor: Editor, root: HTMLElement) => {
           console.log('when editor state updates')
         })
         // 点击文件列表后会两次调用，导致第一次渲染标题的时候还是旧的
-        .markdownUpdated((ctx,Markdown,preMarkdown) => {
-          // console.log('when markdown updates')
-          // console.log(Markdown)
-        })
+        .markdownUpdated(() => {})
         .blur(() => {
           console.log('blur editor')
         })

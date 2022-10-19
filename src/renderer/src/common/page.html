@@ -15,7 +15,7 @@
     const useDebounce = (fn, delay, ...args) => {
       let timer
       return () => {
-        if(!timer) fn(1)
+        if (!timer) fn(1)
         if (timer) clearTimeout(timer)
         timer = setTimeout(() => {
           console.log('debouce timer done')
@@ -27,7 +27,7 @@
     const fn1 = (x) => {
       console.log(x)
     }
-    const fnx = useDebounce(fn1,2001,1)
+    const fnx = useDebounce(fn1, 2001, 1)
     btn.addEventListener('click', () => {
       console.log('click')
       fnx(1)

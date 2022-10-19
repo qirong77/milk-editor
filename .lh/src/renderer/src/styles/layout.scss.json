@@ -1,58 +1,58 @@
 {
-    "sourceFile": "src/renderer/src/styles/layout.scss",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/styles/layout.scss",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 10,
+      "patches": [
         {
-            "activePatchIndex": 10,
-            "patches": [
-                {
-                    "date": 1665500050252,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665500303708,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,32 @@\n-.ul-close {\n-    height: 20px !important;\n-    overflow: hidden;\n-    svg {\n-      transform: rotateZ(-90deg);\n+\n+.container {\n\\ No newline at end of file\n+    width: 100vw;\n+    height: calc(100vh - 30px);     \n+  }\n+  \n+  main {\n+    flex: auto;\n+    display: flex;\n+    flex-direction: row;\n+    height: 100vh;\n+    // 装edtor的容器\n+    > div:nth-child(2) {\n+      // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n+      width: 100px;\n+      flex: auto;\n+      .milkdown-menu-wrapper {\n+        width: 100%;\n+        height: 100%;\n+        display: flex;\n+        flex-direction: column;\n+        .milkdown {\n+          height: 100%;\n+          width: 100%;\n+          // border-radius: 6px;\n+          padding-top: 10px;\n+          overflow: scroll;\n+        }\n+      }\n     }\n-  }\n+  }\n+  \n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1665500550733,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,29 @@\n+.container {\n+  width: 100vw;\n+  height: calc(100vh - 30px);\n+}\n \n-.container {\n-    width: 100vw;\n-    height: calc(100vh - 30px);     \n-  }\n-  \n-  main {\n+main {\n+  display: flex;\n+  flex-direction: row;\n+  height: 100vh;\n+  // 装edtor的容器\n+  > div:nth-child(2) {\n+    // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n+    width: 100px;\n     flex: auto;\n-    display: flex;\n-    flex-direction: row;\n-    height: 100vh;\n-    // 装edtor的容器\n-    > div:nth-child(2) {\n-      // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n-      width: 100px;\n-      flex: auto;\n-      .milkdown-menu-wrapper {\n+    .milkdown-menu-wrapper {\n+      width: 100%;\n+      height: 100%;\n\\ No newline at end of file\n+      display: flex;\n+      flex-direction: column;\n+      .milkdown {\n+        height: 100%;\n         width: 100%;\n-        height: 100%;\n-        display: flex;\n-        flex-direction: column;\n-        .milkdown {\n-          height: 100%;\n-          width: 100%;\n-          // border-radius: 6px;\n-          padding-top: 10px;\n-          overflow: scroll;\n-        }\n+        // border-radius: 6px;\n+        padding-top: 10px;\n+        overflow: scroll;\n       }\n     }\n   }\n-  \n+}\n"
-                },
-                {
-                    "date": 1665501378628,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n .container {\n   width: 100vw;\n   height: calc(100vh - 30px);\n+  .header {\n+    height: 30px;\n+\n+\n+  }\n }\n \n main {\n   display: flex;\n@@ -25,5 +30,5 @@\n         overflow: scroll;\n       }\n     }\n   }\n-}\n\\ No newline at end of file\n+}\n"
-                },
-                {
-                    "date": 1665501419887,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,15 @@\n   width: 100vw;\n   height: calc(100vh - 30px);\n   .header {\n     height: 30px;\n-\n-\n   }\n }\n \n main {\n   display: flex;\n   flex-direction: row;\n-  height: 100vh;\n+  height: 100%;\n   // 装edtor的容器\n   > div:nth-child(2) {\n     // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n     width: 100px;\n"
-                },
-                {
-                    "date": 1665502117170,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     width: 100px;\n     flex: auto;\n     .milkdown-menu-wrapper {\n       width: 100%;\n-      height: 100%;\n+      height: 110%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n         height: 100%;\n"
-                },
-                {
-                    "date": 1665502206853,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,13 @@\n     width: 100px;\n     flex: auto;\n     .milkdown-menu-wrapper {\n       width: 100%;\n-      height: 110%;\n+      height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n-        height: 100%;\n+        height: 110%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n         overflow: scroll;\n"
-                },
-                {
-                    "date": 1665502651499,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n-        height: 110%;\n+        height: 100%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n         overflow: scroll;\n"
-                },
-                {
-                    "date": 1665643044717,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n .container {\n   width: 100vw;\n-  height: calc(100vh - 30px);\n+  height: 100vh;\n+  display: flex;\n+  flex-direction: column;\n   .header {\n     height: 30px;\n   }\n }\n"
-                },
-                {
-                    "date": 1665643685559,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n+        max-height: calc(100vh - 30px);\n         height: 100%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n"
-                },
-                {
-                    "date": 1665643895368,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,12 @@\n       width: 100%;\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n+      .milkdown-menu {\n+        position: absolute;\n+        z-index: 999;\n+      }\n       .milkdown {\n         max-height: calc(100vh - 30px);\n         height: 100%;\n         width: 100%;\n"
-                }
-            ],
-            "date": 1665500050252,
-            "name": "Commit-0",
-            "content": ".ul-close {\n    height: 20px !important;\n    overflow: hidden;\n    svg {\n      transform: rotateZ(-90deg);\n    }\n  }"
+          "date": 1665500050252,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665500303708,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,32 @@\n-.ul-close {\n-    height: 20px !important;\n-    overflow: hidden;\n-    svg {\n-      transform: rotateZ(-90deg);\n+\n+.container {\n\\ No newline at end of file\n+    width: 100vw;\n+    height: calc(100vh - 30px);     \n+  }\n+  \n+  main {\n+    flex: auto;\n+    display: flex;\n+    flex-direction: row;\n+    height: 100vh;\n+    // 装edtor的容器\n+    > div:nth-child(2) {\n+      // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n+      width: 100px;\n+      flex: auto;\n+      .milkdown-menu-wrapper {\n+        width: 100%;\n+        height: 100%;\n+        display: flex;\n+        flex-direction: column;\n+        .milkdown {\n+          height: 100%;\n+          width: 100%;\n+          // border-radius: 6px;\n+          padding-top: 10px;\n+          overflow: scroll;\n+        }\n+      }\n     }\n-  }\n+  }\n+  \n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1665500550733,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,29 @@\n+.container {\n+  width: 100vw;\n+  height: calc(100vh - 30px);\n+}\n \n-.container {\n-    width: 100vw;\n-    height: calc(100vh - 30px);     \n-  }\n-  \n-  main {\n+main {\n+  display: flex;\n+  flex-direction: row;\n+  height: 100vh;\n+  // 装edtor的容器\n+  > div:nth-child(2) {\n+    // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n+    width: 100px;\n     flex: auto;\n-    display: flex;\n-    flex-direction: row;\n-    height: 100vh;\n-    // 装edtor的容器\n-    > div:nth-child(2) {\n-      // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n-      width: 100px;\n-      flex: auto;\n-      .milkdown-menu-wrapper {\n+    .milkdown-menu-wrapper {\n+      width: 100%;\n+      height: 100%;\n\\ No newline at end of file\n+      display: flex;\n+      flex-direction: column;\n+      .milkdown {\n+        height: 100%;\n         width: 100%;\n-        height: 100%;\n-        display: flex;\n-        flex-direction: column;\n-        .milkdown {\n-          height: 100%;\n-          width: 100%;\n-          // border-radius: 6px;\n-          padding-top: 10px;\n-          overflow: scroll;\n-        }\n+        // border-radius: 6px;\n+        padding-top: 10px;\n+        overflow: scroll;\n       }\n     }\n   }\n-  \n+}\n"
+        },
+        {
+          "date": 1665501378628,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,12 @@\n .container {\n   width: 100vw;\n   height: calc(100vh - 30px);\n+  .header {\n+    height: 30px;\n+\n+\n+  }\n }\n \n main {\n   display: flex;\n@@ -25,5 +30,5 @@\n         overflow: scroll;\n       }\n     }\n   }\n-}\n\\ No newline at end of file\n+}\n"
+        },
+        {
+          "date": 1665501419887,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,15 @@\n   width: 100vw;\n   height: calc(100vh - 30px);\n   .header {\n     height: 30px;\n-\n-\n   }\n }\n \n main {\n   display: flex;\n   flex-direction: row;\n-  height: 100vh;\n+  height: 100%;\n   // 装edtor的容器\n   > div:nth-child(2) {\n     // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n     width: 100px;\n"
+        },
+        {
+          "date": 1665502117170,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     width: 100px;\n     flex: auto;\n     .milkdown-menu-wrapper {\n       width: 100%;\n-      height: 100%;\n+      height: 110%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n         height: 100%;\n"
+        },
+        {
+          "date": 1665502206853,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,13 @@\n     width: 100px;\n     flex: auto;\n     .milkdown-menu-wrapper {\n       width: 100%;\n-      height: 110%;\n+      height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n-        height: 100%;\n+        height: 110%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n         overflow: scroll;\n"
+        },
+        {
+          "date": 1665502651499,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n-        height: 110%;\n+        height: 100%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n         overflow: scroll;\n"
+        },
+        {
+          "date": 1665643044717,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n .container {\n   width: 100vw;\n-  height: calc(100vh - 30px);\n+  height: 100vh;\n+  display: flex;\n+  flex-direction: column;\n   .header {\n     height: 30px;\n   }\n }\n"
+        },
+        {
+          "date": 1665643685559,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n       .milkdown {\n+        max-height: calc(100vh - 30px);\n         height: 100%;\n         width: 100%;\n         // border-radius: 6px;\n         padding-top: 10px;\n"
+        },
+        {
+          "date": 1665643895368,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,12 @@\n       width: 100%;\n       height: 100%;\n       display: flex;\n       flex-direction: column;\n+      .milkdown-menu {\n+        position: absolute;\n+        z-index: 999;\n+      }\n       .milkdown {\n         max-height: calc(100vh - 30px);\n         height: 100%;\n         width: 100%;\n"
         }
-    ]
+      ],
+      "date": 1665500050252,
+      "name": "Commit-0",
+      "content": ".ul-close {\n    height: 20px !important;\n    overflow: hidden;\n    svg {\n      transform: rotateZ(-90deg);\n    }\n  }"
+    }
+  ]
 }

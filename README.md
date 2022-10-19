@@ -46,28 +46,34 @@ $ npm run build:linux
 9. 进程通信
 10. 文件切换
 11. 侧边栏显示隐藏切换
+
 ### 待完成功能
+
 1. slash 斜杠命令
 
 ### 遇到的坑
+
 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大
+
 ### 学习笔记
-1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀
+
+1. 导入.d.ts 文件的类型时，不能输入.d.ts 的后缀
+
 ### 参考学习文档
 
 1. electron
-https://www.electronjs.org/zh/docs/latest
+   https://www.electronjs.org/zh/docs/latest
 2. milkdown
-https://milkdown.dev/zh-hans/getting-started
+   https://milkdown.dev/zh-hans/getting-started
 3. 别人的项目
-https://github.com/CatsAndMice/milkdown
+   https://github.com/CatsAndMice/milkdown
 4. 官方 example
-https://github.com/Saul-Mirone/milkdown
+   https://github.com/Saul-Mirone/milkdown
 5. blog:electron + vite
-https://dev.to/brojenuel/vite-vue-3-electron-5h4o
+   https://dev.to/brojenuel/vite-vue-3-electron-5h4o
 6. npm:electron-vite
    官方 quick-start 依赖有点多，安装比较久需要耐心
    https://cn-evite.netlify.app/
-7. ant-design react项目组织
+7. ant-design react 项目组织
 8. electron life cycle
-https://vastiny.com/post/tech/electron-lifecycle
+   https://vastiny.com/post/tech/electron-lifecycle

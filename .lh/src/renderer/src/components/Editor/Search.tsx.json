@@ -1,18 +1,18 @@
 {
-    "sourceFile": "src/renderer/src/components/Editor/Search.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Editor/Search.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 0,
+      "patches": [
         {
-            "activePatchIndex": 0,
-            "patches": [
-                {
-                    "date": 1665674081340,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                }
-            ],
-            "date": 1665674081340,
-            "name": "Commit-0",
-            "content": "import { useEffect, useState } from \"react\"\n\nexport const Search = () => {\n  const [show,setShow] = useState(false)\n  useEffect(()=>{\n    document.addEventListener('keydown',e=>{\n        console.log(e)\n        // if(e.metaKey&&e.k===67){\n        //     console.log('Ctrl+c');\n        //   }\n    })\n  })\n  return (\n    <div className=\".search-wrapper\">\n      <input type=\"text\" />\n    </div>\n  )\n}\n"
+          "date": 1665674081340,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
         }
-    ]
+      ],
+      "date": 1665674081340,
+      "name": "Commit-0",
+      "content": "import { useEffect, useState } from \"react\"\n\nexport const Search = () => {\n  const [show,setShow] = useState(false)\n  useEffect(()=>{\n    document.addEventListener('keydown',e=>{\n        console.log(e)\n        // if(e.metaKey&&e.k===67){\n        //     console.log('Ctrl+c');\n        //   }\n    })\n  })\n  return (\n    <div className=\".search-wrapper\">\n      <input type=\"text\" />\n    </div>\n  )\n}\n"
+    }
+  ]
 }

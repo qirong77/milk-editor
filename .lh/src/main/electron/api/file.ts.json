@@ -1,34 +1,34 @@
 {
-    "sourceFile": "src/main/electron/api/file.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/api/file.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 4,
+      "patches": [
         {
-            "activePatchIndex": 4,
-            "patches": [
-                {
-                    "date": 1665990419991,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1665990433119,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function openFileSelectorDialog(window: BrowserWindow) {\n+export async function openFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
-                },
-                {
-                    "date": 1665990473633,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function openFileDialog(window: BrowserWindow) {\n+export async function selectFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
-                },
-                {
-                    "date": 1665990482145,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function selectFileDialog(window: BrowserWindow) {\n+export async function openFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
-                },
-                {
-                    "date": 1665990708385,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +0,0 @@\n-import { BrowserWindow, dialog } from \"electron\"\n-\n-export async function openFileDialog(window: BrowserWindow) {\n-    const { canceled, filePaths } = await dialog.showOpenDialog(window)\n-    if (canceled) {\n-      return\n-    } else {\n-      return filePaths[0]\n-    }\n-  }\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1665990419991,
-            "name": "Commit-0",
-            "content": "import { BrowserWindow, dialog } from \"electron\"\n\nexport async function openFileSelectorDialog(window: BrowserWindow) {\n    const { canceled, filePaths } = await dialog.showOpenDialog(window)\n    if (canceled) {\n      return\n    } else {\n      return filePaths[0]\n    }\n  }"
+          "date": 1665990419991,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1665990433119,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function openFileSelectorDialog(window: BrowserWindow) {\n+export async function openFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
+        },
+        {
+          "date": 1665990473633,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function openFileDialog(window: BrowserWindow) {\n+export async function selectFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
+        },
+        {
+          "date": 1665990482145,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, dialog } from \"electron\"\n \n-export async function selectFileDialog(window: BrowserWindow) {\n+export async function openFileDialog(window: BrowserWindow) {\n     const { canceled, filePaths } = await dialog.showOpenDialog(window)\n     if (canceled) {\n       return\n     } else {\n"
+        },
+        {
+          "date": 1665990708385,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +0,0 @@\n-import { BrowserWindow, dialog } from \"electron\"\n-\n-export async function openFileDialog(window: BrowserWindow) {\n-    const { canceled, filePaths } = await dialog.showOpenDialog(window)\n-    if (canceled) {\n-      return\n-    } else {\n-      return filePaths[0]\n-    }\n-  }\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1665990419991,
+      "name": "Commit-0",
+      "content": "import { BrowserWindow, dialog } from \"electron\"\n\nexport async function openFileSelectorDialog(window: BrowserWindow) {\n    const { canceled, filePaths } = await dialog.showOpenDialog(window)\n    if (canceled) {\n      return\n    } else {\n      return filePaths[0]\n    }\n  }"
+    }
+  ]
 }
