@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 41,
+            "activePatchIndex": 42,
             "patches": [
                 {
                     "date": 1665674461277,
@@ -172,6 +172,10 @@
                 {
                     "date": 1666164019019,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n $dark-color: rgba(236, 239, 244, 0.87);\n $dark-background: rgb(39, 44, 55);\n \n-.search-wrapper {\n+.search-word {\n   height: 40px;\n   width: 200px;\n   border-radius: 10px;\n   position: absolute;\n@@ -23,9 +23,9 @@\n       cursor: pointer;\n     }\n   }\n }\n-.search-wrapper-close {\n+.search-word-close {\n   display: none;\n }\n .match {\n   background-color: aqua !important;\n"
+                },
+                {
+                    "date": 1666166681813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-$dark-color: rgba(236, 239, 244, 0.87);\n-$dark-background: rgb(39, 44, 55);\n \n .search-word {\n   height: 40px;\n   width: 200px;\n@@ -14,10 +12,8 @@\n     width: 100%;\n     padding-left: 12px;\n     font-size: 16px;\n     border-radius: 6px;\n-    color: $dark-color;\n-    background-color: $dark-background;\n     border: none;\n     outline: none;\n     &:hover {\n       cursor: pointer;\n@@ -26,17 +22,15 @@\n }\n .search-word-close {\n   display: none;\n }\n-.match {\n-  background-color: aqua !important;\n-}\n \n+\n .search-file {\n-  top:10px;\n+  top: 10px;\n   position: fixed;\n   left: 50%;\n   transform: translateX(-50%);\n }\n .search-file-close {\n\\ No newline at end of file\n-  display: none\n-}\n+  display: none;\n+}\n"
                 }
             ],
             "date": 1665674461277,

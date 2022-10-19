@@ -12,7 +12,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {
     )
   })
   return (
-    <div className="search-file">
+    <div className="search-file search-file-close">
       <div>
         <input type="text" />
       </div>

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1666160968450,
@@ -56,6 +56,10 @@
                 {
                     "date": 1666163352691,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useEffect } from 'react'\n+\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n@@ -7,23 +7,8 @@\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n   const files = fileList.map((file) => {\n     return <li key={file.filePath}><span>{file.fileName}</span></li>\n   })\n-//   useEffect(() => {\n-//     const hanldeKeyDown = (e:KeyboardEvent) => {\n-//       if(e.code==='ArrowUp') {}\n-//       if(e.code===\"ArrowDown\"){}\n-//       if(e.code==='KeyP' && e.metaKey) {\n-//         console.log('commend + P')\n-//         document.querySelector('.search-file')?.classList.toggle('search-file-close')\n-//       }\n-//       console.log(e)\n-//     }\n-//     document.addEventListener('keydown', hanldeKeyDown)\n-//     return ()=>{\n-//         document.removeEventListener('keydown', hanldeKeyDown)\n-//     }\n-//   }, [])\n   return (\n     <div className=\"search-file\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666190589786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,19 @@\n-\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n   const files = fileList.map((file) => {\n-    return <li key={file.filePath}><span>{file.fileName}</span></li>\n+    return (\n+      <li key={file.filePath}>\n+        <span>{file.fileName}</span>\n+      </li>\n+    )\n   })\n   return (\n-    <div className=\"search-file\">\n+    <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n"
                 }
             ],
             "date": 1666160968450,

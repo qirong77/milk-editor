@@ -5,8 +5,9 @@
 @import '../components/Search/styles/index.scss';
 @import './layout.scss';
 @import './normalize.scss';
+@import './themes.scss';
 .container {
-  font-weight: 300;
+  @include theme-dark;
 }
 
 .container .milkdown .editor .code-fence pre code {

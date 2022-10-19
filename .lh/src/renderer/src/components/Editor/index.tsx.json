@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 235,
+            "activePatchIndex": 242,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -948,6 +948,34 @@
                 {
                     "date": 1666156035903,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n import React, { useEffect, useState } from 'react'\n-import { Editor, editorStateCtx } from '@milkdown/core'\n+import { Editor} from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n-import { replaceAll, getMarkdown } from '@milkdown/utils'\n+import { replaceAll } from '@milkdown/utils'\n import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n import { listenerCtx } from '@milkdown/plugin-listener'\n"
+                },
+                {
+                    "date": 1666164607577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useEffect, useState } from 'react'\n-import { Editor} from '@milkdown/core'\n+import { Editor } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { themeManagerCtx } from '@milkdown/core'\n@@ -47,9 +47,9 @@\n         setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n-      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666167630565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n-      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666193330370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n-      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666193485318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n-      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666193571528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         setMarkdown(markdown)\n       })\n     })\n     instance?.action((ctx) => {\n-      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666193602328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         setMarkdown(markdown)\n       })\n     })\n-    instance?.action((ctx) => {\n+    instance!.action((ctx) => {\n       // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666193639612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,14 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+        console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n     })\n     instance!.action((ctx) => {\n-      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
                 }
             ],
             "date": 1665496693570,

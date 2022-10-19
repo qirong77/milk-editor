@@ -1,7 +1,5 @@
 // 清除默认编辑器我不喜欢的样式
 // this file amis to clear some default styles of the milkdown editor
-$dark-color: rgba(236, 239, 244, 0.87);
-$dark-background: rgb(39, 44, 55);
 .code-fence {
   position: relative;
   // 代码块的语言框大小
@@ -32,9 +30,4 @@ $dark-background: rgb(39, 44, 55);
 
 .milkdown::-webkit-scrollbar {
   width: 0 !important;
-}
-.milkdown .editor code.code-inline {
-  color: $dark-color;
-  background-color: $dark-background;
-  font-family: 'Times New Roman', Times, serif;
 }

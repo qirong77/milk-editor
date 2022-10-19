@@ -1,13 +1,8 @@
-$dark-background: rgba(46, 52, 64, 1);
-$dark-color: rgba(236, 239, 244, 0.87);
-
 .header {
   padding: 4px 10px;
-  background-color: $dark-background;
   -webkit-app-region: drag;
   display: flex;
   justify-content: space-between;
-  color: $dark-color;
   .controlers {
     ul {
       display: flex;

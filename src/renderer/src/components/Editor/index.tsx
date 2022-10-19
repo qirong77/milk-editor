@@ -44,10 +44,11 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     const instance = getInstance()
     instance?.action((ctx) => {
       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {
+        console.log('markdownUpdated')
         setMarkdown(markdown)
       })
     })
-    instance?.action((ctx) => {
+    instance!.action((ctx) => {
       ctx.get(themeManagerCtx).switch(ctx, nordDark)
     })
   }, [])
