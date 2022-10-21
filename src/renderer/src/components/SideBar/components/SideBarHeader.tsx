@@ -1,13 +1,12 @@
+import { useToggleSideBar } from '@renderer/common/useToggleSideBar'
 import React from 'react'
 
 interface ISideBarHeader {
-  setShowFileList: (show: boolean) => void
   title: string
-  show: boolean
 }
-export const SideBarHeader: React.FC<ISideBarHeader> = ({ title, setShowFileList, show }) => {
+export const SideBarHeader: React.FC<ISideBarHeader> = ({ title }) => {
   const clickMenu = () => {
-    setShowFileList(!show)
+    useToggleSideBar()
   }
   return (
     <header>

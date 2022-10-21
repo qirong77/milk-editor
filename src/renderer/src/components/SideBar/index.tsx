@@ -9,16 +9,14 @@ interface ISideBar {
   fileList: IFileList
 }
 export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
-  const [showFileList, setShowFileList] = useState(false)
+  // const [showFileList, setShowFileList] = useState(false)
   return (
     <div className="side-bar">
-      <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />
+      <SideBarHeader title={'文件'} />
       <DragLine />
-      {!showFileList && (
-        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />
-      )}
-      {showFileList && <HeaderList />}
-      <SideBarBottom show={showFileList} />
+      <FileList fileList={fileList} />
+      <HeaderList />
+      {/* <SideBarBottom/> */}
     </div>
   )
 }

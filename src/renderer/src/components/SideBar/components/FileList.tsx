@@ -1,15 +1,15 @@
 import { useOpenFile } from '@renderer/common/useOpenFile'
+import { useToggleSideBar } from '@renderer/common/useToggleSideBar'
 import React from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 export const FileList: React.FC<{
   fileList: IFileList
-  show: boolean
-  setShowFileList: (show: boolean) => void
-}> = ({ fileList, setShowFileList, show }) => {
+
+}> = ({ fileList}) => {
   const openFile = (filePath) => {
     useOpenFile(filePath)
-    setShowFileList(!show)
+    useToggleSideBar()
   }
   return (
     <ul className="file-list">

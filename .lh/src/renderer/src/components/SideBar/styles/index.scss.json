@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 128,
+            "activePatchIndex": 132,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -520,6 +520,22 @@
                 {
                     "date": 1666191750520,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -125,5 +125,8 @@\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n   width: 0 !important;\n+  header {\n+    overflow: hidden;\n+  }\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1666361843610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,8 +96,11 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n+  .fileList-close {\n+    display: none;\n+  }\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+                },
+                {
+                    "date": 1666361914919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -96,9 +96,9 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n-  .fileList-close {\n+  .file-list-close {\n     display: none;\n   }\n   .drag-line {\n     width: 3px;\n"
+                },
+                {
+                    "date": 1666362230022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,8 +80,11 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n+  .header-list-close {\n+    display: none;\n+  }\n   .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     li {\n@@ -97,9 +100,9 @@\n       }\n     }\n   }\n   .file-list-close {\n-    display: none;\n+    display: block;\n   }\n   .drag-line {\n     width: 3px;\n     position: absolute;\n"
+                },
+                {
+                    "date": 1666362277195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,8 +86,9 @@\n   }\n   .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n+    display: none;\n     li {\n       display: flex;\n       padding-left: 20px;\n       min-height: $title-height;\n"
                 }
             ],
             "date": 1665500010365,

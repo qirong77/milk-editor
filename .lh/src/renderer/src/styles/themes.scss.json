@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 61,
+            "activePatchIndex": 62,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -252,6 +252,10 @@
                 {
                     "date": 1666340004339,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n $dark-font-color: rgb(208, 211, 218);\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n+$active-font-color:rgb(129,161,193);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n@@ -49,7 +50,8 @@\n   .search-file {\n     background-color: $dark-sideBar-background;\n     li.active {\n       background-color: $dark-header-backgournd;\n+      color: $active-font-color;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1666361592461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n           background-color: inherit;\n-          font-size: larger;\n+          font-size: initial;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 10px;\n"
                 }
             ],
             "date": 1666166681790,

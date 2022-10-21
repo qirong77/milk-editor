@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 import { useKeyBoard } from './common/useKeyBoard'
+import { useToggleSideBar } from './common/useToggleSideBar'
 import { MilkdownEditor } from './components/Editor'
 import { Header } from './components/Header'
 import { SearchFile } from './components/Search/SearchFile'
@@ -43,6 +44,7 @@ export const App = () => {
       if (e.code === 'KeyP' && e.metaKey) {
         console.log('commend + P')
         setOpenSearchFile(!openSearchFile)
+        useToggleSideBar()
       }
       if (e.metaKey && e.code === 'KeyF') {
         SearchWord?.classList.toggle('search-word-close')
@@ -59,7 +61,7 @@ export const App = () => {
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
       {openSearchWords && <SearchWord />}
-      {openSearchFile && <SearchFile fileList={fileList} />}
+      {openSearchFile && <SearchFile openSearchFile={openSearchFile} fileList={fileList} />}
     </div>
   )
 }

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 43,
+            "activePatchIndex": 44,
             "patches": [
                 {
                     "date": 1666160968450,
@@ -180,6 +180,10 @@
                 {
                     "date": 1666343460079,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   return (\n-    <div className=\"search-file search-file-close\">\n+    <div className=\"search-file \">\n       <div>\n         <input type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n"
+                },
+                {
+                    "date": 1666363092244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n-  fileList: IFileList\n+  fileList: IFileList,\n+  openSearchFile:boolean\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) => {\n   console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n"
                 }
             ],
             "date": 1666160968450,

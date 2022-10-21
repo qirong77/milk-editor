@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -28,6 +28,14 @@
                 {
                     "date": 1666340291202,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useOpenFile } from '@renderer/common/useOpenFile'\n import React from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n@@ -6,9 +7,9 @@\n   show: boolean\n   setShowFileList: (show: boolean) => void\n }> = ({ fileList, setShowFileList, show }) => {\n   const openFile = (filePath) => {\n-    window.api.clickFileList(filePath)\n+    useOpenFile(filePath)\n     setShowFileList(!show)\n   }\n   return (\n     <ul className=\"file-list\">\n"
+                },
+                {
+                    "date": 1666361592462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,12 @@\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n-  show: boolean\n-  setShowFileList: (show: boolean) => void\n-}> = ({ fileList, setShowFileList, show }) => {\n+\n+}> = ({ fileList}) => {\n   const openFile = (filePath) => {\n     useOpenFile(filePath)\n-    setShowFileList(!show)\n   }\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n"
+                },
+                {
+                    "date": 1666363092238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n+import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n@@ -7,8 +8,9 @@\n \n }> = ({ fileList}) => {\n   const openFile = (filePath) => {\n     useOpenFile(filePath)\n+    useToggleSideBar()\n   }\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n"
                 }
             ],
             "date": 1666066869538,

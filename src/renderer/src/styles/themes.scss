@@ -31,7 +31,7 @@ $active-font-color:rgb(129,161,193);
         code.code-inline {
           color: $dark-font-color;
           background-color: inherit;
-          font-size: larger;
+          font-size: initial;
         }
         // 注释
         .blockquote {

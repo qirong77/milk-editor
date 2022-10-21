@@ -1,238 +1,246 @@
 {
-  "sourceFile": "src/renderer/src/components/SideBar/index.tsx",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 55,
-      "patches": [
+    "sourceFile": "src/renderer/src/components/SideBar/index.tsx",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1665497140199,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1665497146354,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n-export const  = () => {\n+export const SideBar = () => {\n   return (\n-    <div></div>\n+    <div>\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665498963979,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div>\n+    <div cla>\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665498970942,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div cla>\n+    <div className=\"side-bar\">\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665498982012,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-        \n+      <div></div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665498987603,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <div></div>\n+      <div>text</div>\n+      <div>\n+        \n+      </div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665498993870,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <div>text</div>\n-      <div>\n-        \n-      </div>\n+      <div></div>\n+      \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665499009494,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n+      <\n       <div>text</div>\n-      <div></div>\n-      \n+\n+\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665499014659,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <\n+      <Drag\n       <div>text</div>\n \n \n     </div>\n"
-        },
-        {
-          "date": 1665499026835,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Drag\n+      <Dr\n       <div>text</div>\n \n \n     </div>\n"
-        },
-        {
-          "date": 1665500275173,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n+import { DragLine } from \"./DragLine\"\n+\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Dr\n+      <DragLine/>\n       <div>text</div>\n-\n-\n+      <Header\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665500281636,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import { DragLine } from \"./DragLine\"\n+import { Headers } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <DragLine/>\n       <div>text</div>\n-      <Header\n+      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665638844269,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <DragLine/>\n-      <div>text</div>\n+      <header><span>文件</span></header>\n       <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665638911972,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import { Headers } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n+\n     <div className=\"side-bar\">\n+    <header><span>文件</span></header>\n       <DragLine/>\n-      <header><span>文件</span></header>\n       <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665642637934,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,11 @@\n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n+      <Headers/>\n+\n     <header><span>文件</span></header>\n       <DragLine/>\n-      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665642648792,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,10 @@\n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n-      <Headers/>\n-\n     <header><span>文件</span></header>\n       <DragLine/>\n+      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665642779153,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import { DragLine } from \"./DragLine\"\n-import { Headers } from \"./Headers\"\n+import { HeaderList } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n     <header><span>文件</span></header>\n       <DragLine/>\n-      <Headers/>\n+      <HeaderList/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1665642863189,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./Headers\"\n+import { HeaderList } from \"./HeaderList\"\n \n export const SideBar = () => {\n   return (\n \n"
-        },
-        {
-          "date": 1665670403908,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n-import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./HeaderList\"\n+import { DragLine } from './DragLine'\n+import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-\n     <div className=\"side-bar\">\n-    <header><span>文件</span></header>\n-      <DragLine/>\n-      <HeaderList/>\n+      <header>\n\\ No newline at end of file\n+        <span>文件</span>\n+      </header>\n+      <DragLine />\n+      <HeaderList />\n     </div>\n   )\n- }\n+}\n"
-        },
-        {
-          "date": 1665670422075,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,16 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <div className=\"side-bar\">\n-      <header>\n-        <span>文件</span>\n-      </header>\n+    <>\n       <DragLine />\n-      <HeaderList />\n-    </div>\n+      <div className=\"side-bar\">\n\\ No newline at end of file\n+        <header>\n+          <span>文件</span>\n+        </header>\n+\n+        <HeaderList />\n+      </div>\n+    </>\n   )\n-}\n+}\n"
-        },
-        {
-          "date": 1665670493257,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,13 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <>\n+    <div className=\"side-bar\">\n+      <header>\n+        <span>文件</span>\n+      </header>\n       <DragLine />\n-      <div className=\"side-bar\">\n-        <header>\n-          <span>文件</span>\n-        </header>\n-\n-        <HeaderList />\n\\ No newline at end of file\n-      </div>\n-    </>\n+      <HeaderList />\n+    </div>\n   )\n-}\n+}\n"
-        },
-        {
-          "date": 1665723507453,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,21 @@\n+import { LegacyRef, useEffect, useRef } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n+  const sideBarRef = useRef<HTMLDivElement>()\n+  useEffect(() => {\n+    const hanldeHideBar = (e: KeyboardEvent) => {\n+      if (e.metaKey && e.code === 'KeyB') {\n+        sideBarRef.current?.classList.toggle('side-bar-close')\n+      }\n+    }\n+    document.addEventListener('keydown', hanldeHideBar)\n+    return () => document.removeEventListener('keydown', hanldeHideBar)\n+  })\n   return (\n-    <div className=\"side-bar\">\n+    <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n       </header>\n       <DragLine />\n"
-        },
-        {
-          "date": 1665727040279,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,17 @@\n-import { LegacyRef, useEffect, useRef } from 'react'\n+import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n+  const [update, setUpdate] = useState(false)\n+\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         sideBarRef.current?.classList.toggle('side-bar-close')\n+        setUpdate(!update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n@@ -18,8 +21,8 @@\n       <header>\n         <span>文件</span>\n       </header>\n       <DragLine />\n-      <HeaderList />\n+      <HeaderList shouldUpdate={update} />\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665728911232,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  })\n+  },[])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n"
-        },
-        {
-          "date": 1665728932209,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n+        console.log('commend + b')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
-        },
-        {
-          "date": 1665728943494,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n-        console.log('commend + b')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
-        },
-        {
-          "date": 1665729513633,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
-        },
-        {
-          "date": 1665735184808,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n+        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
-        },
-        {
-          "date": 1665735284746,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,17 @@\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n-  const [update, setUpdate] = useState(false)\n+  const [update, setUpdate] = useState(0)\n \n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n-        setUpdate(!update)\n+        setUpdate(Math.random())\n         console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
-        },
-        {
-          "date": 1665735328109,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(Math.random())\n-        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
-        },
-        {
-          "date": 1665735673062,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   const [update, setUpdate] = useState(0)\n-\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n@@ -15,9 +14,14 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  },[])\n+  }, [])\n+  useEffect(() => {\n+    window.api.onUpdateEditor(() => {\n+      setUpdate(Math.random())\n+    })\n+  }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n"
-        },
-        {
-          "date": 1665735780853,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n+      console.log('update')\n       setUpdate(Math.random())\n     })\n   }, [])\n   return (\n"
-        },
-        {
-          "date": 1665735828705,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,12 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      console.log('update')\n-      setUpdate(Math.random())\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      setTimeout(()=>{\n+        setUpdate(Math.random())\n+      })\n     })\n   }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n"
-        },
-        {
-          "date": 1665735865259,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n       setTimeout(()=>{\n         setUpdate(Math.random())\n       })\n     })\n"
-        },
-        {
-          "date": 1665757502659,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,17 +18,40 @@\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(()=>{\n+      setTimeout(() => {\n         setUpdate(Math.random())\n       })\n     })\n   }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n+        <svg\n+          xmlns=\"http://www.w3.org/2000/svg\"\n+          width=\"16\"\n+          height=\"16\"\n+          fill=\"currentColor\"\n+          className=\"bi bi-list\"\n+          viewBox=\"0 0 16 16\"\n+        >\n+          <path\n+            fill-rule=\"evenodd\"\n+            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n+          />\n+        </svg>\n         <span>文件</span>\n+        <svg\n+          xmlns=\"http://www.w3.org/2000/svg\"\n+          width=\"16\"\n+          height=\"16\"\n+          fill=\"currentColor\"\n+          className=\"bi bi-search\"\n+          viewBox=\"0 0 16 16\"\n+        >\n+          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n+        </svg>\n       </header>\n       <DragLine />\n       <HeaderList shouldUpdate={update} />\n     </div>\n"
-        },
-        {
-          "date": 1665760686298,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,16 +15,22 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  useEffect(() => {\n-    window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(() => {\n-        setUpdate(Math.random())\n-      })\n-    })\n-  }, [])\n+  // useEffect(() => {\n+  //   /* \n+  //   1.打开了文件\n+  //   2.触发了api的事件\n+  //   3.发送请求，获取编辑器实例\n+  //   4.使用异步等待编辑器渲染完毕再获取标题\n+  //   */\n+  //   window.api.onUpdateEditor(() => {\n+  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n+  //     setTimeout(() => {\n+  //       setUpdate(Math.random())\n+  //     })\n+  //   })\n+  // }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <svg\n"
-        },
-        {
-          "date": 1665760884827,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,22 +15,8 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  // useEffect(() => {\n-  //   /* \n-  //   1.打开了文件\n-  //   2.触发了api的事件\n-  //   3.发送请求，获取编辑器实例\n-  //   4.使用异步等待编辑器渲染完毕再获取标题\n-  //   */\n-  //   window.api.onUpdateEditor(() => {\n-  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-  //     setTimeout(() => {\n-  //       setUpdate(Math.random())\n-  //     })\n-  //   })\n-  // }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <svg\n"
-        },
-        {
-          "date": 1665761195510,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,14 @@\n import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-\n-export const SideBar = () => {\n+interface ISideBar {\n+  ref:LegacyRef<HTMLDivElement> | undefined;\n+}\n+export const SideBar:React.FC<ISideBar> = () => {\n   const [update, setUpdate] = useState(0)\n-  const sideBarRef = useRef<HTMLDivElement>()\n-  useEffect(() => {\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        sideBarRef.current?.classList.toggle('side-bar-close')\n-        setUpdate(Math.random())\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n   return (\n-    <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n+    <div className=\"side-bar\">\n       <header>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n"
-        },
-        {
-          "date": 1665761576925,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n-import { LegacyRef, useEffect, useRef, useState } from 'react'\n+import {  useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-interface ISideBar {\n-  ref:LegacyRef<HTMLDivElement> | undefined;\n-}\n-export const SideBar:React.FC<ISideBar> = () => {\n+\n+export const SideBar = () => {\n   const [update, setUpdate] = useState(0)\n   return (\n     <div className=\"side-bar\">\n       <header>\n"
-        },
-        {
-          "date": 1665762113722,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n-import {  useState } from 'react'\n+import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-\n-export const SideBar = () => {\n-  const [update, setUpdate] = useState(0)\n+interface ISideBar {\n+  content:string\n+}\n+export const SideBar:React.FC<ISideBar> = ({content}) => {\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n@@ -32,8 +33,8 @@\n           <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n         </svg>\n       </header>\n       <DragLine />\n-      <HeaderList shouldUpdate={update} />\n+      <HeaderList/>\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665762263095,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { LegacyRef, useEffect, useRef, useState } from 'react'\n+\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n interface ISideBar {\n   content:string\n"
-        },
-        {
-          "date": 1665762595092,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n interface ISideBar {\n   content:string\n }\n export const SideBar:React.FC<ISideBar> = ({content}) => {\n+  console.log(content)\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
-        },
-        {
-          "date": 1665762661754,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n           className=\"bi bi-list\"\n           viewBox=\"0 0 16 16\"\n         >\n           <path\n-            fill-rule=\"evenodd\"\n+            fillRule=\"evenodd\"\n             d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n           />\n         </svg>\n         <span>文件</span>\n"
-        },
-        {
-          "date": 1665762704778,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n interface ISideBar {\n   content:string\n }\n export const SideBar:React.FC<ISideBar> = ({content}) => {\n-  console.log(content)\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
-        },
-        {
-          "date": 1665763013716,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n \n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n interface ISideBar {\n-  content:string\n+\n }\n-export const SideBar:React.FC<ISideBar> = ({content}) => {\n+export const SideBar:React.FC<ISideBar> = () => {\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
-        },
-        {
-          "date": 1665763644359,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,39 +1,15 @@\n \n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n+import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n   return (\n     <div className=\"side-bar\">\n-      <header>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-list\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path\n-            fillRule=\"evenodd\"\n-            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n-          />\n-        </svg>\n-        <span>文件</span>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-search\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n-        </svg>\n-      </header>\n+      <SideBarHeader/>\n       <DragLine />\n       <HeaderList/>\n     </div>\n   )\n"
-        },
-        {
-          "date": 1665891813750,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,19 @@\n \n+import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n+  const [showFileList,setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader/>\n+      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n       <DragLine />\n-      <HeaderList/>\n+      {!showFileList && <FileList/>}\n+      {showFileList && <HeaderList/>}\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665898439883,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,20 @@\n-\n import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n+import { FileList } from './FileList'\n+import { IFileList } from 'src/preload/index.d'\n interface ISideBar {\n-\n+  fileList: IFileList\n }\n-export const SideBar:React.FC<ISideBar> = () => {\n-  const [showFileList,setShowFileList] = useState(false)\n+export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n+  const [showFileList, setShowFileList] = useState(true)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n+      <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList/>}\n-      {showFileList && <HeaderList/>}\n+      {!showFileList && <FileList fileList={fileList} />}\n+      {showFileList && <HeaderList />}\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665901359459,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList fileList={fileList} />}\n+      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665901494117,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { useState } from 'react'\n-import { DragLine } from './DragLine'\n-import { HeaderList } from './HeaderList'\n-import { SideBarHeader } from './SideBarHeader'\n-import { FileList } from './FileList'\n+import { DragLine } from './components/DragLine'\n+import { HeaderList } from './components/HeaderList'\n+import { SideBarHeader } from './components/SideBarHeader'\n+import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n interface ISideBar {\n   fileList: IFileList\n }\n"
-        },
-        {
-          "date": 1665901850224,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n+import { SideBarBottom } from './components/SideBarBottom'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n@@ -14,7 +15,8 @@\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n       {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n+      <SideBarBottom/>\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665902014135,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n       {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom/>\n+      <SideBarBottom show={showFileList}/>\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1665929607419,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  const [showFileList, setShowFileList] = useState(true)\n+  const [showFileList, setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
-        },
-        {
-          "date": 1666067099757,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,20 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { DragLine } from './components/DragLine'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n+import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n+  useEffect(()=>{\n+useUpdateHeaders()\n+  },showFileList)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
-        },
-        {
-          "date": 1666067105135,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n   useEffect(()=>{\n useUpdateHeaders()\n-  },showFileList)\n+  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
-        },
-        {
-          "date": 1666067147376,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,23 +4,21 @@\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n-import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n-  useEffect(()=>{\n-useUpdateHeaders()\n-  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n+      {!showFileList && (\n+        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />\n+      )}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom show={showFileList}/>\n+      <SideBarBottom show={showFileList} />\n     </div>\n   )\n }\n"
+            "activePatchIndex": 57,
+            "patches": [
+                {
+                    "date": 1665497140199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665497146354,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n-export const  = () => {\n+export const SideBar = () => {\n   return (\n-    <div></div>\n+    <div>\n+        \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498963979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div>\n+    <div cla>\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498970942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n-    <div cla>\n+    <div className=\"side-bar\">\n         \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498982012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-        \n+      <div></div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498987603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <div></div>\n+      <div>text</div>\n+      <div>\n+        \n+      </div>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665498993870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,9 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <div>text</div>\n-      <div>\n-        \n-      </div>\n+      <div></div>\n+      \n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665499009494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n+      <\n       <div>text</div>\n-      <div></div>\n-      \n+\n+\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665499014659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <\n+      <Drag\n       <div>text</div>\n \n \n     </div>\n"
+                },
+                {
+                    "date": 1665499026835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Drag\n+      <Dr\n       <div>text</div>\n \n \n     </div>\n"
+                },
+                {
+                    "date": 1665500275173,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n+import { DragLine } from \"./DragLine\"\n+\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n-      <Dr\n+      <DragLine/>\n       <div>text</div>\n-\n-\n+      <Header\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665500281636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import { DragLine } from \"./DragLine\"\n+import { Headers } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <DragLine/>\n       <div>text</div>\n-      <Header\n+      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665638844269,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n export const SideBar = () => {\n   return (\n     <div className=\"side-bar\">\n       <DragLine/>\n-      <div>text</div>\n+      <header><span>文件</span></header>\n       <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665638911972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import { Headers } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n+\n     <div className=\"side-bar\">\n+    <header><span>文件</span></header>\n       <DragLine/>\n-      <header><span>文件</span></header>\n       <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642637934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,11 @@\n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n+      <Headers/>\n+\n     <header><span>文件</span></header>\n       <DragLine/>\n-      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642648792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,10 @@\n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n-      <Headers/>\n-\n     <header><span>文件</span></header>\n       <DragLine/>\n+      <Headers/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642779153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n import { DragLine } from \"./DragLine\"\n-import { Headers } from \"./Headers\"\n+import { HeaderList } from \"./Headers\"\n \n export const SideBar = () => {\n   return (\n \n     <div className=\"side-bar\">\n     <header><span>文件</span></header>\n       <DragLine/>\n-      <Headers/>\n+      <HeaderList/>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1665642863189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./Headers\"\n+import { HeaderList } from \"./HeaderList\"\n \n export const SideBar = () => {\n   return (\n \n"
+                },
+                {
+                    "date": 1665670403908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,14 @@\n-import { DragLine } from \"./DragLine\"\n-import { HeaderList } from \"./HeaderList\"\n+import { DragLine } from './DragLine'\n+import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-\n     <div className=\"side-bar\">\n-    <header><span>文件</span></header>\n-      <DragLine/>\n-      <HeaderList/>\n+      <header>\n\\ No newline at end of file\n+        <span>文件</span>\n+      </header>\n+      <DragLine />\n+      <HeaderList />\n     </div>\n   )\n- }\n+}\n"
+                },
+                {
+                    "date": 1665670422075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,16 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <div className=\"side-bar\">\n-      <header>\n-        <span>文件</span>\n-      </header>\n+    <>\n       <DragLine />\n-      <HeaderList />\n-    </div>\n+      <div className=\"side-bar\">\n\\ No newline at end of file\n+        <header>\n+          <span>文件</span>\n+        </header>\n+\n+        <HeaderList />\n+      </div>\n+    </>\n   )\n-}\n+}\n"
+                },
+                {
+                    "date": 1665670493257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,13 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   return (\n-    <>\n+    <div className=\"side-bar\">\n+      <header>\n+        <span>文件</span>\n+      </header>\n       <DragLine />\n-      <div className=\"side-bar\">\n-        <header>\n-          <span>文件</span>\n-        </header>\n-\n-        <HeaderList />\n\\ No newline at end of file\n-      </div>\n-    </>\n+      <HeaderList />\n+    </div>\n   )\n-}\n+}\n"
+                },
+                {
+                    "date": 1665723507453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,21 @@\n+import { LegacyRef, useEffect, useRef } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n+  const sideBarRef = useRef<HTMLDivElement>()\n+  useEffect(() => {\n+    const hanldeHideBar = (e: KeyboardEvent) => {\n+      if (e.metaKey && e.code === 'KeyB') {\n+        sideBarRef.current?.classList.toggle('side-bar-close')\n+      }\n+    }\n+    document.addEventListener('keydown', hanldeHideBar)\n+    return () => document.removeEventListener('keydown', hanldeHideBar)\n+  })\n   return (\n-    <div className=\"side-bar\">\n+    <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n       </header>\n       <DragLine />\n"
+                },
+                {
+                    "date": 1665727040279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,17 @@\n-import { LegacyRef, useEffect, useRef } from 'react'\n+import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n+  const [update, setUpdate] = useState(false)\n+\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         sideBarRef.current?.classList.toggle('side-bar-close')\n+        setUpdate(!update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n@@ -18,8 +21,8 @@\n       <header>\n         <span>文件</span>\n       </header>\n       <DragLine />\n-      <HeaderList />\n+      <HeaderList shouldUpdate={update} />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665728911232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  })\n+  },[])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n"
+                },
+                {
+                    "date": 1665728932209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n+        console.log('commend + b')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665728943494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n-        console.log('commend + b')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665729513633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n       }\n     }\n"
+                },
+                {
+                    "date": 1665735184808,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(!update)\n+        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735284746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,17 +2,17 @@\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n-  const [update, setUpdate] = useState(false)\n+  const [update, setUpdate] = useState(0)\n \n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n-        setUpdate(!update)\n+        setUpdate(Math.random())\n         console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735328109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         sideBarRef.current?.classList.toggle('side-bar-close')\n         setUpdate(Math.random())\n-        console.log(update)\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n"
+                },
+                {
+                    "date": 1665735673062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,8 @@\n import { HeaderList } from './HeaderList'\n \n export const SideBar = () => {\n   const [update, setUpdate] = useState(0)\n-\n   const sideBarRef = useRef<HTMLDivElement>()\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n@@ -15,9 +14,14 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  },[])\n+  }, [])\n+  useEffect(() => {\n+    window.api.onUpdateEditor(() => {\n+      setUpdate(Math.random())\n+    })\n+  }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <span>文件</span>\n"
+                },
+                {
+                    "date": 1665735780853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n+      console.log('update')\n       setUpdate(Math.random())\n     })\n   }, [])\n   return (\n"
+                },
+                {
+                    "date": 1665735828705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,12 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      console.log('update')\n-      setUpdate(Math.random())\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      setTimeout(()=>{\n+        setUpdate(Math.random())\n+      })\n     })\n   }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n"
+                },
+                {
+                    "date": 1665735865259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法\n+      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n       setTimeout(()=>{\n         setUpdate(Math.random())\n       })\n     })\n"
+                },
+                {
+                    "date": 1665757502659,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,17 +18,40 @@\n   }, [])\n   useEffect(() => {\n     window.api.onUpdateEditor(() => {\n       // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(()=>{\n+      setTimeout(() => {\n         setUpdate(Math.random())\n       })\n     })\n   }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n+        <svg\n+          xmlns=\"http://www.w3.org/2000/svg\"\n+          width=\"16\"\n+          height=\"16\"\n+          fill=\"currentColor\"\n+          className=\"bi bi-list\"\n+          viewBox=\"0 0 16 16\"\n+        >\n+          <path\n+            fill-rule=\"evenodd\"\n+            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n+          />\n+        </svg>\n         <span>文件</span>\n+        <svg\n+          xmlns=\"http://www.w3.org/2000/svg\"\n+          width=\"16\"\n+          height=\"16\"\n+          fill=\"currentColor\"\n+          className=\"bi bi-search\"\n+          viewBox=\"0 0 16 16\"\n+        >\n+          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n+        </svg>\n       </header>\n       <DragLine />\n       <HeaderList shouldUpdate={update} />\n     </div>\n"
+                },
+                {
+                    "date": 1665760686298,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,16 +15,22 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  useEffect(() => {\n-    window.api.onUpdateEditor(() => {\n-      // 这里使用定时器是因为可能编辑器还没渲染完，后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-      setTimeout(() => {\n-        setUpdate(Math.random())\n-      })\n-    })\n-  }, [])\n+  // useEffect(() => {\n+  //   /* \n+  //   1.打开了文件\n+  //   2.触发了api的事件\n+  //   3.发送请求，获取编辑器实例\n+  //   4.使用异步等待编辑器渲染完毕再获取标题\n+  //   */\n+  //   window.api.onUpdateEditor(() => {\n+  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n+  //     setTimeout(() => {\n+  //       setUpdate(Math.random())\n+  //     })\n+  //   })\n+  // }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <svg\n"
+                },
+                {
+                    "date": 1665760884827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,22 +15,8 @@\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n   }, [])\n-  // useEffect(() => {\n-  //   /* \n-  //   1.打开了文件\n-  //   2.触发了api的事件\n-  //   3.发送请求，获取编辑器实例\n-  //   4.使用异步等待编辑器渲染完毕再获取标题\n-  //   */\n-  //   window.api.onUpdateEditor(() => {\n-  //     // 这里使用定时器是因为可能编辑器还没渲染完，就无法获取标题。后面看看有没有什么办法,这样好像也行，引文编辑器渲染是同步的\n-  //     setTimeout(() => {\n-  //       setUpdate(Math.random())\n-  //     })\n-  //   })\n-  // }, [])\n   return (\n     <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n       <header>\n         <svg\n"
+                },
+                {
+                    "date": 1665761195510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,14 @@\n import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-\n-export const SideBar = () => {\n+interface ISideBar {\n+  ref:LegacyRef<HTMLDivElement> | undefined;\n+}\n+export const SideBar:React.FC<ISideBar> = () => {\n   const [update, setUpdate] = useState(0)\n-  const sideBarRef = useRef<HTMLDivElement>()\n-  useEffect(() => {\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        sideBarRef.current?.classList.toggle('side-bar-close')\n-        setUpdate(Math.random())\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n   return (\n-    <div className=\"side-bar\" ref={sideBarRef as LegacyRef<HTMLDivElement>}>\n+    <div className=\"side-bar\">\n       <header>\n         <svg\n           xmlns=\"http://www.w3.org/2000/svg\"\n           width=\"16\"\n"
+                },
+                {
+                    "date": 1665761576925,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n-import { LegacyRef, useEffect, useRef, useState } from 'react'\n+import {  useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-interface ISideBar {\n-  ref:LegacyRef<HTMLDivElement> | undefined;\n-}\n-export const SideBar:React.FC<ISideBar> = () => {\n+\n+export const SideBar = () => {\n   const [update, setUpdate] = useState(0)\n   return (\n     <div className=\"side-bar\">\n       <header>\n"
+                },
+                {
+                    "date": 1665762113722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n-import {  useState } from 'react'\n+import { LegacyRef, useEffect, useRef, useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n-\n-export const SideBar = () => {\n-  const [update, setUpdate] = useState(0)\n+interface ISideBar {\n+  content:string\n+}\n+export const SideBar:React.FC<ISideBar> = ({content}) => {\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n@@ -32,8 +33,8 @@\n           <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n         </svg>\n       </header>\n       <DragLine />\n-      <HeaderList shouldUpdate={update} />\n+      <HeaderList/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665762263095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { LegacyRef, useEffect, useRef, useState } from 'react'\n+\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n interface ISideBar {\n   content:string\n"
+                },
+                {
+                    "date": 1665762595092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n interface ISideBar {\n   content:string\n }\n export const SideBar:React.FC<ISideBar> = ({content}) => {\n+  console.log(content)\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
+                },
+                {
+                    "date": 1665762661754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n           className=\"bi bi-list\"\n           viewBox=\"0 0 16 16\"\n         >\n           <path\n-            fill-rule=\"evenodd\"\n+            fillRule=\"evenodd\"\n             d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n           />\n         </svg>\n         <span>文件</span>\n"
+                },
+                {
+                    "date": 1665762704778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n interface ISideBar {\n   content:string\n }\n export const SideBar:React.FC<ISideBar> = ({content}) => {\n-  console.log(content)\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
+                },
+                {
+                    "date": 1665763013716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n \n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n interface ISideBar {\n-  content:string\n+\n }\n-export const SideBar:React.FC<ISideBar> = ({content}) => {\n+export const SideBar:React.FC<ISideBar> = () => {\n   return (\n     <div className=\"side-bar\">\n       <header>\n         <svg\n"
+                },
+                {
+                    "date": 1665763644359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,39 +1,15 @@\n \n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n+import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n   return (\n     <div className=\"side-bar\">\n-      <header>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-list\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path\n-            fillRule=\"evenodd\"\n-            d=\"M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z\"\n-          />\n-        </svg>\n-        <span>文件</span>\n-        <svg\n-          xmlns=\"http://www.w3.org/2000/svg\"\n-          width=\"16\"\n-          height=\"16\"\n-          fill=\"currentColor\"\n-          className=\"bi bi-search\"\n-          viewBox=\"0 0 16 16\"\n-        >\n-          <path d=\"M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z\" />\n-        </svg>\n-      </header>\n+      <SideBarHeader/>\n       <DragLine />\n       <HeaderList/>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1665891813750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,19 @@\n \n+import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n interface ISideBar {\n \n }\n export const SideBar:React.FC<ISideBar> = () => {\n+  const [showFileList,setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader/>\n+      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n       <DragLine />\n-      <HeaderList/>\n+      {!showFileList && <FileList/>}\n+      {showFileList && <HeaderList/>}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665898439883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,20 @@\n-\n import { useState } from 'react'\n import { DragLine } from './DragLine'\n import { HeaderList } from './HeaderList'\n import { SideBarHeader } from './SideBarHeader'\n+import { FileList } from './FileList'\n+import { IFileList } from 'src/preload/index.d'\n interface ISideBar {\n-\n+  fileList: IFileList\n }\n-export const SideBar:React.FC<ISideBar> = () => {\n-  const [showFileList,setShowFileList] = useState(false)\n+export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n+  const [showFileList, setShowFileList] = useState(true)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader setShowFileList={setShowFileList} title={'文件'}/>\n+      <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList/>}\n-      {showFileList && <HeaderList/>}\n+      {!showFileList && <FileList fileList={fileList} />}\n+      {showFileList && <HeaderList />}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665901359459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList fileList={fileList} />}\n+      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665901494117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { useState } from 'react'\n-import { DragLine } from './DragLine'\n-import { HeaderList } from './HeaderList'\n-import { SideBarHeader } from './SideBarHeader'\n-import { FileList } from './FileList'\n+import { DragLine } from './components/DragLine'\n+import { HeaderList } from './components/HeaderList'\n+import { SideBarHeader } from './components/SideBarHeader'\n+import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n interface ISideBar {\n   fileList: IFileList\n }\n"
+                },
+                {
+                    "date": 1665901850224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n+import { SideBarBottom } from './components/SideBarBottom'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n@@ -14,7 +15,8 @@\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n       {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n+      <SideBarBottom/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665902014135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,8 @@\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n       {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom/>\n+      <SideBarBottom show={showFileList}/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1665929607419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  const [showFileList, setShowFileList] = useState(true)\n+  const [showFileList, setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067099757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,20 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { DragLine } from './components/DragLine'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n+import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n+  useEffect(()=>{\n+useUpdateHeaders()\n+  },showFileList)\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067105135,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n   useEffect(()=>{\n useUpdateHeaders()\n-  },showFileList)\n+  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n"
+                },
+                {
+                    "date": 1666067147376,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,23 +4,21 @@\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n import { IFileList } from 'src/preload/index.d'\n import { SideBarBottom } from './components/SideBarBottom'\n-import { useUpdateHeaders } from './hooks/useUpdateHeader'\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(false)\n-  useEffect(()=>{\n-useUpdateHeaders()\n-  },[showFileList])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n       <DragLine />\n-      {!showFileList && <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList}/>}\n+      {!showFileList && (\n+        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />\n+      )}\n       {showFileList && <HeaderList />}\n-      <SideBarBottom show={showFileList}/>\n+      <SideBarBottom show={showFileList} />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1666361592458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useEffect, useState } from 'react'\n+import { useState } from 'react'\n import { DragLine } from './components/DragLine'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n import { FileList } from './components/FileList'\n@@ -8,17 +8,16 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  const [showFileList, setShowFileList] = useState(false)\n+  // const [showFileList, setShowFileList] = useState(false)\n   return (\n     <div className=\"side-bar\">\n-      <SideBarHeader setShowFileList={setShowFileList} show={showFileList} title={'文件'} />\n+      <SideBarHeader title={'文件'} />\n       <DragLine />\n-      {!showFileList && (\n-        <FileList fileList={fileList} setShowFileList={setShowFileList} show={showFileList} />\n-      )}\n-      {showFileList && <HeaderList />}\n-      <SideBarBottom show={showFileList} />\n+        <FileList fileList={fileList}/>\n+\n+         <HeaderList />\n+      {/* <SideBarBottom/> */}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1666361843614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,10 @@\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader title={'文件'} />\n       <DragLine />\n-        <FileList fileList={fileList}/>\n-\n-         <HeaderList />\n+      <FileList fileList={fileList} />\n+      <HeaderList />\n       {/* <SideBarBottom/> */}\n     </div>\n   )\n }\n"
+                }
+            ],
+            "date": 1665497140199,
+            "name": "Commit-0",
+            "content": "export const  = () => {\n  return (\n    <div></div>\n  )\n }"
         }
-      ],
-      "date": 1665497140199,
-      "name": "Commit-0",
-      "content": "export const  = () => {\n  return (\n    <div></div>\n  )\n }"
-    }
-  ]
+    ]
 }

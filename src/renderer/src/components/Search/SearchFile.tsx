@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 interface ISearchFile {
-  fileList: IFileList
+  fileList: IFileList,
+  openSearchFile:boolean
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {
+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) => {
   console.log(fileList)
   let active = 0
   const files = fileList.map((file, index) => {
