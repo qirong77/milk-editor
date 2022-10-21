@@ -1,4 +1,9 @@
 @use './normalize.scss';
-.milkdown-menu-wrapper .milkdown-menu {
-  display: none;
+.milkdown-menu-wrapper {
+  position: relative;
+  .milkdown-menu {
+    left: 0;
+    width: 100%;
+    display: none;
+  }
 }

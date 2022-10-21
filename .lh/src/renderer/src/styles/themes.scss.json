@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 51,
+            "activePatchIndex": 61,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -212,6 +212,46 @@
                 {
                     "date": 1666193679696,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,40 @@\n-// $dark-font-color: rgb(208, 211, 218);\n-// $dark-background: rgb(46 52 64);\n-// $dark-header-backgournd: rgb(59, 62, 81);\n-// // 最外层是container\n-// @mixin theme-dark {\n-//   color: $dark-font-color;\n-//   background-color: $dark-background;\n-//   font-weight: 400;\n-//   & > header {\n-//     background-color: $dark-header-backgournd;\n-//   }\n-//   main {\n-//     .side-bar {\n-//       border-right: 1px solid $dark-header-backgournd;\n-//       .drag-line {\n-//         background-color: $dark-header-backgournd;\n-//       }\n-//       a {\n-//         text-decoration-color: $dark-font-color;\n-//         color: $dark-font-color;\n-//       }\n-//     }\n-//     .milkdown {\n-//       background: $dark-background;\n-//       color: $dark-font-color;\n-//       // 反引号，行内的代码\n-//       .editor {\n-//         code.code-inline {\n-//           color: $dark-font-color;\n-//           background-color: inherit;\n-//           font-family: 'Times New Roman', Times, serif;\n-//         }\n-//         // 注释\n-//         .blockquote p{\n-//           color: rgb(96, 110, 135) \n-//         }\n-//       }\n-//     }\n-//   }\n-// }\n+$dark-font-color: rgb(208, 211, 218);\n+$dark-background: rgb(46 52 64);\n+$dark-header-backgournd: rgb(59, 62, 81);\n+// 最外层是container\n+@mixin theme-dark {\n+  color: $dark-font-color;\n+  background-color: $dark-background;\n+  font-weight: 400;\n+  & > header {\n+    background-color: $dark-header-backgournd;\n+  }\n+  main {\n+    .side-bar {\n+      border-right: 1px solid $dark-header-backgournd;\n+      .drag-line {\n+        background-color: $dark-header-backgournd;\n+      }\n+      a {\n+        text-decoration-color: $dark-font-color;\n+        color: $dark-font-color;\n+      }\n+    }\n+    .milkdown {\n+      background: $dark-background;\n+      color: $dark-font-color;\n+      // 反引号，行内的代码\n+      .editor {\n+        code.code-inline {\n+          color: $dark-font-color;\n+          background-color: inherit;\n+          font-family: 'Times New Roman', Times, serif;\n+        }\n+        // 注释\n+        .blockquote p{\n+          color: rgb(96, 110, 135) \n+        }\n+      }\n+    }\n+  }\n+}\n"
+                },
+                {
+                    "date": 1666332709326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,10 @@\n           font-family: 'Times New Roman', Times, serif;\n         }\n         // 注释\n         .blockquote p{\n+          padding-left: 10px;\n+          border-left: none;\n           color: rgb(96, 110, 135) \n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666333242841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         }\n         // 注释\n         .blockquote p{\n           padding-left: 10px;\n-          border-left: none;\n+          border-left: none !important;\n           color: rgb(96, 110, 135) \n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666333252858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n           background-color: inherit;\n           font-family: 'Times New Roman', Times, serif;\n         }\n         // 注释\n-        .blockquote p{\n+        blockquote p{\n           padding-left: 10px;\n           border-left: none !important;\n           color: rgb(96, 110, 135) \n         }\n"
+                },
+                {
+                    "date": 1666333296047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,12 +30,14 @@\n           background-color: inherit;\n           font-family: 'Times New Roman', Times, serif;\n         }\n         // 注释\n-        blockquote p{\n+        .blockquote {\n           padding-left: 10px;\n-          border-left: none !important;\n-          color: rgb(96, 110, 135) \n+          border-left: none;\n+          p {\n+            color: rgb(96, 110, 135);\n+          }\n         }\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1666333308693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n         .blockquote {\n           padding-left: 10px;\n           border-left: none;\n           p {\n-            color: rgb(96, 110, 135);\n+            color: rgb(106, 122, 150);\n           }\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666333969631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n $dark-font-color: rgb(208, 211, 218);\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n+$dark-sideBar-background:rgb(36,41,51);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n@@ -11,8 +12,9 @@\n   }\n   main {\n     .side-bar {\n       border-right: 1px solid $dark-header-backgournd;\n+      background-color: $dark-sideBar-background;\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n       a {\n@@ -27,9 +29,9 @@\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n           background-color: inherit;\n-          font-family: 'Times New Roman', Times, serif;\n+          font-size: larger;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 10px;\n"
+                },
+                {
+                    "date": 1666335902683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n   font-weight: 400;\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n+  \n   main {\n     .side-bar {\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n@@ -39,8 +40,11 @@\n           p {\n             color: rgb(106, 122, 150);\n           }\n         }\n+        .editor .code-fence pre code {\n+          font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n+        }\n       }\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1666336619283,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n   font-weight: 400;\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n-  \n   main {\n     .side-bar {\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n@@ -46,5 +45,8 @@\n         }\n       }\n     }\n   }\n+  .search-file {\n+    background-color: $dark-sideBar-background;\n+  }\n }\n"
+                },
+                {
+                    "date": 1666339827048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,6 +47,9 @@\n     }\n   }\n   .search-file {\n     background-color: $dark-sideBar-background;\n+    li.active {\n+      background-color: $dark-header-backgournd;\n+    }\n   }\n }\n"
+                },
+                {
+                    "date": 1666340004339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n $dark-font-color: rgb(208, 211, 218);\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n+$active-font-color:rgb(129,161,193);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n@@ -49,7 +50,8 @@\n   .search-file {\n     background-color: $dark-sideBar-background;\n     li.active {\n       background-color: $dark-header-backgournd;\n+      color: $active-font-color;\n     }\n   }\n }\n"
                 }
             ],
             "date": 1666166681790,

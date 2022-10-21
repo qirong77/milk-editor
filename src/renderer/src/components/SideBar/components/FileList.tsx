@@ -1,3 +1,4 @@
+import { useOpenFile } from '@renderer/common/useOpenFile'
 import React from 'react'
 import { IFileList } from 'src/preload/index.d'
 
@@ -7,7 +8,7 @@ export const FileList: React.FC<{
   setShowFileList: (show: boolean) => void
 }> = ({ fileList, setShowFileList, show }) => {
   const openFile = (filePath) => {
-    window.api.clickFileList(filePath)
+    useOpenFile(filePath)
     setShowFileList(!show)
   }
   return (

@@ -1,5 +1,5 @@
 import { Editor } from '@milkdown/core'
-import { nord } from '@milkdown/theme-nord'
+import { nordDark } from '@milkdown/theme-nord'
 import { listener } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
 import { menu } from '@milkdown/plugin-menu'
@@ -23,7 +23,7 @@ const gitHubCommonMark = gfm
     languageList: ['scss', 'javascript', 'css', 'html', 'typescript']
   })
 export const usePlugins = (Editor: Editor) => {
-  Editor.use(nord)
+  Editor.use(nordDark)
     .use(history)
     .use(listener)
     .use(prism)

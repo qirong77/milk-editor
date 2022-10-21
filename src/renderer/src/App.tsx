@@ -6,12 +6,14 @@ import { Header } from './components/Header'
 import { SearchFile } from './components/Search/SearchFile'
 import { SearchWord } from './components/Search/SearchWord'
 import { SideBar } from './components/SideBar'
+import { useUpdateHeaders } from './components/SideBar/hooks/useUpdateHeader'
 
 export const App = () => {
   const [content, setContent] = useState('')
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
-  useKeyBoard()
+  const [openSearchFile, setOpenSearchFile] = useState(false)
+  const [openSearchWords,setOpenSearchWords] = useState(false)
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
     window.api.onOpenFile((e, { filePath, fileContent }) => {
@@ -29,6 +31,26 @@ export const App = () => {
     }
     useDefaulteDir()
   }, [])
+  useEffect(() => {
+    const SideBar = document.querySelector('.side-bar') as HTMLElement
+    const SearchWord = document.querySelector('.search-word')
+    const hanldeHideBar = (e: KeyboardEvent) => {
+      if (e.metaKey && e.code === 'KeyB') {
+        console.log('command + B')
+        useUpdateHeaders()
+        SideBar?.classList.toggle('side-bar-close')
+      }
+      if (e.code === 'KeyP' && e.metaKey) {
+        console.log('commend + P')
+        setOpenSearchFile(!openSearchFile)
+      }
+      if (e.metaKey && e.code === 'KeyF') {
+        SearchWord?.classList.toggle('search-word-close')
+      }
+    }
+    document.addEventListener('keydown', hanldeHideBar)
+    return () => document.removeEventListener('keydown', hanldeHideBar)
+  }, [openSearchFile,openSearchWords])
   return (
     <div className="container">
       <Header opendFilePath={filePath} />
@@ -36,8 +58,8 @@ export const App = () => {
         <SideBar fileList={fileList} />
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
-      <SearchWord />
-      <SearchFile fileList={fileList} />
+      {openSearchWords && <SearchWord />}
+      {openSearchFile && <SearchFile fileList={fileList} />}
     </div>
   )
 }

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1666163303847,
@@ -28,6 +28,22 @@
                 {
                     "date": 1666164189734,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n         console.log('command + B')\n         useUpdateHeaders()\n         SideBar?.classList.toggle('side-bar-close')\n       }\n-      if (e.code === 'ArrowUp' && SideBar.style.display !=='none') \n-      { console.log('up')\n+      if (e.code === 'ArrowUp' && SideBar.style.display !== 'none') {\n+        console.log('up')\n       }\n       if (e.code === 'ArrowDown') {\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n"
+                },
+                {
+                    "date": 1666337465469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n     const SideBar = document.querySelector('.side-bar') as HTMLElement\n     const SearchFile = document.querySelector('.search-file')\n     const SearchWord = document.querySelector('.search-word')\n     const hanldeHideBar = (e: KeyboardEvent) => {\n+      console.log(e)\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n         SideBar?.classList.toggle('side-bar-close')\n"
+                },
+                {
+                    "date": 1666337484725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n       if (e.code === 'ArrowUp' && SideBar.style.display !== 'none') {\n         console.log('up')\n       }\n       if (e.code === 'ArrowDown') {\n+        console.log('down')\n       }\n       if (e.code === 'KeyP' && e.metaKey) {\n         console.log('commend + P')\n         console.log(SearchFile)\n"
+                },
+                {
+                    "date": 1666339304405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,20 +6,14 @@\n     const SideBar = document.querySelector('.side-bar') as HTMLElement\n     const SearchFile = document.querySelector('.search-file')\n     const SearchWord = document.querySelector('.search-word')\n     const hanldeHideBar = (e: KeyboardEvent) => {\n-      console.log(e)\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n         SideBar?.classList.toggle('side-bar-close')\n       }\n-      if (e.code === 'ArrowUp' && SideBar.style.display !== 'none') {\n-        console.log('up')\n-      }\n-      if (e.code === 'ArrowDown') {\n-        console.log('down')\n-      }\n+\n       if (e.code === 'KeyP' && e.metaKey) {\n         console.log('commend + P')\n         console.log(SearchFile)\n         SearchFile?.classList.toggle('search-file-close')\n"
+                },
+                {
+                    "date": 1666343330380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,6 @@\n import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'\n import { useEffect } from 'react'\n \n export const useKeyBoard = () => {\n-  useEffect(() => {\n-    const SideBar = document.querySelector('.side-bar') as HTMLElement\n-    const SearchFile = document.querySelector('.search-file')\n-    const SearchWord = document.querySelector('.search-word')\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        useUpdateHeaders()\n-        SideBar?.classList.toggle('side-bar-close')\n-      }\n \n-      if (e.code === 'KeyP' && e.metaKey) {\n-        console.log('commend + P')\n-        console.log(SearchFile)\n-        SearchFile?.classList.toggle('search-file-close')\n-      }\n-      if (e.metaKey && e.code === 'KeyF') {\n-        SearchWord?.classList.toggle('search-word-close')\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n }\n"
                 }
             ],
             "date": 1666163303847,

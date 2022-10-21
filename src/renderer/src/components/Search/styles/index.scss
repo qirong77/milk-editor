@@ -26,11 +26,21 @@
 
 
 .search-file {
-  top: 10px;
+  top: 30px;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-}
-.search-file-close {
-  display: none;
+  font-size: 12px;
+  border-radius: 4px;
+  div {
+    display: flex;
+    justify-content: center;
+  }
+  li {
+    display: flex;
+    margin: 5px 0;
+    span {
+      margin-left: 20px;
+    } 
+  }
 }

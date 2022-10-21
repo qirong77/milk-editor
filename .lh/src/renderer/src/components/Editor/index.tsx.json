@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 242,
+            "activePatchIndex": 246,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -976,6 +976,22 @@
                 {
                     "date": 1666193639612,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,14 @@\n   useEffect(() => {\n     const instance = getInstance()\n     instance?.action((ctx) => {\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n+        console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n     })\n     instance!.action((ctx) => {\n-      // ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666332753484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n     })\n-    instance!.action((ctx) => {\n+    instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666332814722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,10 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n-    })\n-    instance?.action((ctx) => {\n       ctx.get(themeManagerCtx).switch(ctx, nordDark)\n+\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666333174574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n-      ctx.get(themeManagerCtx).switch(ctx, nordDark)\n \n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n"
+                },
+                {
+                    "date": 1666333196339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n import { Editor } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n-import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n-import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n@@ -46,9 +44,8 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n-\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
                 }
             ],
             "date": 1665496693570,

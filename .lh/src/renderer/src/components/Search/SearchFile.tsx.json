@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 43,
             "patches": [
                 {
                     "date": 1666160968450,
@@ -60,6 +60,126 @@
                 {
                     "date": 1666190589786,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,19 @@\n-\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n   const files = fileList.map((file) => {\n-    return <li key={file.filePath}><span>{file.fileName}</span></li>\n+    return (\n+      <li key={file.filePath}>\n+        <span>{file.fileName}</span>\n+      </li>\n+    )\n   })\n   return (\n-    <div className=\"search-file\">\n+    <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n"
+                },
+                {
+                    "date": 1666338772361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n@@ -10,8 +11,18 @@\n         <span>{file.fileName}</span>\n       </li>\n     )\n   })\n+  const hanleSelect = (e:KeyboardEvent) =>{\n+    const files = document.querySelector('.search-file ul li')\n+    console.log(files)\n+\n+  }\n+  useEffect(()=>{\n+\n+    document.addEventListener('keydown',hanleSelect)\n+    return () => document.removeEventListener('keydown',hanleSelect)\n+  },[])\n   return (\n     <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666338794431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { useEffect, useState } from 'react'\n+import { useEffect} from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n"
+                },
+                {
+                    "date": 1666338814477,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,13 @@\n     const files = document.querySelector('.search-file ul li')\n     console.log(files)\n \n   }\n-  useEffect(()=>{\n+  // useEffect(()=>{\n \n-    document.addEventListener('keydown',hanleSelect)\n-    return () => document.removeEventListener('keydown',hanleSelect)\n-  },[])\n+  //   document.addEventListener('keydown',hanleSelect)\n+  //   return () => document.removeEventListener('keydown',hanleSelect)\n+  // },[])\n   return (\n     <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666338830226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,13 +16,13 @@\n     const files = document.querySelector('.search-file ul li')\n     console.log(files)\n \n   }\n-  // useEffect(()=>{\n+  useEffect(()=>{\n \n-  //   document.addEventListener('keydown',hanleSelect)\n-  //   return () => document.removeEventListener('keydown',hanleSelect)\n-  // },[])\n+    document.addEventListener('keydown',hanleSelect)\n+    return () => document.removeEventListener('keydown',hanleSelect)\n+  },[])\n   return (\n     <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666339302486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,28 +1,38 @@\n-import { useEffect} from 'react'\n+import { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n-  const files = fileList.map((file) => {\n+  const [active, setActiveFile] = useState(0)\n+  const files = fileList.map((file, index) => {\n     return (\n-      <li key={file.filePath}>\n+      <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n         <span>{file.fileName}</span>\n       </li>\n     )\n   })\n-  const hanleSelect = (e:KeyboardEvent) =>{\n-    const files = document.querySelector('.search-file ul li')\n-    console.log(files)\n-\n+  const hanleSelect = (e: KeyboardEvent) => {\n+    const files = document.querySelectorAll<HTMLElement>('.search-file ul li') \n+    if (e.code === 'ArrowUp') {\n+      console.log('up')\n+      files[active]?.classList.toggle('active')\n+      files[active-1]?.classList.toggle('active')\n+      setActiveFile(active-1)\n+    }\n+    if (e.code === 'ArrowDown') {\n+      console.log('down')\n+      files[active]?.classList.toggle('active')\n+      files[active+1]?.classList.toggle('active')\n+      setActiveFile(active+1)\n+    }\n   }\n-  useEffect(()=>{\n-\n-    document.addEventListener('keydown',hanleSelect)\n-    return () => document.removeEventListener('keydown',hanleSelect)\n-  },[])\n+  useEffect(() => {\n+    document.addEventListener('keydown', hanleSelect)\n+    return () => document.removeEventListener('keydown', hanleSelect)\n+  }, [])\n   return (\n     <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666339379978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,16 +16,16 @@\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li') \n     if (e.code === 'ArrowUp') {\n       console.log('up')\n-      files[active]?.classList.toggle('active')\n-      files[active-1]?.classList.toggle('active')\n+      files[active]?.classList.remove('active')\n+      files[active-1]?.classList.add('active')\n       setActiveFile(active-1)\n     }\n     if (e.code === 'ArrowDown') {\n       console.log('down')\n-      files[active]?.classList.toggle('active')\n-      files[active+1]?.classList.toggle('active')\n+      files[active]?.classList.remove('active')\n+      files[active+1]?.classList.add('active')\n       setActiveFile(active+1)\n     }\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666339460387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n       setActiveFile(active-1)\n     }\n     if (e.code === 'ArrowDown') {\n       console.log('down')\n-      files[active]?.classList.remove('active')\n-      files[active+1]?.classList.add('active')\n+      files[active].classList.remove('active')\n+      files[active+1].classList.add('active')\n       setActiveFile(active+1)\n     }\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666339491071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,14 +16,15 @@\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li') \n     if (e.code === 'ArrowUp') {\n       console.log('up')\n-      files[active]?.classList.remove('active')\n-      files[active-1]?.classList.add('active')\n+      files[active].classList.remove('active')\n+      files[active-1].classList.add('active')\n       setActiveFile(active-1)\n     }\n     if (e.code === 'ArrowDown') {\n       console.log('down')\n+      console.log(active)\n       files[active].classList.remove('active')\n       files[active+1].classList.add('active')\n       setActiveFile(active+1)\n     }\n"
+                },
+                {
+                    "date": 1666339560631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n-  const [active, setActiveFile] = useState(0)\n+  let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n         <span>{file.fileName}</span>\n@@ -18,16 +18,16 @@\n     if (e.code === 'ArrowUp') {\n       console.log('up')\n       files[active].classList.remove('active')\n       files[active-1].classList.add('active')\n-      setActiveFile(active-1)\n+      active-=1\n     }\n     if (e.code === 'ArrowDown') {\n       console.log('down')\n       console.log(active)\n       files[active].classList.remove('active')\n       files[active+1].classList.add('active')\n-      setActiveFile(active+1)\n+      active+=1\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666339718260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,21 +13,31 @@\n       </li>\n     )\n   })\n   const hanleSelect = (e: KeyboardEvent) => {\n-    const files = document.querySelectorAll<HTMLElement>('.search-file ul li') \n+    const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n     if (e.code === 'ArrowUp') {\n       console.log('up')\n       files[active].classList.remove('active')\n-      files[active-1].classList.add('active')\n-      active-=1\n+      if (!files[active - 1]) {\n+        active = files.length - 1\n+        files[active].classList.add('active')\n+      } else {\n+        files[active - 1].classList.add('active')\n+        active -= 1\n+      }\n     }\n     if (e.code === 'ArrowDown') {\n       console.log('down')\n       console.log(active)\n       files[active].classList.remove('active')\n-      files[active+1].classList.add('active')\n-      active+=1\n+      if (!files[active + 1]) {\n+        active = 0\n+        files[active].classList.add('active')\n+      } else {\n+        files[active + 1].classList.add('active')\n+        active += 1\n+      }\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666340117257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n       </li>\n     )\n   })\n   const hanleSelect = (e: KeyboardEvent) => {\n+    console.log(e)\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n     if (e.code === 'ArrowUp') {\n       console.log('up')\n       files[active].classList.remove('active')\n"
+                },
+                {
+                    "date": 1666340353750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { useOpenFile } from '@renderer/common/useOpenFile'\n import { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n@@ -38,8 +39,12 @@\n         files[active + 1].classList.add('active')\n         active += 1\n       }\n     }\n+    if(e.code ==='Enter') {\n+      const filePath = fileList[active].filePath\n+      useOpenFile(filePath)\n+    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666340373522,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n         active += 1\n       }\n     }\n     if(e.code ==='Enter') {\n+      console.log('enter')\n       const filePath = fileList[active].filePath\n       useOpenFile(filePath)\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340405783,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,9 @@\n       }\n     }\n     if(e.code ==='Enter') {\n       console.log('enter')\n+      console.log(fileList[active])\n       const filePath = fileList[active].filePath\n       useOpenFile(filePath)\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340445753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n       }\n     }\n     if(e.code ==='Enter') {\n       console.log('enter')\n-      console.log(fileList[active])\n+      console.log(fileList)\n       const filePath = fileList[active].filePath\n       useOpenFile(filePath)\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340578021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,13 +39,13 @@\n         files[active + 1].classList.add('active')\n         active += 1\n       }\n     }\n-    if(e.code ==='Enter') {\n-      console.log('enter')\n-      console.log(fileList)\n+    if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n+      document.querySelector('')\n       useOpenFile(filePath)\n+      document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666340611443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,8 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n-      document.querySelector('')\n       useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340617020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,8 +41,9 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n+      console.log(fileList[active])\n       useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340692418,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n       </li>\n     )\n   })\n   const hanleSelect = (e: KeyboardEvent) => {\n-    console.log(e)\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n     if (e.code === 'ArrowUp') {\n       console.log('up')\n       files[active].classList.remove('active')\n"
+                },
+                {
+                    "date": 1666340729955,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,10 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n-      console.log(fileList[active])\n+      console.log(fileList)\n+      // console.log(fileList[active])\n       useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n"
+                },
+                {
+                    "date": 1666340773993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,11 @@\n         active += 1\n       }\n     }\n     if (e.code === 'Enter') {\n+      console.log(fileList)\n+\n       const filePath = fileList[active].filePath\n-      console.log(fileList)\n       // console.log(fileList[active])\n       useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n"
+                },
+                {
+                    "date": 1666340860232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,11 +41,12 @@\n     }\n     if (e.code === 'Enter') {\n       console.log(fileList)\n \n-      const filePath = fileList[active].filePath\n+      const filePath = files[active].getAttribute('key')\n+      console.log(filePath)\n       // console.log(fileList[active])\n-      useOpenFile(filePath)\n+      // useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1666340916836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       console.log(fileList)\n-\n+console.log(files)\n       const filePath = files[active].getAttribute('key')\n       console.log(filePath)\n       // console.log(fileList[active])\n       // useOpenFile(filePath)\n"
+                },
+                {
+                    "date": 1666342047781,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,14 +40,14 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       console.log(fileList)\n-console.log(files)\n-      const filePath = files[active].getAttribute('key')\n-      console.log(filePath)\n+// console.log(files)\n+      // const filePath = files[active].getAttribute('key')\n+      // console.log(filePath)\n       // console.log(fileList[active])\n       // useOpenFile(filePath)\n-      document.querySelector('.search-file')?.classList.toggle('search-file-close')\n+      // document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666342081125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n+  console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n"
+                },
+                {
+                    "date": 1666342263275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n-  console.log(fileList)\n+  console.log('xxxxxxxxxx')\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n"
+                },
+                {
+                    "date": 1666342325624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n interface ISearchFile {\n   fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n-  console.log('xxxxxxxxxx')\n+  console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n"
+                },
+                {
+                    "date": 1666342816598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n-  }, [])\n+  }, [fileList])\n   return (\n     <div className=\"search-file search-file-close\">\n       <div>\n         <input type=\"text\" />\n"
+                },
+                {
+                    "date": 1666342942750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,15 +40,13 @@\n         active += 1\n       }\n     }\n     if (e.code === 'Enter') {\n-      console.log(fileList)\n-// console.log(files)\n-      // const filePath = files[active].getAttribute('key')\n+      const filePath = fileList[active].filePath\n       // console.log(filePath)\n       // console.log(fileList[active])\n-      // useOpenFile(filePath)\n-      // document.querySelector('.search-file')?.classList.toggle('search-file-close')\n+      useOpenFile(filePath)\n+      document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666343460079,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   return (\n-    <div className=\"search-file search-file-close\">\n+    <div className=\"search-file \">\n       <div>\n         <input type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n"
                 }
             ],
             "date": 1666160968450,

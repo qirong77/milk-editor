@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1665385034338,
@@ -84,6 +84,10 @@
                 {
                     "date": 1666160648714,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,29 +45,36 @@\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n 9. 进程通信\n 10. 文件切换\n 11. 侧边栏显示隐藏切换\n+11. 文件编辑保存\n ### 待完成功能\n+\n 1. slash 斜杠命令\n+2. 关键词搜索（并且定位）\n \n ### 遇到的坑\n+\n 3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n+\n ### 学习笔记\n-1. 导入.d.ts文件的类型时，不能输入.d.ts的后缀\n+\n+1. 导入.d.ts 文件的类型时，不能输入.d.ts 的后缀\n+\n ### 参考学习文档\n \n 1. electron\n-https://www.electronjs.org/zh/docs/latest\n+   https://www.electronjs.org/zh/docs/latest\n 2. milkdown\n-https://milkdown.dev/zh-hans/getting-started\n+   https://milkdown.dev/zh-hans/getting-started\n 3. 别人的项目\n-https://github.com/CatsAndMice/milkdown\n+   https://github.com/CatsAndMice/milkdown\n 4. 官方 example\n-https://github.com/Saul-Mirone/milkdown\n+   https://github.com/Saul-Mirone/milkdown\n 5. blog:electron + vite\n-https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n+   https://dev.to/brojenuel/vite-vue-3-electron-5h4o\n 6. npm:electron-vite\n    官方 quick-start 依赖有点多，安装比较久需要耐心\n    https://cn-evite.netlify.app/\n-7. ant-design react项目组织\n+7. ant-design react 项目组织\n 8. electron life cycle\n-https://vastiny.com/post/tech/electron-lifecycle\n+   https://vastiny.com/post/tech/electron-lifecycle\n"
+                },
+                {
+                    "date": 1666335902686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,18 +45,16 @@\n 8. 原生功能菜单结合（关闭，缩小，全屏）\n 9. 进程通信\n 10. 文件切换\n 11. 侧边栏显示隐藏切换\n-11. 文件编辑保存\n+12. 文件编辑保存\n+\n ### 待完成功能\n \n 1. slash 斜杠命令\n 2. 关键词搜索（并且定位）\n+3. 实时修改加粗样式\n \n-### 遇到的坑\n-\n-3. 何时渲染菜单，无法监听每一次的输入来判断是否渲染菜单，如果输入较快，性能消耗太大\n-\n ### 学习笔记\n \n 1. 导入.d.ts 文件的类型时，不能输入.d.ts 的后缀\n \n"
                 }
             ],
             "date": 1665385034338,

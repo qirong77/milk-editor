@@ -3,9 +3,7 @@ import { Editor } from '@milkdown/core'
 
 import { ReactEditor, useEditor } from '@milkdown/react'
 import { usePlugins } from './hooks/usePlugins'
-import { themeManagerCtx } from '@milkdown/core'
 import { replaceAll } from '@milkdown/utils'
-import { nordDark } from '@milkdown/theme-nord'
 import { useConfig } from './hooks/useConfig'
 import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'
 import { listenerCtx } from '@milkdown/plugin-listener'
@@ -47,9 +45,6 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
         console.log('markdownUpdated')
         setMarkdown(markdown)
       })
-    })
-    instance!.action((ctx) => {
-      ctx.get(themeManagerCtx).switch(ctx, nordDark)
     })
   }, [])
   return <ReactEditor editor={editor} />

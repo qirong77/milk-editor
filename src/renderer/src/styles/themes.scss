@@ -1,6 +1,8 @@
 $dark-font-color: rgb(208, 211, 218);
 $dark-background: rgb(46 52 64);
 $dark-header-backgournd: rgb(59, 62, 81);
+$dark-sideBar-background:rgb(36,41,51);
+$active-font-color:rgb(129,161,193);
 // 最外层是container
 @mixin theme-dark {
   color: $dark-font-color;
@@ -12,6 +14,7 @@ $dark-header-backgournd: rgb(59, 62, 81);
   main {
     .side-bar {
       border-right: 1px solid $dark-header-backgournd;
+      background-color: $dark-sideBar-background;
       .drag-line {
         background-color: $dark-header-backgournd;
       }
@@ -28,13 +31,27 @@ $dark-header-backgournd: rgb(59, 62, 81);
         code.code-inline {
           color: $dark-font-color;
           background-color: inherit;
-          font-family: 'Times New Roman', Times, serif;
+          font-size: larger;
         }
         // 注释
-        .blockquote p{
-          color: rgb(96, 110, 135) 
+        .blockquote {
+          padding-left: 10px;
+          border-left: none;
+          p {
+            color: rgb(106, 122, 150);
+          }
+        }
+        .editor .code-fence pre code {
+          font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;
         }
       }
+    }
+  }
+  .search-file {
+    background-color: $dark-sideBar-background;
+    li.active {
+      background-color: $dark-header-backgournd;
+      color: $active-font-color;
     }
   }
 }
