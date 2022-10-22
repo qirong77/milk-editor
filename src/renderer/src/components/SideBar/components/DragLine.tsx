@@ -23,7 +23,6 @@ export const DragLine = () => {
         const sideBar = document.querySelector('.side-bar') as HTMLElement
         sideBar.style.width = newPosition + 'px'
       }
-
       document.onmousemove = null
       document.onmouseup = null
       return false

@@ -11,6 +11,7 @@ export const App = () => {
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
   const [openSearchWords,setOpenSearchWords] = useState(false)
+  console.log('render-app')
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
     window.api.onOpenFile((e, { filePath, fileContent }) => {
@@ -20,14 +21,14 @@ export const App = () => {
     })
   }, [])
 
-  // 打开默认文件夹
+  // 打开默认文件夹,
   useEffect(() => {
     const useDefaulteDir = async () => {
       const fileList = await window.api.openDefaultDir()
       setFileList(fileList)
     }
     useDefaulteDir()
-  }, [fileList])
+  }, [])
   useEffect(() => {
     const SideBar = document.querySelector('.side-bar') as HTMLElement
     const SearchWord = document.querySelector('.search-word')
@@ -43,7 +44,7 @@ export const App = () => {
     }
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
-  }, [openSearchWords])
+  }, [])
   return (
     <div className="container">
       <Header opendFilePath={filePath} />

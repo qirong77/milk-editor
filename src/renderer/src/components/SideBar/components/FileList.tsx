@@ -6,6 +6,7 @@ export const FileList: React.FC<{
   fileList: IFileList
   openFile: (filePath: string) => void
 }> = ({ fileList, openFile }) => {
+  console.log('file-list-render')
   const [showNewFile, setShowNewFile] = useState(false)
   const iptRef = useRef<HTMLInputElement>(null)
   useEffect(() => {

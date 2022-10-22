@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 65,
+            "activePatchIndex": 72,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -268,6 +268,34 @@
                 {
                     "date": 1666409194639,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,10 @@\n       </header>\n       <DragLine />\n       {showFileList && <FileList fileList={fileList} openFile={openFile} />}\n       {!showFileList && <ul className=\"header-list\" />}\n-      {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} />}\n+      {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{\n+        setOpenSearchFile(false)\n+      }}/>}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1666425755772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n+  console.log('re')\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
+                },
+                {
+                    "date": 1666425765446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n-  console.log('re')\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n"
+                },
+                {
+                    "date": 1666425784985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       }\n     }\n     document.addEventListener('keydown', hanldeHideBar)\n     return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [openSearchFile])\n+  }, [])\n   const openFile = (filePath: string) => {\n     window.api.clickFileList(filePath)\n     setShowFileList(false)\n   }\n"
+                },
+                {
+                    "date": 1666425878843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n+  \n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n"
+                },
+                {
+                    "date": 1666425894004,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  \n+  console.log('side-bar')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n"
+                },
+                {
+                    "date": 1666425926593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,22 +11,22 @@\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n   console.log('side-bar')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n-  useEffect(() => {\n-    const hanldeHideBar = (e: KeyboardEvent) => {\n-      if (e.metaKey && e.code === 'KeyB') {\n-        console.log('command + B')\n-        useUpdateHeaders()\n-      }\n-      if (e.code === 'KeyP' && e.metaKey) {\n-        console.log('commend + P')\n-        setOpenSearchFile(!openSearchFile)\n-      }\n-    }\n-    document.addEventListener('keydown', hanldeHideBar)\n-    return () => document.removeEventListener('keydown', hanldeHideBar)\n-  }, [])\n+  // useEffect(() => {\n+  //   const hanldeHideBar = (e: KeyboardEvent) => {\n+  //     if (e.metaKey && e.code === 'KeyB') {\n+  //       console.log('command + B')\n+  //       useUpdateHeaders()\n+  //     }\n+  //     if (e.code === 'KeyP' && e.metaKey) {\n+  //       console.log('commend + P')\n+  //       setOpenSearchFile(!openSearchFile)\n+  //     }\n+  //   }\n+  //   document.addEventListener('keydown', hanldeHideBar)\n+  //   return () => document.removeEventListener('keydown', hanldeHideBar)\n+  // }, [])\n   const openFile = (filePath: string) => {\n     window.api.clickFileList(filePath)\n     setShowFileList(false)\n   }\n"
+                },
+                {
+                    "date": 1666425941708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,25 +8,25 @@\n interface ISideBar {\n   fileList: IFileList\n }\n export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n-  console.log('side-bar')\n+  console.log('side')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n-  // useEffect(() => {\n-  //   const hanldeHideBar = (e: KeyboardEvent) => {\n-  //     if (e.metaKey && e.code === 'KeyB') {\n-  //       console.log('command + B')\n-  //       useUpdateHeaders()\n-  //     }\n-  //     if (e.code === 'KeyP' && e.metaKey) {\n-  //       console.log('commend + P')\n-  //       setOpenSearchFile(!openSearchFile)\n-  //     }\n-  //   }\n-  //   document.addEventListener('keydown', hanldeHideBar)\n-  //   return () => document.removeEventListener('keydown', hanldeHideBar)\n-  // }, [])\n+  useEffect(() => {\n+    const hanldeHideBar = (e: KeyboardEvent) => {\n+      if (e.metaKey && e.code === 'KeyB') {\n+        console.log('command + B')\n+        useUpdateHeaders()\n+      }\n+      if (e.code === 'KeyP' && e.metaKey) {\n+        console.log('commend + P')\n+        setOpenSearchFile(!openSearchFile)\n+      }\n+    }\n+    document.addEventListener('keydown', hanldeHideBar)\n+    return () => document.removeEventListener('keydown', hanldeHideBar)\n+  }, [])\n   const openFile = (filePath: string) => {\n     window.api.clickFileList(filePath)\n     setShowFileList(false)\n   }\n"
                 }
             ],
             "date": 1665497140199,

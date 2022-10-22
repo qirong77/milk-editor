@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -88,6 +88,14 @@
                 {
                     "date": 1666423683889,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n+        window.api.openDefaultDir()\n       }\n     }\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n"
+                },
+                {
+                    "date": 1666449632806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const FileList: React.FC<{\n   fileList: IFileList\n   openFile: (filePath: string) => void\n }> = ({ fileList, openFile }) => {\n+  console.log('fie')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n"
+                },
+                {
+                    "date": 1666449786434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const FileList: React.FC<{\n   fileList: IFileList\n   openFile: (filePath: string) => void\n }> = ({ fileList, openFile }) => {\n-  console.log('fie')\n+  console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n"
                 }
             ],
             "date": 1666066869538,
