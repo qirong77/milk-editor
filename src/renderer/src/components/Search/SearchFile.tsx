@@ -1,14 +1,15 @@
-import { useOpenFile } from '@renderer/common/useOpenFile'
-import { useEffect, useState } from 'react'
+
+import { useEffect, useRef } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 interface ISearchFile {
-  fileList: IFileList,
-  openSearchFile:boolean
+  fileList: IFileList
+  openFile:(filePath:string) => void
+  closeSearchFile:()=>void
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) => {
-  console.log(fileList)
+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSearchFile}) => {
   let active = 0
+  const iptRef = useRef<HTMLInputElement>(null)
   const files = fileList.map((file, index) => {
     return (
       <li key={file.filePath} className={index === 0 ? 'active' : ''}>
@@ -43,20 +44,19 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) =
     }
     if (e.code === 'Enter') {
       const filePath = fileList[active].filePath
-      // console.log(filePath)
-      // console.log(fileList[active])
-      useOpenFile(filePath)
-      document.querySelector('.search-file')?.classList.toggle('search-file-close')
+      openFile(filePath)
+      closeSearchFile()
     }
   }
   useEffect(() => {
+    iptRef.current?.focus()
     document.addEventListener('keydown', hanleSelect)
     return () => document.removeEventListener('keydown', hanleSelect)
   }, [fileList])
   return (
     <div className="search-file ">
       <div>
-        <input type="text" />
+        <input placeholder='xx' ref={iptRef} type="text" />
       </div>
       <ul>{files}</ul>
     </div>

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
-import { useKeyBoard } from './common/useKeyBoard'
-import { useToggleSideBar } from './common/useToggleSideBar'
 import { MilkdownEditor } from './components/Editor'
 import { Header } from './components/Header'
-import { SearchFile } from './components/Search/SearchFile'
 import { SearchWord } from './components/Search/SearchWord'
 import { SideBar } from './components/SideBar'
 import { useUpdateHeaders } from './components/SideBar/hooks/useUpdateHeader'
@@ -13,7 +10,6 @@ export const App = () => {
   const [content, setContent] = useState('')
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
-  const [openSearchFile, setOpenSearchFile] = useState(false)
   const [openSearchWords,setOpenSearchWords] = useState(false)
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
@@ -41,18 +37,13 @@ export const App = () => {
         useUpdateHeaders()
         SideBar?.classList.toggle('side-bar-close')
       }
-      if (e.code === 'KeyP' && e.metaKey) {
-        console.log('commend + P')
-        setOpenSearchFile(!openSearchFile)
-        useToggleSideBar()
-      }
       if (e.metaKey && e.code === 'KeyF') {
         SearchWord?.classList.toggle('search-word-close')
       }
     }
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
-  }, [openSearchFile,openSearchWords])
+  }, [openSearchWords])
   return (
     <div className="container">
       <Header opendFilePath={filePath} />
@@ -61,7 +52,6 @@ export const App = () => {
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
       {openSearchWords && <SearchWord />}
-      {openSearchFile && <SearchFile openSearchFile={openSearchFile} fileList={fileList} />}
     </div>
   )
 }

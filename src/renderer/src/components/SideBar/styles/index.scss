@@ -81,13 +81,9 @@ $title-height: 30px;
       }
     }
   }
-  .header-list-close {
-    display: none;
-  }
   .file-list {
     overflow: scroll;
     max-height: calc(100vh - 100px);
-    display: none;
     li {
       display: flex;
       padding-left: 20px;
@@ -100,9 +96,6 @@ $title-height: 30px;
         background-color: rgb(56, 62, 77);
       }
     }
-  }
-  .file-list-close {
-    display: block;
   }
   .drag-line {
     width: 3px;

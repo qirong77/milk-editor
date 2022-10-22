@@ -1,86 +1,90 @@
 {
-  "sourceFile": "src/main/electron/events/onRender.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 17,
-      "patches": [
+    "sourceFile": "src/main/electron/events/onRender.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1665989999429,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1665991018672,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,17 +12,8 @@\n import { clickOpenFile } from './useMenu'\n import { openNewFile } from './fileHelper'\n \n export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(MIN_SCREEN, () => window.minimize())\n-    ipcMain.on(MAX_SCREEN, () => {\n-      if (window.isMaximized()) {\n-        window.unmaximize()\n-      } else {\n-        window.maximize()\n-      }\n-    })\n-    ipcMain.on(CLOSE_SCREEN, () => window.close())\n     ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n         // clickOpenFile(window,filePath)\n         // openNewFile(filePath, window)\n       })\n"
-        },
-        {
-          "date": 1665991113693,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,32 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { writeFileSync } from 'fs'\n import {\n   CLOSE_SCREEN,\n-  OPEN_DEFAULT_DIR,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n // import { getDefaultDirContents } from '../node/getDir'\n-import { clickOpenFile } from './useMenu'\n-import { openNewFile } from './fileHelper'\n \n-export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n-        // clickOpenFile(window,filePath)\n-        // openNewFile(filePath, window)\n-      })\n-      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n-        console.log('update file')\n-        writeFileSync(filePath,newContent)\n-      })\n+\n+export const onRender = (window: BrowserWindow) => {\n+  ipcMain.on(MIN_SCREEN, () => window.minimize())\n+  ipcMain.on(MAX_SCREEN, () => {\n+    if (window.isMaximized()) {\n+      window.unmaximize()\n+    } else {\n+      window.maximize()\n+    }\n+  })\n+  ipcMain.on(CLOSE_SCREEN, () => window.close())\n+  ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n+    // clickOpenFile(window,filePath)\n+    // openNewFile(filePath, window)\n+  })\n+  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n+    console.log('update file')\n+    writeFileSync(filePath, newContent)\n+  })\n }\n-// export const onIpcMainEvents = (window: BrowserWindow) => {\n \n-//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n-\n-// }\n"
-        },
-        {
-          "date": 1665993081961,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n-// import { getDefaultDirContents } from '../node/getDir'\n+import { openNewFile } from './onSendToRender'\n \n \n+\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -20,10 +21,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n-    // clickOpenFile(window,filePath)\n-    // openNewFile(filePath, window)\n+    openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n     writeFileSync(filePath, newContent)\n"
-        },
-        {
-          "date": 1666012735547,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { writeFileSync } from 'fs'\n-import {\n-  CLOSE_SCREEN,\n-  MAX_SCREEN,\n-  MIN_SCREEN,\n-  CLICK_FILE_LIST,\n-  UPDATE_FILE\n-} from './constant'\n+import { existsSync, writeFileSync } from 'fs'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n \n-\n-\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -25,8 +17,7 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n-    writeFileSync(filePath, newContent)\n+    if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n-\n"
-        },
-        {
-          "date": 1666012976794,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,8 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n+    console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
-        },
-        {
-          "date": 1666013043664,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n-    console.log('update file')\n+    console.log('update file in main')\n     console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
-        },
-        {
-          "date": 1666151207329,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,7 +18,8 @@\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file in main')\n     console.log(filePath)\n-    if(existsSync(filePath)) writeFileSync(filePath, newContent)\n+    console.log(newContent)\n+    // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
-        },
-        {
-          "date": 1666151250091,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,10 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n+  ipcMain.on(UPDATE_FILE, (e, data) => {\n     console.log('update file in main')\n-    console.log(filePath)\n-    console.log(newContent)\n+    console.log(data)\n     // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
-        },
-        {
-          "date": 1666151293906,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,9 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE, (e, data) => {\n+  ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     console.log('update file in main')\n-    console.log(data)\n-    // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n+    if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n   })\n }\n"
-        },
-        {
-          "date": 1666151619969,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,10 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     console.log('update file in main')\n-    if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    const wirte  = () =>{\n+      console.log('write file in ')\n+      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }\n   })\n }\n"
-        },
-        {
-          "date": 1666151695274,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,14 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    console.log('update file in main')\n-    const wirte  = () =>{\n-      console.log('write file in ')\n-      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    let timer\n+    return () =>{\n+      if(timer) clearTimeout(timer)\n+      timer = setTimeout(()=>{\n+        console.log('write file in' + filePath)\n+        if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+      })\n     }\n   })\n }\n"
-        },
-        {
-          "date": 1666151713802,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,6 +24,6 @@\n         console.log('write file in' + filePath)\n         if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n       })\n     }\n-  })\n+  },3000)\n }\n"
-        },
-        {
-          "date": 1666151721885,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,8 @@\n       if(timer) clearTimeout(timer)\n       timer = setTimeout(()=>{\n         console.log('write file in' + filePath)\n         if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      })\n+      },3000)\n     }\n-  },3000)\n+  })\n }\n"
-        },
-        {
-          "date": 1666151839985,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n+let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -16,14 +17,12 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    let timer\n-    return () =>{\n-      if(timer) clearTimeout(timer)\n-      timer = setTimeout(()=>{\n-        console.log('write file in' + filePath)\n-        if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      },3000)\n-    }\n+    if(timer) clearTimeout(timer)\n+    timer = setTimeout(()=>{\n+      console.log('write file in' + filePath)\n+      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    },3000)\n+  \n   })\n }\n"
-        },
-        {
-          "date": 1666151888416,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,11 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    if(timer) clearTimeout(timer)\n-    timer = setTimeout(()=>{\n+    if (timer) clearTimeout(timer)\n+    timer = setTimeout(() => {\n       console.log('write file in' + filePath)\n-      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-    },3000)\n-  \n+      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }, 3000)\n   })\n }\n"
-        },
-        {
-          "date": 1666151954226,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n-let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -17,11 +16,16 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    if (timer) clearTimeout(timer)\n-    timer = setTimeout(() => {\n-      console.log('write file in' + filePath)\n-      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-    }, 3000)\n+    let timer\n+\n+    return () =>{\n+      if (timer) clearTimeout(timer)\n+      timer = setTimeout(() => {\n+        console.log('write file in' + filePath)\n+        if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+      }, 3000)\n+    }\n+\n   })\n }\n"
-        },
-        {
-          "date": 1666151999297,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n+let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -16,16 +17,11 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    let timer\n-\n-    return () =>{\n-      if (timer) clearTimeout(timer)\n-      timer = setTimeout(() => {\n-        console.log('write file in' + filePath)\n-        if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      }, 3000)\n-    }\n-\n+    if (timer) clearTimeout(timer)\n+    timer = setTimeout(() => {\n+      console.log('write file in' + filePath)\n+      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }, 3000)\n   })\n }\n"
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1665989999429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1665991018672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,17 +12,8 @@\n import { clickOpenFile } from './useMenu'\n import { openNewFile } from './fileHelper'\n \n export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(MIN_SCREEN, () => window.minimize())\n-    ipcMain.on(MAX_SCREEN, () => {\n-      if (window.isMaximized()) {\n-        window.unmaximize()\n-      } else {\n-        window.maximize()\n-      }\n-    })\n-    ipcMain.on(CLOSE_SCREEN, () => window.close())\n     ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n         // clickOpenFile(window,filePath)\n         // openNewFile(filePath, window)\n       })\n"
+                },
+                {
+                    "date": 1665991113693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,29 +1,32 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { writeFileSync } from 'fs'\n import {\n   CLOSE_SCREEN,\n-  OPEN_DEFAULT_DIR,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n // import { getDefaultDirContents } from '../node/getDir'\n-import { clickOpenFile } from './useMenu'\n-import { openNewFile } from './fileHelper'\n \n-export const onRender = (window:BrowserWindow) => {\n-    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n-        // clickOpenFile(window,filePath)\n-        // openNewFile(filePath, window)\n-      })\n-      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n-        console.log('update file')\n-        writeFileSync(filePath,newContent)\n-      })\n+\n+export const onRender = (window: BrowserWindow) => {\n+  ipcMain.on(MIN_SCREEN, () => window.minimize())\n+  ipcMain.on(MAX_SCREEN, () => {\n+    if (window.isMaximized()) {\n+      window.unmaximize()\n+    } else {\n+      window.maximize()\n+    }\n+  })\n+  ipcMain.on(CLOSE_SCREEN, () => window.close())\n+  ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n+    // clickOpenFile(window,filePath)\n+    // openNewFile(filePath, window)\n+  })\n+  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n+    console.log('update file')\n+    writeFileSync(filePath, newContent)\n+  })\n }\n-// export const onIpcMainEvents = (window: BrowserWindow) => {\n \n-//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n-\n-// }\n"
+                },
+                {
+                    "date": 1665993081961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,12 @@\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE\n } from './constant'\n-// import { getDefaultDirContents } from '../node/getDir'\n+import { openNewFile } from './onSendToRender'\n \n \n+\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -20,10 +21,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n-    // clickOpenFile(window,filePath)\n-    // openNewFile(filePath, window)\n+    openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n     writeFileSync(filePath, newContent)\n"
+                },
+                {
+                    "date": 1666012735547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { writeFileSync } from 'fs'\n-import {\n-  CLOSE_SCREEN,\n-  MAX_SCREEN,\n-  MIN_SCREEN,\n-  CLICK_FILE_LIST,\n-  UPDATE_FILE\n-} from './constant'\n+import { existsSync, writeFileSync } from 'fs'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n \n-\n-\n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n     if (window.isMaximized()) {\n@@ -25,8 +17,7 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n-    writeFileSync(filePath, newContent)\n+    if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n-\n"
+                },
+                {
+                    "date": 1666012976794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,8 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file')\n+    console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666013043664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n-    console.log('update file')\n+    console.log('update file in main')\n     console.log(filePath)\n     if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666151207329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,7 +18,8 @@\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n     console.log('update file in main')\n     console.log(filePath)\n-    if(existsSync(filePath)) writeFileSync(filePath, newContent)\n+    console.log(newContent)\n+    // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666151250091,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,10 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE, (e, { filePath, newContent }) => {\n+  ipcMain.on(UPDATE_FILE, (e, data) => {\n     console.log('update file in main')\n-    console.log(filePath)\n-    console.log(newContent)\n+    console.log(data)\n     // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666151293906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,9 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE, (e, data) => {\n+  ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     console.log('update file in main')\n-    console.log(data)\n-    // if(existsSync(filePath)) writeFileSync(filePath, newContent)\n+    if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n   })\n }\n"
+                },
+                {
+                    "date": 1666151619969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,10 @@\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     console.log('update file in main')\n-    if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    const wirte  = () =>{\n+      console.log('write file in ')\n+      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }\n   })\n }\n"
+                },
+                {
+                    "date": 1666151695274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,14 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    console.log('update file in main')\n-    const wirte  = () =>{\n-      console.log('write file in ')\n-      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    let timer\n+    return () =>{\n+      if(timer) clearTimeout(timer)\n+      timer = setTimeout(()=>{\n+        console.log('write file in' + filePath)\n+        if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+      })\n     }\n   })\n }\n"
+                },
+                {
+                    "date": 1666151713802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,6 +24,6 @@\n         console.log('write file in' + filePath)\n         if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n       })\n     }\n-  })\n+  },3000)\n }\n"
+                },
+                {
+                    "date": 1666151721885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,8 @@\n       if(timer) clearTimeout(timer)\n       timer = setTimeout(()=>{\n         console.log('write file in' + filePath)\n         if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      })\n+      },3000)\n     }\n-  },3000)\n+  })\n }\n"
+                },
+                {
+                    "date": 1666151839985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n+let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -16,14 +17,12 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    let timer\n-    return () =>{\n-      if(timer) clearTimeout(timer)\n-      timer = setTimeout(()=>{\n-        console.log('write file in' + filePath)\n-        if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      },3000)\n-    }\n+    if(timer) clearTimeout(timer)\n+    timer = setTimeout(()=>{\n+      console.log('write file in' + filePath)\n+      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    },3000)\n+  \n   })\n }\n"
+                },
+                {
+                    "date": 1666151888416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,11 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    if(timer) clearTimeout(timer)\n-    timer = setTimeout(()=>{\n+    if (timer) clearTimeout(timer)\n+    timer = setTimeout(() => {\n       console.log('write file in' + filePath)\n-      if(existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-    },3000)\n-  \n+      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }, 3000)\n   })\n }\n"
+                },
+                {
+                    "date": 1666151954226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n-let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -17,11 +16,16 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    if (timer) clearTimeout(timer)\n-    timer = setTimeout(() => {\n-      console.log('write file in' + filePath)\n-      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-    }, 3000)\n+    let timer\n+\n+    return () =>{\n+      if (timer) clearTimeout(timer)\n+      timer = setTimeout(() => {\n+        console.log('write file in' + filePath)\n+        if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+      }, 3000)\n+    }\n+\n   })\n }\n"
+                },
+                {
+                    "date": 1666151999297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n+let timer\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -16,16 +17,11 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n-    let timer\n-\n-    return () =>{\n-      if (timer) clearTimeout(timer)\n-      timer = setTimeout(() => {\n-        console.log('write file in' + filePath)\n-        if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n-      }, 3000)\n-    }\n-\n+    if (timer) clearTimeout(timer)\n+    timer = setTimeout(() => {\n+      console.log('write file in' + filePath)\n+      if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n+    }, 3000)\n   })\n }\n"
+                },
+                {
+                    "date": 1666366826887,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE } from './constant'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE, NEW_FILE } from './constant'\n import { openNewFile } from './onSendToRender'\n let timer\n \n export const onRender = (window: BrowserWindow) => {\n@@ -16,8 +16,11 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n+  ipcMain.on(NEW_FILE,(e,filePath)=>{\n+    writeFileSync(filePath,'')\n+  })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('write file in' + filePath)\n"
+                }
+            ],
+            "date": 1665989999429,
+            "name": "Commit-0",
+            "content": "import { BrowserWindow, ipcMain } from 'electron'\nimport { writeFileSync } from 'fs'\nimport {\n  CLOSE_SCREEN,\n  OPEN_DEFAULT_DIR,\n  MAX_SCREEN,\n  MIN_SCREEN,\n  CLICK_FILE_LIST,\n  UPDATE_FILE\n} from './constant'\n// import { getDefaultDirContents } from '../node/getDir'\nimport { clickOpenFile } from './useMenu'\nimport { openNewFile } from './fileHelper'\n\nexport const onRender = (window:BrowserWindow) => {\n    ipcMain.on(MIN_SCREEN, () => window.minimize())\n    ipcMain.on(MAX_SCREEN, () => {\n      if (window.isMaximized()) {\n        window.unmaximize()\n      } else {\n        window.maximize()\n      }\n    })\n    ipcMain.on(CLOSE_SCREEN, () => window.close())\n    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n        // clickOpenFile(window,filePath)\n        // openNewFile(filePath, window)\n      })\n      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n        console.log('update file')\n        writeFileSync(filePath,newContent)\n      })\n}\n// export const onIpcMainEvents = (window: BrowserWindow) => {\n\n//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n\n// }\n"
         }
-      ],
-      "date": 1665989999429,
-      "name": "Commit-0",
-      "content": "import { BrowserWindow, ipcMain } from 'electron'\nimport { writeFileSync } from 'fs'\nimport {\n  CLOSE_SCREEN,\n  OPEN_DEFAULT_DIR,\n  MAX_SCREEN,\n  MIN_SCREEN,\n  CLICK_FILE_LIST,\n  UPDATE_FILE\n} from './constant'\n// import { getDefaultDirContents } from '../node/getDir'\nimport { clickOpenFile } from './useMenu'\nimport { openNewFile } from './fileHelper'\n\nexport const onRender = (window:BrowserWindow) => {\n    ipcMain.on(MIN_SCREEN, () => window.minimize())\n    ipcMain.on(MAX_SCREEN, () => {\n      if (window.isMaximized()) {\n        window.unmaximize()\n      } else {\n        window.maximize()\n      }\n    })\n    ipcMain.on(CLOSE_SCREEN, () => window.close())\n    ipcMain.on(CLICK_FILE_LIST, (e,filePath) => {\n        // clickOpenFile(window,filePath)\n        // openNewFile(filePath, window)\n      })\n      ipcMain.on(UPDATE_FILE,(e,{filePath,newContent})=>{\n        console.log('update file')\n        writeFileSync(filePath,newContent)\n      })\n}\n// export const onIpcMainEvents = (window: BrowserWindow) => {\n\n//   ipcMain.handle(OPEN_DEFAULT_DIR, getDefaultDirContents)\n\n// }\n"
-    }
-  ]
+    ]
 }

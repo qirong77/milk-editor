@@ -6,6 +6,7 @@ import {
   CLOSE_SCREEN,
   MAX_SCREEN,
   MIN_SCREEN,
+  NEW_FILE,
   OPEN_DEFAULT_DIR,
   OPEN_NEW_FILE,
   UPDATE_FILE
@@ -39,6 +40,9 @@ const api: Api = {
   },
   updateFile: ({ filePath, newFileContent }) => {
     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })
+  },
+  newFile: (filePath) => {
+    ipcRenderer.send(NEW_FILE, filePath)
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

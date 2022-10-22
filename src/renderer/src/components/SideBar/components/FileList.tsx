@@ -1,32 +1,54 @@
-import { useOpenFile } from '@renderer/common/useOpenFile'
-import { useToggleSideBar } from '@renderer/common/useToggleSideBar'
-import React from 'react'
+import { NewFileSvg } from '@renderer/common/svg'
+import React, { useEffect, useRef, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 export const FileList: React.FC<{
   fileList: IFileList
-
-}> = ({ fileList}) => {
-  const openFile = (filePath) => {
-    useOpenFile(filePath)
-    useToggleSideBar()
-  }
+  openFile:(filePath:string) => void
+}> = ({ fileList,openFile }) => {
+  const [showNewFile, setShowNewFile] = useState(false)
+  const iptRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    iptRef.current?.focus()
+    const handeReturn = (e: KeyboardEvent) => {
+      if (e.code === 'Enter') {
+        setShowNewFile(false)
+      }
+    }
+  }, [])
   return (
-    <ul className="file-list">
-      {fileList.map(({ fileName, filePath }) => {
-        return (
+    <>
+      <ul className="file-list">
+        {fileList.map(({ fileName, filePath }) => {
+          return (
+            <li
+              key={filePath}
+              onClick={(e) => {
+                e.stopPropagation()
+                openFile(filePath)
+              }}
+            >
+              <div></div>
+              <span>{fileName}</span>
+            </li>
+          )
+        })}
+        {showNewFile && (
           <li
-            key={filePath}
-            onClick={(e) => {
-              e.stopPropagation()
-              openFile(filePath)
+            style={{
+              display: 'flex'
             }}
+            className="new-file"
           >
-            <div></div>
-            <span>{fileName}</span>
+            <input ref={iptRef} style={{}} type="text" />
           </li>
-        )
-      })}
-    </ul>
+        )}
+      </ul>
+      <footer>
+        <NewFileSvg onClick={() => setShowNewFile(true)} />
+        <span>footer</span>
+        <NewFileSvg onClick={() => setShowNewFile(true)} />
+      </footer>
+    </>
   )
 }

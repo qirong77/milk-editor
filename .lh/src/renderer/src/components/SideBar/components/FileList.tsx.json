@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -36,6 +36,26 @@
                 {
                     "date": 1666363092238,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n+import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n@@ -7,8 +8,9 @@\n \n }> = ({ fileList}) => {\n   const openFile = (filePath) => {\n     useOpenFile(filePath)\n+    useToggleSideBar()\n   }\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n"
+                },
+                {
+                    "date": 1666365155878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React from 'react'\n import { IFileList } from 'src/preload/index.d'\n+import { NewFile } from './NewFile'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n \n@@ -26,7 +27,8 @@\n             <span>{fileName}</span>\n           </li>\n         )\n       })}\n+      <NewFile/>\n     </ul>\n   )\n }\n"
+                },
+                {
+                    "date": 1666367735967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,28 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n-import React from 'react'\n+import React, { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n import { NewFile } from './NewFile'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n-\n-}> = ({ fileList}) => {\n+}> = ({ fileList }) => {\n   const openFile = (filePath) => {\n     useOpenFile(filePath)\n     useToggleSideBar()\n   }\n+  const [showNewFile, setShowNewFile] = useState(false)\n+  const iptRef = useRef<HTMLInputElement>(null)\n+  useEffect(() => {\n+    iptRef.current?.focus()\n+    const handeReturn = (e: KeyboardEvent) => {\n+      if (e.code === 'Enter') {\n+        setShowNewFile(false)\n+        \n+      }\n+    }\n+  }, [])\n   return (\n     <ul className=\"file-list\">\n       {fileList.map(({ fileName, filePath }) => {\n         return (\n@@ -27,8 +37,17 @@\n             <span>{fileName}</span>\n           </li>\n         )\n       })}\n-      <NewFile/>\n+      {showNewFile && (\n+        <li\n+          style={{\n+            display: 'flex'\n+          }}\n+          className=\"new-file\"\n+        >\n+          <input ref={iptRef} style={{}} type=\"text\" />\n+        </li>\n+      )}\n     </ul>\n   )\n }\n"
+                },
+                {
+                    "date": 1666404951085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n+import { NewFileSvg } from '@renderer/common/svg'\n import { useOpenFile } from '@renderer/common/useOpenFile'\n import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React, { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n-import { NewFile } from './NewFile'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n }> = ({ fileList }) => {\n@@ -17,37 +17,43 @@\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter') {\n         setShowNewFile(false)\n-        \n       }\n     }\n   }, [])\n   return (\n-    <ul className=\"file-list\">\n-      {fileList.map(({ fileName, filePath }) => {\n-        return (\n+    <>\n+      <ul className=\"file-list\">\n+        {fileList.map(({ fileName, filePath }) => {\n+          return (\n+            <li\n+              key={filePath}\n+              onClick={(e) => {\n+                e.stopPropagation()\n+                openFile(filePath)\n+              }}\n+            >\n+              <div></div>\n+              <span>{fileName}</span>\n+            </li>\n+          )\n+        })}\n+        {showNewFile && (\n           <li\n-            key={filePath}\n-            onClick={(e) => {\n-              e.stopPropagation()\n-              openFile(filePath)\n+            style={{\n+              display: 'flex'\n             }}\n+            className=\"new-file\"\n           >\n-            <div></div>\n-            <span>{fileName}</span>\n+            <input ref={iptRef} style={{}} type=\"text\" />\n           </li>\n-        )\n-      })}\n-      {showNewFile && (\n-        <li\n-          style={{\n-            display: 'flex'\n-          }}\n-          className=\"new-file\"\n-        >\n-          <input ref={iptRef} style={{}} type=\"text\" />\n-        </li>\n-      )}\n-    </ul>\n+        )}\n+      </ul>\n+      <footer>\n+        <NewFileSvg/>\n+        <span>footer</span>\n+        <NewFileSvg/>\n+      </footer>\n+    </>\n   )\n }\n"
+                },
+                {
+                    "date": 1666405770893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,11 +49,11 @@\n           </li>\n         )}\n       </ul>\n       <footer>\n-        <NewFileSvg/>\n+        <NewFileSvg onClick={() => setShowNewFile(true)} />\n         <span>footer</span>\n-        <NewFileSvg/>\n+        <NewFileSvg onClick={() => setShowNewFile(true)} />\n       </footer>\n     </>\n   )\n }\n"
+                },
+                {
+                    "date": 1666408407673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,12 @@\n import { NewFileSvg } from '@renderer/common/svg'\n-import { useOpenFile } from '@renderer/common/useOpenFile'\n-import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React, { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n-}> = ({ fileList }) => {\n-  const openFile = (filePath) => {\n-    useOpenFile(filePath)\n-    useToggleSideBar()\n-  }\n+  openFile:(filePath:string) => void\n+}> = ({ fileList,openFile }) => {\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n"
                 }
             ],
             "date": 1666066869538,

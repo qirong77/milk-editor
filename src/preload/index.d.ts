@@ -22,6 +22,7 @@ export interface Api {
   openDefaultDir: () => Promise<IFileList>
   clickFileList: (filePath: string) => void
   updateFile: (File: { filePath: string; newFileContent: string }) => void
+  newFile:(filePath:string) =>void
 }
 declare global {
   interface Window {

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 44,
+            "activePatchIndex": 50,
             "patches": [
                 {
                     "date": 1666160968450,
@@ -184,6 +184,30 @@
                 {
                     "date": 1666363092244,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,12 @@\n import { useEffect, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n-  fileList: IFileList\n+  fileList: IFileList,\n+  openSearchFile:boolean\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) => {\n   console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n"
+                },
+                {
+                    "date": 1666363345391,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,12 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n-import { useEffect, useState } from 'react'\n+import { useEffect } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList,\n-  openSearchFile:boolean\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList,openSearchFile }) => {\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n   console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n"
+                },
+                {
+                    "date": 1666363375368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,12 +2,11 @@\n import { useEffect } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n-  fileList: IFileList,\n+  fileList: IFileList\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n-  console.log(fileList)\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n"
+                },
+                {
+                    "date": 1666406290681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,8 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n-      // console.log(filePath)\n-      // console.log(fileList[active])\n       useOpenFile(filePath)\n       document.querySelector('.search-file')?.classList.toggle('search-file-close')\n     }\n   }\n"
+                },
+                {
+                    "date": 1666407818347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,11 @@\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n+  openFile:(filePath:string) => void\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList }) => {\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile }) => {\n   let active = 0\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n@@ -40,10 +41,9 @@\n       }\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n-      useOpenFile(filePath)\n-      document.querySelector('.search-file')?.classList.toggle('search-file-close')\n+      openFile(filePath)\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', hanleSelect)\n"
+                },
+                {
+                    "date": 1666409059236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n import { useOpenFile } from '@renderer/common/useOpenFile'\n-import { useEffect } from 'react'\n+import { useEffect, useRef } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n   openFile:(filePath:string) => void\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile }) => {\n   let active = 0\n+  const iptRef = useRef<HTMLInputElement>(null)\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n         <span>{file.fileName}</span>\n@@ -45,15 +46,16 @@\n       openFile(filePath)\n     }\n   }\n   useEffect(() => {\n+    iptRef.current?.focus()\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   return (\n     <div className=\"search-file \">\n       <div>\n-        <input type=\"text\" />\n+        <input placeholder='xx' ref={iptRef} type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1666409194633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,11 @@\n \n interface ISearchFile {\n   fileList: IFileList\n   openFile:(filePath:string) => void\n+  closeSearchFile:()=>void\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile }) => {\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSearchFile}) => {\n   let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const files = fileList.map((file, index) => {\n     return (\n@@ -43,8 +44,9 @@\n     }\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n       openFile(filePath)\n+      closeSearchFile()\n     }\n   }\n   useEffect(() => {\n     iptRef.current?.focus()\n"
                 }
             ],
             "date": 1666160968450,

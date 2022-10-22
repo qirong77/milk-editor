@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 132,
+            "activePatchIndex": 142,
             "patches": [
                 {
                     "date": 1665500010365,
@@ -536,6 +536,46 @@
                 {
                     "date": 1666362277195,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,8 +86,9 @@\n   }\n   .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n+    display: none;\n     li {\n       display: flex;\n       padding-left: 20px;\n       min-height: $title-height;\n"
+                },
+                {
+                    "date": 1666365158547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,8 +127,12 @@\n     svg {\n       cursor: pointer;\n     }\n   }\n+  .new-file {\n+    display: flex;\n+    \n+  }\n }\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n"
+                },
+                {
+                    "date": 1666365272423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -129,9 +129,12 @@\n     }\n   }\n   .new-file {\n     display: flex;\n-    \n+    input {\n+      height: 80%;\n+      border-radius: 4px;\n+    }\n   }\n }\n .side-bar-close {\n   min-width: 0;\n"
+                },
+                {
+                    "date": 1666365278954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -130,9 +130,9 @@\n   }\n   .new-file {\n     display: flex;\n     input {\n-      height: 80%;\n+      height: 100%;\n       border-radius: 4px;\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1666365284529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,9 +131,8 @@\n   .new-file {\n     display: flex;\n     input {\n       height: 100%;\n-      border-radius: 4px;\n     }\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1666365296036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -130,9 +130,9 @@\n   }\n   .new-file {\n     display: flex;\n     input {\n-      height: 100%;\n+      border-radius: 4px;\n     }\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1666365320448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,8 +131,9 @@\n   .new-file {\n     display: flex;\n     input {\n       border-radius: 4px;\n+      outline: blue;\n     }\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1666365374469,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -131,9 +131,9 @@\n   .new-file {\n     display: flex;\n     input {\n       border-radius: 4px;\n-      outline: blue;\n+      // outline: ;\n     }\n   }\n }\n .side-bar-close {\n"
+                },
+                {
+                    "date": 1666367038456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -127,15 +127,8 @@\n     svg {\n       cursor: pointer;\n     }\n   }\n-  .new-file {\n-    display: flex;\n-    input {\n-      border-radius: 4px;\n-      // outline: ;\n-    }\n-  }\n }\n .side-bar-close {\n   min-width: 0;\n   // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n"
+                },
+                {
+                    "date": 1666408383604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,11 +80,8 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-  .header-list-close {\n-    display: none;\n-  }\n   .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n     display: none;\n@@ -100,11 +97,8 @@\n         background-color: rgb(56, 62, 77);\n       }\n     }\n   }\n-  .file-list-close {\n-    display: block;\n-  }\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+                },
+                {
+                    "date": 1666408676084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,8 @@\n   }\n   .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 100px);\n-    display: none;\n     li {\n       display: flex;\n       padding-left: 20px;\n       min-height: $title-height;\n"
                 }
             ],
             "date": 1665500010365,

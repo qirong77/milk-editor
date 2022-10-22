@@ -1,18 +1,22 @@
 {
-  "sourceFile": "src/main/electron/events/constant.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 0,
-      "patches": [
+    "sourceFile": "src/main/electron/events/constant.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1665990638667,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1665990638667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666366826886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,10 @@\n-\n-\n // 渲染进程 -> 主进程\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n export const UPDATE_FILE = 'edite and should file update'\n-\n+export const NEW_FILE = 'add a new file'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+                }
+            ],
+            "date": 1665990638667,
+            "name": "Commit-0",
+            "content": "\n\n// 渲染进程 -> 主进程\nexport const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'\nexport const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\nexport const CLICK_FILE_LIST = 'click file list and open a new file'\nexport const UPDATE_FILE = 'edite and should file update'\n\n// 主进程 -> 渲染进程\nexport const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
         }
-      ],
-      "date": 1665990638667,
-      "name": "Commit-0",
-      "content": "\n\n// 渲染进程 -> 主进程\nexport const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'\nexport const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\nexport const CLICK_FILE_LIST = 'click file list and open a new file'\nexport const UPDATE_FILE = 'edite and should file update'\n\n// 主进程 -> 渲染进程\nexport const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
-    }
-  ]
+    ]
 }

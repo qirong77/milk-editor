@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 63,
+            "activePatchIndex": 65,
             "patches": [
                 {
                     "date": 1665674461277,
@@ -260,6 +260,14 @@
                 {
                     "date": 1666359858825,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,7 +43,4 @@\n       margin-left: 20px;\n     } \n   }\n }\n-.search-file-close {\n-  display: none;\n-}\n"
+                },
+                {
+                    "date": 1666366826947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,8 @@\n     width: 100%;\n     padding-left: 12px;\n     font-size: 16px;\n     border-radius: 6px;\n-    border: none;\n-    outline: none;\n     &:hover {\n       cursor: pointer;\n     }\n   }\n"
+                },
+                {
+                    "date": 1666408849728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n \n .search-file {\n   top: 30px;\n   position: fixed;\n+  z-index: 9999;\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n"
                 }
             ],
             "date": 1665674461277,
