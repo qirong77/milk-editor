@@ -3,9 +3,9 @@ import { existsSync, readdirSync } from 'fs'
 import { resolve } from 'path'
 import { BrowserWindow, ipcMain } from 'electron'
 import { OPEN_DEFAULT_DIR } from './constant'
+const desktopDir = resolve(homedir(), 'Desktop')
+export const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')
 const defultDirContent = () => {
-  const desktopDir = resolve(homedir(), 'Desktop')
-  const defaultDirPath = resolve(desktopDir, 'front-end-book', 'Markdowns')
   if (existsSync(defaultDirPath)) {
     const IS_MARKDOWN = /\.md$/
     const markdownFiles = readdirSync(defaultDirPath).filter((path) => {

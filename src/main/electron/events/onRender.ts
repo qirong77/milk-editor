@@ -1,6 +1,15 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import { existsSync, writeFileSync } from 'fs'
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, CLICK_FILE_LIST, UPDATE_FILE, NEW_FILE } from './constant'
+import { resolve } from 'path'
+import {
+  CLOSE_SCREEN,
+  MAX_SCREEN,
+  MIN_SCREEN,
+  CLICK_FILE_LIST,
+  UPDATE_FILE,
+  NEW_FILE
+} from './constant'
+import { defaultDirPath } from './onInterProcess'
 import { openNewFile } from './onSendToRender'
 let timer
 
@@ -17,8 +26,11 @@ export const onRender = (window: BrowserWindow) => {
   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {
     openNewFile(filePath, window)
   })
-  ipcMain.on(NEW_FILE,(e,filePath)=>{
-    writeFileSync(filePath,'')
+  ipcMain.on(NEW_FILE, (e, fileName) => {
+    const filePath = resolve(defaultDirPath, fileName+'.md')
+    console.log(filePath)
+    writeFileSync(filePath, 'new file')
+    openNewFile(filePath,window)
   })
   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {
     if (timer) clearTimeout(timer)

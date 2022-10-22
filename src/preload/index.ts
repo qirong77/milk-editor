@@ -41,8 +41,8 @@ const api: Api = {
   updateFile: ({ filePath, newFileContent }) => {
     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })
   },
-  newFile: (filePath) => {
-    ipcRenderer.send(NEW_FILE, filePath)
+  newFile: (fileName) => {
+    ipcRenderer.send(NEW_FILE, fileName)
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

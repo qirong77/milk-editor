@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -56,6 +56,38 @@
                 {
                     "date": 1666408407673,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,12 @@\n import { NewFileSvg } from '@renderer/common/svg'\n-import { useOpenFile } from '@renderer/common/useOpenFile'\n-import { useToggleSideBar } from '@renderer/common/useToggleSideBar'\n import React, { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n-}> = ({ fileList }) => {\n-  const openFile = (filePath) => {\n-    useOpenFile(filePath)\n-    useToggleSideBar()\n-  }\n+  openFile:(filePath:string) => void\n+}> = ({ fileList,openFile }) => {\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n"
+                },
+                {
+                    "date": 1666422010388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n     }\n   }, [])\n   return (\n     <>\n-      <ul className=\"file-list\">\n+      <ul className=\"file-list\" style={{\n+                paddingBottom:'50px'\n+      }}>\n         {fileList.map(({ fileName, filePath }) => {\n           return (\n             <li\n               key={filePath}\n@@ -45,9 +47,9 @@\n         )}\n       </ul>\n       <footer>\n         <NewFileSvg onClick={() => setShowNewFile(true)} />\n-        <span>footer</span>\n+        <span>Markdowns</span>\n         <NewFileSvg onClick={() => setShowNewFile(true)} />\n       </footer>\n     </>\n   )\n"
+                },
+                {
+                    "date": 1666422094441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,13 +37,17 @@\n         })}\n         {showNewFile && (\n           <li\n             style={{\n-              display: 'flex'\n+              display: 'flex',\n+              justifyContent:'center',\n+              alignItems:'center',\n             }}\n             className=\"new-file\"\n           >\n-            <input ref={iptRef} style={{}} type=\"text\" />\n+            <input ref={iptRef} style={{\n+              height:'80%'\n+            }} type=\"text\" />\n           </li>\n         )}\n       </ul>\n       <footer>\n"
+                },
+                {
+                    "date": 1666422118503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n           <li\n             style={{\n               display: 'flex',\n               justifyContent:'center',\n-              alignItems:'center',\n+              paddingLeft:'20px'\n             }}\n             className=\"new-file\"\n           >\n             <input ref={iptRef} style={{\n"
+                },
+                {
+                    "date": 1666422143883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n         {showNewFile && (\n           <li\n             style={{\n               display: 'flex',\n-              justifyContent:'center',\n+              alignItems:'center',\n               paddingLeft:'20px'\n             }}\n             className=\"new-file\"\n           >\n"
+                },
+                {
+                    "date": 1666422165305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,10 @@\n             }}\n             className=\"new-file\"\n           >\n             <input ref={iptRef} style={{\n-              height:'80%'\n+              height:'80%',\n+              paddingLeft:'4px'\n             }} type=\"text\" />\n           </li>\n         )}\n       </ul>\n"
+                },
+                {
+                    "date": 1666422789261,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,25 +3,31 @@\n import { IFileList } from 'src/preload/index.d'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n-  openFile:(filePath:string) => void\n-}> = ({ fileList,openFile }) => {\n+  openFile: (filePath: string) => void\n+}> = ({ fileList, openFile }) => {\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n-      if (e.code === 'Enter') {\n+      if (e.code === 'Enter' && showNewFile) {\n         setShowNewFile(false)\n+        window.api.newFile(iptRef.current?.value || 'untitled' + '.md')\n       }\n     }\n-  }, [])\n+    document.addEventListener('keydown', handeReturn)\n+    return () => document.removeEventListener('keydown', handeReturn)\n+  }, [showNewFile])\n   return (\n     <>\n-      <ul className=\"file-list\" style={{\n-                paddingBottom:'50px'\n-      }}>\n+      <ul\n+        className=\"file-list\"\n+        style={{\n+          paddingBottom: '50px'\n+        }}\n+      >\n         {fileList.map(({ fileName, filePath }) => {\n           return (\n             <li\n               key={filePath}\n@@ -38,17 +44,21 @@\n         {showNewFile && (\n           <li\n             style={{\n               display: 'flex',\n-              alignItems:'center',\n-              paddingLeft:'20px'\n+              alignItems: 'center',\n+              paddingLeft: '20px'\n             }}\n             className=\"new-file\"\n           >\n-            <input ref={iptRef} style={{\n-              height:'80%',\n-              paddingLeft:'4px'\n-            }} type=\"text\" />\n+            <input\n+              ref={iptRef}\n+              style={{\n+                height: '80%',\n+                paddingLeft: '4px'\n+              }}\n+              type=\"text\"\n+            />\n           </li>\n         )}\n       </ul>\n       <footer>\n"
+                },
+                {
+                    "date": 1666423430617,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n         setShowNewFile(false)\n-        window.api.newFile(iptRef.current?.value || 'untitled' + '.md')\n+        window.api.newFile(iptRef.current?.value || 'untitled')\n       }\n     }\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n"
+                },
+                {
+                    "date": 1666423683889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n+        window.api.openDefaultDir()\n       }\n     }\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n"
                 }
             ],
             "date": 1666066869538,

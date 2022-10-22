@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 96,
+            "activePatchIndex": 97,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -392,6 +392,10 @@
                 {
                     "date": 1666367142721,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   CLICK_FILE_LIST,\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n+  NEW_FILE,\n   OPEN_DEFAULT_DIR,\n   OPEN_NEW_FILE,\n   UPDATE_FILE\n } from '../main/electron/events/constant'\n@@ -38,8 +39,11 @@\n     return defaultDirContents\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n+  },\n+  newFile: (filePath) => {\n+    ipcRenderer.send(NEW_FILE, filePath)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1666422789257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,10 @@\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   },\n-  newFile: (filePath) => {\n-    ipcRenderer.send(NEW_FILE, filePath)\n+  newFile: (fileName) => {\n+    ipcRenderer.send(NEW_FILE, fileName)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
                 }
             ],
             "date": 1665389904992,

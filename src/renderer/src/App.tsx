@@ -27,7 +27,7 @@ export const App = () => {
       setFileList(fileList)
     }
     useDefaulteDir()
-  }, [])
+  }, [fileList])
   useEffect(() => {
     const SideBar = document.querySelector('.side-bar') as HTMLElement
     const SearchWord = document.querySelector('.search-word')
