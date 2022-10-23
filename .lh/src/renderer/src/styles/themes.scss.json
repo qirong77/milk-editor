@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 62,
+            "activePatchIndex": 69,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -256,6 +256,34 @@
                 {
                     "date": 1666361592461,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n           background-color: inherit;\n-          font-size: larger;\n+          font-size: initial;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 10px;\n"
+                },
+                {
+                    "date": 1666452227507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,13 +2,17 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n $active-font-color:rgb(129,161,193);\n+$dark-input-bgc:rgb(59,62,81);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n   font-weight: 400;\n+  input {\n+    background-color: $dark-input-bgc;\n+  }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n   main {\n"
+                },
+                {
+                    "date": 1666452255183,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n $active-font-color:rgb(129,161,193);\n-$dark-input-bgc:rgb(59,62,81);\n+$dark-input-bgc:rgb(169, 177, 224);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n"
+                },
+                {
+                    "date": 1666452278474,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n $active-font-color:rgb(129,161,193);\n-$dark-input-bgc:rgb(169, 177, 224);\n+$dark-input-bgc:rgb(195, 201, 234);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n"
+                },
+                {
+                    "date": 1666452391431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n   color: $dark-font-color;\n   background-color: $dark-background;\n   font-weight: 400;\n   input {\n-    background-color: $dark-input-bgc;\n+    // background-color: $dark-input-bgc;\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n"
+                },
+                {
+                    "date": 1666452803713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,16 +2,15 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background:rgb(36,41,51);\n $active-font-color:rgb(129,161,193);\n-$dark-input-bgc:rgb(195, 201, 234);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n   font-weight: 400;\n   input {\n-    // background-color: $dark-input-bgc;\n+    background-color: $dark-sideBar-background\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n"
+                },
+                {
+                    "date": 1666452817724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   color: $dark-font-color;\n   background-color: $dark-background;\n   font-weight: 400;\n   input {\n+    color: $dark-font-color;\n     background-color: $dark-sideBar-background\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n"
+                },
+                {
+                    "date": 1666452859498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n   background-color: $dark-background;\n   font-weight: 400;\n   input {\n     color: $dark-font-color;\n-    background-color: $dark-sideBar-background\n+    background-color: $dark-sideBar-background;\n+    border: 1px solid $active-font-color;\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n"
                 }
             ],
             "date": 1666166681790,

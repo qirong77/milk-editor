@@ -8,6 +8,11 @@ $active-font-color:rgb(129,161,193);
   color: $dark-font-color;
   background-color: $dark-background;
   font-weight: 400;
+  input {
+    color: $dark-font-color;
+    background-color: $dark-sideBar-background;
+    border: 1px solid $active-font-color;
+  }
   & > header {
     background-color: $dark-header-backgournd;
   }

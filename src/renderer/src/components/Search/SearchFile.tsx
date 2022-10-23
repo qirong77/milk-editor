@@ -1,13 +1,12 @@
-
 import { useEffect, useRef } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 interface ISearchFile {
   fileList: IFileList
-  openFile:(filePath:string) => void
-  closeSearchFile:()=>void
+  openFile: (filePath: string) => void
+  closeSearchFile: () => void
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSearchFile}) => {
+export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {
   let active = 0
   const iptRef = useRef<HTMLInputElement>(null)
   const files = fileList.map((file, index) => {
@@ -19,8 +18,9 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSear
   })
   const hanleSelect = (e: KeyboardEvent) => {
     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')
-    if (e.code === 'ArrowUp') {
-      console.log('up')
+    const ARROW_DOWN = 'ArrowDown'
+    const ARROW_UP = 'ArrowUp'
+    if (e.code === ARROW_UP) {
       files[active].classList.remove('active')
       if (!files[active - 1]) {
         active = files.length - 1
@@ -30,9 +30,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSear
         active -= 1
       }
     }
-    if (e.code === 'ArrowDown') {
-      console.log('down')
-      console.log(active)
+    if (e.code === ARROW_DOWN) {
       files[active].classList.remove('active')
       if (!files[active + 1]) {
         active = 0
@@ -42,6 +40,19 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSear
         active += 1
       }
     }
+    const Element = files[active]
+    console.log(Element.innerText)
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entrie) => {
+        if (entrie.intersectionRatio < 0.5) {
+          if (e.code === ARROW_DOWN) Element.scrollIntoView(false)
+          else Element.scrollIntoView(true)
+        }
+        // 不论如何都需要移除当前的观察项，保证只有一项
+        io.unobserve(Element)
+      })
+    })
+    io.observe(Element)
     if (e.code === 'Enter') {
       const filePath = fileList[active].filePath
       openFile(filePath)
@@ -56,7 +67,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList,openFile ,closeSear
   return (
     <div className="search-file ">
       <div>
-        <input placeholder='xx' ref={iptRef} type="text" />
+        <input placeholder="xx" ref={iptRef} type="text" />
       </div>
       <ul>{files}</ul>
     </div>

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 65,
+            "activePatchIndex": 77,
             "patches": [
                 {
                     "date": 1665674461277,
@@ -268,6 +268,54 @@
                 {
                     "date": 1666408849728,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n \n .search-file {\n   top: 30px;\n   position: fixed;\n+  z-index: 9999;\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n"
+                },
+                {
+                    "date": 1666453865511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,11 @@\n .search-file {\n   top: 30px;\n   position: fixed;\n   z-index: 9999;\n+  width: 30vw;\n+  height: 30vh;\n+  overflow-y: scroll;\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n"
+                },
+                {
+                    "date": 1666454029415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,12 +36,16 @@\n   border-radius: 4px;\n   div {\n     display: flex;\n     justify-content: center;\n+    input {\n+      width: 80%;\n+    }\n   }\n   li {\n     display: flex;\n     margin: 5px 0;\n+    font-size: 15px;\n     span {\n       margin-left: 20px;\n     } \n   }\n"
+                },
+                {
+                    "date": 1666454038413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n   border-radius: 4px;\n   div {\n     display: flex;\n     justify-content: center;\n+    height: 20px;\n     input {\n       width: 80%;\n     }\n   }\n"
+                },
+                {
+                    "date": 1666454055698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n+  padding-top: 10px;\n   div {\n     display: flex;\n     justify-content: center;\n     height: 20px;\n"
+                },
+                {
+                    "date": 1666454071647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n   top: 30px;\n   position: fixed;\n   z-index: 9999;\n   width: 30vw;\n-  height: 30vh;\n+  height: 50vh;\n   overflow-y: scroll;\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n"
+                },
+                {
+                    "date": 1666498584055,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,10 +27,8 @@\n   top: 30px;\n   position: fixed;\n   z-index: 9999;\n   width: 30vw;\n-  height: 50vh;\n-  overflow-y: scroll;\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n@@ -42,9 +40,14 @@\n     input {\n       width: 80%;\n     }\n   }\n+  ul {\n+    height: 300px;\n+    overflow: scroll;\n+  }\n   li {\n+    height: 30px;\n     display: flex;\n     margin: 5px 0;\n     font-size: 15px;\n     span {\n"
+                },
+                {
+                    "date": 1666498641928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,8 @@\n   }\n   li {\n     height: 30px;\n     display: flex;\n-    margin: 5px 0;\n     font-size: 15px;\n     span {\n       margin-left: 20px;\n     } \n"
+                },
+                {
+                    "date": 1666498687543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,11 @@\n     height: 300px;\n     overflow: scroll;\n   }\n   li {\n-    height: 30px;\n+    height: 25px;\n     display: flex;\n+    align-items: center;\n     font-size: 15px;\n     span {\n       margin-left: 20px;\n     } \n"
+                },
+                {
+                    "date": 1666498720851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,8 @@\n   left: 50%;\n   transform: translateX(-50%);\n   font-size: 12px;\n   border-radius: 4px;\n-  padding-top: 10px;\n   div {\n     display: flex;\n     justify-content: center;\n     height: 20px;\n"
+                },
+                {
+                    "date": 1666498732367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n     display: flex;\n     justify-content: center;\n     height: 20px;\n     input {\n+      height: 80%;\n       width: 80%;\n     }\n   }\n   ul {\n"
+                },
+                {
+                    "date": 1666498737946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,9 @@\n   border-radius: 4px;\n   div {\n     display: flex;\n     justify-content: center;\n+    align-items: center;\n     height: 20px;\n     input {\n       height: 80%;\n       width: 80%;\n"
+                },
+                {
+                    "date": 1666498743226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   div {\n     display: flex;\n     justify-content: center;\n     align-items: center;\n-    height: 20px;\n+    height: 30px;\n     input {\n       height: 80%;\n       width: 80%;\n     }\n"
                 }
             ],
             "date": 1665674461277,

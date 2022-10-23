@@ -45,26 +45,17 @@ export const FileList: React.FC<{
         })}
         {showNewFile && (
           <li
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              paddingLeft: '20px'
-            }}
             className="new-file"
           >
             <input
               ref={iptRef}
-              style={{
-                height: '80%',
-                paddingLeft: '4px'
-              }}
               type="text"
             />
           </li>
         )}
       </ul>
       <footer>
-        <NewFileSvg onClick={() => setShowNewFile(true)} />
+        <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />
         <span>Markdowns</span>
         <NewFileSvg onClick={() => setShowNewFile(true)} />
       </footer>

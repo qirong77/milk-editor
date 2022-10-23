@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 25,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -96,6 +96,18 @@
                 {
                     "date": 1666449786434,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const FileList: React.FC<{\n   fileList: IFileList\n   openFile: (filePath: string) => void\n }> = ({ fileList, openFile }) => {\n-  console.log('fie')\n+  console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n"
+                },
+                {
+                    "date": 1666452648449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,8 @@\n           >\n             <input\n               ref={iptRef}\n               style={{\n-                height: '80%',\n                 paddingLeft: '4px'\n               }}\n               type=\"text\"\n             />\n"
+                },
+                {
+                    "date": 1666452726940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,20 +44,12 @@\n           )\n         })}\n         {showNewFile && (\n           <li\n-            style={{\n-              display: 'flex',\n-              alignItems: 'center',\n-              paddingLeft: '20px'\n-            }}\n             className=\"new-file\"\n           >\n             <input\n               ref={iptRef}\n-              style={{\n-                paddingLeft: '4px'\n-              }}\n               type=\"text\"\n             />\n           </li>\n         )}\n"
+                },
+                {
+                    "date": 1666453120965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n           </li>\n         )}\n       </ul>\n       <footer>\n-        <NewFileSvg onClick={() => setShowNewFile(true)} />\n+        <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />\n         <span>Markdowns</span>\n         <NewFileSvg onClick={() => setShowNewFile(true)} />\n       </footer>\n     </>\n"
                 }
             ],
             "date": 1666066869538,

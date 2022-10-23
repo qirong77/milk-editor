@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1665500583988,
@@ -44,6 +44,10 @@
                 {
                     "date": 1666336469406,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,7 +3,7 @@\n   position: relative;\n   .milkdown-menu {\n     left: 0;\n     width: 100%;\n-    // display: none;\n+    display: none;\n   }\n }\n"
+                },
+                {
+                    "date": 1666450162491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,8 @@\n     left: 0;\n     width: 100%;\n     display: none;\n   }\n+  .milkdown-menu-open {\n+    display: block;\n+  }\n }\n"
                 }
             ],
             "date": 1665500583988,

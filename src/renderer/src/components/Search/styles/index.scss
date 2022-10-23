@@ -27,6 +27,7 @@
   top: 30px;
   position: fixed;
   z-index: 9999;
+  width: 30vw;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
@@ -34,10 +35,22 @@
   div {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 25px;
+    input {
+      height: 80%;
+      width: 80%;
+    }
+  }
+  ul {
+    height: 300px;
+    overflow: scroll;
   }
   li {
+    height: 25px;
     display: flex;
-    margin: 5px 0;
+    align-items: center;
+    font-size: 15px;
     span {
       margin-left: 20px;
     } 

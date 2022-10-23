@@ -9,7 +9,7 @@ interface ISideBar {
   fileList: IFileList
 }
 export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
-  console.log('side')
+  console.log('side-bar')
   const [showFileList, setShowFileList] = useState(true)
   const [openSearchFile, setOpenSearchFile] = useState(false)
   useEffect(() => {
@@ -20,12 +20,13 @@ export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
       }
       if (e.code === 'KeyP' && e.metaKey) {
         console.log('commend + P')
+        console.log(openSearchFile)
         setOpenSearchFile(!openSearchFile)
       }
     }
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
-  }, [])
+  }, [openSearchFile])
   const openFile = (filePath: string) => {
     window.api.clickFileList(filePath)
     setShowFileList(false)

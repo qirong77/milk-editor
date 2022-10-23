@@ -1,0 +1,42 @@
+{
+    "sourceFile": "src/renderer/src/common/interSectionOberver.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1666497200217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666497218038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     </div>\n     <script>\n       const btn = document.querySelector('button')\n       btn.addEventListener('clcik',()=>{\n+        console.log('click')\n         const ul = document.querySelector('ul')\n         const io = new IntersectionObserver(entries =>{\n           entries.forEach(entrie =>{\n             if(entrie.isIntersecting) {\n"
+                },
+                {
+                    "date": 1666497251663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,8 +39,9 @@\n       <ul>ulululu</ul>\n     </div>\n     <script>\n       const btn = document.querySelector('button')\n+      console.log(btn)\n       btn.addEventListener('clcik',()=>{\n         console.log('click')\n         const ul = document.querySelector('ul')\n         const io = new IntersectionObserver(entries =>{\n"
+                },
+                {
+                    "date": 1666497268113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,9 @@\n       <ul>ulululu</ul>\n     </div>\n     <script>\n       const btn = document.querySelector('button')\n-      console.log(btn)\n-      btn.addEventListener('clcik',()=>{\n+      btn.addEventListener('click',()=>{\n         console.log('click')\n         const ul = document.querySelector('ul')\n         const io = new IntersectionObserver(entries =>{\n           entries.forEach(entrie =>{\n"
+                },
+                {
+                    "date": 1666497482858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,9 @@\n             } else console.log('ul out')\n           })\n         })\n         io.observe(ul)\n+        io.unobserve(ul)\n       })\n       // //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建\n       // var io = new IntersectionObserver((entries) => {\n       //   //entries 为 IntersectionObserverEntry对像数组\n"
+                },
+                {
+                    "date": 1666497492063,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n             } else console.log('ul out')\n           })\n         })\n         io.observe(ul)\n-        io.unobserve(ul)\n+        // io.unobserve(ul)\n       })\n       // //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建\n       // var io = new IntersectionObserver((entries) => {\n       //   //entries 为 IntersectionObserverEntry对像数组\n"
+                },
+                {
+                    "date": 1666497497792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n             } else console.log('ul out')\n           })\n         })\n         io.observe(ul)\n-        // io.unobserve(ul)\n+        io.unobserve(ul)\n       })\n       // //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建\n       // var io = new IntersectionObserver((entries) => {\n       //   //entries 为 IntersectionObserverEntry对像数组\n"
+                }
+            ],
+            "date": 1666497200217,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Document</title>\n    <style>\n      * {\n        margin: 0;\n        padding: 0;\n      }\n      .container > div {\n        margin: 5px auto;\n        width: 100px;\n        height: 100px;\n        outline: 1px solid red;\n      }\n    </style>\n  </head>\n  <body>\n    <button>button</button>\n    <div class=\"container\">\n      <div class=\"item\">1</div>\n      <div class=\"item\">2</div>\n      <div class=\"item\">3</div>\n      <div class=\"item\">4</div>\n      <div class=\"item\">5</div>\n      <div class=\"item\">6</div>\n      <div class=\"item\">7</div>\n      <div class=\"item\">8</div>\n      <div class=\"item\">9</div>\n      <div class=\"item\">10</div>\n      <div class=\"item\">11</div>\n      <div class=\"item\">12</div>\n      <div class=\"item\">13</div>\n      <div class=\"item\">14</div>\n      <div class=\"item\">15</div>\n      <ul>ulululu</ul>\n    </div>\n    <script>\n      const btn = document.querySelector('button')\n      btn.addEventListener('clcik',()=>{\n        const ul = document.querySelector('ul')\n        const io = new IntersectionObserver(entries =>{\n          entries.forEach(entrie =>{\n            if(entrie.isIntersecting) {\n              console.log('ul in')\n            } else console.log('ul out')\n          })\n        })\n        io.observe(ul)\n      })\n      // //io 为 IntersectionObserver对象 - 由IntersectionObserver()构造器创建\n      // var io = new IntersectionObserver((entries) => {\n      //   //entries 为 IntersectionObserverEntry对像数组\n      //   entries.forEach((item) => {\n      //     //item 为 IntersectionObserverEntry对像\n      //     // isIntersecting是一个Boolean值，判断目标元素当前是否可见\n      //     if (item.isIntersecting) {\n      //       //div 可见时 进行相关操作\n      //       console.log(item.target.innerText);\n      //       // io.unobserve(item.target); //停止监听该div DOM节点\n      //     } else {\n      //       console.log('cant' + item.target.innerHTML)\n      //     }\n      //   });\n      // }); //不传options参数，默认根元素为浏览器视口\n      // const divArr = [...document.querySelectorAll(\".item\")];\n      // divArr.forEach((div) => io.observe(div)); // 遍历监听所有div DOM节点\n    </script>\n  </body>\n</html>"
+        }
+    ]
+}
