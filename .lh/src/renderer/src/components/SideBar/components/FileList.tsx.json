@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 25,
+            "activePatchIndex": 45,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -108,6 +108,86 @@
                 {
                     "date": 1666453120965,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n           </li>\n         )}\n       </ul>\n       <footer>\n-        <NewFileSvg onClick={() => setShowNewFile(true)} />\n+        <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />\n         <span>Markdowns</span>\n         <NewFileSvg onClick={() => setShowNewFile(true)} />\n       </footer>\n     </>\n"
+                },
+                {
+                    "date": 1666509837802,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,12 @@\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n     }\n+    const contextMenu = (e) =>{\n+      console.log('menu')\n+    }\n+    document.addEventListener('contextmenu',contextMenu)\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n   return (\n"
+                },
+                {
+                    "date": 1666511171480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,11 @@\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n     }\n-    const contextMenu = (e) =>{\n-      console.log('menu')\n+    const contextMenu = (e:MouseEvent) =>{\n+      console.log(e.target)\n+      window.api.popFileListMenu('xxx')\n     }\n     document.addEventListener('contextmenu',contextMenu)\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n"
+                },
+                {
+                    "date": 1666511396796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n }> = ({ fileList, openFile }) => {\n   console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n+  const fileListRef = useRef<HTMLUListElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n@@ -21,15 +22,16 @@\n     const contextMenu = (e:MouseEvent) =>{\n       console.log(e.target)\n       window.api.popFileListMenu('xxx')\n     }\n-    document.addEventListener('contextmenu',contextMenu)\n+    fileListRef.current?.addEventListener('contextmenu',contextMenu)\n     document.addEventListener('keydown', handeReturn)\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n   return (\n     <>\n       <ul\n+      ref={fileListRef}\n         className=\"file-list\"\n         style={{\n           paddingBottom: '50px'\n         }}\n@@ -38,8 +40,10 @@\n           return (\n             <li\n               key={filePath}\n               onClick={(e) => {\n+                console.log(e)\n+                console.log('click')\n                 e.stopPropagation()\n                 openFile(filePath)\n               }}\n             >\n"
+                },
+                {
+                    "date": 1666511403586,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,9 @@\n     const contextMenu = (e:MouseEvent) =>{\n       console.log(e.target)\n       window.api.popFileListMenu('xxx')\n     }\n-    fileListRef.current?.addEventListener('contextmenu',contextMenu)\n-    document.addEventListener('keydown', handeReturn)\n+    // fileListRef.current?.addEventListener('contextmenu',contextMenu)\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n   return (\n     <>\n"
+                },
+                {
+                    "date": 1666511770067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,11 @@\n   console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   const fileListRef = useRef<HTMLUListElement>(null)\n+  const handleContextMenu = (filePath: string) => {\n+    window.api.popFileListMenu(filePath)\n+  }\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n@@ -18,19 +21,16 @@\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n     }\n-    const contextMenu = (e:MouseEvent) =>{\n-      console.log(e.target)\n-      window.api.popFileListMenu('xxx')\n-    }\n+\n     // fileListRef.current?.addEventListener('contextmenu',contextMenu)\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n   return (\n     <>\n       <ul\n-      ref={fileListRef}\n+        ref={fileListRef}\n         className=\"file-list\"\n         style={{\n           paddingBottom: '50px'\n         }}\n@@ -38,11 +38,10 @@\n         {fileList.map(({ fileName, filePath }) => {\n           return (\n             <li\n               key={filePath}\n+              onContextMenu={() => handleContextMenu(filePath)}\n               onClick={(e) => {\n-                console.log(e)\n-                console.log('click')\n                 e.stopPropagation()\n                 openFile(filePath)\n               }}\n             >\n@@ -51,15 +50,10 @@\n             </li>\n           )\n         })}\n         {showNewFile && (\n-          <li\n-            className=\"new-file\"\n-          >\n-            <input\n-              ref={iptRef}\n-              type=\"text\"\n-            />\n+          <li className=\"new-file\">\n+            <input ref={iptRef} type=\"text\" />\n           </li>\n         )}\n       </ul>\n       <footer>\n"
+                },
+                {
+                    "date": 1666511822846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,8 @@\n   console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   const fileListRef = useRef<HTMLUListElement>(null)\n-  const handleContextMenu = (filePath: string) => {\n-    window.api.popFileListMenu(filePath)\n-  }\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n@@ -38,9 +35,9 @@\n         {fileList.map(({ fileName, filePath }) => {\n           return (\n             <li\n               key={filePath}\n-              onContextMenu={() => handleContextMenu(filePath)}\n+              onContextMenu={() => window.api.popFileListMenu(filePath)}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n               }}\n"
+                },
+                {
+                    "date": 1666513321402,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n+        console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n"
+                },
+                {
+                    "date": 1666513331413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n   const fileListRef = useRef<HTMLUListElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n+      console.log('KeyboardEvent')\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n"
+                },
+                {
+                    "date": 1666513458120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,10 +20,8 @@\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n     }\n-\n-    // fileListRef.current?.addEventListener('contextmenu',contextMenu)\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n   return (\n     <>\n@@ -37,9 +35,11 @@\n         {fileList.map(({ fileName, filePath }) => {\n           return (\n             <li\n               key={filePath}\n-              onContextMenu={() => window.api.popFileListMenu(filePath)}\n+              onContextMenu={() => {\n+                window.api.popFileListMenu(filePath)\n+              }}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n               }}\n"
+                },
+                {
+                    "date": 1666513463437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,9 @@\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n+        \n       }\n     }\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n"
+                },
+                {
+                    "date": 1666513471034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n-        \n       }\n     }\n     return () => document.removeEventListener('keydown', handeReturn)\n   }, [showNewFile])\n"
+                },
+                {
+                    "date": 1666513491911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         window.api.openDefaultDir()\n       }\n     }\n     return () => document.removeEventListener('keydown', handeReturn)\n-  }, [showNewFile])\n+  }, [])\n   return (\n     <>\n       <ul\n         ref={fileListRef}\n"
+                },
+                {
+                    "date": 1666513595602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,8 @@\n }> = ({ fileList, openFile }) => {\n   console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n-  const fileListRef = useRef<HTMLUListElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handeReturn = (e: KeyboardEvent) => {\n       console.log('KeyboardEvent')\n@@ -25,9 +24,8 @@\n   }, [])\n   return (\n     <>\n       <ul\n-        ref={fileListRef}\n         className=\"file-list\"\n         style={{\n           paddingBottom: '50px'\n         }}\n"
+                },
+                {
+                    "date": 1666513650873,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,18 @@\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n-    const handeReturn = (e: KeyboardEvent) => {\n-      console.log('KeyboardEvent')\n+    const handleReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n         window.api.openDefaultDir()\n       }\n     }\n-    return () => document.removeEventListener('keydown', handeReturn)\n+    document.addEventListener('keydown',handleReturn)\n+    return () => document.removeEventListener('keydown', handleReturn)\n   }, [])\n   return (\n     <>\n       <ul\n"
+                },
+                {
+                    "date": 1666513798931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,9 @@\n             <li\n               key={filePath}\n               onContextMenu={() => {\n                 window.api.popFileListMenu(filePath)\n+                window.api.openDefaultDir()\n               }}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n"
+                },
+                {
+                    "date": 1666514231192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handleReturn = (e: KeyboardEvent) => {\n+      console.log('KeyboardEvent')\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n"
+                },
+                {
+                    "date": 1666514270411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n       }\n     }\n     document.addEventListener('keydown',handleReturn)\n     return () => document.removeEventListener('keydown', handleReturn)\n-  }, [])\n+  }, [showNewFile])\n   return (\n     <>\n       <ul\n         className=\"file-list\"\n"
+                },
+                {
+                    "date": 1666528976375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n \n export const FileList: React.FC<{\n   fileList: IFileList\n   openFile: (filePath: string) => void\n-}> = ({ fileList, openFile }) => {\n+  updateFiles:()=>void\n+}> = ({ fileList, openFile,updateFiles }) => {\n   console.log('file-list-render')\n   const [showNewFile, setShowNewFile] = useState(false)\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n@@ -16,9 +17,9 @@\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n-        window.api.openDefaultDir()\n+        updateFiles()\n       }\n     }\n     document.addEventListener('keydown',handleReturn)\n     return () => document.removeEventListener('keydown', handleReturn)\n"
+                },
+                {
+                    "date": 1666529302944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n             <li\n               key={filePath}\n               onContextMenu={() => {\n                 window.api.popFileListMenu(filePath)\n-                window.api.openDefaultDir()\n+                updateFiles()\n               }}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n"
+                },
+                {
+                    "date": 1666531744149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,8 @@\n             <li\n               key={filePath}\n               onContextMenu={() => {\n                 window.api.popFileListMenu(filePath)\n-                updateFiles()\n               }}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n"
                 }
             ],
             "date": 1666066869538,

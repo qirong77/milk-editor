@@ -1,7 +1,7 @@
-export const NewFileSvg = ({onClick}) => {
+export const NewFileSvg = ({ onClick }) => {
   return (
     <svg
-    onClick={onClick}
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
@@ -13,10 +13,10 @@ export const NewFileSvg = ({onClick}) => {
     </svg>
   )
 }
-export const MenuSvg = ({onClick}) => {
+export const MenuSvg = ({ onClick }) => {
   return (
     <svg
-    onClick={onClick}
+      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"

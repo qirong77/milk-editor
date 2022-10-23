@@ -36,16 +36,18 @@
       <div class="item">13</div>
       <div class="item">14</div>
       <div class="item">15</div>
-      <ul>ulululu</ul>
+      <ul>
+        ulululu
+      </ul>
     </div>
     <script>
       const btn = document.querySelector('button')
-      btn.addEventListener('click',()=>{
+      btn.addEventListener('click', () => {
         console.log('click')
         const ul = document.querySelector('ul')
-        const io = new IntersectionObserver(entries =>{
-          entries.forEach(entrie =>{
-            if(entrie.isIntersecting) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entrie) => {
+            if (entrie.isIntersecting) {
               console.log('ul in')
             } else console.log('ul out')
           })

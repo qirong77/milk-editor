@@ -5,21 +5,24 @@ import { IFileList } from 'src/preload/index.d'
 export const FileList: React.FC<{
   fileList: IFileList
   openFile: (filePath: string) => void
-}> = ({ fileList, openFile }) => {
+  updateFiles: () => void
+}> = ({ fileList, openFile, updateFiles }) => {
   console.log('file-list-render')
   const [showNewFile, setShowNewFile] = useState(false)
   const iptRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
     iptRef.current?.focus()
-    const handeReturn = (e: KeyboardEvent) => {
+    const handleReturn = (e: KeyboardEvent) => {
+      console.log('KeyboardEvent')
       if (e.code === 'Enter' && showNewFile) {
+        console.log('enter')
         setShowNewFile(false)
         window.api.newFile(iptRef.current?.value || 'untitled')
-        window.api.openDefaultDir()
+        updateFiles()
       }
     }
-    document.addEventListener('keydown', handeReturn)
-    return () => document.removeEventListener('keydown', handeReturn)
+    document.addEventListener('keydown', handleReturn)
+    return () => document.removeEventListener('keydown', handleReturn)
   }, [showNewFile])
   return (
     <>
@@ -33,6 +36,9 @@ export const FileList: React.FC<{
           return (
             <li
               key={filePath}
+              onContextMenu={() => {
+                window.api.popFileListMenu(filePath)
+              }}
               onClick={(e) => {
                 e.stopPropagation()
                 openFile(filePath)
@@ -44,13 +50,8 @@ export const FileList: React.FC<{
           )
         })}
         {showNewFile && (
-          <li
-            className="new-file"
-          >
-            <input
-              ref={iptRef}
-              type="text"
-            />
+          <li className="new-file">
+            <input ref={iptRef} type="text" />
           </li>
         )}
       </ul>

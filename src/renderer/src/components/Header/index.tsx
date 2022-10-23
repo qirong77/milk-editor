@@ -13,7 +13,7 @@ export const Header: React.FC<IHeader> = ({ opendFilePath }) => {
   }
   const title = setTitle(opendFilePath)
   return (
-    <header  className="header">
+    <header className="header">
       <Controlers />
       <div>{title}</div>
       <div></div>

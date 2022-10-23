@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 97,
+            "activePatchIndex": 102,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -396,6 +396,26 @@
                 {
                     "date": 1666422789257,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,10 @@\n   },\n   updateFile: ({ filePath, newFileContent }) => {\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   },\n-  newFile: (filePath) => {\n-    ipcRenderer.send(NEW_FILE, filePath)\n+  newFile: (fileName) => {\n+    ipcRenderer.send(NEW_FILE, fileName)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1666510966367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n   },\n   newFile: (fileName) => {\n     ipcRenderer.send(NEW_FILE, fileName)\n   }\n+  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1666511171504,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n   MIN_SCREEN,\n   NEW_FILE,\n   OPEN_DEFAULT_DIR,\n   OPEN_NEW_FILE,\n+  POP_FILE_LIST_MENU,\n   UPDATE_FILE\n } from '../main/electron/events/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n@@ -42,10 +43,12 @@\n     ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n   },\n   newFile: (fileName) => {\n     ipcRenderer.send(NEW_FILE, fileName)\n+  },\n+  popFileListMenu:(filePath) =>{\n+    ipcRenderer.send(POP_FILE_LIST_MENU,filePath)\n   }\n-  \n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                },
+                {
+                    "date": 1666531744140,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n   NEW_FILE,\n   OPEN_DEFAULT_DIR,\n   OPEN_NEW_FILE,\n   POP_FILE_LIST_MENU,\n-  UPDATE_FILE\n+  UPDATE_FILE,\n+  UPDATE_FILE_LIST\n } from '../main/electron/events/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n@@ -31,8 +32,11 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n+  onUpdateFileList:()=>{\n+    ipcRenderer.on(UPDATE_FILE_LIST,()=>{})\n+  },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n   openDefaultDir: async () => {\n"
+                },
+                {
+                    "date": 1666532142896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  onUpdateFileList:()=>{\n-    ipcRenderer.on(UPDATE_FILE_LIST,()=>{})\n+  onUpdateFileList: () => {\n+    ipcRenderer.on(UPDATE_FILE_LIST, () => {})\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n@@ -48,10 +48,10 @@\n   },\n   newFile: (fileName) => {\n     ipcRenderer.send(NEW_FILE, fileName)\n   },\n-  popFileListMenu:(filePath) =>{\n-    ipcRenderer.send(POP_FILE_LIST_MENU,filePath)\n+  popFileListMenu: (filePath) => {\n+    ipcRenderer.send(POP_FILE_LIST_MENU, filePath)\n   }\n }\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1666532241413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  onUpdateFileList: () => {\n-    ipcRenderer.on(UPDATE_FILE_LIST, () => {})\n+  onUpdateFileList: (callback) => {\n+    ipcRenderer.on(UPDATE_FILE_LIST,callback)\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n"
                 }
             ],
             "date": 1665389904992,

@@ -1,8 +1,8 @@
 $dark-font-color: rgb(208, 211, 218);
 $dark-background: rgb(46 52 64);
 $dark-header-backgournd: rgb(59, 62, 81);
-$dark-sideBar-background:rgb(36,41,51);
-$active-font-color:rgb(129,161,193);
+$dark-sideBar-background: rgb(36, 41, 51);
+$active-font-color: rgb(129, 161, 193);
 // 最外层是container
 @mixin theme-dark {
   color: $dark-font-color;

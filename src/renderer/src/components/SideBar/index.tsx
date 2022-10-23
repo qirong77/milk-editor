@@ -7,8 +7,9 @@ import { useUpdateHeaders } from './hooks/useUpdateHeader'
 import { SearchFile } from '../Search/SearchFile'
 interface ISideBar {
   fileList: IFileList
+  updateFiles: () => void
 }
-export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
+export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {
   console.log('side-bar')
   const [showFileList, setShowFileList] = useState(true)
   const [openSearchFile, setOpenSearchFile] = useState(false)
@@ -34,16 +35,28 @@ export const SideBar: React.FC<ISideBar> = ({ fileList }) => {
   return (
     <div className="side-bar">
       <header>
-        <MenuSvg onClick={()=>{setShowFileList(!showFileList)}}/>
+        <MenuSvg
+          onClick={() => {
+            setShowFileList(!showFileList)
+          }}
+        />
         <span>title</span>
         <SearchSvg />
       </header>
       <DragLine />
-      {showFileList && <FileList fileList={fileList} openFile={openFile} />}
+      {showFileList && (
+        <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />
+      )}
       {!showFileList && <ul className="header-list" />}
-      {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{
-        setOpenSearchFile(false)
-      }}/>}
+      {openSearchFile && (
+        <SearchFile
+          fileList={fileList}
+          openFile={openFile}
+          closeSearchFile={() => {
+            setOpenSearchFile(false)
+          }}
+        />
+      )}
     </div>
   )
 }

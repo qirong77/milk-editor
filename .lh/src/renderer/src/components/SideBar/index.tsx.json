@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 77,
+            "activePatchIndex": 79,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -316,6 +316,14 @@
                 {
                     "date": 1666453868170,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n       <DragLine />\n       {showFileList && <FileList fileList={fileList} openFile={openFile} />}\n       {!showFileList && <ul className=\"header-list\" />}\n       {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{\n-        setOpenSearchFile(!openSearchFile)\n+        setOpenSearchFile(false)\n       }}/>}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1666528976367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,11 @@\n import { useUpdateHeaders } from './hooks/useUpdateHeader'\n import { SearchFile } from '../Search/SearchFile'\n interface ISideBar {\n   fileList: IFileList\n+  updateFiles:()=>void\n }\n-export const SideBar: React.FC<ISideBar> = ({ fileList }) => {\n+export const SideBar: React.FC<ISideBar> = ({ fileList,updateFiles }) => {\n   console.log('side-bar')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n@@ -38,9 +39,9 @@\n         <span>title</span>\n         <SearchSvg />\n       </header>\n       <DragLine />\n-      {showFileList && <FileList fileList={fileList} openFile={openFile} />}\n+      {showFileList && <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />}\n       {!showFileList && <ul className=\"header-list\" />}\n       {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{\n         setOpenSearchFile(false)\n       }}/>}\n"
+                },
+                {
+                    "date": 1666529302951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,11 @@\n import { useUpdateHeaders } from './hooks/useUpdateHeader'\n import { SearchFile } from '../Search/SearchFile'\n interface ISideBar {\n   fileList: IFileList\n-  updateFiles:()=>void\n+  updateFiles: () => void\n }\n-export const SideBar: React.FC<ISideBar> = ({ fileList,updateFiles }) => {\n+export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {\n   console.log('side-bar')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n@@ -34,17 +34,29 @@\n   }\n   return (\n     <div className=\"side-bar\">\n       <header>\n-        <MenuSvg onClick={()=>{setShowFileList(!showFileList)}}/>\n+        <MenuSvg\n+          onClick={() => {\n+            setShowFileList(!showFileList)\n+          }}\n+        />\n         <span>title</span>\n         <SearchSvg />\n       </header>\n       <DragLine />\n-      {showFileList && <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />}\n+      {showFileList && (\n+        <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />\n+      )}\n       {!showFileList && <ul className=\"header-list\" />}\n-      {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{\n-        setOpenSearchFile(false)\n-      }}/>}\n+      {openSearchFile && (\n+        <SearchFile\n+          fileList={fileList}\n+          openFile={openFile}\n+          closeSearchFile={() => {\n+            setOpenSearchFile(false)\n+          }}\n+        />\n+      )}\n     </div>\n   )\n }\n"
                 }
             ],
             "date": 1665497140199,

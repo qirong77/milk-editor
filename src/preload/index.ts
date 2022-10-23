@@ -9,7 +9,9 @@ import {
   NEW_FILE,
   OPEN_DEFAULT_DIR,
   OPEN_NEW_FILE,
-  UPDATE_FILE
+  POP_FILE_LIST_MENU,
+  UPDATE_FILE,
+  UPDATE_FILE_LIST
 } from '../main/electron/events/constant'
 // 导入.d.ts类型文件的时候不能有扩展名！
 import { Api } from './index.d'
@@ -31,6 +33,9 @@ const api: Api = {
   onOpenFile: (callback) => {
     ipcRenderer.on(OPEN_NEW_FILE, callback)
   },
+  onUpdateFileList: (callback) => {
+    ipcRenderer.on(UPDATE_FILE_LIST, callback)
+  },
   clickFileList(filePath) {
     ipcRenderer.send(CLICK_FILE_LIST, filePath)
   },
@@ -43,6 +48,9 @@ const api: Api = {
   },
   newFile: (fileName) => {
     ipcRenderer.send(NEW_FILE, fileName)
+  },
+  popFileListMenu: (filePath) => {
+    ipcRenderer.send(POP_FILE_LIST_MENU, filePath)
   }
 }
 // Use `contextBridge` APIs to expose Electron APIs to

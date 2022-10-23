@@ -14,21 +14,22 @@ export const App = () => {
   console.log('render-app')
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
+    // 打开默认文件夹,
+    updateFiles()
     window.api.onOpenFile((e, { filePath, fileContent }) => {
       setPath(filePath)
       console.log('onOpenFileAPI')
       setContent(fileContent)
     })
+    window.api.onUpdateFileList(() => {
+      updateFiles()
+    })
   }, [])
 
-  // 打开默认文件夹,
-  useEffect(() => {
-    const useDefaulteDir = async () => {
-      const fileList = await window.api.openDefaultDir()
-      setFileList(fileList)
-    }
-    useDefaulteDir()
-  }, [])
+  const updateFiles = async () => {
+    const fileList = await window.api.openDefaultDir()
+    setFileList(fileList)
+  }
   useEffect(() => {
     const hanldeHideBar = (e: KeyboardEvent) => {
       if (e.metaKey && e.code === 'KeyM') {
@@ -56,7 +57,7 @@ export const App = () => {
     <div className="container">
       <Header opendFilePath={filePath} />
       <main>
-        <SideBar fileList={fileList} />
+        <SideBar fileList={fileList} updateFiles={updateFiles} />
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
       {openSearchWords && <SearchWord />}

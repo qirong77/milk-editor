@@ -12,7 +12,7 @@ export const clickOpenFile = async (window: BrowserWindow) => {
   path && openNewFile(path, window)
 }
 
-interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
+export interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string
   submenu?: DarwinMenuItemConstructorOptions[] | Menu
 }

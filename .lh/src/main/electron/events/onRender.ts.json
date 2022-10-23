@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 27,
             "patches": [
                 {
                     "date": 1665989999429,
@@ -96,6 +96,26 @@
                 {
                     "date": 1666423491324,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(NEW_FILE, (e, fileName) => {\n-    const filePath = resolve(defaultDirPath, fileName,'.md')\n+    const filePath = resolve(defaultDirPath, fileName+'.md')\n     console.log(filePath)\n     writeFileSync(filePath, 'new file')\n     openNewFile(filePath,window)\n   })\n"
+                },
+                {
+                    "date": 1666510304856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,10 @@\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE,\n-  NEW_FILE\n+  NEW_FILE,\n+  FILE_LIST_MENU\n } from './constant'\n import { defaultDirPath } from './onInterProcess'\n import { openNewFile } from './onSendToRender'\n let timer\n@@ -38,5 +39,8 @@\n       console.log('write file in' + filePath)\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n+  ipcMain.on(FILE_LIST_MENU,()=>{\n+    \n+  })\n }\n"
+                },
+                {
+                    "date": 1666510966355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { resolve } from 'path'\n+import { fileListMenu } from '../menu/fileListMenu'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n   UPDATE_FILE,\n   NEW_FILE,\n-  FILE_LIST_MENU\n+  POP_FILE_LIST_MENU\n } from './constant'\n import { defaultDirPath } from './onInterProcess'\n import { openNewFile } from './onSendToRender'\n let timer\n@@ -27,20 +28,22 @@\n   ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {\n     openNewFile(filePath, window)\n   })\n   ipcMain.on(NEW_FILE, (e, fileName) => {\n-    const filePath = resolve(defaultDirPath, fileName+'.md')\n+    const filePath = resolve(defaultDirPath, fileName + '.md')\n     console.log(filePath)\n     writeFileSync(filePath, 'new file')\n-    openNewFile(filePath,window)\n+    openNewFile(filePath, window)\n   })\n   ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('write file in' + filePath)\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n-  ipcMain.on(FILE_LIST_MENU,()=>{\n-    \n+  ipcMain.on(POP_FILE_LIST_MENU, () => {\n+    fileListMenu.popup({\n+      window\n+    })\n   })\n }\n"
+                },
+                {
+                    "date": 1666511171507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n       console.log('write file in' + filePath)\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n-  ipcMain.on(POP_FILE_LIST_MENU, () => {\n+  ipcMain.on(POP_FILE_LIST_MENU, (e,filePath) => {\n     fileListMenu.popup({\n       window\n     })\n   })\n"
+                },
+                {
+                    "date": 1666512756779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, writeFileSync } from 'fs'\n import { resolve } from 'path'\n-import { fileListMenu } from '../menu/fileListMenu'\n+import {  newFileListMenu } from '../menu/fileListMenu'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n@@ -41,9 +41,9 @@\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n   ipcMain.on(POP_FILE_LIST_MENU, (e,filePath) => {\n-    fileListMenu.popup({\n+    newFileListMenu(filePath).popup({\n       window\n     })\n   })\n }\n"
+                },
+                {
+                    "date": 1666532369266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n   ipcMain.on(POP_FILE_LIST_MENU, (e,filePath) => {\n-    newFileListMenu(filePath).popup({\n+    newFileListMenu(filePath,window).popup({\n       window\n     })\n   })\n }\n"
                 }
             ],
             "date": 1665989999429,
