@@ -11,12 +11,15 @@ export const App = () => {
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
   const [openSearchWords, setOpenSearchWords] = useState(false)
+  // document.querySelectorAll('pre code').forEach((el) => {
+  //   hljs.highlightElement(el as HTMLElement);
+  // });
   console.log('render-app')
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {
     // 打开默认文件夹,
     updateFiles()
-    window.api.onOpenFile((e, { filePath, fileContent }) => {
+    window.api.onOpenFile((_e, { filePath, fileContent }) => {
       setPath(filePath)
       console.log('onOpenFileAPI')
       setContent(fileContent)
@@ -45,14 +48,13 @@ export const App = () => {
         SideBar?.classList.toggle('side-bar-close')
       }
       if (e.metaKey && e.code === 'KeyF') {
-        const SearchWord = document.querySelector('.search-word')
-
-        SearchWord?.classList.toggle('search-word-close')
+        console.log('commend + F')
+        setOpenSearchWords(!openSearchWords)
       }
     }
     document.addEventListener('keydown', hanldeHideBar)
     return () => document.removeEventListener('keydown', hanldeHideBar)
-  }, [])
+  }, [openSearchWords])
   return (
     <div className="container">
       <Header opendFilePath={filePath} />

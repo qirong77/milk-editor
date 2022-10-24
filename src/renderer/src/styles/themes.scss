@@ -7,7 +7,7 @@ $active-font-color: rgb(129, 161, 193);
 @mixin theme-dark {
   color: $dark-font-color;
   background-color: $dark-background;
-  font-weight: 400;
+  font-weight: 300;
   input {
     color: $dark-font-color;
     background-color: $dark-sideBar-background;
@@ -35,15 +35,15 @@ $active-font-color: rgb(129, 161, 193);
       .editor {
         code.code-inline {
           color: $dark-font-color;
-          background-color: inherit;
+          background-color: $dark-sideBar-background;
           font-size: initial;
         }
         // 注释
         .blockquote {
-          padding-left: 10px;
-          border-left: none;
+          padding-left: 14px;
+          border-width: 2px;
           p {
-            color: rgb(106, 122, 150);
+            color: rgb(156, 174, 203);
           }
         }
         .editor .code-fence pre code {

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1665989999429,
@@ -32,6 +32,10 @@
                 {
                     "date": 1666510966368,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   const path = await openFileDialog(window)\n   path && openNewFile(path, window)\n }\n \n-interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n+export interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n \n"
+                },
+                {
+                    "date": 1666537368441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { app, BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { openFileDialog } from '../api/dialog'\n import { openNewFile } from '../events/onSendToRender'\n \n-\n /* \n 快捷键无法使用问题：https://github.com/moose-team/friends/issues/123\n 快捷键类型：https://juejin.cn/post/7116906625964720159#comment\n */\n@@ -124,8 +123,14 @@\n         label: 'Learn More',\n         click() {\n           // shell.openExternal('https://electronjs.org');\n         }\n+      },\n+      {\n+        label:'切换开发人员工具',\n+        click:()=>{\n+          window.webContents.toggleDevTools()\n+        }\n       }\n     ]\n   }\n   const template: DarwinMenuItemConstructorOptions[] = [\n"
                 }
             ],
             "date": 1665989999429,

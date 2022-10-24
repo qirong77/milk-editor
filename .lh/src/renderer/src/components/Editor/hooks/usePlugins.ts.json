@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 20,
             "patches": [
                 {
                     "date": 1666014070104,
@@ -28,6 +28,66 @@
                 {
                     "date": 1666333372500,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { Editor } from '@milkdown/core'\n-import { nord, nordDark } from '@milkdown/theme-nord'\n+import { nordDark } from '@milkdown/theme-nord'\n import { listener } from '@milkdown/plugin-listener'\n import { prism } from '@milkdown/plugin-prism'\n import { menu } from '@milkdown/plugin-menu'\n import { history } from '@milkdown/plugin-history'\n@@ -29,5 +29,5 @@\n     .use(prism)\n     .use(menu)\n     .use(clipboard)\n     .use(gitHubCommonMark)\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1666535667452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from '@milkdown/preset-gfm'\n const gitHubCommonMark = gfm\n   .configure(blockquote, {\n     keymap: {\n-      [SupportedKeys.Blockquote]: 'Mod-Shift-q'\n+      [SupportedKeys.Blockquote]: 'Mod-Option-q'\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n"
+                },
+                {
+                    "date": 1666535873486,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,15 +10,20 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-import { blockquote, codeFence, gfm, SupportedKeys, taskListItem } from '@milkdown/preset-gfm'\n+import { blockquote, codeFence, gfm, SupportedKeys, taskListItem ,heading} from '@milkdown/preset-gfm'\n const gitHubCommonMark = gfm\n   .configure(blockquote, {\n     keymap: {\n-      [SupportedKeys.Blockquote]: 'Mod-Option-q'\n+      [SupportedKeys.Blockquote]: 'Mod-Alt-q',\n     }\n   })\n+  .configure(heading,{\n+    keymap:{\n+      [SupportedKeys.H1]:'Mod-1'\n+    }\n+  })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n     languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n   })\n"
+                },
+                {
+                    "date": 1666535984945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,23 +10,35 @@\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-material-oceanic.min.css'\n-import { blockquote, codeFence, gfm, SupportedKeys, taskListItem ,heading} from '@milkdown/preset-gfm'\n+import {\n+  blockquote,\n+  codeFence,\n+  gfm,\n+  SupportedKeys,\n+  taskListItem,\n+  heading\n+} from '@milkdown/preset-gfm'\n const gitHubCommonMark = gfm\n   .configure(blockquote, {\n     keymap: {\n-      [SupportedKeys.Blockquote]: 'Mod-Alt-q',\n+      [SupportedKeys.Blockquote]: 'Mod-Alt-q'\n     }\n   })\n-  .configure(heading,{\n-    keymap:{\n-      [SupportedKeys.H1]:'Mod-1'\n+  .configure(heading, {\n+    keymap: {\n+      [SupportedKeys.H1]: 'Mod-1',\n+      [SupportedKeys.H2]: 'Mod-2',\n+      [SupportedKeys.H3]: 'Mod-3',\n+      [SupportedKeys.H4]: 'Mod-4',\n+      [SupportedKeys.H5]: 'Mod-5',\n+      [SupportedKeys.H6]: 'Mod-6'\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n+    languageList: ['scss', 'javascript','css', 'html', 'typescript']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666538906996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript','css', 'html', 'typescript']\n+    // languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666539518475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n-import 'prism-themes/themes/prism-material-oceanic.min.css'\n+// import 'prism-themes/themes/prism-material-oceanic.min.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n"
+                },
+                {
+                    "date": 1666539869342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n-// import 'prism-themes/themes/prism-material-oceanic.min.css'\n+import 'prism-themes/themes/prism-ghcolors.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n"
+                },
+                {
+                    "date": 1666541217068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    // languageList: ['scss', 'javascript', 'css', 'html', 'typescript']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666581019675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n-import 'prism-themes/themes/prism-ghcolors.css'\n+// import 'prism-themes/themes/prism-ghcolors.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n@@ -42,9 +42,8 @@\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n     .use(listener)\n-    .use(prism)\n     .use(menu)\n     .use(clipboard)\n     .use(gitHubCommonMark)\n }\n"
+                },
+                {
+                    "date": 1666582925672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n-// import 'prism-themes/themes/prism-ghcolors.css'\n+import 'prism-themes/themes/prism-ghcolors.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n@@ -43,7 +43,8 @@\n   Editor.use(nordDark)\n     .use(history)\n     .use(listener)\n     .use(menu)\n+    .use(prism)\n     .use(clipboard)\n     .use(gitHubCommonMark)\n }\n"
+                },
+                {
+                    "date": 1666584103963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { menu } from '@milkdown/plugin-menu'\n import { history } from '@milkdown/plugin-history'\n import { clipboard } from '@milkdown/plugin-clipboard'\n // 官方引用的图标库，如菜单栏需要使用到\n-import '@material-design-icons/font'\n+// import '@material-design-icons/font'\n // 数学公式渲染\n import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-ghcolors.css'\n"
+                },
+                {
+                    "date": 1666584737902,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,11 @@\n import { menu } from '@milkdown/plugin-menu'\n import { history } from '@milkdown/plugin-history'\n import { clipboard } from '@milkdown/plugin-clipboard'\n // 官方引用的图标库，如菜单栏需要使用到\n-// import '@material-design-icons/font'\n+import '@material-design-icons/font'\n // 数学公式渲染\n-import 'katex/dist/katex.min.css'\n+// import 'katex/dist/katex.min.css'\n // 代码高亮\n import 'prism-themes/themes/prism-ghcolors.css'\n import {\n   blockquote,\n"
+                },
+                {
+                    "date": 1666585805257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n // import 'katex/dist/katex.min.css'\n // 代码高亮\n-import 'prism-themes/themes/prism-ghcolors.css'\n+import 'prism-themes/themes/aton-dark.min.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n"
+                },
+                {
+                    "date": 1666585813922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n // import 'katex/dist/katex.min.css'\n // 代码高亮\n-import 'prism-themes/themes/aton-dark.min.css'\n+import 'prism-themes/themes/atom-dark.min.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n"
+                },
+                {
+                    "date": 1666585836645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n import '@material-design-icons/font'\n // 数学公式渲染\n // import 'katex/dist/katex.min.css'\n // 代码高亮\n-import 'prism-themes/themes/atom-dark.min.css'\n+import 'prism-themes/themes/prism-atom-dark.min.css'\n import {\n   blockquote,\n   codeFence,\n   gfm,\n"
+                },
+                {
+                    "date": 1666627751694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text','vue','react']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
                 }
             ],
             "date": 1666014070104,

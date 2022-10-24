@@ -124,6 +124,12 @@ export const useMenu = (window: BrowserWindow) => {
         click() {
           // shell.openExternal('https://electronjs.org');
         }
+      },
+      {
+        label: '切换开发人员工具',
+        click: () => {
+          window.webContents.toggleDevTools()
+        }
       }
     ]
   }

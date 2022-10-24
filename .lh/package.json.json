@@ -1,0 +1,22 @@
+{
+    "sourceFile": "package.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1666537511632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1666539383744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,10 @@\n     \"@electron-toolkit/utils\": \"^1.0.2\",\n     \"@milkdown/plugin-clipboard\": \"^6.4.1\",\n     \"@milkdown/plugin-indent\": \"^6.5.0\",\n     \"@milkdown/preset-gfm\": \"^6.5.0\",\n-    \"electron-updater\": \"^4.6.5\"\n+    \"electron-updater\": \"^4.6.5\",\n+    \"highlight.js\": \"^11.6.0\"\n   },\n   \"devDependencies\": {\n     \"@electron-toolkit/tsconfig\": \"^1.0.1\",\n     \"@material-design-icons/font\": \"^0.12.1\",\n"
+                }
+            ],
+            "date": 1666537511632,
+            "name": "Commit-0",
+            "content": "{\n  \"name\": \"electron-app\",\n  \"version\": \"1.0.0\",\n  \"description\": \"An Electron application with React and TypeScript\",\n  \"main\": \"./out/main/index.js\",\n  \"author\": \"qirong77\",\n  \"homepage\": \"https://www.electronjs.org\",\n  \"scripts\": {\n    \"format\": \"prettier --write .\",\n    \"lint\": \"eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix\",\n    \"typecheck:node\": \"tsc --noEmit -p tsconfig.node.json --composite false\",\n    \"typecheck:web\": \"tsc --noEmit -p tsconfig.web.json --composite false\",\n    \"typecheck\": \"npm run typecheck:node && npm run typecheck:web\",\n    \"start\": \"electron-vite preview\",\n    \"dev\": \"electron-vite dev\",\n    \"build\": \"npm run typecheck && electron-vite build\",\n    \"postinstall\": \"electron-builder install-app-deps\",\n    \"build:win\": \"npm run build && electron-builder --win --config\",\n    \"build:mac\": \"electron-vite build && electron-builder --mac --config\",\n    \"build:linux\": \"electron-vite build && electron-builder --linux --config\"\n  },\n  \"dependencies\": {\n    \"@electron-toolkit/preload\": \"^1.0.2\",\n    \"@electron-toolkit/utils\": \"^1.0.2\",\n    \"@milkdown/plugin-clipboard\": \"^6.4.1\",\n    \"@milkdown/plugin-indent\": \"^6.5.0\",\n    \"@milkdown/preset-gfm\": \"^6.5.0\",\n    \"electron-updater\": \"^4.6.5\"\n  },\n  \"devDependencies\": {\n    \"@electron-toolkit/tsconfig\": \"^1.0.1\",\n    \"@material-design-icons/font\": \"^0.12.1\",\n    \"@milkdown/core\": \"^6.4.1\",\n    \"@milkdown/plugin-history\": \"^6.4.1\",\n    \"@milkdown/plugin-listener\": \"^6.4.1\",\n    \"@milkdown/plugin-menu\": \"^6.4.1\",\n    \"@milkdown/plugin-prism\": \"^6.4.2\",\n    \"@milkdown/preset-commonmark\": \"^6.4.2\",\n    \"@milkdown/react\": \"^6.4.1\",\n    \"@milkdown/theme-nord\": \"^6.4.1\",\n    \"@types/node\": \"16.11.22\",\n    \"@types/react\": \"18.0.21\",\n    \"@types/react-dom\": \"18.0.6\",\n    \"@typescript-eslint/eslint-plugin\": \"^5.39.0\",\n    \"@typescript-eslint/parser\": \"^5.39.0\",\n    \"@vitejs/plugin-react\": \"^2.1.0\",\n    \"electron\": \"^20.3.2\",\n    \"electron-builder\": \"^22.14.13\",\n    \"electron-notarize\": \"^1.2.1\",\n    \"electron-vite\": \"^1.0.10\",\n    \"eslint\": \"^8.24.0\",\n    \"eslint-config-prettier\": \"^8.5.0\",\n    \"eslint-plugin-prettier\": \"^4.2.1\",\n    \"eslint-plugin-react\": \"^7.31.8\",\n    \"katex\": \"^0.16.2\",\n    \"prettier\": \"^2.7.1\",\n    \"prism-themes\": \"^1.9.0\",\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"sass\": \"^1.55.0\",\n    \"typescript\": \"^4.7.4\",\n    \"vite\": \"^3.1.6\"\n  }\n}\n"
+        }
+    ]
+}

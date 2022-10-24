@@ -3,7 +3,7 @@
   width: 200px;
   border-radius: 10px;
   position: absolute;
-  top: 60px;
+  top: 120px;
   left: 60vw;
   display: block;
   input {
@@ -13,12 +13,9 @@
     font-size: 16px;
     border-radius: 6px;
     &:hover {
-      cursor: pointer;
+      cursor: text;
     }
   }
-}
-.search-word-close {
-  display: none;
 }
 
 .search-file {

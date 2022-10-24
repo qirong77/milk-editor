@@ -27,5 +27,7 @@ app.on('window-all-closed', () => {
   // mac的plateform是darwin
   if (process.platform !== 'darwin') {
     app.quit()
+  } else {
+    app.quit()
   }
 })

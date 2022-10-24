@@ -1,4 +1,4 @@
-import { NewFileSvg } from '@renderer/common/svg'
+import { MoreSvg, NewFileSvg } from '@renderer/common/svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
@@ -13,7 +13,6 @@ export const FileList: React.FC<{
   useEffect(() => {
     iptRef.current?.focus()
     const handleReturn = (e: KeyboardEvent) => {
-      console.log('KeyboardEvent')
       if (e.code === 'Enter' && showNewFile) {
         console.log('enter')
         setShowNewFile(false)
@@ -58,7 +57,7 @@ export const FileList: React.FC<{
       <footer>
         <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />
         <span>Markdowns</span>
-        <NewFileSvg onClick={() => setShowNewFile(true)} />
+        <MoreSvg />
       </footer>
     </>
   )

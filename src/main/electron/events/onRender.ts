@@ -25,7 +25,7 @@ export const onRender = (window: BrowserWindow) => {
     }
   })
   ipcMain.on(CLOSE_SCREEN, () => window.close())
-  ipcMain.on(CLICK_FILE_LIST, (e, filePath) => {
+  ipcMain.on(CLICK_FILE_LIST, (_e, filePath) => {
     openNewFile(filePath, window)
   })
   ipcMain.on(NEW_FILE, (e, fileName) => {

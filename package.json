@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "qirong77",
   "homepage": "https://www.electronjs.org",
   "scripts": {
     "format": "prettier --write .",
@@ -25,7 +25,8 @@
     "@milkdown/plugin-clipboard": "^6.4.1",
     "@milkdown/plugin-indent": "^6.5.0",
     "@milkdown/preset-gfm": "^6.5.0",
-    "electron-updater": "^4.6.5"
+    "electron-updater": "^4.6.5",
+    "highlight.js": "^11.6.0"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 79,
+            "activePatchIndex": 81,
             "patches": [
                 {
                     "date": 1665497140199,
@@ -324,6 +324,14 @@
                 {
                     "date": 1666529302951,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,11 @@\n import { useUpdateHeaders } from './hooks/useUpdateHeader'\n import { SearchFile } from '../Search/SearchFile'\n interface ISideBar {\n   fileList: IFileList\n-  updateFiles:()=>void\n+  updateFiles: () => void\n }\n-export const SideBar: React.FC<ISideBar> = ({ fileList,updateFiles }) => {\n+export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {\n   console.log('side-bar')\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n@@ -34,17 +34,29 @@\n   }\n   return (\n     <div className=\"side-bar\">\n       <header>\n-        <MenuSvg onClick={()=>{setShowFileList(!showFileList)}}/>\n+        <MenuSvg\n+          onClick={() => {\n+            setShowFileList(!showFileList)\n+          }}\n+        />\n         <span>title</span>\n         <SearchSvg />\n       </header>\n       <DragLine />\n-      {showFileList && <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />}\n+      {showFileList && (\n+        <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />\n+      )}\n       {!showFileList && <ul className=\"header-list\" />}\n-      {openSearchFile && <SearchFile fileList={fileList} openFile={openFile} closeSearchFile={()=>{\n-        setOpenSearchFile(false)\n-      }}/>}\n+      {openSearchFile && (\n+        <SearchFile\n+          fileList={fileList}\n+          openFile={openFile}\n+          closeSearchFile={() => {\n+            setOpenSearchFile(false)\n+          }}\n+        />\n+      )}\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1666537441819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n+      console.log(e)\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n       }\n"
+                },
+                {
+                    "date": 1666537643683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,8 @@\n   const [showFileList, setShowFileList] = useState(true)\n   const [openSearchFile, setOpenSearchFile] = useState(false)\n   useEffect(() => {\n     const hanldeHideBar = (e: KeyboardEvent) => {\n-      console.log(e)\n       if (e.metaKey && e.code === 'KeyB') {\n         console.log('command + B')\n         useUpdateHeaders()\n       }\n"
                 }
             ],
             "date": 1665497140199,

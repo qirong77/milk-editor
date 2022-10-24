@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1665496829721,
@@ -88,6 +88,14 @@
                 {
                     "date": 1666193225665,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,10 +29,5 @@\n }\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n-}\n-// 反引号，行内的代码\n-// .milkdown .editor code.code-inline {\n-//   font-family: 'Times New Roman', Times, serif;\n-//   background-color: blue;\n-// }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1666627738607,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,5 +29,17 @@\n }\n \n .milkdown::-webkit-scrollbar {\n   width: 0 !important;\n+}\n+.milkdown .editor h1.heading {\n+  font-weight: 500;\n+}\n+.milkdown .editor h3.heading {\n+  font-weight: 300;\n+}\n+.milkdown .editor h4.heading {\n+  font-weight: 200;\n+}\n+.milkdown .editor h5.heading {\n+  font-weight: 100;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1666627811772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,11 +35,14 @@\n   font-weight: 500;\n }\n .milkdown .editor h3.heading {\n   font-weight: 300;\n+  font-size: 30px;\n }\n .milkdown .editor h4.heading {\n   font-weight: 200;\n+  font-size: 25px;\n }\n .milkdown .editor h5.heading {\n   font-weight: 100;\n+  font-size: 20px;\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1665496829721,

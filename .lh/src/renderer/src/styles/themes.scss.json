@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 69,
+            "activePatchIndex": 73,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -284,6 +284,22 @@
                 {
                     "date": 1666452859498,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,10 @@\n   background-color: $dark-background;\n   font-weight: 400;\n   input {\n     color: $dark-font-color;\n-    background-color: $dark-sideBar-background\n+    background-color: $dark-sideBar-background;\n+    border: 1px solid $active-font-color;\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n"
+                },
+                {
+                    "date": 1666627000534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n $dark-font-color: rgb(208, 211, 218);\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n-$dark-sideBar-background:rgb(36,41,51);\n-$active-font-color:rgb(129,161,193);\n+$dark-sideBar-background: rgb(36, 41, 51);\n+$active-font-color: rgb(129, 161, 193);\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-weight: 400;\n+  font-weight: 300;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n@@ -39,10 +39,9 @@\n           font-size: initial;\n         }\n         // 注释\n         .blockquote {\n-          padding-left: 10px;\n-          border-left: none;\n+          padding-left: 14px;\n           p {\n             color: rgb(106, 122, 150);\n           }\n         }\n"
+                },
+                {
+                    "date": 1666627048290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,11 @@\n         }\n         // 注释\n         .blockquote {\n           padding-left: 14px;\n+          border-width: 1px;\n           p {\n-            color: rgb(106, 122, 150);\n+            color: rgb(132, 149, 179);\n           }\n         }\n         .editor .code-fence pre code {\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n"
+                },
+                {
+                    "date": 1666627062191,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,11 +40,11 @@\n         }\n         // 注释\n         .blockquote {\n           padding-left: 14px;\n-          border-width: 1px;\n+          border-width: 2px;\n           p {\n-            color: rgb(132, 149, 179);\n+            color: rgb(164, 180, 207);\n           }\n         }\n         .editor .code-fence pre code {\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n"
+                },
+                {
+                    "date": 1666627184423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,17 +34,17 @@\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n-          background-color: inherit;\n+          background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 14px;\n           border-width: 2px;\n           p {\n-            color: rgb(164, 180, 207);\n+            color: rgb(156, 174, 203);\n           }\n         }\n         .editor .code-fence pre code {\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n"
                 }
             ],
             "date": 1666166681790,

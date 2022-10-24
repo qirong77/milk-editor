@@ -6,8 +6,8 @@ import { useMenu } from './menu'
 
 export const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1200,
+    height: 800,
     show: false,
     // 关闭默认的上面那栏
     frame: false,
