@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1665990638667,
@@ -24,6 +24,14 @@
                 {
                     "date": 1666531744143,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,7 @@\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n export const UPDATE_FILE = 'edite and should file update'\n export const NEW_FILE = 'add a new file'\n export const POP_FILE_LIST_MENU ='open file list menu'\n+export const UPDATE_FILE_LIST = 'update file list'\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+                },
+                {
+                    "date": 1666686797970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n export const UPDATE_FILE = 'edite and should file update'\n export const NEW_FILE = 'add a new file'\n-export const POP_FILE_LIST_MENU ='open file list menu'\n+export const POP_FILE_LIST_MENU = 'open file list menu'\n export const UPDATE_FILE_LIST = 'update file list'\n+\n // 主进程 -> 渲染进程\n export const OPEN_NEW_FILE = 'open a new file and update-milk-editor-content' as string\n"
+                },
+                {
+                    "date": 1666688905592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const OPEN_DEFAULT_DIR = 'open a dictory and initialize'\n export const CLICK_FILE_LIST = 'click file list and open a new file'\n-export const UPDATE_FILE = 'edite and should file update'\n+export const SAVE_FILE = 'edite and should file update'\n export const NEW_FILE = 'add a new file'\n export const POP_FILE_LIST_MENU = 'open file list menu'\n export const UPDATE_FILE_LIST = 'update file list'\n \n"
                 }
             ],
             "date": 1665990638667,

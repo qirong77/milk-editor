@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 248,
+            "activePatchIndex": 249,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -1000,6 +1000,10 @@
                 {
                     "date": 1666637966174,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n"
+                },
+                {
+                    "date": 1666688905616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n+import { SAVE_FILE } from '../../../../main/electron/events/constant'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -31,9 +32,9 @@\n     }\n   }, [loading, content])\n   // 存储的函数必须根据副作用实时修改，否则不会更新\n   useEffect(() => {\n-    window.api.updateFile({\n+    window.api.sendEvents(SAVE_FILE,{\n       filePath: filePath,\n       newFileContent: markdown\n     })\n   }, [markdown])\n"
                 }
             ],
             "date": 1665496693570,

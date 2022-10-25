@@ -2,57 +2,31 @@ import { contextBridge, ipcRenderer } from 'electron'
 // 渲染进程中可以使用的API
 import { electronAPI } from '@electron-toolkit/preload'
 import {
-  CLICK_FILE_LIST,
-  CLOSE_SCREEN,
-  MAX_SCREEN,
-  MIN_SCREEN,
-  NEW_FILE,
+
   OPEN_DEFAULT_DIR,
   OPEN_NEW_FILE,
-  POP_FILE_LIST_MENU,
-  UPDATE_FILE,
   UPDATE_FILE_LIST
 } from '../main/electron/events/constant'
 // 导入.d.ts类型文件的时候不能有扩展名！
 import { Api } from './index.d'
 // Custom APIs for renderer
-
-const api: Api = {
-  say: () => {
-    console.log('hello')
-  },
-  maxScreen: () => {
-    ipcRenderer.send(MAX_SCREEN)
-  },
-  minScreen: () => {
-    ipcRenderer.send(MIN_SCREEN)
-  },
-  closeScreen: () => {
-    ipcRenderer.send(CLOSE_SCREEN)
-  },
+const sendEvents = (event:string,...args:any) =>{
+  ipcRenderer.send(event,...args)
+}
+const api:Api = {
+  sendEvents,
   onOpenFile: (callback) => {
     ipcRenderer.on(OPEN_NEW_FILE, callback)
   },
   onUpdateFileList: (callback) => {
     ipcRenderer.on(UPDATE_FILE_LIST, callback)
   },
-  clickFileList(filePath) {
-    ipcRenderer.send(CLICK_FILE_LIST, filePath)
-  },
   openDefaultDir: async () => {
     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)
     return defaultDirContents
   },
-  updateFile: ({ filePath, newFileContent }) => {
-    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })
-  },
-  newFile: (fileName) => {
-    ipcRenderer.send(NEW_FILE, fileName)
-  },
-  popFileListMenu: (filePath) => {
-    ipcRenderer.send(POP_FILE_LIST_MENU, filePath)
-  }
 }
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.

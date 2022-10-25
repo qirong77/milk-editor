@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 47,
+            "activePatchIndex": 48,
             "patches": [
                 {
                     "date": 1666066869538,
@@ -196,6 +196,10 @@
                 {
                     "date": 1666533375660,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n   const iptRef = useRef<HTMLInputElement>(null)\n   useEffect(() => {\n     iptRef.current?.focus()\n     const handleReturn = (e: KeyboardEvent) => {\n-      console.log('KeyboardEvent')\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n         window.api.newFile(iptRef.current?.value || 'untitled')\n"
+                },
+                {
+                    "date": 1666688905594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { MoreSvg, NewFileSvg } from '@renderer/common/svg'\n import React, { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n+import { NEW_FILE, POP_FILE_LIST_MENU } from '../../../../../main/electron/events/constant'\n \n export const FileList: React.FC<{\n   fileList: IFileList\n   openFile: (filePath: string) => void\n@@ -15,9 +16,9 @@\n     const handleReturn = (e: KeyboardEvent) => {\n       if (e.code === 'Enter' && showNewFile) {\n         console.log('enter')\n         setShowNewFile(false)\n-        window.api.newFile(iptRef.current?.value || 'untitled')\n+        window.api.sendEvents(NEW_FILE,iptRef.current?.value || 'untitled')\n         updateFiles()\n       }\n     }\n     document.addEventListener('keydown', handleReturn)\n@@ -35,9 +36,9 @@\n           return (\n             <li\n               key={filePath}\n               onContextMenu={() => {\n-                window.api.popFileListMenu(filePath)\n+                window.api.sendEvents(POP_FILE_LIST_MENU,filePath)\n               }}\n               onClick={(e) => {\n                 e.stopPropagation()\n                 openFile(filePath)\n@@ -56,9 +57,9 @@\n       </ul>\n       <footer>\n         <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />\n         <span>Markdowns</span>\n-        <MoreSvg/>\n+        <MoreSvg />\n       </footer>\n     </>\n   )\n }\n"
                 }
             ],
             "date": 1666066869538,

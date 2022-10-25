@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 30,
             "patches": [
                 {
                     "date": 1665989999429,
@@ -124,6 +124,10 @@
                 {
                     "date": 1666537370778,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,8 @@\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n   ipcMain.on(POP_FILE_LIST_MENU, (e, filePath) => {\n-    window.webContents.toggleDevTools()\n     newFileListMenu(filePath, window).popup({\n     window\n     })\n   })\n"
+                },
+                {
+                    "date": 1666688905595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,11 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   CLICK_FILE_LIST,\n-  UPDATE_FILE,\n+  SAVE_FILE,\n   NEW_FILE,\n-  POP_FILE_LIST_MENU\n+  POP_FILE_LIST_MENU,\n } from './constant'\n import { defaultDirPath } from './onInterProcess'\n import { openNewFile } from './onSendToRender'\n let timer\n@@ -33,17 +33,17 @@\n     console.log(filePath)\n     writeFileSync(filePath, 'new file')\n     openNewFile(filePath, window)\n   })\n-  ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {\n+  ipcMain.on(SAVE_FILE, (e, { filePath, newFileContent }) => {\n     if (timer) clearTimeout(timer)\n     timer = setTimeout(() => {\n       console.log('write file in' + filePath)\n       if (existsSync(filePath)) writeFileSync(filePath, newFileContent)\n     }, 3000)\n   })\n   ipcMain.on(POP_FILE_LIST_MENU, (e, filePath) => {\n     newFileListMenu(filePath, window).popup({\n-    window\n+      window\n     })\n   })\n }\n"
                 }
             ],
             "date": 1665989999429,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 102,
+            "activePatchIndex": 106,
             "patches": [
                 {
                     "date": 1665389904992,
@@ -416,6 +416,22 @@
                 {
                     "date": 1666532241413,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,10 +32,10 @@\n   },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n-  onUpdateFileList: () => {\n-    ipcRenderer.on(UPDATE_FILE_LIST, () => {})\n+  onUpdateFileList: (callback) => {\n+    ipcRenderer.on(UPDATE_FILE_LIST,callback)\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n"
+                },
+                {
+                    "date": 1666686955419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,13 @@\n } from '../main/electron/events/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n // Custom APIs for renderer\n-\n-const api: Api = {\n+const sendEvents = (event:string,...args:any) =>{\n+  ipcRenderer.send(event,...args)\n+}\n+const api = {\n+  sendEvents,\n   say: () => {\n     console.log('hello')\n   },\n   maxScreen: () => {\n@@ -33,9 +36,9 @@\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   onUpdateFileList: (callback) => {\n-    ipcRenderer.on(UPDATE_FILE_LIST,callback)\n+    ipcRenderer.on(UPDATE_FILE_LIST, callback)\n   },\n   clickFileList(filePath) {\n     ipcRenderer.send(CLICK_FILE_LIST, filePath)\n   },\n@@ -52,8 +55,9 @@\n   popFileListMenu: (filePath) => {\n     ipcRenderer.send(POP_FILE_LIST_MENU, filePath)\n   }\n }\n+\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n // 默认情况下electron是隔离的，就是在preload中定义的window属性在render中是访问不到的\n"
+                },
+                {
+                    "date": 1666687046449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n // Custom APIs for renderer\n const sendEvents = (event:string,...args:any) =>{\n   ipcRenderer.send(event,...args)\n }\n-const api = {\n+const api:Api = {\n   sendEvents,\n   say: () => {\n     console.log('hello')\n   },\n"
+                },
+                {
+                    "date": 1666688577437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,17 +23,8 @@\n   sendEvents,\n   say: () => {\n     console.log('hello')\n   },\n-  maxScreen: () => {\n-    ipcRenderer.send(MAX_SCREEN)\n-  },\n-  minScreen: () => {\n-    ipcRenderer.send(MIN_SCREEN)\n-  },\n-  closeScreen: () => {\n-    ipcRenderer.send(CLOSE_SCREEN)\n-  },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   onUpdateFileList: (callback) => {\n"
+                },
+                {
+                    "date": 1666688905592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,11 @@\n import { contextBridge, ipcRenderer } from 'electron'\n // 渲染进程中可以使用的API\n import { electronAPI } from '@electron-toolkit/preload'\n import {\n-  CLICK_FILE_LIST,\n-  CLOSE_SCREEN,\n-  MAX_SCREEN,\n-  MIN_SCREEN,\n-  NEW_FILE,\n+\n   OPEN_DEFAULT_DIR,\n   OPEN_NEW_FILE,\n-  POP_FILE_LIST_MENU,\n-  UPDATE_FILE,\n   UPDATE_FILE_LIST\n } from '../main/electron/events/constant'\n // 导入.d.ts类型文件的时候不能有扩展名！\n import { Api } from './index.d'\n@@ -20,33 +14,18 @@\n   ipcRenderer.send(event,...args)\n }\n const api:Api = {\n   sendEvents,\n-  say: () => {\n-    console.log('hello')\n-  },\n   onOpenFile: (callback) => {\n     ipcRenderer.on(OPEN_NEW_FILE, callback)\n   },\n   onUpdateFileList: (callback) => {\n     ipcRenderer.on(UPDATE_FILE_LIST, callback)\n   },\n-  clickFileList(filePath) {\n-    ipcRenderer.send(CLICK_FILE_LIST, filePath)\n-  },\n   openDefaultDir: async () => {\n     const defaultDirContents = await ipcRenderer.invoke(OPEN_DEFAULT_DIR)\n     return defaultDirContents\n   },\n-  updateFile: ({ filePath, newFileContent }) => {\n-    ipcRenderer.send(UPDATE_FILE, { filePath, newFileContent })\n-  },\n-  newFile: (fileName) => {\n-    ipcRenderer.send(NEW_FILE, fileName)\n-  },\n-  popFileListMenu: (filePath) => {\n-    ipcRenderer.send(POP_FILE_LIST_MENU, filePath)\n-  }\n }\n \n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
                 }
             ],
             "date": 1665389904992,

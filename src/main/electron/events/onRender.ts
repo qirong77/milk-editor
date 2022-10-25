@@ -7,9 +7,9 @@ import {
   MAX_SCREEN,
   MIN_SCREEN,
   CLICK_FILE_LIST,
-  UPDATE_FILE,
+  SAVE_FILE,
   NEW_FILE,
-  POP_FILE_LIST_MENU
+  POP_FILE_LIST_MENU,
 } from './constant'
 import { defaultDirPath } from './onInterProcess'
 import { openNewFile } from './onSendToRender'
@@ -34,7 +34,7 @@ export const onRender = (window: BrowserWindow) => {
     writeFileSync(filePath, 'new file')
     openNewFile(filePath, window)
   })
-  ipcMain.on(UPDATE_FILE, (e, { filePath, newFileContent }) => {
+  ipcMain.on(SAVE_FILE, (e, { filePath, newFileContent }) => {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       console.log('write file in' + filePath)

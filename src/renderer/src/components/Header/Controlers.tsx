@@ -1,3 +1,6 @@
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from "../../../../main/electron/events/constant"
+
+
 export const Controlers = () => {
   return (
     <div className="controlers">
@@ -5,7 +8,7 @@ export const Controlers = () => {
         <li
           className={'li-close'}
           onClick={() => {
-            window.api.closeScreen()
+            window.api.sendEvents(CLOSE_SCREEN)
           }}
         >
           <svg
@@ -22,7 +25,7 @@ export const Controlers = () => {
         <li
           className={'li-min'}
           onClick={() => {
-            window.api.minScreen()
+            window.api.sendEvents(MIN_SCREEN)
           }}
         >
           <svg
@@ -39,7 +42,8 @@ export const Controlers = () => {
         <li className={'li-max'}>
           <svg
             onClick={() => {
-              window.api.maxScreen()
+              window.api.sendEvents(MAX_SCREEN)
+              // window.api.maxScreen()
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="16"

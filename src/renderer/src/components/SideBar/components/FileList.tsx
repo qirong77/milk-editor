@@ -1,6 +1,7 @@
 import { MoreSvg, NewFileSvg } from '@renderer/common/svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
+import { NEW_FILE, POP_FILE_LIST_MENU } from '../../../../../main/electron/events/constant'
 
 export const FileList: React.FC<{
   fileList: IFileList
@@ -16,7 +17,7 @@ export const FileList: React.FC<{
       if (e.code === 'Enter' && showNewFile) {
         console.log('enter')
         setShowNewFile(false)
-        window.api.newFile(iptRef.current?.value || 'untitled')
+        window.api.sendEvents(NEW_FILE,iptRef.current?.value || 'untitled')
         updateFiles()
       }
     }
@@ -36,7 +37,7 @@ export const FileList: React.FC<{
             <li
               key={filePath}
               onContextMenu={() => {
-                window.api.popFileListMenu(filePath)
+                window.api.sendEvents(POP_FILE_LIST_MENU,filePath)
               }}
               onClick={(e) => {
                 e.stopPropagation()

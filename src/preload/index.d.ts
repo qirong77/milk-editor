@@ -14,17 +14,10 @@ export type IFileList = Array<{
   filePath: string
 }>
 export interface Api {
-  say: () => void
-  minScreen: () => void
-  maxScreen: () => void
-  closeScreen: () => void
+  sendEvents:Function
   onOpenFile: (callback: Listener) => void
   onUpdateFileList: (callback: (e: IpcRendererEvent, ...args: any) => void) => void
   openDefaultDir: () => Promise<IFileList>
-  clickFileList: (filePath: string) => void
-  updateFile: (File: { filePath: string; newFileContent: string }) => void
-  newFile: (filePath: string) => void
-  popFileListMenu: (filePath: string) => void
 }
 declare global {
   interface Window {

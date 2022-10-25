@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react'
 import { DragLine } from './components/DragLine'
 import { FileList } from './components/FileList'
-import { IFileList } from 'src/preload/index.d'
+
 import { MenuSvg, SearchSvg } from '@renderer/common/svg'
 import { useUpdateHeaders } from './hooks/useUpdateHeader'
 import { SearchFile } from '../Search/SearchFile'
+import { CLICK_FILE_LIST } from '../../../../main/electron/events/constant'
+
 interface ISideBar {
-  fileList: IFileList
+  fileList: Array<{
+    fileName: string
+    filePath: string
+  }>
   updateFiles: () => void
 }
 export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {
@@ -29,7 +34,7 @@ export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {
     return () => document.removeEventListener('keydown', hanldeHideBar)
   }, [openSearchFile])
   const openFile = (filePath: string) => {
-    window.api.clickFileList(filePath)
+    window.api.sendEvents(CLICK_FILE_LIST,filePath)
     setShowFileList(false)
   }
   return (
