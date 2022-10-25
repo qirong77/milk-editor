@@ -1,7 +1,7 @@
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
 
-export const useConfig = (editor: Editor, root: HTMLElement) => {
+export const useConfig = (editor: Editor, root: HTMLElement,setMarkdown:Function) => {
   editor
     .config((ctx) => {
       ctx.set(rootCtx, root)
@@ -19,6 +19,10 @@ export const useConfig = (editor: Editor, root: HTMLElement) => {
         })
         .mounted(() => {
           console.log('after the editor mounts')
+        })
+        .markdownUpdated((ctx,markdown)=>{
+          console.log('markdownUpdated')
+          setMarkdown(markdown)
         })
         .updated(() => {
           console.log('when editor state updates')

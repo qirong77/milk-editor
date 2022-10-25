@@ -6,7 +6,6 @@ import { usePlugins } from './hooks/usePlugins'
 import { replaceAll } from '@milkdown/utils'
 import { useConfig } from './hooks/useConfig'
 import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'
-import { listenerCtx } from '@milkdown/plugin-listener'
 
 interface MilkdownEditor {
   content: string
@@ -14,10 +13,11 @@ interface MilkdownEditor {
 }
 
 export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {
+  console.log('MilkdownEditor-render')
   const [markdown, setMarkdown] = useState('')
   const { editor, loading, getInstance } = useEditor((root) => {
     const newEditor = Editor.make()
-    useConfig(newEditor, root)
+    useConfig(newEditor, root, setMarkdown)
     usePlugins(newEditor)
     return newEditor
   })
@@ -37,15 +37,5 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
       newFileContent: markdown
     })
   }, [markdown])
-
-  useEffect(() => {
-    const instance = getInstance()
-    instance?.action((ctx) => {
-      ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {
-        console.log('markdownUpdated')
-        setMarkdown(markdown)
-      })
-    })
-  }, [])
   return <ReactEditor editor={editor} />
 }

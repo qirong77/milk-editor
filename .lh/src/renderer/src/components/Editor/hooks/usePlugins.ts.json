@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 24,
             "patches": [
                 {
                     "date": 1666014070104,
@@ -88,6 +88,22 @@
                 {
                     "date": 1666627751694,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text','vue','react']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666628947083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript','text','vue','react']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','bash']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666628956435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','bash']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','shell']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666636917985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','shell']\n+    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','shell','json']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
+                },
+                {
+                    "date": 1666676327092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     }\n   })\n   .configure(taskListItem, {})\n   .configure(codeFence, {\n-    languageList: ['scss', 'javascript', 'css', 'html', 'typescript', 'text', 'vue', 'react','shell','json']\n+    languageList: ['scss', 'javascript', 'html', 'vue','shell','json']\n   })\n export const usePlugins = (Editor: Editor) => {\n   Editor.use(nordDark)\n     .use(history)\n"
                 }
             ],
             "date": 1666014070104,

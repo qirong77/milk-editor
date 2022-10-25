@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 73,
+            "activePatchIndex": 80,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -300,6 +300,34 @@
                 {
                     "date": 1666627184423,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,17 +34,17 @@\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n-          background-color: inherit;\n+          background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 14px;\n           border-width: 2px;\n           p {\n-            color: rgb(164, 180, 207);\n+            color: rgb(156, 174, 203);\n           }\n         }\n         .editor .code-fence pre code {\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n"
+                },
+                {
+                    "date": 1666636894480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n             color: rgb(156, 174, 203);\n           }\n         }\n         .editor .code-fence pre code {\n+          color: $dark-font-color;\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666637024424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n             color: rgb(156, 174, 203);\n           }\n         }\n         .editor .code-fence pre code {\n-          color: $dark-font-color;\n+          color: red;\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666637073462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n             color: rgb(156, 174, 203);\n           }\n         }\n         .editor .code-fence pre code {\n-          color: red;\n+          color: red !important;\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666637136290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,10 @@\n           p {\n             color: rgb(156, 174, 203);\n           }\n         }\n-        .editor .code-fence pre code {\n-          color: red !important;\n+         .code-fence pre code {\n+          color:$dark-font-color;\n           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n         }\n       }\n     }\n"
+                },
+                {
+                    "date": 1666673176812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       color: $dark-font-color;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n-          color: $dark-font-color;\n+          color: rgb(134,193,209);\n           background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n"
+                },
+                {
+                    "date": 1666673228295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,18 +33,18 @@\n       color: $dark-font-color;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n-          color: rgb(134,193,209);\n+          color: rgb(165, 211, 223);\n           background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n         .blockquote {\n           padding-left: 14px;\n           border-width: 2px;\n           p {\n-            color: rgb(156, 174, 203);\n+            color: rgb(153, 164, 182);\n           }\n         }\n          .code-fence pre code {\n           color:$dark-font-color;\n"
+                },
+                {
+                    "date": 1666673256903,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       color: $dark-font-color;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n-          color: rgb(165, 211, 223);\n+          color: $dark-font-color;\n           background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n"
                 }
             ],
             "date": 1666166681790,

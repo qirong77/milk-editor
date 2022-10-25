@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 246,
+            "activePatchIndex": 248,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -992,6 +992,14 @@
                 {
                     "date": 1666333196339,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n import { Editor } from '@milkdown/core'\n \n import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n-import { themeManagerCtx } from '@milkdown/core'\n import { replaceAll } from '@milkdown/utils'\n-import { nordDark } from '@milkdown/theme-nord'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n@@ -46,9 +44,8 @@\n       ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n         console.log('markdownUpdated')\n         setMarkdown(markdown)\n       })\n-\n     })\n   }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666637954203,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,13 @@\n   filePath: string\n }\n \n export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  console.log('MilkdownEditor-render')\n   const [markdown, setMarkdown] = useState('')\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n-    useConfig(newEditor, root)\n+    useConfig(newEditor, root, setMarkdown)\n     usePlugins(newEditor)\n     return newEditor\n   })\n   // 全部替换，点击文件列表的时候起作用\n@@ -36,16 +37,6 @@\n       filePath: filePath,\n       newFileContent: markdown\n     })\n   }, [markdown])\n-\n-  useEffect(() => {\n-    const instance = getInstance()\n-    instance?.action((ctx) => {\n-      ctx.get(listenerCtx).markdownUpdated((ctx, markdown) => {\n-        console.log('markdownUpdated')\n-        setMarkdown(markdown)\n-      })\n-    })\n-  }, [])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1666637966174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,8 @@\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n-import { listenerCtx } from '@milkdown/plugin-listener'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n"
                 }
             ],
             "date": 1665496693570,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 23,
             "patches": [
                 {
                     "date": 1665496829721,
@@ -96,6 +96,10 @@
                 {
                     "date": 1666627811772,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,11 +35,14 @@\n   font-weight: 500;\n }\n .milkdown .editor h3.heading {\n   font-weight: 300;\n+  font-size: 30px;\n }\n .milkdown .editor h4.heading {\n   font-weight: 200;\n+  font-size: 25px;\n }\n .milkdown .editor h5.heading {\n   font-weight: 100;\n+  font-size: 20px;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1666636897653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,15 +34,15 @@\n .milkdown .editor h1.heading {\n   font-weight: 500;\n }\n .milkdown .editor h3.heading {\n-  font-weight: 300;\n+  font-weight: 400;\n   font-size: 30px;\n }\n .milkdown .editor h4.heading {\n-  font-weight: 200;\n+  font-weight: 400;\n   font-size: 25px;\n }\n .milkdown .editor h5.heading {\n-  font-weight: 100;\n\\ No newline at end of file\n+  font-weight: 300;\n   font-size: 20px;\n-}\n+}\n"
                 }
             ],
             "date": 1665496829721,

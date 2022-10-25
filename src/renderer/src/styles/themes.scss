@@ -43,10 +43,11 @@ $active-font-color: rgb(129, 161, 193);
           padding-left: 14px;
           border-width: 2px;
           p {
-            color: rgb(156, 174, 203);
+            color: rgb(153, 164, 182);
           }
         }
-        .editor .code-fence pre code {
+         .code-fence pre code {
+          color:$dark-font-color;
           font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;
         }
       }
