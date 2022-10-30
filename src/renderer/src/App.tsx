@@ -11,9 +11,6 @@ export const App = () => {
   const [filePath, setPath] = useState('title')
   const [fileList, setFileList] = useState<IFileList>([])
   const [openSearchWords, setOpenSearchWords] = useState(false)
-  // document.querySelectorAll('pre code').forEach((el) => {
-  //   hljs.highlightElement(el as HTMLElement);
-  // });
   console.log('render-app')
   // 左上角的打开文件功能，是主进程向渲染进程发送数据
   useEffect(() => {

@@ -1,5 +1,4 @@
-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from "../../../../main/electron/events/constant"
-
+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN } from '../../../../main/electron/events/constant'
 
 export const Controlers = () => {
   return (

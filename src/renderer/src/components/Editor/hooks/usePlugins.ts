@@ -37,7 +37,7 @@ const gitHubCommonMark = gfm
   })
   .configure(taskListItem, {})
   .configure(codeFence, {
-    languageList: ['scss', 'javascript', 'html', 'vue','shell','json']
+    languageList: ['scss', 'javascript', 'html', 'vue', 'shell', 'json']
   })
 export const usePlugins = (Editor: Editor) => {
   Editor.use(nordDark)

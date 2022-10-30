@@ -9,7 +9,7 @@ import {
   CLICK_FILE_LIST,
   SAVE_FILE,
   NEW_FILE,
-  POP_FILE_LIST_MENU,
+  POP_FILE_LIST_MENU
 } from './constant'
 import { defaultDirPath } from './onInterProcess'
 import { openNewFile } from './onSendToRender'

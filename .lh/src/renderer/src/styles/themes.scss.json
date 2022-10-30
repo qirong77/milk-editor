@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 80,
+            "activePatchIndex": 83,
             "patches": [
                 {
                     "date": 1666166681790,
@@ -328,6 +328,18 @@
                 {
                     "date": 1666673256903,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n       color: $dark-font-color;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n-          color: rgb(165, 211, 223);\n+          color: $dark-font-color;\n           background-color: $dark-sideBar-background;\n           font-size: initial;\n         }\n         // 注释\n"
+                },
+                {
+                    "date": 1667142539505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background: rgb(36, 41, 51);\n $active-font-color: rgb(129, 161, 193);\n+$font-family:serif;\n+$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n@@ -30,8 +32,9 @@\n     }\n     .milkdown {\n       background: $dark-background;\n       color: $dark-font-color;\n+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n@@ -45,11 +48,11 @@\n           p {\n             color: rgb(153, 164, 182);\n           }\n         }\n-         .code-fence pre code {\n-          color:$dark-font-color;\n-          font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;\n+        .code-fence pre code {\n+          color: $dark-font-color;\n+          font-family:$code-fence-font-family\n         }\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1667142585723,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n     }\n     .milkdown {\n       background: $dark-background;\n       color: $dark-font-color;\n-      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\n+      font-family:$font-family;\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n"
+                },
+                {
+                    "date": 1667142659127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n           }\n         }\n         .code-fence pre code {\n           color: $dark-font-color;\n-          font-family:$code-fence-font-family\n+          // font-family:$code-fence-font-family\n         }\n       }\n     }\n   }\n"
                 }
             ],
             "date": 1666166681790,

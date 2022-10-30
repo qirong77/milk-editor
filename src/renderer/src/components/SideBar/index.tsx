@@ -34,7 +34,7 @@ export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {
     return () => document.removeEventListener('keydown', hanldeHideBar)
   }, [openSearchFile])
   const openFile = (filePath: string) => {
-    window.api.sendEvents(CLICK_FILE_LIST,filePath)
+    window.api.sendEvents(CLICK_FILE_LIST, filePath)
     setShowFileList(false)
   }
   return (

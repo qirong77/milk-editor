@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 66,
+            "activePatchIndex": 82,
             "patches": [
                 {
                     "date": 1666160968450,
@@ -272,6 +272,70 @@
                 {
                     "date": 1666503246037,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n     console.log(Element.innerText)\n     const io = new IntersectionObserver((entries) => {\n       entries.forEach((entrie) => {\n         if (entrie.intersectionRatio < 0.5) {\n-          if(e.code===ARROW_DOWN) Element.scrollIntoView(false)\n+          if (e.code === ARROW_DOWN) Element.scrollIntoView(false)\n           else Element.scrollIntoView(true)\n         }\n         // 不论如何都需要移除当前的观察项，保证只有一项\n         io.unobserve(Element)\n"
+                },
+                {
+                    "date": 1667143526433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,27 @@\n-import { useEffect, useRef } from 'react'\n+import { useEffect, useRef, useState } from 'react'\n import { IFileList } from 'src/preload/index.d'\n \n interface ISearchFile {\n   fileList: IFileList\n   openFile: (filePath: string) => void\n   closeSearchFile: () => void\n }\n-export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n-  let active = 0\n-  const iptRef = useRef<HTMLInputElement>(null)\n+const mapFiles = (fileList: IFileList) => {\n   const files = fileList.map((file, index) => {\n     return (\n       <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n         <span>{file.fileName}</span>\n       </li>\n     )\n   })\n+  return files\n+}\n+export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n+  const [files, setFiles] = useState(mapFiles(fileList))\n+\n+  let active = 0\n+  const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n     const ARROW_DOWN = 'ArrowDown'\n     const ARROW_UP = 'ArrowUp'\n@@ -63,12 +68,20 @@\n     iptRef.current?.focus()\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n+  const updateFiles = () => {\n+    const searchStr = iptRef.current?.value || ''\n+    const newFileList = fileList.filter((file) => {\n+      if (file.fileName.includes(searchStr)) return true\n+      else return file\n+    })\n+    setFiles(newFileList)\n+  }\n   return (\n     <div className=\"search-file \">\n       <div>\n-        <input placeholder=\"xx\" ref={iptRef} type=\"text\" />\n+        <input placeholder=\"xx\" onChange={updateFiles} ref={iptRef} type=\"text\" />\n       </div>\n       <ul>{files}</ul>\n     </div>\n   )\n"
+                },
+                {
+                    "date": 1667143565480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,9 +74,9 @@\n     const newFileList = fileList.filter((file) => {\n       if (file.fileName.includes(searchStr)) return true\n       else return file\n     })\n-    setFiles(newFileList)\n+    setFiles(mapFiles(newFileList))\n   }\n   return (\n     <div className=\"search-file \">\n       <div>\n"
+                },
+                {
+                    "date": 1667143583551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,8 +69,9 @@\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   const updateFiles = () => {\n+    console.log('change')\n     const searchStr = iptRef.current?.value || ''\n     const newFileList = fileList.filter((file) => {\n       if (file.fileName.includes(searchStr)) return true\n       else return file\n"
+                },
+                {
+                    "date": 1667143632266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,10 +69,10 @@\n     document.addEventListener('keydown', hanleSelect)\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   const updateFiles = () => {\n-    console.log('change')\n     const searchStr = iptRef.current?.value || ''\n+    console.log(searchStr)\n     const newFileList = fileList.filter((file) => {\n       if (file.fileName.includes(searchStr)) return true\n       else return file\n     })\n"
+                },
+                {
+                    "date": 1667143684509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,13 +70,13 @@\n     return () => document.removeEventListener('keydown', hanleSelect)\n   }, [fileList])\n   const updateFiles = () => {\n     const searchStr = iptRef.current?.value || ''\n-    console.log(searchStr)\n     const newFileList = fileList.filter((file) => {\n       if (file.fileName.includes(searchStr)) return true\n       else return file\n     })\n+    console.log(newFileList)\n     setFiles(mapFiles(newFileList))\n   }\n   return (\n     <div className=\"search-file \">\n"
+                },
+                {
+                    "date": 1667143715769,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n   const updateFiles = () => {\n     const searchStr = iptRef.current?.value || ''\n     const newFileList = fileList.filter((file) => {\n       if (file.fileName.includes(searchStr)) return true\n-      else return file\n+      else return false\n     })\n     console.log(newFileList)\n     setFiles(mapFiles(newFileList))\n   }\n"
+                },
+                {
+                    "date": 1667143772198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -71,9 +71,9 @@\n   }, [fileList])\n   const updateFiles = () => {\n     const searchStr = iptRef.current?.value || ''\n     const newFileList = fileList.filter((file) => {\n-      if (file.fileName.includes(searchStr)) return true\n+      if (file.fileName.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase())) return true\n       else return false\n     })\n     console.log(newFileList)\n     setFiles(mapFiles(newFileList))\n"
+                },
+                {
+                    "date": 1667143901846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,11 @@\n     })\n     io.observe(Element)\n     if (e.code === 'Enter') {\n       const filePath = fileList[active].filePath\n-      openFile(filePath)\n-      closeSearchFile()\n+      console.log(filePath)\n+      // openFile(filePath)\n+      // closeSearchFile()\n     }\n   }\n   useEffect(() => {\n     iptRef.current?.focus()\n"
+                },
+                {
+                    "date": 1667143925566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,8 @@\n         active += 1\n       }\n     }\n     const Element = files[active]\n-    console.log(Element.innerText)\n     const io = new IntersectionObserver((entries) => {\n       entries.forEach((entrie) => {\n         if (entrie.intersectionRatio < 0.5) {\n           if (e.code === ARROW_DOWN) Element.scrollIntoView(false)\n"
+                },
+                {
+                    "date": 1667143937800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n         active += 1\n       }\n     }\n     const Element = files[active]\n+    console.log(Element.innerText)\n     const io = new IntersectionObserver((entries) => {\n       entries.forEach((entrie) => {\n         if (entrie.intersectionRatio < 0.5) {\n           if (e.code === ARROW_DOWN) Element.scrollIntoView(false)\n"
+                },
+                {
+                    "date": 1667144030937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n       }\n     }\n     if (e.code === ARROW_DOWN) {\n       files[active].classList.remove('active')\n+      console.log(active)\n       if (!files[active + 1]) {\n         active = 0\n         files[active].classList.add('active')\n       } else {\n"
+                },
+                {
+                    "date": 1667144228671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,11 @@\n   openFile: (filePath: string) => void\n   closeSearchFile: () => void\n }\n const mapFiles = (fileList: IFileList) => {\n-  const files = fileList.map((file, index) => {\n+  const files = fileList.map((file) => {\n     return (\n-      <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n+      <li key={file.filePath} >\n         <span>{file.fileName}</span>\n       </li>\n     )\n   })\n@@ -22,8 +22,9 @@\n   let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n+    files[0].classList.add('active')\n     const ARROW_DOWN = 'ArrowDown'\n     const ARROW_UP = 'ArrowUp'\n     if (e.code === ARROW_UP) {\n       files[active].classList.remove('active')\n"
+                },
+                {
+                    "date": 1667144299751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n   return files\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n   const [files, setFiles] = useState(mapFiles(fileList))\n-\n   let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n"
+                },
+                {
+                    "date": 1667144344485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,19 +6,20 @@\n   openFile: (filePath: string) => void\n   closeSearchFile: () => void\n }\n const mapFiles = (fileList: IFileList) => {\n-  const files = fileList.map((file) => {\n+  const files = fileList.map((file, index) => {\n     return (\n-      <li key={file.filePath} >\n+      <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n         <span>{file.fileName}</span>\n       </li>\n     )\n   })\n   return files\n }\n export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n   const [files, setFiles] = useState(mapFiles(fileList))\n+\n   let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n"
+                },
+                {
+                    "date": 1667144354589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n   let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n-    files[0].classList.add('active')\n     const ARROW_DOWN = 'ArrowDown'\n     const ARROW_UP = 'ArrowUp'\n     if (e.code === ARROW_UP) {\n       files[active].classList.remove('active')\n"
+                },
+                {
+                    "date": 1667145071942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,13 @@\n     )\n   })\n   return files\n }\n+let active = 0\n+\n export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n   const [files, setFiles] = useState(mapFiles(fileList))\n \n-  let active = 0\n   const iptRef = useRef<HTMLInputElement>(null)\n   const hanleSelect = (e: KeyboardEvent) => {\n     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')\n     const ARROW_DOWN = 'ArrowDown'\n"
                 }
             ],
             "date": 1666160968450,

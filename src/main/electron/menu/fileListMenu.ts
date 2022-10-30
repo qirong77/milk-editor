@@ -4,12 +4,18 @@ import { DarwinMenuItemConstructorOptions } from '.'
 import { updateFileList } from '../events/onSendToRender'
 
 export const newFileListMenu = (filePath: string, window: BrowserWindow) => {
-  const fileListMenuTemplate: DarwinMenuItemConstructorOptions = {
-    label: '删除',
-    click: () => {
-      if (existsSync(filePath)) unlinkSync(filePath)
-      updateFileList(window)
+  const fileListMenuTemplate: DarwinMenuItemConstructorOptions[] = [
+    {
+      label: '删除',
+      click: () => {
+        if (existsSync(filePath)) unlinkSync(filePath)
+        updateFileList(window)
+      }
+    },
+    {
+      label: '重命名',
+      click(menuItem, browserWindow, event) {}
     }
-  }
-  return Menu.buildFromTemplate([fileListMenuTemplate])
+  ]
+  return Menu.buildFromTemplate(fileListMenuTemplate)
 }

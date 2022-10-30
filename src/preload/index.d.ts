@@ -14,7 +14,7 @@ export type IFileList = Array<{
   filePath: string
 }>
 export interface Api {
-  sendEvents:Function
+  sendEvents: Function
   onOpenFile: (callback: Listener) => void
   onUpdateFileList: (callback: (e: IpcRendererEvent, ...args: any) => void) => void
   openDefaultDir: () => Promise<IFileList>

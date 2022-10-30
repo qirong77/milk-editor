@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1666510966320,
@@ -36,6 +36,10 @@
                 {
                     "date": 1666532369264,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,15 @@\n-import { Menu } from 'electron'\n+import { BrowserWindow, Menu } from 'electron'\n import { existsSync, unlinkSync } from 'fs'\n import { DarwinMenuItemConstructorOptions } from '.'\n+import { updateFileList } from '../events/onSendToRender'\n \n-export const newFileListMenu = (filePath: string) => {\n+export const newFileListMenu = (filePath: string,window:BrowserWindow) => {\n   const fileListMenuTemplate: DarwinMenuItemConstructorOptions = {\n     label: '删除',\n     click: () => {\n         if(existsSync(filePath)) unlinkSync(filePath)\n-        \n+        updateFileList(window)\n     }\n   }\n   return Menu.buildFromTemplate([fileListMenuTemplate])\n }\n"
+                },
+                {
+                    "date": 1666689399150,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,21 @@\n import { existsSync, unlinkSync } from 'fs'\n import { DarwinMenuItemConstructorOptions } from '.'\n import { updateFileList } from '../events/onSendToRender'\n \n-export const newFileListMenu = (filePath: string,window:BrowserWindow) => {\n-  const fileListMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: '删除',\n-    click: () => {\n-        if(existsSync(filePath)) unlinkSync(filePath)\n+export const newFileListMenu = (filePath: string, window: BrowserWindow) => {\n+  const fileListMenuTemplate: DarwinMenuItemConstructorOptions[] = [\n+    {\n+      label: '删除',\n+      click: () => {\n+        if (existsSync(filePath)) unlinkSync(filePath)\n         updateFileList(window)\n+      }\n+    },{\n+      label:'重命名',\n+      click(menuItem, browserWindow, event) {\n+        \n+      },\n     }\n-  }\n-  return Menu.buildFromTemplate([fileListMenuTemplate])\n+  ]\n+  return Menu.buildFromTemplate(fileListMenuTemplate)\n }\n"
                 }
             ],
             "date": 1666510966320,

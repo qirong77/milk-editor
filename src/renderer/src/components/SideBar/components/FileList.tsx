@@ -1,8 +1,8 @@
 import { MoreSvg, NewFileSvg } from '@renderer/common/svg'
 import React, { useEffect, useRef, useState } from 'react'
-import { IFileList } from 'src/preload/index.d'
-import { NEW_FILE, POP_FILE_LIST_MENU } from '../../../../../main/electron/events/constant'
 
+import { NEW_FILE, POP_FILE_LIST_MENU } from '../../../../../main/electron/events/constant'
+import { IFileList } from '../../../../../preload/index.d'
 export const FileList: React.FC<{
   fileList: IFileList
   openFile: (filePath: string) => void
@@ -11,13 +11,30 @@ export const FileList: React.FC<{
   console.log('file-list-render')
   const [showNewFile, setShowNewFile] = useState(false)
   const iptRef = useRef<HTMLInputElement>(null)
+  const files = fileList.map(({ fileName, filePath }) => {
+    return (
+      <li
+        key={filePath}
+        onContextMenu={() => {
+          window.api.sendEvents(POP_FILE_LIST_MENU, filePath)
+        }}
+        onClick={(e) => {
+          e.stopPropagation()
+          openFile(filePath)
+        }}
+      >
+        <div></div>
+        <span>{fileName}</span>
+      </li>
+    )
+  })
   useEffect(() => {
     iptRef.current?.focus()
     const handleReturn = (e: KeyboardEvent) => {
       if (e.code === 'Enter' && showNewFile) {
         console.log('enter')
         setShowNewFile(false)
-        window.api.sendEvents(NEW_FILE,iptRef.current?.value || 'untitled')
+        window.api.sendEvents(NEW_FILE, iptRef.current?.value || 'untitled')
         updateFiles()
       }
     }
@@ -32,23 +49,7 @@ export const FileList: React.FC<{
           paddingBottom: '50px'
         }}
       >
-        {fileList.map(({ fileName, filePath }) => {
-          return (
-            <li
-              key={filePath}
-              onContextMenu={() => {
-                window.api.sendEvents(POP_FILE_LIST_MENU,filePath)
-              }}
-              onClick={(e) => {
-                e.stopPropagation()
-                openFile(filePath)
-              }}
-            >
-              <div></div>
-              <span>{fileName}</span>
-            </li>
-          )
-        })}
+        {files}
         {showNewFile && (
           <li className="new-file">
             <input ref={iptRef} type="text" />

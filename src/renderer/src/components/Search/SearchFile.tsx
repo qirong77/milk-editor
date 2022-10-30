@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 
 interface ISearchFile {
@@ -6,9 +6,7 @@ interface ISearchFile {
   openFile: (filePath: string) => void
   closeSearchFile: () => void
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {
-  let active = 0
-  const iptRef = useRef<HTMLInputElement>(null)
+const mapFiles = (fileList: IFileList) => {
   const files = fileList.map((file, index) => {
     return (
       <li key={file.filePath} className={index === 0 ? 'active' : ''}>
@@ -16,6 +14,14 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
       </li>
     )
   })
+  return files
+}
+let active = 0
+
+export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {
+  const [files, setFiles] = useState(mapFiles(fileList))
+
+  const iptRef = useRef<HTMLInputElement>(null)
   const hanleSelect = (e: KeyboardEvent) => {
     const files = document.querySelectorAll<HTMLElement>('.search-file ul li')
     const ARROW_DOWN = 'ArrowDown'
@@ -32,6 +38,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     }
     if (e.code === ARROW_DOWN) {
       files[active].classList.remove('active')
+      console.log(active)
       if (!files[active + 1]) {
         active = 0
         files[active].classList.add('active')
@@ -55,8 +62,9 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     io.observe(Element)
     if (e.code === 'Enter') {
       const filePath = fileList[active].filePath
-      openFile(filePath)
-      closeSearchFile()
+      console.log(filePath)
+      // openFile(filePath)
+      // closeSearchFile()
     }
   }
   useEffect(() => {
@@ -64,10 +72,19 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     document.addEventListener('keydown', hanleSelect)
     return () => document.removeEventListener('keydown', hanleSelect)
   }, [fileList])
+  const updateFiles = () => {
+    const searchStr = iptRef.current?.value || ''
+    const newFileList = fileList.filter((file) => {
+      if (file.fileName.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase())) return true
+      else return false
+    })
+    console.log(newFileList)
+    setFiles(mapFiles(newFileList))
+  }
   return (
     <div className="search-file ">
       <div>
-        <input placeholder="xx" ref={iptRef} type="text" />
+        <input placeholder="xx" onChange={updateFiles} ref={iptRef} type="text" />
       </div>
       <ul>{files}</ul>
     </div>
