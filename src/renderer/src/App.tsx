@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { IFileList } from 'src/preload/index.d'
 import { MilkdownEditor } from './components/Editor'
+
 import { Header } from './components/Header'
 import { SearchWord } from './components/Search/SearchWord'
 import { SideBar } from './components/SideBar'
@@ -40,8 +41,7 @@ export const App = () => {
       }
       if (e.metaKey && e.code === 'KeyB') {
         const SideBar = document.querySelector('.side-bar') as HTMLElement
-        console.log('command + B')
-        useUpdateHeaders()
+        console.log('commend + B')
         SideBar?.classList.toggle('side-bar-close')
       }
       if (e.metaKey && e.code === 'KeyF') {

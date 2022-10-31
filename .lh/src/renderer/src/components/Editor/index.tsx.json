@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 249,
+            "activePatchIndex": 251,
             "patches": [
                 {
                     "date": 1665496693570,
@@ -1004,6 +1004,14 @@
                 {
                     "date": 1666688905616,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n+import { SAVE_FILE } from '../../../../main/electron/events/constant'\n \n interface MilkdownEditor {\n   content: string\n   filePath: string\n@@ -31,9 +32,9 @@\n     }\n   }, [loading, content])\n   // 存储的函数必须根据副作用实时修改，否则不会更新\n   useEffect(() => {\n-    window.api.updateFile({\n+    window.api.sendEvents(SAVE_FILE,{\n       filePath: filePath,\n       newFileContent: markdown\n     })\n   }, [markdown])\n"
+                },
+                {
+                    "date": 1667191487870,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { Editor } from '@milkdown/core'\n \n-import { ReactEditor, useEditor } from '@milkdown/react'\n+import { ReactEditor, useEditor } from '@milkdown/react';\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n@@ -12,10 +12,10 @@\n   content: string\n   filePath: string\n }\n \n-export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-  console.log('MilkdownEditor-render')\n+export const MilkdownEditor:React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+    console.log('MilkdownEditor-render')\n   const [markdown, setMarkdown] = useState('')\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root, setMarkdown)\n@@ -37,6 +37,6 @@\n       filePath: filePath,\n       newFileContent: markdown\n     })\n   }, [markdown])\n-  return <ReactEditor editor={editor} />\n+  return <ReactEditor editor={editor}/>\n }\n"
+                },
+                {
+                    "date": 1667210968945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React, { useEffect, useState } from 'react'\n import { Editor } from '@milkdown/core'\n \n-import { ReactEditor, useEditor } from '@milkdown/react';\n+import { ReactEditor, useEditor } from '@milkdown/react'\n import { usePlugins } from './hooks/usePlugins'\n import { replaceAll } from '@milkdown/utils'\n import { useConfig } from './hooks/useConfig'\n import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'\n@@ -12,10 +12,10 @@\n   content: string\n   filePath: string\n }\n \n-export const MilkdownEditor:React.FC<MilkdownEditor> = ({ content, filePath }) => {\n-    console.log('MilkdownEditor-render')\n+export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n+  console.log('MilkdownEditor-render')\n   const [markdown, setMarkdown] = useState('')\n   const { editor, loading, getInstance } = useEditor((root) => {\n     const newEditor = Editor.make()\n     useConfig(newEditor, root, setMarkdown)\n@@ -32,11 +32,11 @@\n     }\n   }, [loading, content])\n   // 存储的函数必须根据副作用实时修改，否则不会更新\n   useEffect(() => {\n-    window.api.sendEvents(SAVE_FILE,{\n+    window.api.sendEvents(SAVE_FILE, {\n       filePath: filePath,\n       newFileContent: markdown\n     })\n   }, [markdown])\n-  return <ReactEditor editor={editor}/>\n+  return <ReactEditor editor={editor} />\n }\n"
                 }
             ],
             "date": 1665496693570,

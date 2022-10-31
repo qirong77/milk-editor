@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1665765387253,
@@ -84,6 +84,14 @@
                 {
                     "date": 1667141836725,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,9 @@\n   if (tree.children.length >= 1) {\n     ul.classList.add('show-list')\n     ul.classList.add('ul-close')\n   } else {\n+    ul.classList.add('not-list')\n   }\n   tree.children.forEach((child) => {\n     dfs(child, ul)\n   })\n"
+                },
+                {
+                    "date": 1667210695896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n     ul.classList.toggle('ul-close')\n   })\n   if (tree.children.length >= 1) {\n     ul.classList.add('show-list')\n-    ul.classList.add('ul-close')\n   } else {\n     ul.classList.add('not-list')\n   }\n   tree.children.forEach((child) => {\n"
+                },
+                {
+                    "date": 1667210968934,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,5 +42,5 @@\n       container.appendChild(headerList)\n     })\n   }\n }\n-export const useUpdateHeaders = useDebounce(updateHeaders, 1000)\n+export const useUpdateHeaders = useDebounce(updateHeaders, 3000)\n"
                 }
             ],
             "date": 1665765387253,

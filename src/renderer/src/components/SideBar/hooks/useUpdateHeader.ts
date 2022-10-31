@@ -18,7 +18,6 @@ const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
   })
   if (tree.children.length >= 1) {
     ul.classList.add('show-list')
-    ul.classList.add('ul-close')
   } else {
     ul.classList.add('not-list')
   }
@@ -44,4 +43,4 @@ export const updateHeaders = () => {
     })
   }
 }
-export const useUpdateHeaders = useDebounce(updateHeaders, 1000)
+export const useUpdateHeaders = useDebounce(updateHeaders, 3000)

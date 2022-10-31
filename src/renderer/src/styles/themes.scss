@@ -3,8 +3,9 @@ $dark-background: rgb(46 52 64);
 $dark-header-backgournd: rgb(59, 62, 81);
 $dark-sideBar-background: rgb(36, 41, 51);
 $active-font-color: rgb(129, 161, 193);
-$font-family:serif;
-$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB, sans-serif;
+$font-family: serif;
+$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,
+  sans-serif;
 // 最外层是container
 @mixin theme-dark {
   color: $dark-font-color;
@@ -33,7 +34,7 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     .milkdown {
       background: $dark-background;
       color: $dark-font-color;
-      font-family:$font-family;
+      font-family: $font-family;
       // 反引号，行内的代码
       .editor {
         code.code-inline {
@@ -45,13 +46,18 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
         .blockquote {
           padding-left: 14px;
           border-width: 2px;
+          font-size: 18px;
+          margin: 15px 0;
           p {
             color: rgb(153, 164, 182);
           }
         }
-        .code-fence pre code {
-          color: $dark-font-color;
-          // font-family:$code-fence-font-family
+        .code-fence {
+          margin-top: 10px;
+          pre code {
+            color: $dark-font-color;
+            // font-family:$code-fence-font-family
+          }
         }
       }
     }
