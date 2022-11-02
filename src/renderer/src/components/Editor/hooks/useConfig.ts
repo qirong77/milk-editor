@@ -1,6 +1,5 @@
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
-import { useUpdateHeaders } from '@renderer/components/SideBar/hooks/useUpdateHeader'
 
 export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Function) => {
   editor
@@ -22,9 +21,8 @@ export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Functi
           console.log('after the editor mounts')
         })
         .markdownUpdated((ctx, markdown) => {
-          console.log('markdownUpdated')
+          console.log('markdownUpdatedxxxxxxxxxxxx')
           setMarkdown(markdown)
-          useUpdateHeaders()
         })
         .updated(() => {
           console.log('when editor state updates')

@@ -5,7 +5,7 @@ import { MilkdownEditor } from './components/Editor'
 import { Header } from './components/Header'
 import { SearchWord } from './components/Search/SearchWord'
 import { SideBar } from './components/SideBar'
-import { useUpdateHeaders } from './components/SideBar/hooks/useUpdateHeader'
+import { updateHeaders } from './components/SideBar/hooks/useUpdateHeader'
 
 export const App = () => {
   const [content, setContent] = useState('')
@@ -26,7 +26,10 @@ export const App = () => {
       updateFiles()
     })
   }, [])
-
+  // 点击左侧文件列表后更新标题
+  useEffect(() => {
+    updateHeaders()
+  }, [filePath])
   const updateFiles = async () => {
     const fileList = await window.api.openDefaultDir()
     setFileList(fileList)
@@ -42,6 +45,7 @@ export const App = () => {
       if (e.metaKey && e.code === 'KeyB') {
         const SideBar = document.querySelector('.side-bar') as HTMLElement
         console.log('commend + B')
+        updateHeaders()
         SideBar?.classList.toggle('side-bar-close')
       }
       if (e.metaKey && e.code === 'KeyF') {

@@ -27,7 +27,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     // 在active更新后执行，否则不会按照你的预定的去
     const lis = filesContainer.current?.children
     if (lis) {
-      [...lis].forEach((li, index) => {
+      ;[...lis].forEach((li, index) => {
         li.classList.remove('active')
       })
       const target = lis[active]
@@ -74,7 +74,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     document.addEventListener('keydown', hanleSelect)
     return () => document.removeEventListener('keydown', hanleSelect)
     // 因为处理函数里面有依赖到active，所以必须传递这个依赖进去
-  }, [active])
+  }, [active, files])
   const updateFiles = () => {
     const searchStr = iptRef.current?.value || ''
     const newFileList = fileList.filter((file) => {

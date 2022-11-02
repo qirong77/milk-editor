@@ -5,7 +5,7 @@ import { ReactEditor, useEditor } from '@milkdown/react'
 import { usePlugins } from './hooks/usePlugins'
 import { replaceAll } from '@milkdown/utils'
 import { useConfig } from './hooks/useConfig'
-import { useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'
+import { updateHeaders, useUpdateHeaders } from '../SideBar/hooks/useUpdateHeader'
 import { SAVE_FILE } from '../../../../main/electron/events/constant'
 
 interface MilkdownEditor {
@@ -27,8 +27,6 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     if (!loading) {
       const instance = getInstance()
       instance?.action(replaceAll(content))
-      // 更新完成后再渲染标题
-      useUpdateHeaders()
     }
   }, [loading, content])
   // 存储的函数必须根据副作用实时修改，否则不会更新
