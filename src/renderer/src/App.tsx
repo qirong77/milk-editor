@@ -57,7 +57,7 @@ export const App = () => {
     return () => document.removeEventListener('keydown', hanldeHideBar)
   }, [openSearchWords])
   return (
-    <div className="container">
+    <div className="container" >
       <Header opendFilePath={filePath} />
       <main>
         <SideBar fileList={fileList} updateFiles={updateFiles} />

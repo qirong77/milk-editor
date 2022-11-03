@@ -14,7 +14,9 @@ export const newFileListMenu = (filePath: string, window: BrowserWindow) => {
     },
     {
       label: '重命名',
-      click(menuItem, browserWindow, event) {}
+      click(menuItem, browserWindow, event) {
+        console.log((menuItem))
+      }
     }
   ]
   return Menu.buildFromTemplate(fileListMenuTemplate)
