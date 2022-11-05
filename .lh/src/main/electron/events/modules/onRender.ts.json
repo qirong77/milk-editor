@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 27,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -96,6 +96,26 @@
                 {
                     "date": 1667638878915,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,15 +21,11 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    if(existsSync(oldFilePath)) {\n-      if(existsSync(newFilePath)) {\n-        renameSync(oldFilePath, newFilePath)\n-        console.log('rename')\n-      }\n+    if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n+      renameSync(oldFilePath, newFilePath)\n     }\n-   \n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+                },
+                {
+                    "date": 1667648932875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -28,5 +30,10 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+    createFilItemMenu(filePath).popup({\n+      window\n+    })\n+  })\n }\n"
+                },
+                {
+                    "date": 1667649207241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n+    li.style.backgroundColor = 'red'\n   })\n }\n"
+                },
+                {
+                    "date": 1667661140697,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,7 +34,6 @@\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n-    li.style.backgroundColor = 'red'\n   })\n }\n"
+                },
+                {
+                    "date": 1667661155080,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n+    console.log(li)\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
+                },
+                {
+                    "date": 1667661353973,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,9 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n-    console.log(li)\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
                 }
             ],
             "date": 1667541566569,

@@ -1,4 +1,5 @@
-import { DarwinMenuItemConstructorOptions } from "../../../interface";
+import { DarwinMenuItemConstructorOptions } from "../..";
+
 
 export  const viewMenuTemplate: DarwinMenuItemConstructorOptions = {
     label: 'View',

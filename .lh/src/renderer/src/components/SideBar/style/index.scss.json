@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1667547934616,
@@ -44,6 +44,10 @@
                 {
                     "date": 1667636344238,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n+  user-select: none;\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n   padding: 30px 0 20px 0;\n"
+                },
+                {
+                    "date": 1667663263494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import './flie-list.scss';\n+@import './file-list.scss';\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n"
                 }
             ],
             "date": 1667547934616,

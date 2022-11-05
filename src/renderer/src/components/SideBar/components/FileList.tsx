@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { mapFileList } from '../hooks/mapFileList'
-
 export const FileList = () => {
   const ref = useRef<HTMLDivElement>(null)
   const getFileList = async () => {

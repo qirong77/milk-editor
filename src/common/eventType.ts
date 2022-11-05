@@ -7,8 +7,8 @@ export const MAX_SCREEN = 'max'
 export const MIN_SCREEN = 'min'
 export const NEW_FILE = 'add a new file'
 export const RENAME_FILE = 'rename file'
-
-
+export const POP_FILE_ITEM_MENU = 'pop file item menu'
+export const POP_DIR_MENU = 'pop dir menu'
 // interProcess
 export const GET_FILE_LIST = 'get file list'
 

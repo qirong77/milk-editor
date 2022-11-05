@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1667539856517,
@@ -28,6 +28,18 @@
                 {
                     "date": 1667646688362,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { BrowserWindow, Menu } from 'electron'\n import { DarwinMenuItemConstructorOptions } from '../../interface'\n-import { editMenuTemplate } from './modules/editMenu'\n+import { editMenuTemplate } from './modules/TopMenu/editMenu'\n import { fileMenuTemplate } from './modules/fileMenu'\n \n export const createMenu = (window: BrowserWindow) => {\n   const template: DarwinMenuItemConstructorOptions[] = [fileMenuTemplate(window), editMenuTemplate]\n"
+                },
+                {
+                    "date": 1667647390861,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n-import { BrowserWindow, Menu } from 'electron'\n+import { BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n import { DarwinMenuItemConstructorOptions } from '../../interface'\n import { editMenuTemplate } from './modules/TopMenu/editMenu'\n import { fileMenuTemplate } from './modules/fileMenu'\n-\n+export interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n+  selector?: string\n+  submenu?: DarwinMenuItemConstructorOptions[] | Menu\n+}\n export const createMenu = (window: BrowserWindow) => {\n   const template: DarwinMenuItemConstructorOptions[] = [fileMenuTemplate(window), editMenuTemplate]\n   const menu = Menu.buildFromTemplate(template)\n   Menu.setApplicationMenu(menu)\n"
+                },
+                {
+                    "date": 1667647535242,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'\n-import { DarwinMenuItemConstructorOptions } from '../../interface'\n+\n import { editMenuTemplate } from './modules/TopMenu/editMenu'\n-import { fileMenuTemplate } from './modules/fileMenu'\n+import { fileMenuTemplate } from './modules/TopMenu/fileMenu'\n+\n export interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {\n   selector?: string\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n"
+                },
+                {
+                    "date": 1667648932876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n   selector?: string\n   submenu?: DarwinMenuItemConstructorOptions[] | Menu\n }\n export const createMenu = (window: BrowserWindow) => {\n-  const template: DarwinMenuItemConstructorOptions[] = [fileMenuTemplate(window), editMenuTemplate]\n+  const template: DarwinMenuItemConstructorOptions[] = [fileMenuTemplate, editMenuTemplate]\n   const menu = Menu.buildFromTemplate(template)\n   Menu.setApplicationMenu(menu)\n }\n"
                 }
             ],
             "date": 1667539856517,

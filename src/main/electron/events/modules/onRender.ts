@@ -6,9 +6,11 @@ import {
   MAX_SCREEN,
   MIN_SCREEN,
   OPEN_FILE,
+  POP_FILE_ITEM_MENU,
   RENAME_FILE
 } from '../../../../common/eventType'
 import { openFile } from '../../../helper/openFile'
+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
 
 export const onRender = (window: BrowserWindow) => {
   ipcMain.on(MIN_SCREEN, () => window.minimize())
@@ -28,5 +30,10 @@ export const onRender = (window: BrowserWindow) => {
   })
   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {
     openFile(filePath, window)
+  })
+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{
+    createFilItemMenu(filePath).popup({
+      window
+    })
   })
 }

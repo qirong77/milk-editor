@@ -10,8 +10,6 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
 @mixin theme-dark {
   color: $dark-font-color;
   background-color: $dark-background;
-  font-weight: 300;
-  font-size: 18px;
   input {
     color: $dark-font-color;
     background-color: $dark-sideBar-background;
@@ -22,6 +20,7 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
   }
   main {
     .side-bar {
+      font-weight: 400;
       border-right: 1px solid $dark-header-backgournd;
       background-color: $dark-sideBar-background;
       .drag-line {
@@ -49,6 +48,7 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
           border-width: 2px;
           margin: 15px 0;
           p {
+            font-size: 18px;
             color: rgb(153, 164, 182);
           }
         }

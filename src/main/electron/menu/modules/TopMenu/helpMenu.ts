@@ -1,4 +1,4 @@
-import { DarwinMenuItemConstructorOptions } from '../../../interface'
+import { DarwinMenuItemConstructorOptions } from '../..'
 
 export const helpMenuTemplate: DarwinMenuItemConstructorOptions = {
   label: 'Help',
@@ -18,8 +18,8 @@ export const helpMenuTemplate: DarwinMenuItemConstructorOptions = {
     },
     {
       label: '切换开发人员工具',
-      click: () => {
-        //   window.webContents.toggleDevTools()
+      click(menuItem, browserWindow, event) {
+        browserWindow?.webContents.openDevTools()
       }
     }
   ]

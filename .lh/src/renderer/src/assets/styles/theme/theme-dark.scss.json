@@ -3,11 +3,23 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1667545328397,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667664581813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-weight: 300;\n   font-size: 18px;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n@@ -21,8 +20,9 @@\n     background-color: $dark-header-backgournd;\n   }\n   main {\n     .side-bar {\n+      font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .drag-line {\n         background-color: $dark-header-backgournd;\n"
+                },
+                {
+                    "date": 1667664624238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px;\n+  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n"
+                },
+                {
+                    "date": 1667664648357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n@@ -48,8 +47,9 @@\n           padding-left: 14px;\n           border-width: 2px;\n           margin: 15px 0;\n           p {\n+            font-size: 18px;\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n"
                 }
             ],
             "date": 1667545328397,

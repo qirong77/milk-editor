@@ -17,15 +17,28 @@
       }
       div {
         height: 30px;
-        width: 16px;
+        width: auto;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 4px;
         svg {
+          height: 16px;
+          width: 16px;
+          transition: all 0.5s;
+        }
+        svg.triangle-down{
           height: 12px;
           width: 12px;
-          transition: all 0.5s;
+          margin-right: 4px;
+        }
+        svg.folder-open {
+          color: rgb(147, 147, 214);
+          display: block;
+        }
+        svg.folder-close {
+          color: rgb(147, 147, 214);
+          display: none;
         }
       }
       input {
@@ -48,9 +61,15 @@
   ul.close {
     height: 30px;
     overflow: hidden;
-    svg {
+    svg.triangle-down {
       transition: all 0.5s;
       transform: rotateZ(-90deg);
+    }
+    svg.folder-close {
+      display: block;
+    }
+    svg.folder-open {
+      display: none;
     }
   }
   .new-file {
