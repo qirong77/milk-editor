@@ -1,5 +1,5 @@
 @import './file-list.scss';
-$side-bar-width: 250px;
+@import '../../../assets/styles/variables.scss';
 $max-height: calc(100vh - 30px);
 $title-height: 30px;
 .side-bar {
@@ -9,7 +9,7 @@ $title-height: 30px;
   min-width: 100px;
   padding: 30px 0 20px 0;
   transition: 0.4s;
-  font-size: smaller;
+  font-size: initial;
   position: relative;
   &:hover {
     footer {

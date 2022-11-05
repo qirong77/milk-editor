@@ -4,6 +4,7 @@ import { OPEN_FILE } from '../../common/eventType'
 
 
 import { MilkdownEditor } from './components/Editor'
+import { GlobalComponents } from './components/Global'
 import { Header } from './components/Header'
 import { SideBar } from './components/SideBar'
 
@@ -25,6 +26,7 @@ export const App = () => {
         <SideBar />
         <MilkdownEditor content={content} filePath={filePath} />
       </main>
+      <GlobalComponents/>
     </div>
   )
 }

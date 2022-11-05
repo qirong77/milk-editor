@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1667548470059,
@@ -16,6 +16,38 @@
                 {
                     "date": 1667548589273,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n-\n+$side-bar-width: 250px;\n .drag-line {\n-    width: 3px;\n-    position: absolute;\n-    left: $side-bar-width;\n-    height: 90vh;\n-    top: 30px;\n-    z-index: 99999;\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n\\ No newline at end of file\n-  }\n+  width: 3px;\n+  position: absolute;\n+  left: $side-bar-width;\n+  height: 90vh;\n+  top: 30px;\n+  z-index: 99999;\n+  opacity: 0;\n+  &:hover {\n+    cursor: ew-resize;\n+    opacity: 100%;\n+  }\n+}\n"
+                },
+                {
+                    "date": 1667667306022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   left: $side-bar-width;\n   height: 90vh;\n   top: 30px;\n   z-index: 99999;\n-  opacity: 0;\n+  // opacity: 0;\n   &:hover {\n     cursor: ew-resize;\n     opacity: 100%;\n   }\n"
+                },
+                {
+                    "date": 1667667424015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n   left: $side-bar-width;\n   height: 90vh;\n   top: 30px;\n   z-index: 99999;\n+  background-color: white;\n   // opacity: 0;\n   &:hover {\n     cursor: ew-resize;\n     opacity: 100%;\n"
+                },
+                {
+                    "date": 1667667466035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n .drag-line {\n   width: 3px;\n   position: absolute;\n   left: $side-bar-width;\n-  height: 90vh;\n+  height: 94vh;\n   top: 30px;\n   z-index: 99999;\n   background-color: white;\n   // opacity: 0;\n"
+                },
+                {
+                    "date": 1667667903124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-$side-bar-width: 250px;\n+@import '../../../assets/styles/variables.scss';\n .drag-line {\n   width: 3px;\n   position: absolute;\n   left: $side-bar-width;\n"
+                },
+                {
+                    "date": 1667667947664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   left: $side-bar-width;\n   height: 94vh;\n   top: 30px;\n   z-index: 99999;\n-  background-color: white;\n+  background-color: rgb(149, 197, 236);\n   // opacity: 0;\n   &:hover {\n     cursor: ew-resize;\n     opacity: 100%;\n"
+                },
+                {
+                    "date": 1667667955193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   left: $side-bar-width;\n   height: 94vh;\n   top: 30px;\n   z-index: 99999;\n-  background-color: rgb(149, 197, 236);\n+  background-color: rgb(169, 208, 239);\n   // opacity: 0;\n   &:hover {\n     cursor: ew-resize;\n     opacity: 100%;\n"
+                },
+                {
+                    "date": 1667667961155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n @import '../../../assets/styles/variables.scss';\n .drag-line {\n-  width: 3px;\n+  width: 2px;\n   position: absolute;\n   left: $side-bar-width;\n   height: 94vh;\n   top: 30px;\n"
+                },
+                {
+                    "date": 1667667977306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   left: $side-bar-width;\n   height: 94vh;\n   top: 30px;\n   z-index: 99999;\n-  background-color: rgb(169, 208, 239);\n+  background-color: rgb(172, 203, 228);\n   // opacity: 0;\n   &:hover {\n     cursor: ew-resize;\n     opacity: 100%;\n"
                 }
             ],
             "date": 1667548470059,

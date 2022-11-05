@@ -23,7 +23,7 @@ export const onRender = (window: BrowserWindow) => {
   })
   ipcMain.on(CLOSE_SCREEN, () => window.close())
   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {
-    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')
+    const newFilePath = resolve(dirname(oldFilePath), newFileName)
     if (existsSync(oldFilePath) && existsSync(newFilePath)) {
       renameSync(oldFilePath, newFilePath)
     }

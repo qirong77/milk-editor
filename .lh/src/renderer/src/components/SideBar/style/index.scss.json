@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1667547934616,
@@ -48,6 +48,22 @@
                 {
                     "date": 1667663263494,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import './flie-list.scss';\n+@import './file-list.scss';\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n"
+                },
+                {
+                    "date": 1667666424859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n   max-height: $max-height;\n   min-width: 100px;\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n-  font-size: smaller;\n+  font-size: initial;\n   position: relative;\n   &:hover {\n     footer {\n       display: flex;\n"
+                },
+                {
+                    "date": 1667667855836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n @import './file-list.scss';\n-$side-bar-width: 250px;\n+@import '../../../assets/styles/variables.scss';\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n   user-select: none;\n"
+                },
+                {
+                    "date": 1667667869035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n @import './file-list.scss';\n-@import '../../../assets/styles/variables.scss';\n+// @import '../../../assets/styles/variables.scss';\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n   user-select: none;\n"
+                },
+                {
+                    "date": 1667667875800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n @import './file-list.scss';\n-// @import '../../../assets/styles/variables.scss';\n+@import '../../../assets/styles/variables.scss';\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n   user-select: none;\n"
                 }
             ],
             "date": 1667547934616,

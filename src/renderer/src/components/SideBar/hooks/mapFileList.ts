@@ -1,5 +1,6 @@
 import { OPEN_FILE, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../common/eventType'
 import { FileTree } from '../../../../../common/interface'
+import { openFile } from '../../../common/openFile'
 
 const triangleDown = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -14,11 +15,11 @@ const triangleDown = `<div>
 </div>`
 const createInput = (fileName: string, li: HTMLLIElement, path: string, isDir: boolean) => {
   const handleChange = () => {
-    const newName = input.value
+    const newName = input.value + '.md'
     newName && window.api.sendToMain(RENAME_FILE, path, newName)
     if (isDir) {
-      li.innerHTML = triangleDown + `<span>${input.value}</span>`
-    } else li.innerHTML = `<span>${input.value}</span>`
+      li.innerHTML = triangleDown + `<span>${newName}</span>`
+    } else li.innerHTML = `<span>${newName}</span>`
   }
   const input = document.createElement('input')
   input.value = fileName
@@ -56,7 +57,7 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   !isDir &&
     li.addEventListener('click', (e) => {
       e.stopPropagation()
-      window.api.sendToMain(OPEN_FILE, path)
+      openFile(path)
     })
   return li
 }

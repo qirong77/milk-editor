@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 27,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -116,6 +116,10 @@
                 {
                     "date": 1667661353973,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,9 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n-    console.log(li)\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
+                },
+                {
+                    "date": 1667667228366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n     }\n   })\n"
                 }
             ],
             "date": 1667541566569,

@@ -1,11 +1,12 @@
-$side-bar-width: 250px;
+@import '../../../assets/styles/variables.scss';
 .drag-line {
-  width: 3px;
+  width: 2px;
   position: absolute;
   left: $side-bar-width;
-  height: 90vh;
+  height: 94vh;
   top: 30px;
   z-index: 99999;
+  background-color: rgb(172, 203, 228);
   opacity: 0;
   &:hover {
     cursor: ew-resize;

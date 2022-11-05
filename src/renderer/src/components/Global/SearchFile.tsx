@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { IFileList } from 'src/preload/index.d'
 
+import { openFile } from '../../common/openFile'
+type IFileList = {
+  fileName: string
+  filePath: string
+}[]
 interface ISearchFile {
   fileList: IFileList
-  openFile: (filePath: string) => void
   closeSearchFile: () => void
 }
 const mapFiles = (fileList: IFileList) => {
@@ -16,7 +19,7 @@ const mapFiles = (fileList: IFileList) => {
   })
   return files
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {
+export const SearchFile: React.FC<ISearchFile> = ({ fileList, closeSearchFile }) => {
   const [active, setActive] = useState(0)
   const iptRef = useRef<HTMLInputElement>(null)
   const filesContainer = useRef<HTMLUListElement>(null)
@@ -27,7 +30,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
     // 在active更新后执行，否则不会按照你的预定的去
     const lis = filesContainer.current?.children
     if (lis) {
-      ;[...lis].forEach((li, index) => {
+      ;[...lis].forEach((li, _index) => {
         li.classList.remove('active')
       })
       const target = lis[active]
@@ -36,6 +39,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSea
         entries.forEach((entrie) => {
           //如果不可见,就需要向上滚动或者向下滚动
           if (entrie.intersectionRatio < 0.5) {
+            // 显示十个，如果大于8，大于9都可以，表示向下滚动
             if (active > 8) target?.scrollIntoView(false)
             else target?.scrollIntoView(true)
           }
