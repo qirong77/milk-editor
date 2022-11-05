@@ -1,0 +1,86 @@
+{
+    "sourceFile": "tsconfig.web.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1667541564929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667541744464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,13 @@\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n-    \"baseUrl\": \".\",\n+    \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n         \"src/renderer/src/*\",\n-        \"src/common/*\"\n+        \"src/common/*.ts\"\n       ]\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1667541843386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,18 +3,19 @@\n   \"include\": [\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n-    \"src/preload/*.d.ts\"\n+      \n+        \"src/preload/*.d.ts\",\n+        \"src/common/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n     \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n         \"src/renderer/src/*\",\n-        \"src/common/*.ts\"\n       ]\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1667555240860,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n       \n         \"src/preload/*.d.ts\",\n-        \"src/common/*\"\n+        \"src/common/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667631709101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n     \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n         \"src/renderer/src/*\",\n+        \"src/common/**/*\"\n       ]\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1667631800827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,20 +3,18 @@\n   \"include\": [\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n-      \n-        \"src/preload/*.d.ts\",\n-        \"src/common/**/*\"\n+    \"src/preload/*.d.ts\",\n+    \"src/common/eventType.ts\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n     \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n-        \"src/renderer/src/*\",\n-        \"src/common/**/*\"\n+        \"src/renderer/src/*\"\n       ]\n     }\n   }\n }\n"
+                },
+                {
+                    "date": 1667631942075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n   \"include\": [\n+    \"src/**/*\",\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n"
+                },
+                {
+                    "date": 1667631976147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n-    \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n         \"src/renderer/src/*\"\n       ]\n"
+                },
+                {
+                    "date": 1667632044822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,13 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n   \"include\": [\n     \"src/**/*\",\n-    \"src/renderer/src/env.d.ts\",\n-    \"src/renderer/src/**/*\",\n-    \"src/renderer/src/**/*.tsx\",\n-    \"src/preload/*.d.ts\",\n-    \"src/common/eventType.ts\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n+    \"baseUrl\": \"./\",\n     \"paths\": {\n       \"@renderer/*\": [\n         \"src/renderer/src/*\"\n       ]\n"
+                },
+                {
+                    "date": 1667634551097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,12 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n   \"include\": [\n-    \"src/**/*\",\n+    \"src/renderer/src/env.d.ts\",\n+    \"src/renderer/src/**/*\",\n+    \"src/renderer/src/**/*.tsx\",\n+    \"src/preload/*.d.ts\",\n+    \"src/common/eventType.ts\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667634572032,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"src/common/eventType.ts\"\n+    \"src/common/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667634669070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,10 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n   \"include\": [\n-    \"src/renderer/src/env.d.ts\",\n-    \"src/renderer/src/**/*\",\n-    \"src/renderer/src/**/*.tsx\",\n-    \"src/preload/*.d.ts\",\n-    \"src/common/**/*\"\n+    \"src/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n-    \"baseUrl\": \"./\",\n-    \"paths\": {\n-      \"@renderer/*\": [\n-        \"src/renderer/src/*\"\n-      ]\n-    }\n   }\n }\n"
+                },
+                {
+                    "date": 1667634792568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,20 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n   \"include\": [\n-    \"src/**/*\"\n+    \"src/renderer/src/env.d.ts\",\n+    \"src/renderer/src/**/*\",\n+    \"src/renderer/src/**/*.tsx\",\n+    \"src/preload/*.d.ts\",\n+    \"src/main/electron/events/constant.ts\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n+    \"baseUrl\": \"./\",\n+    \"paths\": {\n+      \"@renderer/*\": [\n+        \"src/renderer/src/*\"\n+      ]\n+    }\n   }\n }\n"
+                },
+                {
+                    "date": 1667634828681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,12 +9,6 @@\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n-    \"baseUrl\": \"./\",\n-    \"paths\": {\n-      \"@renderer/*\": [\n-        \"src/renderer/src/*\"\n-      ]\n-    }\n   }\n }\n"
+                },
+                {
+                    "date": 1667634865401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"src/main/electron/events/constant.ts\"\n+    \"src/main/\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667634884928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"src/main/\"\n+    \"src/main/electron/events/constant\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667634935067,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"src/main/electron/events/constant\"\n+    \"s\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667636018650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"s\"\n+    \"src/common/eventType.ts\",\n+    \"src/common/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                }
+            ],
+            "date": 1667541564929,
+            "name": "Commit-0",
+            "content": "{\n  \"extends\": \"@electron-toolkit/tsconfig/tsconfig.web.json\",\n  \"include\": [\n    \"src/renderer/src/env.d.ts\",\n    \"src/renderer/src/**/*\",\n    \"src/renderer/src/**/*.tsx\",\n    \"src/preload/*.d.ts\"\n  ],\n  \"compilerOptions\": {\n    \"composite\": true,\n    \"jsx\": \"react-jsx\",\n    \"baseUrl\": \".\",\n    \"paths\": {\n      \"@renderer/*\": [\n        \"src/renderer/src/*\",\n        \"src/common/*\"\n      ]\n    }\n  }\n}\n"
+        }
+    ]
+}

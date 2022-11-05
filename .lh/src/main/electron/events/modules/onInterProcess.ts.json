@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/main/electron/events/modules/onInterProcess.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1667541912581,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667568007390,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+import { ipcMain } from \"electron\"\n+import { GET_FILE_LIST } from \"../../../../common/eventType\"\n+\n+\n+export const onInterProcess = () => {\n+    ipcMain.handle(GET_FILE_LIST,)\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667568351702,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import { ipcMain } from \"electron\"\n import { GET_FILE_LIST } from \"../../../../common/eventType\"\n+import { getDirectoryTree } from \"../../../helper/getDirectoryTree\"\n \n \n export const onInterProcess = () => {\n-    ipcMain.handle(GET_FILE_LIST,)\n+    ipcMain.handle(GET_FILE_LIST,()=>{\n+        return getDirectoryTree()\n+    })\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1667541912581,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

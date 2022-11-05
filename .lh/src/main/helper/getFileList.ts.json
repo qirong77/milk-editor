@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/main/helper/getFileList.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1667568007385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1667568007385,
+            "name": "Commit-0",
+            "content": "import { homedir } from \"os\"\nimport { resolve } from \"path\"\nimport { getDirectoryTree } from \"./getDirectoryTree\"\n\nconst defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\nexport const getFileList = (filePath?:string) =>{\n    const targetPath = filePath ? filePath:defaultPath\n    const fileList = getDirectoryTree(targetPath)\n    return fileList\n}"
+        }
+    ]
+}

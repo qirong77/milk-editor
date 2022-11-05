@@ -20,7 +20,7 @@ export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Functi
         .mounted(() => {
           console.log('after the editor mounts')
         })
-        .markdownUpdated((ctx, markdown) => {
+        .markdownUpdated((_ctx, markdown) => {
           console.log('markdownUpdatedxxxxxxxxxxxx')
           setMarkdown(markdown)
         })

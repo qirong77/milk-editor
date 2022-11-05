@@ -1,0 +1,30 @@
+{
+    "sourceFile": "src/main/index.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1667541566569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667541937755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import { createWindow } from './electron/createWindow'\n \n+\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -30,4 +30,8 @@\n   } else {\n     app.quit()\n   }\n })\n+function createWindow() {\n+  throw new Error('Function not implemented.')\n+}\n+\n"
+                },
+                {
+                    "date": 1667546919386,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n \n-\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -29,9 +28,5 @@\n     app.quit()\n   } else {\n     app.quit()\n   }\n-})\n-function createWindow() {\n-  throw new Error('Function not implemented.')\n-}\n-\n+})\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667546946356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-\n+import from './electron/api/createwindow'\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n"
+                }
+            ],
+            "date": 1667541566569,
+            "name": "Commit-0",
+            "content": "import { app, BrowserWindow } from 'electron'\nimport { electronApp, optimizer } from '@electron-toolkit/utils'\nimport { createWindow } from './electron/createWindow'\n\n// electron初始化，可以创建窗口\napp.whenReady().then(() => {\n  // Set app user model id for windows\n  electronApp.setAppUserModelId('com.electron')\n\n  // Default open or close DevTools by F12 in development\n  // and ignore CommandOrControl + R in production.\n  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n  app.on('browser-window-created', (_, window) => {\n    optimizer.watchWindowShortcuts(window)\n  })\n\n  createWindow()\n\n  app.on('activate', function () {\n    // On macOS it's common to re-create a window in the app when the\n    // dock icon is clicked and there are no other windows open.\n    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n  })\n})\n\napp.on('window-all-closed', () => {\n  // mac的plateform是darwin\n  if (process.platform !== 'darwin') {\n    app.quit()\n  } else {\n    app.quit()\n  }\n})\n"
+        }
+    ]
+}

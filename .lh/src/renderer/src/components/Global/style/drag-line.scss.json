@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/renderer/src/components/Global/style/drag-line.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1667548470059,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667548565222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\n .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+                },
+                {
+                    "date": 1667548589273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,14 @@\n-\n+$side-bar-width: 250px;\n .drag-line {\n-    width: 3px;\n-    position: absolute;\n-    left: $side-bar-width;\n-    height: 90vh;\n-    top: 30px;\n-    z-index: 99999;\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n\\ No newline at end of file\n-  }\n+  width: 3px;\n+  position: absolute;\n+  left: $side-bar-width;\n+  height: 90vh;\n+  top: 30px;\n+  z-index: 99999;\n+  opacity: 0;\n+  &:hover {\n+    cursor: ew-resize;\n+    opacity: 100%;\n+  }\n+}\n"
+                }
+            ],
+            "date": 1667548470059,
+            "name": "Commit-0",
+            "content": ".drag-line {\n    width: 3px;\n    position: absolute;\n    left: $side-bar-width;\n    height: 90vh;\n    top: 30px;\n    z-index: 99999;\n    opacity: 0;\n    &:hover {\n      cursor: ew-resize;\n      opacity: 100%;\n    }\n  }"
+        }
+    ]
+}

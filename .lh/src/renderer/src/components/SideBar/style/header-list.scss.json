@@ -1,0 +1,38 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/style/header-list.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 5,
+            "patches": [
+                {
+                    "date": 1667548331977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667548337113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,52 +1,52 @@\n .header-list {\n-    overflow: scroll;\n-    max-height: calc(100vh - 100px);\n-    ul {\n+  overflow: scroll;\n+  max-height: calc(100vh - 100px);\n+  ul {\n+    height: auto;\n+    li {\n+      display: flex;\n+      padding-left: calc(10px * var(--i));\n+      min-height: $title-height;\n+      // 避免标题太长重叠\n       height: auto;\n-      li {\n+      line-height: $title-height;\n+      &:hover {\n+        cursor: pointer;\n+        background-color: rgb(56, 62, 77);\n+      }\n+      div {\n+        height: $title-height;\n+        width: 10px;\n         display: flex;\n-        padding-left: calc(10px * var(--i));\n-        min-height: $title-height;\n-        // 避免标题太长重叠\n-        height: auto;\n-        line-height: $title-height;\n-        &:hover {\n-          cursor: pointer;\n-          background-color: rgb(56, 62, 77);\n-        }\n-        div {\n-          height: $title-height;\n-          width: 10px;\n-          display: flex;\n-          justify-content: center;\n-          align-items: center;\n-          margin: 0 4px;\n-        }\n-        a {\n-          //占满剩余部分\n-          flex: auto;\n-          text-decoration: none;\n-          // text-decoration-color: $dark-color;\n-          // color: white;\n-        }\n-        svg {\n-          height: 8px;\n-          width: 8px;\n-          transition: all 0.5s;\n\\ No newline at end of file\n-          opacity: 0%;\n-        }\n+        justify-content: center;\n+        align-items: center;\n+        margin: 0 4px;\n       }\n-    }\n-    ul.show-list > li {\n-      svg {\n-        opacity: 100%;\n+      a {\n+        //占满剩余部分\n+        flex: auto;\n+        text-decoration: none;\n+        // text-decoration-color: $dark-color;\n+        // color: white;\n       }\n-    }\n-    ul.ul-close {\n-      height: $title-height !important;\n-      overflow: hidden;\n       svg {\n-        transform: rotateZ(-90deg);\n+        height: 8px;\n+        width: 8px;\n+        transition: all 0.5s;\n+        opacity: 0%;\n       }\n     }\n-  }\n+  }\n+  ul.show-list > li {\n+    svg {\n+      opacity: 100%;\n+    }\n+  }\n+  ul.ul-close {\n+    height: $title-height !important;\n+    overflow: hidden;\n+    svg {\n+      transform: rotateZ(-90deg);\n+    }\n+  }\n+}\n"
+                },
+                {
+                    "date": 1667548507826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+\n .header-list {\n   overflow: scroll;\n   max-height: calc(100vh - 100px);\n   ul {\n"
+                },
+                {
+                    "date": 1667548513035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-\n+$title-height:'30'\n .header-list {\n   overflow: scroll;\n   max-height: calc(100vh - 100px);\n   ul {\n"
+                },
+                {
+                    "date": 1667627894074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n-$title-height:'30'\n+$title-height:30px;\n .header-list {\n   overflow: scroll;\n   max-height: calc(100vh - 100px);\n   ul {\n     height: auto;\n     li {\n       display: flex;\n-      padding-left: calc(10px * var(--i));\n+      padding-left: calc(20px * var(--i));\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+                },
+                {
+                    "date": 1667627899194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   ul {\n     height: auto;\n     li {\n       display: flex;\n-      padding-left: calc(20px * var(--i));\n+      padding-left: calc(10px * var(--i));\n       min-height: $title-height;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n"
+                }
+            ],
+            "date": 1667548331977,
+            "name": "Commit-0",
+            "content": ".header-list {\n    overflow: scroll;\n    max-height: calc(100vh - 100px);\n    ul {\n      height: auto;\n      li {\n        display: flex;\n        padding-left: calc(10px * var(--i));\n        min-height: $title-height;\n        // 避免标题太长重叠\n        height: auto;\n        line-height: $title-height;\n        &:hover {\n          cursor: pointer;\n          background-color: rgb(56, 62, 77);\n        }\n        div {\n          height: $title-height;\n          width: 10px;\n          display: flex;\n          justify-content: center;\n          align-items: center;\n          margin: 0 4px;\n        }\n        a {\n          //占满剩余部分\n          flex: auto;\n          text-decoration: none;\n          // text-decoration-color: $dark-color;\n          // color: white;\n        }\n        svg {\n          height: 8px;\n          width: 8px;\n          transition: all 0.5s;\n          opacity: 0%;\n        }\n      }\n    }\n    ul.show-list > li {\n      svg {\n        opacity: 100%;\n      }\n    }\n    ul.ul-close {\n      height: $title-height !important;\n      overflow: hidden;\n      svg {\n        transform: rotateZ(-90deg);\n      }\n    }\n  }"
+        }
+    ]
+}

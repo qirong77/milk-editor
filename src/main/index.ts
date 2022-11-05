@@ -1,7 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-import { createWindow } from './electron/createWindow'
-
+import {createWindow} from './electron/api/createwindow'
 // electron初始化，可以创建窗口
 app.whenReady().then(() => {
   // Set app user model id for windows

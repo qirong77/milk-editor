@@ -1,0 +1,65 @@
+.file-list {
+  overflow: scroll;
+  max-height: calc(100vh - 140px);
+  padding-bottom: 50px;
+  ul {
+    height: auto;
+    li {
+      display: flex;
+      padding-left: calc(18px * var(--i));
+      min-height: 30px;
+      // 避免标题太长重叠
+      height: auto;
+      line-height: 30px;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(56, 62, 77);
+      }
+      div {
+        height: 30px;
+        width: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 4px;
+        svg {
+          height: 12px;
+          width: 12px;
+          transition: all 0.5s;
+        }
+      }
+      input {
+        display: none;
+      }
+    }
+    li.dir {
+    }
+    li.file-item {
+    }
+    li.show-input {
+      input {
+        display: block;
+      }
+      span {
+        display: none;
+      }
+    }
+  }
+  ul.close {
+    height: 30px;
+    overflow: hidden;
+    svg {
+      transition: all 0.5s;
+      transform: rotateZ(-90deg);
+    }
+  }
+  .new-file {
+    display: flex;
+    input {
+      height: auto;
+      width: 90%;
+      padding-left: 4px;
+      box-shadow: 0px 0px 2px 0px;
+    }
+  }
+}

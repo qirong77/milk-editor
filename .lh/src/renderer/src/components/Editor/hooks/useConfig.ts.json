@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/renderer/src/components/Editor/hooks/useConfig.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667540446836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667540514858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-\n import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\n import { listenerCtx } from '@milkdown/plugin-listener'\n \n export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Function) => {\n"
+                }
+            ],
+            "date": 1667540446836,
+            "name": "Commit-0",
+            "content": "\nimport { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'\nimport { listenerCtx } from '@milkdown/plugin-listener'\n\nexport const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Function) => {\n  editor\n    .config((ctx) => {\n      ctx.set(rootCtx, root)\n    })\n    // 默认值\n    .config((ctx) => {\n      ctx.set(defaultValueCtx, '')\n    })\n    // 生命周期\n    .config((ctx) => {\n      ctx\n        .get(listenerCtx)\n        .beforeMount(() => {\n          console.log('before the editor mounts')\n        })\n        .mounted(() => {\n          console.log('after the editor mounts')\n        })\n        .markdownUpdated((_ctx, markdown) => {\n          console.log('markdownUpdatedxxxxxxxxxxxx')\n          setMarkdown(markdown)\n        })\n        .updated(() => {\n          console.log('when editor state updates')\n        })\n        .blur(() => {})\n        .focus(() => {\n          console.log(' when focus editor')\n        })\n        .destroy(() => {\n          console.log('when editor is being destroyed')\n        })\n    })\n}\n"
+        }
+    ]
+}

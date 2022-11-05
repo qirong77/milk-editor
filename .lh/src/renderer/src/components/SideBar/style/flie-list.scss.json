@@ -1,0 +1,86 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/style/flie-list.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1667548365686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667548373235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     padding-bottom: 50px;\n     li {\n       display: flex;\n       padding-left: 20px;\n-      min-height: $title-height;\n+      min-height: $title-;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: $title-height;\n       &:hover {\n"
+                },
+                {
+                    "date": 1667548382378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,12 @@\n     padding-bottom: 50px;\n     li {\n       display: flex;\n       padding-left: 20px;\n-      min-height: $title-;\n+      min-height: 30px;\n       // 避免标题太长重叠\n       height: auto;\n-      line-height: $title-height;\n+      line-height: 30px;\n       &:hover {\n         cursor: pointer;\n         background-color: rgb(56, 62, 77);\n       }\n"
+                },
+                {
+                    "date": 1667621800649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,11 @@\n .file-list {\n     overflow: scroll;\n     max-height: calc(100vh - 140px);\n     padding-bottom: 50px;\n+    ul {\n+      \n+    }\n     li {\n       display: flex;\n       padding-left: 20px;\n       min-height: 30px;\n"
+                },
+                {
+                    "date": 1667621894123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,20 +2,19 @@\n     overflow: scroll;\n     max-height: calc(100vh - 140px);\n     padding-bottom: 50px;\n     ul {\n-      \n-    }\n-    li {\n-      display: flex;\n-      padding-left: 20px;\n-      min-height: 30px;\n-      // 避免标题太长重叠\n-      height: auto;\n-      line-height: 30px;\n-      &:hover {\n-        cursor: pointer;\n-        background-color: rgb(56, 62, 77);\n+      li {\n+        display: flex;\n+        padding-left: 20px;\n+        min-height: 30px;\n+        // 避免标题太长重叠\n+        height: auto;\n+        line-height: 30px;\n+        &:hover {\n+          cursor: pointer;\n+          background-color: rgb(56, 62, 77);\n+        }\n       }\n     }\n     .new-file {\n       display: flex;\n"
+                },
+                {
+                    "date": 1667621917628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,19 +2,34 @@\n     overflow: scroll;\n     max-height: calc(100vh - 140px);\n     padding-bottom: 50px;\n     ul {\n+      height: auto;\n       li {\n         display: flex;\n-        padding-left: 20px;\n-        min-height: 30px;\n+        padding-left: calc(10px * var(--i));\n+        min-height: $title-height;\n         // 避免标题太长重叠\n         height: auto;\n-        line-height: 30px;\n+        line-height: $title-height;\n         &:hover {\n           cursor: pointer;\n           background-color: rgb(56, 62, 77);\n         }\n+        div {\n+          height: $title-height;\n+          width: 10px;\n+          display: flex;\n+          justify-content: center;\n+          align-items: center;\n+          margin: 0 4px;\n+        }\n+        svg {\n+          height: 8px;\n+          width: 8px;\n+          transition: all 0.5s;\n+          opacity: 0%;\n+        }\n       }\n     }\n     .new-file {\n       display: flex;\n"
+                },
+                {
+                    "date": 1667622003479,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,43 +1,43 @@\n .file-list {\n-    overflow: scroll;\n-    max-height: calc(100vh - 140px);\n-    padding-bottom: 50px;\n-    ul {\n+  overflow: scroll;\n+  max-height: calc(100vh - 140px);\n+  padding-bottom: 50px;\n+  ul {\n+    height: auto;\n+    li {\n+      display: flex;\n+      padding-left: calc(10px * var(--i));\n+      min-height: ;\n+      // 避免标题太长重叠\n       height: auto;\n-      li {\n+      line-height: ;\n+      &:hover {\n+        cursor: pointer;\n+        background-color: rgb(56, 62, 77);\n+      }\n+      div {\n+        height: ;\n+        width: 10px;\n         display: flex;\n-        padding-left: calc(10px * var(--i));\n-        min-height: $title-height;\n-        // 避免标题太长重叠\n-        height: auto;\n-        line-height: $title-height;\n-        &:hover {\n-          cursor: pointer;\n-          background-color: rgb(56, 62, 77);\n-        }\n-        div {\n-          height: $title-height;\n-          width: 10px;\n-          display: flex;\n-          justify-content: center;\n-          align-items: center;\n-          margin: 0 4px;\n-        }\n\\ No newline at end of file\n-        svg {\n-          height: 8px;\n-          width: 8px;\n-          transition: all 0.5s;\n-          opacity: 0%;\n-        }\n+        justify-content: center;\n+        align-items: center;\n+        margin: 0 4px;\n       }\n-    }\n-    .new-file {\n-      display: flex;\n-      input {\n-        height: auto;\n-        width: 90%;\n-        padding-left: 4px;\n-        box-shadow: 0px 0px 2px 0px;\n+      svg {\n+        height: 8px;\n+        width: 8px;\n+        transition: all 0.5s;\n+        opacity: 0%;\n       }\n     }\n-  }\n+  }\n+  .new-file {\n+    display: flex;\n+    input {\n+      height: auto;\n+      width: 90%;\n+      padding-left: 4px;\n+      box-shadow: 0px 0px 2px 0px;\n+    }\n+  }\n+}\n"
+                },
+                {
+                    "date": 1667623504583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,18 +6,18 @@\n     height: auto;\n     li {\n       display: flex;\n       padding-left: calc(10px * var(--i));\n-      min-height: ;\n+      min-height: 30px;\n       // 避免标题太长重叠\n       height: auto;\n-      line-height: ;\n+      line-height: 30px;\n       &:hover {\n         cursor: pointer;\n         background-color: rgb(56, 62, 77);\n       }\n       div {\n-        height: ;\n+        height: 30px;\n         width: 10px;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n@@ -26,9 +26,8 @@\n       svg {\n         height: 8px;\n         width: 8px;\n         transition: all 0.5s;\n-        opacity: 0%;\n       }\n     }\n   }\n   .new-file {\n"
+                },
+                {
+                    "date": 1667623545727,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,10 @@\n         align-items: center;\n         margin: 0 4px;\n       }\n       svg {\n-        height: 8px;\n-        width: 8px;\n+        height: 10px;\n+        width: 10px;\n         transition: all 0.5s;\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1667627557365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   ul {\n     height: auto;\n     li {\n       display: flex;\n-      padding-left: calc(10px * var(--i));\n+      padding-left: calc(10px * var(--i) + 10px);\n       min-height: 30px;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: 30px;\n"
+                },
+                {
+                    "date": 1667627624777,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,17 +16,17 @@\n         background-color: rgb(56, 62, 77);\n       }\n       div {\n         height: 30px;\n-        width: 10px;\n+        width: 16px;\n         display: flex;\n         justify-content: center;\n         align-items: center;\n         margin: 0 4px;\n       }\n       svg {\n-        height: 10px;\n-        width: 10px;\n+        height: 12px;\n+        width: 12px;\n         transition: all 0.5s;\n       }\n     }\n   }\n"
+                },
+                {
+                    "date": 1667627744007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,13 @@\n         width: 12px;\n         transition: all 0.5s;\n       }\n     }\n+    li.dir-name {\n+      div{\n+        opacity: 0;\n+      }\n+    }\n   }\n   .new-file {\n     display: flex;\n     input {\n"
+                },
+                {
+                    "date": 1667627812421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,13 +28,8 @@\n         width: 12px;\n         transition: all 0.5s;\n       }\n     }\n-    li.dir-name {\n-      div{\n-        opacity: 0;\n-      }\n-    }\n   }\n   .new-file {\n     display: flex;\n     input {\n"
+                },
+                {
+                    "date": 1667627912051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   ul {\n     height: auto;\n     li {\n       display: flex;\n-      padding-left: calc(10px * var(--i) + 10px);\n+      padding-left: calc(20px * var(--i));\n       min-height: 30px;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: 30px;\n"
+                },
+                {
+                    "date": 1667627973842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   ul {\n     height: auto;\n     li {\n       display: flex;\n-      padding-left: calc(20px * var(--i));\n+      padding-left: calc(18px * var(--i));\n       min-height: 30px;\n       // 避免标题太长重叠\n       height: auto;\n       line-height: 30px;\n"
+                },
+                {
+                    "date": 1667629147083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,16 +21,34 @@\n         display: flex;\n         justify-content: center;\n         align-items: center;\n         margin: 0 4px;\n+        svg {\n+          height: 12px;\n+          width: 12px;\n+          transition: all 0.5s;\n+        }\n       }\n-      svg {\n-        height: 12px;\n-        width: 12px;\n-        transition: all 0.5s;\n+      input {\n+        display: none;\n       }\n     }\n+    li.dir {\n+    }\n+    li.file-item {\n+    }\n+    li.show-input {\n+      input {\n+        display: block;\n+      }\n+      span {\n+        display: none;\n+      }\n+    }\n   }\n+  ul.close {\n+    height: 0;\n+  }\n   .new-file {\n     display: flex;\n     input {\n       height: auto;\n"
+                },
+                {
+                    "date": 1667629194805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,10 @@\n       }\n     }\n   }\n   ul.close {\n-    height: 0;\n+    height: 30px;\n+    overflow: hidden;\n   }\n   .new-file {\n     display: flex;\n     input {\n"
+                },
+                {
+                    "date": 1667629248775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,12 @@\n   }\n   ul.close {\n     height: 30px;\n     overflow: hidden;\n+    svg {\n+      transition: all 0.5s;\n+      transform: rotateZ(-90deg);\n+    }\n   }\n   .new-file {\n     display: flex;\n     input {\n"
+                }
+            ],
+            "date": 1667548365686,
+            "name": "Commit-0",
+            "content": ".file-list {\n    overflow: scroll;\n    max-height: calc(100vh - 140px);\n    padding-bottom: 50px;\n    li {\n      display: flex;\n      padding-left: 20px;\n      min-height: $title-height;\n      // 避免标题太长重叠\n      height: auto;\n      line-height: $title-height;\n      &:hover {\n        cursor: pointer;\n        background-color: rgb(56, 62, 77);\n      }\n    }\n    .new-file {\n      display: flex;\n      input {\n        height: auto;\n        width: 90%;\n        padding-left: 4px;\n        box-shadow: 0px 0px 2px 0px;\n      }\n    }\n  }"
+        }
+    ]
+}

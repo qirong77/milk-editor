@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/renderer/src/assets/styles/normalize.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667547715731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667547735510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,5 +7,8 @@\n   input {\n     border: none;\n     outline: none;\n   }\n-  \n\\ No newline at end of file\n+  \n+li {\n+    \n+}\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1667547715731,
+            "name": "Commit-0",
+            "content": "* {\n    margin: 0;\n    padding: 0;\n    list-style: none;\n    box-sizing: border-box;\n  }\n  input {\n    border: none;\n    outline: none;\n  }\n  "
+        }
+    ]
+}

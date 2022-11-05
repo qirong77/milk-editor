@@ -1,0 +1,54 @@
+{
+    "sourceFile": "src/renderer/src/components/SideBar/style/index.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1667547934616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667547939977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n .side-bar {\n-    \n-}\n\\ No newline at end of file\n+\n+}\n"
+                },
+                {
+                    "date": 1667547956405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n .side-bar {\n-\n+    \n }\n"
+                },
+                {
+                    "date": 1667548285431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,141 @@\n+$side-bar-width: 250px;\n+$max-height: calc(100vh - 30px);\n+$title-height: 30px;\n .side-bar {\n-    \n+  width: $side-bar-width;\n+  max-height: $max-height;\n+  min-width: 100px;\n+  padding: 30px 0 20px 0;\n+  transition: 0.4s;\n+  font-size: smaller;\n+  position: relative;\n+  &:hover {\n+    footer {\n+      display: flex;\n+      justify-content: space-around;\n+      align-items: center;\n+    }\n+    header svg {\n+      display: block;\n+    }\n+  }\n+  header {\n+    display: flex;\n+    height: 30px;\n+    justify-content: space-around;\n+    svg {\n+      display: none;\n+      cursor: pointer;\n+    }\n+  }\n+  .header-list {\n+    overflow: scroll;\n+    max-height: calc(100vh - 100px);\n+    ul {\n+      height: auto;\n+      li {\n+        display: flex;\n+        padding-left: calc(10px * var(--i));\n+        min-height: $title-height;\n+        // 避免标题太长重叠\n+        height: auto;\n+        line-height: $title-height;\n+        &:hover {\n+          cursor: pointer;\n+          background-color: rgb(56, 62, 77);\n+        }\n+        div {\n+          height: $title-height;\n+          width: 10px;\n+          display: flex;\n+          justify-content: center;\n+          align-items: center;\n+          margin: 0 4px;\n+        }\n+        a {\n+          //占满剩余部分\n+          flex: auto;\n+          text-decoration: none;\n+          // text-decoration-color: $dark-color;\n+          // color: white;\n+        }\n+        svg {\n+          height: 8px;\n+          width: 8px;\n+          transition: all 0.5s;\n+          opacity: 0%;\n+        }\n+      }\n+    }\n+    ul.show-list > li {\n+      svg {\n+        opacity: 100%;\n+      }\n+    }\n+    ul.ul-close {\n+      height: $title-height !important;\n+      overflow: hidden;\n+      svg {\n+        transform: rotateZ(-90deg);\n+      }\n+    }\n+  }\n+  .file-list {\n+    overflow: scroll;\n+    max-height: calc(100vh - 140px);\n+    padding-bottom: 50px;\n+    li {\n+      display: flex;\n+      padding-left: 20px;\n+      min-height: $title-height;\n+      // 避免标题太长重叠\n+      height: auto;\n+      line-height: $title-height;\n+      &:hover {\n+        cursor: pointer;\n+        background-color: rgb(56, 62, 77);\n+      }\n+    }\n+    .new-file {\n+      display: flex;\n+      input {\n+        height: auto;\n+        width: 90%;\n+        padding-left: 4px;\n+        box-shadow: 0px 0px 2px 0px;\n+      }\n+    }\n+  }\n+  .drag-line {\n+    width: 3px;\n+    position: absolute;\n+    left: $side-bar-width;\n+    height: 90vh;\n+    top: 30px;\n+    z-index: 99999;\n+    opacity: 0;\n+    &:hover {\n+      cursor: ew-resize;\n+      opacity: 100%;\n+    }\n+  }\n+  footer {\n+    position: absolute;\n+    bottom: 0;\n+    width: 100%;\n+    height: 40px;\n+    border-top: 1px solid rgb(111, 109, 109);\n+    display: none;\n+    svg {\n+      cursor: pointer;\n+    }\n+  }\n }\n+.side-bar-close {\n+  min-width: 0;\n+  // 加import是因为通过拖拽设置的宽度是行内样式，这里的无法覆盖\n+  width: 0 !important;\n+  header {\n+    overflow: hidden;\n+  }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667548361805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,34 +79,9 @@\n         transform: rotateZ(-90deg);\n       }\n     }\n   }\n-  .file-list {\n-    overflow: scroll;\n-    max-height: calc(100vh - 140px);\n-    padding-bottom: 50px;\n-    li {\n-      display: flex;\n-      padding-left: 20px;\n-      min-height: $title-height;\n-      // 避免标题太长重叠\n-      height: auto;\n-      line-height: $title-height;\n-      &:hover {\n-        cursor: pointer;\n-        background-color: rgb(56, 62, 77);\n-      }\n-    }\n-    .new-file {\n-      display: flex;\n-      input {\n-        height: auto;\n-        width: 90%;\n-        padding-left: 4px;\n-        box-shadow: 0px 0px 2px 0px;\n-      }\n-    }\n-  }\n+\n   .drag-line {\n     width: 3px;\n     position: absolute;\n     left: $side-bar-width;\n"
+                },
+                {
+                    "date": 1667548389935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,60 +27,8 @@\n       display: none;\n       cursor: pointer;\n     }\n   }\n-  .header-list {\n-    overflow: scroll;\n-    max-height: calc(100vh - 100px);\n-    ul {\n-      height: auto;\n-      li {\n-        display: flex;\n-        padding-left: calc(10px * var(--i));\n-        min-height: $title-height;\n-        // 避免标题太长重叠\n-        height: auto;\n-        line-height: $title-height;\n-        &:hover {\n-          cursor: pointer;\n-          background-color: rgb(56, 62, 77);\n-        }\n-        div {\n-          height: $title-height;\n-          width: 10px;\n-          display: flex;\n-          justify-content: center;\n-          align-items: center;\n-          margin: 0 4px;\n-        }\n-        a {\n-          //占满剩余部分\n-          flex: auto;\n-          text-decoration: none;\n-          // text-decoration-color: $dark-color;\n-          // color: white;\n-        }\n-        svg {\n-          height: 8px;\n-          width: 8px;\n-          transition: all 0.5s;\n-          opacity: 0%;\n-        }\n-      }\n-    }\n-    ul.show-list > li {\n-      svg {\n-        opacity: 100%;\n-      }\n-    }\n-    ul.ul-close {\n-      height: $title-height !important;\n-      overflow: hidden;\n-      svg {\n-        transform: rotateZ(-90deg);\n-      }\n-    }\n-  }\n \n   .drag-line {\n     width: 3px;\n     position: absolute;\n"
+                },
+                {
+                    "date": 1667548531414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,22 +27,9 @@\n       display: none;\n       cursor: pointer;\n     }\n   }\n-\n-  .drag-line {\n-    width: 3px;\n-    position: absolute;\n-    left: $side-bar-width;\n-    height: 90vh;\n-    top: 30px;\n-    z-index: 99999;\n-    opacity: 0;\n-    &:hover {\n-      cursor: ew-resize;\n-      opacity: 100%;\n-    }\n-  }\n+ \n   footer {\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n"
+                },
+                {
+                    "date": 1667622056438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+@import './'\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n@@ -27,9 +28,8 @@\n       display: none;\n       cursor: pointer;\n     }\n   }\n- \n   footer {\n     position: absolute;\n     bottom: 0;\n     width: 100%;\n"
+                },
+                {
+                    "date": 1667622062145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import './'\n+@import './flie-list.scss';\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n"
+                },
+                {
+                    "date": 1667636344238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n $side-bar-width: 250px;\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n+  user-select: none;\n   width: $side-bar-width;\n   max-height: $max-height;\n   min-width: 100px;\n   padding: 30px 0 20px 0;\n"
+                }
+            ],
+            "date": 1667547934616,
+            "name": "Commit-0",
+            "content": ".side-bar {\n    \n}"
+        }
+    ]
+}

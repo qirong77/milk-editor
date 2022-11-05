@@ -1,67 +1,25 @@
-import { useEffect, useState } from 'react'
-import { DragLine } from './components/DragLine'
+import { useState } from 'react'
 import { FileList } from './components/FileList'
+import { Footer } from './components/Footer'
+import { HeaderList } from './components/HeaderList'
+import { SideBarHeader } from './components/SideBarHeader'
 
-import { MenuSvg, SearchSvg } from '@renderer/common/svg'
-import { useUpdateHeaders } from './hooks/useUpdateHeader'
-import { SearchFile } from '../Search/SearchFile'
-import { CLICK_FILE_LIST } from '../../../../main/electron/events/constant'
-
-interface ISideBar {
-  fileList: Array<{
-    fileName: string
-    filePath: string
-  }>
-  updateFiles: () => void
-}
-export const SideBar: React.FC<ISideBar> = ({ fileList, updateFiles }) => {
-  console.log('side-bar')
-  const [showFileList, setShowFileList] = useState(true)
-  const [openSearchFile, setOpenSearchFile] = useState(false)
-  useEffect(() => {
-    const hanldeHideBar = (e: KeyboardEvent) => {
-      if (e.metaKey && e.code === 'KeyB') {
-        console.log('command + B')
-        useUpdateHeaders()
-      }
-      if (e.code === 'KeyP' && e.metaKey) {
-        console.log('commend + P')
-        console.log(openSearchFile)
-        setOpenSearchFile(!openSearchFile)
-      }
+export const SideBar = () => {
+  const [toggle, setToggle] = useState(true)
+  const [title,setTitle] = useState('文件')
+  const clickMenu = () => {
+    if(!toggle) {
+      setTitle('文件')
     }
-    document.addEventListener('keydown', hanldeHideBar)
-    return () => document.removeEventListener('keydown', hanldeHideBar)
-  }, [openSearchFile])
-  const openFile = (filePath: string) => {
-    window.api.sendEvents(CLICK_FILE_LIST, filePath)
-    setShowFileList(false)
+    toggle && setTitle('outline')
+    setToggle(!toggle)
   }
   return (
     <div className="side-bar">
-      <header>
-        <MenuSvg
-          onClick={() => {
-            setShowFileList(!showFileList)
-          }}
-        />
-        <span>title</span>
-        <SearchSvg />
-      </header>
-      <DragLine />
-      {showFileList && (
-        <FileList updateFiles={updateFiles} fileList={fileList} openFile={openFile} />
-      )}
-      {!showFileList && <ul className="header-list" />}
-      {openSearchFile && (
-        <SearchFile
-          fileList={fileList}
-          openFile={openFile}
-          closeSearchFile={() => {
-            setOpenSearchFile(false)
-          }}
-        />
-      )}
+      <SideBarHeader title={title} clickMenu={clickMenu} />
+      {toggle && <FileList />}
+      {!toggle && <HeaderList />}
+      <Footer />
     </div>
   )
 }

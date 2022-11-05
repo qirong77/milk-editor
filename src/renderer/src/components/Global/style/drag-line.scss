@@ -1,0 +1,14 @@
+$side-bar-width: 250px;
+.drag-line {
+  width: 3px;
+  position: absolute;
+  left: $side-bar-width;
+  height: 90vh;
+  top: 30px;
+  z-index: 99999;
+  opacity: 0;
+  &:hover {
+    cursor: ew-resize;
+    opacity: 100%;
+  }
+}

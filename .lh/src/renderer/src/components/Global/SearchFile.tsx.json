@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/components/Global/SearchFile.tsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1667544694480,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1667544694480,
+            "name": "Commit-0",
+            "content": "import { useEffect, useRef, useState } from 'react'\nimport { IFileList } from 'src/preload/index.d'\n\ninterface ISearchFile {\n  fileList: IFileList\n  openFile: (filePath: string) => void\n  closeSearchFile: () => void\n}\nconst mapFiles = (fileList: IFileList) => {\n  const files = fileList.map((file, index) => {\n    return (\n      <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n        <span>{file.fileName}</span>\n      </li>\n    )\n  })\n  return files\n}\nexport const SearchFile: React.FC<ISearchFile> = ({ fileList, openFile, closeSearchFile }) => {\n  const [active, setActive] = useState(0)\n  const iptRef = useRef<HTMLInputElement>(null)\n  const filesContainer = useRef<HTMLUListElement>(null)\n\n  const [files, setFiles] = useState(mapFiles(fileList))\n\n  useEffect(() => {\n    // 在active更新后执行，否则不会按照你的预定的去\n    const lis = filesContainer.current?.children\n    if (lis) {\n      ;[...lis].forEach((li, index) => {\n        li.classList.remove('active')\n      })\n      const target = lis[active]\n      target.classList.add('active')\n      const io = new IntersectionObserver((entries) => {\n        entries.forEach((entrie) => {\n          //如果不可见,就需要向上滚动或者向下滚动\n          if (entrie.intersectionRatio < 0.5) {\n            if (active > 8) target?.scrollIntoView(false)\n            else target?.scrollIntoView(true)\n          }\n          // 不管是否可见，操作完就移除观察\n          io.unobserve(target)\n        })\n      })\n      io.observe(target)\n    }\n  }, [active])\n  useEffect(() => {\n    iptRef.current?.focus()\n    const hanleSelect = (e: KeyboardEvent) => {\n      const ARROW_DOWN = 'ArrowDown'\n      const ARROW_UP = 'ArrowUp'\n      if (e.code === ARROW_UP) {\n        if (!files[active - 1]) {\n          setActive(files.length - 1)\n        } else {\n          setActive(active - 1)\n        }\n      }\n      if (e.code === ARROW_DOWN) {\n        if (!files[active + 1]) {\n          setActive(0)\n        } else {\n          setActive(active + 1)\n        }\n      }\n      if (e.code === 'Enter') {\n        const filePath = files[active]?.key as string\n        filePath && openFile(filePath)\n        closeSearchFile()\n      }\n    }\n    document.addEventListener('keydown', hanleSelect)\n    return () => document.removeEventListener('keydown', hanleSelect)\n    // 因为处理函数里面有依赖到active，所以必须传递这个依赖进去\n  }, [active, files])\n  const updateFiles = () => {\n    const searchStr = iptRef.current?.value || ''\n    const newFileList = fileList.filter((file) => {\n      if (file.fileName.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase())) return true\n      else return false\n    })\n    setFiles(mapFiles(newFileList))\n    setActive(0)\n  }\n  return (\n    <div className=\"search-file \">\n      <div>\n        <span>{active}</span>\n        <input placeholder=\"\" onChange={updateFiles} ref={iptRef} type=\"text\" />\n      </div>\n      <ul ref={filesContainer}>{files}</ul>\n    </div>\n  )\n}\n"
+        }
+    ]
+}

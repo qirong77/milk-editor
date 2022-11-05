@@ -1,66 +1,22 @@
-import { MoreSvg, NewFileSvg } from '@renderer/common/svg'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { mapFileList } from '../hooks/mapFileList'
 
-import { NEW_FILE, POP_FILE_LIST_MENU } from '../../../../../main/electron/events/constant'
-import { IFileList } from '../../../../../preload/index.d'
-export const FileList: React.FC<{
-  fileList: IFileList
-  openFile: (filePath: string) => void
-  updateFiles: () => void
-}> = ({ fileList, openFile, updateFiles }) => {
-  console.log('file-list-render')
-  const [showNewFile, setShowNewFile] = useState(false)
-  const iptRef = useRef<HTMLInputElement>(null)
-  const files = fileList.map(({ fileName, filePath }) => {
-    return (
-      <li
-        key={filePath}
-        onContextMenu={() => {
-          window.api.sendEvents(POP_FILE_LIST_MENU, filePath)
-        }}
-        onClick={(e) => {
-          e.stopPropagation()
-          openFile(filePath)
-        }}
-      >
-        <div></div>
-        <span>{fileName}</span>
-      </li>
-    )
-  })
+export const FileList = () => {
+  const ref = useRef<HTMLDivElement>(null)
+  const getFileList = async () => {
+    const fileList = await window.api.onGetFileList()
+    const fileNodes = mapFileList(fileList)
+    ref.current!.innerHTML = ''
+    ref.current?.appendChild(fileNodes)
+    console.log(fileList)
+  }
+  // 渲染的时候就获取文件列表
   useEffect(() => {
-    iptRef.current?.focus()
-    const handleReturn = (e: KeyboardEvent) => {
-      if (e.code === 'Enter' && showNewFile) {
-        console.log('enter')
-        setShowNewFile(false)
-        window.api.sendEvents(NEW_FILE, iptRef.current?.value || 'untitled')
-        updateFiles()
-      }
-    }
-    document.addEventListener('keydown', handleReturn)
-    return () => document.removeEventListener('keydown', handleReturn)
-  }, [showNewFile])
-  return (
-    <>
-      <ul
-        className="file-list"
-        style={{
-          paddingBottom: '50px'
-        }}
-      >
-        {files}
-        {showNewFile && (
-          <li className="new-file">
-            <input ref={iptRef} type="text" />
-          </li>
-        )}
-      </ul>
-      <footer>
-        <NewFileSvg onClick={() => setShowNewFile(!showNewFile)} />
-        <span>Markdowns</span>
-        <MoreSvg />
-      </footer>
-    </>
-  )
+    getFileList()
+    ref.current?.addEventListener('input',e=>{
+      console.log(e)
+    })
+  }, [])
+
+  return <div className="file-list" ref={ref}></div>
 }

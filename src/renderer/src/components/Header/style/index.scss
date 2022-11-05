@@ -1,0 +1,40 @@
+.header {
+    padding: 4px 10px;
+    -webkit-app-region: drag;
+    display: flex;
+    justify-content: space-between;
+    .controlers {
+      ul {
+        display: flex;
+        &:hover {
+          svg {
+            display: block;
+            color: black;
+          }
+          .li-close {
+            background-color: #fc605c;
+          }
+          .li-min {
+            background-color: #fcbb40;
+          }
+          .li-max {
+            background-color: #34c648;
+          }
+        }
+        li {
+          margin: 4px 3px;
+          height: 12px;
+          width: 12px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: lightgray;
+          svg {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  

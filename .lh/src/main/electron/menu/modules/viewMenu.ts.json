@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/electron/menu/modules/viewMenu.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667539515816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667539545980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n \n-export   const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n+export  const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n     label: 'View',\n     submenu: [\n       {\n         label: 'Reload',\n"
+                }
+            ],
+            "date": 1667539515816,
+            "name": "Commit-0",
+            "content": "import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n\nexport   const viewMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'View',\n    submenu: [\n      {\n        label: 'Reload',\n        accelerator: 'Command+R',\n        //刷新页面\n        click: () => {\n          // this.mainWindow.webContents.reload();\n        }\n      },\n      {\n        label: 'Toggle Full Screen',\n        accelerator: 'Ctrl+Command+F',\n        //全屏\n        click: () => {\n          // this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());\n        }\n      },\n      {\n        label: 'Toggle Developer Tools',\n        accelerator: 'Alt+Command+I',\n        //打开开发工具\n        click: () => {\n          // this.mainWindow.webContents.toggleDevTools();\n        }\n      }\n    ]\n  }"
+        }
+    ]
+}
