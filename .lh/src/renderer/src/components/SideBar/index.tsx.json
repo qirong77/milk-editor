@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1667543408571,
@@ -68,6 +68,14 @@
                 {
                     "date": 1667641399802,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import { SideBarHeader } from './components/SideBarHeader'\n \n export const SideBar = () => {\n   const [toggle, setToggle] = useState(true)\n-  const [title,setTitle] = useState('大纲')\n+  const [title,setTitle] = useState('文件')\n   const clickMenu = () => {\n     if(!toggle) {\n       setTitle('文件')\n     }\n"
+                },
+                {
+                    "date": 1667643030289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { FileList } from './components/FileList'\n import { Footer } from './components/Footer'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n+import { mapFileList } from './hooks/mapFileList'\n \n export const SideBar = () => {\n   const [toggle, setToggle] = useState(true)\n   const [title,setTitle] = useState('文件')\n@@ -13,8 +14,15 @@\n     }\n     toggle && setTitle('outline')\n     setToggle(!toggle)\n   }\n+  const getFileList = async () => {\n+    const fileList = await window.api.onGetFileList()\n+    const fileNodes = mapFileList(fileList)\n+  }\n+  useEffect(()=>{\n+\n+  },[])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader title={title} clickMenu={clickMenu} />\n       {toggle && <FileList />}\n"
+                },
+                {
+                    "date": 1667643334732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,34 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n import { FileList } from './components/FileList'\n import { Footer } from './components/Footer'\n import { HeaderList } from './components/HeaderList'\n import { SideBarHeader } from './components/SideBarHeader'\n+import { mapFileList } from './hooks/mapFileList'\n \n export const SideBar = () => {\n   const [toggle, setToggle] = useState(true)\n   const [title,setTitle] = useState('文件')\n+  const [file,setFile] = useState<HTMLElement>(document.createElement('li'))\n   const clickMenu = () => {\n     if(!toggle) {\n       setTitle('文件')\n     }\n     toggle && setTitle('outline')\n     setToggle(!toggle)\n   }\n+  const getFileList = async () => {\n+    const fileList = await window.api.onGetFileList()\n+    const fileNodes = mapFileList(fileList)\n+    setFile(fileNodes)\n+  }\n+  useEffect(()=>{\n+    getFileList()\n+  },[])\n   return (\n     <div className=\"side-bar\">\n       <SideBarHeader title={title} clickMenu={clickMenu} />\n-      {toggle && <FileList />}\n+      {toggle && <FileList fileNodes={file}/>}\n       {!toggle && <HeaderList />}\n       <Footer />\n     </div>\n   )\n"
                 }
             ],
             "date": 1667543408571,

@@ -1,4 +1,4 @@
-import { DarwinMenuItemConstructorOptions } from '../../../interface'
+import { DarwinMenuItemConstructorOptions } from '../../../../interface'
 
 export const editMenuTemplate: DarwinMenuItemConstructorOptions = {
   label: 'Edit',

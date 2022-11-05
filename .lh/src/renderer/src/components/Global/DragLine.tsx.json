@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1667544490704,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667642401275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n       const nextPosition = clientX + moveDistance\n       dragLine.style.left = nextPosition + 'px'\n       return false\n     }\n-\n     // 释放鼠标的时候解除事件绑定\n     document.onmouseup = (e) => {\n       const newPosition = e.clientX\n       // 如果太宽了就返回原来的位置\n@@ -22,10 +21,8 @@\n       if (newPosition <= 100 || newPosition > 600) {\n         dragLine.style.left = clientX + 'px'\n       } else {\n         dragLine.style.left = newPosition + 'px'\n-        const sideBar = document.querySelector('.side-bar') as HTMLElement\n-        sideBar.style.width = newPosition + 'px'\n       }\n       document.onmousemove = null\n       document.onmouseup = null\n       return false\n"
                 }
             ],
             "date": 1667544490704,

@@ -11,7 +11,7 @@ export const SideBar = () => {
     if(!toggle) {
       setTitle('文件')
     }
-    toggle && setTitle('outline')
+    toggle && setTitle('大纲')
     setToggle(!toggle)
   }
   return (

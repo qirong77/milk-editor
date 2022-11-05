@@ -6,55 +6,63 @@ const triangleDown = `<div>
 <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 </svg>
 </div>`
-const newFileItemLi = (fileName: string, level: number, path: string) => {
-  const li = document.createElement('li')
-  if (level === 0) li.style.display = 'none'
-  li.setAttribute('style', `--i: ${level}`)
-  li.innerHTML = `<span>${fileName}</span>`
-  li.classList.add('file-item')
+const createInput = (fileName: string, li: HTMLLIElement, path: string, isDir: boolean) => {
+  const handleChange = () => {
+    const newName = input.value
+    newName && window.api.sendToMain(RENAME_FILE, path, newName)
+    if (isDir) {
+      li.innerHTML = triangleDown + `<span>${input.value}</span>`
+    } else li.innerHTML = `<span>${input.value}</span>`
+  }
   const input = document.createElement('input')
   input.value = fileName
-  const handleChange = () => {
-    input.value && window.api.sendToMain(RENAME_FILE, path, input.value)
+
+  input.onblur = () => {
+    handleChange()
+    li.classList.toggle('show-input')
   }
+  input.onkeydown = (e) => {
+    if (e.code === 'Enter') {
+      handleChange()
+    }
+  }
+  return input
+}
+const createLi = (fileName: string, path: string, level: number, isDir: boolean) => {
+  const li = document.createElement('li')
+  li.setAttribute('style', `--i: ${level}`)
+  li.innerHTML = `<span>${fileName}</span>`
+  if (isDir) {
+    li.classList.add('dir')
+  } else {
+    li.classList.add('file-item')
+  }
+  // 不显示根文件夹
+  if (level === 0) {
+    li.style.display = 'none'
+  }
+  li.appendChild(createInput(fileName, li, path, isDir))
   li.addEventListener('contextmenu', () => {
     li.classList.toggle('show-input')
   })
-  li.addEventListener('click', (e) => {
-    e.stopPropagation()
-    window.api.sendToMain(OPEN_FILE, path)
-    input.focus()
-    input.onblur = () => {
-      handleChange()
-      li.classList.toggle('show-input')
-    }
-    input.onkeydown = (e) => {
-      if (e.code === 'Enter') {
-        handleChange()
-      }
-    }
-  })
+  !isDir &&
+    li.addEventListener('click', (e) => {
+      e.stopPropagation()
+      window.api.sendToMain(OPEN_FILE, path)
+    })
   return li
 }
-export const mapFileList = (fileTree: FileTree) => {
-  if (!fileTree.isDir) return newFileItemLi(fileTree.fileName, fileTree.level, fileTree.path)
-  const li = document.createElement('li')
+export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree) => {
+  const li = createLi(fileName, path, level, isDir)
+  if (!isDir) return li
 
-  li.setAttribute('style', `--i: ${fileTree.level}`)
-  li.innerHTML = `<span>${fileTree.fileName}</span>`
-  li.innerHTML = triangleDown + fileTree.fileName
-  li.classList.add('dir')
-    // 不显示根文件夹
-    if (fileTree.level === 0) {
-      li.style.display = 'none'
-    }
   const ul = document.createElement('ul')
   ul.addEventListener('click', (e) => {
     e.stopPropagation()
     ul.classList.toggle('close')
   })
   ul.appendChild(li)
-  fileTree.children.forEach((file) => {
+  children.forEach((file) => {
     ul.appendChild(mapFileList(file))
   })
   return ul

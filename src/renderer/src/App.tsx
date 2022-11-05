@@ -10,15 +10,17 @@ import { SideBar } from './components/SideBar'
 export const App = () => {
   const [filePath, setFilePath] = useState('untitle')
   const [content, setContent] = useState('')
+  const [title,setTitle] = useState('untitle')
   useEffect(() => {
-    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {
+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent,fileName }) => {
       setFilePath(filePath)
       setContent(fileContent)
+      setTitle(fileName)
     })
   }, [])
   return (
     <div className="container">
-      <Header title={filePath} />
+      <Header title={title} />
       <main>
         <SideBar />
         <MilkdownEditor content={content} filePath={filePath} />

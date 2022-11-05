@@ -1,6 +1,6 @@
 import { BrowserWindow, Menu } from 'electron'
 import { DarwinMenuItemConstructorOptions } from '../../interface'
-import { editMenuTemplate } from './modules/editMenu'
+import { editMenuTemplate } from './modules/TopMenu/editMenu'
 import { fileMenuTemplate } from './modules/fileMenu'
 
 export const createMenu = (window: BrowserWindow) => {

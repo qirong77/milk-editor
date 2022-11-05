@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 21,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667537076910,
@@ -92,6 +92,10 @@
                 {
                     "date": 1667634707682,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from 'src/common/eventType'\n+import { OPEN_FILE } from '../../common/eventType'\n \n \n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n"
+                },
+                {
+                    "date": 1667643334733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,19 @@\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n+  const [title,setTitle] = useState('untitle')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent,fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n+      setTitle(fileName)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={filePath} />\n+      <Header title={title} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
                 }
             ],
             "date": 1667537076910,
