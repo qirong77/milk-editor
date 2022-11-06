@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { IFileList } from '../../../../common/interface'
 
 import { openFile } from '../../common/openFile'
-type IFileList = {
-  fileName: string
-  filePath: string
-}[]
+
 interface ISearchFile {
   fileList: IFileList
   closeSearchFile: () => void
 }
-const mapFiles = (fileList: IFileList) => {
+const mapFiles = (fileList: IFileList[]) => {
   const files = fileList.map((file, index) => {
     return (
       <li key={file.filePath} className={index === 0 ? 'active' : ''}>
@@ -19,18 +17,30 @@ const mapFiles = (fileList: IFileList) => {
   })
   return files
 }
-export const SearchFile: React.FC<ISearchFile> = ({ fileList, closeSearchFile }) => {
+
+export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
+  console.log('render-SearchFile')
   const [active, setActive] = useState(0)
   const iptRef = useRef<HTMLInputElement>(null)
   const filesContainer = useRef<HTMLUListElement>(null)
-
-  const [files, setFiles] = useState(mapFiles(fileList))
+  const getFileList = async () => {
+    const fileList = await window.api.onGetFileList()
+    setFiles(mapFiles(fileList))
+  }
+  const [files, setFiles] = useState(
+    mapFiles([
+      {
+        fileName: '初始化失败',
+        filePath: '2'
+      }
+    ])
+  )
 
   useEffect(() => {
     // 在active更新后执行，否则不会按照你的预定的去
     const lis = filesContainer.current?.children
-    if (lis) {
-      ;[...lis].forEach((li, _index) => {
+    if (lis?.length) {
+      Array.from(lis).forEach((li, _index) => {
         li.classList.remove('active')
       })
       const target = lis[active]
@@ -79,8 +89,12 @@ export const SearchFile: React.FC<ISearchFile> = ({ fileList, closeSearchFile })
     return () => document.removeEventListener('keydown', hanleSelect)
     // 因为处理函数里面有依赖到active，所以必须传递这个依赖进去
   }, [active, files])
-  const updateFiles = () => {
+  useEffect(() => {
+    getFileList()
+  }, [])
+  const updateFiles = async () => {
     const searchStr = iptRef.current?.value || ''
+    const fileList = await window.api.onGetFileList()
     const newFileList = fileList.filter((file) => {
       if (file.fileName.toLocaleLowerCase().includes(searchStr.toLocaleLowerCase())) return true
       else return false

@@ -1,18 +1,22 @@
 {
-  "sourceFile": "src/renderer/src/components/SideBar/components/HeaderList.tsx",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 0,
-      "patches": [
+    "sourceFile": "src/renderer/src/components/SideBar/components/HeaderList.tsx",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667547873243,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1667547873243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667747567363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-export const HeaderList = () => {\n+export const HeaderList = ({ toggle }) => {\n   return (\n-    <div></div>\n+    <div\n\\ No newline at end of file\n+      style={{\n+        display: !toggle ? 'block' : 'none'\n+      }}\n+    >\n+      headerlist\n+    </div>\n   )\n- }\n+}\n"
+                }
+            ],
+            "date": 1667547873243,
+            "name": "Commit-0",
+            "content": "export const HeaderList = () => {\n  return (\n    <div></div>\n  )\n }"
         }
-      ],
-      "date": 1667547873243,
-      "name": "Commit-0",
-      "content": "export const HeaderList = () => {\n  return (\n    <div></div>\n  )\n }"
-    }
-  ]
+    ]
 }

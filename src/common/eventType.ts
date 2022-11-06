@@ -8,8 +8,8 @@ export const POP_FILE_ITEM_MENU = 'pop file item menu'
 export const POP_DIR_MENU = 'pop dir menu'
 
 // interProcess
+export const GET_DIR_TREE = 'get dir tree'
 export const GET_FILE_LIST = 'get file list'
-
 // main -> renender
 export const OPEN_FILE = 'open a file'
 export const OPEN_DIR = 'open a dir'

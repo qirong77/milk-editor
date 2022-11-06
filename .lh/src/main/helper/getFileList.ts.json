@@ -1,18 +1,58 @@
 {
-  "sourceFile": "src/main/helper/getFileList.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 0,
-      "patches": [
+    "sourceFile": "src/main/helper/getFileList.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667568007385,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
+            "activePatchIndex": 10,
+            "patches": [
+                {
+                    "date": 1667568007385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667729081170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,18 @@\n-import { homedir } from \"os\"\n-import { resolve } from \"path\"\n-import { getDirectoryTree } from \"./getDirectoryTree\"\n+import { lstatSync, readdirSync } from 'fs'\n+import { resolve } from 'path'\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\n-export const getFileList = (filePath?:string) =>{\n-    const targetPath = filePath ? filePath:defaultPath\n-    const fileList = getDirectoryTree(targetPath)\n\\ No newline at end of file\n-    return fileList\n-}\n+export const getFileList = (path: string) => {\n+  const paths: string[] = []\n+  const dfs = (path) => {\n+    if (!lstatSync(path).isDirectory()) {\n+      paths.push(path)\n+      return\n+    }\n+    readdirSync(path).forEach((file) => {\n+      const nextPath = resolve(path, file)\n+      dfs(nextPath)\n+    })\n+  }\n+  dfs(path)\n+  return paths\n+}\n"
+                },
+                {
+                    "date": 1667744888370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,15 @@\n import { lstatSync, readdirSync } from 'fs'\n-import { resolve } from 'path'\n-\n+import { basename, resolve } from 'path'\n+import { FileList } from '../../common/interface'\n export const getFileList = (path: string) => {\n-  const paths: string[] = []\n-  const dfs = (path) => {\n+  const paths: FileList[] = []\n+  const dfs = (path: string) => {\n     if (!lstatSync(path).isDirectory()) {\n-      paths.push(path)\n+      paths.push({\n+        fileName: basename(path),\n+        filePath: path\n+      })\n       return\n     }\n     readdirSync(path).forEach((file) => {\n       const nextPath = resolve(path, file)\n"
+                },
+                {
+                    "date": 1667745167924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { lstatSync, readdirSync } from 'fs'\n import { basename, resolve } from 'path'\n-import { FileList } from '../../common/interface'\n+import { IFileList } from '../../common/interface'\n export const getFileList = (path: string) => {\n   const paths: FileList[] = []\n   const dfs = (path: string) => {\n     if (!lstatSync(path).isDirectory()) {\n"
+                },
+                {
+                    "date": 1667745567742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { lstatSync, readdirSync } from 'fs'\n import { basename, resolve } from 'path'\n import { IFileList } from '../../common/interface'\n export const getFileList = (path: string) => {\n-  const paths: FileList[] = []\n+  const paths: IFileList[] = []\n   const dfs = (path: string) => {\n     if (!lstatSync(path).isDirectory()) {\n       paths.push({\n         fileName: basename(path),\n"
+                },
+                {
+                    "date": 1667746031379,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import { lstatSync, readdirSync } from 'fs'\n-import { basename, resolve } from 'path'\n+import { basename, extname, resolve } from 'path'\n import { IFileList } from '../../common/interface'\n export const getFileList = (path: string) => {\n   const paths: IFileList[] = []\n   const dfs = (path: string) => {\n-    if (!lstatSync(path).isDirectory()) {\n+    if (!lstatSync(path).isDirectory() && extname(path) === 'md') {\n+        console.log(path)\n+      console.log(extname(path))\n       paths.push({\n         fileName: basename(path),\n         filePath: path\n       })\n"
+                },
+                {
+                    "date": 1667746094511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { IFileList } from '../../common/interface'\n export const getFileList = (path: string) => {\n   const paths: IFileList[] = []\n   const dfs = (path: string) => {\n-    if (!lstatSync(path).isDirectory() && extname(path) === 'md') {\n+    if (!lstatSync(path).isDirectory()) {\n         console.log(path)\n       console.log(extname(path))\n       paths.push({\n         fileName: basename(path),\n"
+                },
+                {
+                    "date": 1667746230175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,15 @@\n import { lstatSync, readdirSync } from 'fs'\n import { basename, extname, resolve } from 'path'\n import { IFileList } from '../../common/interface'\n+const exceptFile = /^\\./\n export const getFileList = (path: string) => {\n   const paths: IFileList[] = []\n   const dfs = (path: string) => {\n     if (!lstatSync(path).isDirectory()) {\n+      if(exceptFile.test(basename(path))){\n         console.log(path)\n-      console.log(extname(path))\n+      }\n       paths.push({\n         fileName: basename(path),\n         filePath: path\n       })\n"
+                },
+                {
+                    "date": 1667746273038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,21 @@\n import { lstatSync, readdirSync } from 'fs'\n-import { basename, extname, resolve } from 'path'\n+import { basename,  resolve } from 'path'\n import { IFileList } from '../../common/interface'\n const exceptFile = /^\\./\n export const getFileList = (path: string) => {\n   const paths: IFileList[] = []\n   const dfs = (path: string) => {\n     if (!lstatSync(path).isDirectory()) {\n-      if(exceptFile.test(basename(path))){\n-        console.log(path)\n-      }\n       paths.push({\n         fileName: basename(path),\n         filePath: path\n       })\n       return\n     }\n     readdirSync(path).forEach((file) => {\n       const nextPath = resolve(path, file)\n-      dfs(nextPath)\n+      exceptFile.test(basename(path)) && dfs(nextPath)\n     })\n   }\n   dfs(path)\n   return paths\n"
+                },
+                {
+                    "date": 1667746286803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       return\n     }\n     readdirSync(path).forEach((file) => {\n       const nextPath = resolve(path, file)\n-      exceptFile.test(basename(path)) && dfs(nextPath)\n+      !exceptFile.test(basename(path)) && dfs(nextPath)\n     })\n   }\n   dfs(path)\n   return paths\n"
+                },
+                {
+                    "date": 1667746305816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       return\n     }\n     readdirSync(path).forEach((file) => {\n       const nextPath = resolve(path, file)\n-      !exceptFile.test(basename(path)) && dfs(nextPath)\n+      !exceptFile.test(basename(nextPath)) && dfs(nextPath)\n     })\n   }\n   dfs(path)\n   return paths\n"
+                }
+            ],
+            "date": 1667568007385,
+            "name": "Commit-0",
+            "content": "import { homedir } from \"os\"\nimport { resolve } from \"path\"\nimport { getDirectoryTree } from \"./getDirectoryTree\"\n\nconst defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\nexport const getFileList = (filePath?:string) =>{\n    const targetPath = filePath ? filePath:defaultPath\n    const fileList = getDirectoryTree(targetPath)\n    return fileList\n}"
         }
-      ],
-      "date": 1667568007385,
-      "name": "Commit-0",
-      "content": "import { homedir } from \"os\"\nimport { resolve } from \"path\"\nimport { getDirectoryTree } from \"./getDirectoryTree\"\n\nconst defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\nexport const getFileList = (filePath?:string) =>{\n    const targetPath = filePath ? filePath:defaultPath\n    const fileList = getDirectoryTree(targetPath)\n    return fileList\n}"
-    }
-  ]
+    ]
 }

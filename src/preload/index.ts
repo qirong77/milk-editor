@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import { GET_FILE_LIST } from '../common/eventType'
-import { FileTree } from '../common/interface'
+import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'
+import { IFileList, FileTree } from '../common/interface'
 
 // Custom APIs for renderer
 const sendToMain = (e: string, ...args: any[]) => {
@@ -13,8 +13,12 @@ const onMain = (e: string, callback) => {
 const api = {
   sendToMain,
   onMain,
+  onGetDirTree: async () => {
+    const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree
+    return tree
+  },
   onGetFileList: async () => {
-    const fileList = (await ipcRenderer.invoke(GET_FILE_LIST)) as FileTree
+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]
     return fileList
   }
 }

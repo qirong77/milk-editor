@@ -5,3 +5,7 @@ export type FileTree = {
   path: string
   isDir: boolean
 }
+export type IFileList = {
+  fileName:string,
+  filePath:string
+}

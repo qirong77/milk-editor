@@ -1,3 +1,11 @@
-export const HeaderList = () => {
-  return <div></div>
+export const HeaderList = ({ toggle }) => {
+  return (
+    <div
+      style={{
+        display: !toggle ? 'block' : 'none'
+      }}
+    >
+      headerlist
+    </div>
+  )
 }

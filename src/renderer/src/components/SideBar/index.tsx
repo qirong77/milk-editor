@@ -17,8 +17,8 @@ export const SideBar = () => {
   return (
     <div className="side-bar">
       <SideBarHeader title={title} clickMenu={clickMenu} />
-      {toggle && <FileList />}
-      {!toggle && <HeaderList />}
+      <FileList toggle={toggle} />
+      <HeaderList toggle={toggle} />
       <Footer />
     </div>
   )

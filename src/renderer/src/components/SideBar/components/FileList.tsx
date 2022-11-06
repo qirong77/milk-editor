@@ -1,4 +1,3 @@
-import { basename, dirname, resolve } from 'path-browserify'
 import { useEffect, useRef } from 'react'
 import {
   DELETE_DIR,
@@ -11,16 +10,18 @@ import {
 import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../../../main/electron/config/constant'
 
 import { mapFileList, SHOW_INPUT } from '../hooks/mapFileList'
-export const FileList = () => {
+export const FileList = ({ toggle }) => {
   const ref = useRef<HTMLDivElement>(null)
   const setFileList = async () => {
-    const fileList = await window.api.onGetFileList()
+    const fileList = await window.api.onGetDirTree()
     const fileNodes = mapFileList(fileList)
     ref.current!.innerHTML = ''
     ref.current?.appendChild(fileNodes)
   }
   // 渲染的时候就获取文件列表
+  // 如果使用空数组依赖，组件渲染会导致重复监听
   useEffect(() => {
+    console.log('useEffect')
     setFileList()
     ref.current?.addEventListener('input', (e) => {
       console.log(e)
@@ -73,7 +74,15 @@ export const FileList = () => {
       })
       target?.parentElement?.appendChild(node)
     })
-  }, [])
+  },[])
 
-  return <div className="file-list" ref={ref}></div>
+  return (
+    <div
+      style={{
+        display: toggle ? 'block' : 'none'
+      }}
+      className="file-list"
+      ref={ref}
+    ></div>
+  )
 }

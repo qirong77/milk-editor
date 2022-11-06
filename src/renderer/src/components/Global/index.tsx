@@ -29,11 +29,12 @@ export const GlobalComponents = () => {
   useEffect(() => {
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [])
+  }, [showSearchFile])
+
   return (
     <>
       {showSearchFile && (
-        <SearchFile fileList={[]} closeSearchFile={() => setShowSearchFile(false)} />
+        <SearchFile  closeSearchFile={() => setShowSearchFile(false)} />
       )}
       <DragLine />
     </>

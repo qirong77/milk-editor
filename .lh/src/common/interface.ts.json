@@ -1,46 +1,54 @@
 {
-  "sourceFile": "src/common/interface.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 7,
-      "patches": [
+    "sourceFile": "src/common/interface.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667554409443,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1667569812199,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n-  }\n\\ No newline at end of file\n+  } | {}\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667569818910,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-export interface FileTree {\n+export type FileTree {\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n\\ No newline at end of file\n-  } | {}\n+  } \n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667569825766,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-export type FileTree {\n+export type FileTree = {\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n\\ No newline at end of file\n-  } \n+  } | string\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667571377407,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n-  } | string\n\\ No newline at end of file\n+  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667571615097,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n+    isDir?:boolean\n   }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667572755111,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export type FileTree = {\n     fileName: string\n     level: number\n-    children: (FileTree | string)[]\n+    children: (FileTree[]\n     path: string\n     isDir?:boolean\n   }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667572965589,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export type FileTree = {\n     fileName: string\n     level: number\n-    children: (FileTree[]\n+    children: FileTree[]\n     path: string\n-    isDir?:boolean\n+    isDir:boolean\n   }\n\\ No newline at end of file\n"
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1667554409443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667569812199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n-  }\n\\ No newline at end of file\n+  } | {}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667569818910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-export interface FileTree {\n+export type FileTree {\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n\\ No newline at end of file\n-  } | {}\n+  } \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667569825766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-export type FileTree {\n+export type FileTree = {\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n\\ No newline at end of file\n-  } \n+  } | string\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667571377407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,5 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n-  } | string\n\\ No newline at end of file\n+  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667571615097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n     fileName: string\n     level: number\n     children: (FileTree | string)[]\n     path: string\n+    isDir?:boolean\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667572755111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export type FileTree = {\n     fileName: string\n     level: number\n-    children: (FileTree | string)[]\n+    children: (FileTree[]\n     path: string\n     isDir?:boolean\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667572965589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export type FileTree = {\n     fileName: string\n     level: number\n-    children: (FileTree[]\n+    children: FileTree[]\n     path: string\n-    isDir?:boolean\n+    isDir:boolean\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667744888370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n export type FileTree = {\n-    fileName: string\n-    level: number\n-    children: FileTree[]\n-    path: string\n-    isDir:boolean\n-  }\n\\ No newline at end of file\n+  fileName: string\n+  level: number\n+  children: FileTree[]\n+  path: string\n+  isDir: boolean\n+}\n+export type FileList = {\n+  fileName:string,\n+  filePath:string\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667745567743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n   children: FileTree[]\n   path: string\n   isDir: boolean\n }\n-export type FileList = {\n+export type IFileList = {\n   fileName:string,\n   filePath:string\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1667554409443,
+            "name": "Commit-0",
+            "content": "export interface FileTree {\n    fileName: string\n    level: number\n    children: (FileTree | string)[]\n    path: string\n  }"
         }
-      ],
-      "date": 1667554409443,
-      "name": "Commit-0",
-      "content": "export interface FileTree {\n    fileName: string\n    level: number\n    children: (FileTree | string)[]\n    path: string\n  }"
-    }
-  ]
+    ]
 }
