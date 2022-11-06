@@ -4,7 +4,9 @@ import path from 'path'
 import { onEvents } from '../events'
 import { createMenu } from '../menu'
 
-export const createWindow = () => {
+export const createWindow = (config:{
+  openedDir:string
+}) => {
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -19,7 +21,7 @@ export const createWindow = () => {
   })
    createMenu(mainWindow)
   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看
-  onEvents(mainWindow)
+  onEvents(mainWindow,config.openedDir)
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })

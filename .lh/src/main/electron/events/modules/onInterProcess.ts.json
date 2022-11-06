@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1667541912581,
@@ -16,6 +16,14 @@
                 {
                     "date": 1667568351702,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n import { ipcMain } from \"electron\"\n import { GET_FILE_LIST } from \"../../../../common/eventType\"\n+import { getDirectoryTree } from \"../../../helper/getDirectoryTree\"\n \n \n export const onInterProcess = () => {\n-    ipcMain.handle(GET_FILE_LIST,)\n+    ipcMain.handle(GET_FILE_LIST,()=>{\n+        return getDirectoryTree()\n+    })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667706833787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { GET_FILE_LIST } from \"../../../../common/eventType\"\n import { getDirectoryTree } from \"../../../helper/getDirectoryTree\"\n \n \n-export const onInterProcess = () => {\n+export const onInterProcess = (openedDir:string) => {\n     ipcMain.handle(GET_FILE_LIST,()=>{\n-        return getDirectoryTree()\n+        return getDirectoryTree(openedDir)\n     })\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667713644744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,16 @@\n import { ipcMain } from \"electron\"\n-import { GET_FILE_LIST } from \"../../../../common/eventType\"\n+import { GET_FILE_LIST, POP_FILE_ITEM_MENU } from \"../../../../common/eventType\"\n import { getDirectoryTree } from \"../../../helper/getDirectoryTree\"\n \n \n export const onInterProcess = (openedDir:string) => {\n     ipcMain.handle(GET_FILE_LIST,()=>{\n         return getDirectoryTree(openedDir)\n     })\n\\ No newline at end of file\n-}\n+    ipcMain.handle(POP_FILE_ITEM_MENU, (_e, path) => {\n+        const menu = createFilItemMenu(path)\n+        menu.popup({\n+          window\n+        })\n+      })\n+}\n"
                 }
             ],
             "date": 1667541912581,

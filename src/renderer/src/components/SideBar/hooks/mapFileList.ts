@@ -1,7 +1,9 @@
 import { OPEN_FILE, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../common/eventType'
 import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
+import { resolve, extname, basename, dirname } from 'path-browserify'
 
+export const SHOW_INPUT = 'show-input'
 const triangleDown = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
 <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -13,20 +15,28 @@ const triangleDown = `<div>
   <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
 </svg>
 </div>`
-const createInput = (fileName: string, li: HTMLLIElement, path: string, isDir: boolean) => {
+const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
+  const input = document.createElement('input')
   const handleChange = () => {
     const newName = input.value + '.md'
-    newName && window.api.sendToMain(RENAME_FILE, path, newName)
+    const oldPath = li.getAttribute('id') || ''
+    const newPath = resolve(dirname(oldPath), newName)
+    console.log(newPath)
+    newName && window.api.sendToMain(RENAME_FILE, oldPath,newPath)
     if (isDir) {
       li.innerHTML = triangleDown + `<span>${newName}</span>`
     } else li.innerHTML = `<span>${newName}</span>`
+    li.appendChild(createInput(newName, li, isDir))
+    li.setAttribute('id', newPath)
   }
-  const input = document.createElement('input')
   input.value = fileName
-
   input.onblur = () => {
     handleChange()
-    li.classList.toggle('show-input')
+    console.log('blur')
+    li.classList.remove(SHOW_INPUT)
+  }
+  input.onfocus = () => {
+    li.classList.add(SHOW_INPUT)
   }
   input.onkeydown = (e) => {
     if (e.code === 'Enter') {
@@ -37,6 +47,7 @@ const createInput = (fileName: string, li: HTMLLIElement, path: string, isDir: b
 }
 const createLi = (fileName: string, path: string, level: number, isDir: boolean) => {
   const li = document.createElement('li')
+  li.setAttribute('id', path)
   li.setAttribute('style', `--i: ${level}`)
   if (isDir) li.innerHTML = triangleDown + `<span>${fileName}</span>`
   else li.innerHTML = `<span>${fileName}</span>`
@@ -49,15 +60,15 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   if (level === 0) {
     li.style.display = 'none'
   }
-  li.appendChild(createInput(fileName, li, path, isDir))
+  li.appendChild(createInput(fileName, li, isDir))
   li.addEventListener('contextmenu', () => {
-    window.api.sendToMain(POP_FILE_ITEM_MENU, path, li)
-    // li.classList.toggle('show-input')
+    window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
   })
   !isDir &&
     li.addEventListener('click', (e) => {
       e.stopPropagation()
-      openFile(path)
+      const newPath = li.getAttribute('id')
+      newPath && openFile(newPath)
     })
   return li
 }

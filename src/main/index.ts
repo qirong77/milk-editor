@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-import {createWindow} from './electron/api/createwindow'
+import { createWindow } from './electron/api/createwindow'
+import { defaultPath } from './electron/config'
 // electron初始化，可以创建窗口
 app.whenReady().then(() => {
   // Set app user model id for windows
@@ -13,12 +14,17 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  createWindow()
+  createWindow({
+    openedDir: defaultPath
+  })
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0)
+      createWindow({
+        openedDir: defaultPath
+      })
   })
 })
 

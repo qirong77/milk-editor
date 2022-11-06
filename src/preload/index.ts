@@ -16,7 +16,7 @@ const api = {
   onGetFileList: async () => {
     const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree
     return fileList
-  }
+  },
 }
 export type API = typeof api
 // Use `contextBridge` APIs to expose Electron APIs to

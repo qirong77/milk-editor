@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1667541564929,
@@ -76,6 +76,10 @@
                 {
                     "date": 1667636018650,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,10 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"s\"\n+    \"src/common/eventType.ts\",\n+    \"src/common/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
+                },
+                {
+                    "date": 1667708426097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,10 @@\n     \"src/renderer/src/env.d.ts\",\n     \"src/renderer/src/**/*\",\n     \"src/renderer/src/**/*.tsx\",\n     \"src/preload/*.d.ts\",\n-    \"src/common/eventType.ts\",\n-    \"src/common/**/*\"\n+    \"src/common/**/*\",\n+    \"src/main/**/*\"\n   ],\n   \"compilerOptions\": {\n     \"composite\": true,\n     \"jsx\": \"react-jsx\",\n"
                 }
             ],
             "date": 1667541564929,

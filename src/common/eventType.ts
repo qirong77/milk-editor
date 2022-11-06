@@ -15,3 +15,5 @@ export const GET_FILE_LIST = 'get file list'
 
 // main -> renender
 export const OPEN_FILE = 'open a file'
+export const OPEN_DIR = 'open a dir'
+export const DELETE_FILE = 'delete a file'

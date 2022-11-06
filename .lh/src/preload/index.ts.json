@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -60,6 +60,14 @@
                 {
                     "date": 1667636227483,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string,...args:any[]) => {\n-  ipcRenderer.send(e)\n+  ipcRenderer.send(e,...args)\n }\n const onMain = (e: string, callback) => {\n   ipcRenderer.on(e, callback)\n }\n"
+                },
+                {
+                    "date": 1667668891038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n   onGetFileList: async () => {\n     const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n     return fileList\n   }\n+  \n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                },
+                {
+                    "date": 1667713954328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,9 @@\n   onMain,\n   onGetFileList: async () => {\n     const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n     return fileList\n-  }\n-  \n+  },\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
                 }
             ],
             "date": 1667541566569,

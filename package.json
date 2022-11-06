@@ -22,6 +22,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
     "@electron-toolkit/utils": "^1.0.2",
+    "@electron/remote": "^2.0.8",
     "@material-design-icons/font": "^0.13.1",
     "@milkdown/core": "^6.5.0",
     "@milkdown/plugin-clipboard": "^6.5.0",
@@ -32,7 +33,9 @@
     "@milkdown/preset-gfm": "^6.5.0",
     "@milkdown/react": "^6.4.1",
     "@milkdown/theme-nord": "^6.5.0",
+    "@types/path-browserify": "^1.0.0",
     "electron-updater": "^4.6.5",
+    "path-browserify": "^1.0.1",
     "prism-themes": "^1.9.0",
     "sass": "^1.56.0"
   },
