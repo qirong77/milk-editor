@@ -7,8 +7,8 @@ import { defaultPath } from '../electron/config'
 const exceptFile = /\.[^(md)]$|^\./
 
 // 读取某个文件路径的文件树，只针对md文件
-export const getDirectoryTree = (path:string, level = 0) => {
-  if(!existsSync(path)) path = defaultPath
+export const getDirectoryTree = (path: string, level = 0) => {
+  if (!existsSync(path)) path = defaultPath
   const node: FileTree = {
     fileName: basename(path),
     children: [],

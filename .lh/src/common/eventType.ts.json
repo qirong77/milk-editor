@@ -1,46 +1,50 @@
 {
-    "sourceFile": "src/common/eventType.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/common/eventType.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 8,
+      "patches": [
         {
-            "activePatchIndex": 7,
-            "patches": [
-                {
-                    "date": 1667543169085,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667568007390,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,12 @@\n+\n+\n // 事件类型，尽量用两个单词表示 动词 + 名词\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n \n+\n+\n+// interProcess\n+export const GET_FILE_LIST = 'get file list'\n"
-                },
-                {
-                    "date": 1667630414121,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n \n \n // 事件类型，尽量用两个单词表示 动词 + 名词\n+// 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n+export const RENAME_FILE = 'rename file'\n \n \n-\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n"
-                },
-                {
-                    "date": 1667633625990,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,4 +10,8 @@\n \n \n // interProcess\n export const GET_FILE_LIST = 'get file list'\n+\n+\n+// main -> renender\n+export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667648932875,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-\n-\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n+export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n"
-                },
-                {
-                    "date": 1667668891038,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,6 @@\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n-export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n+export const OPEN_FILE = 'open a file'\n+export const OPEN_DIR = 'open a dir'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667708476689,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n"
-                },
-                {
-                    "date": 1667713424711,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,14 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n-export const OPEN_DIR = 'open a dir'\n+export const OPEN_DIR = 'open a dir'\n+export const DELETE_FILE = 'delete a file'\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1667543169085,
-            "name": "Commit-0",
-            "content": "// 事件类型，尽量用两个单词表示 动词 + 名词\nexport const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'\nexport const NEW_FILE = 'add a new file'\n\n"
+          "date": 1667543169085,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667568007390,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,12 @@\n+\n+\n // 事件类型，尽量用两个单词表示 动词 + 名词\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n \n+\n+\n+// interProcess\n+export const GET_FILE_LIST = 'get file list'\n"
+        },
+        {
+          "date": 1667630414121,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n \n \n // 事件类型，尽量用两个单词表示 动词 + 名词\n+// 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n+export const RENAME_FILE = 'rename file'\n \n \n-\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n"
+        },
+        {
+          "date": 1667633625990,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,4 +10,8 @@\n \n \n // interProcess\n export const GET_FILE_LIST = 'get file list'\n+\n+\n+// main -> renender\n+export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667648932875,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-\n-\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n+export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n"
+        },
+        {
+          "date": 1667668891038,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,6 @@\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n-export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n+export const OPEN_FILE = 'open a file'\n+export const OPEN_DIR = 'open a dir'\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667708476689,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n"
+        },
+        {
+          "date": 1667713424711,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,14 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n-export const OPEN_DIR = 'open a dir'\n+export const OPEN_DIR = 'open a dir'\n+export const DELETE_FILE = 'delete a file'\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667719922394,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,16 +4,19 @@\n // 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n+\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n\\ No newline at end of file\n-export const DELETE_FILE = 'delete a file'\n+export const DELETE_FILE = 'delete a file'\n+export const NEW_DIR = 'new directory'\n+export const NEW_FILE = 'add a new file'\n+export const DELETE_DIR = 'delet a dir'\n"
         }
-    ]
+      ],
+      "date": 1667543169085,
+      "name": "Commit-0",
+      "content": "// 事件类型，尽量用两个单词表示 动词 + 名词\nexport const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'\nexport const NEW_FILE = 'add a new file'\n\n"
+    }
+  ]
 }

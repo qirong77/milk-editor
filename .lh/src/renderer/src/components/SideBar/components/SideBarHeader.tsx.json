@@ -1,46 +1,46 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar/components/SideBarHeader.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar/components/SideBarHeader.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 7,
+      "patches": [
         {
-            "activePatchIndex": 7,
-            "patches": [
-                {
-                    "date": 1667547879770,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667547885605,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Hea = () => {\n+export const SideBarHeader = () => {\n   return (\n     <div></div>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667547890665,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n export const SideBarHeader = () => {\n   return (\n-    <div></div>\n+    <header></header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667549941538,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const SideBarHeader = () => {\n   return (\n-    <header></header>\n+    <header>\n+        \n+    </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667549946913,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBarHeader = () => {\n   return (\n     <header>\n-        \n+        <Menu\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667550475176,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n-export const SideBarHeader = () => {\n+import { MenuSvg, SearchSvg } from \"@renderer/assets/svg\"\n+\n+export const SideBarHeader = ({title}) => {\n   return (\n     <header>\n-        <Menu\n+        <MenuSvg onClick={()=>{}}/>\n+        <span>{title}</span>\n+        <SearchSvg onClick={()=>{}}/>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667636474379,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n-import { MenuSvg, SearchSvg } from \"@renderer/assets/svg\"\n+import { MenuSvg } from \"../../../assets/svg\"\n \n-export const SideBarHeader = ({title}) => {\n+\n+export const SideBarHeader = ({title,clickMenu}) => {\n   return (\n     <header>\n         <MenuSvg onClick={()=>{}}/>\n         <span>{title}</span>\n"
-                },
-                {
-                    "date": 1667636645717,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import { MenuSvg } from \"../../../assets/svg\"\n+import { MenuSvg, SearchSvg } from \"../../../assets/svg\"\n \n \n export const SideBarHeader = ({title,clickMenu}) => {\n   return (\n     <header>\n-        <MenuSvg onClick={()=>{}}/>\n+        <MenuSvg onClick={clickMenu}/>\n         <span>{title}</span>\n         <SearchSvg onClick={()=>{}}/>\n     </header>\n   )\n"
-                }
-            ],
-            "date": 1667547879770,
-            "name": "Commit-0",
-            "content": "export const Hea = () => {\n  return (\n    <div></div>\n  )\n }"
+          "date": 1667547879770,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667547885605,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Hea = () => {\n+export const SideBarHeader = () => {\n   return (\n     <div></div>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667547890665,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n export const SideBarHeader = () => {\n   return (\n-    <div></div>\n+    <header></header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667549941538,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n export const SideBarHeader = () => {\n   return (\n-    <header></header>\n+    <header>\n+        \n+    </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667549946913,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const SideBarHeader = () => {\n   return (\n     <header>\n-        \n+        <Menu\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667550475176,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n-export const SideBarHeader = () => {\n+import { MenuSvg, SearchSvg } from \"@renderer/assets/svg\"\n+\n+export const SideBarHeader = ({title}) => {\n   return (\n     <header>\n-        <Menu\n+        <MenuSvg onClick={()=>{}}/>\n+        <span>{title}</span>\n+        <SearchSvg onClick={()=>{}}/>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667636474379,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n-import { MenuSvg, SearchSvg } from \"@renderer/assets/svg\"\n+import { MenuSvg } from \"../../../assets/svg\"\n \n-export const SideBarHeader = ({title}) => {\n+\n+export const SideBarHeader = ({title,clickMenu}) => {\n   return (\n     <header>\n         <MenuSvg onClick={()=>{}}/>\n         <span>{title}</span>\n"
+        },
+        {
+          "date": 1667636645717,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import { MenuSvg } from \"../../../assets/svg\"\n+import { MenuSvg, SearchSvg } from \"../../../assets/svg\"\n \n \n export const SideBarHeader = ({title,clickMenu}) => {\n   return (\n     <header>\n-        <MenuSvg onClick={()=>{}}/>\n+        <MenuSvg onClick={clickMenu}/>\n         <span>{title}</span>\n         <SearchSvg onClick={()=>{}}/>\n     </header>\n   )\n"
         }
-    ]
+      ],
+      "date": 1667547879770,
+      "name": "Commit-0",
+      "content": "export const Hea = () => {\n  return (\n    <div></div>\n  )\n }"
+    }
+  ]
 }

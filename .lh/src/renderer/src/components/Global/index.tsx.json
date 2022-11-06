@@ -1,30 +1,30 @@
 {
-    "sourceFile": "src/renderer/src/components/Global/index.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Global/index.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 3,
+      "patches": [
         {
-            "activePatchIndex": 3,
-            "patches": [
-                {
-                    "date": 1667544815602,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667665114082,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { useEffect } from \"react\"\n \n export const GlobalComponents = () => {\n+    const handleKeydown = (e:KeyboardEvent) => {\n+\n+    }\n     useEffect(()=>{\n-\n+        document.addEventListener('keydown',handleKeydown)\n     },[])\n     return <>\n     \n     </>\n"
-                },
-                {
-                    "date": 1667666024733,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,33 @@\n-import { useEffect } from \"react\"\n+import { useEffect } from 'react'\n \n export const GlobalComponents = () => {\n-    const handleKeydown = (e:KeyboardEvent) => {\n-\n+  const handleKeydown = (e: KeyboardEvent) => {\n+    if (e.metaKey && e.code === 'KeyM') {\n+      const MenuBar = document.querySelector('.milkdown-menu')\n+      console.log('commend + M')\n+      console.log(MenuBar)\n+      MenuBar?.classList.toggle('milkdown-menu-open')\n     }\n\\ No newline at end of file\n-    useEffect(()=>{\n-        document.addEventListener('keydown',handleKeydown)\n-    },[])\n-    return <>\n-    \n-    </>\n-}\n+    if (e.metaKey && e.code === 'KeyB') {\n+      const SideBar = document.querySelector('.side-bar') as HTMLElement\n+      console.log('commend + B')\n+      //updateHeaders()\n+      SideBar?.classList.toggle('side-bar-close')\n+    }\n+    if (e.metaKey && e.code === 'KeyF') {\n+      console.log('commend + F')\n+      // setOpenSearchWords(!openSearchWords)\n+    }\n+    if (e.metaKey && e.code === 'KeyP') {\n+        console.log('commend + F')\n+        // setOpenSearchWords(!openSearchWords)\n+      }\n+  }\n+  useEffect(() => {\n+    document.addEventListener('keydown', handleKeydown)\n+    return () => document.removeEventListener('keydown',handleKeydown)\n+  }, [])\n+  return <>\n+  \n+  </>\n+}\n"
-                },
-                {
-                    "date": 1667667228362,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n-import { useEffect } from 'react'\n+import { useEffect, useState } from 'react'\n+import { DragLine } from './DragLine'\n+import { SearchFile } from './SearchFile'\n \n export const GlobalComponents = () => {\n+  const [showSearchFile, setShowSearchFile] = useState(false)\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -18,16 +21,21 @@\n       console.log('commend + F')\n       // setOpenSearchWords(!openSearchWords)\n     }\n     if (e.metaKey && e.code === 'KeyP') {\n-        console.log('commend + F')\n-        // setOpenSearchWords(!openSearchWords)\n-      }\n+      console.log('commend + P')\n+      setShowSearchFile(!showSearchFile)\n+    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n-    return () => document.removeEventListener('keydown',handleKeydown)\n+    return () => document.removeEventListener('keydown', handleKeydown)\n   }, [])\n\\ No newline at end of file\n-  return <>\n-  \n-  </>\n-}\n+  return (\n+    <>\n+      {showSearchFile && (\n+        <SearchFile fileList={[]} closeSearchFile={() => setShowSearchFile(false)} />\n+      )}\n+      <DragLine/>\n+    </>\n+  )\n+}\n"
-                }
-            ],
-            "date": 1667544815602,
-            "name": "Commit-0",
-            "content": "import { useEffect } from \"react\"\n\nexport const GlobalComponents = () => {\n    useEffect(()=>{\n\n    },[])\n    return <>\n    \n    </>\n}"
+          "date": 1667544815602,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667665114082,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import { useEffect } from \"react\"\n \n export const GlobalComponents = () => {\n+    const handleKeydown = (e:KeyboardEvent) => {\n+\n+    }\n     useEffect(()=>{\n-\n+        document.addEventListener('keydown',handleKeydown)\n     },[])\n     return <>\n     \n     </>\n"
+        },
+        {
+          "date": 1667666024733,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,33 @@\n-import { useEffect } from \"react\"\n+import { useEffect } from 'react'\n \n export const GlobalComponents = () => {\n-    const handleKeydown = (e:KeyboardEvent) => {\n-\n+  const handleKeydown = (e: KeyboardEvent) => {\n+    if (e.metaKey && e.code === 'KeyM') {\n+      const MenuBar = document.querySelector('.milkdown-menu')\n+      console.log('commend + M')\n+      console.log(MenuBar)\n+      MenuBar?.classList.toggle('milkdown-menu-open')\n     }\n\\ No newline at end of file\n-    useEffect(()=>{\n-        document.addEventListener('keydown',handleKeydown)\n-    },[])\n-    return <>\n-    \n-    </>\n-}\n+    if (e.metaKey && e.code === 'KeyB') {\n+      const SideBar = document.querySelector('.side-bar') as HTMLElement\n+      console.log('commend + B')\n+      //updateHeaders()\n+      SideBar?.classList.toggle('side-bar-close')\n+    }\n+    if (e.metaKey && e.code === 'KeyF') {\n+      console.log('commend + F')\n+      // setOpenSearchWords(!openSearchWords)\n+    }\n+    if (e.metaKey && e.code === 'KeyP') {\n+        console.log('commend + F')\n+        // setOpenSearchWords(!openSearchWords)\n+      }\n+  }\n+  useEffect(() => {\n+    document.addEventListener('keydown', handleKeydown)\n+    return () => document.removeEventListener('keydown',handleKeydown)\n+  }, [])\n+  return <>\n+  \n+  </>\n+}\n"
+        },
+        {
+          "date": 1667667228362,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n-import { useEffect } from 'react'\n+import { useEffect, useState } from 'react'\n+import { DragLine } from './DragLine'\n+import { SearchFile } from './SearchFile'\n \n export const GlobalComponents = () => {\n+  const [showSearchFile, setShowSearchFile] = useState(false)\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -18,16 +21,21 @@\n       console.log('commend + F')\n       // setOpenSearchWords(!openSearchWords)\n     }\n     if (e.metaKey && e.code === 'KeyP') {\n-        console.log('commend + F')\n-        // setOpenSearchWords(!openSearchWords)\n-      }\n+      console.log('commend + P')\n+      setShowSearchFile(!showSearchFile)\n+    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n-    return () => document.removeEventListener('keydown',handleKeydown)\n+    return () => document.removeEventListener('keydown', handleKeydown)\n   }, [])\n\\ No newline at end of file\n-  return <>\n-  \n-  </>\n-}\n+  return (\n+    <>\n+      {showSearchFile && (\n+        <SearchFile fileList={[]} closeSearchFile={() => setShowSearchFile(false)} />\n+      )}\n+      <DragLine/>\n+    </>\n+  )\n+}\n"
         }
-    ]
+      ],
+      "date": 1667544815602,
+      "name": "Commit-0",
+      "content": "import { useEffect } from \"react\"\n\nexport const GlobalComponents = () => {\n    useEffect(()=>{\n\n    },[])\n    return <>\n    \n    </>\n}"
+    }
+  ]
 }

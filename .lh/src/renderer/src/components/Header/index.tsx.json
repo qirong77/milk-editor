@@ -1,58 +1,58 @@
 {
-    "sourceFile": "src/renderer/src/components/Header/index.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Header/index.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 10,
+      "patches": [
         {
-            "activePatchIndex": 10,
-            "patches": [
-                {
-                    "date": 1667543410167,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667545297190,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const Header = () => {\n   return (\n-    <header>\n-        \n+    <header className=\"header\">\n+\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667548861874,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const Header = () => {\n   return (\n     <header className=\"header\">\n-\n+        <div></div>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667548869600,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header = () => {\n+export const Header:{title:string} = () => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
-                },
-                {
-                    "date": 1667548880678,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header:{title:string} = () => {\n+export const Header:{title:string = () => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
-                },
-                {
-                    "date": 1667548887736,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header:{title:string = () => {\n+export const Header = ({title:string}) => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
-                },
-                {
-                    "date": 1667548893956,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n export const Header = ({title:string}) => {\n   return (\n     <header className=\"header\">\n+        <div>{}</div>\n         <div></div>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667549423865,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n-export const Header = ({title:string}) => {\n+import { title } from 'process'\n+\n+export const Header = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n-        <div>{}</div>\n-        <div></div>\n\\ No newline at end of file\n+      <div>{title}</div>\n+      <div></div>\n     </header>\n   )\n- }\n+}\n"
-                },
-                {
-                    "date": 1667549448452,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n import { title } from 'process'\n-\n+interface IHeader {\n+    tit\n+}\n export const Header = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n"
-                },
-                {
-                    "date": 1667549455925,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { title } from 'process'\n interface IHeader {\n-    tit\n+    title:string\n }\n-export const Header = ({ title: string }) => {\n+export const Header:Ref = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n       <div></div>\n"
-                },
-                {
-                    "date": 1667549462680,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { title } from 'process'\n interface IHeader {\n     title:string\n }\n-export const Header:React.F = ({ title: string }) => {\n+export const Header:React.FC = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n       <div></div>\n"
-                }
-            ],
-            "date": 1667543410167,
-            "name": "Commit-0",
-            "content": "export const Header = () => {\n  return (\n    <header>\n        \n    </header>\n  )\n }"
+          "date": 1667543410167,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667545297190,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const Header = () => {\n   return (\n-    <header>\n-        \n+    <header className=\"header\">\n+\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667548861874,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n export const Header = () => {\n   return (\n     <header className=\"header\">\n-\n+        <div></div>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667548869600,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header = () => {\n+export const Header:{title:string} = () => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
+        },
+        {
+          "date": 1667548880678,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header:{title:string} = () => {\n+export const Header:{title:string = () => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
+        },
+        {
+          "date": 1667548887736,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-export const Header:{title:string = () => {\n+export const Header = ({title:string}) => {\n   return (\n     <header className=\"header\">\n         <div></div>\n     </header>\n"
+        },
+        {
+          "date": 1667548893956,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n export const Header = ({title:string}) => {\n   return (\n     <header className=\"header\">\n+        <div>{}</div>\n         <div></div>\n     </header>\n   )\n  }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667549423865,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n-export const Header = ({title:string}) => {\n+import { title } from 'process'\n+\n+export const Header = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n-        <div>{}</div>\n-        <div></div>\n\\ No newline at end of file\n+      <div>{title}</div>\n+      <div></div>\n     </header>\n   )\n- }\n+}\n"
+        },
+        {
+          "date": 1667549448452,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n import { title } from 'process'\n-\n+interface IHeader {\n+    tit\n+}\n export const Header = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n"
+        },
+        {
+          "date": 1667549455925,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { title } from 'process'\n interface IHeader {\n-    tit\n+    title:string\n }\n-export const Header = ({ title: string }) => {\n+export const Header:Ref = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n       <div></div>\n"
+        },
+        {
+          "date": 1667549462680,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { title } from 'process'\n interface IHeader {\n     title:string\n }\n-export const Header:React.F = ({ title: string }) => {\n+export const Header:React.FC = ({ title: string }) => {\n   return (\n     <header className=\"header\">\n       <div>{title}</div>\n       <div></div>\n"
         }
-    ]
+      ],
+      "date": 1667543410167,
+      "name": "Commit-0",
+      "content": "export const Header = () => {\n  return (\n    <header>\n        \n    </header>\n  )\n }"
+    }
+  ]
 }

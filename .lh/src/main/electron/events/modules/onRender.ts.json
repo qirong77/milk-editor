@@ -1,202 +1,206 @@
 {
-    "sourceFile": "src/main/electron/events/modules/onRender.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/events/modules/onRender.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 47,
+      "patches": [
         {
-            "activePatchIndex": 46,
-            "patches": [
-                {
-                    "date": 1667541566569,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667568590123,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n import { BrowserWindow, ipcMain } from \"electron\";\n \n export const onRender = (window:BrowserWindow) =>{\n-    ipcMain.on()\n+    // ipcMain.on()\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667630111835,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,14 @@\n import { BrowserWindow, ipcMain } from \"electron\";\n+import { MAX_SCREEN, MIN_SCREEN } from \"../../../../common/eventType\";\n \n export const onRender = (window:BrowserWindow) =>{\n-    // ipcMain.on()\n+    ipcMain.on(MIN_SCREEN, () => window.minimize())\n+    ipcMain.on(MAX_SCREEN, () => {\n+      if (window.isMaximized()) {\n+        window.unmaximize()\n+      } else {\n+        window.maximize()\n+      }\n+    })\n+    ipcMain.on(CLOSE_SCREEN, () => window.close())\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667630414121,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,17 @@\n-import { BrowserWindow, ipcMain } from \"electron\";\n-import { MAX_SCREEN, MIN_SCREEN } from \"../../../../common/eventType\";\n+import { BrowserWindow, ipcMain } from 'electron'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n \n-export const onRender = (window:BrowserWindow) =>{\n-    ipcMain.on(MIN_SCREEN, () => window.minimize())\n-    ipcMain.on(MAX_SCREEN, () => {\n-      if (window.isMaximized()) {\n-        window.unmaximize()\n-      } else {\n-        window.maximize()\n-      }\n-    })\n\\ No newline at end of file\n-    ipcMain.on(CLOSE_SCREEN, () => window.close())\n-}\n+export const onRender = (window: BrowserWindow) => {\n+  ipcMain.on(MIN_SCREEN, () => window.minimize())\n+  ipcMain.on(MAX_SCREEN, () => {\n+    if (window.isMaximized()) {\n+      window.unmaximize()\n+    } else {\n+      window.maximize()\n+    }\n+  })\n+  ipcMain.on(CLOSE_SCREEN, () => window.close())\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n+    \n+  })\n+}\n"
-                },
-                {
-                    "date": 1667633625989,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n+import { renameSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -11,7 +12,7 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n-    \n+    renameSync(oldFilePath,newFilePath)\n   })\n }\n"
-                },
-                {
-                    "date": 1667635814085,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,6 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n+  ipcMain.on(OE)\n }\n"
-                },
-                {
-                    "date": 1667636092686,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { renameSync } from 'fs'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_FILE, RENAME_FILE } from '../../../../common/eventType'\n+import { openFile } from '../../../helper/openFile'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -14,6 +15,8 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n-  ipcMain.on(OE)\n+  ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n+    openFile(filePath,window)\n+  })\n }\n"
-                },
-                {
-                    "date": 1667636140816,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,8 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n   ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n-    openFile(filePath,window)\n+    console.log(filePath)\n+    // openFile(filePath,window)\n   })\n }\n"
-                },
-                {
-                    "date": 1667636219631,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,7 @@\n     renameSync(oldFilePath,newFilePath)\n   })\n   ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n     console.log(filePath)\n-    // openFile(filePath,window)\n+    openFile(filePath,window)\n   })\n }\n"
-                },
-                {
-                    "date": 1667637655410,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,14 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { renameSync } from 'fs'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_FILE, RENAME_FILE } from '../../../../common/eventType'\n+import { dirname, resolve } from 'path'\n+import {\n+  CLOSE_SCREEN,\n+  MAX_SCREEN,\n+  MIN_SCREEN,\n+  OPEN_FILE,\n+  RENAME_FILE\n+} from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -12,12 +19,13 @@\n       window.maximize()\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n-  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n-    renameSync(oldFilePath,newFilePath)\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    renameSync(oldFilePath, newFilePath)\n   })\n-  ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n+  ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n-    openFile(filePath,window)\n+    openFile(filePath, window)\n   })\n }\n"
-                },
-                {
-                    "date": 1667637861516,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,11 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    renameSync(oldFilePath, newFilePath)\n+    console.log(newFilePath)\n+    console.log(oldFilePath)\n+    // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
-                },
-                {
-                    "date": 1667637929205,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     console.log(newFilePath)\n     console.log(oldFilePath)\n     // renameSync(oldFilePath, newFilePath)\n   })\n"
-                },
-                {
-                    "date": 1667637989773,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,9 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    console.log(newFilePath)\n-    console.log(oldFilePath)\n-    // renameSync(oldFilePath, newFilePath)\n+    renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
-                },
-                {
-                    "date": 1667638048551,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     renameSync(oldFilePath, newFilePath)\n+    console.log('rename')\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
-                },
-                {
-                    "date": 1667638093663,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,7 @@\n     renameSync(oldFilePath, newFilePath)\n     console.log('rename')\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n-    console.log(filePath)\n     openFile(filePath, window)\n   })\n }\n"
-                },
-                {
-                    "date": 1667638244371,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n+    console.log('aaaaaaaaaaa')\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     renameSync(oldFilePath, newFilePath)\n     console.log('rename')\n   })\n"
-                },
-                {
-                    "date": 1667638519616,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,12 +20,12 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    console.log('aaaaaaaaaaa')\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    renameSync(oldFilePath, newFilePath)\n-    console.log('rename')\n+    // renameSync(oldFilePath, newFilePath)\n+    console.log(newFilePath)\n+    console.log(oldFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667638616806,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,9 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    // renameSync(oldFilePath, newFilePath)\n-    console.log(newFilePath)\n-    console.log(oldFilePath)\n+    renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667638675349,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { renameSync } from 'fs'\n+import { existsSync, renameSync } from 'fs'\n import { dirname, resolve } from 'path'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n@@ -21,9 +21,12 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    renameSync(oldFilePath, newFilePath)\n+    if(existsSync(oldFilePath)) {\n+      console.log(oldFilePath)\n+    }\n+    // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667638708572,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n-      console.log(oldFilePath)\n+      if(existsSync(newFilePath)) {\n+        console.log('yes')\n+      }\n     }\n     // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n"
-                },
-                {
-                    "date": 1667638728852,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,12 +23,12 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n       if(existsSync(newFilePath)) {\n-        console.log('yes')\n+        renameSync(oldFilePath, newFilePath)\n       }\n     }\n-    // renameSync(oldFilePath, newFilePath)\n+   \n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667638818642,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n       if(existsSync(newFilePath)) {\n         renameSync(oldFilePath, newFilePath)\n+        console.log('rename')\n       }\n     }\n    \n   })\n"
-                },
-                {
-                    "date": 1667638878915,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,15 +21,11 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    if(existsSync(oldFilePath)) {\n-      if(existsSync(newFilePath)) {\n-        renameSync(oldFilePath, newFilePath)\n-        console.log('rename')\n-      }\n+    if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n+      renameSync(oldFilePath, newFilePath)\n     }\n-   \n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667648932875,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -28,5 +30,10 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+    createFilItemMenu(filePath).popup({\n+      window\n+    })\n+  })\n }\n"
-                },
-                {
-                    "date": 1667649207241,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n+    li.style.backgroundColor = 'red'\n   })\n }\n"
-                },
-                {
-                    "date": 1667661140697,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,7 +34,6 @@\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n-    li.style.backgroundColor = 'red'\n   })\n }\n"
-                },
-                {
-                    "date": 1667661155080,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n+    console.log(li)\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
-                },
-                {
-                    "date": 1667661353973,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,9 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n-    console.log(li)\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
-                },
-                {
-                    "date": 1667667228366,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n     }\n   })\n"
-                },
-                {
-                    "date": 1667708476685,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,11 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n-  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n-import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -30,10 +28,5 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n-    createFilItemMenu(filePath).popup({\n-      window\n-    })\n-  })\n }\n"
-                },
-                {
-                    "date": 1667709906574,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -28,5 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n+    const menu = createFilItemMenu(path)\n+    menu.popup({\n+      window\n+    })\n+  })\n }\n"
-                },
-                {
-                    "date": 1667713954327,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,5 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n-    const menu = createFilItemMenu(path)\n-    menu.popup({\n-      window\n-    })\n-  })\n }\n"
-                },
-                {
-                    "date": 1667714118462,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,5 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n+    const menu = createFilItemMenu(path)\n+    menu.popup({\n+      window\n+    })\n+  })\n }\n"
-                },
-                {
-                    "date": 1667714879697,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n+      console.log('rename')\n     }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n"
-                },
-                {
-                    "date": 1667714899809,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    console.log(oldFilePath)\n+    console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
-                },
-                {
-                    "date": 1667714925725,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    const newFilePath = resolve(oldFilePath, newFileName)\n     console.log(oldFilePath)\n     console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n"
-                },
-                {
-                    "date": 1667714966137,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n-    console.log(oldFilePath)\n+    console.log(dirname(oldFilePath))\n+    // console.log(oldFilePath)\n     console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n"
-                },
-                {
-                    "date": 1667714988886,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n     console.log(dirname(oldFilePath))\n     // console.log(oldFilePath)\n-    console.log(newFileName)\n+    console.log(newFilePath)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
-                },
-                {
-                    "date": 1667715022276,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,8 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n-    console.log(dirname(oldFilePath))\n-    // console.log(oldFilePath)\n-    console.log(newFilePath)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
-                },
-                {
-                    "date": 1667715049812,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,12 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n+    console.log(oldFilePath)\n+    console.log(newFilePath)\n+    renameSync(oldFilePath, newFilePath)\n+\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
-                },
-                {
-                    "date": 1667715083740,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(oldFilePath, newFileName)\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     console.log(oldFilePath)\n     console.log(newFilePath)\n     renameSync(oldFilePath, newFilePath)\n \n"
-                },
-                {
-                    "date": 1667715144255,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,14 @@\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     console.log(oldFilePath)\n     console.log(newFilePath)\n     renameSync(oldFilePath, newFilePath)\n-\n+    if(existsSync(oldFilePath)) {\n+      console.log('is old')\n+    }\n+    if(existsSync(newFilePath)) {\n+      console.log('is old')\n+    }\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
-                },
-                {
-                    "date": 1667715151287,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     if(existsSync(oldFilePath)) {\n       console.log('is old')\n     }\n     if(existsSync(newFilePath)) {\n-      console.log('is old')\n+      console.log('is new')\n     }\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n"
-                },
-                {
-                    "date": 1667715308834,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync } from 'fs'\n+import { existsSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { dirname, resolve } from 'path'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n@@ -23,21 +23,21 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    console.log(oldFilePath)\n-    console.log(newFilePath)\n-    renameSync(oldFilePath, newFilePath)\n-    if(existsSync(oldFilePath)) {\n-      console.log('is old')\n-    }\n-    if(existsSync(newFilePath)) {\n-      console.log('is new')\n-    }\n-    if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n-      renameSync(oldFilePath, newFilePath)\n-      console.log('rename')\n-    }\n+    const oldContent = readFileSync(oldFilePath,'utf-8')\n+    writeFileSync(newFilePath,oldContent)\n+    unlinkSync(oldFilePath)\n+    // if(existsSync(oldFilePath)) {\n+    //   console.log('is old')\n+    // }\n+    // if(existsSync(newFilePath)) {\n+    //   console.log('is new')\n+    // }\n+    // if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n+    //   renameSync(oldFilePath, newFilePath)\n+    //   console.log('rename')\n+    // }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667715449420,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,21 +23,17 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    const oldContent = readFileSync(oldFilePath,'utf-8')\n-    writeFileSync(newFilePath,oldContent)\n-    unlinkSync(oldFilePath)\n-    // if(existsSync(oldFilePath)) {\n-    //   console.log('is old')\n-    // }\n-    // if(existsSync(newFilePath)) {\n-    //   console.log('is new')\n-    // }\n-    // if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n-    //   renameSync(oldFilePath, newFilePath)\n-    //   console.log('rename')\n-    // }\n+\n+    try {\n+      renameSync(oldFilePath, newFilePath)\n+\n+    } catch (error) {\n+      console.log('重新命名失败')\n+      console.log('oldFilePath:' + oldFilePath)\n+      console.log('newFilePath' + newFilePath)\n+    }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
-                },
-                {
-                    "date": 1667717354591,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,16 +23,15 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-\n+// 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n-\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n-      console.log('newFilePath' + newFilePath)\n+      console.log('newFilePath:' + newFilePath)\n     }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n"
-                },
-                {
-                    "date": 1667718580517,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,10 @@\n       window.maximize()\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n-  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-// 这里有个bug，就说明明可以重新命名，但是会报错\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n+    // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n"
-                }
-            ],
-            "date": 1667541566569,
-            "name": "Commit-0",
-            "content": "import { BrowserWindow, ipcMain } from \"electron\";\n\nexport const onRender = (window:BrowserWindow) =>{\n    ipcMain.on()\n}"
+          "date": 1667541566569,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667568590123,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n import { BrowserWindow, ipcMain } from \"electron\";\n \n export const onRender = (window:BrowserWindow) =>{\n-    ipcMain.on()\n+    // ipcMain.on()\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667630111835,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,14 @@\n import { BrowserWindow, ipcMain } from \"electron\";\n+import { MAX_SCREEN, MIN_SCREEN } from \"../../../../common/eventType\";\n \n export const onRender = (window:BrowserWindow) =>{\n-    // ipcMain.on()\n+    ipcMain.on(MIN_SCREEN, () => window.minimize())\n+    ipcMain.on(MAX_SCREEN, () => {\n+      if (window.isMaximized()) {\n+        window.unmaximize()\n+      } else {\n+        window.maximize()\n+      }\n+    })\n+    ipcMain.on(CLOSE_SCREEN, () => window.close())\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667630414121,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,17 @@\n-import { BrowserWindow, ipcMain } from \"electron\";\n-import { MAX_SCREEN, MIN_SCREEN } from \"../../../../common/eventType\";\n+import { BrowserWindow, ipcMain } from 'electron'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n \n-export const onRender = (window:BrowserWindow) =>{\n-    ipcMain.on(MIN_SCREEN, () => window.minimize())\n-    ipcMain.on(MAX_SCREEN, () => {\n-      if (window.isMaximized()) {\n-        window.unmaximize()\n-      } else {\n-        window.maximize()\n-      }\n-    })\n\\ No newline at end of file\n-    ipcMain.on(CLOSE_SCREEN, () => window.close())\n-}\n+export const onRender = (window: BrowserWindow) => {\n+  ipcMain.on(MIN_SCREEN, () => window.minimize())\n+  ipcMain.on(MAX_SCREEN, () => {\n+    if (window.isMaximized()) {\n+      window.unmaximize()\n+    } else {\n+      window.maximize()\n+    }\n+  })\n+  ipcMain.on(CLOSE_SCREEN, () => window.close())\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n+    \n+  })\n+}\n"
+        },
+        {
+          "date": 1667633625989,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n+import { renameSync } from 'fs'\n import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -11,7 +12,7 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n-    \n+    renameSync(oldFilePath,newFilePath)\n   })\n }\n"
+        },
+        {
+          "date": 1667635814085,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,5 +14,6 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n+  ipcMain.on(OE)\n }\n"
+        },
+        {
+          "date": 1667636092686,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { renameSync } from 'fs'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, RENAME_FILE } from '../../../../common/eventType'\n+import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_FILE, RENAME_FILE } from '../../../../common/eventType'\n+import { openFile } from '../../../helper/openFile'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -14,6 +15,8 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n-  ipcMain.on(OE)\n+  ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n+    openFile(filePath,window)\n+  })\n }\n"
+        },
+        {
+          "date": 1667636140816,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,8 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     renameSync(oldFilePath,newFilePath)\n   })\n   ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n-    openFile(filePath,window)\n+    console.log(filePath)\n+    // openFile(filePath,window)\n   })\n }\n"
+        },
+        {
+          "date": 1667636219631,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,7 +17,7 @@\n     renameSync(oldFilePath,newFilePath)\n   })\n   ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n     console.log(filePath)\n-    // openFile(filePath,window)\n+    openFile(filePath,window)\n   })\n }\n"
+        },
+        {
+          "date": 1667637655410,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,14 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { renameSync } from 'fs'\n-import { CLOSE_SCREEN, MAX_SCREEN, MIN_SCREEN, OPEN_FILE, RENAME_FILE } from '../../../../common/eventType'\n+import { dirname, resolve } from 'path'\n+import {\n+  CLOSE_SCREEN,\n+  MAX_SCREEN,\n+  MIN_SCREEN,\n+  OPEN_FILE,\n+  RENAME_FILE\n+} from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -12,12 +19,13 @@\n       window.maximize()\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n-  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n-    renameSync(oldFilePath,newFilePath)\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    renameSync(oldFilePath, newFilePath)\n   })\n-  ipcMain.on(OPEN_FILE,(_e,filePath:string)=>{\n+  ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n-    openFile(filePath,window)\n+    openFile(filePath, window)\n   })\n }\n"
+        },
+        {
+          "date": 1667637861516,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,11 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    renameSync(oldFilePath, newFilePath)\n+    console.log(newFilePath)\n+    console.log(oldFilePath)\n+    // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
+        },
+        {
+          "date": 1667637929205,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     console.log(newFilePath)\n     console.log(oldFilePath)\n     // renameSync(oldFilePath, newFilePath)\n   })\n"
+        },
+        {
+          "date": 1667637989773,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,9 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    console.log(newFilePath)\n-    console.log(oldFilePath)\n-    // renameSync(oldFilePath, newFilePath)\n+    renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
+        },
+        {
+          "date": 1667638048551,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     renameSync(oldFilePath, newFilePath)\n+    console.log('rename')\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     console.log(filePath)\n     openFile(filePath, window)\n"
+        },
+        {
+          "date": 1667638093663,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,7 @@\n     renameSync(oldFilePath, newFilePath)\n     console.log('rename')\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n-    console.log(filePath)\n     openFile(filePath, window)\n   })\n }\n"
+        },
+        {
+          "date": 1667638244371,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n+    console.log('aaaaaaaaaaa')\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     renameSync(oldFilePath, newFilePath)\n     console.log('rename')\n   })\n"
+        },
+        {
+          "date": 1667638519616,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,12 +20,12 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    console.log('aaaaaaaaaaa')\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    renameSync(oldFilePath, newFilePath)\n-    console.log('rename')\n+    // renameSync(oldFilePath, newFilePath)\n+    console.log(newFilePath)\n+    console.log(oldFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667638616806,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,9 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    // renameSync(oldFilePath, newFilePath)\n-    console.log(newFilePath)\n-    console.log(oldFilePath)\n+    renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667638675349,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { renameSync } from 'fs'\n+import { existsSync, renameSync } from 'fs'\n import { dirname, resolve } from 'path'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n@@ -21,9 +21,12 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    renameSync(oldFilePath, newFilePath)\n+    if(existsSync(oldFilePath)) {\n+      console.log(oldFilePath)\n+    }\n+    // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667638708572,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n-      console.log(oldFilePath)\n+      if(existsSync(newFilePath)) {\n+        console.log('yes')\n+      }\n     }\n     // renameSync(oldFilePath, newFilePath)\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n"
+        },
+        {
+          "date": 1667638728852,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,12 +23,12 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n       if(existsSync(newFilePath)) {\n-        console.log('yes')\n+        renameSync(oldFilePath, newFilePath)\n       }\n     }\n-    // renameSync(oldFilePath, newFilePath)\n+   \n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667638818642,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n     if(existsSync(oldFilePath)) {\n       if(existsSync(newFilePath)) {\n         renameSync(oldFilePath, newFilePath)\n+        console.log('rename')\n       }\n     }\n    \n   })\n"
+        },
+        {
+          "date": 1667638878915,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,15 +21,11 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n-    if(existsSync(oldFilePath)) {\n-      if(existsSync(newFilePath)) {\n-        renameSync(oldFilePath, newFilePath)\n-        console.log('rename')\n-      }\n+    if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n+      renameSync(oldFilePath, newFilePath)\n     }\n-   \n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667648932875,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -28,5 +30,10 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+    createFilItemMenu(filePath).popup({\n+      window\n+    })\n+  })\n }\n"
+        },
+        {
+          "date": 1667649207241,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n+    li.style.backgroundColor = 'red'\n   })\n }\n"
+        },
+        {
+          "date": 1667661140697,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,7 +34,6 @@\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n-    li.style.backgroundColor = 'red'\n   })\n }\n"
+        },
+        {
+          "date": 1667661155080,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n   ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n+    console.log(li)\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
+        },
+        {
+          "date": 1667661353973,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,10 +30,9 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string,li:HTMLLIElement)=>{\n-    console.log(li)\n+  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n     createFilItemMenu(filePath).popup({\n       window\n     })\n   })\n"
+        },
+        {
+          "date": 1667667228366,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName + '.md')\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n     }\n   })\n"
+        },
+        {
+          "date": 1667708476685,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,11 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n-  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n-import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -30,10 +28,5 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU,(_e,filePath:string)=>{\n-    createFilItemMenu(filePath).popup({\n-      window\n-    })\n-  })\n }\n"
+        },
+        {
+          "date": 1667709906574,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,13 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n   ipcMain.on(MAX_SCREEN, () => {\n@@ -28,5 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n+    const menu = createFilItemMenu(path)\n+    menu.popup({\n+      window\n+    })\n+  })\n }\n"
+        },
+        {
+          "date": 1667713954327,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,5 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n-  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n-    const menu = createFilItemMenu(path)\n-    menu.popup({\n-      window\n-    })\n-  })\n }\n"
+        },
+        {
+          "date": 1667714118462,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,5 +30,11 @@\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n+  ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n+    const menu = createFilItemMenu(path)\n+    menu.popup({\n+      window\n+    })\n+  })\n }\n"
+        },
+        {
+          "date": 1667714879697,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n+      console.log('rename')\n     }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n"
+        },
+        {
+          "date": 1667714899809,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    console.log(oldFilePath)\n+    console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
+        },
+        {
+          "date": 1667714925725,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n+    const newFilePath = resolve(oldFilePath, newFileName)\n     console.log(oldFilePath)\n     console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n"
+        },
+        {
+          "date": 1667714966137,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n-    console.log(oldFilePath)\n+    console.log(dirname(oldFilePath))\n+    // console.log(oldFilePath)\n     console.log(newFileName)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n"
+        },
+        {
+          "date": 1667714988886,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n     console.log(dirname(oldFilePath))\n     // console.log(oldFilePath)\n-    console.log(newFileName)\n+    console.log(newFilePath)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
+        },
+        {
+          "date": 1667715022276,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,11 +23,8 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n-    console.log(dirname(oldFilePath))\n-    // console.log(oldFilePath)\n-    console.log(newFilePath)\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
+        },
+        {
+          "date": 1667715049812,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,12 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(oldFilePath, newFileName)\n+    console.log(oldFilePath)\n+    console.log(newFilePath)\n+    renameSync(oldFilePath, newFilePath)\n+\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
+        },
+        {
+          "date": 1667715083740,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(oldFilePath, newFileName)\n+    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     console.log(oldFilePath)\n     console.log(newFilePath)\n     renameSync(oldFilePath, newFilePath)\n \n"
+        },
+        {
+          "date": 1667715144255,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,14 @@\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n     console.log(oldFilePath)\n     console.log(newFilePath)\n     renameSync(oldFilePath, newFilePath)\n-\n+    if(existsSync(oldFilePath)) {\n+      console.log('is old')\n+    }\n+    if(existsSync(newFilePath)) {\n+      console.log('is old')\n+    }\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n     }\n"
+        },
+        {
+          "date": 1667715151287,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     if(existsSync(oldFilePath)) {\n       console.log('is old')\n     }\n     if(existsSync(newFilePath)) {\n-      console.log('is old')\n+      console.log('is new')\n     }\n     if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n       renameSync(oldFilePath, newFilePath)\n       console.log('rename')\n"
+        },
+        {
+          "date": 1667715308834,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync } from 'fs'\n+import { existsSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { dirname, resolve } from 'path'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n@@ -23,21 +23,21 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    console.log(oldFilePath)\n-    console.log(newFilePath)\n-    renameSync(oldFilePath, newFilePath)\n-    if(existsSync(oldFilePath)) {\n-      console.log('is old')\n-    }\n-    if(existsSync(newFilePath)) {\n-      console.log('is new')\n-    }\n-    if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n-      renameSync(oldFilePath, newFilePath)\n-      console.log('rename')\n-    }\n+    const oldContent = readFileSync(oldFilePath,'utf-8')\n+    writeFileSync(newFilePath,oldContent)\n+    unlinkSync(oldFilePath)\n+    // if(existsSync(oldFilePath)) {\n+    //   console.log('is old')\n+    // }\n+    // if(existsSync(newFilePath)) {\n+    //   console.log('is new')\n+    // }\n+    // if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n+    //   renameSync(oldFilePath, newFilePath)\n+    //   console.log('rename')\n+    // }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667715449420,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,21 +23,17 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-    const oldContent = readFileSync(oldFilePath,'utf-8')\n-    writeFileSync(newFilePath,oldContent)\n-    unlinkSync(oldFilePath)\n-    // if(existsSync(oldFilePath)) {\n-    //   console.log('is old')\n-    // }\n-    // if(existsSync(newFilePath)) {\n-    //   console.log('is new')\n-    // }\n-    // if (existsSync(oldFilePath) && existsSync(newFilePath)) {\n-    //   renameSync(oldFilePath, newFilePath)\n-    //   console.log('rename')\n-    // }\n+\n+    try {\n+      renameSync(oldFilePath, newFilePath)\n+\n+    } catch (error) {\n+      console.log('重新命名失败')\n+      console.log('oldFilePath:' + oldFilePath)\n+      console.log('newFilePath' + newFilePath)\n+    }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n   })\n"
+        },
+        {
+          "date": 1667717354591,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,16 +23,15 @@\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n     const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-\n+// 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n-\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n-      console.log('newFilePath' + newFilePath)\n+      console.log('newFilePath:' + newFilePath)\n     }\n   })\n   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {\n     openFile(filePath, window)\n"
+        },
+        {
+          "date": 1667718580517,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,11 +21,10 @@\n       window.maximize()\n     }\n   })\n   ipcMain.on(CLOSE_SCREEN, () => window.close())\n-  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFileName) => {\n-    const newFilePath = resolve(dirname(oldFilePath), newFileName)\n-// 这里有个bug，就说明明可以重新命名，但是会报错\n+  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n+    // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n"
+        },
+        {
+          "date": 1667719922395,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,12 +5,14 @@\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n+  POP_DIR_MENU,\n   POP_FILE_ITEM_MENU,\n   RENAME_FILE\n } from '../../../../common/eventType'\n import { openFile } from '../../../helper/openFile'\n+import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'\n import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n \n export const onRender = (window: BrowserWindow) => {\n   ipcMain.on(MIN_SCREEN, () => window.minimize())\n@@ -40,5 +42,10 @@\n     menu.popup({\n       window\n     })\n   })\n+  ipcMain.on(POP_DIR_MENU, (_e, path) => {\n+    createFilDirMenu(path).popup({\n+      window\n+    })\n+  })\n }\n"
         }
-    ]
+      ],
+      "date": 1667541566569,
+      "name": "Commit-0",
+      "content": "import { BrowserWindow, ipcMain } from \"electron\";\n\nexport const onRender = (window:BrowserWindow) =>{\n    ipcMain.on()\n}"
+    }
+  ]
 }

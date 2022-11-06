@@ -1,5 +1,15 @@
+import { basename, dirname, resolve } from 'path-browserify'
 import { useEffect, useRef } from 'react'
-import { DELETE_FILE, OPEN_DIR, RENAME_FILE } from '../../../../../common/eventType'
+import {
+  DELETE_DIR,
+  DELETE_FILE,
+  NEW_DIR,
+  NEW_FILE,
+  OPEN_DIR,
+  RENAME_FILE
+} from '../../../../../common/eventType'
+import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../../../main/electron/config/constant'
+
 import { mapFileList, SHOW_INPUT } from '../hooks/mapFileList'
 export const FileList = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -33,6 +43,35 @@ export const FileList = () => {
       if (target) {
         target.parentElement?.removeChild(target)
       }
+    })
+    window.api.onMain(DELETE_DIR, (e, path) => {
+      const ul = document.getElementById(path)?.parentElement
+      ul?.parentElement?.removeChild(ul)
+    })
+    window.api.onMain(NEW_DIR, (_e, path, newPath) => {
+      const target = document.getElementById(path)
+      const level = target?.getAttribute('level')
+      const node = mapFileList({
+        fileName: NEW_DIR_NAME,
+        level: Number(level) + 1,
+        isDir: true,
+        children: [],
+        path: newPath
+      })
+      target?.parentElement?.appendChild(node)
+    })
+    window.api.onMain(NEW_FILE, (_e, path, newPath) => {
+      const target = document.getElementById(path)
+      const level = target?.getAttribute('level')
+
+      const node = mapFileList({
+        fileName: NEW_FILE_NAME,
+        level: Number(level) + 1,
+        isDir: false,
+        children: [],
+        path: newPath
+      })
+      target?.parentElement?.appendChild(node)
     })
   }, [])
 

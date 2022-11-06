@@ -4,8 +4,8 @@ import { GET_FILE_LIST } from '../common/eventType'
 import { FileTree } from '../common/interface'
 
 // Custom APIs for renderer
-const sendToMain = (e: string,...args:any[]) => {
-  ipcRenderer.send(e,...args)
+const sendToMain = (e: string, ...args: any[]) => {
+  ipcRenderer.send(e, ...args)
 }
 const onMain = (e: string, callback) => {
   ipcRenderer.on(e, callback)
@@ -14,9 +14,9 @@ const api = {
   sendToMain,
   onMain,
   onGetFileList: async () => {
-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree
+    const fileList = (await ipcRenderer.invoke(GET_FILE_LIST)) as FileTree
     return fileList
-  },
+  }
 }
 export type API = typeof api
 // Use `contextBridge` APIs to expose Electron APIs to

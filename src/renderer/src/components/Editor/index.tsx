@@ -7,7 +7,6 @@ import { replaceAll } from '@milkdown/utils'
 import { useConfig } from './hooks/useConfig'
 import { usePlugins } from './hooks/usePlugin'
 
-
 interface MilkdownEditor {
   content: string
   filePath: string
@@ -30,11 +29,11 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     }
   }, [loading, content])
   // 存储的函数必须根据副作用实时修改，否则不会更新
-//   useEffect(() => {
-//     window.api.sendToMain(SAVE_FILE, {
-//       filePath: filePath,
-//       newFileContent: markdown
-//     })
-//   }, [markdown])
+  //   useEffect(() => {
+  //     window.api.sendToMain(SAVE_FILE, {
+  //       filePath: filePath,
+  //       newFileContent: markdown
+  //     })
+  //   }, [markdown])
   return <ReactEditor editor={editor} />
 }

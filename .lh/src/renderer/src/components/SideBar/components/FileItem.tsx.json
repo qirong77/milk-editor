@@ -1,26 +1,26 @@
 {
-    "sourceFile": "src/renderer/src/components/SideBar/components/FileItem.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/SideBar/components/FileItem.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 2,
+      "patches": [
         {
-            "activePatchIndex": 2,
-            "patches": [
-                {
-                    "date": 1667551421073,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667568007390,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n-export const FileItem = (filePath='') =>{\n-    return <li>\n-        \n+export const FileItem = ({ filePath }) => {\n+  return (\n\\ No newline at end of file\n+    <li className=\"file-item\">\n+      <div className=\"\"></div>\n+      <div className=\"file-input\">\n+<input type=\"text\" />\n+      </div>\n     </li>\n-}\n+  )\n+}\n"
-                },
-                {
-                    "date": 1667629436592,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   return (\n     <li className=\"file-item\">\n       <div className=\"\"></div>\n       <div className=\"file-input\">\n-<input type=\"text\" />\n+        <input type=\"text\" />\n       </div>\n     </li>\n   )\n\\ No newline at end of file\n-}\n+}\n"
-                }
-            ],
-            "date": 1667551421073,
-            "name": "Commit-0",
-            "content": "export const FileItem = (filePath='') =>{\n    return <li>\n        \n    </li>\n}"
+          "date": 1667551421073,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667568007390,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n-export const FileItem = (filePath='') =>{\n-    return <li>\n-        \n+export const FileItem = ({ filePath }) => {\n+  return (\n\\ No newline at end of file\n+    <li className=\"file-item\">\n+      <div className=\"\"></div>\n+      <div className=\"file-input\">\n+<input type=\"text\" />\n+      </div>\n     </li>\n-}\n+  )\n+}\n"
+        },
+        {
+          "date": 1667629436592,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n   return (\n     <li className=\"file-item\">\n       <div className=\"\"></div>\n       <div className=\"file-input\">\n-<input type=\"text\" />\n+        <input type=\"text\" />\n       </div>\n     </li>\n   )\n\\ No newline at end of file\n-}\n+}\n"
         }
-    ]
+      ],
+      "date": 1667551421073,
+      "name": "Commit-0",
+      "content": "export const FileItem = (filePath='') =>{\n    return <li>\n        \n    </li>\n}"
+    }
+  ]
 }

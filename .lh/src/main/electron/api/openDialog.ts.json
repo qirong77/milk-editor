@@ -1,30 +1,30 @@
 {
-    "sourceFile": "src/main/electron/api/openDialog.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/api/openDialog.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 3,
+      "patches": [
         {
-            "activePatchIndex": 3,
-            "patches": [
-                {
-                    "date": 1667539002879,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667539012858,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n   const { canceled, filePaths } = await dialog.showOpenDialog(window)\n   if (canceled) {\n     return ''\n   } else {\n-    return filePaths[0]\n+    return filePaths\n   }\n }\n"
-                },
-                {
-                    "date": 1667669603449,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { BrowserWindow, dialog } from 'electron'\n \n-export async function openDialog(window: BrowserWindow) {\n-  const { canceled, filePaths } = await dialog.showOpenDialog(window)\n+export async function openDialog(window: BrowserWindow, options?: Electron.OpenDialogOptions) {\n+  const { canceled, filePaths } = await dialog.showOpenDialog(window, options || {})\n   if (canceled) {\n     return ''\n   } else {\n     return filePaths\n"
-                },
-                {
-                    "date": 1667705743785,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n   const { canceled, filePaths } = await dialog.showOpenDialog(window, options || {})\n   if (canceled) {\n     return ''\n   } else {\n-    return filePaths\n+    return filePaths[0]\n   }\n }\n"
-                }
-            ],
-            "date": 1667539002879,
-            "name": "Commit-0",
-            "content": "import { BrowserWindow, dialog } from 'electron'\n\nexport async function openDialog(window: BrowserWindow) {\n  const { canceled, filePaths } = await dialog.showOpenDialog(window)\n  if (canceled) {\n    return ''\n  } else {\n    return filePaths[0]\n  }\n}\n"
+          "date": 1667539002879,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667539012858,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n   const { canceled, filePaths } = await dialog.showOpenDialog(window)\n   if (canceled) {\n     return ''\n   } else {\n-    return filePaths[0]\n+    return filePaths\n   }\n }\n"
+        },
+        {
+          "date": 1667669603449,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { BrowserWindow, dialog } from 'electron'\n \n-export async function openDialog(window: BrowserWindow) {\n-  const { canceled, filePaths } = await dialog.showOpenDialog(window)\n+export async function openDialog(window: BrowserWindow, options?: Electron.OpenDialogOptions) {\n+  const { canceled, filePaths } = await dialog.showOpenDialog(window, options || {})\n   if (canceled) {\n     return ''\n   } else {\n     return filePaths\n"
+        },
+        {
+          "date": 1667705743785,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,7 @@\n   const { canceled, filePaths } = await dialog.showOpenDialog(window, options || {})\n   if (canceled) {\n     return ''\n   } else {\n-    return filePaths\n+    return filePaths[0]\n   }\n }\n"
         }
-    ]
+      ],
+      "date": 1667539002879,
+      "name": "Commit-0",
+      "content": "import { BrowserWindow, dialog } from 'electron'\n\nexport async function openDialog(window: BrowserWindow) {\n  const { canceled, filePaths } = await dialog.showOpenDialog(window)\n  if (canceled) {\n    return ''\n  } else {\n    return filePaths[0]\n  }\n}\n"
+    }
+  ]
 }

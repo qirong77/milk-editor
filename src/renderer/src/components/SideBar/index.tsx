@@ -6,9 +6,9 @@ import { SideBarHeader } from './components/SideBarHeader'
 
 export const SideBar = () => {
   const [toggle, setToggle] = useState(true)
-  const [title,setTitle] = useState('文件')
+  const [title, setTitle] = useState('文件')
   const clickMenu = () => {
-    if(!toggle) {
+    if (!toggle) {
       setTitle('文件')
     }
     toggle && setTitle('大纲')

@@ -1,62 +1,62 @@
 {
-    "sourceFile": "src/main/index.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/index.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 11,
+      "patches": [
         {
-            "activePatchIndex": 11,
-            "patches": [
-                {
-                    "date": 1667541566569,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667541937755,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import { createWindow } from './electron/createWindow'\n \n+\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -30,4 +30,8 @@\n   } else {\n     app.quit()\n   }\n })\n+function createWindow() {\n+  throw new Error('Function not implemented.')\n+}\n+\n"
-                },
-                {
-                    "date": 1667546919386,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n \n-\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -29,9 +28,5 @@\n     app.quit()\n   } else {\n     app.quit()\n   }\n-})\n-function createWindow() {\n-  throw new Error('Function not implemented.')\n-}\n-\n+})\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667546946356,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-\n+import from './electron/api/createwindow'\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n"
-                },
-                {
-                    "date": 1667705741639,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import from './electron/api/createwindow'\n+import {createWindow} from './electron/api/createwindow'\n+const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -13,9 +14,9 @@\n     optimizer.watchWindowShortcuts(window)\n   })\n \n   createWindow()\n-\n+createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n"
-                },
-                {
-                    "date": 1667705769801,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     optimizer.watchWindowShortcuts(window)\n   })\n \n   createWindow()\n-createWindow()\n+// createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n"
-                },
-                {
-                    "date": 1667706833785,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import {createWindow} from './electron/api/createwindow'\n-const windows = new Set()\n+import { createWindow } from './electron/api/createwindow'\n+import { defaultPath } from './electron/config'\n+// const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -13,14 +14,19 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  createWindow()\n-// createWindow()\n+  createWindow({\n+    openedDir: defaultPath\n+  })\n+  // createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n-    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n+    if (BrowserWindow.getAllWindows().length === 0)\n+      createWindow({\n+        openedDir: defaultPath\n+      })\n   })\n })\n \n app.on('window-all-closed', () => {\n@@ -29,5 +35,5 @@\n     app.quit()\n   } else {\n     app.quit()\n   }\n-})\n\\ No newline at end of file\n+})\n"
-                },
-                {
-                    "date": 1667708886101,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-import { app, BrowserWindow } from 'electron'\n+import {  BrowserWindow } from 'electron'\n+import {app} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n // const windows = new Set()\n"
-                },
-                {
-                    "date": 1667708906603,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import {  BrowserWindow } from 'electron'\n-import {app} from '@electron/remote'\n+// import {  BrowserWindow } from 'electron'\n+import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n // const windows = new Set()\n"
-                },
-                {
-                    "date": 1667709125507,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n+import remote from '@electron/remote/main'\n+remote.initialize()\n // const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n@@ -15,12 +17,12 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  createWindow({\n+  const mainwindow = createWindow({\n     openedDir: defaultPath\n   })\n-  // createWindow()\n+  remote.enable(mainwindow.webContents)\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0)\n"
-                },
-                {
-                    "date": 1667709335573,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-// import {  BrowserWindow } from 'electron'\n-import {app,BrowserWindow} from '@electron/remote'\n+import {  app,BrowserWindow } from 'electron'\n+// import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n import remote from '@electron/remote/main'\n"
-                },
-                {
-                    "date": 1667709731216,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,8 @@\n-import {  app,BrowserWindow } from 'electron'\n-// import {app,BrowserWindow} from '@electron/remote'\n+import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n-import remote from '@electron/remote/main'\n-remote.initialize()\n-// const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -17,12 +13,12 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  const mainwindow = createWindow({\n+  createWindow({\n     openedDir: defaultPath\n   })\n-  remote.enable(mainwindow.webContents)\n+\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0)\n"
-                }
-            ],
-            "date": 1667541566569,
-            "name": "Commit-0",
-            "content": "import { app, BrowserWindow } from 'electron'\nimport { electronApp, optimizer } from '@electron-toolkit/utils'\nimport { createWindow } from './electron/createWindow'\n\n// electron初始化，可以创建窗口\napp.whenReady().then(() => {\n  // Set app user model id for windows\n  electronApp.setAppUserModelId('com.electron')\n\n  // Default open or close DevTools by F12 in development\n  // and ignore CommandOrControl + R in production.\n  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n  app.on('browser-window-created', (_, window) => {\n    optimizer.watchWindowShortcuts(window)\n  })\n\n  createWindow()\n\n  app.on('activate', function () {\n    // On macOS it's common to re-create a window in the app when the\n    // dock icon is clicked and there are no other windows open.\n    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n  })\n})\n\napp.on('window-all-closed', () => {\n  // mac的plateform是darwin\n  if (process.platform !== 'darwin') {\n    app.quit()\n  } else {\n    app.quit()\n  }\n})\n"
+          "date": 1667541566569,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667541937755,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import { createWindow } from './electron/createWindow'\n \n+\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -30,4 +30,8 @@\n   } else {\n     app.quit()\n   }\n })\n+function createWindow() {\n+  throw new Error('Function not implemented.')\n+}\n+\n"
+        },
+        {
+          "date": 1667546919386,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n \n-\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -29,9 +28,5 @@\n     app.quit()\n   } else {\n     app.quit()\n   }\n-})\n-function createWindow() {\n-  throw new Error('Function not implemented.')\n-}\n-\n+})\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667546946356,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-\n+import from './electron/api/createwindow'\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n"
+        },
+        {
+          "date": 1667705741639,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import from './electron/api/createwindow'\n+import {createWindow} from './electron/api/createwindow'\n+const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -13,9 +14,9 @@\n     optimizer.watchWindowShortcuts(window)\n   })\n \n   createWindow()\n-\n+createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n"
+        },
+        {
+          "date": 1667705769801,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     optimizer.watchWindowShortcuts(window)\n   })\n \n   createWindow()\n-createWindow()\n+// createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n"
+        },
+        {
+          "date": 1667706833785,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n-import {createWindow} from './electron/api/createwindow'\n-const windows = new Set()\n+import { createWindow } from './electron/api/createwindow'\n+import { defaultPath } from './electron/config'\n+// const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -13,14 +14,19 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  createWindow()\n-// createWindow()\n+  createWindow({\n+    openedDir: defaultPath\n+  })\n+  // createWindow()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n-    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n+    if (BrowserWindow.getAllWindows().length === 0)\n+      createWindow({\n+        openedDir: defaultPath\n+      })\n   })\n })\n \n app.on('window-all-closed', () => {\n@@ -29,5 +35,5 @@\n     app.quit()\n   } else {\n     app.quit()\n   }\n-})\n\\ No newline at end of file\n+})\n"
+        },
+        {
+          "date": 1667708886101,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-import { app, BrowserWindow } from 'electron'\n+import {  BrowserWindow } from 'electron'\n+import {app} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n // const windows = new Set()\n"
+        },
+        {
+          "date": 1667708906603,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-import {  BrowserWindow } from 'electron'\n-import {app} from '@electron/remote'\n+// import {  BrowserWindow } from 'electron'\n+import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n // const windows = new Set()\n"
+        },
+        {
+          "date": 1667709125507,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,10 @@\n import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n+import remote from '@electron/remote/main'\n+remote.initialize()\n // const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n@@ -15,12 +17,12 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  createWindow({\n+  const mainwindow = createWindow({\n     openedDir: defaultPath\n   })\n-  // createWindow()\n+  remote.enable(mainwindow.webContents)\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0)\n"
+        },
+        {
+          "date": 1667709335573,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n-// import {  BrowserWindow } from 'electron'\n-import {app,BrowserWindow} from '@electron/remote'\n+import {  app,BrowserWindow } from 'electron'\n+// import {app,BrowserWindow} from '@electron/remote'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n import remote from '@electron/remote/main'\n"
+        },
+        {
+          "date": 1667709731216,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,8 @@\n-import {  app,BrowserWindow } from 'electron'\n-// import {app,BrowserWindow} from '@electron/remote'\n+import { app, BrowserWindow } from 'electron'\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n-import remote from '@electron/remote/main'\n-remote.initialize()\n-// const windows = new Set()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n@@ -17,12 +13,12 @@\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n   })\n \n-  const mainwindow = createWindow({\n+  createWindow({\n     openedDir: defaultPath\n   })\n-  remote.enable(mainwindow.webContents)\n+\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n     if (BrowserWindow.getAllWindows().length === 0)\n"
         }
-    ]
+      ],
+      "date": 1667541566569,
+      "name": "Commit-0",
+      "content": "import { app, BrowserWindow } from 'electron'\nimport { electronApp, optimizer } from '@electron-toolkit/utils'\nimport { createWindow } from './electron/createWindow'\n\n// electron初始化，可以创建窗口\napp.whenReady().then(() => {\n  // Set app user model id for windows\n  electronApp.setAppUserModelId('com.electron')\n\n  // Default open or close DevTools by F12 in development\n  // and ignore CommandOrControl + R in production.\n  // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n  app.on('browser-window-created', (_, window) => {\n    optimizer.watchWindowShortcuts(window)\n  })\n\n  createWindow()\n\n  app.on('activate', function () {\n    // On macOS it's common to re-create a window in the app when the\n    // dock icon is clicked and there are no other windows open.\n    if (BrowserWindow.getAllWindows().length === 0) createWindow()\n  })\n})\n\napp.on('window-all-closed', () => {\n  // mac的plateform是darwin\n  if (process.platform !== 'darwin') {\n    app.quit()\n  } else {\n    app.quit()\n  }\n})\n"
+    }
+  ]
 }

@@ -1,22 +1,22 @@
 {
-    "sourceFile": "src/main/electron/menu/modules/editMenu.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/menu/modules/editMenu.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
         {
-            "activePatchIndex": 1,
-            "patches": [
-                {
-                    "date": 1667539487532,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667539547077,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,40 @@\n-import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n+import { DarwinMenuItemConstructorOptions } from '../../../interface'\n \n-export   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'Edit',\n-    submenu: [\n-      {\n-        label: 'Undo',\n-        accelerator: 'Command+Z',\n-        selector: 'undo:'\n-      },\n-      {\n-        label: 'Redo',\n-        accelerator: 'Shift+Command+Z',\n-        selector: 'redo:'\n-      },\n-      {\n-        type: 'separator'\n-      },\n-      {\n-        label: 'Cut',\n-        accelerator: 'Command+X',\n-        selector: 'cut:'\n-      },\n-      {\n-        label: 'Copy',\n-        accelerator: 'Command+C',\n-        selector: 'copy:'\n-      },\n-      {\n-        label: 'Paste',\n-        accelerator: 'Command+V',\n-        selector: 'paste:'\n-      },\n-      {\n-        label: 'Select All',\n-        accelerator: 'Command+A',\n-        selector: 'selectAll:'\n-      }\n-    ]\n\\ No newline at end of file\n-  }\n+export const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n+  label: 'Edit',\n+  submenu: [\n+    {\n+      label: 'Undo',\n+      accelerator: 'Command+Z',\n+      selector: 'undo:'\n+    },\n+    {\n+      label: 'Redo',\n+      accelerator: 'Shift+Command+Z',\n+      selector: 'redo:'\n+    },\n+    {\n+      type: 'separator'\n+    },\n+    {\n+      label: 'Cut',\n+      accelerator: 'Command+X',\n+      selector: 'cut:'\n+    },\n+    {\n+      label: 'Copy',\n+      accelerator: 'Command+C',\n+      selector: 'copy:'\n+    },\n+    {\n+      label: 'Paste',\n+      accelerator: 'Command+V',\n+      selector: 'paste:'\n+    },\n+    {\n+      label: 'Select All',\n+      accelerator: 'Command+A',\n+      selector: 'selectAll:'\n+    }\n+  ]\n+}\n"
-                }
-            ],
-            "date": 1667539487532,
-            "name": "Commit-0",
-            "content": "import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n\nexport   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Edit',\n    submenu: [\n      {\n        label: 'Undo',\n        accelerator: 'Command+Z',\n        selector: 'undo:'\n      },\n      {\n        label: 'Redo',\n        accelerator: 'Shift+Command+Z',\n        selector: 'redo:'\n      },\n      {\n        type: 'separator'\n      },\n      {\n        label: 'Cut',\n        accelerator: 'Command+X',\n        selector: 'cut:'\n      },\n      {\n        label: 'Copy',\n        accelerator: 'Command+C',\n        selector: 'copy:'\n      },\n      {\n        label: 'Paste',\n        accelerator: 'Command+V',\n        selector: 'paste:'\n      },\n      {\n        label: 'Select All',\n        accelerator: 'Command+A',\n        selector: 'selectAll:'\n      }\n    ]\n  }"
+          "date": 1667539487532,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667539547077,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,40 +1,40 @@\n-import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n+import { DarwinMenuItemConstructorOptions } from '../../../interface'\n \n-export   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'Edit',\n-    submenu: [\n-      {\n-        label: 'Undo',\n-        accelerator: 'Command+Z',\n-        selector: 'undo:'\n-      },\n-      {\n-        label: 'Redo',\n-        accelerator: 'Shift+Command+Z',\n-        selector: 'redo:'\n-      },\n-      {\n-        type: 'separator'\n-      },\n-      {\n-        label: 'Cut',\n-        accelerator: 'Command+X',\n-        selector: 'cut:'\n-      },\n-      {\n-        label: 'Copy',\n-        accelerator: 'Command+C',\n-        selector: 'copy:'\n-      },\n-      {\n-        label: 'Paste',\n-        accelerator: 'Command+V',\n-        selector: 'paste:'\n-      },\n-      {\n-        label: 'Select All',\n-        accelerator: 'Command+A',\n-        selector: 'selectAll:'\n-      }\n-    ]\n\\ No newline at end of file\n-  }\n+export const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n+  label: 'Edit',\n+  submenu: [\n+    {\n+      label: 'Undo',\n+      accelerator: 'Command+Z',\n+      selector: 'undo:'\n+    },\n+    {\n+      label: 'Redo',\n+      accelerator: 'Shift+Command+Z',\n+      selector: 'redo:'\n+    },\n+    {\n+      type: 'separator'\n+    },\n+    {\n+      label: 'Cut',\n+      accelerator: 'Command+X',\n+      selector: 'cut:'\n+    },\n+    {\n+      label: 'Copy',\n+      accelerator: 'Command+C',\n+      selector: 'copy:'\n+    },\n+    {\n+      label: 'Paste',\n+      accelerator: 'Command+V',\n+      selector: 'paste:'\n+    },\n+    {\n+      label: 'Select All',\n+      accelerator: 'Command+A',\n+      selector: 'selectAll:'\n+    }\n+  ]\n+}\n"
         }
-    ]
+      ],
+      "date": 1667539487532,
+      "name": "Commit-0",
+      "content": "import { DarwinMenuItemConstructorOptions } from \"../../../interface\";\n\nexport   const editMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Edit',\n    submenu: [\n      {\n        label: 'Undo',\n        accelerator: 'Command+Z',\n        selector: 'undo:'\n      },\n      {\n        label: 'Redo',\n        accelerator: 'Shift+Command+Z',\n        selector: 'redo:'\n      },\n      {\n        type: 'separator'\n      },\n      {\n        label: 'Cut',\n        accelerator: 'Command+X',\n        selector: 'cut:'\n      },\n      {\n        label: 'Copy',\n        accelerator: 'Command+C',\n        selector: 'copy:'\n      },\n      {\n        label: 'Paste',\n        accelerator: 'Command+V',\n        selector: 'paste:'\n      },\n      {\n        label: 'Select All',\n        accelerator: 'Command+A',\n        selector: 'selectAll:'\n      }\n    ]\n  }"
+    }
+  ]
 }

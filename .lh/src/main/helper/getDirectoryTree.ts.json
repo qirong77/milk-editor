@@ -1,138 +1,138 @@
 {
-    "sourceFile": "src/main/helper/getDirectoryTree.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/helper/getDirectoryTree.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 30,
+      "patches": [
         {
-            "activePatchIndex": 30,
-            "patches": [
-                {
-                    "date": 1667538869991,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667554409465,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n-import { FileTree } from \"../interface\"\n \n+\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = '') => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667555189558,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n+import { FileTree } from \"../../common/interface\"\n \n \n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = '') => {\n"
-                },
-                {
-                    "date": 1667568353362,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n import { FileTree } from \"../../common/interface\"\n \n+import { homedir } from \"os\"\n \n+const defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\n // 读取某个文件路径的文件树，只针对md文件\n-export const getDirectoryTree = (path = '') => {\n+export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n       children: [],\n       path,\n"
-                },
-                {
-                    "date": 1667569210841,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667569275057,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n-          fileName: path,\n+          fileName: basename(path),\n           children: [],\n           path,\n           level\n         }\n"
-                },
-                {
-                    "date": 1667569560605,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667569571801,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown','Vue')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667569598773,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown','Vue')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','Vue.md')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667569621968,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','Vue.md')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','4.Vue.md')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667569707348,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n+    if()\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
-                },
-                {
-                    "date": 1667569715220,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if()\n+    if(!)\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
-                },
-                {
-                    "date": 1667569721389,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!)\n+    if(!lstatSync(path))\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
-                },
-                {
-                    "date": 1667569726727,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!lstatSync(path))\n+    if(!lstatSync(path).isDirectory())\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
-                },
-                {
-                    "date": 1667569749412,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,11 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!lstatSync(path).isDirectory())\n+    if(!lstatSync(path).isDirectory()) {\n+      return path\n+    }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
-                },
-                {
-                    "date": 1667571173481,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n-      return path\n+      return basename(p)\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
-                },
-                {
-                    "date": 1667571340933,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,11 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n-      return basename(p)\n+      return {\n+        fila\n+      }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
-                },
-                {
-                    "date": 1667571353175,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        fila\n+        t\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
-                },
-                {
-                    "date": 1667571626987,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        t\n+        {}\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
-                },
-                {
-                    "date": 1667571632469,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        {}\n+        {...tree}\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
-                },
-                {
-                    "date": 1667571644173,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        {...tree}\n+        ...tree,\n+        is\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
-                },
-                {
-                    "date": 1667571653243,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n         ...tree,\n-        is\n+        isDir:false\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
-                },
-                {
-                    "date": 1667571676557,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n+      tree.isDir = false\n+      \n       return {\n         ...tree,\n         isDir:false\n       }\n"
-                },
-                {
-                    "date": 1667571683264,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       tree.isDir = false\n-      \n-      return {\n-        ...tree,\n-        isDir:false\n-      }\n+      return tree\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
-                },
-                {
-                    "date": 1667572235565,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','4.Vue.md')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
-                },
-                {
-                    "date": 1667572596573,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n         const node = {\n           fileName: basename(path),\n           children: [],\n           path,\n-          level\n+          level,\n+          is\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n"
-                },
-                {
-                    "date": 1667572608638,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n           fileName: basename(path),\n           children: [],\n           path,\n           level,\n-          is\n+          isDir:tr\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n"
-                },
-                {
-                    "date": 1667572636256,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,17 @@\n           fileName: basename(path),\n           children: [],\n           path,\n           level,\n-          isDir:tr\n+          isDir:true\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n+        \n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
-                },
-                {
-                    "date": 1667572642905,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n-        \n+\n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
-                },
-                {
-                    "date": 1667572649756,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n-        const \n+        const f\n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
-                },
-                {
-                    "date": 1667620704424,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,24 +6,24 @@\n \n const defaultPath = resolve(homedir(), 'Desktop', 'front-end-book', 'text')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath, level = 0) => {\n-  const : FileTree = {\n+  const n: FileTree = {\n     fileName: basename(path),\n     children: [],\n     path,\n     level,\n     isDir: false\n   }\n   if (!lstatSync(path).isDirectory()) {\n     if (!/\\.md$/.test(path)) return null\n-    else return \n+    else return n\n   } else {\n \n     readdirSync(path).forEach((fileName) => {\n       const nextPath = resolve(path, fileName)\n       const newNode = getDirectoryTree(nextPath, level + 1)\n-      newNode && .children.push(newNode)\n+      newNode && n.children.push(newNode)\n     })\n   }\n-  return \n+  return n\n }\n"
-                }
-            ],
-            "date": 1667538869991,
-            "name": "Commit-0",
-            "content": "import { lstatSync, readdirSync } from \"fs\"\nimport { basename, resolve } from \"path\"\nimport { FileTree } from \"../interface\"\n\n// 读取某个文件路径的文件树，只针对md文件\nexport const getDirectoryTree = (path = '') => {\n    const tree: FileTree = {\n      fileName: basename(path),\n      children: [],\n      path,\n      level: 0\n    }\n    const IS_MARKDOWN = /\\.md$/\n    const traverse = (path:string, tree:FileTree, level:number) => {\n      if (lstatSync(path).isDirectory()) {\n        const node = {\n          fileName: path,\n          children: [],\n          path,\n          level\n        }\n        readdirSync(path).forEach((fileName) => {\n          const nextPath = resolve(path, fileName)\n          traverse(nextPath, node, level + 1)\n        })\n        tree.children.push(node)\n      } else {\n        IS_MARKDOWN.test(path) && tree.children.push(path)\n      }\n    }\n    traverse(path, tree, 0)\n    return tree\n  }"
+          "date": 1667538869991,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667554409465,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n-import { FileTree } from \"../interface\"\n \n+\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = '') => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667555189558,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n+import { FileTree } from \"../../common/interface\"\n \n \n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = '') => {\n"
+        },
+        {
+          "date": 1667568353362,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n import { lstatSync, readdirSync } from \"fs\"\n import { basename, resolve } from \"path\"\n import { FileTree } from \"../../common/interface\"\n \n+import { homedir } from \"os\"\n \n+const defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\n // 读取某个文件路径的文件树，只针对md文件\n-export const getDirectoryTree = (path = '') => {\n+export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n       children: [],\n       path,\n"
+        },
+        {
+          "date": 1667569210841,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book', 'Markdowns')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667569275057,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n-          fileName: path,\n+          fileName: basename(path),\n           children: [],\n           path,\n           level\n         }\n"
+        },
+        {
+          "date": 1667569560605,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667569571801,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown','Vue')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667569598773,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdown','Vue')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','Vue.md')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667569621968,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','Vue.md')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','4.Vue.md')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667569707348,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n+    if()\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
+        },
+        {
+          "date": 1667569715220,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if()\n+    if(!)\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
+        },
+        {
+          "date": 1667569721389,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!)\n+    if(!lstatSync(path))\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
+        },
+        {
+          "date": 1667569726727,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!lstatSync(path))\n+    if(!lstatSync(path).isDirectory())\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
+        },
+        {
+          "date": 1667569749412,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,11 @@\n       children: [],\n       path,\n       level: 0\n     }\n-    if(!lstatSync(path).isDirectory())\n+    if(!lstatSync(path).isDirectory()) {\n+      return path\n+    }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n         const node = {\n"
+        },
+        {
+          "date": 1667571173481,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n-      return path\n+      return basename(p)\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
+        },
+        {
+          "date": 1667571340933,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,11 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n-      return basename(p)\n+      return {\n+        fila\n+      }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
+        },
+        {
+          "date": 1667571353175,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        fila\n+        t\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
+        },
+        {
+          "date": 1667571626987,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        t\n+        {}\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
+        },
+        {
+          "date": 1667571632469,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        {}\n+        {...tree}\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
+        },
+        {
+          "date": 1667571644173,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,10 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n-        {...tree}\n+        ...tree,\n+        is\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
+        },
+        {
+          "date": 1667571653243,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     }\n     if(!lstatSync(path).isDirectory()) {\n       return {\n         ...tree,\n-        is\n+        isDir:false\n       }\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n"
+        },
+        {
+          "date": 1667571676557,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n       path,\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n+      tree.isDir = false\n+      \n       return {\n         ...tree,\n         isDir:false\n       }\n"
+        },
+        {
+          "date": 1667571683264,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,9 @@\n       level: 0\n     }\n     if(!lstatSync(path).isDirectory()) {\n       tree.isDir = false\n-      \n-      return {\n-        ...tree,\n-        isDir:false\n-      }\n+      return tree\n     }\n     const IS_MARKDOWN = /\\.md$/\n     const traverse = (path:string, tree:FileTree, level:number) => {\n       if (lstatSync(path).isDirectory()) {\n"
+        },
+        {
+          "date": 1667572235565,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { FileTree } from \"../../common/interface\"\n \n import { homedir } from \"os\"\n \n-const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns','4.Vue.md')\n+const defaultPath = resolve(homedir(),'Desktop','front-end-book','Markdowns')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath) => {\n     const tree: FileTree = {\n       fileName: basename(path),\n"
+        },
+        {
+          "date": 1667572596573,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,10 @@\n         const node = {\n           fileName: basename(path),\n           children: [],\n           path,\n-          level\n+          level,\n+          is\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n"
+        },
+        {
+          "date": 1667572608638,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n           fileName: basename(path),\n           children: [],\n           path,\n           level,\n-          is\n+          isDir:tr\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n"
+        },
+        {
+          "date": 1667572636256,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,17 @@\n           fileName: basename(path),\n           children: [],\n           path,\n           level,\n-          isDir:tr\n+          isDir:true\n         }\n         readdirSync(path).forEach((fileName) => {\n           const nextPath = resolve(path, fileName)\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n+        \n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
+        },
+        {
+          "date": 1667572642905,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n-        \n+\n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
+        },
+        {
+          "date": 1667572649756,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n           traverse(nextPath, node, level + 1)\n         })\n         tree.children.push(node)\n       } else {\n-        const \n+        const f\n         IS_MARKDOWN.test(path) && tree.children.push(path)\n       }\n     }\n     traverse(path, tree, 0)\n"
+        },
+        {
+          "date": 1667620704424,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,24 +6,24 @@\n \n const defaultPath = resolve(homedir(), 'Desktop', 'front-end-book', 'text')\n // 读取某个文件路径的文件树，只针对md文件\n export const getDirectoryTree = (path = defaultPath, level = 0) => {\n-  const : FileTree = {\n+  const n: FileTree = {\n     fileName: basename(path),\n     children: [],\n     path,\n     level,\n     isDir: false\n   }\n   if (!lstatSync(path).isDirectory()) {\n     if (!/\\.md$/.test(path)) return null\n-    else return \n+    else return n\n   } else {\n \n     readdirSync(path).forEach((fileName) => {\n       const nextPath = resolve(path, fileName)\n       const newNode = getDirectoryTree(nextPath, level + 1)\n-      newNode && .children.push(newNode)\n+      newNode && n.children.push(newNode)\n     })\n   }\n-  return \n+  return n\n }\n"
         }
-    ]
+      ],
+      "date": 1667538869991,
+      "name": "Commit-0",
+      "content": "import { lstatSync, readdirSync } from \"fs\"\nimport { basename, resolve } from \"path\"\nimport { FileTree } from \"../interface\"\n\n// 读取某个文件路径的文件树，只针对md文件\nexport const getDirectoryTree = (path = '') => {\n    const tree: FileTree = {\n      fileName: basename(path),\n      children: [],\n      path,\n      level: 0\n    }\n    const IS_MARKDOWN = /\\.md$/\n    const traverse = (path:string, tree:FileTree, level:number) => {\n      if (lstatSync(path).isDirectory()) {\n        const node = {\n          fileName: path,\n          children: [],\n          path,\n          level\n        }\n        readdirSync(path).forEach((fileName) => {\n          const nextPath = resolve(path, fileName)\n          traverse(nextPath, node, level + 1)\n        })\n        tree.children.push(node)\n      } else {\n        IS_MARKDOWN.test(path) && tree.children.push(path)\n      }\n    }\n    traverse(path, tree, 0)\n    return tree\n  }"
+    }
+  ]
 }

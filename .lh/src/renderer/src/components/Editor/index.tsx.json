@@ -1,18 +1,18 @@
 {
-    "sourceFile": "src/renderer/src/components/Editor/index.tsx",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Editor/index.tsx",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 0,
+      "patches": [
         {
-            "activePatchIndex": 0,
-            "patches": [
-                {
-                    "date": 1667633625983,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                }
-            ],
-            "date": 1667633625983,
-            "name": "Commit-0",
-            "content": "import React, { useEffect, useState } from 'react'\nimport { Editor } from '@milkdown/core'\n\nimport { ReactEditor, useEditor } from '@milkdown/react'\n\nimport { replaceAll } from '@milkdown/utils'\nimport { useConfig } from './hooks/useConfig'\nimport { usePlugins } from './hooks/usePlugin'\n\n\ninterface MilkdownEditor {\n  content: string\n  filePath: string\n}\n\nexport const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n  console.log('MilkdownEditor-render')\n  const [markdown, setMarkdown] = useState('')\n  const { editor, loading, getInstance } = useEditor((root) => {\n    const newEditor = Editor.make()\n    useConfig(newEditor, root, setMarkdown)\n    usePlugins(newEditor)\n    return newEditor\n  })\n  // 全部替换，点击文件列表的时候起作用\n  useEffect(() => {\n    if (!loading) {\n      const instance = getInstance()\n      instance?.action(replaceAll(content))\n    }\n  }, [loading, content])\n  // 存储的函数必须根据副作用实时修改，否则不会更新\n//   useEffect(() => {\n//     window.api.sendToMain(SAVE_FILE, {\n//       filePath: filePath,\n//       newFileContent: markdown\n//     })\n//   }, [markdown])\n  return <ReactEditor editor={editor} />\n}\n"
+          "date": 1667633625983,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
         }
-    ]
+      ],
+      "date": 1667633625983,
+      "name": "Commit-0",
+      "content": "import React, { useEffect, useState } from 'react'\nimport { Editor } from '@milkdown/core'\n\nimport { ReactEditor, useEditor } from '@milkdown/react'\n\nimport { replaceAll } from '@milkdown/utils'\nimport { useConfig } from './hooks/useConfig'\nimport { usePlugins } from './hooks/usePlugin'\n\n\ninterface MilkdownEditor {\n  content: string\n  filePath: string\n}\n\nexport const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) => {\n  console.log('MilkdownEditor-render')\n  const [markdown, setMarkdown] = useState('')\n  const { editor, loading, getInstance } = useEditor((root) => {\n    const newEditor = Editor.make()\n    useConfig(newEditor, root, setMarkdown)\n    usePlugins(newEditor)\n    return newEditor\n  })\n  // 全部替换，点击文件列表的时候起作用\n  useEffect(() => {\n    if (!loading) {\n      const instance = getInstance()\n      instance?.action(replaceAll(content))\n    }\n  }, [loading, content])\n  // 存储的函数必须根据副作用实时修改，否则不会更新\n//   useEffect(() => {\n//     window.api.sendToMain(SAVE_FILE, {\n//       filePath: filePath,\n//       newFileContent: markdown\n//     })\n//   }, [markdown])\n  return <ReactEditor editor={editor} />\n}\n"
+    }
+  ]
 }

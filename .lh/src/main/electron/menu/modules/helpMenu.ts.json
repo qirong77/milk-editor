@@ -1,22 +1,22 @@
 {
-    "sourceFile": "src/main/electron/menu/modules/helpMenu.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/electron/menu/modules/helpMenu.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 1,
+      "patches": [
         {
-            "activePatchIndex": 1,
-            "patches": [
-                {
-                    "date": 1667539708473,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667540337758,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,26 @@\n-import { DarwinMenuItemConstructorOptions } from \"../../../interface\"\n+import { DarwinMenuItemConstructorOptions } from '../../../interface'\n \n-export  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'Help',\n-    submenu: [\n-      {\n-        label: '&设置',\n-        accelerator: 'Ctrl+S',\n-        click: () => {\n-          // createSettingWindow()\n-        }\n-      },\n-      {\n-        label: 'Learn More',\n-        click() {\n-          // shell.openExternal('https://electronjs.org');\n-        }\n-      },\n-      {\n-        label: '切换开发人员工具',\n-        click: () => {\n-          window.webContents.toggleDevTools()\n-        }\n+export const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n+  label: 'Help',\n\\ No newline at end of file\n+  submenu: [\n+    {\n+      label: '&设置',\n+      accelerator: 'Ctrl+S',\n+      click: () => {\n+        // createSettingWindow()\n       }\n-    ]\n-  }\n+    },\n+    {\n+      label: 'Learn More',\n+      click() {\n+        // shell.openExternal('https://electronjs.org');\n+      }\n+    },\n+    {\n+      label: '切换开发人员工具',\n+      click: () => {\n+        //   window.webContents.toggleDevTools()\n+      }\n+    }\n+  ]\n+}\n"
-                }
-            ],
-            "date": 1667539708473,
-            "name": "Commit-0",
-            "content": "import { DarwinMenuItemConstructorOptions } from \"../../../interface\"\n\nexport  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Help',\n    submenu: [\n      {\n        label: '&设置',\n        accelerator: 'Ctrl+S',\n        click: () => {\n          // createSettingWindow()\n        }\n      },\n      {\n        label: 'Learn More',\n        click() {\n          // shell.openExternal('https://electronjs.org');\n        }\n      },\n      {\n        label: '切换开发人员工具',\n        click: () => {\n          window.webContents.toggleDevTools()\n        }\n      }\n    ]\n  }"
+          "date": 1667539708473,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667540337758,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,26 +1,26 @@\n-import { DarwinMenuItemConstructorOptions } from \"../../../interface\"\n+import { DarwinMenuItemConstructorOptions } from '../../../interface'\n \n-export  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n-    label: 'Help',\n-    submenu: [\n-      {\n-        label: '&设置',\n-        accelerator: 'Ctrl+S',\n-        click: () => {\n-          // createSettingWindow()\n-        }\n-      },\n-      {\n-        label: 'Learn More',\n-        click() {\n-          // shell.openExternal('https://electronjs.org');\n-        }\n-      },\n-      {\n-        label: '切换开发人员工具',\n-        click: () => {\n-          window.webContents.toggleDevTools()\n-        }\n+export const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n+  label: 'Help',\n\\ No newline at end of file\n+  submenu: [\n+    {\n+      label: '&设置',\n+      accelerator: 'Ctrl+S',\n+      click: () => {\n+        // createSettingWindow()\n       }\n-    ]\n-  }\n+    },\n+    {\n+      label: 'Learn More',\n+      click() {\n+        // shell.openExternal('https://electronjs.org');\n+      }\n+    },\n+    {\n+      label: '切换开发人员工具',\n+      click: () => {\n+        //   window.webContents.toggleDevTools()\n+      }\n+    }\n+  ]\n+}\n"
         }
-    ]
+      ],
+      "date": 1667539708473,
+      "name": "Commit-0",
+      "content": "import { DarwinMenuItemConstructorOptions } from \"../../../interface\"\n\nexport  const helpMenuTemplate: DarwinMenuItemConstructorOptions = {\n    label: 'Help',\n    submenu: [\n      {\n        label: '&设置',\n        accelerator: 'Ctrl+S',\n        click: () => {\n          // createSettingWindow()\n        }\n      },\n      {\n        label: 'Learn More',\n        click() {\n          // shell.openExternal('https://electronjs.org');\n        }\n      },\n      {\n        label: '切换开发人员工具',\n        click: () => {\n          window.webContents.toggleDevTools()\n        }\n      }\n    ]\n  }"
+    }
+  ]
 }

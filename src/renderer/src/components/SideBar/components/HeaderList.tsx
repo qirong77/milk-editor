@@ -1,5 +1,3 @@
 export const HeaderList = () => {
-  return (
-    <div></div>
-  )
- }
+  return <div></div>
+}

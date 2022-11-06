@@ -6,10 +6,12 @@ import {
   MAX_SCREEN,
   MIN_SCREEN,
   OPEN_FILE,
+  POP_DIR_MENU,
   POP_FILE_ITEM_MENU,
   RENAME_FILE
 } from '../../../../common/eventType'
 import { openFile } from '../../../helper/openFile'
+import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
 
 export const onRender = (window: BrowserWindow) => {
@@ -38,6 +40,11 @@ export const onRender = (window: BrowserWindow) => {
   ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {
     const menu = createFilItemMenu(path)
     menu.popup({
+      window
+    })
+  })
+  ipcMain.on(POP_DIR_MENU, (_e, path) => {
+    createFilDirMenu(path).popup({
       window
     })
   })

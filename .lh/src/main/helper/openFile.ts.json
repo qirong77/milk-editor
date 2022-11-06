@@ -1,30 +1,30 @@
 {
-    "sourceFile": "src/main/helper/openFile.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/main/helper/openFile.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 3,
+      "patches": [
         {
-            "activePatchIndex": 3,
-            "patches": [
-                {
-                    "date": 1667633024189,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                },
-                {
-                    "date": 1667633625990,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n+import { OPEN_FILE } from \"src/common/eventType\";\n \n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n-    window.webContents.send(, {\n+    window.webContents.send(OPEN_FILE, {\n       filePath,\n       fileContent\n     })\n }\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667635013963,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n-import { OPEN_FILE } from \"src/common/eventType\";\n \n+\n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_FILE, {\n       filePath,\n"
-                },
-                {
-                    "date": 1667643334732,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,14 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n+import { basename } from \"path\";\n+import { OPEN_FILE } from \"../../common/eventType\";\n \n \n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_FILE, {\n       filePath,\n-      fileContent\n+      fileContent,\n+      fileName:basename(filePath)\n     })\n }\n\\ No newline at end of file\n"
-                }
-            ],
-            "date": 1667633024189,
-            "name": "Commit-0",
-            "content": "import { BrowserWindow } from \"electron\";\nimport { readFileSync } from \"fs\";\n\nexport const openFile = (filePath:string,window:BrowserWindow) =>{\n    const fileContent = readFileSync(filePath, 'utf-8')\n    window.webContents.send(, {\n      filePath,\n      fileContent\n    })\n}"
+          "date": 1667633024189,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
+        },
+        {
+          "date": 1667633625990,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n+import { OPEN_FILE } from \"src/common/eventType\";\n \n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n-    window.webContents.send(, {\n+    window.webContents.send(OPEN_FILE, {\n       filePath,\n       fileContent\n     })\n }\n\\ No newline at end of file\n"
+        },
+        {
+          "date": 1667635013963,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n-import { OPEN_FILE } from \"src/common/eventType\";\n \n+\n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_FILE, {\n       filePath,\n"
+        },
+        {
+          "date": 1667643334732,
+          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,14 @@\n import { BrowserWindow } from \"electron\";\n import { readFileSync } from \"fs\";\n+import { basename } from \"path\";\n+import { OPEN_FILE } from \"../../common/eventType\";\n \n \n export const openFile = (filePath:string,window:BrowserWindow) =>{\n     const fileContent = readFileSync(filePath, 'utf-8')\n     window.webContents.send(OPEN_FILE, {\n       filePath,\n-      fileContent\n+      fileContent,\n+      fileName:basename(filePath)\n     })\n }\n\\ No newline at end of file\n"
         }
-    ]
+      ],
+      "date": 1667633024189,
+      "name": "Commit-0",
+      "content": "import { BrowserWindow } from \"electron\";\nimport { readFileSync } from \"fs\";\n\nexport const openFile = (filePath:string,window:BrowserWindow) =>{\n    const fileContent = readFileSync(filePath, 'utf-8')\n    window.webContents.send(, {\n      filePath,\n      fileContent\n    })\n}"
+    }
+  ]
 }

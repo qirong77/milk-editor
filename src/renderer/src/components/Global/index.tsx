@@ -35,7 +35,7 @@ export const GlobalComponents = () => {
       {showSearchFile && (
         <SearchFile fileList={[]} closeSearchFile={() => setShowSearchFile(false)} />
       )}
-      <DragLine/>
+      <DragLine />
     </>
   )
 }

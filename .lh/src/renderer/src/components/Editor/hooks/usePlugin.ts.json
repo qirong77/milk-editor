@@ -1,18 +1,18 @@
 {
-    "sourceFile": "src/renderer/src/components/Editor/hooks/usePlugin.ts",
-    "activeCommit": 0,
-    "commits": [
+  "sourceFile": "src/renderer/src/components/Editor/hooks/usePlugin.ts",
+  "activeCommit": 0,
+  "commits": [
+    {
+      "activePatchIndex": 0,
+      "patches": [
         {
-            "activePatchIndex": 0,
-            "patches": [
-                {
-                    "date": 1667540514856,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n"
-                }
-            ],
-            "date": 1667540514856,
-            "name": "Commit-0",
-            "content": "import { Editor } from '@milkdown/core'\nimport { nordDark } from '@milkdown/theme-nord'\nimport { listener } from '@milkdown/plugin-listener'\nimport { prismPlugin } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { refractor } from 'refractor/lib/common'\nimport { history } from '@milkdown/plugin-history'\nimport { clipboard } from '@milkdown/plugin-clipboard'\n// 官方引用的图标库，如菜单栏需要使用到\nimport '@material-design-icons/font'\n// 数学公式渲染\n// import 'katex/dist/katex.min.css'\n// 代码高亮\nimport 'prism-themes/themes/prism-atom-dark.min.css'\nimport {\n  blockquote,\n  codeFence,\n  gfm,\n  SupportedKeys,\n  taskListItem,\n  heading\n} from '@milkdown/preset-gfm'\nconst gitHubCommonMark = gfm\n  .configure(blockquote, {\n    keymap: {\n      [SupportedKeys.Blockquote]: 'Mod-Alt-q'\n    }\n  })\n  .configure(heading, {\n    keymap: {\n      [SupportedKeys.H1]: 'Mod-1',\n      [SupportedKeys.H2]: 'Mod-2',\n      [SupportedKeys.H3]: 'Mod-3',\n      [SupportedKeys.H4]: 'Mod-4',\n      [SupportedKeys.H5]: 'Mod-5',\n      [SupportedKeys.H6]: 'Mod-6'\n    }\n  })\n  .configure(taskListItem, {})\n  .configure(codeFence, {\n    languageList: ['scss', 'javascript', 'html/vue','shell', 'json']\n  })\nexport const usePlugins = (Editor: Editor) => {\n  Editor.use(nordDark)\n    .use(history)\n    .use(listener)\n    .use(menu)\n    .use(\n      prismPlugin({\n        configureRefractor: () => refractor\n      })\n    )\n    .use(clipboard)\n    .use(gitHubCommonMark)\n}\n"
+          "date": 1667540514856,
+          "content": "Index: \n===================================================================\n--- \n+++ \n"
         }
-    ]
+      ],
+      "date": 1667540514856,
+      "name": "Commit-0",
+      "content": "import { Editor } from '@milkdown/core'\nimport { nordDark } from '@milkdown/theme-nord'\nimport { listener } from '@milkdown/plugin-listener'\nimport { prismPlugin } from '@milkdown/plugin-prism'\nimport { menu } from '@milkdown/plugin-menu'\nimport { refractor } from 'refractor/lib/common'\nimport { history } from '@milkdown/plugin-history'\nimport { clipboard } from '@milkdown/plugin-clipboard'\n// 官方引用的图标库，如菜单栏需要使用到\nimport '@material-design-icons/font'\n// 数学公式渲染\n// import 'katex/dist/katex.min.css'\n// 代码高亮\nimport 'prism-themes/themes/prism-atom-dark.min.css'\nimport {\n  blockquote,\n  codeFence,\n  gfm,\n  SupportedKeys,\n  taskListItem,\n  heading\n} from '@milkdown/preset-gfm'\nconst gitHubCommonMark = gfm\n  .configure(blockquote, {\n    keymap: {\n      [SupportedKeys.Blockquote]: 'Mod-Alt-q'\n    }\n  })\n  .configure(heading, {\n    keymap: {\n      [SupportedKeys.H1]: 'Mod-1',\n      [SupportedKeys.H2]: 'Mod-2',\n      [SupportedKeys.H3]: 'Mod-3',\n      [SupportedKeys.H4]: 'Mod-4',\n      [SupportedKeys.H5]: 'Mod-5',\n      [SupportedKeys.H6]: 'Mod-6'\n    }\n  })\n  .configure(taskListItem, {})\n  .configure(codeFence, {\n    languageList: ['scss', 'javascript', 'html/vue','shell', 'json']\n  })\nexport const usePlugins = (Editor: Editor) => {\n  Editor.use(nordDark)\n    .use(history)\n    .use(listener)\n    .use(menu)\n    .use(\n      prismPlugin({\n        configureRefractor: () => refractor\n      })\n    )\n    .use(clipboard)\n    .use(gitHubCommonMark)\n}\n"
+    }
+  ]
 }

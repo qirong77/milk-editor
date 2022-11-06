@@ -1,12 +1,12 @@
-import { Controlers } from "./Controlers"
+import { Controlers } from './Controlers'
 
 interface IHeader {
-    title:string
+  title: string
 }
-export const Header:React.FC<IHeader> = ({ title }) => {
+export const Header: React.FC<IHeader> = ({ title }) => {
   return (
     <header className="header">
-        <Controlers/>
+      <Controlers />
       <div>{title}</div>
       <div></div>
     </header>

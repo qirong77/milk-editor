@@ -1,7 +1,7 @@
-import { OPEN_FILE, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../common/eventType'
+import { POP_DIR_MENU, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../common/eventType'
 import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
-import { resolve, extname, basename, dirname } from 'path-browserify'
+import { resolve, dirname } from 'path-browserify'
 
 export const SHOW_INPUT = 'show-input'
 const triangleDown = `<div>
@@ -18,11 +18,11 @@ const triangleDown = `<div>
 const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
   const input = document.createElement('input')
   const handleChange = () => {
-    const newName = input.value + '.md'
+    const newName = input.value
     const oldPath = li.getAttribute('id') || ''
     const newPath = resolve(dirname(oldPath), newName)
     console.log(newPath)
-    newName && window.api.sendToMain(RENAME_FILE, oldPath,newPath)
+    newName && window.api.sendToMain(RENAME_FILE, oldPath, newPath)
     if (isDir) {
       li.innerHTML = triangleDown + `<span>${newName}</span>`
     } else li.innerHTML = `<span>${newName}</span>`
@@ -48,6 +48,7 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
 const createLi = (fileName: string, path: string, level: number, isDir: boolean) => {
   const li = document.createElement('li')
   li.setAttribute('id', path)
+  li.setAttribute('level', level.toString())
   li.setAttribute('style', `--i: ${level}`)
   if (isDir) li.innerHTML = triangleDown + `<span>${fileName}</span>`
   else li.innerHTML = `<span>${fileName}</span>`
@@ -62,24 +63,28 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   }
   li.appendChild(createInput(fileName, li, isDir))
   li.addEventListener('contextmenu', () => {
-    window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
+    if (!isDir) window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
+    else {
+      window.api.sendToMain(POP_DIR_MENU, li.getAttribute('id'))
+    }
   })
-  !isDir &&
-    li.addEventListener('click', (e) => {
-      e.stopPropagation()
+  li.addEventListener('click', (e) => {
+    e.stopPropagation()
+    if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
-    })
+    }
+    if (isDir) {
+      const ul = li.parentElement
+      ul?.classList.toggle('close')
+    }
+  })
   return li
 }
 export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree) => {
   const li = createLi(fileName, path, level, isDir)
   if (!isDir) return li
   const ul = document.createElement('ul')
-  ul.addEventListener('click', (e) => {
-    e.stopPropagation()
-    ul.classList.toggle('close')
-  })
   ul.appendChild(li)
   children.forEach((file) => {
     ul.appendChild(mapFileList(file))

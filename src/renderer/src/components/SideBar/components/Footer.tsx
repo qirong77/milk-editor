@@ -1,5 +1,4 @@
-import { MoreSvg, NewFileSvg } from "../../../assets/svg"
-
+import { MoreSvg, NewFileSvg } from '../../../assets/svg'
 
 export const Footer = () => {
   return (

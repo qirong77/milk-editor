@@ -8,7 +8,7 @@ export const createFilItemMenu = (path: string) => {
     {
       label: '重命名',
       click(menuItem, browserWindow, event) {
-        browserWindow?.webContents.send(RENAME_FILE,path)
+        browserWindow?.webContents.send(RENAME_FILE, path)
       }
     },
     {
