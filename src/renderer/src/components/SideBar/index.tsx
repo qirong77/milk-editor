@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SearchFile } from '../Global/SearchFile'
 import { FileList } from './components/FileList'
-import { Footer } from './components/Footer'
+// import { Footer } from './components/Footer'
 import { HeaderList } from './components/HeaderList'
 import { SideBarHeader } from './components/SideBarHeader'
 
@@ -9,6 +9,7 @@ export const SideBar = () => {
   const [toggle, setToggle] = useState(true)
   const [title, setTitle] = useState('文件')
   const [showSearchFile, setShowSearchFile] = useState(false)
+  const ref= useRef<HTMLDivElement>(null)
   const clickMenu = () => {
     if (!toggle) {
       setTitle('文件')
@@ -32,13 +33,12 @@ export const SideBar = () => {
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
   }, [showSearchFile])
-
   return (
-    <div className="side-bar">
+    <div className="side-bar" ref={ref}>
       <SideBarHeader title={title} clickMenu={clickMenu} />
-      <FileList toggle={toggle} />
+      <FileList toggle={toggle} setToggle={setToggle}/>
       <HeaderList toggle={toggle} />
-      <Footer />
+      {/* <Footer /> */}
       <SearchFile
         showSearchFile={showSearchFile}
         closeSearchFile={() => setShowSearchFile(false)}

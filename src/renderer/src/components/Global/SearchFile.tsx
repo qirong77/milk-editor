@@ -80,10 +80,11 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
         }
       }
       if (e.code === 'Enter') {
-        const filePath = files[active]?.key as string
-        filePath && openFile(filePath)
-        closeSearchFile()
-        openHeaderList()
+        if(showSearchFile) {
+          const filePath = files[active]?.key as string
+          filePath && openFile(filePath)
+          closeSearchFile()
+        }
       }
     }
     document.addEventListener('keydown', hanleSelect)

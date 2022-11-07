@@ -1,7 +1,8 @@
 import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
-
+import { debounce } from 'debounce'
 export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Function) => {
+  const debounceSet = debounce(setMarkdown, 1000, false)
   editor
     .config((ctx) => {
       ctx.set(rootCtx, root)
@@ -14,25 +15,15 @@ export const useConfig = (editor: Editor, root: HTMLElement, setMarkdown: Functi
     .config((ctx) => {
       ctx
         .get(listenerCtx)
-        .beforeMount(() => {
-          console.log('before the editor mounts')
-        })
-        .mounted(() => {
-          console.log('after the editor mounts')
-        })
+        .beforeMount(() => {})
+        .mounted(() => {})
         .markdownUpdated((_ctx, markdown) => {
-          console.log('markdownUpdatedxxxxxxxxxxxx')
-          setMarkdown(markdown)
+          console.log('markdownUpdated')
+          debounceSet(markdown)
         })
-        .updated(() => {
-          console.log('when editor state updates')
-        })
+        .updated(() => {})
         .blur(() => {})
-        .focus(() => {
-          console.log(' when focus editor')
-        })
-        .destroy(() => {
-          console.log('when editor is being destroyed')
-        })
+        .focus(() => {})
+        .destroy(() => {})
     })
 }

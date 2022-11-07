@@ -34,6 +34,7 @@
     "@milkdown/react": "^6.4.1",
     "@milkdown/theme-nord": "^6.5.0",
     "@types/path-browserify": "^1.0.0",
+    "debounce": "^1.2.1",
     "electron-updater": "^4.6.5",
     "path-browserify": "^1.0.1",
     "prism-themes": "^1.9.0",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",
+    "@types/debounce": "^1.2.1",
     "@types/node": "16.11.22",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

@@ -6,6 +6,8 @@ import { ReactEditor, useEditor } from '@milkdown/react'
 import { replaceAll } from '@milkdown/utils'
 import { useConfig } from './hooks/useConfig'
 import { usePlugins } from './hooks/usePlugin'
+import { updateHeaders } from '../SideBar/utils/updateHeaders'
+import { SAVE_FILE } from '../../../../common/eventType'
 
 interface MilkdownEditor {
   content: string
@@ -26,14 +28,12 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     if (!loading) {
       const instance = getInstance()
       instance?.action(replaceAll(content))
+      updateHeaders()
     }
   }, [loading, content])
   // 存储的函数必须根据副作用实时修改，否则不会更新
-  //   useEffect(() => {
-  //     window.api.sendToMain(SAVE_FILE, {
-  //       filePath: filePath,
-  //       newFileContent: markdown
-  //     })
-  //   }, [markdown])
+  useEffect(() => {
+    window.api.sendToMain(SAVE_FILE, filePath, markdown)
+  }, [markdown])
   return <ReactEditor editor={editor} />
 }

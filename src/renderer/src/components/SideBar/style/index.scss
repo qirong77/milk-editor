@@ -1,5 +1,6 @@
 @import './file-list.scss';
 @import '../../../assets/styles/variables.scss';
+@import './header-list.scss';
 $max-height: calc(100vh - 30px);
 $title-height: 30px;
 .side-bar {
@@ -11,6 +12,8 @@ $title-height: 30px;
   transition: 0.4s;
   font-size: initial;
   position: relative;
+  display: flex;
+  flex-direction: column;
   &:hover {
     footer {
       display: flex;

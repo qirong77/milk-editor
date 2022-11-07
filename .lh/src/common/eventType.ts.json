@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1667543169085,
@@ -48,6 +48,14 @@
                 {
                     "date": 1667729081171,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,13 @@\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n \n // interProcess\n-export const GET_DIR_TREE = 'get file list'\n-\n+export const GET_DIR_TREE = 'get dir tree'\n+export const GET_FILE_LIST = 'get file list'\n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n\\ No newline at end of file\n export const NEW_FILE = 'add a new file'\n-export const DELETE_DIR = 'delet a dir'\n+export const DELETE_DIR = 'delet a dir'\n"
+                },
+                {
+                    "date": 1667807495473,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const MIN_SCREEN = 'min'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n-\n+export const SAVE_FILE = 'save a file'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n // main -> renender\n@@ -15,5 +15,5 @@\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n-export const DELETE_DIR = 'delet a dir'\n\\ No newline at end of file\n+export const DELETE_DIR = 'delet a dir'\n"
+                },
+                {
+                    "date": 1667809079809,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const MIN_SCREEN = 'min'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n+export const POP_ROOT_MENU = 'pop root dir menu'\n export const SAVE_FILE = 'save a file'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n@@ -16,4 +17,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n+\n"
                 }
             ],
             "date": 1667543169085,

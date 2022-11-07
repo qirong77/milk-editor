@@ -1,110 +1,118 @@
 {
-  "sourceFile": "src/renderer/src/App.tsx",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 23,
-      "patches": [
+    "sourceFile": "src/renderer/src/App.tsx",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667537076910,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1667543304130,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n export const App = () => {\n   return (\n+\n     <div></div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667543410171,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n export const App = () => {\n   return (\n \n-    <div></div>\n+    <div className=\"container\">\n+      \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667543610178,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n+import { Header } from \"./components/Header\"\n+\n export const App = () => {\n   return (\n \n     <div className=\"container\">\n-      \n+      <Header></Header>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667543621005,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { Header } from \"./components/Header\"\n \n-export const App = () => {\n-  return (\n+export const App = () => (\n \n-    <div className=\"container\">\n-      <Header></Header>\n-    </div>\n-  )\n\\ No newline at end of file\n- }\n+  <div className=\"container\">\n+    <Header></Header>\n+    <main>\n+      <Sidebar></Sidebar>\n+    </main>\n+  </div>\n+)\n\\ No newline at end of file\n"
-        },
-        {
-          "date": 1667544694492,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n-import { Header } from \"./components/Header\"\n+import { Header } from './components/Header'\n+import { SideBar } from './components/SideBar'\n \n-export const App = () => (\n-\n-  <div className=\"container\">\n-    <Header></Header>\n-    <main>\n-      <Sidebar></Sidebar>\n-    </main>\n\\ No newline at end of file\n-  </div>\n-)\n+export const App = () => {\n+  return (\n+    <div className=\"container\">\n+      <Header />\n+      <main>\n+        <SideBar />\n+      </main>\n+    </div>\n+  )\n+}\n"
-        },
-        {
-          "date": 1667545702476,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n+  const file\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545708104,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const file\n+  const [fileP]\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545722991,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n+import { useState } from 'react'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [fileP]\n+  const [filePath,setFilePath] = useState\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545729625,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState\n+  const [filePath,setFilePath] = useState('unopen')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545735438,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState('unopen')\n+  const [filePath,setFilePath] = useState('untitle')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545742979,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n+  const [content,set]\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545748620,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n-  const [content,set]\n+  const [content,setContent] = use\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545775118,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n-  const [content,setContent] = use\n+  const [content,setContent] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
-        },
-        {
-          "date": 1667545782517,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n+        <MilkdownEditor content={content} filePath={filePath} />\n+\n       </main>\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1667545791580,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,18 @@\n import { useState } from 'react'\n+import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState('untitle')\n-  const [content,setContent] = useState('')\n+  const [filePath, setFilePath] = useState('untitle')\n+  const [content, setContent] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n-\n       </main>\n     </div>\n   )\n }\n"
-        },
-        {
-          "date": 1667548904371,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   return (\n     <div className=\"container\">\n-      <Header />\n+      <Header title={'title'}/>\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
-        },
-        {
-          "date": 1667633366696,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,22 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n+import { OPEN_FILE } from 'src/common/eventType'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n+  useEffect(() => {\n+    window.api.onMain(OPEN_FILE, (_e: any, { filePath, fileContent }: any) => {\n+      setFilePath(filePath)\n+      setContent(fileContent)\n+    })\n+  }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={'title'}/>\n+      <Header title={filePath} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
-        },
-        {
-          "date": 1667633690228,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE } from 'src/common/eventType'\n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e: any, { filePath, fileContent }: any) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n     })\n   }, [])\n"
-        },
-        {
-          "date": 1667633710344,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from 'src/common/eventType'\n+import { OPEN_FILE } from '../../common/eventType'\n \n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n"
-        },
-        {
-          "date": 1667634517768,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from '../../common/eventType'\n+import { OPEN_FILE } from 'src/common/eventType'\n \n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n"
-        },
-        {
-          "date": 1667634707682,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from 'src/common/eventType'\n+import { OPEN_FILE } from '../../common/eventType'\n \n \n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n"
-        },
-        {
-          "date": 1667643334733,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,19 @@\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n+  const [title,setTitle] = useState('untitle')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent,fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n+      setTitle(fileName)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={filePath} />\n+      <Header title={title} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
-        },
-        {
-          "date": 1667667270041,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n \n \n \n import { MilkdownEditor } from './components/Editor'\n+import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n@@ -24,7 +25,8 @@\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n+      <GlobalComponents/>\n     </div>\n   )\n }\n"
+            "activePatchIndex": 25,
+            "patches": [
+                {
+                    "date": 1667537076910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667543304130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n export const App = () => {\n   return (\n+\n     <div></div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667543410171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,8 @@\n export const App = () => {\n   return (\n \n-    <div></div>\n+    <div className=\"container\">\n+      \n+    </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667543610178,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n+import { Header } from \"./components/Header\"\n+\n export const App = () => {\n   return (\n \n     <div className=\"container\">\n-      \n+      <Header></Header>\n     </div>\n   )\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667543621005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import { Header } from \"./components/Header\"\n \n-export const App = () => {\n-  return (\n+export const App = () => (\n \n-    <div className=\"container\">\n-      <Header></Header>\n-    </div>\n-  )\n\\ No newline at end of file\n- }\n+  <div className=\"container\">\n+    <Header></Header>\n+    <main>\n+      <Sidebar></Sidebar>\n+    </main>\n+  </div>\n+)\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667544694492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,13 @@\n-import { Header } from \"./components/Header\"\n+import { Header } from './components/Header'\n+import { SideBar } from './components/SideBar'\n \n-export const App = () => (\n-\n-  <div className=\"container\">\n-    <Header></Header>\n-    <main>\n-      <Sidebar></Sidebar>\n-    </main>\n\\ No newline at end of file\n-  </div>\n-)\n+export const App = () => {\n+  return (\n+    <div className=\"container\">\n+      <Header />\n+      <main>\n+        <SideBar />\n+      </main>\n+    </div>\n+  )\n+}\n"
+                },
+                {
+                    "date": 1667545702476,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n+  const file\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545708104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const file\n+  const [fileP]\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545722991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n+import { useState } from 'react'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [fileP]\n+  const [filePath,setFilePath] = useState\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545729625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState\n+  const [filePath,setFilePath] = useState('unopen')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545735438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState('unopen')\n+  const [filePath,setFilePath] = useState('untitle')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545742979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n+  const [content,set]\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545748620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n-  const [content,set]\n+  const [content,setContent] = use\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545775118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath,setFilePath] = useState('untitle')\n-  const [content,setContent] = use\n+  const [content,setContent] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n"
+                },
+                {
+                    "date": 1667545782517,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,10 @@\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n+        <MilkdownEditor content={content} filePath={filePath} />\n+\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1667545791580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,18 @@\n import { useState } from 'react'\n+import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n-  const [filePath,setFilePath] = useState('untitle')\n-  const [content,setContent] = useState('')\n+  const [filePath, setFilePath] = useState('untitle')\n+  const [content, setContent] = useState('')\n   return (\n     <div className=\"container\">\n       <Header />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n-\n       </main>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1667548904371,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   return (\n     <div className=\"container\">\n-      <Header />\n+      <Header title={'title'}/>\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
+                },
+                {
+                    "date": 1667633366696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,22 @@\n-import { useState } from 'react'\n+import { useEffect, useState } from 'react'\n+import { OPEN_FILE } from 'src/common/eventType'\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n+  useEffect(() => {\n+    window.api.onMain(OPEN_FILE, (_e: any, { filePath, fileContent }: any) => {\n+      setFilePath(filePath)\n+      setContent(fileContent)\n+    })\n+  }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={'title'}/>\n+      <Header title={filePath} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
+                },
+                {
+                    "date": 1667633690228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,16 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE } from 'src/common/eventType'\n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e: any, { filePath, fileContent }: any) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1667633710344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from 'src/common/eventType'\n+import { OPEN_FILE } from '../../common/eventType'\n \n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n"
+                },
+                {
+                    "date": 1667634517768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from '../../common/eventType'\n+import { OPEN_FILE } from 'src/common/eventType'\n \n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n"
+                },
+                {
+                    "date": 1667634707682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from 'src/common/eventType'\n+import { OPEN_FILE } from '../../common/eventType'\n \n \n+\n import { MilkdownEditor } from './components/Editor'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n"
+                },
+                {
+                    "date": 1667643334733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,17 +9,19 @@\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n+  const [title,setTitle] = useState('untitle')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent }) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent,fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n+      setTitle(fileName)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n-      <Header title={filePath} />\n+      <Header title={title} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n"
+                },
+                {
+                    "date": 1667667270041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n \n \n \n import { MilkdownEditor } from './components/Editor'\n+import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n@@ -24,7 +25,8 @@\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n+      <GlobalComponents/>\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1667806080885,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,32 +1,30 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE } from '../../common/eventType'\n \n-\n-\n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n \n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n-  const [title,setTitle] = useState('untitle')\n+  const [title, setTitle] = useState('untitle')\n   useEffect(() => {\n-    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent,fileName }) => {\n+    window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-  }, [])\n+  }, [filePath])\n   return (\n     <div className=\"container\">\n       <Header title={title} />\n       <main>\n         <SideBar />\n         <MilkdownEditor content={content} filePath={filePath} />\n       </main>\n-      <GlobalComponents/>\n+      <GlobalComponents />\n     </div>\n   )\n }\n"
+                },
+                {
+                    "date": 1667806479652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-  }, [filePath])\n+  }, [])\n   return (\n     <div className=\"container\">\n       <Header title={title} />\n       <main>\n"
+                }
+            ],
+            "date": 1667537076910,
+            "name": "Commit-0",
+            "content": "export const App = () => {\n  return (\n    <div></div>\n  )\n }"
         }
-      ],
-      "date": 1667537076910,
-      "name": "Commit-0",
-      "content": "export const App = () => {\n  return (\n    <div></div>\n  )\n }"
-    }
-  ]
+    ]
 }

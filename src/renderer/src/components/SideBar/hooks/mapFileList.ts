@@ -21,7 +21,6 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
     const newName = input.value
     const oldPath = li.getAttribute('id') || ''
     const newPath = resolve(dirname(oldPath), newName)
-    console.log(newPath)
     newName && window.api.sendToMain(RENAME_FILE, oldPath, newPath)
     if (isDir) {
       li.innerHTML = triangleDown + `<span>${newName}</span>`
@@ -39,16 +38,21 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
     li.classList.add(SHOW_INPUT)
   }
   input.onkeydown = (e) => {
+    e.stopPropagation()
     if (e.code === 'Enter') {
       handleChange()
     }
+  }
+  // 防止改名字的时候打开文件
+  input.onclick = (e) =>{
+    e.stopPropagation()
   }
   return input
 }
 const createLi = (fileName: string, path: string, level: number, isDir: boolean) => {
   const li = document.createElement('li')
   li.setAttribute('id', path)
-  li.setAttribute('level',level.toString())
+  li.setAttribute('level', level.toString())
   li.setAttribute('style', `--i: ${level}`)
   if (isDir) li.innerHTML = triangleDown + `<span>${fileName}</span>`
   else li.innerHTML = `<span>${fileName}</span>`
@@ -62,19 +66,20 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
     li.style.display = 'none'
   }
   li.appendChild(createInput(fileName, li, isDir))
-  li.addEventListener('contextmenu', () => {
+  li.addEventListener('contextmenu', (e) => {
+    e.stopPropagation()
     if (!isDir) window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
     else {
       window.api.sendToMain(POP_DIR_MENU, li.getAttribute('id'))
     }
   })
   li.addEventListener('click', (e) => {
-    e.stopPropagation()
     if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
     }
-    if(isDir) {
+    if (isDir) {
+      e.stopPropagation()
       const ul = li.parentElement
       ul?.classList.toggle('close')
     }

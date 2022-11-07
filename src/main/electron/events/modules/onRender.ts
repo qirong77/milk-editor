@@ -8,11 +8,14 @@ import {
   OPEN_FILE,
   POP_DIR_MENU,
   POP_FILE_ITEM_MENU,
-  RENAME_FILE
+  POP_ROOT_MENU,
+  RENAME_FILE,
+  SAVE_FILE
 } from '../../../../common/eventType'
 import { openFile } from '../../../helper/openFile'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
+import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'
 
 export const onRender = (window: BrowserWindow) => {
   ipcMain.on(MIN_SCREEN, () => window.minimize())
@@ -45,6 +48,14 @@ export const onRender = (window: BrowserWindow) => {
   })
   ipcMain.on(POP_DIR_MENU, (_e, path) => {
     createFilDirMenu(path).popup({
+      window
+    })
+  })
+  ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
+    existsSync(filePath) && writeFileSync(filePath, newContent)
+  })
+  ipcMain.on(POP_ROOT_MENU, (_e, path) => {
+    createRotDirMenu(path).popup({
       window
     })
   })

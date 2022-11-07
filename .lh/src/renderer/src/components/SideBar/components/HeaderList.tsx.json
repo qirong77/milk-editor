@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1667547873243,
@@ -12,6 +12,18 @@
                 {
                     "date": 1667747567363,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-export const HeaderList = () => {\n+export const HeaderList = ({ toggle }) => {\n   return (\n-    <div></div>\n+    <div\n\\ No newline at end of file\n+      style={{\n+        display: !toggle ? 'block' : 'none'\n+      }}\n+    >\n+      headerlist\n+    </div>\n   )\n- }\n+}\n"
+                },
+                {
+                    "date": 1667803829181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,18 @@\n+import { useEffect } from 'react'\n+import { updateHeaders } from '../utils/updateHeaders'\n+\n export const HeaderList = ({ toggle }) => {\n+  useEffect(() => {\n+    updateHeaders()\n+  }, [toggle])\n   return (\n     <div\n       style={{\n         display: !toggle ? 'block' : 'none'\n\\ No newline at end of file\n       }}\n+      className='header-list'\n     >\n       headerlist\n     </div>\n   )\n-}\n+}\n"
+                },
+                {
+                    "date": 1667803838268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,7 @@\n         display: !toggle ? 'block' : 'none'\n       }}\n       className='header-list'\n     >\n-      headerlist\n     </div>\n   )\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1667804168527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n import { useEffect } from 'react'\n-import { updateHeaders } from '../utils/updateHeaders'\n \n export const HeaderList = ({ toggle }) => {\n   useEffect(() => {\n-    updateHeaders()\n   }, [toggle])\n   return (\n     <div\n       style={{\n"
                 }
             ],
             "date": 1667547873243,
