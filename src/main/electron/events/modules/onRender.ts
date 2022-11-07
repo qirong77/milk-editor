@@ -1,6 +1,5 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { existsSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'fs'
-import { dirname, resolve } from 'path'
+import { existsSync, renameSync,  writeFileSync } from 'fs'
 import {
   CLOSE_SCREEN,
   MAX_SCREEN,
@@ -17,16 +16,16 @@ import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
 import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'
 
-export const onRender = (window: BrowserWindow) => {
-  ipcMain.on(MIN_SCREEN, () => window.minimize())
+export const onRender = () => {
+  ipcMain.on(MIN_SCREEN, () => BrowserWindow.getFocusedWindow()?.minimize())
   ipcMain.on(MAX_SCREEN, () => {
-    if (window.isMaximized()) {
-      window.unmaximize()
+    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
+      BrowserWindow.getFocusedWindow()?.unmaximize()
     } else {
-      window.maximize()
+      BrowserWindow.getFocusedWindow()?.maximize()
     }
   })
-  ipcMain.on(CLOSE_SCREEN, () => window.close())
+  ipcMain.on(CLOSE_SCREEN, () => BrowserWindow.getFocusedWindow()?.close())
   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {
     // 这里有个bug，就说明明可以重新命名，但是会报错
     try {
@@ -38,25 +37,30 @@ export const onRender = (window: BrowserWindow) => {
     }
   })
   ipcMain.on(OPEN_FILE, (_e, filePath: string) => {
-    openFile(filePath, window)
+    const window = BrowserWindow.getFocusedWindow()
+
+    window && openFile(filePath, window)
   })
   ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {
+    const window = BrowserWindow.getFocusedWindow()
     const menu = createFilItemMenu(path)
-    menu.popup({
-      window
-    })
+    window && menu.popup({window})
   })
   ipcMain.on(POP_DIR_MENU, (_e, path) => {
-    createFilDirMenu(path).popup({
-      window
-    })
+    const window = BrowserWindow.getFocusedWindow()
+    window &&
+      createFilDirMenu(path).popup({
+        window
+      })
   })
   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
     existsSync(filePath) && writeFileSync(filePath, newContent)
   })
   ipcMain.on(POP_ROOT_MENU, (_e, path) => {
-    createRotDirMenu(path).popup({
-      window
-    })
+    const window = BrowserWindow.getFocusedWindow()
+    window &&
+      createRotDirMenu(path).popup({
+        window
+      })
   })
 }

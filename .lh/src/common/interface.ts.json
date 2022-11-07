@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1667554409443,
@@ -44,6 +44,18 @@
                 {
                     "date": 1667745567743,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,8 @@\n   children: FileTree[]\n   path: string\n   isDir: boolean\n }\n-export type FileList = {\n+export type IFileList = {\n   fileName:string,\n   filePath:string\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667836786636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+import { BrowserWindow } from \"electron\"\n+\n export type FileTree = {\n   fileName: string\n   level: number\n   children: FileTree[]\n@@ -7,5 +9,9 @@\n }\n export type IFileList = {\n   fileName:string,\n   filePath:string\n-}\n\\ No newline at end of file\n+}\n+export type Windows = {\n+  window:BrowserWindow,\n+  path:string\n+}[]\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667837684421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { BrowserWindow } from \"electron\"\n+import { windowsMap } from \"../main\"\n \n export type FileTree = {\n   fileName: string\n   level: number\n@@ -13,5 +14,6 @@\n }\n export type Windows = {\n   window:BrowserWindow,\n   path:string\n-}[]\n\\ No newline at end of file\n+}[]\n+export type WindowsMap = typeof windowsMap\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667837937231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { BrowserWindow } from \"electron\"\n+\n import { windowsMap } from \"../main\"\n \n export type FileTree = {\n   fileName: string\n@@ -11,9 +11,6 @@\n export type IFileList = {\n   fileName:string,\n   filePath:string\n }\n-export type Windows = {\n-  window:BrowserWindow,\n-  path:string\n-}[]\n+\n export type WindowsMap = typeof windowsMap\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1667554409443,

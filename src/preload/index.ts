@@ -13,6 +13,7 @@ const onMain = (e: string, callback) => {
 const api = {
   sendToMain,
   onMain,
+  
   onGetDirTree: async () => {
     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree
     return tree

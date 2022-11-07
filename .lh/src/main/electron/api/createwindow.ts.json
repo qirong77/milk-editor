@@ -1,58 +1,62 @@
 {
-  "sourceFile": "src/main/electron/api/createwindow.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 10,
-      "patches": [
+    "sourceFile": "src/main/electron/api/createwindow.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667541566569,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1667568573525,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { is } from '@electron-toolkit/utils'\n import { BrowserWindow, shell } from 'electron'\n import path from 'path'\n+import { onEvents } from '../events'\n \n export const createWindow = () => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n@@ -16,9 +17,9 @@\n     }\n   })\n //   useMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-//   onEvents(mainWindow)\n+  onEvents(mainWindow)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
-        },
-        {
-          "date": 1667634462284,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { is } from '@electron-toolkit/utils'\n import { BrowserWindow, shell } from 'electron'\n import path from 'path'\n import { onEvents } from '../events'\n+import { createMenu } from '../menu'\n \n export const createWindow = () => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n@@ -15,9 +16,9 @@\n       preload: path.join(__dirname, '../preload/index.js'),\n       sandbox: false\n     }\n   })\n-//   useMenu(mainWindow)\n+   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n   onEvents(mainWindow)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n"
-        },
-        {
-          "date": 1667706833786,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n import path from 'path'\n import { onEvents } from '../events'\n import { createMenu } from '../menu'\n \n-export const createWindow = () => {\n+export const createWindow = (config:{\n+  openedDir:string\n+}) => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n     height: 800,\n     show: false,\n@@ -13,14 +15,16 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false\n+      sandbox: false,\n+      nodeIntegration: true,\n+      contextIsolation: false,\n     }\n   })\n-   createMenu(mainWindow)\n+  createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  onEvents(mainWindow)\n+  onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
-        },
-        {
-          "date": 1667708663433,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false,\n+      sandbox: true,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
-        },
-        {
-          "date": 1667708682131,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: true,\n+      sandbox: false,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
-        },
-        {
-          "date": 1667709125509,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,5 +37,6 @@\n     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n   } else {\n     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n   }\n+  return mainWindow\n }\n"
-        },
-        {
-          "date": 1667709184647,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  onEvents(mainWindow,config.openedDir)\n+  // onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
-        },
-        {
-          "date": 1667709227529,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
-        },
-        {
-          "date": 1667709245765,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     }\n   })\n   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  // onEvents(mainWindow,config.openedDir)\n+  onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
-        },
-        {
-          "date": 1667709906575,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,12 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      nodeIntegration: true,\n-      contextIsolation: false,\n+      sandbox: false\n     }\n   })\n-  createMenu(mainWindow)\n+   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n   onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n@@ -36,6 +35,5 @@\n     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n   } else {\n     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n   }\n-  return mainWindow\n }\n"
+            "activePatchIndex": 11,
+            "patches": [
+                {
+                    "date": 1667541566569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667568573525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { is } from '@electron-toolkit/utils'\n import { BrowserWindow, shell } from 'electron'\n import path from 'path'\n+import { onEvents } from '../events'\n \n export const createWindow = () => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n@@ -16,9 +17,9 @@\n     }\n   })\n //   useMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-//   onEvents(mainWindow)\n+  onEvents(mainWindow)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                },
+                {
+                    "date": 1667634462284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { is } from '@electron-toolkit/utils'\n import { BrowserWindow, shell } from 'electron'\n import path from 'path'\n import { onEvents } from '../events'\n+import { createMenu } from '../menu'\n \n export const createWindow = () => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n@@ -15,9 +16,9 @@\n       preload: path.join(__dirname, '../preload/index.js'),\n       sandbox: false\n     }\n   })\n-//   useMenu(mainWindow)\n+   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n   onEvents(mainWindow)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n"
+                },
+                {
+                    "date": 1667706833786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,11 @@\n import path from 'path'\n import { onEvents } from '../events'\n import { createMenu } from '../menu'\n \n-export const createWindow = () => {\n+export const createWindow = (config:{\n+  openedDir:string\n+}) => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n     height: 800,\n     show: false,\n@@ -13,14 +15,16 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false\n+      sandbox: false,\n+      nodeIntegration: true,\n+      contextIsolation: false,\n     }\n   })\n-   createMenu(mainWindow)\n+  createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  onEvents(mainWindow)\n+  onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                },
+                {
+                    "date": 1667708663433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false,\n+      sandbox: true,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
+                },
+                {
+                    "date": 1667708682131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: true,\n+      sandbox: false,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
+                },
+                {
+                    "date": 1667709125509,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,5 +37,6 @@\n     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n   } else {\n     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n   }\n+  return mainWindow\n }\n"
+                },
+                {
+                    "date": 1667709184647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     }\n   })\n   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  onEvents(mainWindow,config.openedDir)\n+  // onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                },
+                {
+                    "date": 1667709227529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      sandbox: false,\n       nodeIntegration: true,\n       contextIsolation: false,\n     }\n   })\n"
+                },
+                {
+                    "date": 1667709245765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     }\n   })\n   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  // onEvents(mainWindow,config.openedDir)\n+  onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                },
+                {
+                    "date": 1667709906575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,12 @@\n     frame: false,\n     autoHideMenuBar: true,\n     webPreferences: {\n       preload: path.join(__dirname, '../preload/index.js'),\n-      nodeIntegration: true,\n-      contextIsolation: false,\n+      sandbox: false\n     }\n   })\n-  createMenu(mainWindow)\n+   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n   onEvents(mainWindow,config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n@@ -36,6 +35,5 @@\n     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n   } else {\n     mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n   }\n-  return mainWindow\n }\n"
+                },
+                {
+                    "date": 1667831157895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import path from 'path'\n import { onEvents } from '../events'\n import { createMenu } from '../menu'\n \n-export const createWindow = (config: { openedDir: string }) => {\n+export const createWindow = (config: { openedDir: string; mainWindow: boolean }) => {\n   const mainWindow = new BrowserWindow({\n     width: 1200,\n     height: 800,\n     show: false,\n@@ -18,9 +18,9 @@\n     }\n   })\n   createMenu(mainWindow)\n   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n-  onEvents(mainWindow, config.openedDir)\n+  mainWindow && onEvents(config.openedDir)\n   mainWindow.on('ready-to-show', () => {\n     mainWindow.show()\n   })\n   mainWindow.webContents.setWindowOpenHandler((details) => {\n"
+                }
+            ],
+            "date": 1667541566569,
+            "name": "Commit-0",
+            "content": "import { is } from '@electron-toolkit/utils'\nimport { BrowserWindow, shell } from 'electron'\nimport path from 'path'\n\nexport const createWindow = () => {\n  const mainWindow = new BrowserWindow({\n    width: 1200,\n    height: 800,\n    show: false,\n    // 关闭默认的上面那栏\n    frame: false,\n    autoHideMenuBar: true,\n    webPreferences: {\n      preload: path.join(__dirname, '../preload/index.js'),\n      sandbox: false\n    }\n  })\n//   useMenu(mainWindow)\n  // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n//   onEvents(mainWindow)\n  mainWindow.on('ready-to-show', () => {\n    mainWindow.show()\n  })\n  mainWindow.webContents.setWindowOpenHandler((details) => {\n    shell.openExternal(details.url)\n    return { action: 'deny' }\n  })\n\n  // 判断是加载什么，开发模式就是加载vite的地址\n  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {\n    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n  } else {\n    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n  }\n}\n"
         }
-      ],
-      "date": 1667541566569,
-      "name": "Commit-0",
-      "content": "import { is } from '@electron-toolkit/utils'\nimport { BrowserWindow, shell } from 'electron'\nimport path from 'path'\n\nexport const createWindow = () => {\n  const mainWindow = new BrowserWindow({\n    width: 1200,\n    height: 800,\n    show: false,\n    // 关闭默认的上面那栏\n    frame: false,\n    autoHideMenuBar: true,\n    webPreferences: {\n      preload: path.join(__dirname, '../preload/index.js'),\n      sandbox: false\n    }\n  })\n//   useMenu(mainWindow)\n  // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看\n//   onEvents(mainWindow)\n  mainWindow.on('ready-to-show', () => {\n    mainWindow.show()\n  })\n  mainWindow.webContents.setWindowOpenHandler((details) => {\n    shell.openExternal(details.url)\n    return { action: 'deny' }\n  })\n\n  // 判断是加载什么，开发模式就是加载vite的地址\n  if (is.dev && process.env['ELECTRON_RENDERER_URL']) {\n    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])\n  } else {\n    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))\n  }\n}\n"
-    }
-  ]
+    ]
 }

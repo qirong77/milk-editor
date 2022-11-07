@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 20,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -88,6 +88,10 @@
                 {
                     "date": 1667745723445,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileList\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]\n     return fileList\n   }\n }\n export type API = typeof api\n"
+                },
+                {
+                    "date": 1667834497951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n+  \n   onGetDirTree: async () => {\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n"
                 }
             ],
             "date": 1667541566569,

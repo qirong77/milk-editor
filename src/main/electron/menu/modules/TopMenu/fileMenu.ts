@@ -1,7 +1,7 @@
 import { DarwinMenuItemConstructorOptions } from '../..'
-import { OPEN_DIR } from '../../../../../common/eventType'
-import { getDirectoryTree } from '../../../../helper/getDirectoryTree'
+import {  windowsMap } from '../../../..'
 import { openFile } from '../../../../helper/openFile'
+import { createWindow } from '../../../api/createwindow'
 import { openDialog } from '../../../api/openDialog'
 
 export const fileMenuTemplate: DarwinMenuItemConstructorOptions = {
@@ -30,15 +30,17 @@ export const fileMenuTemplate: DarwinMenuItemConstructorOptions = {
     },
     {
       label: '打开文件夹',
-      async click(menuItem, browserWindow, event) {
+      async click(_menuItem, browserWindow, _event) {
         if (browserWindow) {
           const path = await openDialog(browserWindow, {
             properties: ['openDirectory']
           })
           // path[0] && openFile(path[0], browserWindow)
-          console.log(path[0])
-          // const newDirTree = getDirectoryTree(path[0])
-          // browserWindow.webContents.send(OPEN_DIR, newDirTree)
+          path &&
+            createWindow({
+              openedDir: path,
+              windowsMap
+            })
         }
       }
     }

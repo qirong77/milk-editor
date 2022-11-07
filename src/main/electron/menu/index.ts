@@ -1,4 +1,4 @@
-import { BrowserWindow, Menu, MenuItemConstructorOptions } from 'electron'
+import { Menu, MenuItemConstructorOptions } from 'electron'
 
 import { editMenuTemplate } from './modules/TopMenu/editMenu'
 import { fileMenuTemplate } from './modules/TopMenu/fileMenu'
@@ -7,7 +7,7 @@ export interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOpt
   selector?: string
   submenu?: DarwinMenuItemConstructorOptions[] | Menu
 }
-export const createMenu = (window: BrowserWindow) => {
+export const createMenu = () => {
   const template: DarwinMenuItemConstructorOptions[] = [fileMenuTemplate, editMenuTemplate]
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
