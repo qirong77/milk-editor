@@ -14,6 +14,8 @@ export const FileList = ({ toggle }) => {
   const ref = useRef<HTMLDivElement>(null)
   const setFileList = async () => {
     const fileList = await window.api.onGetDirTree()
+    console.log('-----')
+    console.log(fileList)
     const fileNodes = mapFileList(fileList)
     ref.current!.innerHTML = ''
     ref.current?.appendChild(fileNodes)
@@ -21,17 +23,17 @@ export const FileList = ({ toggle }) => {
   // 渲染的时候就获取文件列表
   // 如果使用空数组依赖，组件渲染会导致重复监听
   useEffect(() => {
-    console.log('useEffect')
     setFileList()
     ref.current?.addEventListener('input', (e) => {
       console.log(e)
     })
     window.api.onMain(OPEN_DIR, (_e, newFileTree) => {
+
       const fileNodes = mapFileList(newFileTree)
       ref.current!.innerHTML = ''
       ref.current?.appendChild(fileNodes)
     })
-    window.api.onMain(RENAME_FILE, (e, path) => {
+    window.api.onMain(RENAME_FILE, (_e, path) => {
       const target = document.getElementById(path)
       console.log(target)
       console.log(path)
@@ -39,13 +41,13 @@ export const FileList = ({ toggle }) => {
         target.classList.add(SHOW_INPUT)
       }
     })
-    window.api.onMain(DELETE_FILE, (e, path) => {
+    window.api.onMain(DELETE_FILE, (_e, path) => {
       const target = document.getElementById(path)
       if (target) {
         target.parentElement?.removeChild(target)
       }
     })
-    window.api.onMain(DELETE_DIR, (e, path) => {
+    window.api.onMain(DELETE_DIR, (_e, path) => {
       const ul = document.getElementById(path)?.parentElement
       ul?.parentElement?.removeChild(ul)
     })

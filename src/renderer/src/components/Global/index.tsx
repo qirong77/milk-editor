@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { DragLine } from './DragLine'
-import { SearchFile } from './SearchFile'
 
 export const GlobalComponents = () => {
-  const [showSearchFile, setShowSearchFile] = useState(false)
   const handleKeydown = (e: KeyboardEvent) => {
     if (e.metaKey && e.code === 'KeyM') {
       const MenuBar = document.querySelector('.milkdown-menu')
@@ -21,21 +19,14 @@ export const GlobalComponents = () => {
       console.log('commend + F')
       // setOpenSearchWords(!openSearchWords)
     }
-    if (e.metaKey && e.code === 'KeyP') {
-      console.log('commend + P')
-      setShowSearchFile(!showSearchFile)
-    }
   }
   useEffect(() => {
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [showSearchFile])
+  }, [])
 
   return (
     <>
-      {showSearchFile && (
-        <SearchFile  closeSearchFile={() => setShowSearchFile(false)} />
-      )}
       <DragLine />
     </>
   )

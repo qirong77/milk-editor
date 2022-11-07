@@ -7,13 +7,13 @@ export const createFilItemMenu = (path: string) => {
   const template: DarwinMenuItemConstructorOptions[] = [
     {
       label: '重命名',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         browserWindow?.webContents.send(RENAME_FILE, path)
       }
     },
     {
       label: '删除',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         existsSync(path) && unlinkSync(path)
         browserWindow?.webContents.send(DELETE_FILE, path)
       }

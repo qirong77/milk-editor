@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 6,
             "patches": [
                 {
                     "date": 1667544815602,
@@ -28,6 +28,10 @@
                 {
                     "date": 1667744888374,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,14 @@\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n   }, [showSearchFile])\n+\n   return (\n     <>\n       {showSearchFile && (\n-        <SearchFile fileList={[]} closeSearchFile={() => setShowSearchFile(false)} />\n+        <SearchFile  closeSearchFile={() => setShowSearchFile(false)} />\n       )}\n       <DragLine />\n     </>\n\\ No newline at end of file\n   )\n-}\n+}\n"
+                },
+                {
+                    "date": 1667748887998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n-import { useEffect, useState } from 'react'\n+import { useEffect } from 'react'\n import { DragLine } from './DragLine'\n-import { SearchFile } from './SearchFile'\n \n export const GlobalComponents = () => {\n-  const [showSearchFile, setShowSearchFile] = useState(false)\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -20,23 +18,16 @@\n     if (e.metaKey && e.code === 'KeyF') {\n       console.log('commend + F')\n       // setOpenSearchWords(!openSearchWords)\n     }\n-    if (e.metaKey && e.code === 'KeyP') {\n-      console.log('commend + P')\n-      setShowSearchFile(!showSearchFile)\n-    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n-  }, [showSearchFile])\n+  }, [])\n \n   return (\n     <>\n-      {showSearchFile && (\n-        <SearchFile  closeSearchFile={() => setShowSearchFile(false)} />\n-      )}\n       <DragLine />\n     </>\n   )\n\\ No newline at end of file\n-}\n+}\n"
                 }
             ],
             "date": 1667544815602,

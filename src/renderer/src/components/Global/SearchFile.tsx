@@ -4,8 +4,9 @@ import { IFileList } from '../../../../common/interface'
 import { openFile } from '../../common/openFile'
 
 interface ISearchFile {
-  fileList: IFileList
   closeSearchFile: () => void
+  showSearchFile: boolean
+  openHeaderList:()=>void
 }
 const mapFiles = (fileList: IFileList[]) => {
   const files = fileList.map((file, index) => {
@@ -18,7 +19,7 @@ const mapFiles = (fileList: IFileList[]) => {
   return files
 }
 
-export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
+export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchFile ,openHeaderList}) => {
   console.log('render-SearchFile')
   const [active, setActive] = useState(0)
   const iptRef = useRef<HTMLInputElement>(null)
@@ -35,7 +36,6 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
       }
     ])
   )
-
   useEffect(() => {
     // 在active更新后执行，否则不会按照你的预定的去
     const lis = filesContainer.current?.children
@@ -83,6 +83,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
         const filePath = files[active]?.key as string
         filePath && openFile(filePath)
         closeSearchFile()
+        openHeaderList()
       }
     }
     document.addEventListener('keydown', hanleSelect)
@@ -91,7 +92,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
   }, [active, files])
   useEffect(() => {
     getFileList()
-  }, [])
+  }, [showSearchFile])
   const updateFiles = async () => {
     const searchStr = iptRef.current?.value || ''
     const fileList = await window.api.onGetFileList()
@@ -103,7 +104,12 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile }) => {
     setActive(0)
   }
   return (
-    <div className="search-file ">
+    <div
+      className="search-file"
+      style={{
+        display: showSearchFile ? 'block' : 'none'
+      }}
+    >
       <div>
         <span>{active}</span>
         <input placeholder="" onChange={updateFiles} ref={iptRef} type="text" />

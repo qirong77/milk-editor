@@ -10,7 +10,7 @@ export const createFilDirMenu = (path: string) => {
   const template: DarwinMenuItemConstructorOptions[] = [
     {
       label: '新建文件',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         const newPath = resolve(path, NEW_FILE_NAME)
         if (!existsSync(newPath)) {
           writeFileSync(newPath, '空内容')
@@ -23,7 +23,7 @@ export const createFilDirMenu = (path: string) => {
     },
     {
       label: '新建文件夹',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         const newPath = resolve(path, NEW_DIR_NAME)
         if (!existsSync(newPath)) {
           mkdirSync(newPath)
@@ -36,17 +36,17 @@ export const createFilDirMenu = (path: string) => {
     },
     {
       label: '在finder中显示',
-      click(menuItem, browserWindow, event) {}
+      click(_menuItem, _browserWindow, _event) {}
     },
     {
       label: '重命名',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         browserWindow?.webContents.send(RENAME_FILE, path)
       }
     },
     {
       label: '删除文件夹',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         deleteDir(path)
         browserWindow?.webContents.send(DELETE_DIR, path)
       }
@@ -54,7 +54,7 @@ export const createFilDirMenu = (path: string) => {
 
     {
       label: 'API-TEXT',
-      click(menuItem, browserWindow, event) {}
+      click(_menuItem, _browserWindow, _event) {}
     }
   ]
   return Menu.buildFromTemplate(template)

@@ -48,7 +48,7 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
 const createLi = (fileName: string, path: string, level: number, isDir: boolean) => {
   const li = document.createElement('li')
   li.setAttribute('id', path)
-  li.setAttribute('level', level.toString())
+  li.setAttribute('level',level.toString())
   li.setAttribute('style', `--i: ${level}`)
   if (isDir) li.innerHTML = triangleDown + `<span>${fileName}</span>`
   else li.innerHTML = `<span>${fileName}</span>`
@@ -74,7 +74,7 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
     }
-    if (isDir) {
+    if(isDir) {
       const ul = li.parentElement
       ul?.classList.toggle('close')
     }
