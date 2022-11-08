@@ -1,5 +1,6 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { existsSync, renameSync,  writeFileSync } from 'fs'
+import { existsSync, renameSync, writeFileSync } from 'fs'
+import { windowsMap } from '../../..'
 import {
   CLOSE_SCREEN,
   MAX_SCREEN,
@@ -11,6 +12,7 @@ import {
   RENAME_FILE,
   SAVE_FILE
 } from '../../../../common/eventType'
+import { getWindow } from '../../../helper/getWindow'
 import { openFile } from '../../../helper/openFile'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
@@ -18,14 +20,19 @@ import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'
 
 export const onRender = () => {
   ipcMain.on(MIN_SCREEN, () => BrowserWindow.getFocusedWindow()?.minimize())
-  ipcMain.on(MAX_SCREEN, () => {
-    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
-      BrowserWindow.getFocusedWindow()?.unmaximize()
-    } else {
-      BrowserWindow.getFocusedWindow()?.maximize()
+  ipcMain.on(MAX_SCREEN, (e) => {
+    const window = getWindow(e)
+    if (window) {
+      window.isMinimized() ? window.unmaximize() : window.maximize()
     }
   })
-  ipcMain.on(CLOSE_SCREEN, () => BrowserWindow.getFocusedWindow()?.close())
+  ipcMain.on(CLOSE_SCREEN, (e) => {
+    const window = getWindow(e)
+    if (window) {
+      window.close()
+      windowsMap.delete(window)
+    }
+  })
   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {
     // 这里有个bug，就说明明可以重新命名，但是会报错
     try {
@@ -44,7 +51,7 @@ export const onRender = () => {
   ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {
     const window = BrowserWindow.getFocusedWindow()
     const menu = createFilItemMenu(path)
-    window && menu.popup({window})
+    window && menu.popup({ window })
   })
   ipcMain.on(POP_DIR_MENU, (_e, path) => {
     const window = BrowserWindow.getFocusedWindow()

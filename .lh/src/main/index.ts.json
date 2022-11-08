@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -84,6 +84,18 @@
                 {
                     "date": 1667837937231,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,11 +2,9 @@\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n import { onEvents } from './electron/events'\n-import { Windows } from '../common/interface'\n // createWindow后在window实例上面赋值无效，自能自己先用这种hack的方法用着，主要用于onInterProcess传递打开的文件路径\n-export const windows: Windows = []\n export const windowsMap = new Map<BrowserWindow, string>()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n   // Set app user model id for windows\n"
+                },
+                {
+                    "date": 1667838915567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/api/createwindow'\n import { defaultPath } from './electron/config'\n import { onEvents } from './electron/events'\n+import { createMainMenu } from './electron/menu'\n // createWindow后在window实例上面赋值无效，自能自己先用这种hack的方法用着，主要用于onInterProcess传递打开的文件路径\n export const windowsMap = new Map<BrowserWindow, string>()\n // electron初始化，可以创建窗口\n app.whenReady().then(() => {\n@@ -19,9 +20,10 @@\n   createWindow({\n     openedDir: defaultPath,\n     windowsMap\n   })\n-\n+// 主菜单只需要渲染一次，ipcmain的事件也只能监听一次\n+  createMainMenu()\n   onEvents()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n"
+                },
+                {
+                    "date": 1667838969740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     openedDir: defaultPath,\n     windowsMap\n   })\n // 主菜单只需要渲染一次，ipcmain的事件也只能监听一次\n-  createMainMenu()\n+  // createMainMenu()\n   onEvents()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n"
+                },
+                {
+                    "date": 1667839006896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     openedDir: defaultPath,\n     windowsMap\n   })\n // 主菜单只需要渲染一次，ipcmain的事件也只能监听一次\n-  // createMainMenu()\n+  createMainMenu()\n   onEvents()\n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n"
                 }
             ],
             "date": 1667541566569,

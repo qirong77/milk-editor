@@ -15,6 +15,16 @@
 5. 全局搜索,参考 vscode
 6. scss 不用导入变量文件也能使用，导入了也没变量提示的问题
 7. prettier 格式化未使用的变量
-9. 打开文件夹是多窗口
 12. 多选文件操作
 13. 如果文件操作的目录不存在报错。使用期间不是在编辑器里面人为删除文件
+14. 白屏问题
+15. 拖动分类文件夹和文件
+16. 拖动改变文件排序\
+17. 高亮选中的文件
+
+18. NODEJS检测文件夹的改变
+19. 设置打开md使用的文件
+20. 图标：圆角正方形 + 单一底色 + ICON 。参考APP Store搜索笔记
+https://www.iconfont.cn/search/index?searchType=icon&q=atom
+png转换为apple图标：
+https://anyconv.com/png-to-icns-converter/

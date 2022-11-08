@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 54,
+            "activePatchIndex": 55,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -224,6 +224,10 @@
                 {
                     "date": 1667837829214,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, readFileSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n-import { dirname, resolve } from 'path'\n+import { existsSync, renameSync,  writeFileSync } from 'fs'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n"
+                },
+                {
+                    "date": 1667838824005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync,  writeFileSync } from 'fs'\n+import { existsSync, renameSync, writeFileSync } from 'fs'\n+import { windowsMap } from '../../..'\n import {\n   CLOSE_SCREEN,\n   MAX_SCREEN,\n   MIN_SCREEN,\n@@ -10,23 +11,29 @@\n   POP_ROOT_MENU,\n   RENAME_FILE,\n   SAVE_FILE\n } from '../../../../common/eventType'\n+import { getWindow } from '../../../helper/getWindow'\n import { openFile } from '../../../helper/openFile'\n import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'\n import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'\n \n export const onRender = () => {\n   ipcMain.on(MIN_SCREEN, () => BrowserWindow.getFocusedWindow()?.minimize())\n-  ipcMain.on(MAX_SCREEN, () => {\n-    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {\n-      BrowserWindow.getFocusedWindow()?.unmaximize()\n-    } else {\n-      BrowserWindow.getFocusedWindow()?.maximize()\n+  ipcMain.on(MAX_SCREEN, (e) => {\n+    const window = getWindow(e)\n+    if (window) {\n+      window.isMinimized() ? window.unmaximize() : window.maximize()\n     }\n   })\n-  ipcMain.on(CLOSE_SCREEN, () => BrowserWindow.getFocusedWindow()?.close())\n+  ipcMain.on(CLOSE_SCREEN, (e) => {\n+    const window = getWindow(e)\n+    if (window) {\n+      window.close()\n+      windowsMap.delete(window)\n+    }\n+  })\n   ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {\n     // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n@@ -43,9 +50,9 @@\n   })\n   ipcMain.on(POP_FILE_ITEM_MENU, (_e, path) => {\n     const window = BrowserWindow.getFocusedWindow()\n     const menu = createFilItemMenu(path)\n-    window && menu.popup({window})\n+    window && menu.popup({ window })\n   })\n   ipcMain.on(POP_DIR_MENU, (_e, path) => {\n     const window = BrowserWindow.getFocusedWindow()\n     window &&\n"
                 }
             ],
             "date": 1667541566569,

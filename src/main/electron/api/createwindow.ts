@@ -2,7 +2,6 @@ import { is } from '@electron-toolkit/utils'
 import { BrowserWindow, shell } from 'electron'
 import path from 'path'
 import { WindowsMap } from '../../../common/interface'
-import { createMenu } from '../menu'
 interface config {
   openedDir: string
   windowsMap: WindowsMap
@@ -15,13 +14,14 @@ export const createWindow = ({ openedDir, windowsMap }: config) => {
     // 关闭默认的上面那栏
     frame: false,
     autoHideMenuBar: true,
+    x: 120 + windowsMap.size * 20,
+    y: -25 + windowsMap.size * 20,
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
   windowsMap.set(mainWindow, openedDir)
-  createMenu()
   // 官方是在createWindow的位置事件监听,但是双向监听他又放在whenReady里面，后面在看看
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
