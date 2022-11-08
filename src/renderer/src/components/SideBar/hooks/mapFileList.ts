@@ -44,7 +44,7 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
     }
   }
   // 防止改名字的时候打开文件
-  input.onclick = (e) =>{
+  input.onclick = (e) => {
     e.stopPropagation()
   }
   return input
@@ -77,6 +77,11 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
     if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
+      const fileItems = document.querySelectorAll('.file-item')
+      fileItems.forEach((li) => {
+        li.classList.remove('file-item-active')
+      })
+      li.classList.add('file-item-active')
     }
     if (isDir) {
       e.stopPropagation()

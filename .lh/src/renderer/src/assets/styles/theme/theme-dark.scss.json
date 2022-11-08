@@ -1,30 +1,54 @@
 {
-  "sourceFile": "src/renderer/src/assets/styles/theme/theme-dark.scss",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 3,
-      "patches": [
+    "sourceFile": "src/renderer/src/assets/styles/theme/theme-dark.scss",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667545328397,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
-        },
-        {
-          "date": 1667664581813,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-weight: 300;\n   font-size: 18px;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n@@ -21,8 +20,9 @@\n     background-color: $dark-header-backgournd;\n   }\n   main {\n     .side-bar {\n+      font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .drag-line {\n         background-color: $dark-header-backgournd;\n"
-        },
-        {
-          "date": 1667664624238,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px;\n+  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n"
-        },
-        {
-          "date": 1667664648357,
-          "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n@@ -48,8 +47,9 @@\n           padding-left: 14px;\n           border-width: 2px;\n           margin: 15px 0;\n           p {\n+            font-size: 18px;\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n"
+            "activePatchIndex": 9,
+            "patches": [
+                {
+                    "date": 1667545328397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1667664581813,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-weight: 300;\n   font-size: 18px;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n@@ -21,8 +20,9 @@\n     background-color: $dark-header-backgournd;\n   }\n   main {\n     .side-bar {\n+      font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .drag-line {\n         background-color: $dark-header-backgournd;\n"
+                },
+                {
+                    "date": 1667664624238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px;\n+  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n"
+                },
+                {
+                    "date": 1667664648357,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n // 最外层是container\n @mixin theme-dark {\n   color: $dark-font-color;\n   background-color: $dark-background;\n-  font-size: 18px !important;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n     border: 1px solid $active-font-color;\n@@ -48,8 +47,9 @@\n           padding-left: 14px;\n           border-width: 2px;\n           margin: 15px 0;\n           p {\n+            font-size: 18px;\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n"
+                },
+                {
+                    "date": 1667913340595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,11 @@\n     .side-bar {\n       font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n+      .file-item-active {\n+        background-color: white;\n+      }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n       a {\n"
+                },
+                {
+                    "date": 1667913367124,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .file-item-active {\n-        background-color: white;\n+        border-right: 3px solid rgb(146, 146, 194);\n       }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n"
+                },
+                {
+                    "date": 1667913381470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .file-item-active {\n-        border-right: 3px solid rgb(146, 146, 194);\n+        border-left: 3px solid rgb(156, 156, 203);\n       }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n"
+                },
+                {
+                    "date": 1667913397043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .file-item-active {\n-        border-left: 3px solid rgb(156, 156, 203);\n+        border-left: 6px solid rgb(157, 157, 198);\n       }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n"
+                },
+                {
+                    "date": 1667913402606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       font-weight: 400;\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .file-item-active {\n-        border-left: 6px solid rgb(157, 157, 198);\n+        border-left: 5px solid rgb(157, 157, 198);\n       }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n"
+                },
+                {
+                    "date": 1667913434192,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n       border-right: 1px solid $dark-header-backgournd;\n       background-color: $dark-sideBar-background;\n       .file-item-active {\n         border-left: 5px solid rgb(157, 157, 198);\n+        background-color:rgb(23, 27, 36); ;\n       }\n       .drag-line {\n         background-color: $dark-header-backgournd;\n       }\n"
+                }
+            ],
+            "date": 1667545328397,
+            "name": "Commit-0",
+            "content": "$dark-font-color: rgb(219, 223, 236);\n$dark-background: rgb(46 52 64);\n$dark-header-backgournd: rgb(59, 62, 81);\n$dark-sideBar-background: rgb(36, 41, 51);\n$active-font-color: rgb(129, 161, 193);\n$font-family: monospace;\n$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,\n  sans-serif;\n// 最外层是container\n@mixin theme-dark {\n  color: $dark-font-color;\n  background-color: $dark-background;\n  font-weight: 300;\n  font-size: 18px;\n  input {\n    color: $dark-font-color;\n    background-color: $dark-sideBar-background;\n    border: 1px solid $active-font-color;\n  }\n  & > header {\n    background-color: $dark-header-backgournd;\n  }\n  main {\n    .side-bar {\n      border-right: 1px solid $dark-header-backgournd;\n      background-color: $dark-sideBar-background;\n      .drag-line {\n        background-color: $dark-header-backgournd;\n      }\n      a {\n        text-decoration-color: $dark-font-color;\n        color: $dark-font-color;\n      }\n    }\n    .milkdown {\n      background: $dark-background;\n      color: $dark-font-color;\n      font-family: $font-family;\n      // 反引号，行内的代码\n      .editor {\n        code.code-inline {\n          color: $dark-font-color;\n          background-color: $dark-sideBar-background;\n          font-size: initial;\n        }\n        // 注释\n        .blockquote {\n          padding-left: 14px;\n          border-width: 2px;\n          margin: 15px 0;\n          p {\n            color: rgb(153, 164, 182);\n          }\n        }\n        .code-fence {\n          margin-top: 10px;\n          pre code {\n            color: $dark-font-color;\n            // font-family:$code-fence-font-family\n          }\n        }\n      }\n    }\n  }\n  .search-file {\n    background-color: $dark-sideBar-background;\n    li.active {\n      background-color: $dark-header-backgournd;\n      color: $active-font-color;\n    }\n  }\n}\n"
         }
-      ],
-      "date": 1667545328397,
-      "name": "Commit-0",
-      "content": "$dark-font-color: rgb(219, 223, 236);\n$dark-background: rgb(46 52 64);\n$dark-header-backgournd: rgb(59, 62, 81);\n$dark-sideBar-background: rgb(36, 41, 51);\n$active-font-color: rgb(129, 161, 193);\n$font-family: monospace;\n$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,\n  sans-serif;\n// 最外层是container\n@mixin theme-dark {\n  color: $dark-font-color;\n  background-color: $dark-background;\n  font-weight: 300;\n  font-size: 18px;\n  input {\n    color: $dark-font-color;\n    background-color: $dark-sideBar-background;\n    border: 1px solid $active-font-color;\n  }\n  & > header {\n    background-color: $dark-header-backgournd;\n  }\n  main {\n    .side-bar {\n      border-right: 1px solid $dark-header-backgournd;\n      background-color: $dark-sideBar-background;\n      .drag-line {\n        background-color: $dark-header-backgournd;\n      }\n      a {\n        text-decoration-color: $dark-font-color;\n        color: $dark-font-color;\n      }\n    }\n    .milkdown {\n      background: $dark-background;\n      color: $dark-font-color;\n      font-family: $font-family;\n      // 反引号，行内的代码\n      .editor {\n        code.code-inline {\n          color: $dark-font-color;\n          background-color: $dark-sideBar-background;\n          font-size: initial;\n        }\n        // 注释\n        .blockquote {\n          padding-left: 14px;\n          border-width: 2px;\n          margin: 15px 0;\n          p {\n            color: rgb(153, 164, 182);\n          }\n        }\n        .code-fence {\n          margin-top: 10px;\n          pre code {\n            color: $dark-font-color;\n            // font-family:$code-fence-font-family\n          }\n        }\n      }\n    }\n  }\n  .search-file {\n    background-color: $dark-sideBar-background;\n    li.active {\n      background-color: $dark-header-backgournd;\n      color: $active-font-color;\n    }\n  }\n}\n"
-    }
-  ]
+    ]
 }

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1667548476528,
@@ -12,6 +12,10 @@
                 {
                     "date": 1667730652186,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,3 @@\n-@import './'\n\\ No newline at end of file\n+@import './drag-line.scss';\n+@import './search-file.scss';\n+@import './search-words.scss'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1667915947931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,3 @@\n @import './drag-line.scss';\n @import './search-file.scss';\n-@import './search-words.scss'\n\\ No newline at end of file\n+@import './search-word.scss'\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1667548476528,

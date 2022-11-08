@@ -6,9 +6,7 @@
 4. 快速展开/收缩标题
 5. 源代码和现在的切换
 6. 控制使用箭头在代码块里面选择语言
-7. 文件页面当前文件的激活样式
 8. 如何实现一个编辑器
-9. 标题更新会全部搜索，考虑使用移动隐藏?
 
 ### bug
 
@@ -16,15 +14,19 @@
 6. scss 不用导入变量文件也能使用，导入了也没变量提示的问题
 7. prettier 格式化未使用的变量
 12. 多选文件操作
-13. 如果文件操作的目录不存在报错。使用期间不是在编辑器里面人为删除文件
 14. 白屏问题
 15. 拖动分类文件夹和文件
 16. 拖动改变文件排序\
-17. 高亮选中的文件
-
-18. NODEJS检测文件夹的改变
+18. NODEJS检测文件夹的改变,如果文件操作的目录不存在报错。使用期间不是在编辑器里面人为删除文件
 19. 设置打开md使用的文件
 20. 图标：圆角正方形 + 单一底色 + ICON 。参考APP Store搜索笔记
-https://www.iconfont.cn/search/index?searchType=icon&q=atom
+
 png转换为apple图标：
+https://www.iconfont.cn/search/index?searchType=icon&q=atom
 https://anyconv.com/png-to-icns-converter/
+22. 高亮文本啊
+https://juejin.cn/post/6936113425416192007
+https://juejin.cn/post/7066439118263156772
+- range.getBoundRec 位置太难控制
+- 替代标签暂时先用着
+- milkdown无法直接修改标签上的属性

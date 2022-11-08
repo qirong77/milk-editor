@@ -23,6 +23,10 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
       font-weight: 400;
       border-right: 1px solid $dark-header-backgournd;
       background-color: $dark-sideBar-background;
+      .file-item-active {
+        border-left: 5px solid rgb(157, 157, 198);
+        background-color:rgb(23, 27, 36); ;
+      }
       .drag-line {
         background-color: $dark-header-backgournd;
       }

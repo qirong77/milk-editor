@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1667544815602,
@@ -32,6 +32,66 @@
                 {
                     "date": 1667748887998,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n-import { useEffect, useState } from 'react'\n+import { useEffect } from 'react'\n import { DragLine } from './DragLine'\n-import { SearchFile } from './SearchFile'\n \n export const GlobalComponents = () => {\n-  const [showSearchFile, setShowSearchFile] = useState(false)\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -20,23 +18,16 @@\n     if (e.metaKey && e.code === 'KeyF') {\n       console.log('commend + F')\n       // setOpenSearchWords(!openSearchWords)\n     }\n-    if (e.metaKey && e.code === 'KeyP') {\n-      console.log('commend + P')\n-      setShowSearchFile(!showSearchFile)\n-    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n-  }, [showSearchFile])\n+  }, [])\n \n   return (\n     <>\n-      {showSearchFile && (\n-        <SearchFile  closeSearchFile={() => setShowSearchFile(false)} />\n-      )}\n       <DragLine />\n     </>\n   )\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1667916103093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n-import { useEffect } from 'react'\n+import { useEffect, useState } from 'react'\n import { DragLine } from './DragLine'\n+import { SearchWord } from './SearchWord'\n \n export const GlobalComponents = () => {\n+  const [showSearchWord, setShowSearchWord] = useState(false)\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -11,14 +13,13 @@\n     }\n     if (e.metaKey && e.code === 'KeyB') {\n       const SideBar = document.querySelector('.side-bar') as HTMLElement\n       console.log('commend + B')\n-      //updateHeaders()\n       SideBar?.classList.toggle('side-bar-close')\n     }\n     if (e.metaKey && e.code === 'KeyF') {\n       console.log('commend + F')\n-      // setOpenSearchWords(!openSearchWords)\n+      setShowSearchWord(!showSearchWord)\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n@@ -27,7 +28,8 @@\n \n   return (\n     <>\n       <DragLine />\n+      {showSearchWord && <SearchWord />}\n     </>\n   )\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1667916628464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { SearchWord } from './SearchWord'\n \n export const GlobalComponents = () => {\n   const [showSearchWord, setShowSearchWord] = useState(false)\n+  const [word, setWord] = useState('')\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n       console.log('commend + M')\n@@ -19,8 +20,11 @@\n     if (e.metaKey && e.code === 'KeyF') {\n       console.log('commend + F')\n       setShowSearchWord(!showSearchWord)\n     }\n+    if (e.code === 'Enter') {\n+      console.log('search:' + word)\n+    }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n@@ -28,8 +32,8 @@\n \n   return (\n     <>\n       <DragLine />\n-      {showSearchWord && <SearchWord />}\n+      {showSearchWord && <SearchWord setWord={setWord} />}\n     </>\n   )\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1667916679630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,13 +27,13 @@\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n-  }, [])\n+  }, [word])\n \n   return (\n     <>\n       <DragLine />\n       {showSearchWord && <SearchWord setWord={setWord} />}\n     </>\n   )\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1667919778263,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,17 @@\n import { useEffect, useState } from 'react'\n import { DragLine } from './DragLine'\n import { SearchWord } from './SearchWord'\n-\n+const dfs = (root: HTMLElement) => {\n+  console.log(root.textContent)\n+  root.childNodes.forEach((child) => {\n+    if (child instanceof HTMLElement) {\n+      dfs(child)\n+    } else {\n+      console.log(child.textContent)\n+    }\n+  })\n+}\n export const GlobalComponents = () => {\n   const [showSearchWord, setShowSearchWord] = useState(false)\n   const [word, setWord] = useState('')\n   const handleKeydown = (e: KeyboardEvent) => {\n@@ -22,8 +31,9 @@\n       setShowSearchWord(!showSearchWord)\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n+      const editor = document.querySelector('editor')\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n@@ -35,5 +45,5 @@\n       <DragLine />\n       {showSearchWord && <SearchWord setWord={setWord} />}\n     </>\n   )\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1667919851830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,11 @@\n       setShowSearchWord(!showSearchWord)\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n-      const editor = document.querySelector('editor')\n+      const editor = document.querySelector('editor') as HTMLElement\n+      console.log(editor)\n+      editor && dfs(editor)\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n"
+                },
+                {
+                    "date": 1667919863401,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n       setShowSearchWord(!showSearchWord)\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n-      const editor = document.querySelector('editor') as HTMLElement\n+      const editor = document.querySelector('.editor') as HTMLElement\n       console.log(editor)\n       editor && dfs(editor)\n     }\n   }\n"
+                },
+                {
+                    "date": 1667919962721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n import { useEffect, useState } from 'react'\n import { DragLine } from './DragLine'\n import { SearchWord } from './SearchWord'\n+const wordx = '前端'\n const dfs = (root: HTMLElement) => {\n-  console.log(root.textContent)\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n+      console.log(child.textContent)\n       dfs(child)\n     } else {\n       console.log(child.textContent)\n     }\n@@ -32,8 +33,9 @@\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n       const editor = document.querySelector('.editor') as HTMLElement\n+\n       console.log(editor)\n       editor && dfs(editor)\n     }\n   }\n"
+                },
+                {
+                    "date": 1667920001946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n const wordx = '前端'\n const dfs = (root: HTMLElement) => {\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n-      console.log(child.textContent)\n       dfs(child)\n     } else {\n       console.log(child.textContent)\n     }\n"
+                },
+                {
+                    "date": 1667920041582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n       dfs(child)\n     } else {\n-      console.log(child.textContent)\n+      if(child.textContent?.includes(wordx)) {\n+        console.log(child.textContent)\n+      }\n     }\n   })\n }\n export const GlobalComponents = () => {\n"
+                },
+                {
+                    "date": 1667920265045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n     if (child instanceof HTMLElement) {\n       dfs(child)\n     } else {\n       if(child.textContent?.includes(wordx)) {\n-        console.log(child.textContent)\n+        child.parentElement!.innerHTML = child.parentElement?.innerHTML.replace(wordx,'<mark>前端</mark>') ||''\n       }\n     }\n   })\n }\n"
+                },
+                {
+                    "date": 1667920296895,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n       dfs(child)\n     } else {\n       if(child.textContent?.includes(wordx)) {\n         child.parentElement!.innerHTML = child.parentElement?.innerHTML.replace(wordx,'<mark>前端</mark>') ||''\n+        console.log(child)\n       }\n     }\n   })\n }\n"
+                },
+                {
+                    "date": 1667920879703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n       const editor = document.querySelector('.editor') as HTMLElement\n-\n+      document.querySelector('ul')?.scrollIntoView()\n       console.log(editor)\n       editor && dfs(editor)\n     }\n   }\n"
+                },
+                {
+                    "date": 1667920937478,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,13 @@\n     }\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n       const editor = document.querySelector('.editor') as HTMLElement\n-      document.querySelector('ul')?.scrollIntoView()\n+      const pre = document.querySelector('pre')\n+      if(pre) {\n+pre.scrollIntoView()\n+console.log(pre)\n+      }\n       console.log(editor)\n       editor && dfs(editor)\n     }\n   }\n"
+                },
+                {
+                    "date": 1667920973799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,9 @@\n       const editor = document.querySelector('.editor') as HTMLElement\n       const pre = document.querySelector('pre')\n       if(pre) {\n pre.scrollIntoView()\n+pre.classList.add('xxxx')\n console.log(pre)\n       }\n       console.log(editor)\n       editor && dfs(editor)\n"
+                },
+                {
+                    "date": 1667922093335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,15 @@\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n       dfs(child)\n     } else {\n-      if(child.textContent?.includes(wordx)) {\n-        child.parentElement!.innerHTML = child.parentElement?.innerHTML.replace(wordx,'<mark>前端</mark>') ||''\n-        console.log(child)\n-      }\n+      const textContent = child.textContent\n     }\n   })\n }\n export const GlobalComponents = () => {\n   const [showSearchWord, setShowSearchWord] = useState(false)\n+  const [nodeList, setNodeList] = useState<HTMLElement[]>([])\n   const [word, setWord] = useState('')\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n@@ -36,12 +34,12 @@\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n       const editor = document.querySelector('.editor') as HTMLElement\n       const pre = document.querySelector('pre')\n-      if(pre) {\n-pre.scrollIntoView()\n-pre.classList.add('xxxx')\n-console.log(pre)\n+      if (pre) {\n+        pre.scrollIntoView()\n+        pre.classList.add('xxxx')\n+        console.log(pre)\n       }\n       console.log(editor)\n       editor && dfs(editor)\n     }\n"
                 }
             ],
             "date": 1667544815602,
