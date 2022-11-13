@@ -18,4 +18,4 @@ export const DELETE_FILE = 'delete a file'
 export const NEW_DIR = 'new directory'
 export const NEW_FILE = 'add a new file'
 export const DELETE_DIR = 'delet a dir'
-
+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'

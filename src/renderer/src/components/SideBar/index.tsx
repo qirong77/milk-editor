@@ -10,7 +10,7 @@ export const SideBar = () => {
   const [toggle, setToggle] = useState(true)
   const [title, setTitle] = useState('文件')
   const [showSearchFile, setShowSearchFile] = useState(false)
-  const ref= useRef<HTMLDivElement>(null)
+  const [isClose, setClose] = useState(false)
   const clickMenu = () => {
     if (!toggle) {
       setTitle('文件')
@@ -18,26 +18,28 @@ export const SideBar = () => {
     toggle && setTitle('大纲')
     setToggle(!toggle)
   }
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.metaKey && e.code === 'KeyB') {
-      const SideBar = document.querySelector('.side-bar') as HTMLElement
-      console.log('commend + B')
-      //updateHeaders()
-      SideBar?.classList.toggle('side-bar-close')
-    }
-    if (e.metaKey && e.code === 'KeyP') {
-      console.log('commend + P')
-      setShowSearchFile(!showSearchFile)
-    }
-  }
+
   useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.metaKey && e.code === 'KeyB') {
+        setClose(!isClose)
+      }
+      if (e.metaKey && e.code === 'KeyP') {
+        setShowSearchFile(!showSearchFile)
+      }
+    }
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [showSearchFile])
+  }, [showSearchFile, isClose])
   return (
-    <div className="side-bar" ref={ref}>
+    <div
+      className="side-bar"
+      style={{
+        display: isClose ? 'none' : 'block'
+      }}
+    >
       <SideBarHeader title={title} clickMenu={clickMenu} />
-      <FileList toggle={toggle} setToggle={setToggle}/>
+      <FileList toggle={toggle} setToggle={setToggle} />
       <HeaderList toggle={toggle} />
       {/* <Footer /> */}
       <SearchFile

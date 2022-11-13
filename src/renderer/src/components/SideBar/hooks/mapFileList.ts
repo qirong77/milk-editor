@@ -4,7 +4,7 @@ import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
 
 export const SHOW_INPUT = 'show-input'
-const triangleDown = `<div>
+const dirIcon = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
 <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 </svg>
@@ -22,17 +22,14 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
     const oldPath = li.getAttribute('id') || ''
     const newPath = resolve(dirname(oldPath), newName)
     newName && window.api.sendToMain(RENAME_FILE, oldPath, newPath)
-    if (isDir) {
-      li.innerHTML = triangleDown + `<span>${newName}</span>`
-    } else li.innerHTML = `<span>${newName}</span>`
+    li.innerHTML = (isDir ? dirIcon :'') +`<span>${newName}</span>`
     li.appendChild(createInput(newName, li, isDir))
     li.setAttribute('id', newPath)
+    li.classList.remove(SHOW_INPUT)
   }
   input.value = fileName
   input.onblur = () => {
     handleChange()
-    console.log('blur')
-    li.classList.remove(SHOW_INPUT)
   }
   input.onfocus = () => {
     li.classList.add(SHOW_INPUT)
@@ -54,8 +51,8 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   li.setAttribute('id', path)
   li.setAttribute('level', level.toString())
   li.setAttribute('style', `--i: ${level}`)
-  if (isDir) li.innerHTML = triangleDown + `<span>${fileName}</span>`
-  else li.innerHTML = `<span>${fileName}</span>`
+  // 注意执行顺序
+  li.innerHTML = (isDir ? dirIcon : '') + `<span>${fileName}</span>`
   if (isDir) {
     li.classList.add('dir')
   } else {

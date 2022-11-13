@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import { DarwinMenuItemConstructorOptions } from '../..'
 import { DELETE_DIR, NEW_DIR, NEW_FILE, RENAME_FILE } from '../../../../../common/eventType'
 import { deleteDir } from '../../../../helper/deleteDir'
+import { openFile } from '../../../../helper/openFile'
 import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../config/constant'
 
 export const createFilDirMenu = (path: string) => {
@@ -12,9 +13,10 @@ export const createFilDirMenu = (path: string) => {
       label: '新建文件',
       click(_menuItem, browserWindow, _event) {
         const newPath = resolve(path, NEW_FILE_NAME)
-        if (!existsSync(newPath)) {
+        if (!existsSync(newPath) && browserWindow) {
           writeFileSync(newPath, '空内容')
-          browserWindow?.webContents.send(NEW_FILE, path, newPath)
+          browserWindow.webContents.send(NEW_FILE, path, newPath)
+          openFile(newPath,browserWindow)
         } else {
           console.log('文件路径不存在')
           console.log(path)
@@ -29,7 +31,7 @@ export const createFilDirMenu = (path: string) => {
           mkdirSync(newPath)
           browserWindow?.webContents.send(NEW_DIR, path, newPath)
         } else {
-          throw new Error('文件夹已经存在')
+          console.log('重复新建文件夹')
         }
       }
     },

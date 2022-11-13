@@ -1,6 +1,6 @@
 import { getHeaderTree, HeaderTree } from './getHeaderTree'
 // 可以用JSX的树递归遍历，创建组件，后面再说了，先写个能用的
-const triangleDown = `<div>
+const headerIcon = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
 <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
 </svg>
@@ -9,7 +9,7 @@ const dfs = (tree: HeaderTree, container: HTMLElement | DocumentFragment) => {
   const id = tree.header.getAttribute('id')
   const ul = document.createElement('ul')
   const li = document.createElement('li')
-  li.innerHTML = triangleDown + `<a href=${'#' + id}>${tree.header.innerText}</a>`
+  li.innerHTML = headerIcon + `<a href=${'#' + id}>${tree.header.innerText}</a>`
   li.setAttribute('style', `--i: ${tree.tagName[1]}`)
   ul.appendChild(li)
   ul.addEventListener('click', (e) => {

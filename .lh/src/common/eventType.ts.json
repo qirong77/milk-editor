@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1667543169085,
@@ -56,6 +56,10 @@
                 {
                     "date": 1667809079809,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const MIN_SCREEN = 'min'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n+export const POP_ROOT_MENU = 'pop root dir menu'\n export const SAVE_FILE = 'save a file'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n@@ -16,4 +17,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n+\n"
+                },
+                {
+                    "date": 1668352834812,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n-\n+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n"
                 }
             ],
             "date": 1667543169085,

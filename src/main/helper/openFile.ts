@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron'
+import { BrowserWindow, WebContents } from 'electron'
 import { readFileSync } from 'fs'
 import { basename } from 'path'
 import { OPEN_FILE } from '../../common/eventType'

@@ -8,6 +8,7 @@ export type FileTree = {
   path: string
   isDir: boolean
 }
+
 const DirItem: React.FC<{ fileName: string }> = ({ fileName }) => {
   return (
     <>
@@ -50,11 +51,6 @@ const DirItem: React.FC<{ fileName: string }> = ({ fileName }) => {
     </>
   )
 }
-/*  功能列表
-1. 删除 done-提升到顶部用dom选择器解决，但是无法更改内部的数据，所以还需要内部监听，但是这样会有多个监听，而且你监听回来还需要判断是不是操作当前的组件节点
-2. 改名 done
-3. 新增 无法解决
-*/
 const createLi = (_path: string, fileName: string, isDir: boolean) => {
   const [path, setPath] = useState(_path)
   const [showInput, setShowInput] = useState(false)
@@ -92,6 +88,7 @@ const createLi = (_path: string, fileName: string, isDir: boolean) => {
   )
 }
 const mapFileTree = ({ fileName, level, children, path, isDir }: FileTree) => {
+  const [items, setItems] = useState(children)
   if (!isDir)
     return (
       <li id={path} className="file-item">
@@ -104,7 +101,7 @@ const mapFileTree = ({ fileName, level, children, path, isDir }: FileTree) => {
         <li id={path} className={'dir'}>
           <DirItem fileName={fileName} />
         </li>
-        {children.map((file) => {
+        {items.map((file) => {
           return mapFileTree(file)
         })}
       </>
@@ -114,6 +111,5 @@ const mapFileTree = ({ fileName, level, children, path, isDir }: FileTree) => {
 }
 
 export const App = () => {
-  const [contextLi, setContextLi] = useState(0)
   return <div>{mapFileTree(dirTree)}</div>
 }

@@ -3,6 +3,7 @@
   -webkit-app-region: drag;
   display: flex;
   justify-content: space-between;
+  user-select:none;
   .controlers {
     ul {
       display: flex;

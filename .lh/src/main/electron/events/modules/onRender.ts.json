@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 58,
+            "activePatchIndex": 61,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -240,6 +240,18 @@
                 {
                     "date": 1668343000914,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,9 +68,10 @@\n   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {\n     if(existsSync(filePath)) {\n       writeFileSync(filePath, newContent)\n     } else {\n-      throw new Error('找不到该文件路径:' + filePath )\n+      console.log('找不到该文件路径')\n+      console.log(filePath)\n     }\n   })\n   ipcMain.on(POP_ROOT_MENU, (_e, path) => {\n     const window = BrowserWindow.getFocusedWindow()\n"
+                },
+                {
+                    "date": 1668349658380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)\n+      // currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)\n \n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n"
+                },
+                {
+                    "date": 1668349677615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,8 @@\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n       // currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)\n-\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
+                },
+                {
+                    "date": 1668350998719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   POP_DIR_MENU,\n   POP_FILE_ITEM_MENU,\n   POP_ROOT_MENU,\n   RENAME_FILE,\n+  RENAME_FILE_DONE,\n   SAVE_FILE\n } from '../../../../common/eventType'\n import { getWindow } from '../../../helper/getWindow'\n import { openFile } from '../../../helper/openFile'\n@@ -39,9 +40,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      // currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE,newFilePath,newName)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
                 }
             ],
             "date": 1667541566569,

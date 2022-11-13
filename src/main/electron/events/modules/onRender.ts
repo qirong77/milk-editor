@@ -11,6 +11,7 @@ import {
   POP_FILE_ITEM_MENU,
   POP_ROOT_MENU,
   RENAME_FILE,
+  RENAME_FILE_DONE,
   SAVE_FILE
 } from '../../../../common/eventType'
 import { getWindow } from '../../../helper/getWindow'
@@ -40,8 +41,7 @@ export const onRender = () => {
       renameSync(oldFilePath, newFilePath)
       const currentWindow = getWindow(e)
       const newName = basename(newFilePath)
-      currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)
-
+      currentWindow?.webContents.send(RENAME_FILE_DONE,newFilePath,newName)
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)
