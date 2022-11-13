@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 21,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667544815602,
@@ -92,6 +92,10 @@
                 {
                     "date": 1667922093335,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,17 +6,15 @@\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n       dfs(child)\n     } else {\n-      if(child.textContent?.includes(wordx)) {\n-        child.parentElement!.innerHTML = child.parentElement?.innerHTML.replace(wordx,'<mark>前端</mark>') ||''\n-        console.log(child)\n-      }\n+      const textContent = child.textContent\n     }\n   })\n }\n export const GlobalComponents = () => {\n   const [showSearchWord, setShowSearchWord] = useState(false)\n+  const [nodeList, setNodeList] = useState<HTMLElement[]>([])\n   const [word, setWord] = useState('')\n   const handleKeydown = (e: KeyboardEvent) => {\n     if (e.metaKey && e.code === 'KeyM') {\n       const MenuBar = document.querySelector('.milkdown-menu')\n@@ -36,12 +34,12 @@\n     if (e.code === 'Enter') {\n       console.log('search:' + word)\n       const editor = document.querySelector('.editor') as HTMLElement\n       const pre = document.querySelector('pre')\n-      if(pre) {\n-pre.scrollIntoView()\n-pre.classList.add('xxxx')\n-console.log(pre)\n+      if (pre) {\n+        pre.scrollIntoView()\n+        pre.classList.add('xxxx')\n+        console.log(pre)\n       }\n       console.log(editor)\n       editor && dfs(editor)\n     }\n"
+                },
+                {
+                    "date": 1667994281461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,18 +31,18 @@\n       console.log('commend + F')\n       setShowSearchWord(!showSearchWord)\n     }\n     if (e.code === 'Enter') {\n-      console.log('search:' + word)\n-      const editor = document.querySelector('.editor') as HTMLElement\n-      const pre = document.querySelector('pre')\n-      if (pre) {\n-        pre.scrollIntoView()\n-        pre.classList.add('xxxx')\n-        console.log(pre)\n-      }\n-      console.log(editor)\n-      editor && dfs(editor)\n+      // console.log('search:' + word)\n+      // const editor = document.querySelector('.editor') as HTMLElement\n+      // const pre = document.querySelector('pre')\n+      // if (pre) {\n+      //   pre.scrollIntoView()\n+      //   pre.classList.add('xxxx')\n+      //   console.log(pre)\n+      // }\n+      // console.log(editor)\n+      // editor && dfs(editor)\n     }\n   }\n   useEffect(() => {\n     document.addEventListener('keydown', handleKeydown)\n"
                 }
             ],
             "date": 1667544815602,

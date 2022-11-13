@@ -16,7 +16,6 @@ export const FileList = ({ toggle, setToggle }) => {
   console.log('render-fileTree-component')
   const ref = useRef<HTMLDivElement>(null)
   const setFileList = async () => {
-    console.log('setFileList')
     const fileTree = await window.api.onGetDirTree()
     const fileNodes = mapFileList(fileTree)
     ref.current!.innerHTML = ''

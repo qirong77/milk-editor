@@ -32,16 +32,16 @@ export const GlobalComponents = () => {
       setShowSearchWord(!showSearchWord)
     }
     if (e.code === 'Enter') {
-      console.log('search:' + word)
-      const editor = document.querySelector('.editor') as HTMLElement
-      const pre = document.querySelector('pre')
-      if (pre) {
-        pre.scrollIntoView()
-        pre.classList.add('xxxx')
-        console.log(pre)
-      }
-      console.log(editor)
-      editor && dfs(editor)
+      // console.log('search:' + word)
+      // const editor = document.querySelector('.editor') as HTMLElement
+      // const pre = document.querySelector('pre')
+      // if (pre) {
+      //   pre.scrollIntoView()
+      //   pre.classList.add('xxxx')
+      //   console.log(pre)
+      // }
+      // console.log(editor)
+      // editor && dfs(editor)
     }
   }
   useEffect(() => {

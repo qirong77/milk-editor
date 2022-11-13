@@ -6,6 +6,7 @@ import { HeaderList } from './components/HeaderList'
 import { SideBarHeader } from './components/SideBarHeader'
 
 export const SideBar = () => {
+  console.log('SideBar-render')
   const [toggle, setToggle] = useState(true)
   const [title, setTitle] = useState('文件')
   const [showSearchFile, setShowSearchFile] = useState(false)

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 25,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1667537076910,
@@ -108,6 +108,18 @@
                 {
                     "date": 1667806479652,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-  }, [filePath])\n+  }, [])\n   return (\n     <div className=\"container\">\n       <Header title={title} />\n       <main>\n"
+                },
+                {
+                    "date": 1668342621374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE } from '../../common/eventType'\n+import { OPEN_FILE, RENAME_FILE } from '../../common/eventType'\n \n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n@@ -15,8 +15,11 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n+    window.api.onMain(RENAME_FILE,(_e,newPath) => {\n+      setTitle(newPath)\n+    })\n   }, [])\n   return (\n     <div className=\"container\">\n       <Header title={title} />\n"
+                },
+                {
+                    "date": 1668342744623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n     window.api.onMain(RENAME_FILE,(_e,newPath) => {\n-      setTitle(newPath)\n+      setFilePath(newPath)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1668342957512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,11 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE,(_e,newPath) => {\n+    window.api.onMain(RENAME_FILE,(_e,newPath,newName) => {\n       setFilePath(newPath)\n+      setTitle(newName)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
                 }
             ],
             "date": 1667537076910,

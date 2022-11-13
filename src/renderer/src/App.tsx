@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { OPEN_FILE } from '../../common/eventType'
+import { OPEN_FILE, RENAME_FILE } from '../../common/eventType'
 
 import { MilkdownEditor } from './components/Editor'
 import { GlobalComponents } from './components/Global'
@@ -15,6 +15,10 @@ export const App = () => {
       setFilePath(filePath)
       setContent(fileContent)
       setTitle(fileName)
+    })
+    window.api.onMain(RENAME_FILE,(_e,newPath,newName) => {
+      setFilePath(newPath)
+      setTitle(newName)
     })
   }, [])
   return (

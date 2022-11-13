@@ -16,8 +16,8 @@ export const createFilDirMenu = (path: string) => {
           writeFileSync(newPath, '空内容')
           browserWindow?.webContents.send(NEW_FILE, path, newPath)
         } else {
-          console.log('文件已经存在')
-          console.log(newPath)
+          console.log('文件路径不存在')
+          console.log(path)
         }
       }
     },
@@ -29,8 +29,7 @@ export const createFilDirMenu = (path: string) => {
           mkdirSync(newPath)
           browserWindow?.webContents.send(NEW_DIR, path, newPath)
         } else {
-          console.log(newPath)
-          console.log('文件夹已存在')
+          throw new Error('文件夹已经存在')
         }
       }
     },

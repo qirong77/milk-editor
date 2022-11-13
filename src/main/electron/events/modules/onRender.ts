@@ -1,5 +1,6 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import { existsSync, renameSync, writeFileSync } from 'fs'
+import { basename } from 'path'
 import { windowsMap } from '../../..'
 import {
   CLOSE_SCREEN,
@@ -33,10 +34,14 @@ export const onRender = () => {
       windowsMap.delete(window)
     }
   })
-  ipcMain.on(RENAME_FILE, (_e, oldFilePath, newFilePath) => {
+  ipcMain.on(RENAME_FILE, (e, oldFilePath, newFilePath) => {
     // 这里有个bug，就说明明可以重新命名，但是会报错
     try {
       renameSync(oldFilePath, newFilePath)
+      const currentWindow = getWindow(e)
+      const newName = basename(newFilePath)
+      currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)
+
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)
@@ -61,7 +66,12 @@ export const onRender = () => {
       })
   })
   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
-    existsSync(filePath) && writeFileSync(filePath, newContent)
+    if(existsSync(filePath)) {
+      writeFileSync(filePath, newContent)
+    } else {
+      console.log('找不到该文件路径')
+      console.log(filePath)
+    }
   })
   ipcMain.on(POP_ROOT_MENU, (_e, path) => {
     const window = BrowserWindow.getFocusedWindow()
