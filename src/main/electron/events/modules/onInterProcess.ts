@@ -10,12 +10,12 @@ export const onInterProcess = () => {
   ipcMain.handle(GET_DIR_TREE, (e) => {
     const window = getWindow(e)
     const path = windowsMap.get(window as BrowserWindow)
-    return getDirectoryTree(path || defaultPath)
+    const tree = getDirectoryTree(path || defaultPath)
+    return tree
   })
   ipcMain.handle(GET_FILE_LIST, (e) => {
     const window = getWindow(e)
     const path = windowsMap.get(window as BrowserWindow)
-
     return getFileList(path || defaultPath)
   })
 }

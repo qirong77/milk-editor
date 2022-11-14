@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667541912581,
@@ -80,6 +80,22 @@
                 {
                     "date": 1667837829212,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,21 +1,21 @@\n-import { ipcMain } from 'electron'\n+import { BrowserWindow, ipcMain } from 'electron'\n import { windowsMap } from '../../..'\n import { GET_DIR_TREE, GET_FILE_LIST } from '../../../../common/eventType'\n-import { Windows } from '../../../../common/interface'\n import { getDirectoryTree } from '../../../helper/getDirectoryTree'\n import { getFileList } from '../../../helper/getFileList'\n import { getWindow } from '../../../helper/getWindow'\n import { defaultPath } from '../../config'\n \n-export const onInterProcess = (windows: Windows) => {\n+export const onInterProcess = () => {\n   ipcMain.handle(GET_DIR_TREE, (e) => {\n     const window = getWindow(e)\n-    if (window) windowsMap.get(window)\n-    console.log(windowsMap.get(window))\n-    return getDirectoryTree(defaultPath)\n+    const path = windowsMap.get(window as BrowserWindow)\n+    return getDirectoryTree(path || defaultPath)\n   })\n   ipcMain.handle(GET_FILE_LIST, (e) => {\n-    const path = getWindow(e)\n-    return getFileList(defaultPath)\n+    const window = getWindow(e)\n+    const path = windowsMap.get(window as BrowserWindow)\n+\n+    return getFileList(path || defaultPath)\n   })\n }\n"
+                },
+                {
+                    "date": 1668401047408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n+import { writeFileSync } from 'fs'\n import { windowsMap } from '../../..'\n import { GET_DIR_TREE, GET_FILE_LIST } from '../../../../common/eventType'\n import { getDirectoryTree } from '../../../helper/getDirectoryTree'\n import { getFileList } from '../../../helper/getFileList'\n@@ -9,13 +10,14 @@\n export const onInterProcess = () => {\n   ipcMain.handle(GET_DIR_TREE, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n+    writeFileSync('./dirTree.json',JSON.stringify( getDirectoryTree(path || defaultPath)))\n     return getDirectoryTree(path || defaultPath)\n+\n   })\n   ipcMain.handle(GET_FILE_LIST, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n-\n     return getFileList(path || defaultPath)\n   })\n }\n"
+                },
+                {
+                    "date": 1668401173101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,12 @@\n export const onInterProcess = () => {\n   ipcMain.handle(GET_DIR_TREE, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n-    writeFileSync('./dirTree.json',JSON.stringify( getDirectoryTree(path || defaultPath)))\n-    return getDirectoryTree(path || defaultPath)\n-\n+    const tree = getDirectoryTree(path || defaultPath)\n+    writeFileSync('./dirTree.json', JSON.stringify(tree))\n+    console.log(tree)\n+    return tree\n   })\n   ipcMain.handle(GET_FILE_LIST, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n"
+                },
+                {
+                    "date": 1668401377609,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n   ipcMain.handle(GET_DIR_TREE, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n     const tree = getDirectoryTree(path || defaultPath)\n-    writeFileSync('./dirTree.json', JSON.stringify(tree))\n     console.log(tree)\n+    console.log(tree)\n     return tree\n   })\n   ipcMain.handle(GET_FILE_LIST, (e) => {\n     const window = getWindow(e)\n"
+                },
+                {
+                    "date": 1668401420863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,5 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { writeFileSync } from 'fs'\n import { windowsMap } from '../../..'\n import { GET_DIR_TREE, GET_FILE_LIST } from '../../../../common/eventType'\n import { getDirectoryTree } from '../../../helper/getDirectoryTree'\n import { getFileList } from '../../../helper/getFileList'\n@@ -11,10 +10,8 @@\n   ipcMain.handle(GET_DIR_TREE, (e) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n     const tree = getDirectoryTree(path || defaultPath)\n-    console.log(tree)\n-    console.log(tree)\n     return tree\n   })\n   ipcMain.handle(GET_FILE_LIST, (e) => {\n     const window = getWindow(e)\n"
                 }
             ],
             "date": 1667541912581,

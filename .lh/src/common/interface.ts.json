@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1667554409443,
@@ -56,6 +56,10 @@
                 {
                     "date": 1667837937231,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { BrowserWindow } from \"electron\"\n+\n import { windowsMap } from \"../main\"\n \n export type FileTree = {\n   fileName: string\n@@ -11,9 +11,6 @@\n export type IFileList = {\n   fileName:string,\n   filePath:string\n }\n-export type Windows = {\n-  window:BrowserWindow,\n-  path:string\n-}[]\n+\n export type WindowsMap = typeof windowsMap\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1668400947731,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,18 @@\n+import { windowsMap } from '../main'\n \n-import { windowsMap } from \"../main\"\n-\n export type FileTree = {\n   fileName: string\n   level: number\n   children: FileTree[]\n   path: string\n   isDir: boolean\n+  showInput: boolean\n+  active: boolean\n+  parentNode: FileTree |null\n }\n export type IFileList = {\n-  fileName:string,\n\\ No newline at end of file\n-  filePath:string\n+  fileName: string\n+  filePath: string\n }\n \n-export type WindowsMap = typeof windowsMap\n+export type WindowsMap = typeof windowsMap\n"
                 }
             ],
             "date": 1667554409443,

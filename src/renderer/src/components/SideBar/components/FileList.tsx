@@ -12,7 +12,7 @@ import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../../../main/electron/config
 import { openFile } from '../../../common/openFile'
 
 import { mapFileList, SHOW_INPUT } from '../hooks/mapFileList'
-export const FileList = ({ toggle, setToggle }) => {
+export const FileList = ({ toggle }) => {
   console.log('render-fileTree-component')
   const ref = useRef<HTMLDivElement>(null)
   const setFileList = async () => {
@@ -57,7 +57,10 @@ export const FileList = ({ toggle, setToggle }) => {
         level: Number(level) + 1,
         isDir: true,
         children: [],
-        path: newPath
+        path: newPath,
+        showInput:false,
+        active:false,
+        parentNode:null
       })
       target?.parentElement?.appendChild(node)
     })
@@ -69,7 +72,10 @@ export const FileList = ({ toggle, setToggle }) => {
         level: Number(level) + 1,
         isDir: false,
         children: [],
-        path: newPath
+        path: newPath,
+        showInput:false,
+        active:false,
+        parentNode:null
       })
       target?.parentElement?.appendChild(node)
       openFile(newPath)

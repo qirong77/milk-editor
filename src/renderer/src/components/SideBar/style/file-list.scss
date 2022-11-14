@@ -1,6 +1,6 @@
 .file-list {
   overflow: scroll;
-  min-height: calc(100vh - 140px);
+  max-height: calc(100vh - 140px);
   padding-bottom: 50px;
   flex: auto;
   ul {
