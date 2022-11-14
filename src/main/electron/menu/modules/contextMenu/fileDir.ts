@@ -5,7 +5,7 @@ import { DarwinMenuItemConstructorOptions } from '../..'
 import { DELETE_DIR, NEW_DIR, NEW_FILE, RENAME_FILE } from '../../../../../common/eventType'
 import { deleteDir } from '../../../../helper/deleteDir'
 import { openFile } from '../../../../helper/openFile'
-import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../config/constant'
+import { DEFAULT_CONTENT, NEW_DIR_NAME, NEW_FILE_NAME } from '../../../config/constant'
 
 export const createFilDirMenu = (path: string) => {
   const template: DarwinMenuItemConstructorOptions[] = [
@@ -14,7 +14,7 @@ export const createFilDirMenu = (path: string) => {
       click(_menuItem, browserWindow, _event) {
         const newPath = resolve(path, NEW_FILE_NAME)
         if (!existsSync(newPath) && browserWindow) {
-          writeFileSync(newPath, '空内容')
+          writeFileSync(newPath, DEFAULT_CONTENT)
           browserWindow.webContents.send(NEW_FILE, path, newPath)
           openFile(newPath,browserWindow)
         } else {

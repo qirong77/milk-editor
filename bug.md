@@ -24,7 +24,6 @@
 22. 文件名和后缀用不同名字区分
 23. code标签默认名称
 24. 快速修改和切换可能导致出错(因为延迟更新的策略吗)
-25. 默认高度高一点方便滚动
 png转换为apple图标：
 https://www.iconfont.cn/search/index?searchType=icon&q=atom
 https://anyconv.com/png-to-icns-converter/

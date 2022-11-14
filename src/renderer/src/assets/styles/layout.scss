@@ -34,6 +34,10 @@ main {
         width: 100%;
         padding-top: 10px;
         overflow: scroll;
+        // 让他有默认高度，方便滚动
+        >div {
+          width: 80vh;
+        }
       }
     }
   }
