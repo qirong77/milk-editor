@@ -33,8 +33,6 @@ export const FileList = ({ toggle }) => {
     })
     window.api.onMain(RENAME_FILE, (_e, path) => {
       const target = document.getElementById(path)
-      console.log(target)
-      console.log(path)
       if (target && !target.className.includes(SHOW_INPUT)) {
         target.classList.add(SHOW_INPUT)
       }
@@ -51,6 +49,7 @@ export const FileList = ({ toggle }) => {
     })
     window.api.onMain(NEW_DIR, (_e, path, newPath) => {
       const target = document.getElementById(path)
+      target?.parentElement?.classList.remove('close')
       const level = target?.getAttribute('level')
       const node = mapFileList({
         fileName: NEW_DIR_NAME,
@@ -63,9 +62,11 @@ export const FileList = ({ toggle }) => {
         parentNode:null
       })
       target?.parentElement?.appendChild(node)
+      node?.classList.add(SHOW_INPUT)
     })
     window.api.onMain(NEW_FILE, (_e, path, newPath) => {
       const target = document.getElementById(path)
+      target?.parentElement?.classList.remove('close')
       const level = target?.getAttribute('level')
       const node = mapFileList({
         fileName: NEW_FILE_NAME,
@@ -78,7 +79,9 @@ export const FileList = ({ toggle }) => {
         parentNode:null
       })
       target?.parentElement?.appendChild(node)
+      node?.classList.add(SHOW_INPUT)
       openFile(newPath)
+
     })
   }, [])
   useEffect(() => {

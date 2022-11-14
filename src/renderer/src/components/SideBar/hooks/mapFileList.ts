@@ -2,7 +2,8 @@ import { POP_DIR_MENU, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../co
 import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
-
+let activeNode:HTMLLIElement
+const ACTIVE_CLASS = 'file-item-active'
 export const SHOW_INPUT = 'show-input'
 const dirIcon = `<div>
 <svg class='triangle-down' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
@@ -64,6 +65,9 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   }
   li.appendChild(createInput(fileName, li, isDir))
   li.addEventListener('contextmenu', (e) => {
+    activeNode?.classList.remove(ACTIVE_CLASS)
+    activeNode = li
+    activeNode.classList.add(ACTIVE_CLASS)
     e.stopPropagation()
     if (!isDir) window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
     else {
@@ -71,6 +75,9 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
     }
   })
   li.addEventListener('click', (e) => {
+    activeNode?.classList.remove(ACTIVE_CLASS)
+    activeNode = li
+    activeNode.classList.add(ACTIVE_CLASS)
     if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
@@ -78,7 +85,6 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
       fileItems.forEach((li) => {
         li.classList.remove('file-item-active')
       })
-      li.classList.add('file-item-active')
     }
     if (isDir) {
       e.stopPropagation()
