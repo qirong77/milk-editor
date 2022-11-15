@@ -36,7 +36,7 @@ main {
         overflow: scroll;
         // 让他有默认高度，方便滚动
         >div {
-          width: 80vh;
+          margin: auto;
         }
       }
     }

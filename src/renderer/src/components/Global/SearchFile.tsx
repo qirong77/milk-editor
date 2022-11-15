@@ -6,27 +6,28 @@ import { openFile } from '../../common/openFile'
 interface ISearchFile {
   closeSearchFile: () => void
   showSearchFile: boolean
-  openHeaderList:()=>void
-}
-const mapFiles = (fileList: IFileList[]) => {
-  const files = fileList.map((file, index) => {
-    return (
-      <li key={file.filePath} className={index === 0 ? 'active' : ''}>
-        <span>{file.fileName}</span>
-      </li>
-    )
-  })
-  return files
 }
 
-export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchFile ,openHeaderList}) => {
+export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchFile }) => {
   console.log('render-SearchFile')
   const [active, setActive] = useState(0)
   const iptRef = useRef<HTMLInputElement>(null)
-  const filesContainer = useRef<HTMLUListElement>(null)
-  const getFileList = async () => {
-    const fileList = await window.api.onGetFileList()
-    setFiles(mapFiles(fileList))
+  const onSelect = () => {
+    if (showSearchFile) {
+      const filePath = files[active]?.key as string
+      filePath && openFile(filePath)
+      closeSearchFile()
+    }
+  }
+  const mapFiles = (fileList: IFileList[]) => {
+    const files = fileList.map((file, index) => {
+      return (
+        <li key={file.filePath} onClick={onSelect} className={index === 0 ? 'active' : ''}>
+          <span>{file.fileName}</span>
+        </li>
+      )
+    })
+    return files
   }
   const [files, setFiles] = useState(
     mapFiles([
@@ -36,6 +37,13 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
       }
     ])
   )
+  const filesContainer = useRef<HTMLUListElement>(null)
+
+  const getFileList = async () => {
+    const fileList = await window.api.onGetFileList()
+    setFiles(mapFiles(fileList))
+  }
+
   useEffect(() => {
     // 在active更新后执行，否则不会按照你的预定的去
     const lis = filesContainer.current?.children
@@ -80,11 +88,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
         }
       }
       if (e.code === 'Enter') {
-        if(showSearchFile) {
-          const filePath = files[active]?.key as string
-          filePath && openFile(filePath)
-          closeSearchFile()
-        }
+        onSelect()
       }
     }
     document.addEventListener('keydown', hanleSelect)

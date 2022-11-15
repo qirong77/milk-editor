@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1667545328397,
@@ -48,6 +48,38 @@
                 {
                     "date": 1668442190487,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n $dark-background: rgb(46 52 64);\n $dark-header-backgournd: rgb(59, 62, 81);\n $dark-sideBar-background: rgb(36, 41, 51);\n $active-font-color: rgb(129, 161, 193);\n-$font-family: monospace;\n+$font-family: sans-serif;\n $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,\n   sans-serif;\n // 最外层是container\n @mixin theme-dark {\n"
+                },
+                {
+                    "date": 1668524107822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n-          margin-top: 10px;\n+          margin-top: 10px 0px;\n           pre code {\n             color: $dark-font-color;\n             // font-family:$code-fence-font-family\n           }\n"
+                },
+                {
+                    "date": 1668524115603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n           padding-left: 14px;\n           border-width: 2px;\n           margin: 15px 0;\n           p {\n+            width: 100%;\n             font-size: 18px;\n             color: rgb(153, 164, 182);\n           }\n         }\n"
+                },
+                {
+                    "date": 1668524162558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,11 @@\n     .milkdown {\n       background: $dark-background;\n       color: $dark-font-color;\n       font-family: $font-family;\n+      p {\n+        width: 100%;\n+      }\n       // 反引号，行内的代码\n       .editor {\n         code.code-inline {\n           color: $dark-font-color;\n@@ -51,9 +54,8 @@\n           padding-left: 14px;\n           border-width: 2px;\n           margin: 15px 0;\n           p {\n-            width: 100%;\n             font-size: 18px;\n             color: rgb(153, 164, 182);\n           }\n         }\n"
+                },
+                {
+                    "date": 1668524731918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,12 @@\n   background-color: $dark-background;\n   input {\n     color: $dark-font-color;\n     background-color: $dark-sideBar-background;\n-    border: 1px solid $active-font-color;\n+    border: 2px solid $active-font-color;\n+    border-radius: 6px;\n+    padding-left: 4px;\n+    transform: scale(1.1);\n   }\n   & > header {\n     background-color: $dark-header-backgournd;\n   }\n"
+                },
+                {
+                    "date": 1668525161020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -73,9 +73,9 @@\n     }\n   }\n   .search-file {\n     background-color: $dark-sideBar-background;\n-    li.active {\n+    li.active,li:hover {\n       background-color: $dark-header-backgournd;\n       color: $active-font-color;\n     }\n   }\n"
+                },
+                {
+                    "date": 1668526342604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n-          margin-top: 10px 0px;\n+          margin: 10px 0px;\n           pre code {\n             color: $dark-font-color;\n             // font-family:$code-fence-font-family\n           }\n"
+                },
+                {
+                    "date": 1668526359738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n-          margin: 10px 0px;\n+          // margin: 10px 0px;\n           pre code {\n             color: $dark-font-color;\n             // font-family:$code-fence-font-family\n           }\n"
+                },
+                {
+                    "date": 1668526412414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n-          // margin: 10px 0px;\n+          margin: 10px 0px;\n           pre code {\n             color: $dark-font-color;\n             // font-family:$code-fence-font-family\n           }\n"
                 }
             ],
             "date": 1667545328397,

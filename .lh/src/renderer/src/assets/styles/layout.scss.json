@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1667548742284,
@@ -12,6 +12,10 @@
                 {
                     "date": 1668443031159,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,41 +1,44 @@\n .container {\n-    width: 100vw;\n-    height: 100vh;\n-    display: flex;\n-    flex-direction: column;\n-    .header {\n-      height: 30px;\n-    }\n+  width: 100vw;\n+  height: 100vh;\n+  display: flex;\n+  flex-direction: column;\n+  .header {\n+    height: 30px;\n   }\n-  \n-  main {\n-    display: flex;\n-    flex-direction: row;\n-    height: 100%;\n-    // 装edtor的容器\n-    > div:nth-child(2) {\n-      // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n-      width: 100px;\n-      flex: auto;\n-      .milkdown-menu-wrapper {\n+}\n+\n+main {\n+  display: flex;\n+  flex-direction: row;\n+  height: 100%;\n+  // 装edtor的容器\n+  > div:nth-child(2) {\n+    // 不知道为什么需要设置他的宽度大小，否则拖动无法生效，可能和flex：auto有关\n+    width: 100px;\n+    flex: auto;\n+    .milkdown-menu-wrapper {\n+      width: 100%;\n+      height: 100%;\n+      display: flex;\n\\ No newline at end of file\n+      flex-direction: column;\n+      padding: 0 4vw;\n+      .milkdown-menu {\n+        position: absolute;\n+        z-index: 999;\n+        display: none;\n+      }\n+      .milkdown {\n+        max-height: calc(100vh - 30px);\n+        height: 100%;\n         width: 100%;\n-        height: 100%;\n-        display: flex;\n-        flex-direction: column;\n-        padding: 0 4vw;\n-        .milkdown-menu {\n-          position: absolute;\n-          z-index: 999;\n-          d\n+        padding-top: 10px;\n+        overflow: scroll;\n+        // 让他有默认高度，方便滚动\n+        >div {\n+          width: 80vh;\n         }\n-        .milkdown {\n-          max-height: calc(100vh - 30px);\n-          height: 100%;\n-          width: 100%;\n-          padding-top: 10px;\n-          overflow: scroll;\n-        }\n       }\n     }\n   }\n-  \n+}\n"
+                },
+                {
+                    "date": 1668524245259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n         padding-top: 10px;\n         overflow: scroll;\n         // 让他有默认高度，方便滚动\n         >div {\n-          width: 80vh;\n+          margin: auto;\n         }\n       }\n     }\n   }\n\\ No newline at end of file\n-}\n+}\n"
                 }
             ],
             "date": 1667548742284,

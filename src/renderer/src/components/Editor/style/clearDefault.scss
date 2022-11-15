@@ -1,6 +1,6 @@
 // 清除默认编辑器我不喜欢的样式
 // this file amis to clear some default styles of the milkdown editor
-.code-fence {
+.editor .code-fence {
   position: relative;
   // 代码块的语言框大小
   div.code-fence_selector {
@@ -14,7 +14,15 @@
     }
   }
 }
-
+div.milkdown div.editor p {
+  font-size: 18px;
+}
+div.milkdown .editor .code-fence pre {
+  font-size: 15px;
+}
+div.milkdown .editor .heading {
+  margin: 20px 0;
+}
 .code-fence_selector-wrapper {
   position: absolute !important;
   right: 0;

@@ -57,11 +57,13 @@ export const FileList = ({ toggle }) => {
         isDir: true,
         children: [],
         path: newPath,
-        showInput:false,
-        active:false,
-        parentNode:null
+        showInput: false,
+        active: false,
+        parentNode: null
       })
       target?.parentElement?.appendChild(node)
+      const input = node.children[2] as HTMLInputElement
+      input.focus()
       node?.classList.add(SHOW_INPUT)
     })
     window.api.onMain(NEW_FILE, (_e, path, newPath) => {
@@ -74,14 +76,15 @@ export const FileList = ({ toggle }) => {
         isDir: false,
         children: [],
         path: newPath,
-        showInput:false,
-        active:false,
-        parentNode:null
+        showInput: false,
+        active: false,
+        parentNode: null
       })
       target?.parentElement?.appendChild(node)
       node?.classList.add(SHOW_INPUT)
+      const input = node.children[1] as HTMLInputElement
+      input.focus()
       openFile(newPath)
-
     })
   }, [])
   useEffect(() => {
@@ -96,9 +99,7 @@ export const FileList = ({ toggle }) => {
       ref.current?.removeEventListener('contextmenu', handleContextMenu)
     }
   }, [])
-  useEffect(()=>{
-
-  },[])
+  useEffect(() => {}, [])
   return (
     <div
       style={{
