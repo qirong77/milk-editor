@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1667548742284,
@@ -16,6 +16,14 @@
                 {
                     "date": 1668524245259,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n         padding-top: 10px;\n         overflow: scroll;\n         // 让他有默认高度，方便滚动\n         >div {\n-          width: 80vh;\n+          margin: auto;\n         }\n       }\n     }\n   }\n\\ No newline at end of file\n-}\n+}\n"
+                },
+                {
+                    "date": 1668567993276,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n       }\n       .milkdown {\n         max-height: calc(100vh - 30px);\n         height: 100%;\n-        width: 100%;\n         padding-top: 10px;\n         overflow: scroll;\n         // 让他有默认高度，方便滚动\n         >div {\n@@ -40,5 +39,5 @@\n         }\n       }\n     }\n   }\n-}\n\\ No newline at end of file\n+}\n"
+                },
+                {
+                    "date": 1668568247193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n         max-height: calc(100vh - 30px);\n         height: 100%;\n         padding-top: 10px;\n         overflow: scroll;\n+        width: inherit;\n         // 让他有默认高度，方便滚动\n         >div {\n           margin: auto;\n         }\n"
                 }
             ],
             "date": 1667548742284,

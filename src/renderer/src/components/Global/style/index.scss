@@ -1,3 +1,7 @@
 @import './drag-line.scss';
 @import './search-file.scss';
-@import './search-word.scss'
+@import './search-word.scss';
+.milkdown-menu-open {
+    display: flex !important;
+    left: 0 ;
+}

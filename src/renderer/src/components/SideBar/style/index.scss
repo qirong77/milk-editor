@@ -1,6 +1,7 @@
 @import './file-list.scss';
 @import '../../../assets/styles/variables.scss';
 @import './header-list.scss';
+@import './searchWordGlobal.scss';
 $max-height: calc(100vh - 30px);
 $title-height: 30px;
 .side-bar {

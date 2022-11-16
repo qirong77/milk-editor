@@ -12,6 +12,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
   console.log('render-SearchFile')
   const [active, setActive] = useState(0)
   const iptRef = useRef<HTMLInputElement>(null)
+  // 点击无法生效不知道为什么，可能和函数渲染有关，active变了或者不存在？
   const onSelect = () => {
     if (showSearchFile) {
       const filePath = files[active]?.key as string
@@ -117,7 +118,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
     >
       <div>
         <span>{active}</span>
-        <input placeholder="" onChange={updateFiles} ref={iptRef} type="text" />
+        <input onChange={updateFiles} ref={iptRef} type="text" />
       </div>
       <ul ref={filesContainer}>{files}</ul>
     </div>

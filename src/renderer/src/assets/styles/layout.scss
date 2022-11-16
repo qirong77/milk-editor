@@ -31,9 +31,9 @@ main {
       .milkdown {
         max-height: calc(100vh - 30px);
         height: 100%;
-        width: 100%;
         padding-top: 10px;
         overflow: scroll;
+        width: inherit;
         // 让他有默认高度，方便滚动
         >div {
           margin: auto;

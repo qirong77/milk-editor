@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1667547934616,
@@ -76,6 +76,10 @@
                 {
                     "date": 1667809250446,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,10 @@\n   padding: 30px 0 20px 0;\n   transition: 0.4s;\n   font-size: initial;\n   position: relative;\n+  display: flex;\n+  flex-direction: column;\n   &:hover {\n     footer {\n       display: flex;\n       justify-content: space-around;\n"
+                },
+                {
+                    "date": 1668529846761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n @import './file-list.scss';\n @import '../../../assets/styles/variables.scss';\n @import './header-list.scss';\n+@import './searchWordGlobal.scss';\n $max-height: calc(100vh - 30px);\n $title-height: 30px;\n .side-bar {\n   user-select: none;\n"
                 }
             ],
             "date": 1667547934616,

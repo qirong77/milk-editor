@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 26,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1667544694480,
@@ -112,6 +112,14 @@
                 {
                     "date": 1668525589372,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,23 +6,30 @@\n interface ISearchFile {\n   closeSearchFile: () => void\n   showSearchFile: boolean\n }\n-const mapFiles = (fileList: IFileList[]) => {\n-  const files = fileList.map((file, index) => {\n-    return (\n-      <li key={file.filePath} className={index === 0 ? 'active' : ''}>\n-        <span>{file.fileName}</span>\n-      </li>\n-    )\n-  })\n-  return files\n-}\n \n export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchFile }) => {\n   console.log('render-SearchFile')\n   const [active, setActive] = useState(0)\n   const iptRef = useRef<HTMLInputElement>(null)\n+  const onSelect = () => {\n+    if (showSearchFile) {\n+      const filePath = files[active]?.key as string\n+      filePath && openFile(filePath)\n+      closeSearchFile()\n+    }\n+  }\n+  const mapFiles = (fileList: IFileList[]) => {\n+    const files = fileList.map((file, index) => {\n+      return (\n+        <li key={file.filePath} onClick={onSelect} className={index === 0 ? 'active' : ''}>\n+          <span>{file.fileName}</span>\n+        </li>\n+      )\n+    })\n+    return files\n+  }\n   const [files, setFiles] = useState(\n     mapFiles([\n       {\n         fileName: '初始化失败',\n@@ -30,19 +37,14 @@\n       }\n     ])\n   )\n   const filesContainer = useRef<HTMLUListElement>(null)\n+\n   const getFileList = async () => {\n     const fileList = await window.api.onGetFileList()\n     setFiles(mapFiles(fileList))\n   }\n-  const onSelect = () => {\n-    if (showSearchFile) {\n-      const filePath = files[active]?.key as string\n-      filePath && openFile(filePath)\n-      closeSearchFile()\n-    }\n-  }\n+\n   useEffect(() => {\n     // 在active更新后执行，否则不会按照你的预定的去\n     const lis = filesContainer.current?.children\n     if (lis?.length) {\n"
+                },
+                {
+                    "date": 1668528970673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchFile }) => {\n   console.log('render-SearchFile')\n   const [active, setActive] = useState(0)\n   const iptRef = useRef<HTMLInputElement>(null)\n+  // 点击无法生效不知道为什么，可能和函数渲染有关，active变了或者不存在？\n   const onSelect = () => {\n     if (showSearchFile) {\n       const filePath = files[active]?.key as string\n       filePath && openFile(filePath)\n"
+                },
+                {
+                    "date": 1668601204511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -117,9 +117,9 @@\n       }}\n     >\n       <div>\n         <span>{active}</span>\n-        <input placeholder=\"\" onChange={updateFiles} ref={iptRef} type=\"text\" />\n+        <input onChange={updateFiles} ref={iptRef} type=\"text\" />\n       </div>\n       <ul ref={filesContainer}>{files}</ul>\n     </div>\n   )\n"
                 }
             ],
             "date": 1667544694480,
