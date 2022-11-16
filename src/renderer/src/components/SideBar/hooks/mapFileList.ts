@@ -8,6 +8,7 @@ import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
 export let activeNode: HTMLLIElement
+let isFocusOnFile = false
 const ACTIVE_CLASS = 'file-item-active'
 export const SHOW_INPUT = 'show-input'
 const dirIcon = `<div>
@@ -82,6 +83,7 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   })
   li.addEventListener('click', (e) => {
     e.stopPropagation()
+    isFocusOnFile = true
     activeNode?.classList.remove(ACTIVE_CLASS)
     activeNode = li
     activeNode.classList.add(ACTIVE_CLASS)
@@ -97,13 +99,17 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   return li
 }
 document.addEventListener('keydown', (e) => {
-  if (e.code === 'Enter' && activeNode) {
+  if (e.code === 'Enter' && isFocusOnFile && activeNode) {
     activeNode.classList.add(SHOW_INPUT)
     activeNode.querySelector('input')?.focus()
   }
-  if (e.code === 'Backspace' && activeNode) {
+  if (e.code === 'Backspace' && e.metaKey && activeNode) {
     window.api.sendToMain(DELETE_FILE_R, activeNode.getAttribute('id'))
   }
+})
+document.addEventListener('click', (_e) => {
+  // li里面又阻止冒泡了，所以这里监听不到
+  isFocusOnFile = false
 })
 export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree) => {
   const li = createLi(fileName, path, level, isDir)

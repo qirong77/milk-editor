@@ -1,7 +1,8 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { existsSync, renameSync, unlinkSync, writeFileSync } from 'fs'
+import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'
 import { basename } from 'path'
 import { windowsMap } from '../../..'
+import { deleteDir } from '../../../helper/deleteDir'
 import {
   CLOSE_SCREEN,
   DELETE_FILE,
@@ -43,7 +44,7 @@ export const onRender = () => {
       renameSync(oldFilePath, newFilePath)
       const currentWindow = getWindow(e)
       const newName = basename(newFilePath)
-      currentWindow?.webContents.send(RENAME_FILE_DONE,newFilePath,newName)
+      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName)
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)
@@ -68,7 +69,7 @@ export const onRender = () => {
       })
   })
   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
-    if(existsSync(filePath)) {
+    if (existsSync(filePath)) {
       writeFileSync(filePath, newContent)
     } else {
       console.log('找不到该文件路径')
@@ -83,8 +84,11 @@ export const onRender = () => {
       })
   })
   // 在渲染进程中commend + delete删除文件
-  ipcMain.on(DELETE_FILE_R,(_e,path:string)=>{
-    existsSync(path) && unlinkSync(path)
+  ipcMain.on(DELETE_FILE_R, (_e, path: string) => {
+    if (!existsSync(path)) {
+      throw new Error('删除文件错误，文件不存在：' + path)
+    }
+    if (lstatSync(path).isDirectory()) deleteDir(path)
     const window = BrowserWindow.getFocusedWindow()
     window?.webContents.send(DELETE_FILE, path)
   })

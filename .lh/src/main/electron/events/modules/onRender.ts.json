@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 62,
+            "activePatchIndex": 65,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -256,6 +256,18 @@
                 {
                     "date": 1668603349247,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync, writeFileSync } from 'fs'\n+import { existsSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { basename } from 'path'\n import { windowsMap } from '../../..'\n import {\n   CLOSE_SCREEN,\n+  DELETE_FILE,\n+  DELETE_FILE_R,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n   POP_DIR_MENU,\n@@ -79,5 +81,11 @@\n       createRotDirMenu(path).popup({\n         window\n       })\n   })\n+  // 在渲染进程中commend + delete删除文件\n+  ipcMain.on(DELETE_FILE_R,(_e,path:string)=>{\n+    existsSync(path) && unlinkSync(path)\n+    const window = BrowserWindow.getFocusedWindow()\n+    window?.webContents.send(DELETE_FILE, path)\n+  })\n }\n"
+                },
+                {
+                    "date": 1668605908771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n+import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { basename } from 'path'\n import { windowsMap } from '../../..'\n+import { deleteDir } from '../../../helper/deleteDir'\n import {\n   CLOSE_SCREEN,\n   DELETE_FILE,\n   DELETE_FILE_R,\n@@ -42,9 +43,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE,newFilePath,newName)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n@@ -67,9 +68,9 @@\n         window\n       })\n   })\n   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {\n-    if(existsSync(filePath)) {\n+    if (existsSync(filePath)) {\n       writeFileSync(filePath, newContent)\n     } else {\n       console.log('找不到该文件路径')\n       console.log(filePath)\n@@ -82,10 +83,13 @@\n         window\n       })\n   })\n   // 在渲染进程中commend + delete删除文件\n-  ipcMain.on(DELETE_FILE_R,(_e,path:string)=>{\n-    existsSync(path) && unlinkSync(path)\n+  ipcMain.on(DELETE_FILE_R, (_e, path: string) => {\n+    if (existsSync(path)) {\n+      throw new Error('文件不存在：' + path)\n+    }\n+    if (lstatSync(path).isDirectory()) deleteDir(path)\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n   })\n }\n"
+                },
+                {
+                    "date": 1668608827768,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n       })\n   })\n   // 在渲染进程中commend + delete删除文件\n   ipcMain.on(DELETE_FILE_R, (_e, path: string) => {\n-    if (existsSync(path)) {\n+    if (!existsSync(path)) {\n       throw new Error('文件不存在：' + path)\n     }\n     if (lstatSync(path).isDirectory()) deleteDir(path)\n     const window = BrowserWindow.getFocusedWindow()\n"
+                },
+                {
+                    "date": 1668609315622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -85,9 +85,9 @@\n   })\n   // 在渲染进程中commend + delete删除文件\n   ipcMain.on(DELETE_FILE_R, (_e, path: string) => {\n     if (!existsSync(path)) {\n-      throw new Error('文件不存在：' + path)\n+      throw new Error('删除文件错误，文件不存在：' + path)\n     }\n     if (lstatSync(path).isDirectory()) deleteDir(path)\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n"
                 }
             ],
             "date": 1667541566569,
