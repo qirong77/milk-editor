@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 27,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1667544815602,
@@ -116,6 +116,10 @@
                 {
                     "date": 1668600982836,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { useEffect, useState } from 'react'\n import { DragLine } from './DragLine'\n import { SearchFile } from './SearchFile'\n import { SearchWord } from './SearchWord'\n-const wordx = '前端'\n+\n const dfs = (root: HTMLElement) => {\n   root.childNodes.forEach((child) => {\n     if (child instanceof HTMLElement) {\n       dfs(child)\n@@ -37,18 +37,9 @@\n       if (e.metaKey && e.code === 'KeyP') {\n         setShowSearchFile(!showSearchFile)\n       }\n       if (e.code === 'Enter') {\n-        // console.log('search:' + word)\n-        // const editor = document.querySelector('.editor') as HTMLElement\n-        // const pre = document.querySelector('pre')\n-        // if (pre) {\n-        //   pre.scrollIntoView()\n-        //   pre.classList.add('xxxx')\n-        //   console.log(pre)\n-        // }\n-        // console.log(editor)\n-        // editor && dfs(editor)\n+\n       }\n     }\n     document.addEventListener('keydown', handleKeydown)\n     return () => document.removeEventListener('keydown', handleKeydown)\n"
+                },
+                {
+                    "date": 1668602773739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,10 @@\n   })\n }\n export const GlobalComponents = () => {\n   const [showSearchWord, setShowSearchWord] = useState(false)\n-  const [nodeList, setNodeList] = useState<HTMLElement[]>([])\n   const [showSearchFile, setShowSearchFile] = useState(false)\n+  \n   const [word, setWord] = useState('')\n \n   useEffect(() => {\n     const handleKeydown = (e: KeyboardEvent) => {\n"
                 }
             ],
             "date": 1667544815602,

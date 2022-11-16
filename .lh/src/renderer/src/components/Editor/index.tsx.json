@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1667633625983,
@@ -44,6 +44,10 @@
                 {
                     "date": 1668442680407,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,7 +34,8 @@\n   // 存储的函数必须根据副作用实时修改，否则不会更新\n   useEffect(() => {\n     window.api.sendToMain(SAVE_FILE, filePath, markdown)\n     console.log('update-' + filePath)\n+    console.log(markdown)\n   }, [markdown])\n   return <ReactEditor editor={editor} />\n }\n"
+                },
+                {
+                    "date": 1668602773738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,8 +34,7 @@\n   // 存储的函数必须根据副作用实时修改，否则不会更新\n   useEffect(() => {\n     window.api.sendToMain(SAVE_FILE, filePath, markdown)\n     console.log('update-' + filePath)\n-    console.log(markdown)\n   }, [markdown])\n   return <ReactEditor editor={editor} />\n }\n"
                 }
             ],
             "date": 1667633625983,

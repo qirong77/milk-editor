@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 61,
+            "activePatchIndex": 62,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -252,6 +252,10 @@
                 {
                     "date": 1668350998719,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   POP_DIR_MENU,\n   POP_FILE_ITEM_MENU,\n   POP_ROOT_MENU,\n   RENAME_FILE,\n+  RENAME_FILE_DONE,\n   SAVE_FILE\n } from '../../../../common/eventType'\n import { getWindow } from '../../../helper/getWindow'\n import { openFile } from '../../../helper/openFile'\n@@ -39,9 +40,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      // currentWindow?.webContents.send(RENAME_FILE,newFilePath,newName)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE,newFilePath,newName)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
+                },
+                {
+                    "date": 1668603349247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n import { BrowserWindow, ipcMain } from 'electron'\n-import { existsSync, renameSync, writeFileSync } from 'fs'\n+import { existsSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { basename } from 'path'\n import { windowsMap } from '../../..'\n import {\n   CLOSE_SCREEN,\n+  DELETE_FILE,\n+  DELETE_FILE_R,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n   POP_DIR_MENU,\n@@ -79,5 +81,11 @@\n       createRotDirMenu(path).popup({\n         window\n       })\n   })\n+  // 在渲染进程中commend + delete删除文件\n+  ipcMain.on(DELETE_FILE_R,(_e,path:string)=>{\n+    existsSync(path) && unlinkSync(path)\n+    const window = BrowserWindow.getFocusedWindow()\n+    window?.webContents.send(DELETE_FILE, path)\n+  })\n }\n"
                 }
             ],
             "date": 1667541566569,

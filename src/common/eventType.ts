@@ -8,6 +8,7 @@ export const POP_FILE_ITEM_MENU = 'pop file item menu'
 export const POP_DIR_MENU = 'pop dir menu'
 export const POP_ROOT_MENU = 'pop root dir menu'
 export const SAVE_FILE = 'save a file'
+export const DELETE_FILE_R = 'delete a file from renender'
 // interProcess
 export const GET_DIR_TREE = 'get dir tree'
 export const GET_FILE_LIST = 'get file list'

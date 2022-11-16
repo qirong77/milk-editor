@@ -62,8 +62,8 @@ export const FileList = ({ toggle }) => {
         parentNode: null
       })
       target?.parentElement?.appendChild(node)
-      const input = node.children[2] as HTMLInputElement
-      input.focus()
+      const input = target?.querySelector('input')
+      input?.focus()
       node?.classList.add(SHOW_INPUT)
     })
     window.api.onMain(NEW_FILE, (_e, path, newPath) => {

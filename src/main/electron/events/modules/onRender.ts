@@ -1,9 +1,11 @@
 import { BrowserWindow, ipcMain } from 'electron'
-import { existsSync, renameSync, writeFileSync } from 'fs'
+import { existsSync, renameSync, unlinkSync, writeFileSync } from 'fs'
 import { basename } from 'path'
 import { windowsMap } from '../../..'
 import {
   CLOSE_SCREEN,
+  DELETE_FILE,
+  DELETE_FILE_R,
   MAX_SCREEN,
   MIN_SCREEN,
   OPEN_FILE,
@@ -79,5 +81,11 @@ export const onRender = () => {
       createRotDirMenu(path).popup({
         window
       })
+  })
+  // 在渲染进程中commend + delete删除文件
+  ipcMain.on(DELETE_FILE_R,(_e,path:string)=>{
+    existsSync(path) && unlinkSync(path)
+    const window = BrowserWindow.getFocusedWindow()
+    window?.webContents.send(DELETE_FILE, path)
   })
 }

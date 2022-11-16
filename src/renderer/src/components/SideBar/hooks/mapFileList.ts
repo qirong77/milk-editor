@@ -1,8 +1,13 @@
-import { POP_DIR_MENU, POP_FILE_ITEM_MENU, RENAME_FILE } from '../../../../../common/eventType'
+import {
+  DELETE_FILE_R,
+  POP_DIR_MENU,
+  POP_FILE_ITEM_MENU,
+  RENAME_FILE
+} from '../../../../../common/eventType'
 import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
-export let activeNode:HTMLLIElement
+export let activeNode: HTMLLIElement
 const ACTIVE_CLASS = 'file-item-active'
 export const SHOW_INPUT = 'show-input'
 const dirIcon = `<div>
@@ -23,7 +28,7 @@ const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
     const oldPath = li.getAttribute('id') || ''
     const newPath = resolve(dirname(oldPath), newName)
     newName && window.api.sendToMain(RENAME_FILE, oldPath, newPath)
-    li.innerHTML = (isDir ? dirIcon :'') +`<span>${newName}</span>`
+    li.innerHTML = (isDir ? dirIcon : '') + `<span>${newName}</span>`
     li.appendChild(createInput(newName, li, isDir))
     li.setAttribute('id', newPath)
     li.classList.remove(SHOW_INPUT)
@@ -91,6 +96,15 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   })
   return li
 }
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Enter' && activeNode) {
+    activeNode.classList.add(SHOW_INPUT)
+    activeNode.querySelector('input')?.focus()
+  }
+  if (e.code === 'Backspace' && activeNode) {
+    window.api.sendToMain(DELETE_FILE_R, activeNode.getAttribute('id'))
+  }
+})
 export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree) => {
   const li = createLi(fileName, path, level, isDir)
   if (!isDir) return li

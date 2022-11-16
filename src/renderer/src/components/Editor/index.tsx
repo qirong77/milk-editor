@@ -35,7 +35,6 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
   useEffect(() => {
     window.api.sendToMain(SAVE_FILE, filePath, markdown)
     console.log('update-' + filePath)
-    console.log(markdown)
   }, [markdown])
   return <ReactEditor editor={editor} />
 }

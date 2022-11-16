@@ -14,8 +14,8 @@ const dfs = (root: HTMLElement) => {
 }
 export const GlobalComponents = () => {
   const [showSearchWord, setShowSearchWord] = useState(false)
-  const [nodeList, setNodeList] = useState<HTMLElement[]>([])
   const [showSearchFile, setShowSearchFile] = useState(false)
+  
   const [word, setWord] = useState('')
 
   useEffect(() => {
