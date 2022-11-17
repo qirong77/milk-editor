@@ -103,7 +103,7 @@ document.addEventListener('keydown', (e) => {
     activeNode.classList.add(SHOW_INPUT)
     activeNode.querySelector('input')?.focus()
   }
-  if (e.code === 'Backspace' && e.metaKey && activeNode) {
+  if (e.code === 'Backspace' && e.metaKey && isFocusOnFile && activeNode) {
     window.api.sendToMain(DELETE_FILE_R, activeNode.getAttribute('id'))
   }
 })

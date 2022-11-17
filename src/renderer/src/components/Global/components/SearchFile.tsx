@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { IFileList } from '../../../../common/interface'
+import { IFileList } from '../../../../../common/interface'
 
-import { openFile } from '../../common/openFile'
+import { openFile } from '../../../common/openFile'
 
 interface ISearchFile {
   closeSearchFile: () => void

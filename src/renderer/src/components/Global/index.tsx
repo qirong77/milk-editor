@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { DragLine } from './DragLine'
-import { SearchFile } from './SearchFile'
-import { SearchWord } from './SearchWord'
+import { DragLine } from './components/DragLine'
+import { SearchFile } from './components/SearchFile'
+import { SearchWord } from './components/SearchWord'
 
 const dfs = (root: HTMLElement) => {
   root.childNodes.forEach((child) => {
