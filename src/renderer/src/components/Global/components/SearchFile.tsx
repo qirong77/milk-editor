@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { IFileList } from '../../../../../common/interface'
 
 import { openFile } from '../../../common/openFile'
+import { setActiveFile } from '../../SideBar/hooks/mapFileList'
 
 interface ISearchFile {
   closeSearchFile: () => void
@@ -18,6 +19,7 @@ export const SearchFile: React.FC<ISearchFile> = ({ closeSearchFile, showSearchF
       const filePath = files[active]?.key as string
       filePath && openFile(filePath)
       closeSearchFile()
+      setActiveFile(filePath)
     }
   }
   const mapFiles = (fileList: IFileList[]) => {

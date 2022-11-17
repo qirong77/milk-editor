@@ -7,7 +7,7 @@ import {
 import { FileTree } from '../../../../../common/interface'
 import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
-export let activeNode: HTMLLIElement
+export let activeNode: HTMLElement
 let isFocusOnFile = false
 const ACTIVE_CLASS = 'file-item-active'
 export const SHOW_INPUT = 'show-input'
@@ -22,6 +22,22 @@ const dirIcon = `<div>
   <path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9zM2.5 3a.5.5 0 0 0-.5.5V6h12v-.5a.5.5 0 0 0-.5-.5H9c-.964 0-1.71-.629-2.174-1.154C6.374 3.334 5.82 3 5.264 3H2.5zM14 7H2v5.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V7z"/>
 </svg>
 </div>`
+// 选择一个文件
+export const setActiveFile = (path: string,isDir=false) => {
+  const activedNodes = document.getElementsByClassName(ACTIVE_CLASS)
+  Array.from(activedNodes).forEach((node) => {
+    node.classList.remove(ACTIVE_CLASS)
+  })
+  let target = document.getElementById(path)
+  if (target && !isDir) {
+    target.classList.add(ACTIVE_CLASS)
+    activeNode = target
+    while (target?.parentElement instanceof HTMLUListElement) {
+      target.parentElement.classList.remove('close')
+      target = target.parentElement
+    }
+  }
+}
 const createInput = (fileName: string, li: HTMLLIElement, isDir: boolean) => {
   const input = document.createElement('input')
   const handleChange = () => {
@@ -71,22 +87,24 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   }
   li.appendChild(createInput(fileName, li, isDir))
   li.addEventListener('contextmenu', (e) => {
+    console.log('contextmenu')
     e.stopPropagation()
-    activeNode?.classList.remove(ACTIVE_CLASS)
-    activeNode = li
-    activeNode.classList.add(ACTIVE_CLASS)
-    e.stopPropagation()
+    setActiveFile(path)
     if (!isDir) window.api.sendToMain(POP_FILE_ITEM_MENU, li.getAttribute('id'))
     else {
       window.api.sendToMain(POP_DIR_MENU, li.getAttribute('id'))
     }
   })
   li.addEventListener('click', (e) => {
+    console.log('click')
     e.stopPropagation()
     isFocusOnFile = true
     activeNode?.classList.remove(ACTIVE_CLASS)
     activeNode = li
     activeNode.classList.add(ACTIVE_CLASS)
+    // 不知道为什么这里使用setActive不行
+    // setActiveFile(path)
+
     if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
@@ -115,6 +133,7 @@ export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree
   const li = createLi(fileName, path, level, isDir)
   if (!isDir) return li
   const ul = document.createElement('ul')
+  if (level > 0) ul.classList.add('close')
   ul.appendChild(li)
   children.forEach((file) => {
     ul.appendChild(mapFileList(file))
