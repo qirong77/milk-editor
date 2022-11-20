@@ -7,7 +7,7 @@ import { replaceAll } from '@milkdown/utils'
 import { useConfig } from './hooks/useConfig'
 import { usePlugins } from './hooks/usePlugin'
 import { updateHeaders } from '../SideBar/utils/updateHeaders'
-import { SAVE_FILE } from '../../../../common/eventType'
+import { POP_EDITOR_MENU, SAVE_FILE } from '../../../../common/eventType'
 
 interface MilkdownEditor {
   content: string
@@ -23,6 +23,12 @@ export const MilkdownEditor: React.FC<MilkdownEditor> = ({ content, filePath }) 
     usePlugins(newEditor)
     return newEditor
   })
+  useEffect(()=>{
+    const editor = document.querySelector('.editor')
+    editor?.addEventListener('contextmenu',()=>{
+      window.api.sendToMain(POP_EDITOR_MENU)
+    })
+  },[])
   // 全部替换，点击文件列表的时候起作用
   useEffect(() => {
     if (!loading) {

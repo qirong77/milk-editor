@@ -11,6 +11,7 @@ import {
   MIN_SCREEN,
   OPEN_FILE,
   POP_DIR_MENU,
+  POP_EDITOR_MENU,
   POP_FILE_ITEM_MENU,
   POP_ROOT_MENU,
   RENAME_FILE,
@@ -22,6 +23,7 @@ import { openFile } from '../../../helper/openFile'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
 import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'
+import { createEditorMenu } from '../../menu/modules/contextMenu/editor'
 
 export const onRender = () => {
   ipcMain.on(MIN_SCREEN, () => BrowserWindow.getFocusedWindow()?.minimize())
@@ -44,7 +46,7 @@ export const onRender = () => {
       renameSync(oldFilePath, newFilePath)
       const currentWindow = getWindow(e)
       const newName = basename(newFilePath)
-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName)
+      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)
@@ -67,6 +69,13 @@ export const onRender = () => {
       createFilDirMenu(path).popup({
         window
       })
+  })
+  ipcMain.on(POP_EDITOR_MENU,(_e,path)=>{
+    const window = BrowserWindow.getFocusedWindow()
+    const menu = createEditorMenu(path)
+    window && menu.popup({
+      window
+    })
   })
   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
     if (existsSync(filePath)) {

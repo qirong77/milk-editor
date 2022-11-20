@@ -16,7 +16,6 @@ export const getDirectoryTree = (path: string, level = 0, parentNode: null | Fil
     active: false,
     parentNode,
   }
-  // node.parentNode = parentNode
   if (!lstatSync(path).isDirectory()) return node
   node.isDir = true
   readdirSync(path).forEach((fileName) => {

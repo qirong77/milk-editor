@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 66,
+            "activePatchIndex": 68,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -272,6 +272,14 @@
                 {
                     "date": 1668674889858,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,8 +88,9 @@\n     if (!existsSync(path)) {\n       throw new Error('删除文件错误，文件不存在：' + path)\n     }\n     if (lstatSync(path).isDirectory()) deleteDir(path)\n+    else unlinkSync(path)\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n   })\n }\n"
+                },
+                {
+                    "date": 1668936232883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n   POP_DIR_MENU,\n+  POP_EDITOR_MENU,\n   POP_FILE_ITEM_MENU,\n   POP_ROOT_MENU,\n   RENAME_FILE,\n   RENAME_FILE_DONE,\n@@ -21,8 +22,9 @@\n import { openFile } from '../../../helper/openFile'\n import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'\n import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'\n import { createRotDirMenu } from '../../menu/modules/contextMenu/rootDir'\n+import { createEditorMenu } from '../../menu/modules/contextMenu/editor'\n \n export const onRender = () => {\n   ipcMain.on(MIN_SCREEN, () => BrowserWindow.getFocusedWindow()?.minimize())\n   ipcMain.on(MAX_SCREEN, (e) => {\n@@ -67,8 +69,15 @@\n       createFilDirMenu(path).popup({\n         window\n       })\n   })\n+  ipcMain.on(POP_EDITOR_MENU,(_e,path)=>{\n+    const window = BrowserWindow.getFocusedWindow()\n+    const menu = createEditorMenu(path)\n+    window && menu.popup({\n+      window\n+    })\n+  })\n   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {\n     if (existsSync(filePath)) {\n       writeFileSync(filePath, newContent)\n     } else {\n"
+                },
+                {
+                    "date": 1668938114568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
                 }
             ],
             "date": 1667541566569,

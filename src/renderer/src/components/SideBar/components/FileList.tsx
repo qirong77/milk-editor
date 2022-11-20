@@ -82,8 +82,8 @@ export const FileList = ({ toggle }) => {
       })
       target?.parentElement?.appendChild(node)
       node?.classList.add(SHOW_INPUT)
-      const input = node.children[1] as HTMLInputElement
-      input.focus()
+      const input = target?.querySelector('input')
+      input?.focus()
       openFile(newPath)
     })
   }, [])

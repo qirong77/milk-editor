@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1667537076910,
@@ -124,6 +124,18 @@
                 {
                     "date": 1668352893110,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import { useEffect, useState } from 'react'\n-import { OPEN_FILE, RENAME_FILE } from '../../common/eventType'\n+import { OPEN_FILE, RENAME_FILE_DONE } from '../../common/eventType'\n \n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n@@ -15,9 +15,9 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE,(_e,newPath,newName) => {\n+    window.api.onMain(RENAME_FILE_DONE,(_e,newPath,newName) => {\n       setFilePath(newPath)\n       setTitle(newName)\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1668938111703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE, RENAME_FILE_DONE } from '../../common/eventType'\n-\n+import path from 'path-browserify'\n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n@@ -15,11 +15,14 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE_DONE,(_e,newPath,newName) => {\n-      setFilePath(newPath)\n-      setTitle(newName)\n+    // 因为你重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n+    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\\\n+      if(oldFiePath===filePath) {\n+        setFilePath(newPath)\n+        setTitle(newName)\n+      }\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1668938125070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n     // 因为你重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n-    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\\\n+    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\n       if(oldFiePath===filePath) {\n         setFilePath(newPath)\n         setTitle(newName)\n       }\n"
+                },
+                {
+                    "date": 1668939182914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE, RENAME_FILE_DONE } from '../../common/eventType'\n-import path from 'path-browserify'\n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n@@ -15,11 +14,11 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    // 因为你重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n     window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\n-      if(oldFiePath===filePath) {\n+    // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n+    if(oldFiePath===filePath) {\n         setFilePath(newPath)\n         setTitle(newName)\n       }\n     })\n"
                 }
             ],
             "date": 1667537076910,
