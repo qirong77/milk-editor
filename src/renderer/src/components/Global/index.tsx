@@ -32,7 +32,13 @@ export const GlobalComponents = () => {
         SideBar?.classList.toggle('side-bar-close')
       }
       if (e.metaKey && e.code === 'KeyF') {
+        console.log('commend + F')
         setShowSearchWord(!showSearchWord)
+      }
+      // 避免三个快捷键同时出现 全局搜索和局部搜索
+      if(e.metaKey && e.code ==='KeyF' && e.shiftKey) {
+        console.log('commend + Shift +  F')
+        setShowSearchWord(false)
       }
       if (e.metaKey && e.code === 'KeyP') {
         setShowSearchFile(!showSearchFile)
@@ -43,7 +49,7 @@ export const GlobalComponents = () => {
     }
     document.addEventListener('keydown', handleKeydown)
     return () => document.removeEventListener('keydown', handleKeydown)
-  }, [word, showSearchFile])
+  }, [word, showSearchFile,showSearchWord])
 
   return (
     <>

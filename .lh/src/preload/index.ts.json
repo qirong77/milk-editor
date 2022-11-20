@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 21,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -92,6 +92,10 @@
                 {
                     "date": 1667834497951,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n+  \n   onGetDirTree: async () => {\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n"
+                },
+                {
+                    "date": 1668872648420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n-import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'\n+import { GET_DIR_TREE, GET_FILE_LIST, GET_SEARCH_RESUlT } from '../common/eventType'\n import { IFileList, FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string, ...args: any[]) => {\n@@ -12,16 +12,20 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n-  \n+\n   onGetDirTree: async () => {\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]\n+    const fileList = (await ipcRenderer.invoke(GET_FILE_LIST)) as IFileList[]\n     return fileList\n+  },\n+  searchDirWord: async (target:string) => {\n+    const results = await ipcRenderer.invoke(GET_SEARCH_RESUlT,target)\n+    return results\n   }\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n"
                 }
             ],
             "date": 1667541566569,

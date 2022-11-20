@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 19,
             "patches": [
                 {
                     "date": 1667545328397,
@@ -80,6 +80,10 @@
                 {
                     "date": 1668526412414,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n             color: rgb(153, 164, 182);\n           }\n         }\n         .code-fence {\n-          // margin: 10px 0px;\n+          margin: 10px 0px;\n           pre code {\n             color: $dark-font-color;\n             // font-family:$code-fence-font-family\n           }\n"
+                },
+                {
+                    "date": 1668929825954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,11 @@\n       a {\n         text-decoration-color: $dark-font-color;\n         color: $dark-font-color;\n       }\n+      .swg {\n+        background-color: $dark-sideBar-background;\n+      }\n     }\n     .milkdown {\n       background: $dark-background;\n       color: $dark-font-color;\n"
                 }
             ],
             "date": 1667545328397,

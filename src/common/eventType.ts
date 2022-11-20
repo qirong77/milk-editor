@@ -12,6 +12,7 @@ export const DELETE_FILE_R = 'delete a file from renender'
 // interProcess
 export const GET_DIR_TREE = 'get dir tree'
 export const GET_FILE_LIST = 'get file list'
+export const GET_SEARCH_RESUlT = 'search word in oped dir'
 // main -> renender
 export const OPEN_FILE = 'open a file'
 export const OPEN_DIR = 'open a dir'

@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
-import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'
+import { GET_DIR_TREE, GET_FILE_LIST, GET_SEARCH_RESUlT } from '../common/eventType'
 import { IFileList, FileTree } from '../common/interface'
 
 // Custom APIs for renderer
@@ -13,14 +13,18 @@ const onMain = (e: string, callback) => {
 const api = {
   sendToMain,
   onMain,
-  
+
   onGetDirTree: async () => {
     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree
     return tree
   },
   onGetFileList: async () => {
-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]
+    const fileList = (await ipcRenderer.invoke(GET_FILE_LIST)) as IFileList[]
     return fileList
+  },
+  searchDirWord: async (target:string) => {
+    const results = await ipcRenderer.invoke(GET_SEARCH_RESUlT,target)
+    return results
   }
 }
 export type API = typeof api

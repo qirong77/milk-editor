@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 14,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1667543169085,
@@ -64,6 +64,10 @@
                 {
                     "date": 1668603349828,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n export const POP_ROOT_MENU = 'pop root dir menu'\n export const SAVE_FILE = 'save a file'\n+export const DELETE_FILE_R = 'delete a file from renender'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n // main -> renender\n"
+                },
+                {
+                    "date": 1668872648419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n export const DELETE_FILE_R = 'delete a file from renender'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n+export const GET_SEARCH_RESUlT = 'search word in oped dir'\n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n"
                 }
             ],
             "date": 1667543169085,

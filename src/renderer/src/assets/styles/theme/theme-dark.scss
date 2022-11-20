@@ -37,6 +37,9 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
         text-decoration-color: $dark-font-color;
         color: $dark-font-color;
       }
+      .swg {
+        background-color: $dark-sideBar-background;
+      }
     }
     .milkdown {
       background: $dark-background;

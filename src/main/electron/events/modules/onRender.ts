@@ -89,6 +89,7 @@ export const onRender = () => {
       throw new Error('删除文件错误，文件不存在：' + path)
     }
     if (lstatSync(path).isDirectory()) deleteDir(path)
+    else unlinkSync(path)
     const window = BrowserWindow.getFocusedWindow()
     window?.webContents.send(DELETE_FILE, path)
   })
