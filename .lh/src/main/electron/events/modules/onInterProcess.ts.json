@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 33,
+            "activePatchIndex": 34,
             "patches": [
                 {
                     "date": 1667541912581,
@@ -140,6 +140,10 @@
                 {
                     "date": 1668932852536,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,15 +25,14 @@\n   ipcMain.handle(GET_SEARCH_RESUlT, (e, targetWord: string) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n     const matchs: SearchWords = []\n-    const notFind: SearchWords = [\n-      {\n-        fileName: '未找到结果',\n-        path: 'not found',\n-        matchs: []\n-      }\n-    ]\n+    const notFind:SearchWords = [{\n+      fileName:'未找到结果',\n+      path:'not found',\n+      matchs:[]\n+    }]\n+    if(!targetWord) return notFind\n     const dfs = (searchPath: string) => {\n       if (lstatSync(searchPath).isDirectory()) {\n         const fileNames = readdirSync(searchPath)\n         fileNames.forEach((fileName) => {\n@@ -55,8 +54,8 @@\n         if (node.matchs.length > 1) matchs.push(node)\n       }\n     }\n     dfs(path as string)\n-    if (matchs.length === 0 || !targetWord) return notFind\n+    if(matchs.length === 0 ) return notFind\n     else return matchs\n   })\n }\n"
+                },
+                {
+                    "date": 1669043330108,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     const path = windowsMap.get(window as BrowserWindow)\n     const matchs: SearchWords = []\n     const notFind:SearchWords = [{\n       fileName:'未找到结果',\n-      path:'not found',\n+      path:'',\n       matchs:[]\n     }]\n     if(!targetWord) return notFind\n     const dfs = (searchPath: string) => {\n"
                 }
             ],
             "date": 1667541912581,

@@ -28,7 +28,7 @@ export const onInterProcess = () => {
     const matchs: SearchWords = []
     const notFind:SearchWords = [{
       fileName:'未找到结果',
-      path:'not found',
+      path:'',
       matchs:[]
     }]
     if(!targetWord) return notFind

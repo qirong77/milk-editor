@@ -7,7 +7,7 @@ const SearchItem: React.FC<{
 }> = ({ match }) => {
   const [autoHeight, setHeight] = useState(false)
   const openSelect = () => {
-    openFile(match.path)
+   match.path && openFile(match.path)
     // 在滚到指定位置
   }
   return (

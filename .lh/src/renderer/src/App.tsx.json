@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 41,
             "patches": [
                 {
                     "date": 1667537076910,
@@ -136,6 +136,42 @@
                 {
                     "date": 1668939182914,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { useEffect, useState } from 'react'\n import { OPEN_FILE, RENAME_FILE_DONE } from '../../common/eventType'\n-import path from 'path-browserify'\n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n import { Header } from './components/Header'\n import { SideBar } from './components/SideBar'\n@@ -15,11 +14,11 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    // 因为你重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n     window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\n-      if(oldFiePath===filePath) {\n+    // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n+    if(oldFiePath===filePath) {\n         setFilePath(newPath)\n         setTitle(newName)\n       }\n     })\n"
+                },
+                {
+                    "date": 1668960610660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { basename } from 'path-browserify'\n import { useEffect, useState } from 'react'\n import { OPEN_FILE, RENAME_FILE_DONE } from '../../common/eventType'\n import { MilkdownEditor } from './components/Editor'\n import { GlobalComponents } from './components/Global'\n@@ -8,20 +9,23 @@\n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n+  const hanldeRename = (oldPath: string, newPath: string) => {\n+    if (oldPath !== filePath) {\n+      setTitle(basename(oldPath))\n+      setFilePath(newPath)\n+    }\n+  }\n   useEffect(() => {\n     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName,oldFiePath) => {\n-    // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n-    if(oldFiePath===filePath) {\n-        setFilePath(newPath)\n-        setTitle(newName)\n-      }\n+    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName, oldFiePath) => {\n+      // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n+      hanldeRename(oldFiePath, newPath)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1668960739838,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (oldPath: string, newPath: string) => {\n-    if (oldPath !== filePath) {\n+    if (oldPath === filePath) {\n       setTitle(basename(oldPath))\n       setFilePath(newPath)\n     }\n   }\n"
+                },
+                {
+                    "date": 1668960762698,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (oldPath: string, newPath: string) => {\n+    console.log(newPath)\n     if (oldPath === filePath) {\n       setTitle(basename(oldPath))\n       setFilePath(newPath)\n     }\n"
+                },
+                {
+                    "date": 1668960801115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (oldPath: string, newPath: string) => {\n     console.log(newPath)\n     if (oldPath === filePath) {\n-      setTitle(basename(oldPath))\n+      setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n   }\n   useEffect(() => {\n"
+                },
+                {
+                    "date": 1668960894849,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,11 @@\n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n-  const hanldeRename = (oldPath: string, newPath: string) => {\n+  const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n     console.log(newPath)\n-    if (oldPath === filePath) {\n+    if (beforeRenamePath === filePath) {\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n   }\n@@ -22,11 +22,11 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName, oldFiePath) => {\n+    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName, beforeRenamePath) => {\n       // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n-      hanldeRename(oldFiePath, newPath)\n+      hanldeRename(beforeRenamePath, newPath)\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1668960925209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,10 @@\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n     console.log(newPath)\n+    console.log(beforeRenamePath)\n+    console.log(filePath)\n     if (beforeRenamePath === filePath) {\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n"
+                },
+                {
+                    "date": 1668961129566,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,19 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n-    console.log(newPath)\n-    console.log(beforeRenamePath)\n-    console.log(filePath)\n+    // console.log(newPath)\n+    // console.log(beforeRenamePath)\n+    // console.log(filePath)\n     if (beforeRenamePath === filePath) {\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n   }\n   useEffect(() => {\n     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n+      console.log('openFile')\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n"
+                },
+                {
+                    "date": 1668961169333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n     // console.log(newPath)\n     // console.log(beforeRenamePath)\n-    // console.log(filePath)\n+    console.log(filePath)\n     if (beforeRenamePath === filePath) {\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n"
+                },
+                {
+                    "date": 1668961862929,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n     }\n   }\n   useEffect(() => {\n     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n-      console.log('openFile')\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n"
                 }
             ],
             "date": 1667537076910,

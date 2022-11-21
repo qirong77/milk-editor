@@ -8,10 +8,11 @@ import {
   POP_ROOT_MENU,
   RENAME_FILE
 } from '../../../../../common/eventType'
-import { NEW_DIR_NAME, NEW_FILE_NAME } from '../../../../../main/electron/config/constant'
 import { openFile } from '../../../common/openFile'
+import { focusNode } from '../hooks/focusNode'
 
-import { mapFileList, SHOW_INPUT } from '../hooks/mapFileList'
+import { mapFileList } from '../hooks/mapFileList'
+import { createNode } from '../hooks/createNode'
 export const FileList = ({ toggle }) => {
   console.log('render-fileTree-component')
   const ref = useRef<HTMLDivElement>(null)
@@ -23,67 +24,27 @@ export const FileList = ({ toggle }) => {
   }
   useEffect(() => {
     setFileList()
-    ref.current?.addEventListener('input', (e) => {
-      console.log(e)
-    })
     window.api.onMain(OPEN_DIR, (_e, newFileTree) => {
       const fileNodes = mapFileList(newFileTree)
       ref.current!.innerHTML = ''
       ref.current?.appendChild(fileNodes)
     })
     window.api.onMain(RENAME_FILE, (_e, path) => {
-      const target = document.getElementById(path)
-      if (target && !target.className.includes(SHOW_INPUT)) {
-        target.classList.add(SHOW_INPUT)
-      }
+      focusNode(path)
     })
     window.api.onMain(DELETE_FILE, (_e, path) => {
       const target = document.getElementById(path)
-      if (target) {
-        target.parentElement?.removeChild(target)
-      }
+      target?.parentElement?.removeChild(target)
     })
     window.api.onMain(DELETE_DIR, (_e, path) => {
       const ul = document.getElementById(path)?.parentElement
       ul?.parentElement?.removeChild(ul)
     })
     window.api.onMain(NEW_DIR, (_e, path, newPath) => {
-      const target = document.getElementById(path)
-      target?.parentElement?.classList.remove('close')
-      const level = target?.getAttribute('level')
-      const node = mapFileList({
-        fileName: NEW_DIR_NAME,
-        level: Number(level) + 1,
-        isDir: true,
-        children: [],
-        path: newPath,
-        showInput: false,
-        active: false,
-        parentNode: null
-      })
-      target?.parentElement?.appendChild(node)
-      node?.classList.add(SHOW_INPUT)
-      const input = target?.querySelector('input')
-      input?.focus()
+      createNode(path, newPath, true)
     })
     window.api.onMain(NEW_FILE, (_e, path, newPath) => {
-      const target = document.getElementById(path)
-      target?.parentElement?.classList.remove('close')
-      const level = target?.getAttribute('level')
-      const node = mapFileList({
-        fileName: NEW_FILE_NAME,
-        level: Number(level) + 1,
-        isDir: false,
-        children: [],
-        path: newPath,
-        showInput: false,
-        active: false,
-        parentNode: null
-      })
-      target?.parentElement?.appendChild(node)
-      node?.classList.add(SHOW_INPUT)
-      const input = target?.querySelector('input')
-      input?.focus()
+      createNode(path, newPath, false)
       openFile(newPath)
     })
   }, [])

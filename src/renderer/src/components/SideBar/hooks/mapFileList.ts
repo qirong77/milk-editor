@@ -104,7 +104,6 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
     activeNode.classList.add(ACTIVE_CLASS)
     // 不知道为什么这里使用setActive不行
     // setActiveFile(path)
-
     if (!isDir) {
       const newPath = li.getAttribute('id')
       newPath && openFile(newPath)
