@@ -45,8 +45,7 @@ export const onRender = () => {
     try {
       renameSync(oldFilePath, newFilePath)
       const currentWindow = getWindow(e)
-      const newName = basename(newFilePath)
-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)
+      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath,newFilePath)
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)

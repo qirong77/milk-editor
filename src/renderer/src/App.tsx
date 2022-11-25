@@ -10,24 +10,19 @@ export const App = () => {
   const [filePath, setFilePath] = useState('untitle')
   const [content, setContent] = useState('')
   const [title, setTitle] = useState('untitle')
-  const hanldeRename = (beforeRenamePath: string, newPath: string) => {
-    // console.log(newPath)
-    // console.log(beforeRenamePath)
-    console.log(filePath)
-    if (beforeRenamePath === filePath) {
-      setTitle(basename(newPath))
-      setFilePath(newPath)
-    }
-  }
   useEffect(() => {
     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {
       setFilePath(filePath)
       setContent(fileContent)
       setTitle(fileName)
     })
-    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName, beforeRenamePath) => {
+    window.api.onMain(RENAME_FILE_DONE, (_e, beforeRenamePath,newPath) => {
       // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径
-      hanldeRename(beforeRenamePath, newPath)
+      const activeNow = document.querySelector('.file-item-active')?.getAttribute('id')
+      if(activeNow===newPath) {
+        setTitle(basename(newPath))
+        setFilePath(newPath)
+      }
     })
   }, [])
   return (

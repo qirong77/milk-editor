@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 41,
+            "activePatchIndex": 46,
             "patches": [
                 {
                     "date": 1667537076910,
@@ -172,6 +172,26 @@
                 {
                     "date": 1668961862929,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n     }\n   }\n   useEffect(() => {\n     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n-      console.log('openFile')\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n"
+                },
+                {
+                    "date": 1669354398846,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,8 @@\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n-    // console.log(newPath)\n-    // console.log(beforeRenamePath)\n-    console.log(filePath)\n     if (beforeRenamePath === filePath) {\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n@@ -24,9 +21,9 @@\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n-    window.api.onMain(RENAME_FILE_DONE, (_e, newPath, newName, beforeRenamePath) => {\n+    window.api.onMain(RENAME_FILE_DONE, (_e, beforeRenamePath,newPath) => {\n       // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n       hanldeRename(beforeRenamePath, newPath)\n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1669354453624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n   const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n     if (beforeRenamePath === filePath) {\n+      console.log('yes')\n       setTitle(basename(newPath))\n       setFilePath(newPath)\n     }\n   }\n"
+                },
+                {
+                    "date": 1669354608940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,24 +9,22 @@\n export const App = () => {\n   const [filePath, setFilePath] = useState('untitle')\n   const [content, setContent] = useState('')\n   const [title, setTitle] = useState('untitle')\n-  const hanldeRename = (beforeRenamePath: string, newPath: string) => {\n-    if (beforeRenamePath === filePath) {\n-      console.log('yes')\n-      setTitle(basename(newPath))\n-      setFilePath(newPath)\n-    }\n-  }\n   useEffect(() => {\n     window.api.onMain(OPEN_FILE, (_e, { filePath, fileContent, fileName }) => {\n       setFilePath(filePath)\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n     window.api.onMain(RENAME_FILE_DONE, (_e, beforeRenamePath,newPath) => {\n+      const activeNow = document.querySelector('.file-item-active')?.getAttribute('id')\n+      if(activeNow===beforeRenamePath) {\n+        setTitle(basename(newPath))\n+        setFilePath(newPath)\n+      }\n       // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n-      hanldeRename(beforeRenamePath, newPath)\n+\n     })\n   }, [])\n   return (\n     <div className=\"container\">\n"
+                },
+                {
+                    "date": 1669354664594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,16 @@\n       setTitle(fileName)\n     })\n     window.api.onMain(RENAME_FILE_DONE, (_e, beforeRenamePath,newPath) => {\n       const activeNow = document.querySelector('.file-item-active')?.getAttribute('id')\n-      if(activeNow===beforeRenamePath) {\n+      if(activeNow===newPath) {\n         setTitle(basename(newPath))\n         setFilePath(newPath)\n       }\n+      else {\n+        console.log(activeNow)\n+        console.log(beforeRenamePath)\n+      }\n       // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n \n     })\n   }, [])\n"
+                },
+                {
+                    "date": 1669354686222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,18 +16,14 @@\n       setContent(fileContent)\n       setTitle(fileName)\n     })\n     window.api.onMain(RENAME_FILE_DONE, (_e, beforeRenamePath,newPath) => {\n+      // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n       const activeNow = document.querySelector('.file-item-active')?.getAttribute('id')\n       if(activeNow===newPath) {\n         setTitle(basename(newPath))\n         setFilePath(newPath)\n       }\n-      else {\n-        console.log(activeNow)\n-        console.log(beforeRenamePath)\n-      }\n-      // 重命名的时候可能不是你打开的目录，所以要判断需不需要更新保存的路径\n \n     })\n   }, [])\n   return (\n"
                 }
             ],
             "date": 1667537076910,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 68,
+            "activePatchIndex": 69,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -280,6 +280,10 @@
                 {
                     "date": 1668938114568,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n       const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
+                },
+                {
+                    "date": 1669354398839,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,10 +44,9 @@\n     // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n-      const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath,newFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
                 }
             ],
             "date": 1667541566569,
