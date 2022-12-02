@@ -1,12 +1,12 @@
 import { BrowserWindow, ipcMain } from 'electron'
 import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'
-import { basename } from 'path'
 import { windowsMap } from '../../..'
 import { deleteDir } from '../../../helper/deleteDir'
 import {
   CLOSE_SCREEN,
   DELETE_FILE,
   DELETE_FILE_R,
+  DRAG_FILE,
   MAX_SCREEN,
   MIN_SCREEN,
   OPEN_FILE,
@@ -45,7 +45,7 @@ export const onRender = () => {
     try {
       renameSync(oldFilePath, newFilePath)
       const currentWindow = getWindow(e)
-      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath,newFilePath)
+      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath, newFilePath)
     } catch (error) {
       console.log('重新命名失败')
       console.log('oldFilePath:' + oldFilePath)
@@ -69,12 +69,13 @@ export const onRender = () => {
         window
       })
   })
-  ipcMain.on(POP_EDITOR_MENU,(_e,path)=>{
+  ipcMain.on(POP_EDITOR_MENU, (_e, path) => {
     const window = BrowserWindow.getFocusedWindow()
     const menu = createEditorMenu(path)
-    window && menu.popup({
-      window
-    })
+    window &&
+      menu.popup({
+        window
+      })
   })
   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {
     if (existsSync(filePath)) {
@@ -100,5 +101,12 @@ export const onRender = () => {
     else unlinkSync(path)
     const window = BrowserWindow.getFocusedWindow()
     window?.webContents.send(DELETE_FILE, path)
+  })
+  ipcMain.on(DRAG_FILE, (_e, target, dest) => {
+    console.log('📕',target)
+    console.log('📕',dest)
+    // moveSync(target, dest, {
+    //   overwrite: true
+    // })
   })
 }

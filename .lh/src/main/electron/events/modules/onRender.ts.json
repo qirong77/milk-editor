@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 69,
+            "activePatchIndex": 76,
             "patches": [
                 {
                     "date": 1667541566569,
@@ -284,6 +284,34 @@
                 {
                     "date": 1669354398839,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,10 +44,9 @@\n     // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n-      const newName = basename(newFilePath)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE, newFilePath, newName,oldFilePath)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath,newFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n"
+                },
+                {
+                    "date": 1669363147367,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n-import { basename } from 'path'\n import { windowsMap } from '../../..'\n import { deleteDir } from '../../../helper/deleteDir'\n import {\n   CLOSE_SCREEN,\n"
+                },
+                {
+                    "date": 1669874226588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import {\n   CLOSE_SCREEN,\n   DELETE_FILE,\n   DELETE_FILE_R,\n+  DRAG_FILE,\n   MAX_SCREEN,\n   MIN_SCREEN,\n   OPEN_FILE,\n   POP_DIR_MENU,\n@@ -43,9 +44,9 @@\n     // 这里有个bug，就说明明可以重新命名，但是会报错\n     try {\n       renameSync(oldFilePath, newFilePath)\n       const currentWindow = getWindow(e)\n-      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath,newFilePath)\n+      currentWindow?.webContents.send(RENAME_FILE_DONE, oldFilePath, newFilePath)\n     } catch (error) {\n       console.log('重新命名失败')\n       console.log('oldFilePath:' + oldFilePath)\n       console.log('newFilePath:' + newFilePath)\n@@ -67,14 +68,15 @@\n       createFilDirMenu(path).popup({\n         window\n       })\n   })\n-  ipcMain.on(POP_EDITOR_MENU,(_e,path)=>{\n+  ipcMain.on(POP_EDITOR_MENU, (_e, path) => {\n     const window = BrowserWindow.getFocusedWindow()\n     const menu = createEditorMenu(path)\n-    window && menu.popup({\n-      window\n-    })\n+    window &&\n+      menu.popup({\n+        window\n+      })\n   })\n   ipcMain.on(SAVE_FILE, (_e, filePath, newContent) => {\n     if (existsSync(filePath)) {\n       writeFileSync(filePath, newContent)\n@@ -99,5 +101,8 @@\n     else unlinkSync(path)\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n   })\n+  ipcMain.on(DRAG_FILE, (_e, target, toDir) => {\n+    renameSync(target, toDir)\n+  })\n }\n"
+                },
+                {
+                    "date": 1669882663437,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { windowsMap } from '../../..'\n+import { moveSync } from 'fs-extra'\n import { deleteDir } from '../../../helper/deleteDir'\n import {\n   CLOSE_SCREEN,\n   DELETE_FILE,\n@@ -101,8 +102,10 @@\n     else unlinkSync(path)\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n   })\n-  ipcMain.on(DRAG_FILE, (_e, target, toDir) => {\n-    renameSync(target, toDir)\n+  ipcMain.on(DRAG_FILE, (_e, target, dest) => {\n+    moveSync(target, dest, {\n+      overwrite: true\n+    })\n   })\n }\n"
+                },
+                {
+                    "date": 1669882736172,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -103,9 +103,11 @@\n     const window = BrowserWindow.getFocusedWindow()\n     window?.webContents.send(DELETE_FILE, path)\n   })\n   ipcMain.on(DRAG_FILE, (_e, target, dest) => {\n-    moveSync(target, dest, {\n-      overwrite: true\n-    })\n+    console.log('📕',target)\n+    console.log('📕',dest)\n+    // moveSync(target, dest, {\n+    //   overwrite: true\n+    // })\n   })\n }\n"
+                },
+                {
+                    "date": 1669883586305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,8 +105,9 @@\n   })\n   ipcMain.on(DRAG_FILE, (_e, target, dest) => {\n     console.log('📕',target)\n     console.log('📕',dest)\n+    \n     // moveSync(target, dest, {\n     //   overwrite: true\n     // })\n   })\n"
+                },
+                {
+                    "date": 1669884142695,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -105,9 +105,8 @@\n   })\n   ipcMain.on(DRAG_FILE, (_e, target, dest) => {\n     console.log('📕',target)\n     console.log('📕',dest)\n-    \n     // moveSync(target, dest, {\n     //   overwrite: true\n     // })\n   })\n"
+                },
+                {
+                    "date": 1669967750502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import { BrowserWindow, ipcMain } from 'electron'\n import { existsSync, lstatSync, renameSync, unlinkSync, writeFileSync } from 'fs'\n import { windowsMap } from '../../..'\n-import { moveSync } from 'fs-extra'\n import { deleteDir } from '../../../helper/deleteDir'\n import {\n   CLOSE_SCREEN,\n   DELETE_FILE,\n"
                 }
             ],
             "date": 1667541566569,

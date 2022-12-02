@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import debounce from 'debounce'
 import { SearchWords } from '../../../../../common/types'
 import { openFile } from '../../../common/openFile'
@@ -49,6 +49,7 @@ export const SearchWordGlobal: React.FC<{
   const iptChange = (e: ChangeEvent<HTMLInputElement>) => {
     debouncedSetWord(e.target.value)
   }
+  const iptRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
     window.api.searchDirWord(word).then((res) => {
       setMatchs(res)
@@ -58,6 +59,12 @@ export const SearchWordGlobal: React.FC<{
     setTotal(total)
     })
   }, [word])
+  useEffect(()=>{
+    iptRef.current?.focus()
+    console.log('📕',iptRef.current)
+  },[show])
+  iptRef.current?.focus()
+
   return (
     <div
       className="swg"

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1667543169085,
@@ -76,6 +76,10 @@
                 {
                     "date": 1668937306285,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,6 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n-export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n\\ No newline at end of file\n+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n+export const TRANSLATION = 'notify to translate current selection'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669874226590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n export const POP_ROOT_MENU = 'pop root dir menu'\n export const POP_EDITOR_MENU = 'pop a menu in editor area'\n export const SAVE_FILE = 'save a file'\n export const DELETE_FILE_R = 'delete a file from renender'\n+export const DRAG_FILE = 'drag a file change position'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n export const GET_SEARCH_RESUlT = 'search word in oped dir'\n"
                 }
             ],
             "date": 1667543169085,

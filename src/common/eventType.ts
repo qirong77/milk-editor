@@ -10,6 +10,7 @@ export const POP_ROOT_MENU = 'pop root dir menu'
 export const POP_EDITOR_MENU = 'pop a menu in editor area'
 export const SAVE_FILE = 'save a file'
 export const DELETE_FILE_R = 'delete a file from renender'
+export const DRAG_FILE = 'drag a file change position'
 // interProcess
 export const GET_DIR_TREE = 'get dir tree'
 export const GET_FILE_LIST = 'get file list'

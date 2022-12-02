@@ -1,5 +1,6 @@
 import {
   DELETE_FILE_R,
+  DRAG_FILE,
   POP_DIR_MENU,
   POP_FILE_ITEM_MENU,
   RENAME_FILE
@@ -9,6 +10,7 @@ import { openFile } from '../../../common/openFile'
 import { resolve, dirname } from 'path-browserify'
 export let activeNode: HTMLElement
 let isFocusOnFile = false
+let dragPath = ''
 const ACTIVE_CLASS = 'file-item-active'
 export const SHOW_INPUT = 'show-input'
 const dirIcon = `<div>
@@ -23,7 +25,7 @@ const dirIcon = `<div>
 </svg>
 </div>`
 // 选择一个文件
-export const setActiveFile = (path: string,isDir=false) => {
+export const setActiveFile = (path: string, isDir = false) => {
   const activedNodes = document.getElementsByClassName(ACTIVE_CLASS)
   Array.from(activedNodes).forEach((node) => {
     node.classList.remove(ACTIVE_CLASS)
@@ -73,6 +75,7 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
   const li = document.createElement('li')
   li.setAttribute('id', path)
   li.setAttribute('level', level.toString())
+  li.setAttribute('draggable', 'true')
   li.setAttribute('style', `--i: ${level}`)
   // 注意执行顺序
   li.innerHTML = (isDir ? dirIcon : '') + `<span>${fileName}</span>`
@@ -113,6 +116,9 @@ const createLi = (fileName: string, path: string, level: number, isDir: boolean)
       ul?.classList.toggle('close')
     }
   })
+  li.ondragstart = () => {
+    dragPath = path
+  }
   return li
 }
 document.addEventListener('keydown', (e) => {
@@ -132,6 +138,22 @@ export const mapFileList = ({ fileName, level, path, isDir, children }: FileTree
   const li = createLi(fileName, path, level, isDir)
   if (!isDir) return li
   const ul = document.createElement('ul')
+  ul.ondragover = (e) => {
+    console.log('📕','dragover')
+    ul.classList.add('drag-over')
+    e.preventDefault()
+    e.stopPropagation()
+  }
+  ul.ondrop = () => {
+    // window.api.sendToMain(DRAG_FILE, dragPath, path)
+    console.log('📕',dragPath,path)
+    ul.classList.remove('drag-over')
+    
+  }
+  ul.ondragleave = () => {
+    ul.classList.remove('drag-over')
+    console.log('📕','dragleave')
+  }
   if (level > 0) ul.classList.add('close')
   ul.appendChild(li)
   children.forEach((file) => {

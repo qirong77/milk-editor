@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 34,
+            "activePatchIndex": 35,
             "patches": [
                 {
                     "date": 1667541912581,
@@ -144,6 +144,10 @@
                 {
                     "date": 1669043330108,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n     const path = windowsMap.get(window as BrowserWindow)\n     const matchs: SearchWords = []\n     const notFind:SearchWords = [{\n       fileName:'未找到结果',\n-      path:'not found',\n+      path:'',\n       matchs:[]\n     }]\n     if(!targetWord) return notFind\n     const dfs = (searchPath: string) => {\n"
+                },
+                {
+                    "date": 1669906723369,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,10 @@\n   ipcMain.handle(GET_SEARCH_RESUlT, (e, targetWord: string) => {\n     const window = getWindow(e)\n     const path = windowsMap.get(window as BrowserWindow)\n     const matchs: SearchWords = []\n+    // 忽略大小写\n+    const regex = new RegExp(targetWord,'i')\n     const notFind:SearchWords = [{\n       fileName:'未找到结果',\n       path:'',\n       matchs:[]\n@@ -46,9 +48,9 @@\n           matchs: []\n         }\n         const lines = readFileSync(searchPath, 'utf-8').split('\\n')\n         lines.forEach((line) => {\n-          if (line.includes(targetWord)) {\n+          if (regex.test(line)) {\n             node.matchs.push(line)\n           }\n         })\n         if (node.matchs.length > 1) matchs.push(node)\n"
                 }
             ],
             "date": 1667541912581,

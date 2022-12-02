@@ -26,6 +26,8 @@ export const onInterProcess = () => {
     const window = getWindow(e)
     const path = windowsMap.get(window as BrowserWindow)
     const matchs: SearchWords = []
+    // 忽略大小写
+    const regex = new RegExp(targetWord,'i')
     const notFind:SearchWords = [{
       fileName:'未找到结果',
       path:'',
@@ -47,7 +49,7 @@ export const onInterProcess = () => {
         }
         const lines = readFileSync(searchPath, 'utf-8').split('\n')
         lines.forEach((line) => {
-          if (line.includes(targetWord)) {
+          if (regex.test(line)) {
             node.matchs.push(line)
           }
         })
