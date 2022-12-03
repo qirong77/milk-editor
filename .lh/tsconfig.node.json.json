@@ -3,48 +3,20 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 1,
             "patches": [
                 {
-                    "date": 1667541549373,
+                    "date": 1669996245541,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
                 },
                 {
-                    "date": 1667541744463,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*.ts\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n"
-                },
-                {
-                    "date": 1667541910348,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*.ts\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n"
-                },
-                {
-                    "date": 1667546976404,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\",\"src/\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n"
-                },
-                {
-                    "date": 1667546984645,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\",\"src/\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\",\"src/main/electron/*\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n"
-                },
-                {
-                    "date": 1667554460726,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,5 @@\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n+s\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667554495604,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\",\"src/main/electron/*\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/*\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n\\ No newline at end of file\n-s\n"
-                },
-                {
-                    "date": 1667554559012,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/*\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/*/**\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n\\ No newline at end of file\n-}\n+}\n"
-                },
-                {
-                    "date": 1667555174133,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/*/**\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/**/*\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n\\ No newline at end of file\n-}\n+}\n"
+                    "date": 1669996790113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n {\n   \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n-  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/**/*\"],\n+  \"include\": [\"electron.vite.config.*\", \"src/**/*\"],\n   \"compilerOptions\": {\n     \"composite\": true\n   }\n }\n"
                 }
             ],
-            "date": 1667541549373,
+            "date": 1669996245541,
             "name": "Commit-0",
-            "content": "{\n  \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/*\"],\n  \"compilerOptions\": {\n    \"composite\": true\n  }\n}\n"
+            "content": "{\n  \"extends\": \"@electron-toolkit/tsconfig/tsconfig.node.json\",\n  \"include\": [\"electron.vite.config.*\", \"src/main/*\", \"src/preload/*\",\"src/common/**/*\"],\n  \"compilerOptions\": {\n    \"composite\": true\n  }\n}\n"
         }
     ]
 }

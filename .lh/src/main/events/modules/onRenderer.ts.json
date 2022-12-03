@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/events/modules/onRenderer.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1669996790113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669998435548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-\n-import {ipcMain} from 'electron'\n-export const onRenderer = () =>{\n-    ipcMain.on(GET_DIR_TREE)\n-}\n\\ No newline at end of file\n+import { ipcMain } from 'electron'\n+import { GET_DIR_TREE, UPDATE_DIR_TREE } from '../../../common/eventType'\n+import { defaultPath } from '../../config'\n+import { getDirectoryTree } from '../helper/getDirectoryTree'\n+import { getWindow } from '../helper/getWindow'\n+export const onRenderer = () => {\n+  ipcMain.on(GET_DIR_TREE, (e) => {\n+    const window = getWindow(e)\n+    window?.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n+  })\n+}\n"
+                }
+            ],
+            "date": 1669996790113,
+            "name": "Commit-0",
+            "content": "\nimport {ipcMain} from 'electron'\nexport const onRenderer = () =>{\n    ipcMain.on(GET_DIR_TREE)\n}"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
-# milk-editor2.0
+# milk
 
-An Electron application with React and TypeScript
+An Electron application with Vue and TypesSript
 
 ## Recommended IDE Setup
 

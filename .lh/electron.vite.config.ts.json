@@ -1,0 +1,22 @@
+{
+    "sourceFile": "electron.vite.config.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1669989349596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1670004709446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,15 @@\n       rollupOptions: {\n         external: ['@electron-toolkit/preload']\n       }\n     },\n-    plugins: [vueJsx()]\n+    plugins: []\n   },\n   renderer: {\n     resolve: {\n       alias: {\n         '@renderer': resolve('src/renderer/src')\n       }\n     },\n-    plugins: [vue()]\n+    plugins: [vue(), vueJsx()]\n   }\n })\n"
+                }
+            ],
+            "date": 1669989349596,
+            "name": "Commit-0",
+            "content": "import { resolve } from 'path'\nimport { defineConfig } from 'electron-vite'\nimport vue from '@vitejs/plugin-vue'\nimport vueJsx from '@vitejs/plugin-vue-jsx' // 配置vue使用jsx\nexport default defineConfig({\n  main: {\n    build: {\n      rollupOptions: {\n        external: ['@electron-toolkit/utils']\n      }\n    }\n  },\n  preload: {\n    build: {\n      rollupOptions: {\n        external: ['@electron-toolkit/preload']\n      }\n    },\n    plugins: [vueJsx()]\n  },\n  renderer: {\n    resolve: {\n      alias: {\n        '@renderer': resolve('src/renderer/src')\n      }\n    },\n    plugins: [vue()]\n  }\n})\n"
+        }
+    ]
+}

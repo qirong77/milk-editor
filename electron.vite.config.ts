@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { defineConfig } from 'electron-vite'
-import react from '@vitejs/plugin-react'
-
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx' // 配置vue使用jsx
 export default defineConfig({
   main: {
     build: {
@@ -15,7 +15,8 @@ export default defineConfig({
       rollupOptions: {
         external: ['@electron-toolkit/preload']
       }
-    }
+    },
+    plugins: []
   },
   renderer: {
     resolve: {
@@ -23,6 +24,6 @@ export default defineConfig({
         '@renderer': resolve('src/renderer/src')
       }
     },
-    plugins: [react()]
+    plugins: [vue(), vueJsx()]
   }
 })

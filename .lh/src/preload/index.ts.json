@@ -3,104 +3,36 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 5,
             "patches": [
                 {
-                    "date": 1667541566569,
+                    "date": 1669998435539,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
                 },
                 {
-                    "date": 1667542470582,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,12 @@\n-import { contextBridge } from 'electron'\n+import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n \n // Custom APIs for renderer\n-const api = {\n-  \n+const sendToMain = (e: string) => {\n+  ipcRenderer.send(e)\n }\n+const api = {}\n \n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                    "date": 1669998495922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n const api = {\n   sendToMain,\n   onMain\n }\n+export type API = typeof api\n \n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
                 },
                 {
-                    "date": 1667542485464,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,11 @@\n // Custom APIs for renderer\n const sendToMain = (e: string) => {\n   ipcRenderer.send(e)\n }\n-const api = {}\n+const api = {\n+  sendToMain\n+}\n \n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n"
+                    "date": 1669998631979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n   sendToMain,\n   onMain\n }\n export type API = typeof api\n-\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n if (process.contextIsolated) {\n"
                 },
                 {
-                    "date": 1667542576816,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,14 @@\n // Custom APIs for renderer\n const sendToMain = (e: string) => {\n   ipcRenderer.send(e)\n }\n+const onMain = (e:string,callback) =>{\n+  ipcRenderer.on(e,callback)\n+}\n const api = {\n-  sendToMain\n+  sendToMain,\n+  onMain\n }\n \n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
+                    "date": 1669999919943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,4 +28,5 @@\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n }\n+xxx.\n\\ No newline at end of file\n"
                 },
                 {
-                    "date": 1667543207307,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n }\n const onMain = (e:string,callback) =>{\n   ipcRenderer.on(e,callback)\n }\n-const api = {\n+export const api = {\n   sendToMain,\n   onMain\n }\n \n"
+                    "date": 1670000084011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,6 +27,5 @@\n   // @ts-ignore (define in dts)\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n-}\n-xxx.\n\\ No newline at end of file\n+}\n\\ No newline at end of file\n"
                 },
                 {
-                    "date": 1667543251750,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,14 @@\n }\n const onMain = (e:string,callback) =>{\n   ipcRenderer.on(e,callback)\n }\n-export const api = {\n+\n+const api = {\n   sendToMain,\n   onMain\n }\n-\n+export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n // just add to the DOM global.\n if (process.contextIsolated) {\n"
-                },
-                {
-                    "date": 1667568007390,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,18 +1,22 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n+import { GET_FILE_LIST } from '../common/eventType'\n \n // Custom APIs for renderer\n const sendToMain = (e: string) => {\n   ipcRenderer.send(e)\n }\n-const onMain = (e:string,callback) =>{\n-  ipcRenderer.on(e,callback)\n+const onMain = (e: string, callback) => {\n+  ipcRenderer.on(e, callback)\n }\n-\n const api = {\n   sendToMain,\n-  onMain\n+  onMain,\n+  onGetFileList: async () => {\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST)\n+    return fileList\n+  }\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
-                },
-                {
-                    "date": 1667569434639,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST)\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as \n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667569439770,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as \n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FIle\n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667569787548,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n import { GET_FILE_LIST } from '../common/eventType'\n+import { FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string) => {\n   ipcRenderer.send(e)\n@@ -12,9 +13,9 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FIle\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as \n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667569794530,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as \n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST)\n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667569839493,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST)\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667636092689,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { GET_FILE_LIST } from '../common/eventType'\n import { FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n-const sendToMain = (e: string) => {\n+const sendToMain = (e: string,...args:any[]) => {\n   ipcRenderer.send(e)\n }\n const onMain = (e: string, callback) => {\n   ipcRenderer.on(e, callback)\n"
-                },
-                {
-                    "date": 1667636227483,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string,...args:any[]) => {\n-  ipcRenderer.send(e)\n+  ipcRenderer.send(e,...args)\n }\n const onMain = (e: string, callback) => {\n   ipcRenderer.on(e, callback)\n }\n"
-                },
-                {
-                    "date": 1667668891038,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,9 @@\n   onGetFileList: async () => {\n     const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n     return fileList\n   }\n+  \n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
-                },
-                {
-                    "date": 1667713954328,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,9 @@\n   onMain,\n   onGetFileList: async () => {\n     const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n     return fileList\n-  }\n-  \n+  },\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
-                },
-                {
-                    "date": 1667728753344,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,23 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n-import { GET_FILE_LIST } from '../common/eventType'\n+import { GET_DIR_TREE } from '../common/eventType'\n import { FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n-const sendToMain = (e: string,...args:any[]) => {\n-  ipcRenderer.send(e,...args)\n+const sendToMain = (e: string, ...args: any[]) => {\n+  ipcRenderer.send(e, ...args)\n }\n const onMain = (e: string, callback) => {\n   ipcRenderer.on(e, callback)\n }\n const api = {\n   sendToMain,\n   onMain,\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileTree\n+    const fileList = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return fileList\n-  },\n+  }\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n // renderer only if context isolation is enabled, otherwise\n"
-                },
-                {
-                    "date": 1667730966809,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n-  onGetFileList: async () => {\n+  onGetDirTree: async () => {\n     const fileList = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return fileList\n   }\n }\n"
-                },
-                {
-                    "date": 1667744886212,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n-import { GET_DIR_TREE } from '../common/eventType'\n-import { FileTree } from '../common/interface'\n+import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'\n+import { FileList, FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string, ...args: any[]) => {\n   ipcRenderer.send(e, ...args)\n@@ -13,9 +13,13 @@\n const api = {\n   sendToMain,\n   onMain,\n   onGetDirTree: async () => {\n-    const fileList = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n+    const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n+    return tree\n+  },\n+  onGetFileList: async () => {\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileList\n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667745160751,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'\n-import { FileList, FileTree } from '../common/interface'\n+import { IFileList, FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string, ...args: any[]) => {\n   ipcRenderer.send(e, ...args)\n"
-                },
-                {
-                    "date": 1667745723445,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as FileList\n+    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]\n     return fileList\n   }\n }\n export type API = typeof api\n"
-                },
-                {
-                    "date": 1667834497951,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n+  \n   onGetDirTree: async () => {\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n"
-                },
-                {
-                    "date": 1668872648420,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { contextBridge, ipcRenderer } from 'electron'\n import { electronAPI } from '@electron-toolkit/preload'\n-import { GET_DIR_TREE, GET_FILE_LIST } from '../common/eventType'\n+import { GET_DIR_TREE, GET_FILE_LIST, GET_SEARCH_RESUlT } from '../common/eventType'\n import { IFileList, FileTree } from '../common/interface'\n \n // Custom APIs for renderer\n const sendToMain = (e: string, ...args: any[]) => {\n@@ -12,16 +12,20 @@\n }\n const api = {\n   sendToMain,\n   onMain,\n-  \n+\n   onGetDirTree: async () => {\n     const tree = (await ipcRenderer.invoke(GET_DIR_TREE)) as FileTree\n     return tree\n   },\n   onGetFileList: async () => {\n-    const fileList = await ipcRenderer.invoke(GET_FILE_LIST) as IFileList[]\n+    const fileList = (await ipcRenderer.invoke(GET_FILE_LIST)) as IFileList[]\n     return fileList\n+  },\n+  searchDirWord: async (target:string) => {\n+    const results = await ipcRenderer.invoke(GET_SEARCH_RESUlT,target)\n+    return results\n   }\n }\n export type API = typeof api\n // Use `contextBridge` APIs to expose Electron APIs to\n"
+                    "date": 1670000412528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,5 +27,5 @@\n   // @ts-ignore (define in dts)\n   window.electron = electronAPI\n   // @ts-ignore (define in dts)\n   window.api = api\n-}\n\\ No newline at end of file\n+}\n"
                 }
             ],
-            "date": 1667541566569,
+            "date": 1669998435539,
             "name": "Commit-0",
-            "content": "import { contextBridge } from 'electron'\nimport { electronAPI } from '@electron-toolkit/preload'\n\n// Custom APIs for renderer\nconst api = {\n  \n}\n\n// Use `contextBridge` APIs to expose Electron APIs to\n// renderer only if context isolation is enabled, otherwise\n// just add to the DOM global.\nif (process.contextIsolated) {\n  try {\n    contextBridge.exposeInMainWorld('electron', electronAPI)\n    contextBridge.exposeInMainWorld('api', api)\n  } catch (error) {\n    console.error(error)\n  }\n} else {\n  // @ts-ignore (define in dts)\n  window.electron = electronAPI\n  // @ts-ignore (define in dts)\n  window.api = api\n}\n"
+            "content": "import { contextBridge, ipcRenderer } from 'electron'\nimport { electronAPI } from '@electron-toolkit/preload'\n\n// Custom APIs for renderer\nconst sendToMain = (e: string, ...args: any[]) => {\n  ipcRenderer.send(e, ...args)\n}\nconst onMain = (e: string, callback) => {\n  ipcRenderer.on(e, callback)\n}\nconst api = {\n  sendToMain,\n  onMain\n}\n\n// Use `contextBridge` APIs to expose Electron APIs to\n// renderer only if context isolation is enabled, otherwise\n// just add to the DOM global.\nif (process.contextIsolated) {\n  try {\n    contextBridge.exposeInMainWorld('electron', electronAPI)\n    contextBridge.exposeInMainWorld('api', api)\n  } catch (error) {\n    console.error(error)\n  }\n} else {\n  // @ts-ignore (define in dts)\n  window.electron = electronAPI\n  // @ts-ignore (define in dts)\n  window.api = api\n}\n"
         }
     ]
 }

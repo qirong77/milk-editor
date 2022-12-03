@@ -1,0 +1,18 @@
+{
+    "sourceFile": "src/renderer/src/assets/css/normalize.scss",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1670057011346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1670057011346,
+            "name": "Commit-0",
+            "content": "* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n  }\n  input {\n    border: none;\n    outline: none;\n  }\n  \n  li {\n    list-style: none;\n  }\n  "
+        }
+    ]
+}

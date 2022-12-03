@@ -3,88 +3,20 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 1,
             "patches": [
                 {
-                    "date": 1667543169085,
+                    "date": 1669996245542,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
                 },
                 {
-                    "date": 1667568007390,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,12 @@\n+\n+\n // 事件类型，尽量用两个单词表示 动词 + 名词\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n \n+\n+\n+// interProcess\n+export const GET_FILE_LIST = 'get file list'\n"
-                },
-                {
-                    "date": 1667630414121,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,13 @@\n \n \n // 事件类型，尽量用两个单词表示 动词 + 名词\n+// 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n+export const RENAME_FILE = 'rename file'\n \n \n-\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n"
-                },
-                {
-                    "date": 1667633625990,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,4 +10,8 @@\n \n \n // interProcess\n export const GET_FILE_LIST = 'get file list'\n+\n+\n+// main -> renender\n+export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667648932875,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,10 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-\n-\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n+export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n"
-                },
-                {
-                    "date": 1667668891038,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,6 @@\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n-export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n+export const OPEN_FILE = 'open a file'\n+export const OPEN_DIR = 'open a dir'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667708476689,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n-export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n"
-                },
-                {
-                    "date": 1667713424711,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,14 @@\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n+export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n export const OPEN_FILE = 'open a file'\n\\ No newline at end of file\n-export const OPEN_DIR = 'open a dir'\n+export const OPEN_DIR = 'open a dir'\n+export const DELETE_FILE = 'delete a file'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1667719922394,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,16 +4,19 @@\n // 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n export const MIN_SCREEN = 'min'\n-export const NEW_FILE = 'add a new file'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n+\n // interProcess\n export const GET_FILE_LIST = 'get file list'\n \n \n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n\\ No newline at end of file\n-export const DELETE_FILE = 'delete a file'\n+export const DELETE_FILE = 'delete a file'\n+export const NEW_DIR = 'new directory'\n+export const NEW_FILE = 'add a new file'\n+export const DELETE_DIR = 'delet a dir'\n"
-                },
-                {
-                    "date": 1667728753279,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-\n-\n // 事件类型，尽量用两个单词表示 动词 + 名词\n // 1. 渲染进程 -> 主进程的事件\n export const CLOSE_SCREEN = 'close'\n export const MAX_SCREEN = 'max'\n@@ -9,14 +7,13 @@\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n \n // interProcess\n-export const GET_FILE_LIST = 'get file list'\n+export const GET_DIR_TREE = 'get file list'\n \n-\n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n\\ No newline at end of file\n-export const DELETE_DIR = 'delet a dir'\n+export const DELETE_DIR = 'delet a dir'\n"
-                },
-                {
-                    "date": 1667729081171,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,13 @@\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n \n // interProcess\n-export const GET_DIR_TREE = 'get file list'\n-\n+export const GET_DIR_TREE = 'get dir tree'\n+export const GET_FILE_LIST = 'get file list'\n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n\\ No newline at end of file\n export const NEW_FILE = 'add a new file'\n-export const DELETE_DIR = 'delet a dir'\n+export const DELETE_DIR = 'delet a dir'\n"
-                },
-                {
-                    "date": 1667807495473,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n export const MIN_SCREEN = 'min'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n-\n+export const SAVE_FILE = 'save a file'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n // main -> renender\n@@ -15,5 +15,5 @@\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n-export const DELETE_DIR = 'delet a dir'\n\\ No newline at end of file\n+export const DELETE_DIR = 'delet a dir'\n"
-                },
-                {
-                    "date": 1667809079809,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n export const MIN_SCREEN = 'min'\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n+export const POP_ROOT_MENU = 'pop root dir menu'\n export const SAVE_FILE = 'save a file'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n@@ -16,4 +17,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n+\n"
-                },
-                {
-                    "date": 1668352834812,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,5 +17,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n-\n+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n"
-                },
-                {
-                    "date": 1668603349828,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n export const POP_ROOT_MENU = 'pop root dir menu'\n export const SAVE_FILE = 'save a file'\n+export const DELETE_FILE_R = 'delete a file from renender'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n // main -> renender\n"
-                },
-                {
-                    "date": 1668872648419,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n export const DELETE_FILE_R = 'delete a file from renender'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n+export const GET_SEARCH_RESUlT = 'search word in oped dir'\n // main -> renender\n export const OPEN_FILE = 'open a file'\n export const OPEN_DIR = 'open a dir'\n export const DELETE_FILE = 'delete a file'\n"
-                },
-                {
-                    "date": 1668935910287,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n export const RENAME_FILE = 'rename file'\n export const POP_FILE_ITEM_MENU = 'pop file item menu'\n export const POP_DIR_MENU = 'pop dir menu'\n export const POP_ROOT_MENU = 'pop root dir menu'\n+export const POP_EDITOR_MENU = 'pop a menu in editor area'\n export const SAVE_FILE = 'save a file'\n export const DELETE_FILE_R = 'delete a file from renender'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n@@ -19,5 +20,5 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n-export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1668937306285,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,6 @@\n export const DELETE_FILE = 'delete a file'\n export const NEW_DIR = 'new directory'\n export const NEW_FILE = 'add a new file'\n export const DELETE_DIR = 'delet a dir'\n-export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n\\ No newline at end of file\n+export const RENAME_FILE_DONE = '重新命名一个文件后通知更新保存路径'\n+export const TRANSLATION = 'notify to translate current selection'\n\\ No newline at end of file\n"
-                },
-                {
-                    "date": 1669874226590,
-                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n export const POP_ROOT_MENU = 'pop root dir menu'\n export const POP_EDITOR_MENU = 'pop a menu in editor area'\n export const SAVE_FILE = 'save a file'\n export const DELETE_FILE_R = 'delete a file from renender'\n+export const DRAG_FILE = 'drag a file change position'\n // interProcess\n export const GET_DIR_TREE = 'get dir tree'\n export const GET_FILE_LIST = 'get file list'\n export const GET_SEARCH_RESUlT = 'search word in oped dir'\n"
+                    "date": 1669996790120,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n \n // 事件类型，尽量用两个单词表示 动词 + 名词\n // 1. 渲染进程 -> 主进程的事件\n+export const GET_DIR_TREE = 'get dir tree'\n \n // 2. interProcess\n \n-export const GET_DIR_TREE = 'get dir tree'\n+// 3. 主进程 -> 渲染进程\n+export const UPDATE_DIR_TREE = 'update a dir tree'\n\\ No newline at end of file\n"
                 }
             ],
-            "date": 1667543169085,
+            "date": 1669996245542,
             "name": "Commit-0",
-            "content": "// 事件类型，尽量用两个单词表示 动词 + 名词\nexport const CLOSE_SCREEN = 'close'\nexport const MAX_SCREEN = 'max'\nexport const MIN_SCREEN = 'min'\nexport const NEW_FILE = 'add a new file'\n\n"
+            "content": "\n// 事件类型，尽量用两个单词表示 动词 + 名词\n// 1. 渲染进程 -> 主进程的事件\n\n// 2. interProcess\n\nexport const GET_DIR_TREE = 'get dir tree'\n"
         }
     ]
 }

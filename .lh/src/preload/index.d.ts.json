@@ -1,18 +1,30 @@
 {
-  "sourceFile": "src/preload/index.d.ts",
-  "activeCommit": 0,
-  "commits": [
-    {
-      "activePatchIndex": 0,
-      "patches": [
+    "sourceFile": "src/preload/index.d.ts",
+    "activeCommit": 0,
+    "commits": [
         {
-          "date": 1667543295562,
-          "content": "Index: \n===================================================================\n--- \n+++ \n"
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1669998495919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1669999824601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,4 +5,8 @@\n     electron: ElectronAPI\n     api: API\n   }\n }\n+interface xxx {\n+  electron: ElectronAPI\n+  api: API\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1669999919942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n     electron: ElectronAPI\n     api: API\n   }\n }\n-interface xxx {\n-  electron: ElectronAPI\n+declare const xxx = {\n+  electron: ElectronAPI,\n   api: API\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670000075636,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,5 @@\n   interface Window {\n     electron: ElectronAPI\n     api: API\n   }\n-}\n-declare const xxx = {\n-  electron: ElectronAPI,\n-  api: API\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1669998495919,
+            "name": "Commit-0",
+            "content": "import { ElectronAPI } from '@electron-toolkit/preload'\nimport { API } from './index'\ndeclare global {\n  interface Window {\n    electron: ElectronAPI\n    api: API\n  }\n}\n"
         }
-      ],
-      "date": 1667543295562,
-      "name": "Commit-0",
-      "content": "import { ElectronAPI } from '@electron-toolkit/preload'\nimport {API} from './index'\ndeclare global {\n  interface Window {\n    electron: ElectronAPI\n    api: API\n  }\n}\n"
-    }
-  ]
+    ]
 }
