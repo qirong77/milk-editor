@@ -9,15 +9,19 @@ export const useStore = defineStore('global', {
       activePath: '',
       openedFolders: [],
       // 打开的文件，只有一个
-      openedFile: ''
+      openedFile: '',
+      totalPaths: ['']
     }
   },
   actions: {
     changeActivePath(path: string) {
       this.activePath = path
     },
-    changeOpenedPath(path:string) {
-        this.openedFile = path
+    changeOpenedPath(path: string) {
+      this.openedFile = path
+    },
+    setTotalPaths(paths: string[]) {
+      this.totalPaths = paths
     }
   }
 })

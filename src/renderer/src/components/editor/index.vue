@@ -41,8 +41,9 @@ onMounted(() => {
 .editor-component {
   flex: auto;
   .milkdown {
-    height: 100vh;
     overflow: scroll;
+    max-height: calc(100vh - 36px);
+    max-width: fit-content;
     .editor {
       padding: 50px 40px;
       min-height: 90vh;

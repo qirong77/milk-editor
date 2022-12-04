@@ -11,12 +11,12 @@ export const createWindow = () => {
     autoHideMenuBar: true,
     x: 120,
     y: -25,
+    titleBarStyle: 'hiddenInset',
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
-
   window.on('ready-to-show', () => {
     window.show()
   })

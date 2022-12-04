@@ -16,11 +16,14 @@
 import { ref } from 'vue'
 import { UPDATE_DIR_TREE } from '../../../../common/eventType'
 import { DirTree } from '../../../../common/types'
+import { useStore } from '../../store'
 import DragLine from './components/drag-line/drag-line.vue'
 import FileList from './components/file-list/file-list.vue'
 const tree = ref<DirTree>()
-window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {
+const store = useStore()
+window.api.onMain(UPDATE_DIR_TREE, (_e, newTree,paths) => {
   console.log('📕get-dir-tree', newTree)
+  store.setTotalPaths(paths)
   tree.value = newTree
 })
 const sideBarWidth = ref(200)
@@ -31,7 +34,6 @@ const handleDragDone = (newWidth: number) => {
 
 <style lang="scss" scoped>
 .side-bar {
-  height: 100vh;
   overflow: scroll;
   position: relative;
 }

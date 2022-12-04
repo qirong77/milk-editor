@@ -10,6 +10,9 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
 @mixin theme-dark {
   color: $dark-font-color;
   background-color: $dark-background;
+  header {
+    background-color: rgb(63, 67, 90);
+  }
   input {
     color: $dark-font-color;
     background-color: $dark-sideBar-background;

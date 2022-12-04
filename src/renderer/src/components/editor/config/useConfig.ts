@@ -2,7 +2,7 @@ import { defaultValueCtx, Editor, rootCtx } from '@milkdown/core'
 import { listenerCtx } from '@milkdown/plugin-listener'
 import { debounce } from 'debounce'
 export const useConfig = (editor: Editor, root: HTMLElement,setMarkdown) => {
-  const debounceSet = debounce(setMarkdown, 500, false)
+  const debounceSet = debounce(setMarkdown, 100, false)
   editor
     .config((ctx) => {
       ctx.set(rootCtx, root)
