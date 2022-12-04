@@ -1,31 +1,56 @@
 <template>
-  <div class="editor">
+  <div class="editor-component">
     <VueEditor :editor="editor" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Editor, rootCtx } from '@milkdown/core'
-import { nord } from '@milkdown/theme-nord'
+import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { commonmark } from '@milkdown/preset-commonmark'
+import { onMounted, ref, watchEffect } from 'vue'
+import { useStore } from '../../store'
+import { useConfig } from './config/useConfig'
+import { usePlugins } from './config/usePlugins'
+import { GET_FILE_CONTENT, SAVE_FILE } from '../../../../common/eventType'
+import { replaceAll } from '@milkdown/utils'
 
-const { editor } = useEditor((root) =>
-  Editor.make()
-    .config((ctx) => {
-      ctx.set(rootCtx, root)
+const store = useStore()
+const { editor, getInstance } = useEditor((root) => {
+  const intance = Editor.make()
+  useConfig(intance, root, (newMarkdown) => (markDown.value = newMarkdown))
+  usePlugins(intance)
+  return intance
+})
+const markDown = ref('')
+
+onMounted(() => {
+  watchEffect(() => {
+    const path = store.openedFile
+    window.api.interProcess(GET_FILE_CONTENT, path).then((res) => {
+      getInstance()?.action(replaceAll(res))
     })
-    .use(nord)
-    .use(commonmark)
-)
+  })
+  watchEffect(() => {
+    window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
+    console.log('📕',markDown.value)
+  })
+})
 </script>
 
 <style lang="scss">
-.editor {
+.editor-component {
   flex: auto;
   .milkdown {
     height: 100vh;
     overflow: scroll;
+    .editor {
+      padding: 50px 40px;
+      min-height: 90vh;
+    }
+  }
+  .milkdown-menu {
+    position: absolute;
+    z-index: 999;
   }
   // 清除默认编辑器我不喜欢的样式
   // this file amis to clear some default styles of the milkdown editor

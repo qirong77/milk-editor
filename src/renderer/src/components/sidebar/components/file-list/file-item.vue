@@ -14,7 +14,7 @@
     <div v-if="isDir">
       <svg
         class="triangle-down"
-        :class="{'rotate':rotateSvg}"
+        :class="{ rotate: !isOpen }"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -27,7 +27,7 @@
         />
       </svg>
       <svg
-        v-if="!isActive"
+        v-if="isOpen"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -63,6 +63,7 @@ const props = defineProps<{
   isDir: boolean
   path: string
   level: number
+  isOpen:boolean
 }>()
 const store = useStore()
 const emits = defineEmits(['toggle-file-list'])
@@ -71,7 +72,9 @@ const rotateSvg = ref(true)
 const isActive = computed(() => store.activePath === props.path)
 const handleClick = () => {
   rotateSvg.value = !rotateSvg.value
-  props.isDir && emits('toggle-file-list')
+  if (props.isDir) {
+    props.isDir && emits('toggle-file-list')
+  } else store.changeOpenedPath(props.path)
   store.changeActivePath(props.path)
 }
 </script>

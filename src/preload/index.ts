@@ -8,9 +8,14 @@ const sendToMain = (e: string, ...args: any[]) => {
 const onMain = (e: string, callback) => {
   ipcRenderer.on(e, callback)
 }
+const interProcess = async (e: string, ...args: any[]) => {
+  const result = await ipcRenderer.invoke(e, ...args)
+  return result
+}
 const api = {
   sendToMain,
-  onMain
+  onMain,
+  interProcess
 }
 export type API = typeof api
 // Use `contextBridge` APIs to expose Electron APIs to

@@ -1,5 +1,5 @@
 <template>
-    <!-- 为了避免overflow显示异常，这里使用teleport传送 -->
+  <!-- 为了避免overflow显示异常，这里使用teleport传送 -->
   <Teleport to="body">
     <div
       class="drag-line"
@@ -25,7 +25,9 @@ const handleMouseDown = (e: MouseEvent) => {
   // 释放鼠标的时候解除事件绑定
   document.onmouseup = (e) => {
     const newPosition = e.clientX
-    emits('drag-done', newPosition)
+    if (newPosition < 180 || newPosition > 600) {
+    } else emits('drag-done', newPosition)
+
     moveDistance.value = 0
     document.onmousemove = null
     document.onmouseup = null

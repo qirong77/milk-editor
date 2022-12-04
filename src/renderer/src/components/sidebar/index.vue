@@ -2,7 +2,8 @@
   <div
     class="side-bar"
     :style="{
-      width: sideBarWidth + 'px'
+      width: sideBarWidth + 'px',
+      minWidth: sideBarWidth + 'px'
     }"
   >
     <file-list :tree="tree" />

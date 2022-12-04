@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1669996245548,
@@ -72,6 +72,10 @@
                 {
                     "date": 1670141149577,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,17 +14,17 @@\n /// <reference path='../../../../preload/index.d.ts'/>\n import { ref } from 'vue'\n import { UPDATE_DIR_TREE } from '../../../../common/eventType'\n import { DirTree } from '../../../../common/types'\n-import DragLine from './components/file-list/drag-line.vue'\n+import DragLine from './components/drag-line/drag-line.vue'\n import FileList from './components/file-list/file-list.vue'\n const tree = ref<DirTree>()\n window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n   console.log('📕get-dir-tree', newTree)\n   tree.value = newTree\n })\n const sideBarWidth = ref(200)\n-const handleDragDone = (newWidth:number) => {\n+const handleDragDone = (newWidth: number) => {\n   sideBarWidth.value = newWidth\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670144786854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <template>\n   <div\n     class=\"side-bar\"\n     :style=\"{\n-      width: sideBarWidth + 'px'\n+      width: sideBarWidth + 'px',\n+      minWidth: sideBarWidth + 'px'\n     }\"\n   >\n     <file-list :tree=\"tree\" />\n     <drag-line :width=\"sideBarWidth\" @drag-done=\"handleDragDone\" />\n"
                 }
             ],
             "date": 1669996245548,

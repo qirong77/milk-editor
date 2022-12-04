@@ -11,6 +11,7 @@
       :is-dir="tree.isDir"
       :level="tree.level"
       :path="tree.path"
+      :is-open="isOpen"
     />
     <template v-for="child in tree.children" :key="child.path">
       <file-list :tree="child" />

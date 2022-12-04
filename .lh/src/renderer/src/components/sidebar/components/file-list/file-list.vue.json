@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1670080761797,
@@ -44,6 +44,10 @@
                 {
                     "date": 1670133599805,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,17 +19,18 @@\n </template>\n \n <script setup lang=\"ts\">\n import { PropType, ref } from 'vue'\n-import { Tree } from './tree-data'\n+import { DirTree } from '../../../../../../common/types';\n+\n import FileItem from './file-item.vue'\n const isOpen = ref(true)\n const toggleFileList = () => {\n   isOpen.value = !isOpen.value\n }\n defineProps({\n   tree: {\n-    type: Object as PropType<Tree>,\n+    type: Object as PropType<DirTree>,\n     default: {\n       fileName: 'Markdowns',\n       path: '/Users/qirong77/Desktop/front-end-book/Markdowns',\n       level: 0,\n"
+                },
+                {
+                    "date": 1670145982292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n       :file-name=\"tree.fileName\"\n       :is-dir=\"tree.isDir\"\n       :level=\"tree.level\"\n       :path=\"tree.path\"\n+      :is-open=\"isOpen\"\n     />\n     <template v-for=\"child in tree.children\" :key=\"child.path\">\n       <file-list :tree=\"child\" />\n     </template>\n"
                 }
             ],
             "date": 1670080761797,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 48,
+            "activePatchIndex": 55,
             "patches": [
                 {
                     "date": 1669998522534,
@@ -200,6 +200,34 @@
                 {
                     "date": 1670136611224,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n-const rotateSvg = ref(false)\n+const rotateSvg = ref(true)\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   rotateSvg.value = !rotateSvg.value\n   props.isDir && emits('toggle-file-list')\n"
+                },
+                {
+                    "date": 1670142714815,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,11 @@\n const rotateSvg = ref(true)\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   rotateSvg.value = !rotateSvg.value\n-  props.isDir && emits('toggle-file-list')\n+  if(props.isDir) {\n+    props.isDir && emits('toggle-file-list')\n+  } else store.ch\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670142725193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <!-- 只有作为文件名的item有图标 -->\n     <div v-if=\"isDir\">\n       <svg\n         class=\"triangle-down\"\n-        :class=\"{'rotate':rotateSvg}\"\n+        :class=\"{ rotate: rotateSvg }\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -70,11 +70,11 @@\n const rotateSvg = ref(true)\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   rotateSvg.value = !rotateSvg.value\n-  if(props.isDir) {\n+  if (props.isDir) {\n     props.isDir && emits('toggle-file-list')\n-  } else store.ch\n+  } else store.changeOpenedPath(props.path)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670145885431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n           d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"\n         />\n       </svg>\n       <svg\n-        v-if=\"!isActive\"\n+        v-if=\"(!isActive && isDir)\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1670145917564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n           d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"\n         />\n       </svg>\n       <svg\n-        v-if=\"(!isActive && isDir)\"\n+        v-if=\"true\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1670145981520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n           d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"\n         />\n       </svg>\n       <svg\n-        v-if=\"true\"\n+        v-if=\"isOpen\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -62,8 +62,9 @@\n   fileName: string\n   isDir: boolean\n   path: string\n   level: number\n+  isOpen:boolean\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n"
+                },
+                {
+                    "date": 1670146034640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <!-- 只有作为文件名的item有图标 -->\n     <div v-if=\"isDir\">\n       <svg\n         class=\"triangle-down\"\n-        :class=\"{ rotate: rotateSvg }\"\n+        :class=\"{ rotate: isOpen }\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
+                },
+                {
+                    "date": 1670146043917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <!-- 只有作为文件名的item有图标 -->\n     <div v-if=\"isDir\">\n       <svg\n         class=\"triangle-down\"\n-        :class=\"{ rotate: isOpen }\"\n+        :class=\"{ rotate: !isOpen }\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n"
                 }
             ],
             "date": 1669998522534,
