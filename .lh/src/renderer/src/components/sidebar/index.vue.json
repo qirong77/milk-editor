@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1669996245548,
@@ -52,6 +52,26 @@
                 {
                     "date": 1670080761800,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,23 +1,26 @@\n- <template> \n-   <div class=\"side-bar\"> \n-<file-list/>\n-<ax-g/>\n-   </div> \n- </template> \n+<template>\n+  <div class=\"side-bar\">\n+    <file-list :tree=\"tree\" />\n+  </div>\n+</template>\n \n- <script setup lang=\"ts\"> \n-import { defineComponent } from 'vue';\n-import FileList from './components/file-list/file-list.vue.vue';\n-defineComponent({\n-  name:'ax-g'\n+<script setup lang=\"ts\">\n+/// <reference path='../../../../preload/index.d.ts'/>\n+import { ref } from 'vue'\n+import { UPDATE_DIR_TREE } from '../../../../common/eventType'\n+import { DirTree } from '../../../../common/types'\n+import FileList from './components/file-list/file-list.vue'\n\\ No newline at end of file\n+const tree = ref<DirTree>()\n+window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n+  console.log('📕get-dir-tree', newTree)\n+  tree.value = newTree\n })\n- </script> \n+</script>\n \n- <style lang=\"scss\" scoped> \n+<style lang=\"scss\" scoped>\n .side-bar {\n   width: 200px;\n   height: 100vh;\n   overflow: scroll;\n }\n- </style> \n- \n+</style>\n"
+                },
+                {
+                    "date": 1670133965754,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,21 +6,22 @@\n \n <script setup lang=\"ts\">\n /// <reference path='../../../../preload/index.d.ts'/>\n import { ref } from 'vue'\n-import { UPDATE_DIR_TREE } from '../../../../common/eventType'\n+import { GET_DIR_TREE, UPDATE_DIR_TREE } from '../../../../common/eventType'\n import { DirTree } from '../../../../common/types'\n import FileList from './components/file-list/file-list.vue'\n const tree = ref<DirTree>()\n window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n   console.log('📕get-dir-tree', newTree)\n   tree.value = newTree\n })\n+window.api.sendToMain(GET_DIR_TREE)\n </script>\n \n <style lang=\"scss\" scoped>\n .side-bar {\n   width: 200px;\n   height: 100vh;\n   overflow: scroll;\n\\ No newline at end of file\n }\n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1670134576009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,14 +14,14 @@\n window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n   console.log('📕get-dir-tree', newTree)\n   tree.value = newTree\n })\n-window.api.sendToMain(GET_DIR_TREE)\n+\n </script>\n \n <style lang=\"scss\" scoped>\n .side-bar {\n   width: 200px;\n   height: 100vh;\n   overflow: scroll;\n }\n\\ No newline at end of file\n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1670138109721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,37 @@\n <template>\n-  <div class=\"side-bar\">\n+  <div\n+    class=\"side-bar\"\n+    :style=\"{\n+      width: sideBarWidth + 'px'\n+    }\"\n+  >\n     <file-list :tree=\"tree\" />\n+    <drag-line @drag-done=\"handleDragDone\" />\n   </div>\n </template>\n \n <script setup lang=\"ts\">\n /// <reference path='../../../../preload/index.d.ts'/>\n import { ref } from 'vue'\n-import { GET_DIR_TREE, UPDATE_DIR_TREE } from '../../../../common/eventType'\n+import { UPDATE_DIR_TREE } from '../../../../common/eventType'\n import { DirTree } from '../../../../common/types'\n+import DragLine from './components/file-list/drag-line.vue'\n import FileList from './components/file-list/file-list.vue'\n const tree = ref<DirTree>()\n window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n   console.log('📕get-dir-tree', newTree)\n   tree.value = newTree\n })\n-\n\\ No newline at end of file\n+const sideBarWidth = ref(200)\n+const handleDragDone = (newWidth:number) => {\n+  sideBarWidth.value = newWidth\n+}\n </script>\n \n <style lang=\"scss\" scoped>\n .side-bar {\n-  width: 200px;\n   height: 100vh;\n   overflow: scroll;\n+  position: relative;\n }\n-</style>\n+</style>\n"
+                },
+                {
+                    "date": 1670138122400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n       width: sideBarWidth + 'px'\n     }\"\n   >\n     <file-list :tree=\"tree\" />\n-    <drag-line @drag-done=\"handleDragDone\" />\n+    <drag-line :width=\"sideBarWidth\" @drag-done=\"handleDragDone\" />\n   </div>\n </template>\n \n <script setup lang=\"ts\">\n"
+                },
+                {
+                    "date": 1670141149577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,17 +14,17 @@\n /// <reference path='../../../../preload/index.d.ts'/>\n import { ref } from 'vue'\n import { UPDATE_DIR_TREE } from '../../../../common/eventType'\n import { DirTree } from '../../../../common/types'\n-import DragLine from './components/file-list/drag-line.vue'\n+import DragLine from './components/drag-line/drag-line.vue'\n import FileList from './components/file-list/file-list.vue'\n const tree = ref<DirTree>()\n window.api.onMain(UPDATE_DIR_TREE, (_e, newTree) => {\n   console.log('📕get-dir-tree', newTree)\n   tree.value = newTree\n })\n const sideBarWidth = ref(200)\n-const handleDragDone = (newWidth:number) => {\n+const handleDragDone = (newWidth: number) => {\n   sideBarWidth.value = newWidth\n }\n </script>\n \n"
                 }
             ],
             "date": 1669996245548,

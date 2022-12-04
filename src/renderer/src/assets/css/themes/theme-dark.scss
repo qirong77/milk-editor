@@ -1,0 +1,80 @@
+$dark-font-color: rgb(219, 223, 236);
+$dark-background: rgb(46 52 64);
+$dark-header-backgournd: rgb(59, 62, 81);
+$dark-sideBar-background: rgb(36, 41, 51);
+$active-font-color: rgb(129, 161, 193);
+$font-family: sans-serif;
+$code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragino Sans GB,
+  sans-serif;
+// 最外层是container
+@mixin theme-dark {
+  color: $dark-font-color;
+  background-color: $dark-background;
+  input {
+    color: $dark-font-color;
+    background-color: $dark-sideBar-background;
+    border: 2px solid $active-font-color;
+    border-radius: 6px;
+    padding-left: 4px;
+    transform: scale(1.1);
+  }
+  .side-bar {
+    font-weight: 400;
+    border-right: 1px solid $dark-header-backgournd;
+    background-color: $dark-sideBar-background;
+    .file-item-active {
+      border-left: 5px solid rgb(157, 157, 198);
+      background-color:rgb(23, 27, 36); ;
+    }
+    .drag-line {
+      background-color: $dark-header-backgournd;
+    }
+    a {
+      text-decoration-color: $dark-font-color;
+      color: $dark-font-color;
+    }
+    .swg {
+      background-color: $dark-sideBar-background;
+    }
+  }
+  .milkdown {
+    background: $dark-background;
+    color: $dark-font-color;
+    font-family: $font-family;
+    p {
+      width: 100%;
+    }
+    // 反引号，行内的代码
+    .editor {
+      code.code-inline {
+        color: $dark-font-color;
+        background-color: $dark-sideBar-background;
+        font-size: initial;
+      }
+      // 注释
+      .blockquote {
+        padding-left: 14px;
+        border-width: 2px;
+        margin: 15px 0;
+        p {
+          font-size: 18px;
+          color: rgb(153, 164, 182);
+        }
+      }
+      .code-fence {
+        margin: 10px 0px;
+        pre code {
+          color: $dark-font-color;
+          // font-family:$code-fence-font-family
+        }
+      }
+    }
+  }
+  .search-file {
+    background-color: $dark-sideBar-background;
+    li.active,li:hover {
+      background-color: $dark-header-backgournd;
+      color: $active-font-color;
+    }
+  }
+}

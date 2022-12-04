@@ -1,11 +1,11 @@
 <template>
   <li
     class="file-item"
-    :class="{ 'file-item-active': activeItem }"
+    :class="{ 'file-item-active': isActive }"
     @click.stop="handleClick"
     @mouseleave=""
     :style="{
-      paddingLeft: level * 10 + 'px',
+      paddingLeft: 4 + level * 12 + 'px',
       display: level === 0 ? 'none' : 'flex'
     }"
   >
@@ -14,6 +14,7 @@
     <div v-if="isDir">
       <svg
         class="triangle-down"
+        :class="{'rotate':rotateSvg}"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -26,7 +27,7 @@
         />
       </svg>
       <svg
-        v-if="activeItem"
+        v-if="!isActive"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -55,21 +56,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
-// import { DirTree } from '../../../../../../common/types'
-// type Node = Omit<DirTree, 'children' | 'opened'|'level'>
+import { computed, ref } from 'vue'
+import { useStore } from '../../../../store/index'
 const props = defineProps<{
   fileName: string
   isDir: boolean
   path: string
   level: number
 }>()
+const store = useStore()
 const emits = defineEmits(['toggle-file-list'])
 const showInput = ref(false)
-const activeItem = ref(false)
+const rotateSvg = ref(true)
+const isActive = computed(() => store.activePath === props.path)
 const handleClick = () => {
+  rotateSvg.value = !rotateSvg.value
   props.isDir && emits('toggle-file-list')
-  activeItem.value = !activeItem.value
+  store.changeActivePath(props.path)
 }
 </script>
 
@@ -88,6 +91,7 @@ li.file-item {
   div {
     display: flex;
     align-items: center;
+    margin-right: 4px;
     svg {
       height: 16px;
       width: 16px;
@@ -98,10 +102,11 @@ li.file-item {
       height: 12px;
       width: 12px;
       margin-right: 4px;
+      transition: all 0.5s;
+    }
+    svg.rotate {
+      transform: rotate(-90deg);
     }
   }
-}
-li.file-item-active {
-  background-color: aqua;
 }
 </style>

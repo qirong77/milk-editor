@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 48,
             "patches": [
                 {
                     "date": 1669998522534,
@@ -104,6 +104,102 @@
                 {
                     "date": 1670082309922,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,18 +57,21 @@\n <script setup lang=\"ts\">\n import { ref, defineProps } from 'vue'\n // import { DirTree } from '../../../../../../common/types'\n // type Node = Omit<DirTree, 'children' | 'opened'|'level'>\n-defineProps<{\n+const props = defineProps<{\n   fileName: string\n   isDir: boolean\n   path: string\n   level: number\n }>()\n-\n+const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n const activeItem = ref(false)\n-const handleClick = () => {activeItem.value = !activeItem.value}\n+const handleClick = () => {\n+  props.isDir && emits('toggle-file-list')\n+  activeItem.value = !activeItem.value\n+}\n </script>\n \n <style lang=\"scss\">\n li.file-item {\n"
+                },
+                {
+                    "date": 1670083518800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n   </li>\n </template>\n \n <script setup lang=\"ts\">\n-import { ref, defineProps } from 'vue'\n+import { ref } from 'vue'\n // import { DirTree } from '../../../../../../common/types'\n // type Node = Omit<DirTree, 'children' | 'opened'|'level'>\n const props = defineProps<{\n   fileName: string\n"
+                },
+                {
+                    "date": 1670083775321,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     :class=\"{ 'file-item-active': activeItem }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n-      paddingLeft: level * 10 + 'px',\n+      paddingLeft: 10 + level * 8 + 'px',\n       display: level === 0 ? 'none' : 'flex'\n     }\"\n   >\n     <input v-if=\"showInput\" type=\"text\" />\n@@ -55,10 +55,8 @@\n </template>\n \n <script setup lang=\"ts\">\n import { ref } from 'vue'\n-// import { DirTree } from '../../../../../../common/types'\n-// type Node = Omit<DirTree, 'children' | 'opened'|'level'>\n const props = defineProps<{\n   fileName: string\n   isDir: boolean\n   path: string\n@@ -87,8 +85,9 @@\n   }\n   div {\n     display: flex;\n     align-items: center;\n+    margin-right: 4px;\n     svg {\n       height: 16px;\n       width: 16px;\n       color: rgb(147, 147, 214);\n"
+                },
+                {
+                    "date": 1670083801189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     :class=\"{ 'file-item-active': activeItem }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n-      paddingLeft: 10 + level * 8 + 'px',\n+      paddingLeft: 6 + level * 10 + 'px',\n       display: level === 0 ? 'none' : 'flex'\n     }\"\n   >\n     <input v-if=\"showInput\" type=\"text\" />\n"
+                },
+                {
+                    "date": 1670083809265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     :class=\"{ 'file-item-active': activeItem }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n-      paddingLeft: 6 + level * 10 + 'px',\n+      paddingLeft: 6 + level * 12 + 'px',\n       display: level === 0 ? 'none' : 'flex'\n     }\"\n   >\n     <input v-if=\"showInput\" type=\"text\" />\n"
+                },
+                {
+                    "date": 1670083818787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n     :class=\"{ 'file-item-active': activeItem }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n-      paddingLeft: 6 + level * 12 + 'px',\n+      paddingLeft: 4 + level * 12 + 'px',\n       display: level === 0 ? 'none' : 'flex'\n     }\"\n   >\n     <input v-if=\"showInput\" type=\"text\" />\n"
+                },
+                {
+                    "date": 1670085489339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -99,8 +99,5 @@\n       margin-right: 4px;\n     }\n   }\n }\n-li.file-item-active {\n-  background-color: aqua;\n-}\n </style>\n"
+                },
+                {
+                    "date": 1670130083525,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,9 @@\n </template>\n \n <script setup lang=\"ts\">\n import { ref } from 'vue'\n+import { useStore } from '../../../../store/index';\n const props = defineProps<{\n   fileName: string\n   isDir: boolean\n   path: string\n@@ -64,8 +65,9 @@\n }>()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n const activeItem = ref(false)\n+useStore\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   activeItem.value = !activeItem.value\n }\n"
+                },
+                {
+                    "date": 1670130279827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <li\n     class=\"file-item\"\n-    :class=\"{ 'file-item-active': activeItem }\"\n+    :class=\"{ 'file-item-active': activePath === path }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n       paddingLeft: 4 + level * 12 + 'px',\n@@ -55,22 +55,24 @@\n </template>\n \n <script setup lang=\"ts\">\n import { ref } from 'vue'\n-import { useStore } from '../../../../store/index';\n+import { useStore } from '../../../../store/index'\n const props = defineProps<{\n   fileName: string\n   isDir: boolean\n   path: string\n   level: number\n }>()\n+const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n const activeItem = ref(false)\n-useStore\n+const activePath = store.activePath\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   activeItem.value = !activeItem.value\n+  store.\n }\n </script>\n \n <style lang=\"scss\">\n"
+                },
+                {
+                    "date": 1670130302077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,9 +70,9 @@\n const activePath = store.activePath\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   activeItem.value = !activeItem.value\n-  store.\n+  store.changeActivePath(props.path)\n }\n </script>\n \n <style lang=\"scss\">\n"
+                },
+                {
+                    "date": 1670134685862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <li\n     class=\"file-item\"\n-    :class=\"{ 'file-item-active': activePath === path }\"\n+    :class=\"{ 'file-item-active': isActive }\"\n     @click.stop=\"handleClick\"\n     @mouseleave=\"\"\n     :style=\"{\n       paddingLeft: 4 + level * 12 + 'px',\n@@ -25,9 +25,9 @@\n           d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"\n         />\n       </svg>\n       <svg\n-        v-if=\"activeItem\"\n+        v-if=\"isActive\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -54,9 +54,9 @@\n   </li>\n </template>\n \n <script setup lang=\"ts\">\n-import { ref } from 'vue'\n+import { computed, ref } from 'vue'\n import { useStore } from '../../../../store/index'\n const props = defineProps<{\n   fileName: string\n   isDir: boolean\n@@ -65,13 +65,12 @@\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n-const activeItem = ref(false)\n const activePath = store.activePath\n+const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n-  activeItem.value = !activeItem.value\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670134713963,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,8 +69,9 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n+  console.log('📕',props.path,activePath)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670134731128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n-  console.log('📕',props.path,activePath)\n+  console.log('📕',props.path,'\\n',activePath)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670135405099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n-  console.log('📕',props.path,'\\n',activePath)\n+  console.log('📕',store.activePath)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670135517945,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,8 +70,9 @@\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   console.log('📕',store.activePath)\n+  console.log('📕',activePath===props.path)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670135583093,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,10 +69,10 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n-  console.log('📕',store.activePath)\n-  console.log('📕',activePath===props.path)\n+  console.log('📕','store--',activePath)\n+  console.log('📕','props',props.path)\n   store.changeActivePath(props.path)\n }\n </script>\n \n"
+                },
+                {
+                    "date": 1670135615179,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,11 +69,12 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n+\n+  store.changeActivePath(props.path)\n   console.log('📕','store--',activePath)\n-  console.log('📕','props',props.path)\n-  store.changeActivePath(props.path)\n+  console.log('📕','props--',props.path)\n }\n </script>\n \n <style lang=\"scss\">\n"
+                },
+                {
+                    "date": 1670135661556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,8 @@\n const activePath = store.activePath\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n-\n   store.changeActivePath(props.path)\n   console.log('📕','store--',activePath)\n   console.log('📕','props--',props.path)\n }\n"
+                },
+                {
+                    "date": 1670136223610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,10 +70,9 @@\n const isActive = computed(() => activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   store.changeActivePath(props.path)\n-  console.log('📕','store--',activePath)\n-  console.log('📕','props--',props.path)\n+  console.log('📕','store--',store.activePath)\n }\n </script>\n \n <style lang=\"scss\">\n"
+                },
+                {
+                    "date": 1670136251875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n const activePath = store.activePath\n-const isActive = computed(() => activePath === props.path)\n+const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   store.changeActivePath(props.path)\n   console.log('📕','store--',store.activePath)\n"
+                },
+                {
+                    "date": 1670136287270,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,8 @@\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n-const activePath = store.activePath\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   store.changeActivePath(props.path)\n"
+                },
+                {
+                    "date": 1670136376920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n           d=\"M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z\"\n         />\n       </svg>\n       <svg\n-        v-if=\"isActive\"\n+        v-if=\"!isActive\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -69,9 +69,8 @@\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   props.isDir && emits('toggle-file-list')\n   store.changeActivePath(props.path)\n-  console.log('📕','store--',store.activePath)\n }\n </script>\n \n <style lang=\"scss\">\n"
+                },
+                {
+                    "date": 1670136472217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n     <!-- 只有作为文件名的item有图标 -->\n     <div v-if=\"isDir\">\n       <svg\n         class=\"triangle-down\"\n+        :class=\"{'rotate':isActive}\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -98,8 +99,12 @@\n     svg.triangle-down {\n       height: 12px;\n       width: 12px;\n       margin-right: 4px;\n+      transition: all 0.5s;\n     }\n+    svg.rotate {\n+      transform: rotate(-90deg);\n+    }\n   }\n }\n </style>\n"
+                },
+                {
+                    "date": 1670136596853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     <!-- 只有作为文件名的item有图标 -->\n     <div v-if=\"isDir\">\n       <svg\n         class=\"triangle-down\"\n-        :class=\"{'rotate':isActive}\"\n+        :class=\"{'rotate':rotateSvg}\"\n         xmlns=\"http://www.w3.org/2000/svg\"\n         width=\"16\"\n         height=\"16\"\n         fill=\"currentColor\"\n@@ -66,10 +66,12 @@\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n+const rotateSvg = ref(false)\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n+  rotateSvg.value = !rotateSvg.value\n   props.isDir && emits('toggle-file-list')\n   store.changeActivePath(props.path)\n }\n </script>\n"
+                },
+                {
+                    "date": 1670136611224,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,9 @@\n }>()\n const store = useStore()\n const emits = defineEmits(['toggle-file-list'])\n const showInput = ref(false)\n-const rotateSvg = ref(false)\n+const rotateSvg = ref(true)\n const isActive = computed(() => store.activePath === props.path)\n const handleClick = () => {\n   rotateSvg.value = !rotateSvg.value\n   props.isDir && emits('toggle-file-list')\n"
                 }
             ],
             "date": 1669998522534,

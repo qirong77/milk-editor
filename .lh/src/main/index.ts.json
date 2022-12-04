@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 17,
             "patches": [
                 {
                     "date": 1669999432561,
@@ -32,6 +32,50 @@
                 {
                     "date": 1670058702132,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,18 +12,16 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-setTimeout(()=>{\n-  window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n-\n-},3000)\n+  setTimeout(() => {\n+    window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n+  }, 2000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n     optimizer.watchWindowShortcuts(window)\n-\n   })\n \n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n"
+                },
+                {
+                    "date": 1670133712251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  setTimeout(() => {\n+  setInterval(() => {\n     window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n   }, 2000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n"
+                },
+                {
+                    "date": 1670133747100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n   setInterval(() => {\n     window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n-  }, 2000)\n+  }, 3000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
+                },
+                {
+                    "date": 1670133752770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  setInterval(() => {\n+  setTimeout(() => {\n     window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n   }, 3000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n"
+                },
+                {
+                    "date": 1670133775962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n   setTimeout(() => {\n     window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n-  }, 3000)\n+  }, 5000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
+                },
+                {
+                    "date": 1670133991358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,11 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  setTimeout(() => {\n-    window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n-  }, 5000)\n+  // setTimeout(() => {\n+  //   window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n+  // }, 5000)\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
+                },
+                {
+                    "date": 1670134373565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,18 @@\n import { app, BrowserWindow } from 'electron'\n \n import { electronApp, optimizer } from '@electron-toolkit/utils'\n import { createWindow } from './electron/createWindow'\n-import { UPDATE_DIR_TREE } from '../common/eventType'\n-import { getDirectoryTree } from './events/helper/getDirectoryTree'\n-import { defaultPath } from './config'\n+import { onEvents } from './events'\n \n // This method will be called when Electron has finished\n // initialization and is ready to create browser windows.\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  // setTimeout(() => {\n-  //   window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))\n-  // }, 5000)\n+  onEvents()\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
+                },
+                {
+                    "date": 1670134397533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  onEvents()\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n@@ -21,8 +20,10 @@\n \n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n+  onEvents()\n+\n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n   })\n })\n \n"
+                },
+                {
+                    "date": 1670134454976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n+  onEvents()\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n@@ -20,9 +21,8 @@\n \n   app.on('activate', function () {\n     // On macOS it's common to re-create a window in the app when the\n     // dock icon is clicked and there are no other windows open.\n-  onEvents()\n \n     if (BrowserWindow.getAllWindows().length === 0) createWindow()\n   })\n })\n"
+                },
+                {
+                    "date": 1670134519864,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   const window = createWindow()\n-  onEvents()\n+\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
+                },
+                {
+                    "date": 1670134561171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n // Some APIs can only be used after this event occurs.\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n-  const window = createWindow()\n+  createWindow()\n \n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n"
+                },
+                {
+                    "date": 1670134570162,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n app.whenReady().then(() => {\n   // Set app user model id for windows\n   electronApp.setAppUserModelId('com.electron')\n   createWindow()\n-\n+onEvents()\n   // Default open or close DevTools by F12 in development\n   // and ignore CommandOrControl + R in production.\n   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils\n   app.on('browser-window-created', (_, window) => {\n"
                 }
             ],
             "date": 1669999432561,

@@ -20,7 +20,8 @@
 
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
-import { treeData, Tree } from './tree-data'
+import { DirTree } from '../../../../../../common/types';
+
 import FileItem from './file-item.vue'
 const isOpen = ref(true)
 const toggleFileList = () => {
@@ -28,8 +29,14 @@ const toggleFileList = () => {
 }
 defineProps({
   tree: {
-    type: Object as PropType<Tree>,
-    default: treeData
+    type: Object as PropType<DirTree>,
+    default: {
+      fileName: 'Markdowns',
+      path: '/Users/qirong77/Desktop/front-end-book/Markdowns',
+      level: 0,
+      isDir: true,
+      opened: false
+    }
   }
 })
 </script>
@@ -37,6 +44,7 @@ defineProps({
 <style lang="scss">
 .file-list {
   height: auto;
+  user-select: none;
 }
 ul.file-list-close {
   height: 30px;

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 14,
             "patches": [
                 {
                     "date": 1669989149117,
@@ -56,6 +56,14 @@
                 {
                     "date": 1670056877487,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div class=\"container\">\n+    <side-bar />\n     <editor />\n-    <side-bar />\n   </div>\n </template>\n \n <script setup lang=\"ts\">\n@@ -12,7 +12,7 @@\n \n <style lang=\"scss\" scoped>\n .container {\n   display: flex;\n-  \n+\n }\n </style>\n"
+                },
+                {
+                    "date": 1670139455243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div class=\"container\">\n     <side-bar />\n-    <editor />\n+    \n   </div>\n </template>\n \n <script setup lang=\"ts\">\n"
+                },
+                {
+                    "date": 1670140848844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n <template>\n   <div class=\"container\">\n     <side-bar />\n-    \n+    <editor/>\n   </div>\n </template>\n \n <script setup lang=\"ts\">\n@@ -12,7 +12,6 @@\n \n <style lang=\"scss\" scoped>\n .container {\n   display: flex;\n-\n }\n </style>\n"
                 }
             ],
             "date": 1669989149117,

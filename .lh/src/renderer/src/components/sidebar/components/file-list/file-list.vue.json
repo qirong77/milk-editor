@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1670080761797,
@@ -32,6 +32,18 @@
                 {
                     "date": 1670082360196,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,8 +38,8 @@\n .file-list {\n   height: auto;\n }\n ul.file-list-close {\n-  height: 0;\n+  height: 30px;\n   overflow: hidden;\n }\n </style>\n"
+                },
+                {
+                    "date": 1670083516640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,10 @@\n \n <style lang=\"scss\">\n .file-list {\n   height: auto;\n+  user-select:none;\n+\n }\n ul.file-list-close {\n   height: 30px;\n   overflow: hidden;\n"
+                },
+                {
+                    "date": 1670133567380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,27 +19,32 @@\n </template>\n \n <script setup lang=\"ts\">\n import { PropType, ref } from 'vue'\n-import { treeData, Tree } from './tree-data'\n+import { Tree } from './tree-data'\n import FileItem from './file-item.vue'\n const isOpen = ref(true)\n const toggleFileList = () => {\n   isOpen.value = !isOpen.value\n }\n defineProps({\n   tree: {\n     type: Object as PropType<Tree>,\n-    default: treeData\n+    default: {\n+      fileName: 'Markdowns',\n+      path: '/Users/qirong77/Desktop/front-end-book/Markdowns',\n+      level: 0,\n+      isDir: true,\n+      opened: false\n+    }\n   }\n })\n </script>\n \n <style lang=\"scss\">\n .file-list {\n   height: auto;\n-  user-select:none;\n-\n+  user-select: none;\n }\n ul.file-list-close {\n   height: 30px;\n   overflow: hidden;\n"
+                },
+                {
+                    "date": 1670133599805,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,17 +19,18 @@\n </template>\n \n <script setup lang=\"ts\">\n import { PropType, ref } from 'vue'\n-import { Tree } from './tree-data'\n+import { DirTree } from '../../../../../../common/types';\n+\n import FileItem from './file-item.vue'\n const isOpen = ref(true)\n const toggleFileList = () => {\n   isOpen.value = !isOpen.value\n }\n defineProps({\n   tree: {\n-    type: Object as PropType<Tree>,\n+    type: Object as PropType<DirTree>,\n     default: {\n       fileName: 'Markdowns',\n       path: '/Users/qirong77/Desktop/front-end-book/Markdowns',\n       level: 0,\n"
                 }
             ],
             "date": 1670080761797,

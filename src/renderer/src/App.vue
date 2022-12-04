@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <side-bar />
-    <editor />
+    <editor/>
   </div>
 </template>
 
@@ -13,6 +13,5 @@ import SideBar from './components/sidebar/index.vue'
 <style lang="scss" scoped>
 .container {
   display: flex;
-
 }
 </style>

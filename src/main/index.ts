@@ -2,9 +2,7 @@ import { app, BrowserWindow } from 'electron'
 
 import { electronApp, optimizer } from '@electron-toolkit/utils'
 import { createWindow } from './electron/createWindow'
-import { UPDATE_DIR_TREE } from '../common/eventType'
-import { getDirectoryTree } from './events/helper/getDirectoryTree'
-import { defaultPath } from './config'
+import { onEvents } from './events'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -12,10 +10,8 @@ import { defaultPath } from './config'
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
-  const window = createWindow()
-  setTimeout(() => {
-    window.webContents.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))
-  }, 2000)
+  createWindow()
+onEvents()
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
@@ -26,6 +22,7 @@ app.whenReady().then(() => {
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
+
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })

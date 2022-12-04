@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1670057710682,
@@ -12,6 +12,14 @@
                 {
                     "date": 1670057737821,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,1 @@\n-@import './normalize/scss'\n\\ No newline at end of file\n+@import './normalize.scss'\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1670085412494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,6 @@\n-@import './normalize.scss'\n\\ No newline at end of file\n+@import './normalize.scss';\n+@import './theme/theme-dark.scss';\n+\n+.container {\n+  @include theme-dark;\n+}\n"
+                },
+                {
+                    "date": 1670085419271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n @import './normalize.scss';\n-@import './theme/theme-dark.scss';\n+@import './themes/theme-dark.scss';\n \n .container {\n   @include theme-dark;\n }\n"
                 }
             ],
             "date": 1670057710682,
