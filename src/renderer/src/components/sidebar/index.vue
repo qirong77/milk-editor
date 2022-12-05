@@ -24,6 +24,7 @@ const store = useStore()
 window.api.onMain(UPDATE_DIR_TREE, (_e, newTree,paths) => {
   console.log('📕get-dir-tree', newTree)
   store.setTotalPaths(paths)
+  console.log('📕',paths)
   tree.value = newTree
 })
 const sideBarWidth = ref(200)

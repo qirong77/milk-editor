@@ -20,8 +20,8 @@ export const getDirectoryTree = (path: string, level = 0) => {
     node.isDir = true
     readdirSync(path).forEach((fileName) => {
       if (EXCEPT_FILE.test(fileName)) return
-      paths.push(path)
       const nextPath = resolve(path, fileName)
+      !lstatSync(nextPath).isDirectory() && paths.push(nextPath)
       const newNode = dfs(nextPath, level + 1)
       newNode && node.children.push(newNode)
     })

@@ -5,12 +5,14 @@
       <side-bar />
       <editor />
     </main>
+    <global/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Editor from './components/editor/index.vue'
 import SideBar from './components/sidebar/index.vue'
+import global from './components/global/index.vue';
 </script>
 
 <style lang="scss" scoped>
@@ -23,7 +25,7 @@ import SideBar from './components/sidebar/index.vue'
     flex: auto;
   }
   header {
-    -webkit-app-region:drag;
+    -webkit-app-region: drag;
     user-select: none;
     height: 36px;
     display: flex;

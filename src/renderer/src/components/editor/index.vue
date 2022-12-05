@@ -32,7 +32,6 @@ onMounted(() => {
   })
   watchEffect(() => {
     window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
-    console.log('📕',markDown.value)
   })
 })
 </script>
@@ -43,7 +42,6 @@ onMounted(() => {
   .milkdown {
     overflow: scroll;
     max-height: calc(100vh - 36px);
-    max-width: fit-content;
     .editor {
       padding: 50px 40px;
       min-height: 90vh;

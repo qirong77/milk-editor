@@ -22,7 +22,6 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
 import { DirTree } from '../../../../../../common/types';
-
 import FileItem from './file-item.vue'
 const isOpen = ref(true)
 const toggleFileList = () => {
