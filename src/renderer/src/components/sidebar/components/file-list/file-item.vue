@@ -58,12 +58,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useStore } from '../../../../store/index'
+import { useOpenFile } from '../../../../common/useOpenFile'
 const props = defineProps<{
   fileName: string
   isDir: boolean
   path: string
   level: number
-  isOpen:boolean
+  isOpen: boolean
 }>()
 const store = useStore()
 const emits = defineEmits(['toggle-file-list'])
@@ -74,8 +75,12 @@ const handleClick = () => {
   rotateSvg.value = !rotateSvg.value
   if (props.isDir) {
     props.isDir && emits('toggle-file-list')
-  } else store.changeOpenedPath(props.path)
+  } else {
+    store.changeOpenedPath(props.path)
   store.changeActivePath(props.path)
+    // useOpenFile(props.path)
+  }
+
 }
 </script>
 

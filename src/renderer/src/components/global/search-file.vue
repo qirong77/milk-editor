@@ -50,13 +50,12 @@ watch(currentIndex, () => {
     })
   })
   io.observe(target)
-  emits('update-path',paths[currentIndex.value])
+  emits('update-path',paths.value[currentIndex.value])
 })
 document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.key === 'ArrowUp') {
     if (currentIndex.value === 0) currentIndex.value = paths.value.length-1
     else currentIndex.value -= 1
-    console.log('📕',currentIndex.value)
   }
   if(e.key ==='ArrowDown') {
     if(currentIndex.value===paths.value.length-1) currentIndex.value = 0

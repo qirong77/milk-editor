@@ -24,12 +24,15 @@ const { editor, getInstance } = useEditor((root) => {
 const markDown = ref('')
 
 onMounted(() => {
+  // 打开文件
   watchEffect(() => {
     const path = store.openedFile
     window.api.interProcess(GET_FILE_CONTENT, path).then((res) => {
+      console.log('📕',path)
       getInstance()?.action(replaceAll(res))
     })
   })
+  // 保存文件
   watchEffect(() => {
     window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
   })

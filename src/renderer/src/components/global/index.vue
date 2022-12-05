@@ -1,25 +1,25 @@
 <template>
   <div>
-    <search-file v-if="showSearchFile" @update-path="updatePath" @open-file="openFile" />
+    <search-file v-if="showSearchFile" @update-path="updatePath" @open-file="onOpenFile" />
     <search-word v-if="showSearchWord" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useStore } from '../../store'
+import { useOpenFile } from '../../common/useOpenFile'
 import SearchFile from './search-file.vue'
 import SearchWord from './search-word.vue'
 const showSearchWord = ref(false)
 const showSearchFile = ref(false)
 const currentPath = ref('')
 const updatePath = (path: string) => (currentPath.value = path)
-const store = useStore()
-const openFile = () => {
-  store.changeOpenedPath(currentPath.value)
-  showSearchFile.value = false
-}
 const globalSearch = ref(false)
+const onOpenFile = () => {
+    console.log('📕',currentPath.value)
+  useOpenFile(currentPath.value)
+    showSearchFile.value = false
+}
 document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.metaKey && e.key === 'f' && !e.shiftKey) {
     showSearchWord.value = !showSearchWord.value
@@ -33,7 +33,7 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
     showSearchFile.value = !showSearchFile.value
   }
   if (e.key === 'Enter' && showSearchFile.value) {
-    openFile()
+    onOpenFile()
   }
 })
 </script>
