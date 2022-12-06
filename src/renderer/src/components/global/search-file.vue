@@ -1,17 +1,15 @@
 <template>
-  <div
-    class="search-file"
-  >
+  <div class="search-file">
     <div>
       <span></span>
-      <input v-model="search_content" type="text" />
+      <input v-model="search_content" type="text" @keydown="handleKeyDown" />
     </div>
     <ul>
       <template v-for="(path, index) in paths" :key="path">
         <li
-        @click="handleClick"
+          @click="handleClick"
           :class="{
-            'active': currentIndex === index
+            active: currentIndex === index
           }"
         >
           <span>{{ basename(path) }}</span>
@@ -22,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { basename } from 'path-browserify'
 
@@ -32,37 +30,48 @@ const paths = computed(() =>
   store.totalPaths.filter((path) => basename(path).includes(search_content.value))
 )
 const currentIndex = ref(0)
-const emits = defineEmits(['update-path','open-file'])
-const handleClick = () => {emits('open-file')}
+const emits = defineEmits(['update-path', 'open-file'])
+const key = ref<'down' | 'up'>('down')
+const handleClick = () => {
+  emits('open-file')
+}
 watch(currentIndex, () => {
-  const target = document.querySelector('.active')
-  if (!target) return
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entrie) => {
-      //如果不可见,就需要向上滚动或者向下滚动
-      if (entrie.intersectionRatio < 0.5) {
-        // 显示十个，如果大于8，大于9都可以，表示向下滚动
-        if (currentIndex.value > 1) target?.scrollIntoView(false)
-        else target?.scrollIntoView(true)
-      }
-      // 不管是否可见，操作完就移除观察
-      io.unobserve(target)
+  emits('update-path', paths.value[currentIndex.value])
+  nextTick(() => {
+    const target = document.querySelector('.active')
+    if (!target) throw new Error('not-active-file-item')
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entrie) => {
+        //如果不可见,就需要向上滚动或者向下滚动
+        if (entrie.intersectionRatio < 0.9) {
+          console.log('📕', 'unvisiable')
+          console.log('📕', target)
+          // 表示向下滚动
+          if ((key.value = 'down')) target?.scrollIntoView(false)
+          else target?.scrollIntoView(true)
+        }
+        // 不管是否可见，操作完就移除观察
+        io.unobserve(target)
+      })
     })
+    io.observe(target)
   })
-  io.observe(target)
-  emits('update-path',paths.value[currentIndex.value])
 })
-document.addEventListener('keydown', (e: KeyboardEvent) => {
+const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'ArrowUp') {
-    if (currentIndex.value === 0) currentIndex.value = paths.value.length-1
+    if (currentIndex.value === 0) currentIndex.value = paths.value.length - 1
     else currentIndex.value -= 1
+    key.value = 'up'
   }
-  if(e.key ==='ArrowDown') {
-    if(currentIndex.value===paths.value.length-1) currentIndex.value = 0
-    else currentIndex.value +=1
+  if (e.key === 'ArrowDown') {
+    if (currentIndex.value === paths.value.length - 1) currentIndex.value = 0
+    else currentIndex.value += 1
+    key.value = 'down'
   }
+}
+onMounted(() => {
+  document.querySelector('.search-file')?.querySelector('input')?.focus()
 })
-
 </script>
 
 <style lang="scss" scoped>

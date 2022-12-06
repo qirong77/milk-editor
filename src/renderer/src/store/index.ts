@@ -5,23 +5,31 @@ import { defineStore } from 'pinia'
 export const useStore = defineStore('global', {
   state: () => {
     return {
-      // 激活的路径，可能是多个
-      activePath: '',
+      // 打开的文件夹，用来存储重新获取文件树
       openedFolders: [],
       // 打开的文件，只有一个
       openedFile: '',
-      totalPaths: ['']
+      totalPaths: [''],
+      focusedPath: '',
+      showInput: false,
+      tab: 'file-list'
     }
   },
   actions: {
-    changeActivePath(path: string) {
-      this.activePath = path
-    },
     changeOpenedPath(path: string) {
       this.openedFile = path
     },
     setTotalPaths(paths: string[]) {
       this.totalPaths = paths
+    },
+    setFocusedPath(path: string) {
+      this.focusedPath = path
+    },
+    setShowInput(visiable: boolean) {
+      this.showInput = visiable
+    },
+    setTab(tab: 'file-list' | 'search-word-global' | 'header-list') {
+      this.tab = tab
     }
   }
 })

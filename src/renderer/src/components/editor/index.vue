@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref, watch, watchEffect, WatchStopHandle } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
@@ -22,21 +22,29 @@ const { editor, getInstance } = useEditor((root) => {
   return intance
 })
 const markDown = ref('')
-
-onMounted(() => {
-  // 打开文件
-  watchEffect(() => {
-    const path = store.openedFile
-    window.api.interProcess(GET_FILE_CONTENT, path).then((res) => {
-      console.log('📕',path)
-      getInstance()?.action(replaceAll(res))
-    })
-  })
-  // 保存文件
-  watchEffect(() => {
+// 因为milkdown的更新机制，有一个标志来判断
+const flag = ref(false)
+watch(markDown, () => {
+  if (flag.value) {
+    console.log('📕', 'SAVE_FILE')
     window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
-  })
+  }
+  flag.value = true
 })
+// 打开文件
+watch(
+  () => store.openedFile,
+  () => {
+    window.api.interProcess(GET_FILE_CONTENT, store.openedFile).then((res) => {
+      console.log('get-new-content', res)
+      markDown.value = res
+      getInstance()?.action(replaceAll(res))
+      flag.value = false
+    })
+  }
+)
+
+onMounted(() => {})
 </script>
 
 <style lang="scss">

@@ -8,17 +8,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useOpenFile } from '../../common/useOpenFile'
+import { useStore } from '../../store'
 import SearchFile from './search-file.vue'
 import SearchWord from './search-word.vue'
+const store = useStore()
 const showSearchWord = ref(false)
 const showSearchFile = ref(false)
 const currentPath = ref('')
 const updatePath = (path: string) => (currentPath.value = path)
 const globalSearch = ref(false)
 const onOpenFile = () => {
-    console.log('📕',currentPath.value)
   useOpenFile(currentPath.value)
-    showSearchFile.value = false
+  showSearchFile.value = false
 }
 document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.metaKey && e.key === 'f' && !e.shiftKey) {
@@ -32,8 +33,9 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.metaKey && e.key === 'p') {
     showSearchFile.value = !showSearchFile.value
   }
-  if (e.key === 'Enter' && showSearchFile.value) {
-    onOpenFile()
+  if (e.key === 'Enter') {
+    showSearchFile.value && onOpenFile()
+    store.focusedPath && store.setShowInput(true)
   }
 })
 </script>

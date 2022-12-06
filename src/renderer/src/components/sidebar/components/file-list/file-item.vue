@@ -1,17 +1,17 @@
 <template>
   <li
     class="file-item"
-    :class="{ 'file-item-active': isActive }"
-    @click.stop="handleClick"
+    :class="{ 'file-item-active': isActive, input: showInput }"
+    @click="handleClick"
+    @contextmenu.stop="handleContext"
     @mouseleave=""
     :style="{
       paddingLeft: 4 + level * 12 + 'px',
       display: level === 0 ? 'none' : 'flex'
     }"
   >
-    <input v-if="showInput" type="text" />
     <!-- 只有作为文件名的item有图标 -->
-    <div v-if="isDir">
+    <div v-if="isDir && !showInput">
       <svg
         class="triangle-down"
         :class="{ rotate: !isOpen }"
@@ -51,14 +51,21 @@
         />
       </svg>
     </div>
-    <span>{{ fileName }}</span>
+    <input
+      v-if="showInput"
+      type="text"
+      @blur="handleBlur"
+      ref="input"
+      @keydown.stop="handleConfirm"
+      :value="fileName"
+    />
+    <template v-else> {{ fileName }}</template>
   </li>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useStore } from '../../../../store/index'
-import { useOpenFile } from '../../../../common/useOpenFile'
 const props = defineProps<{
   fileName: string
   isDir: boolean
@@ -68,19 +75,41 @@ const props = defineProps<{
 }>()
 const store = useStore()
 const emits = defineEmits(['toggle-file-list'])
-const showInput = ref(false)
+const showInput = computed(() => store.focusedPath === props.path && store.showInput)
 const rotateSvg = ref(true)
-const isActive = computed(() => store.activePath === props.path)
+const isActive = computed(() => store.openedFile === props.path)
+const handleContext = () => {}
+const handleConfirm = (e: KeyboardEvent) => {
+  if (e.key === 'Enter') {
+    store.setShowInput(false)
+  }
+}
+const handleBlur = () => {
+  store.setShowInput(false)
+}
+watch(
+  () => store.showInput,
+  () => {
+    console.log('show-input-change------')
+    nextTick(() => {
+      // 暂时没想到这个无法获取的解决办法
+      // const input = ref<HTMLInputElement>()
+      // input.value?.focus()
+      // console.log('📕----', input.value)
+      if (store.showInput) {
+        const node = document.querySelector('.input')?.querySelector('input')?.focus()
+      }
+    })
+  }
+)
 const handleClick = () => {
   rotateSvg.value = !rotateSvg.value
+  store.setFocusedPath(props.path)
   if (props.isDir) {
     props.isDir && emits('toggle-file-list')
   } else {
     store.changeOpenedPath(props.path)
-  store.changeActivePath(props.path)
-    // useOpenFile(props.path)
   }
-
 }
 </script>
 
@@ -92,6 +121,10 @@ li.file-item {
   // 避免标题太长重叠
   height: auto;
   line-height: 30px;
+  input {
+    height: 30px;
+    width: 90%;
+  }
   &:hover {
     cursor: pointer;
     background-color: rgb(56, 62, 77);
