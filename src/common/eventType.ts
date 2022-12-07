@@ -8,3 +8,4 @@ export const GET_FILE_CONTENT = 'get file content'
 
 // 3. 主进程 -> 渲染进程
 export const UPDATE_DIR_TREE = 'update a dir tree'
+export const RENAME_FILE = 'rename a file'

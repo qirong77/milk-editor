@@ -56,8 +56,8 @@
       type="text"
       @blur="handleBlur"
       ref="input"
-      @keydown.stop="handleConfirm"
-      :value="fileName"
+      @keydown="handleConfirm"
+      v-model="iptValue"
     />
     <template v-else> {{ fileName }}</template>
   </li>
@@ -65,6 +65,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
+import { RENAME_FILE } from '../../../../../../common/eventType'
 import { useStore } from '../../../../store/index'
 const props = defineProps<{
   fileName: string
@@ -79,26 +80,27 @@ const showInput = computed(() => store.focusedPath === props.path && store.showI
 const rotateSvg = ref(true)
 const isActive = computed(() => store.openedFile === props.path)
 const handleContext = () => {}
-const handleConfirm = (e: KeyboardEvent) => {
-  if (e.key === 'Enter') {
-    store.setShowInput(false)
-  }
-}
+const iptValue = ref(props.fileName)
 const handleBlur = () => {
   store.setShowInput(false)
+}
+// input 的 keydown 不会触发冒泡
+const handleConfirm = (e: KeyboardEvent) => {
+  if (e.key === 'Enter') {
+    store.setFocusedPath('')
+    store.setShowInput(false)
+  }
 }
 watch(
   () => store.showInput,
   () => {
-    console.log('show-input-change------')
+    console.log('📕newName',iptValue.value)
     nextTick(() => {
       // 暂时没想到这个无法获取的解决办法
       // const input = ref<HTMLInputElement>()
       // input.value?.focus()
       // console.log('📕----', input.value)
-      if (store.showInput) {
-        const node = document.querySelector('.input')?.querySelector('input')?.focus()
-      }
+      // 有多个fileItem，为避免多次触发应判读当前的再执行
     })
   }
 )
