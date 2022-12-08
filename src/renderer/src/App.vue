@@ -7,11 +7,11 @@
     </main>
     <global/>
     <footer>
-      <ul>
+      <!-- <ul>
         <li>focus:{{useStore().focusedPath}}</li>
         <li>openedFile {{useStore().openedFile}}</li>
         <li>{{useStore().showInput}}</li>
-      </ul>
+      </ul> -->
     </footer>
   </div>
 </template>

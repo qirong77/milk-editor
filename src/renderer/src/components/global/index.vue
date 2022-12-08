@@ -33,9 +33,20 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.metaKey && e.key === 'p') {
     showSearchFile.value = !showSearchFile.value
   }
+  // 一个enter应该只处理一件事，后面需要考虑逻辑优化
   if (e.key === 'Enter') {
-    showSearchFile.value && onOpenFile()
-    store.focusedPath && store.setShowInput(true)
+    if (showSearchFile.value) {
+      onOpenFile()
+      return
+    }
+    if (store.showInput) {
+      store.setShowInput(false)
+      return
+    }
+    if (store.focusedPath) {
+      store.setShowInput(true)
+      return
+    }
   }
 })
 </script>

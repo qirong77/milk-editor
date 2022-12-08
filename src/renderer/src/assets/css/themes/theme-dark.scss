@@ -25,9 +25,13 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     font-weight: 400;
     border-right: 1px solid $dark-header-backgournd;
     background-color: $dark-sideBar-background;
-    .file-item-active {
+
+    .file-item-focus {
+      background-color: rgb(46, 54, 71);
+    }
+    li.file-item-active {
       border-left: 5px solid rgb(157, 157, 198);
-      background-color:rgb(23, 27, 36); ;
+      background-color: rgb(23, 27, 36);
     }
     .drag-line {
       background-color: $dark-header-backgournd;
@@ -75,7 +79,8 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
   }
   .search-file {
     background-color: $dark-sideBar-background;
-    li.active,li:hover {
+    li.active,
+    li:hover {
       background-color: $dark-header-backgournd;
       color: $active-font-color;
     }

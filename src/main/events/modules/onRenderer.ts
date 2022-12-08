@@ -12,14 +12,16 @@ export const onRenderer = () => {
   ipcMain.on(SAVE_FILE, (_e, path: string, newContent: string) => {
     existsSync(path) && writeFileSync(path, newContent)
   })
+  // 还没处理文件夹重命名问题
   ipcMain.on(RENAME_FILE, (e, beforPath, newName) => {
-    if (existsSync(beforPath)) throw new Error('未找到文件')
+    console.log('📕',beforPath)
+    console.log('📕',newName)
+    if (!existsSync(beforPath)) throw new Error('未找到文件')
     // 先用write，后面用rename
     const dir = dirname(beforPath)
     const newPath = resolve(dir, newName)
     console.log('📕',newPath)
     writeFileSync(newPath, readFileSync(beforPath, 'utf-8'))
     unlinkSync(beforPath)
-    e.sender.send(UPDATE_DIR_TREE, getDirectoryTree(defaultPath))
   })
 }

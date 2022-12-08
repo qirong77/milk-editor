@@ -1,7 +1,7 @@
 <template>
   <li
     class="file-item"
-    :class="{ 'file-item-active': isActive, input: showInput }"
+    :class="{ 'file-item-active': isActive, input: showInput, 'file-item-focus': isFocused }"
     @click="handleClick"
     @contextmenu.stop="handleContext"
     @mouseleave=""
@@ -55,17 +55,17 @@
       v-if="showInput"
       type="text"
       @blur="handleBlur"
+      @keydown.stop="handleConfirm"
       ref="input"
-      @keydown="handleConfirm"
       v-model="iptValue"
     />
-    <template v-else> {{ fileName }}</template>
+    <template v-else> {{ iptValue }}</template>
   </li>
 </template>
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import { RENAME_FILE } from '../../../../../../common/eventType'
+import { GET_DIR_TREE, RENAME_FILE } from '../../../../../../common/eventType'
 import { useStore } from '../../../../store/index'
 const props = defineProps<{
   fileName: string
@@ -79,28 +79,30 @@ const emits = defineEmits(['toggle-file-list'])
 const showInput = computed(() => store.focusedPath === props.path && store.showInput)
 const rotateSvg = ref(true)
 const isActive = computed(() => store.openedFile === props.path)
+const isFocused = computed(() => store.focusedPath === props.path)
 const handleContext = () => {}
 const iptValue = ref(props.fileName)
 const handleBlur = () => {
   store.setShowInput(false)
 }
-// input 的 keydown 不会触发冒泡
 const handleConfirm = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
-    store.setFocusedPath('')
     store.setShowInput(false)
+    if (iptValue.value !== props.fileName) {
+      window.api.sendToMain(RENAME_FILE, props.path, iptValue.value)
+      window.api.sendToMain(GET_DIR_TREE)
+    }
   }
 }
+// input-focus
 watch(
   () => store.showInput,
   () => {
-    console.log('📕newName',iptValue.value)
     nextTick(() => {
-      // 暂时没想到这个无法获取的解决办法
-      // const input = ref<HTMLInputElement>()
-      // input.value?.focus()
-      // console.log('📕----', input.value)
-      // 有多个fileItem，为避免多次触发应判读当前的再执行
+      if (store.focusedPath === props.path) {
+        const input = document.querySelector('.input')?.querySelector('input')
+        input?.focus()
+      }
     })
   }
 )
