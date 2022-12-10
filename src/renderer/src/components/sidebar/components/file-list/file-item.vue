@@ -65,7 +65,13 @@
 
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
-import { GET_DIR_TREE, RENAME_FILE } from '../../../../../../common/eventType'
+import {
+  GET_DIR_TREE,
+  POP_FILE_ITEM_MENU,
+  RENAME_FILE,
+  DELETE,
+POP_FILE_DIR_MENU
+} from '../../../../../../common/eventType'
 import { useStore } from '../../../../store/index'
 const props = defineProps<{
   fileName: string
@@ -80,7 +86,12 @@ const showInput = computed(() => store.focusedPath === props.path && store.showI
 const rotateSvg = ref(true)
 const isActive = computed(() => store.openedFile === props.path)
 const isFocused = computed(() => store.focusedPath === props.path)
-const handleContext = () => {}
+const handleContext = () => {
+  store.setFocusedPath(props.path)
+  if(!props.isDir) window.api.sendToMain(POP_FILE_ITEM_MENU)
+  else window.api.sendToMain(POP_FILE_DIR_MENU)
+
+}
 const iptValue = ref(props.fileName)
 const handleBlur = () => {
   store.setShowInput(false)
@@ -104,6 +115,9 @@ watch(
         input?.focus()
       }
     })
+  },
+  {
+    immediate:true
   }
 )
 const handleClick = () => {

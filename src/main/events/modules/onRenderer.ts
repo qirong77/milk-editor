@@ -1,27 +1,67 @@
-import { ipcMain } from 'electron'
-import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'fs'
+import { dialog, ipcMain } from 'electron'
+import {
+  existsSync,
+  lstatSync,
+  readFileSync,
+  renameSync,
+  statSync,
+  unlinkSync,
+  writeFileSync
+} from 'fs'
 import { dirname, resolve } from 'path'
 
-import { GET_DIR_TREE, SAVE_FILE, UPDATE_DIR_TREE, RENAME_FILE } from '../../../common/eventType'
-import { defaultPath } from '../../config'
+import {
+  GET_DIR_TREE,
+  SAVE_FILE,
+  UPDATE_DIR_TREE,
+  RENAME_FILE,
+  POP_FILE_ITEM_MENU,
+  DELETE,
+  POP_FILE_DIR_MENU,
+  CREATE_FILE
+} from '../../../common/eventType'
+import { defaultPath, DEFAULT_CONTENT, NEW_FILE_NAME } from '../../config'
+import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
+import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
+import { deleteDir } from '../helper/deleteDir'
 import { getDirectoryTree } from '../helper/getDirectoryTree'
+const handleMenu = () => {
+  ipcMain.on(POP_FILE_ITEM_MENU, () => {
+    createFilItemMenu().popup()
+  })
+  ipcMain.on(POP_FILE_DIR_MENU, () => {
+    createFilDirMenu().popup()
+  })
+}
 export const onRenderer = () => {
+  handleMenu()
   ipcMain.on(GET_DIR_TREE, (e) => {
     e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
   })
   ipcMain.on(SAVE_FILE, (_e, path: string, newContent: string) => {
     existsSync(path) && writeFileSync(path, newContent)
   })
-  // 还没处理文件夹重命名问题
-  ipcMain.on(RENAME_FILE, (e, beforPath, newName) => {
-    console.log('📕',beforPath)
-    console.log('📕',newName)
+  ipcMain.on(RENAME_FILE, (_e, beforPath, newName) => {
     if (!existsSync(beforPath)) throw new Error('未找到文件')
-    // 先用write，后面用rename
     const dir = dirname(beforPath)
     const newPath = resolve(dir, newName)
-    console.log('📕',newPath)
-    writeFileSync(newPath, readFileSync(beforPath, 'utf-8'))
-    unlinkSync(beforPath)
+    renameSync(beforPath, newPath)
+  })
+  ipcMain.on(DELETE, (e, path) => {
+    if (statSync(path).isDirectory()) deleteDir(path)
+    else unlinkSync(path)
+    e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
+  })
+  ipcMain.on(CREATE_FILE, (e, path) => {
+    const newPath = resolve(path, NEW_FILE_NAME)
+    if(existsSync(newPath)) {
+      dialog.showMessageBoxSync({
+        type:'info',
+        message:'文件已经存在'
+      })
+      return
+    }
+    writeFileSync(newPath, DEFAULT_CONTENT, 'utf-8')
+    e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath),newPath)
   })
 }

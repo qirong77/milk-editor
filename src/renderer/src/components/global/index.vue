@@ -7,6 +7,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { DELETE } from '../../../../common/eventType'
 import { useOpenFile } from '../../common/useOpenFile'
 import { useStore } from '../../store'
 import SearchFile from './search-file.vue'
@@ -47,6 +48,9 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
       store.setShowInput(true)
       return
     }
+  }
+  if(e.metaKey && e.key==='Backspace'){
+    window.api.sendToMain(DELETE,store.focusedPath)
   }
 })
 </script>
