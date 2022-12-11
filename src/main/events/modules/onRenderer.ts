@@ -1,8 +1,9 @@
 import { dialog, ipcMain } from 'electron'
 import {
   existsSync,
-  lstatSync,
-  readFileSync,
+
+  mkdirSync,
+
   renameSync,
   statSync,
   unlinkSync,
@@ -18,9 +19,9 @@ import {
   POP_FILE_ITEM_MENU,
   DELETE,
   POP_FILE_DIR_MENU,
-  CREATE_FILE
+  CREATE_NEW,
 } from '../../../common/eventType'
-import { defaultPath, DEFAULT_CONTENT, NEW_FILE_NAME } from '../../config'
+import { defaultPath, DEFAULT_CONTENT, NEW_DIR_NAME, NEW_FILE_NAME } from '../../config'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
 import { createFilItemMenu } from '../../menu/modules/contextMenu/fileItem'
 import { deleteDir } from '../helper/deleteDir'
@@ -52,16 +53,19 @@ export const onRenderer = () => {
     else unlinkSync(path)
     e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
   })
-  ipcMain.on(CREATE_FILE, (e, path) => {
-    const newPath = resolve(path, NEW_FILE_NAME)
-    if(existsSync(newPath)) {
+  ipcMain.on(CREATE_NEW, (e, path, isDirectory) => {
+    const newPath = isDirectory
+      ? resolve(path, NEW_DIR_NAME)
+      : resolve(path, NEW_FILE_NAME)
+    if (existsSync(newPath)) {
       dialog.showMessageBoxSync({
-        type:'info',
-        message:'文件已经存在'
+        type: 'info',
+        message: '文件已经存在'
       })
       return
     }
-    writeFileSync(newPath, DEFAULT_CONTENT, 'utf-8')
-    e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath),newPath)
+    if (isDirectory) mkdirSync(newPath)
+    else writeFileSync(newPath, DEFAULT_CONTENT, 'utf-8')
+    e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath), newPath)
   })
 }

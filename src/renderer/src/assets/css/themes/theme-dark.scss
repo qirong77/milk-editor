@@ -25,7 +25,10 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     font-weight: 400;
     border-right: 1px solid $dark-header-backgournd;
     background-color: $dark-sideBar-background;
-
+    mark {
+    background-color: $dark-sideBar-background;
+color: rgb(162, 162, 214);
+    }
     .file-item-focus {
       background-color: rgb(46, 54, 71);
     }

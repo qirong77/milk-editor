@@ -1,5 +1,8 @@
 <template>
-  <div class="editor-component">
+  <div class="editor-component" :class="{
+    'toobar':showToolBar
+  }">
+    <search-word @search-change="search" v-if="showSearchWord" @close="showSearchWord = false" />
     <VueEditor :editor="editor" />
   </div>
 </template>
@@ -7,13 +10,14 @@
 <script setup lang="ts">
 import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { onMounted, ref, watch, watchEffect, WatchStopHandle } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
 import { GET_FILE_CONTENT, SAVE_FILE } from '../../../../common/eventType'
 import { replaceAll } from '@milkdown/utils'
-
+import searchWord from './component/search-word.vue'
+import debounce from 'debounce'
 const store = useStore()
 const { editor, getInstance } = useEditor((root) => {
   const intance = Editor.make()
@@ -21,10 +25,12 @@ const { editor, getInstance } = useEditor((root) => {
   usePlugins(intance)
   return intance
 })
+
 const markDown = ref('')
 // 因为milkdown的更新机制，有一个标志来判断
 const flag = ref(false)
 watch(markDown, () => {
+  console.log('📕', markDown.value)
   if (flag.value) {
     console.log('📕', 'SAVE_FILE')
     window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
@@ -43,19 +49,57 @@ watch(
     })
   }
 )
+const showSearchWord = ref(false)
+const search = debounce((word) => {
+  // console.log('📕',markDown.value.split('\n'))
 
+  // const regex = new RegExp(word, 'gi')
+  // const hasMatch = regex.test(markDown.value)
+  // if (hasMatch) {
+  //   const markedContent = markDown.value.replaceAll(word, `~~${word}~~`)
+  //   console.log('📕', markedContent)
+  // }
+}, 1000)
+const showToolBar = ref(false)
+
+document.addEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.metaKey && e.key === 'f' && !e.shiftKey) {
+    showSearchWord.value = true
+  }
+  if (e.metaKey && e.key === 'm') {
+    showToolBar.value = !showToolBar.value
+  }
+})
 onMounted(() => {})
 </script>
 
 <style lang="scss">
 .editor-component {
   flex: auto;
+  .milkdown-menu {
+    display: none;
+  }
   .milkdown {
     overflow: scroll;
     max-height: calc(100vh - 36px);
     .editor {
       padding: 50px 40px;
       min-height: 90vh;
+      del.strike-through {
+        text-decoration: none;
+        color: aqua;
+      }
+    }
+    div.list-item_label {
+      font-size: 20px;
+      line-height: 28px;
+      color: rgb(92, 138, 195);
+      margin-right: 4px;
+    }
+    // 无序列表
+    .list-item[data-list-type='bullet'] >.list-item_label {
+      font-size: 30px;
+      margin-right: 0px;
     }
   }
   .milkdown-menu {
@@ -117,6 +161,11 @@ onMounted(() => {})
   .milkdown .editor h5.heading {
     font-weight: 300;
     font-size: 20px;
+  }
+}
+.toobar {
+  .milkdown-menu {
+    display: flex;
   }
 }
 </style>

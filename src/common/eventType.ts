@@ -6,11 +6,11 @@ export const SAVE_FILE = 'save file'
 export const POP_FILE_ITEM_MENU = 'pop a file item menu'
 export const POP_FILE_DIR_MENU = 'pop a file dir menu'
 export const DELETE = 'delet a fiile'
-export const CREATE_FILE = 'create file'
+export const CREATE_NEW = 'create file'
 export const CREATE_DIR = 'create dir'
 // 2. interProcess
 export const GET_FILE_CONTENT = 'get file content'
-
+export const GET_SEARCH_RESULT = 'get serarch result'
 // 3. 主进程 -> 渲染进程
 export const UPDATE_DIR_TREE = 'update a dir tree'
 export const RENAME_FILE = 'rename a file'

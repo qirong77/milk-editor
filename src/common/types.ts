@@ -6,3 +6,11 @@ export interface DirTree {
   isDir: boolean
   opened: boolean
 }
+export type SearchWords  = {
+  fileName: string
+  path: string
+  matchs: {
+    line:string,
+    index:number
+  }[]
+}

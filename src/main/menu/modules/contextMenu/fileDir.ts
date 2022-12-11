@@ -1,6 +1,6 @@
 import { Menu } from 'electron'
 import { DarwinMenuItemConstructorOptions } from '../..'
-import { MENU_NEW_FILE, MENU_RENAME_FILE } from '../../../../common/eventType'
+import { MENU_NEW_DIR, MENU_NEW_FILE, MENU_RENAME_FILE } from '../../../../common/eventType'
 
 export const createFilDirMenu = () => {
   const template: DarwinMenuItemConstructorOptions[] = [
@@ -13,12 +13,13 @@ export const createFilDirMenu = () => {
     {
       label: '新建文件夹',
       click(_menuItem, browserWindow, _event) {
+        browserWindow?.webContents.send(MENU_NEW_DIR)
       }
     },
     {
       label: '在finder中显示',
       click(_menuItem, _browserWindow, _event) {}
-    },
+    }, 
     {
       label: '重命名',
       click(_menuItem, browserWindow, _event) {
@@ -27,8 +28,7 @@ export const createFilDirMenu = () => {
     },
     {
       label: '删除文件夹',
-      click(_menuItem, browserWindow, _event) {
-        browserWindow?.webContents.send(M)
+      click(_menuItem, _browserWindow, _event) {
       }
     }
   ]

@@ -69,10 +69,9 @@ import {
   GET_DIR_TREE,
   POP_FILE_ITEM_MENU,
   RENAME_FILE,
-  DELETE,
-POP_FILE_DIR_MENU
-} from '../../../../../../common/eventType'
-import { useStore } from '../../../../store/index'
+  POP_FILE_DIR_MENU
+} from '../../../../../../../common/eventType'
+import { useStore } from '../../../../../store'
 const props = defineProps<{
   fileName: string
   isDir: boolean
@@ -88,9 +87,8 @@ const isActive = computed(() => store.openedFile === props.path)
 const isFocused = computed(() => store.focusedPath === props.path)
 const handleContext = () => {
   store.setFocusedPath(props.path)
-  if(!props.isDir) window.api.sendToMain(POP_FILE_ITEM_MENU)
+  if (!props.isDir) window.api.sendToMain(POP_FILE_ITEM_MENU)
   else window.api.sendToMain(POP_FILE_DIR_MENU)
-
 }
 const iptValue = ref(props.fileName)
 const handleBlur = () => {
@@ -117,7 +115,7 @@ watch(
     })
   },
   {
-    immediate:true
+    immediate: true
   }
 )
 const handleClick = () => {

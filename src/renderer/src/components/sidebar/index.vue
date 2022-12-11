@@ -1,16 +1,14 @@
 <template>
   <div
     class="side-bar"
-    @contextmenu.stop="handleContext"
     :style="{
       width: sideBarWidth + 'px',
       minWidth: sideBarWidth + 'px'
     }"
   >
-    <div class="file-list-container" ref="listRef">
-      <file-list :tree="tree" />
-    </div>
-
+    <keep-alive>
+      <component :is="tabs[currentTab]"></component>
+    </keep-alive>
     <drag-line :width="sideBarWidth" @drag-done="handleDragDone" />
   </div>
 </template>
@@ -23,43 +21,40 @@ import {
   MENU_DELETE,
   MENU_NEW_FILE,
   MENU_RENAME_FILE,
-  UPDATE_DIR_TREE,
-  CREATE_FILE,
-  POP_FILE_DIR_MENU
+  CREATE_NEW,
+  MENU_NEW_DIR
 } from '../../../../common/eventType'
-import { DirTree } from '../../../../common/types'
 import { useStore } from '../../store'
 import DragLine from './components/drag-line/drag-line.vue'
-import FileList from './components/file-list/file-list.vue'
-
-const tree = ref<DirTree>()
+import HeaderList from './components/header-list/index.vue'
+import SearchWordGlobal from './components/search-word-global/index.vue'
+import FileList from './components/file-list/index.vue'
+const currentTab = ref<'HeaderList' | 'SearchWordGlobal' | 'FileList'>('FileList')
+const tabs = {
+  HeaderList,
+  SearchWordGlobal,
+  FileList
+}
 const store = useStore()
-window.api.onMain(UPDATE_DIR_TREE, (_e, newTree, paths, focusPath) => {
-  console.log('📕get-dir-tree', newTree)
-  store.setTotalPaths(paths)
-  tree.value = newTree
-  if (focusPath) {
-    store.setFocusedPath(focusPath)
-    store.setShowInput(true)
-  }
-})
 // 监听到右键点击菜单时间
 window.api.onMain(MENU_RENAME_FILE, () => store.setShowInput(true))
-window.api.onMain(MENU_NEW_FILE, () => window.api.sendToMain(CREATE_FILE, store.focusedPath))
 window.api.onMain(MENU_DELETE, () => window.api.sendToMain(DELETE, store.focusedPath))
-const handleContext = () => {
-  window.api.sendToMain(POP_FILE_DIR_MENU)
-  store.setFocusedPath(tree.value?.path || '')
-}
+window.api.onMain(MENU_NEW_FILE, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, false))
+window.api.onMain(MENU_NEW_DIR, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, true))
 const sideBarWidth = ref(200)
 const handleDragDone = (newWidth: number) => {
   sideBarWidth.value = newWidth
 }
-const listRef = ref<HTMLDivElement>()
 onMounted(() => {
-  document.addEventListener('click', (e: MouseEvent) => {
-    if (!listRef.value?.contains((e.target as Node).parentElement)) {
-      store.setFocusedPath('')
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey && e.key === 'f' && e.shiftKey) {
+      currentTab.value = 'SearchWordGlobal'
+    }
+    if (e.metaKey && e.key === 's' && e.shiftKey) {
+      currentTab.value = 'FileList'
+    }
+    if (e.key === 'Tab') {
+      currentTab.value = 'HeaderList'
     }
   })
 })
@@ -67,6 +62,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .side-bar {
+  max-height: calc(100vh - 36px);
   overflow: scroll;
   position: relative;
 }

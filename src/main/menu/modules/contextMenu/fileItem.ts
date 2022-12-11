@@ -14,8 +14,6 @@ export const createFilItemMenu = () => {
       label: '删除',
       click(_menuItem, browserWindow, _event) {
         browserWindow?.webContents.send(MENU_DELETE)
-        // existsSync(path) && unlinkSync(path)
-        // browserWindow?.webContents.send(DELETE, path)
       }
     }
   ]

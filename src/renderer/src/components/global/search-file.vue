@@ -2,7 +2,7 @@
   <div class="search-file">
     <div>
       <span></span>
-      <input v-model="search_content" type="text" @keydown="handleKeyDown" />
+      <input v-model="searchContent" type="text" @keydown="handleKeyDown" />
     </div>
     <ul>
       <template v-for="(path, index) in paths" :key="path">
@@ -24,11 +24,12 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { basename } from 'path-browserify'
 
-const search_content = ref('')
+const searchContent = ref('')
 const store = useStore()
-const paths = computed(() =>
-  store.totalPaths.filter((path) => basename(path).includes(search_content.value))
-)
+const paths = computed(() => {
+  const regex = new RegExp(searchContent.value, 'i')
+  return store.totalPaths.filter((path) => regex.test(basename(path)))
+})
 const currentIndex = ref(0)
 const emits = defineEmits(['update-path', 'open-file'])
 const key = ref<'down' | 'up'>('down')
@@ -44,8 +45,6 @@ watch(currentIndex, () => {
       entries.forEach((entrie) => {
         //如果不可见,就需要向上滚动或者向下滚动
         if (entrie.intersectionRatio < 0.9) {
-          console.log('📕', 'unvisiable')
-          console.log('📕', target)
           // 表示向下滚动
           if ((key.value = 'down')) target?.scrollIntoView(false)
           else target?.scrollIntoView(true)
@@ -79,7 +78,8 @@ onMounted(() => {
   top: 30px;
   position: fixed;
   z-index: 9999;
-  width: auto;
+  width: 300px;
+  overflow: scroll;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;

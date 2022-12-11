@@ -1,7 +1,4 @@
-// 由file-list统一收集更新数据，不要过多的监听
-
 import { defineStore } from 'pinia'
-
 export const useStore = defineStore('global', {
   state: () => {
     return {
@@ -12,7 +9,6 @@ export const useStore = defineStore('global', {
       totalPaths: [''],
       focusedPath: '',
       showInput: false,
-      tab: 'file-list'
     }
   },
   actions: {
@@ -28,8 +24,5 @@ export const useStore = defineStore('global', {
     setShowInput(visiable: boolean) {
       this.showInput = visiable
     },
-    setTab(tab: 'file-list' | 'search-word-global' | 'header-list') {
-      this.tab = tab
-    }
   }
 })

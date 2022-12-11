@@ -1,11 +1,16 @@
 <template>
   <div class="container">
-    <header><span></span></header>
+    <header>
+      <span>
+
+        {{basename(useStore().openedFile)}}
+      </span>
+    </header>
     <main>
       <side-bar />
       <editor />
     </main>
-    <global/>
+    <global />
     <footer>
       <!-- <ul>
         <li>focus:{{useStore().focusedPath}}</li>
@@ -19,12 +24,12 @@
 <script setup lang="ts">
 import Editor from './components/editor/index.vue'
 import SideBar from './components/sidebar/index.vue'
-import global from './components/global/index.vue';
-import { useStore } from './store';
-
+import global from './components/global/index.vue'
+import { basename } from 'path-browserify'
+import { useStore } from './store'
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .container {
   display: flex;
   flex-direction: column;
@@ -44,8 +49,8 @@ import { useStore } from './store';
   footer {
     position: fixed;
     right: 50px;
-  z-index: 99999999;
-  background-color: dimgrey;
+    z-index: 99999999;
+    background-color: dimgrey;
   }
 }
 </style>
