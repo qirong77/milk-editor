@@ -2,13 +2,12 @@
   <div class="container">
     <header>
       <span>
-
         {{basename(useStore().openedFile)}}
       </span>
     </header>
     <main>
-      <side-bar />
-      <editor />
+      <side-bar :side-bar-width="sideBarWidth" @update:width="handleWidthChange"/>
+      <editor :side-bar-width="sideBarWidth"/>
     </main>
     <global />
     <footer>
@@ -27,6 +26,11 @@ import SideBar from './components/sidebar/index.vue'
 import global from './components/global/index.vue'
 import { basename } from 'path-browserify'
 import { useStore } from './store'
+import { ref } from 'vue'
+const sideBarWidth = ref(200)
+const handleWidthChange = (newWidth) =>{
+  sideBarWidth.value = newWidth
+}
 </script>
 
 <style lang="scss">

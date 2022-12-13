@@ -1,7 +1,13 @@
 <template>
-  <div class="editor-component" :class="{
-    'toobar':showToolBar
-  }">
+  <div
+    class="editor-component"
+    :class="{
+      toobar: showToolBar
+    }"
+    :style="{
+      'max-width': `calc(100vw - ${sideBarWidth}px)`
+    }"
+  >
     <search-word @search-change="search" v-if="showSearchWord" @close="showSearchWord = false" />
     <VueEditor :editor="editor" />
   </div>
@@ -18,6 +24,9 @@ import { GET_FILE_CONTENT, SAVE_FILE } from '../../../../common/eventType'
 import { replaceAll } from '@milkdown/utils'
 import searchWord from './component/search-word.vue'
 import debounce from 'debounce'
+defineProps<{
+  sideBarWidth: number
+}>()
 const store = useStore()
 const { editor, getInstance } = useEditor((root) => {
   const intance = Editor.make()
@@ -52,7 +61,6 @@ watch(
 const showSearchWord = ref(false)
 const search = debounce((word) => {
   // console.log('📕',markDown.value.split('\n'))
-
   // const regex = new RegExp(word, 'gi')
   // const hasMatch = regex.test(markDown.value)
   // if (hasMatch) {
@@ -97,7 +105,7 @@ onMounted(() => {})
       margin-right: 4px;
     }
     // 无序列表
-    .list-item[data-list-type='bullet'] >.list-item_label {
+    .list-item[data-list-type='bullet'] > .list-item_label {
       font-size: 30px;
       margin-right: 0px;
     }

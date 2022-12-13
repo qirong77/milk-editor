@@ -41,9 +41,12 @@ window.api.onMain(MENU_RENAME_FILE, () => store.setShowInput(true))
 window.api.onMain(MENU_DELETE, () => window.api.sendToMain(DELETE, store.focusedPath))
 window.api.onMain(MENU_NEW_FILE, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, false))
 window.api.onMain(MENU_NEW_DIR, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, true))
-const sideBarWidth = ref(200)
+defineProps<{
+  sideBarWidth: number
+}>()
+const emits = defineEmits(['update:width'])
 const handleDragDone = (newWidth: number) => {
-  sideBarWidth.value = newWidth
+  emits('update:width', newWidth)
 }
 onMounted(() => {
   document.addEventListener('keydown', (e) => {

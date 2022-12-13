@@ -1,14 +1,5 @@
 import { dialog, ipcMain } from 'electron'
-import {
-  existsSync,
-
-  mkdirSync,
-
-  renameSync,
-  statSync,
-  unlinkSync,
-  writeFileSync
-} from 'fs'
+import { existsSync, lstatSync, mkdirSync, renameSync, unlinkSync, writeFileSync } from 'fs'
 import { dirname, resolve } from 'path'
 
 import {
@@ -19,7 +10,7 @@ import {
   POP_FILE_ITEM_MENU,
   DELETE,
   POP_FILE_DIR_MENU,
-  CREATE_NEW,
+  CREATE_NEW
 } from '../../../common/eventType'
 import { defaultPath, DEFAULT_CONTENT, NEW_DIR_NAME, NEW_FILE_NAME } from '../../config'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
@@ -49,14 +40,16 @@ export const onRenderer = () => {
     renameSync(beforPath, newPath)
   })
   ipcMain.on(DELETE, (e, path) => {
-    if (statSync(path).isDirectory()) deleteDir(path)
-    else unlinkSync(path)
-    e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
+    try {
+      if (lstatSync(path).isDirectory()) deleteDir(path)
+      else unlinkSync(path)
+      e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
+    } catch {
+      throw new Error('删除文件出错')
+    }
   })
   ipcMain.on(CREATE_NEW, (e, path, isDirectory) => {
-    const newPath = isDirectory
-      ? resolve(path, NEW_DIR_NAME)
-      : resolve(path, NEW_FILE_NAME)
+    const newPath = isDirectory ? resolve(path, NEW_DIR_NAME) : resolve(path, NEW_FILE_NAME)
     if (existsSync(newPath)) {
       dialog.showMessageBoxSync({
         type: 'info',
