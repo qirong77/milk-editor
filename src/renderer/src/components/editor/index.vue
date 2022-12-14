@@ -58,27 +58,20 @@ watch(
 const showSearchWord = ref(false)
 const closeSearch = () => {
   showSearchWord.value = false
-  getInstance()?.action(replaceAll(markDown.value.replaceAll('~~', '')))
+  const cleanRegex = /\\~|~~/g
+  const cleanContent = markDown.value.replaceAll(cleanRegex, '')
+  getInstance()?.action(replaceAll(cleanContent))
 }
+// 处理大小写匹配是个麻烦事，暂时先模糊匹配
 const search = (word) => {
-  const matchRegex = new RegExp(word, 'gi')
-
+  const matchRegex = new RegExp(word, 'g')
   // 清空内容
   // \~是如果出现连续匹配，解析出错，比如你要匹配a字符，但是内容中有aa
   const cleanRegex = /\\~|~~/g
-  const remains = []
   const cleanContent = markDown.value.replaceAll(cleanRegex, '')
-  getInstance()?.action(replaceAll(cleanContent))
   const matchs = markDown.value.match(matchRegex)
-  if (matchs && word) {
-    const newContent = matchs.reduce((pre, word, index) => {
-      const unique = pre.slice(index - 2, index + word.length + 2)
-      console.log('📕',unique)
-      return pre.replace(unique, `~~${unique}~~`)
-    }, markDown.value)
-    console.log('📕',newContent)
-    // getInstance()?.action(replaceAll(newContent))
-  }
+  const newContent = matchs && word ? cleanContent.replaceAll(word, `~~${word}~~`) : cleanContent
+  getInstance()?.action(replaceAll(newContent))
 }
 const showToolBar = ref(false)
 
@@ -107,8 +100,6 @@ onMounted(() => {})
       min-height: 90vh;
       del.strike-through {
         text-decoration: none;
-        color: rgb(195, 239, 19);
-        border: 1px solid rgb(195, 239, 19);
         border-radius: 20%;
         padding: 4px;
       }

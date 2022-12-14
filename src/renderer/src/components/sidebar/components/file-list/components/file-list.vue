@@ -46,6 +46,7 @@ defineProps({
 .file-list {
   height: auto;
   user-select: none;
+  padding: 0px;
 }
 ul.file-list-close {
   height: 30px;

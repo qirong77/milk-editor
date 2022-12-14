@@ -80,28 +80,8 @@ onMounted(() => {
   svg.open {
     transform: rotateZ(-90deg);
   }
-  .search-results {
-    ul {
-      overflow: hidden;
-      li.fileName {
-        svg {
-          margin-right: 10px;
-        }
-      }
-      li {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        min-height: 30px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        padding-left: 20px;
-        &:hover {
-          cursor: pointer;
-          background-color: rgb(56, 62, 77);
-        }
-      }
-    }
+  div.tip {
+    margin: 8px;
   }
 }
 </style>

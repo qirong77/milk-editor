@@ -26,8 +26,12 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     border-right: 1px solid $dark-header-backgournd;
     background-color: $dark-sideBar-background;
     mark {
-    background-color: $dark-sideBar-background;
-color: rgb(162, 162, 214);
+      color: rgb(195, 239, 19);
+      background-color: none;
+      border: 1px solid rgb(195, 239, 19);
+      background-color: $dark-sideBar-background;
+      border-radius: 20%;
+      padding: 2px;
     }
     .file-item-focus {
       background-color: rgb(46, 54, 71);
@@ -60,6 +64,10 @@ color: rgb(162, 162, 214);
         color: $dark-font-color;
         background-color: $dark-sideBar-background;
         font-size: initial;
+      }
+      .del {
+        color: rgb(195, 239, 19);
+        border: 1px solid rgb(195, 239, 19);
       }
       // 注释
       .blockquote {

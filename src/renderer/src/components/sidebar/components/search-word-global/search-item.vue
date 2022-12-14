@@ -1,7 +1,7 @@
 <template>
   <ul
-    :style="{
-      height: isClose ? '30px' : 'auto'
+    :class="{
+      close: isClose
     }"
   >
     <li class="fileName" @click.stop="handleClick">
@@ -34,7 +34,46 @@ const props = defineProps<{
 }>()
 const isClose = ref(false)
 const handleClick = () => {
+  console.log('📕', 'clci')
   useStore().changeOpenedPath(props.file.path)
   isClose.value = !isClose.value
 }
 </script>
+<style lang="scss" scoped>
+ul {
+  height: auto;
+  overflow: hidden;
+  li.fileName {
+    padding: 0 0 0 10px;
+    transition: all 0.5s;
+    svg {
+      transform: translateZ(-90deg);
+    }
+    svg {
+      margin-right: 6px;
+    }
+  }
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 20px;
+    padding: 10px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(56, 62, 77);
+    }
+  }
+}
+ul.close {
+  height: 30px;
+  li.fileName {
+    svg {
+      transform: translateZ(0deg);
+    }
+  }
+}
+</style>

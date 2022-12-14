@@ -12,7 +12,7 @@ export const onInterProcess = () => {
     } else return 'error path: ' + path
   })
   ipcMain.handle(GET_SEARCH_RESULT, (_e, word: string) => {
-    const regex = new RegExp(word, 'i')
+    const regex = new RegExp(word, 'ig')
     const notFind: SearchWords[] = [
       {
         fileName: '未找到结果',
@@ -40,11 +40,12 @@ export const onInterProcess = () => {
           matchs: []
         } as any
         let index = 0
+        // 这个也无法保证替换之后是保持大小写
         const lines = readFileSync(searchPath, 'utf-8').split('\n')
         lines.forEach((line) => {
           if (regex.test(line)) {
             node.matchs.push({
-              line: line.replaceAll(word, `<mark>${word}</mark>`),
+              line: line.replaceAll(regex, `<mark>${word}</mark>`),
               index
             })
           }
