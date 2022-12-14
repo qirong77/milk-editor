@@ -1,14 +1,12 @@
 <template>
   <div>
     <search-file v-if="showSearchFile" @update-path="updatePath" @open-file="onOpenFile" />
-
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { DELETE } from '../../../../common/eventType'
-import { useOpenFile } from '../../common/useOpenFile'
 import { useStore } from '../../store'
 import SearchFile from './search-file.vue'
 
@@ -17,7 +15,6 @@ const showSearchFile = ref(false)
 const currentPath = ref('')
 const updatePath = (path: string) => (currentPath.value = path)
 const onOpenFile = () => {
-  useOpenFile(currentPath.value)
   showSearchFile.value = false
 }
 document.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -35,7 +32,7 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
       return
     }
   }
-  if(e.metaKey && e.key==='Backspace'){
+  if(e.metaKey && e.key==='Backspace' && store.focusedPath){
     window.api.sendToMain(DELETE,store.focusedPath)
   }
 })

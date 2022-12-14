@@ -67,6 +67,10 @@ const handleKeyDown = (e: KeyboardEvent) => {
     else currentIndex.value += 1
     key.value = 'down'
   }
+  if(e.key === 'Enter') {
+    store.openedFile = paths[currentIndex.value]
+    emits('open-file')
+  }
 }
 onMounted(() => {
   document.querySelector('.search-file')?.querySelector('input')?.focus()

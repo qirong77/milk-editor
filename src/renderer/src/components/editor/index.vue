@@ -8,7 +8,7 @@
       'max-width': `calc(100vw - ${sideBarWidth}px)`
     }"
   >
-    <search-word @search-change="search" v-if="showSearchWord" @close="showSearchWord = false" />
+    <search-word @search-change="search" v-if="showSearchWord" @close="closeSearch" />
     <VueEditor :editor="editor" />
   </div>
 </template>
@@ -22,8 +22,7 @@ import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
 import { GET_FILE_CONTENT, SAVE_FILE } from '../../../../common/eventType'
 import { replaceAll } from '@milkdown/utils'
-import searchWord from './component/search-word.vue'
-import debounce from 'debounce'
+import SearchWord from './component/search-word.vue'
 defineProps<{
   sideBarWidth: number
 }>()
@@ -39,10 +38,8 @@ const markDown = ref('')
 // 因为milkdown的更新机制，有一个标志来判断
 const flag = ref(false)
 watch(markDown, () => {
-  console.log('📕', markDown.value)
   if (flag.value) {
-    console.log('📕', 'SAVE_FILE')
-    window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value)
+    window.api.sendToMain(SAVE_FILE, store.openedFile, markDown.value.replaceAll('~~', ''))
   }
   flag.value = true
 })
@@ -59,15 +56,30 @@ watch(
   }
 )
 const showSearchWord = ref(false)
-const search = debounce((word) => {
-  // console.log('📕',markDown.value.split('\n'))
-  // const regex = new RegExp(word, 'gi')
-  // const hasMatch = regex.test(markDown.value)
-  // if (hasMatch) {
-  //   const markedContent = markDown.value.replaceAll(word, `~~${word}~~`)
-  //   console.log('📕', markedContent)
-  // }
-}, 1000)
+const closeSearch = () => {
+  showSearchWord.value = false
+  getInstance()?.action(replaceAll(markDown.value.replaceAll('~~', '')))
+}
+const search = (word) => {
+  const matchRegex = new RegExp(word, 'gi')
+
+  // 清空内容
+  // \~是如果出现连续匹配，解析出错，比如你要匹配a字符，但是内容中有aa
+  const cleanRegex = /\\~|~~/g
+  const remains = []
+  const cleanContent = markDown.value.replaceAll(cleanRegex, '')
+  getInstance()?.action(replaceAll(cleanContent))
+  const matchs = markDown.value.match(matchRegex)
+  if (matchs && word) {
+    const newContent = matchs.reduce((pre, word, index) => {
+      const unique = pre.slice(index - 2, index + word.length + 2)
+      console.log('📕',unique)
+      return pre.replace(unique, `~~${unique}~~`)
+    }, markDown.value)
+    console.log('📕',newContent)
+    // getInstance()?.action(replaceAll(newContent))
+  }
+}
 const showToolBar = ref(false)
 
 document.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -95,7 +107,10 @@ onMounted(() => {})
       min-height: 90vh;
       del.strike-through {
         text-decoration: none;
-        color: aqua;
+        color: rgb(195, 239, 19);
+        border: 1px solid rgb(195, 239, 19);
+        border-radius: 20%;
+        padding: 4px;
       }
     }
     div.list-item_label {

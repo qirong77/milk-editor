@@ -45,7 +45,6 @@ watch(
   }, 800)
 )
 onMounted(() => {
-  console.log('📕', iptRef.value)
   iptRef.value?.focus()
   // 重复按键就聚焦
   document.addEventListener('keydown', (e) => {

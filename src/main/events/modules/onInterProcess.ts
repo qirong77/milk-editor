@@ -13,7 +13,7 @@ export const onInterProcess = () => {
   })
   ipcMain.handle(GET_SEARCH_RESULT, (_e, word: string) => {
     const regex = new RegExp(word, 'i')
-    const notFind: SearchWords = [
+    const notFind: SearchWords[] = [
       {
         fileName: '未找到结果',
         path: '',
@@ -25,7 +25,7 @@ export const onInterProcess = () => {
         ]
       }
     ]
-    const collections: SearchWords = []
+    const collections: SearchWords[] = []
     const dfs = (searchPath: string) => {
       if (lstatSync(searchPath).isDirectory()) {
         const fileNames = readdirSync(searchPath)
