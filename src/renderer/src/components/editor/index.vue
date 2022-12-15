@@ -64,12 +64,14 @@ const closeSearch = () => {
 }
 // 处理大小写匹配是个麻烦事，暂时先模糊匹配
 const search = (word) => {
+  console.log('📕',word)
   const matchRegex = new RegExp(word, 'g')
   // 清空内容
   // \~是如果出现连续匹配，解析出错，比如你要匹配a字符，但是内容中有aa
   const cleanRegex = /\\~|~~/g
   const cleanContent = markDown.value.replaceAll(cleanRegex, '')
-  const matchs = markDown.value.match(matchRegex)
+  const matchs = cleanContent.match(matchRegex)
+  if(!matchs) console.log('📕','not-match')
   const newContent = matchs && word ? cleanContent.replaceAll(word, `~~${word}~~`) : cleanContent
   getInstance()?.action(replaceAll(newContent))
 }

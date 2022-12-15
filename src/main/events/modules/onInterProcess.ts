@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron'
 import { existsSync, lstatSync, readFileSync, readdirSync } from 'fs'
 import { basename, resolve } from 'path'
-import { GET_FILE_CONTENT, GET_SEARCH_RESULT } from '../../../common/eventType'
+import {  GET_FILE_CONTENT, GET_SEARCH_RESULT } from '../../../common/eventType'
 import { SearchWords } from '../../../common/types'
 import { defaultPath, EXCEPT_FILE } from '../../config'
 
@@ -58,4 +58,5 @@ export const onInterProcess = () => {
     if (collections.length > 0) return collections
     else return notFind
   })
+
 }

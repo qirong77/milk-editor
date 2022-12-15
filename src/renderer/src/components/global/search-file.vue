@@ -1,7 +1,7 @@
 <template>
   <div class="search-file">
     <div>
-      <span></span>
+      <span>{{ currentIndex }}</span>
       <input v-model="searchContent" type="text" @keydown="handleKeyDown" />
     </div>
     <ul>
@@ -23,7 +23,6 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { basename } from 'path-browserify'
-
 const searchContent = ref('')
 const store = useStore()
 const paths = computed(() => {
@@ -67,8 +66,18 @@ const handleKeyDown = (e: KeyboardEvent) => {
     else currentIndex.value += 1
     key.value = 'down'
   }
-  if(e.key === 'Enter') {
-    store.openedFile = paths[currentIndex.value]
+  if (e.key === 'Enter') {
+    // 打开一个文件
+    store.changeOpenedPath(paths.value[currentIndex.value])
+    // 打开上层的目录
+    nextTick(() => {
+      let target = document.getElementsByClassName('file-item-active')[0]
+      while (target?.parentElement instanceof HTMLUListElement) {
+        target.parentElement.classList.remove('file-list-close')
+        target = target.parentElement
+      }
+    })
+
     emits('open-file')
   }
 }

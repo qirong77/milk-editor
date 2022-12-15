@@ -58,6 +58,10 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     p {
       width: 100%;
     }
+    strong {
+      color: #ffcc00;
+      padding: 0 3px;
+    }
     // 反引号，行内的代码
     .editor {
       code.code-inline {
@@ -65,7 +69,7 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
         background-color: $dark-sideBar-background;
         font-size: initial;
       }
-      .del {
+      del {
         color: rgb(195, 239, 19);
         border: 1px solid rgb(195, 239, 19);
       }

@@ -1,7 +1,7 @@
 import { dialog, ipcMain } from 'electron'
 import { existsSync, lstatSync, mkdirSync, renameSync, unlinkSync, writeFileSync } from 'fs'
-import { dirname, resolve } from 'path'
-
+import { basename, dirname, resolve } from 'path'
+import { move } from 'fs-extra'
 import {
   GET_DIR_TREE,
   SAVE_FILE,
@@ -10,7 +10,8 @@ import {
   POP_FILE_ITEM_MENU,
   DELETE,
   POP_FILE_DIR_MENU,
-  CREATE_NEW
+  CREATE_NEW,
+  DRAG_FILE
 } from '../../../common/eventType'
 import { defaultPath, DEFAULT_CONTENT, NEW_DIR_NAME, NEW_FILE_NAME } from '../../config'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
@@ -60,5 +61,17 @@ export const onRenderer = () => {
     if (isDirectory) mkdirSync(newPath)
     else writeFileSync(newPath, DEFAULT_CONTENT, 'utf-8')
     e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath), newPath)
+  })
+  ipcMain.on(DRAG_FILE, (e, target, desc) => {
+    const newName = basename(target)
+    const newPath = resolve(desc, newName)
+    move(target, newPath)
+      .then(() => {
+        e.sender.send(UPDATE_DIR_TREE, ...getDirectoryTree(defaultPath))
+      })
+      .catch((error) => {
+        console.log('📕', error)
+        throw new Error('操作失败')
+      })
   })
 }

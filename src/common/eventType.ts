@@ -11,6 +11,7 @@ export const CREATE_DIR = 'create dir'
 // 2. interProcess
 export const GET_FILE_CONTENT = 'get file content'
 export const GET_SEARCH_RESULT = 'get serarch result'
+export const DRAG_FILE = 'drag file'
 // 3. 主进程 -> 渲染进程
 export const UPDATE_DIR_TREE = 'update a dir tree'
 export const RENAME_FILE = 'rename a file'

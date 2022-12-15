@@ -9,6 +9,8 @@
       paddingLeft: 4 + level * 12 + 'px',
       display: level === 0 ? 'none' : 'flex'
     }"
+    draggable="true"
+    @dragstart="handleDragStart"
   >
     <!-- 只有作为文件名的item有图标 -->
     <div v-if="isDir && !showInput">
@@ -126,6 +128,9 @@ const handleClick = () => {
   } else {
     store.changeOpenedPath(props.path)
   }
+}
+const handleDragStart = (e) => {
+  e.dataTransfer.setData('path', props.path)
 }
 </script>
 

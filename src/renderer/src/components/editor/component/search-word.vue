@@ -27,7 +27,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     if (currentIndex.value >= matchNodes.value.length) currentIndex.value = 0
     else currentIndex.value++
-    // matchNodes?.[currentIndex.value].scrollIntoView()
+    matchNodes.value[currentIndex.value]?.scrollIntoView()
   }
 }
 watch(matchNodes, () => {
