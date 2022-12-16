@@ -6,7 +6,7 @@
   >
     <li
       :style="{
-        marginLeft: margin * 8 + 2 + 'px'
+        paddingLeft: margin * 8 + 2 + 'px'
       }"
       @click.stop="handleClick"
     >
@@ -42,25 +42,32 @@ const props = defineProps<{
 }>()
 const margin = Number(props.tree.tagName[1])
 const isClose = ref(false)
-const handleClick = () => {}
+const handleClick = () => {
+  isClose.value = !isClose.value
+  props.tree.header.scrollIntoView()
+}
 </script>
 
-<style lang="scss">
-// ul li {
-//   display: flex;
-//   align-items: center;
-//   transition: all 0.3s;
-//   height: auto;
-//   cursor: pointer;
-//   svg {
-//     margin-right: 6px;
-//     transform: rotateZ(-90deg);
-//   }
-// }
-// ul.close {
-//   height: 25px;
-//   svg {
-//     transform: rotateZ(0deg);
-//   }
-// }
+<style lang="scss" scoped>
+ul li {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  cursor: pointer;
+  svg {
+    margin-right: 6px;
+    transform: rotateZ(0deg);
+    transition: all 0.3s;
+  }
+  &:hover {
+    background-color: rgb(56, 62, 77);
+  }
+}
+ul.close {
+  height: 30px;
+  overflow: hidden;
+  svg {
+    transform: rotateZ(-90deg);
+  }
+}
 </style>

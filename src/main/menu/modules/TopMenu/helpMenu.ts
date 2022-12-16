@@ -18,7 +18,7 @@ export const helpMenuTemplate: DarwinMenuItemConstructorOptions = {
     },
     {
       label: '切换开发人员工具',
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         browserWindow?.webContents.openDevTools()
       }
     }

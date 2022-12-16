@@ -26,11 +26,15 @@ import SideBar from './components/sidebar/index.vue'
 import global from './components/global/index.vue'
 import { basename } from 'path-browserify'
 import { useStore } from './store'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { GET_DIR_TREE } from '../../common/eventType'
 const sideBarWidth = ref(200)
 const handleWidthChange = (newWidth) =>{
   sideBarWidth.value = newWidth
 }
+onMounted(()=>{
+  window.api.sendToMain(GET_DIR_TREE)
+})
 </script>
 
 <style lang="scss">

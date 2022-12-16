@@ -6,7 +6,7 @@
       minWidth: sideBarWidth + 'px'
     }"
   >
-    <keep-alive>
+    <keep-alive exclude="header-list">
       <component :is="tabs[currentTab]"></component>
     </keep-alive>
     <drag-line :width="sideBarWidth" @drag-done="handleDragDone" />

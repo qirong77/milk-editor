@@ -41,6 +41,10 @@ watch(
     window.api.interProcess(GET_SEARCH_RESULT, keyWord.value).then((response) => {
       console.log('📕', response)
       results.value = response
+      totalPaths.value = response.length
+      totalMatchs.value = response.reduce((pre, file) => {
+        return pre + file.matchs.length
+      }, 0)
     })
   }, 800)
 )
@@ -55,7 +59,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .search-word-global {
   position: absolute;
   z-index: 100;

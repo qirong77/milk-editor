@@ -25,6 +25,7 @@ export const onInterProcess = () => {
         ]
       }
     ]
+    if(!word) return notFind
     const collections: SearchWords[] = []
     const dfs = (searchPath: string) => {
       if (lstatSync(searchPath).isDirectory()) {

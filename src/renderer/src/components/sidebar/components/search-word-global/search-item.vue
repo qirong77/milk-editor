@@ -45,9 +45,9 @@ ul {
   overflow: hidden;
   li.fileName {
     padding: 0 0 0 10px;
-    transition: all 0.5s;
     svg {
-      transform: rotateZ(-90deg);
+      transition: all 0.5s;
+      transform: rotateZ(0deg);
     }
     svg {
       margin-right: 6px;
@@ -72,7 +72,7 @@ ul.close {
   height: 30px;
   li.fileName {
     svg {
-      transform: rotateZ(0deg);
+      transform: rotateZ(-90deg);
     }
   }
 }

@@ -22,7 +22,7 @@ export const viewMenuTemplate: DarwinMenuItemConstructorOptions = {
       label: 'Toggle Developer Tools',
       accelerator: 'Alt+Command+I',
       //打开开发工具
-      click(menuItem, browserWindow, event) {
+      click(_menuItem, browserWindow, _event) {
         browserWindow?.webContents.openDevTools()
       }
     }
