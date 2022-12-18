@@ -53,7 +53,6 @@ const allowDrop = (e: DragEvent) => {
 }
 const handleDragLeave = () => {
   if (props.tree.isDir) {
-    console.log('📕', 'leave')
     isOnDrag.value = false
   }
 }

@@ -12,6 +12,7 @@ export const onInterProcess = () => {
     } else return 'error path: ' + path
   })
   ipcMain.handle(GET_SEARCH_RESULT, (_e, word: string) => {
+    console.log('📕',word)
     const regex = new RegExp(word, 'ig')
     const notFind: SearchWords[] = [
       {
@@ -52,11 +53,11 @@ export const onInterProcess = () => {
           }
           index++
         })
-        if (node.matchs.length > 1) collections.push(node)
+        if (node.matchs.length) collections.push(node)
       }
     }
     dfs(defaultPath)
-    if (collections.length > 0) return collections
+    if (collections.length) return collections
     else return notFind
   })
 

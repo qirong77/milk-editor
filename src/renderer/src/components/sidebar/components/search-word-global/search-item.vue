@@ -19,7 +19,7 @@
       </svg>
       {{ file.fileName }}
     </li>
-    <li v-for="match in file.matchs" :key="match.index">
+    <li v-for="match in file.matchs" :key="match.index" @click="handleClickItem">
       <p v-html="match.line"></p>
     </li>
   </ul>
@@ -34,9 +34,10 @@ const props = defineProps<{
 }>()
 const isClose = ref(false)
 const handleClick = () => {
-  console.log('📕', 'clci')
-  useStore().changeOpenedPath(props.file.path)
   isClose.value = !isClose.value
+}
+const handleClickItem = () => {
+    useStore().changeOpenedPath(props.file.path)
 }
 </script>
 <style lang="scss" scoped>

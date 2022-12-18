@@ -8,20 +8,15 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useStore } from '../../../../store'
 defineComponent({
   name: 'header-list'
 })
 </script>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, nextTick } from 'vue'
 import HeaderList from './components/header-list.vue'
 import { getHeaderTree } from './helper/getHeaderTree'
-// defineProps({
-//   trees: {
-//     type: Array,
-//     default: []
-//   }
-// })
 const getTree = () => {
   const hs = Array.from(
     document.querySelector('.milkdown .editor')?.querySelectorAll('h1,h2,h3,h4,h5,h6') || []
@@ -29,6 +24,15 @@ const getTree = () => {
   return getHeaderTree(hs as HTMLElement[])
 }
 const trees = ref(getTree())
+// 
+watch(
+  () => useStore().openedFile,
+  () => {
+    nextTick(() => {
+      trees.value = getTree()
+    })
+  }
+)
 </script>
 
 <style lang="scss" scoped>

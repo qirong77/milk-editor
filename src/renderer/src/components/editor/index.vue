@@ -48,9 +48,9 @@ watch(
   () => store.openedFile,
   () => {
     window.api.interProcess(GET_FILE_CONTENT, store.openedFile).then((res) => {
-      console.log('get-new-content', res)
       markDown.value = res
       getInstance()?.action(replaceAll(res))
+      // 通知更新标题列表
       flag.value = false
     })
   }
