@@ -36,10 +36,15 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     .file-item-focus {
       background-color: rgb(46, 54, 71);
     }
+    li.file-item {
+      svg {
+        color: #96cbfe;
+      }
+    }
     li.file-item-active {
       border-left: 5px solid rgb(157, 157, 198);
       background-color: rgb(23, 27, 36);
-      color: #e9b77a;
+      color: #dad085;
     }
     .drag-line {
       background-color: $dark-header-backgournd;
@@ -58,6 +63,15 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     font-family: $font-family;
     p {
       width: 100%;
+    }
+    ul li.list-item {
+      color: #e9c062;
+      .list-item_label {
+        
+      }
+    }
+    ol li.list-item {
+      color: #dad085;
     }
     strong {
       color: #ffcc00;
@@ -79,9 +93,10 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
         padding-left: 14px;
         border-width: 2px;
         margin: 30px 0;
+        border-color: #7c7c7c;
         p {
           font-size: 18px;
-          color: rgb(153, 164, 182);
+          color: #7c7c7c;
         }
       }
       .code-fence {

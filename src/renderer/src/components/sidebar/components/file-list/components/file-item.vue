@@ -157,7 +157,6 @@ li.file-item {
     svg {
       height: 16px;
       width: 16px;
-      color: rgb(147, 147, 214);
       transition: all 0.5s;
     }
     svg.triangle-down {
