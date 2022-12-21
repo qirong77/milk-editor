@@ -72,7 +72,8 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
       }
     }
     .heading {
-      color: #dad085;
+      font-family: Georgia, 'Times New Roman', Times, serif !important;
+      color: rgb(239, 240, 245);
     }
     strong {
       color: #ffcc00;
