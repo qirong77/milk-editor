@@ -11,7 +11,9 @@ import {
   DELETE,
   POP_FILE_DIR_MENU,
   CREATE_NEW,
-  DRAG_FILE
+  DRAG_FILE,
+  UPDATE_HEADERS,
+  NOTIFY_UPDATE_HEADERS
 } from '../../../common/eventType'
 import { defaultPath, DEFAULT_CONTENT, NEW_DIR_NAME, NEW_FILE_NAME } from '../../config'
 import { createFilDirMenu } from '../../menu/modules/contextMenu/fileDir'
@@ -73,5 +75,8 @@ export const onRenderer = () => {
         console.log('📕', error)
         throw new Error('操作失败')
       })
+  })
+  ipcMain.on(NOTIFY_UPDATE_HEADERS,(e)=>{
+    e.sender.send(UPDATE_HEADERS)
   })
 }

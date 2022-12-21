@@ -1,0 +1,15 @@
+@import '../../../assets/styles/variables.scss';
+.drag-line {
+  width: 2px;
+  position: absolute;
+  left: $side-bar-width;
+  height: 94vh;
+  top: 30px;
+  z-index: 99999;
+  background-color: rgb(172, 203, 228);
+  opacity: 0;
+  &:hover {
+    cursor: ew-resize;
+    opacity: 100%;
+  }
+}

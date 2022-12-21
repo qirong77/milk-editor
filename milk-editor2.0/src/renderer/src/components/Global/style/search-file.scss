@@ -1,0 +1,39 @@
+.search-file {
+    top: 30px;
+    position: fixed;
+    z-index: 9999;
+    width: 30vw;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    border-radius: 4px;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 25px;
+      margin: 6px;
+      input {
+        height: 100%;
+        width: 80%;
+        border-width: 1.6px;
+      }
+    }
+    ul {
+      height: 300px;
+      overflow: scroll;
+    }
+    li {
+      height: 25px;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      span {
+        margin-left: 20px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  

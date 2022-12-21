@@ -20,7 +20,7 @@ import { onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
-import { GET_FILE_CONTENT, SAVE_FILE } from '../../../../common/eventType'
+import { GET_FILE_CONTENT, NOTIFY_UPDATE_HEADERS, SAVE_FILE } from '../../../../common/eventType'
 import { replaceAll } from '@milkdown/utils'
 import SearchWord from './component/search-word.vue'
 defineProps<{
@@ -47,12 +47,16 @@ watch(markDown, () => {
 watch(
   () => store.openedFile,
   () => {
-    window.api.interProcess(GET_FILE_CONTENT, store.openedFile).then((res) => {
-      markDown.value = res
-      getInstance()?.action(replaceAll(res))
-      // 通知更新标题列表
-      flag.value = false
-    })
+    window.api
+      .interProcess(GET_FILE_CONTENT, store.openedFile)
+      .then((res) => {
+        markDown.value = res
+        getInstance()?.action(replaceAll(res))
+        flag.value = false
+      })
+      .then(() => {
+        window.api.sendToMain(NOTIFY_UPDATE_HEADERS)
+      })
   }
 )
 const showSearchWord = ref(false)

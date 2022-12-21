@@ -8,13 +8,13 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useStore } from '../../../../store'
+import { UPDATE_HEADERS } from '../../../../../../common/eventType'
 defineComponent({
   name: 'header-list'
 })
 </script>
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue'
+import { ref, } from 'vue'
 import HeaderList from './components/header-list.vue'
 import { getHeaderTree } from './helper/getHeaderTree'
 const getTree = () => {
@@ -24,15 +24,10 @@ const getTree = () => {
   return getHeaderTree(hs as HTMLElement[])
 }
 const trees = ref(getTree())
-// 
-watch(
-  () => useStore().openedFile,
-  () => {
-    nextTick(() => {
-      trees.value = getTree()
-    })
-  }
-)
+window.api.onMain(UPDATE_HEADERS,()=> {
+  trees.value = getTree()
+})
+
 </script>
 
 <style lang="scss" scoped>
