@@ -166,19 +166,19 @@ onMounted(() => {})
     width: 0 !important;
   }
   .milkdown .editor h1.heading {
-    font-weight: 500;
+    font-size: 60px;
+  }
+  .milkdown .editor h2.heading {
+    font-size: 52px;
   }
   .milkdown .editor h3.heading {
-    font-weight: 400;
-    font-size: 30px;
+    font-size: 44px;
   }
   .milkdown .editor h4.heading {
-    font-weight: 400;
-    font-size: 25px;
+    font-size: 36px;
   }
   .milkdown .editor h5.heading {
-    font-weight: 300;
-    font-size: 20px;
+    font-size: 28px;
   }
 }
 .toobar {
