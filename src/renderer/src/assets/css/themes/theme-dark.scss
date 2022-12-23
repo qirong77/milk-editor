@@ -1,4 +1,4 @@
-$dark-font-color: rgb(219, 223, 236);
+$dark-font-color: rgb(229, 232, 243);
 $dark-background: rgb(46 52 64);
 $dark-header-backgournd: rgb(59, 62, 81);
 $dark-sideBar-background: rgb(36, 41, 51);
@@ -22,7 +22,6 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
     transform: scale(1.1);
   }
   .side-bar {
-    font-weight: 400;
     border-right: 1px solid $dark-header-backgournd;
     background-color: $dark-sideBar-background;
     mark {
@@ -116,5 +115,12 @@ $code-fence-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Hiragin
       background-color: $dark-header-backgournd;
       color: $active-font-color;
     }
+  }
+  .search-word {
+  box-shadow: 0 3px 12px 2px hwb(210deg 14% 82%);
+.input-container {
+  background-color: $dark-background;
+
+}
   }
 }

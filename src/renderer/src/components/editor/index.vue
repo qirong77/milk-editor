@@ -104,8 +104,8 @@ onMounted(() => {})
       min-height: 90vh;
       del.strike-through {
         text-decoration: none;
-        border-radius: 20%;
-        padding: 4px;
+        border-radius: 4px;
+font-size: initial;
       }
     }
     div.list-item_label {
@@ -166,16 +166,16 @@ onMounted(() => {})
     width: 0 !important;
   }
   .milkdown .editor h1.heading {
-    font-size: 48px;
-  }
-  .milkdown .editor h2.heading {
     font-size: 42px;
   }
+  .milkdown .editor h2.heading {
+    font-size: 37px;
+  }
   .milkdown .editor h3.heading {
-    font-size: 36px;
+    font-size: 32px;
   }
   .milkdown .editor h4.heading {
-    font-size: 28px;
+    font-size: 27px;
   }
   .milkdown .editor h5.heading {
     font-size: 22px;
