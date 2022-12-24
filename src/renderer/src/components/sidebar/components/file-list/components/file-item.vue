@@ -13,7 +13,7 @@
     @dragstart="handleDragStart"
   >
     <!-- 只有作为文件名的item有图标 -->
-    <div v-if="isDir && !showInput">
+    <div v-if="isDir">
       <svg
         class="triangle-down"
         :class="{ rotate: !isOpen }"
@@ -96,8 +96,9 @@ const iptValue = ref(props.fileName)
 const handleBlur = () => {
   store.setShowInput(false)
 }
+
 const handleConfirm = (e: KeyboardEvent) => {
-  if (e.key === 'Enter') {
+  if (e.key === 'Enter' && iptValue.value) {
     store.setShowInput(false)
     if (iptValue.value !== props.fileName) {
       window.api.sendToMain(RENAME_FILE, props.path, iptValue.value)
@@ -105,7 +106,7 @@ const handleConfirm = (e: KeyboardEvent) => {
     }
   }
 }
-// input-focus
+// input-focus,这个可以使用指令解决
 watch(
   () => store.showInput,
   () => {
@@ -144,7 +145,7 @@ li.file-item {
   line-height: 30px;
   input {
     height: 30px;
-    width: 90%;
+    margin-left: 10px;
   }
   &:hover {
     cursor: pointer;

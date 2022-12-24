@@ -24,10 +24,12 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref } from 'vue'
+import { PropType, ref, watch } from 'vue'
 import { DirTree } from '../../../../../../../common/types'
 import FileItem from './file-item.vue'
 import { DRAG_FILE } from '../../../../../../../common/eventType'
+import { useStore } from '../../../../../store'
+const store = useStore()
 const props = defineProps({
   tree: {
     type: Object as PropType<DirTree>,
@@ -64,6 +66,15 @@ const handleDrop = (e: DragEvent) => {
     window.api.sendToMain(DRAG_FILE, e.dataTransfer?.getData('path'), props.tree.path)
   }
 }
+// 更改文件夹名称的时候，展开当前文件夹
+watch(
+  () => store.showInput,
+  () => {
+    if (store.showInput && props.tree.path.includes(store.focusedPath)) {
+      isOpen.value = true
+    }
+  }
+)
 </script>
 
 <style lang="scss">

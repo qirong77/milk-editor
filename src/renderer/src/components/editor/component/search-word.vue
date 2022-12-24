@@ -1,6 +1,9 @@
 <template>
-  <div class="search-word">
-    <header @mouseover="handleMouseDown">
+  <div class="search-word" :style="{
+    top:position.y + 'px',
+    left:position.x + 'px'
+  }">
+    <header @mousedown="handleMouseDown">
       查找
       <svg
         @click="emits('close')"
@@ -24,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { nextTick, onMounted, reactive, ref, watch } from 'vue'
 import debounce from 'debounce'
 const word = ref('')
 const emits = defineEmits(['search-change', 'close'])
@@ -38,8 +41,25 @@ watch(
     })
   }, 500)
 )
-const handleMouseDown = (e: MouseEvent) => {
-  console.log('📕', e)
+const position = reactive({
+  x:100,
+  y:100
+})
+const handleMouseDown = (e:MouseEvent) => {
+  const offsetX = e.offsetX
+  const offsetY = e.offsetY
+  // clietX就是距离浏览器视口的位置
+  document.onmousemove = (e) => {
+    position.x  = e.clientX - offsetX
+    position.y = e.clientY - offsetY
+    return false
+  }
+  // 释放鼠标的时候解除事件绑定
+  document.onmouseup = () => {
+    document.onmousemove = null
+    document.onmouseup = null
+    return false
+  }
 }
 const matchNodes = ref([] as HTMLElement[])
 const currentIndex = ref(0)
@@ -71,12 +91,9 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   z-index: 9;
-  top: 120px;
   border-radius: 8px;
-  left: 60vw;
   header {
     -webkit-app-region: none;
-
     border-radius: 8px 8px 0px 0px;
     display: flex;
     justify-content: space-between;
@@ -94,7 +111,7 @@ onMounted(() => {
     input {
       height: 30px;
       min-width: 160px;
-      padding-left: 12px;
+      padding-left: 6px;
       font-size: 16px;
       border-radius: 6px;
       &:hover {
