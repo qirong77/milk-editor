@@ -27,10 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref, watch } from 'vue'
+import { nextTick, onMounted, reactive, ref, watch, watchEffect } from 'vue'
 import debounce from 'debounce'
+import { useStore } from '../../../store';
 const word = ref('')
 const emits = defineEmits(['search-change', 'close'])
+// 搜索的字段更改，重新获取匹配字段
 watch(
   word,
   debounce(() => {
@@ -42,9 +44,10 @@ watch(
   }, 500)
 )
 const position = reactive({
-  x:100,
+  x:550,
   y:100
 })
+// 拖动搜索框
 const handleMouseDown = (e:MouseEvent) => {
   const offsetX = e.offsetX
   const offsetY = e.offsetY
@@ -70,7 +73,6 @@ const handleKeyDown = (e: KeyboardEvent) => {
     matchNodes.value[currentIndex.value]?.scrollIntoView()
   }
 }
-watch(matchNodes, () => {})
 const iptRef = ref<HTMLInputElement>()
 onMounted(() => {
   iptRef.value?.focus()
@@ -80,18 +82,21 @@ onMounted(() => {
     }
   })
 })
+watchEffect(()=>{
+  useStore().searchInfo
+})
 </script>
 
 <style lang="scss" scoped>
 .search-word {
   height: 100px;
   width: 300px;
-  border-radius: 10px;
   position: absolute;
   display: flex;
   flex-direction: column;
   z-index: 9;
   border-radius: 8px;
+
   header {
     -webkit-app-region: none;
     border-radius: 8px 8px 0px 0px;
@@ -101,6 +106,9 @@ onMounted(() => {
     svg {
       height: 30px;
       width: 30px;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   .input-container {
@@ -108,6 +116,8 @@ onMounted(() => {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    border-radius: 8px;
+
     input {
       height: 30px;
       min-width: 160px;

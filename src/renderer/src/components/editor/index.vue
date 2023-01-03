@@ -8,7 +8,7 @@
       'max-width': `calc(100vw - ${sideBarWidth}px)`
     }"
   >
-    <search-word @search-change="search" v-if="showSearchWord" @close="closeSearch" />
+    <search-word @search-change="replaceSearch" v-if="showSearchWord" @close="closeSearch" />
     <VueEditor :editor="editor" />
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { onMounted, ref, watch } from 'vue'
+import { ref, watch,  } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
@@ -35,7 +35,7 @@ const { editor, getInstance } = useEditor((root) => {
 })
 
 const markDown = ref('')
-// 因为milkdown的更新机制，有一个标志来判断
+// 因为milkdown的更新机制，需有一个标志来判断
 const flag = ref(false)
 watch(markDown, () => {
   if (flag.value) {
@@ -55,8 +55,19 @@ watch(
         flag.value = false
       })
       .then(() => {
+        //更新标题列表
         window.api.sendToMain(NOTIFY_UPDATE_HEADERS)
+        // 如果是全局搜索关键字，就跳转到对应的位置
+        const nodes = [...document.querySelectorAll('del')] || []
+        if (nodes[store.searchInfo.index]) nodes[store.searchInfo.index].scrollIntoView()
       })
+  }
+)
+watch(
+  () => store.setSearchInfo,
+  () => {
+    const nodes = [...document.querySelectorAll('del')] || []
+    if (nodes[store.searchInfo.index]) nodes[store.searchInfo.index].scrollIntoView()
   }
 )
 const showSearchWord = ref(false)
@@ -67,14 +78,17 @@ const closeSearch = () => {
   getInstance()?.action(replaceAll(cleanContent))
 }
 // 处理大小写匹配是个麻烦事，暂时先模糊匹配
-const search = (word) => {
-  const matchRegex = new RegExp(word, 'g')
+const replaceSearch = (word, isCase = false, isBlank = false) => {
+  const matchRegex = new RegExp(isBlank ? `\\s${word}\\s` : word, isCase ? 'g' : 'gi')
   // 清空内容
   // \~是如果出现连续匹配，解析出错，比如你要匹配a字符，但是内容中有aa
   const cleanRegex = /\\~|~~/g
   const cleanContent = markDown.value.replaceAll(cleanRegex, '')
   const matchs = cleanContent.match(matchRegex)
-  const newContent = matchs && word ? cleanContent.replaceAll(word, `~~${word}~~`) : cleanContent
+  const newContent =
+    matchs && word
+      ? cleanContent.replaceAll(matchRegex, `~~${isBlank ? ' ' + word + ' ' : word}~~`)
+      : cleanContent
   getInstance()?.action(replaceAll(newContent))
 }
 const showToolBar = ref(false)
@@ -87,7 +101,6 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
     showToolBar.value = !showToolBar.value
   }
 })
-onMounted(() => {})
 </script>
 
 <style lang="scss">
@@ -105,7 +118,7 @@ onMounted(() => {})
       del.strike-through {
         text-decoration: none;
         border-radius: 4px;
-font-size: initial;
+        font-size: initial;
       }
     }
     div.list-item_label {

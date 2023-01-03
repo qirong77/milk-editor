@@ -9,6 +9,13 @@ export const useStore = defineStore('global', {
       totalPaths: [''],
       focusedPath: '',
       showInput: false,
+      searchInfo: {
+        index: 0,
+        isCase:false,
+        isBlank:false,
+        path:'',
+      },
+      globalSearchWord: ''
     }
   },
   actions: {
@@ -21,8 +28,18 @@ export const useStore = defineStore('global', {
     setFocusedPath(path: string) {
       this.focusedPath = path
     },
+    // 是否显示输入框，当有focus的文件的时候会
     setShowInput(visiable: boolean) {
       this.showInput = visiable
     },
+    setSearchInfo(newInfo: { index?: number; isCase?: boolean; isBlank?: boolean,path?:string }) {
+      this.searchInfo = {
+        ...this.searchInfo,
+        ...newInfo
+      }
+    },
+    setGlobalWord(str: string) {
+      this.globalSearchWord = str
+    }
   }
 })

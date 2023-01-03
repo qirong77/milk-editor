@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron'
 import { existsSync, lstatSync, readFileSync, readdirSync } from 'fs'
 import { basename, resolve } from 'path'
-import {  GET_FILE_CONTENT, GET_SEARCH_RESULT } from '../../../common/eventType'
+import { GET_FILE_CONTENT, GET_SEARCH_RESULT } from '../../../common/eventType'
 import { SearchWords } from '../../../common/types'
 import { defaultPath, EXCEPT_FILE } from '../../config'
 
@@ -11,9 +11,8 @@ export const onInterProcess = () => {
       return readFileSync(path, 'utf-8')
     } else return 'error path: ' + path
   })
-  ipcMain.handle(GET_SEARCH_RESULT, (_e, word: string) => {
-    console.log('📕',word)
-    const regex = new RegExp(word, 'ig')
+  ipcMain.handle(GET_SEARCH_RESULT, (_e, word: string, isCase = false, isBlank = false) => {
+    const regex = new RegExp(isBlank ? `\\s${word}\\s` : word, isCase ? 'g' : 'gi')
     const notFind: SearchWords[] = [
       {
         fileName: '未找到结果',
@@ -26,7 +25,7 @@ export const onInterProcess = () => {
         ]
       }
     ]
-    if(!word) return notFind
+    if (!word) return notFind
     const collections: SearchWords[] = []
     const dfs = (searchPath: string) => {
       if (lstatSync(searchPath).isDirectory()) {
@@ -36,6 +35,7 @@ export const onInterProcess = () => {
           if (!EXCEPT_FILE.test(nextPath)) dfs(nextPath)
         })
       } else {
+        // 遍历到文件，就进行匹配
         const node = {
           fileName: basename(searchPath),
           path: searchPath,
@@ -46,12 +46,13 @@ export const onInterProcess = () => {
         const lines = readFileSync(searchPath, 'utf-8').split('\n')
         lines.forEach((line) => {
           if (regex.test(line)) {
+            // 每个块的匹配，都是相同的索引
             node.matchs.push({
-              line: line.replaceAll(regex, `<mark>${word}</mark>`),
+              line: line.replaceAll(regex, `<mark>${isBlank ? ' ' + word + ' ' : word}</mark>`),
               index
             })
+            index+=1
           }
-          index++
         })
         if (node.matchs.length) collections.push(node)
       }
@@ -60,5 +61,4 @@ export const onInterProcess = () => {
     if (collections.length) return collections
     else return notFind
   })
-
 }

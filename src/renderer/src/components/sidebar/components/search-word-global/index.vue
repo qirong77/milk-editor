@@ -2,6 +2,27 @@
   <div class="search-word-global">
     <div className="input-container">
       <input type="text" v-model="keyWord" ref="iptRef" />
+      <div class="fn">
+        <div
+          class="case"
+          :style="{
+            backgroundColor: isCase ? 'rgb(65, 98, 118)' : '',
+            marginRight: '6px'
+          }"
+          @click.stop="isCase = !isCase"
+        >
+          <span>Aa</span>
+        </div>
+        <div
+          class="blank"
+          @click.stop="isSideBlank = !isSideBlank"
+          :style="{
+            backgroundColor: isSideBlank ? 'rgb(65, 98, 118)' : ''
+          }"
+        >
+          ab
+        </div>
+      </div>
     </div>
     <div class="tip">在 {{ totalPaths }} 个文件中有 {{ totalMatchs }} 个结果</div>
     <div class="search-results">
@@ -13,11 +34,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import debouce from 'debounce'
+import { onMounted, ref, watchEffect } from 'vue'
 import { SearchWords } from '../../../../../../common/types'
 import { GET_SEARCH_RESULT } from '../../../../../../common/eventType'
 import SearchItem from './search-item.vue'
+import { useStore } from '../../../../store'
+
+const store = useStore()
 const iptRef = ref<HTMLInputElement>()
 const keyWord = ref('')
 const results = ref<SearchWords[]>([
@@ -34,20 +57,27 @@ const results = ref<SearchWords[]>([
 ])
 const totalMatchs = ref(0)
 const totalPaths = ref(0)
-
-watch(
-  keyWord,
-  debouce(() => {
-    window.api.interProcess(GET_SEARCH_RESULT, keyWord.value).then((response) => {
-      console.log('📕', response)
+const isCase = ref(false)
+// 匹配的字符是否两边为空
+const isSideBlank = ref(true)
+watchEffect(() => {
+  useStore().setGlobalWord(keyWord.value)
+  window.api
+    .interProcess(GET_SEARCH_RESULT, keyWord.value, isCase.value, isSideBlank.value)
+    .then((response) => {
       results.value = response
       totalPaths.value = response.length
       totalMatchs.value = response.reduce((pre, file) => {
         return pre + file.matchs.length
       }, 0)
     })
-  }, 800)
-)
+})
+watchEffect(() => {
+  store.setSearchInfo({
+    isCase: isCase.value,
+    isBlank: isSideBlank.value,
+  })
+})
 onMounted(() => {
   iptRef.value?.focus()
   // 重复按键就聚焦
@@ -72,10 +102,28 @@ onMounted(() => {
     margin: 10px 0;
     display: flex;
     justify-content: center;
-    height: 25px;
+    align-items: center;
+    height: 30px;
     input {
       width: 80%;
       height: 100%;
+    }
+    div.fn {
+      position: absolute;
+      right: 10%;
+      display: flex;
+      div {
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          background-color: rgb(65, 98, 118);
+        }
+        cursor: pointer;
+      }
     }
   }
   svg {

@@ -50,6 +50,7 @@ const handleDragDone = (newWidth: number) => {
 }
 onMounted(() => {
   document.addEventListener('keydown', (e) => {
+    // 全局搜索的关键字
     if (e.metaKey && e.key === 'f' && e.shiftKey) {
       currentTab.value = 'SearchWordGlobal'
     }
