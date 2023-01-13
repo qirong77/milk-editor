@@ -8,7 +8,7 @@
       'max-width': `calc(100vw - ${sideBarWidth}px)`
     }"
   >
-    <search-word @search-change="replaceSearch" v-if="showSearchWord" @close="closeSearch" />
+    <search-word @search-change="replaceSearch" v-show="showSearchWord" @close="closeSearch" />
     <VueEditor :editor="editor" />
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { ref, watch,  } from 'vue'
+import { ref, watch } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
@@ -33,7 +33,6 @@ const { editor, getInstance } = useEditor((root) => {
   usePlugins(intance)
   return intance
 })
-
 const markDown = ref('')
 // 因为milkdown的更新机制，需有一个标志来判断
 const flag = ref(false)
@@ -44,30 +43,38 @@ watch(markDown, () => {
   flag.value = true
 })
 // 打开文件
+const onOpenFile = () => {
+  return window.api
+    .interProcess(GET_FILE_CONTENT, store.openedFile)
+    .then((res) => {
+      markDown.value = res
+      getInstance()?.action(replaceAll(res))
+      flag.value = false
+    })
+    .then(() => {
+      // 更新标题列表
+      window.api.sendToMain(NOTIFY_UPDATE_HEADERS)
+    })
+    .then(() => {
+      if (store.searchInfo.word) {
+        replaceSearch(store.searchInfo.word)
+        jumpToWord(store.searchInfo.index)
+      }
+    })
+}
+// 全局搜索跳转到某个具体的位置
+const jumpToWord = (index = 0) => {
+  const nodes = [...document.querySelectorAll('del')] || []
+  nodes[index]?.scrollIntoView(true)
+}
+watch(() => store.openedFile, onOpenFile)
+// 点击左侧的全局搜索的相关字段
 watch(
-  () => store.openedFile,
+  () => store.searchInfo,
   () => {
-    window.api
-      .interProcess(GET_FILE_CONTENT, store.openedFile)
-      .then((res) => {
-        markDown.value = res
-        getInstance()?.action(replaceAll(res))
-        flag.value = false
-      })
-      .then(() => {
-        //更新标题列表
-        window.api.sendToMain(NOTIFY_UPDATE_HEADERS)
-        // 如果是全局搜索关键字，就跳转到对应的位置
-        const nodes = [...document.querySelectorAll('del')] || []
-        if (nodes[store.searchInfo.index]) nodes[store.searchInfo.index].scrollIntoView()
-      })
-  }
-)
-watch(
-  () => store.setSearchInfo,
-  () => {
-    const nodes = [...document.querySelectorAll('del')] || []
-    if (nodes[store.searchInfo.index]) nodes[store.searchInfo.index].scrollIntoView()
+    if (!store.searchInfo.word) return
+    replaceSearch(store.searchInfo.word)
+    jumpToWord(store.searchInfo.index)
   }
 )
 const showSearchWord = ref(false)
@@ -79,6 +86,7 @@ const closeSearch = () => {
 }
 // 处理大小写匹配是个麻烦事，暂时先模糊匹配
 const replaceSearch = (word, isCase = false, isBlank = false) => {
+  console.log('📕', '替换字段')
   const matchRegex = new RegExp(isBlank ? `\\s${word}\\s` : word, isCase ? 'g' : 'gi')
   // 清空内容
   // \~是如果出现连续匹配，解析出错，比如你要匹配a字符，但是内容中有aa
@@ -118,7 +126,6 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
       del.strike-through {
         text-decoration: none;
         border-radius: 4px;
-        font-size: initial;
       }
     }
     div.list-item_label {

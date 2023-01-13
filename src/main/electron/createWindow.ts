@@ -12,6 +12,7 @@ export const createWindow = () => {
     x: 120,
     y: -25,
     titleBarStyle: 'hiddenInset',
+    trafficLightPosition: { x: 8, y: 6 },
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       sandbox: false

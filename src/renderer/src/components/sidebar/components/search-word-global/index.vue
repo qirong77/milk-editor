@@ -34,12 +34,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref, watch, watchEffect } from 'vue'
 import { SearchWords } from '../../../../../../common/types'
 import { GET_SEARCH_RESULT } from '../../../../../../common/eventType'
 import SearchItem from './search-item.vue'
 import { useStore } from '../../../../store'
-
 const store = useStore()
 const iptRef = ref<HTMLInputElement>()
 const keyWord = ref('')
@@ -59,9 +58,8 @@ const totalMatchs = ref(0)
 const totalPaths = ref(0)
 const isCase = ref(false)
 // 匹配的字符是否两边为空
-const isSideBlank = ref(true)
-watchEffect(() => {
-  useStore().setGlobalWord(keyWord.value)
+const isSideBlank = ref(false)
+const updateSearchResult = () => {
   window.api
     .interProcess(GET_SEARCH_RESULT, keyWord.value, isCase.value, isSideBlank.value)
     .then((response) => {
@@ -71,12 +69,17 @@ watchEffect(() => {
         return pre + file.matchs.length
       }, 0)
     })
+}
+watch(keyWord, () => {
+  store.setSearchInfo({ word: keyWord.value })
+  updateSearchResult()
 })
 watchEffect(() => {
   store.setSearchInfo({
     isCase: isCase.value,
-    isBlank: isSideBlank.value,
+    isBlank: isSideBlank.value
   })
+  updateSearchResult()
 })
 onMounted(() => {
   iptRef.value?.focus()
@@ -119,9 +122,6 @@ onMounted(() => {
         display: flex;
         justify-content: center;
         align-items: center;
-        &:hover {
-          background-color: rgb(65, 98, 118);
-        }
         cursor: pointer;
       }
     }

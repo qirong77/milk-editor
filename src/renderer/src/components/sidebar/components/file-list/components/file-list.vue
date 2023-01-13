@@ -29,12 +29,13 @@ import { DirTree } from '../../../../../../../common/types'
 import FileItem from './file-item.vue'
 import { DRAG_FILE } from '../../../../../../../common/eventType'
 import { useStore } from '../../../../../store'
+import eventBus from '../../../../../EventBus'
 const store = useStore()
 const props = defineProps({
   tree: {
     type: Object as PropType<DirTree>,
     default: {
-      fileName: 'Markdowns',
+      fileName: '默认文件',
       path: '/Users/qirong77/Desktop/front-end-book/Markdowns',
       level: 0,
       isDir: true,
@@ -47,6 +48,7 @@ const isOnDrag = ref(false)
 const toggleFileList = () => {
   isOpen.value = !isOpen.value
 }
+
 const allowDrop = (e: DragEvent) => {
   if (props.tree.isDir) {
     e.stopPropagation()
@@ -66,6 +68,16 @@ const handleDrop = (e: DragEvent) => {
     window.api.sendToMain(DRAG_FILE, e.dataTransfer?.getData('path'), props.tree.path)
   }
 }
+// 切换文件的时候，如果是聚焦模式，就只打开当前的文件夹
+watch(
+  () => store.openedFile,
+  () => {
+    if (store.focusMode) {
+      const isParentNode = store.openedFile.includes(props.tree.path)
+      isOpen.value = isParentNode
+    }
+  }
+)
 // 更改文件夹名称的时候，展开当前文件夹
 watch(
   () => store.showInput,
@@ -75,6 +87,10 @@ watch(
     }
   }
 )
+// 新建文件/文件夹的时候需要打开当前文件夹
+eventBus.on('NEW_FILE', (targetDir: string) => {
+  if (targetDir === props.tree.path) isOpen.value = true
+})
 </script>
 
 <style lang="scss">

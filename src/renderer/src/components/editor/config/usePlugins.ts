@@ -32,12 +32,12 @@ const gitHubCommonMark = gfm
       [SupportedKeys.H2]: 'Mod-2',
       [SupportedKeys.H3]: 'Mod-3',
       [SupportedKeys.H4]: 'Mod-4',
-      [SupportedKeys.H5]: 'Mod-5',
+      [SupportedKeys.H5]: 'Mod-5'
     }
   })
   .configure(taskListItem, {})
   .configure(codeFence, {
-    languageList: ['scss', 'javascript', 'html', 'shell', 'json']
+    languageList: ['html', 'scss', 'javascript', 'java','json','sql','shell']
   })
 export const usePlugins = (Editor: Editor) => {
   Editor.use(nordDark)

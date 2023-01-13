@@ -15,32 +15,24 @@
 
 <script setup lang="ts">
 /// <reference path='../../../../preload/index.d.ts'/>
-import { onMounted, ref } from 'vue'
-import {
-  DELETE,
-  MENU_DELETE,
-  MENU_NEW_FILE,
-  MENU_RENAME_FILE,
-  CREATE_NEW,
-  MENU_NEW_DIR
-} from '../../../../common/eventType'
+import { onMounted, ref, watch } from 'vue'
 import { useStore } from '../../store'
 import DragLine from './components/drag-line/drag-line.vue'
 import HeaderList from './components/header-list/index.vue'
 import SearchWordGlobal from './components/search-word-global/index.vue'
 import FileList from './components/file-list/index.vue'
 const currentTab = ref<'HeaderList' | 'SearchWordGlobal' | 'FileList'>('FileList')
+
 const tabs = {
   HeaderList,
   SearchWordGlobal,
   FileList
 }
 const store = useStore()
-// 监听到右键点击菜单时间
-window.api.onMain(MENU_RENAME_FILE, () => store.setShowInput(true))
-window.api.onMain(MENU_DELETE, () => window.api.sendToMain(DELETE, store.focusedPath))
-window.api.onMain(MENU_NEW_FILE, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, false))
-window.api.onMain(MENU_NEW_DIR, () => window.api.sendToMain(CREATE_NEW, store.focusedPath, true))
+watch(currentTab, () => {
+  store.setSearchInfo({ word: '' })
+})
+
 defineProps<{
   sideBarWidth: number
 }>()

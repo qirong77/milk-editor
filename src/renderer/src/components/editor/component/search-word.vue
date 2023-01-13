@@ -1,8 +1,11 @@
 <template>
-  <div class="search-word" :style="{
-    top:position.y + 'px',
-    left:position.x + 'px'
-  }">
+  <div
+    class="search-word"
+    :style="{
+      top: position.y + 'px',
+      left: position.x + 'px'
+    }"
+  >
     <header @mousedown="handleMouseDown">
       查找
       <svg
@@ -21,39 +24,43 @@
     </header>
     <div class="input-container">
       <input v-model="word" ref="iptRef" type="text" @keydown="handleKeyDown" />
-      <span>{{ currentIndex }}/{{ matchNodes.length-1 < 0? 0 : matchNodes.length}}</span>
+      <span>{{ currentIndex }}/{{ matchNodes.length - 1 < 0 ? 0 : matchNodes.length }}</span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref, watch, watchEffect } from 'vue'
+import { nextTick, onMounted, reactive, ref, watch, watchEffect} from 'vue'
 import debounce from 'debounce'
-import { useStore } from '../../../store';
+import { useStore } from '../../../store'
 const word = ref('')
+
 const emits = defineEmits(['search-change', 'close'])
+
 // 搜索的字段更改，重新获取匹配字段
 watch(
   word,
   debounce(() => {
     emits('search-change', word.value)
     nextTick(() => {
+      currentIndex.value = 0
       const matchs = [...document.querySelectorAll('del')] || []
+      matchs[0]?.scrollIntoView(true)
       matchNodes.value = matchs
     })
   }, 500)
 )
 const position = reactive({
-  x:550,
-  y:100
+  x: 550,
+  y: 100
 })
 // 拖动搜索框
-const handleMouseDown = (e:MouseEvent) => {
+const handleMouseDown = (e: MouseEvent) => {
   const offsetX = e.offsetX
   const offsetY = e.offsetY
   // clietX就是距离浏览器视口的位置
   document.onmousemove = (e) => {
-    position.x  = e.clientX - offsetX
+    position.x = e.clientX - offsetX
     position.y = e.clientY - offsetY
     return false
   }
@@ -70,7 +77,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     if (currentIndex.value >= matchNodes.value.length) currentIndex.value = 0
     else currentIndex.value++
-    matchNodes.value[currentIndex.value]?.scrollIntoView()
+    matchNodes.value[currentIndex.value]?.scrollIntoView(true)
   }
 }
 const iptRef = ref<HTMLInputElement>()
@@ -82,7 +89,7 @@ onMounted(() => {
     }
   })
 })
-watchEffect(()=>{
+watchEffect(() => {
   useStore().searchInfo
 })
 </script>

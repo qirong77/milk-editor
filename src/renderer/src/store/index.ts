@@ -9,13 +9,22 @@ export const useStore = defineStore('global', {
       totalPaths: [''],
       focusedPath: '',
       showInput: false,
+      // 全局搜索的信息
       searchInfo: {
         index: 0,
-        isCase:false,
-        isBlank:false,
-        path:'',
+        isCase: false,
+        isBlank: false,
+        path: '',
+        word: ''
       },
-      globalSearchWord: ''
+      // 是否为聚集显示模式，就是在左侧列举只会展开当前打开的文件的文件树
+      focusMode: true,
+      shortcuts: {
+        searchWord: false,
+        searchWordGlobal: false,
+        sideBar: true,
+        toolBar: false
+      }
     }
   },
   actions: {
@@ -32,14 +41,18 @@ export const useStore = defineStore('global', {
     setShowInput(visiable: boolean) {
       this.showInput = visiable
     },
-    setSearchInfo(newInfo: { index?: number; isCase?: boolean; isBlank?: boolean,path?:string }) {
+    setSearchInfo(newInfo: Partial<typeof this.searchInfo>) {
+      console.log('📕', 'setSearchInfo')
       this.searchInfo = {
         ...this.searchInfo,
         ...newInfo
       }
     },
-    setGlobalWord(str: string) {
-      this.globalSearchWord = str
+    setShortCuts(newCuts: Partial<typeof this.shortcuts>) {
+      this.shortcuts = {
+        ...this.shortcuts,
+        ...newCuts
+      }
     }
   }
 })

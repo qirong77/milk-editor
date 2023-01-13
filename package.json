@@ -1,9 +1,9 @@
 {
   "name": "milk",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "An Electron application with Vue and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "qirong77",
   "homepage": "https://www.electronjs.org",
   "scripts": {
     "format": "prettier --write .",

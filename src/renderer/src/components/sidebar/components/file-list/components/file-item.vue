@@ -1,4 +1,5 @@
 <template>
+  <!-- level为0表示是跟路径的，不显示 -->
   <li
     class="file-item"
     :class="{ 'file-item-active': isActive, input: showInput, 'file-item-focus': isFocused }"
@@ -6,7 +7,7 @@
     @contextmenu.stop="handleContext"
     @mouseleave=""
     :style="{
-      paddingLeft: 4 + level * 12 + 'px',
+      paddingLeft: PaddingLeft + 'px',
       display: level === 0 ? 'none' : 'flex'
     }"
     draggable="true"
@@ -18,8 +19,8 @@
         class="triangle-down"
         :class="{ rotate: !isOpen }"
         xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
+        :width="TRIANGLE_SIZE"
+        :height="TRIANGLE_SIZE"
         fill="currentColor"
         viewBox="0 0 16 16"
       >
@@ -81,9 +82,17 @@ const props = defineProps<{
   level: number
   isOpen: boolean
 }>()
+
 const store = useStore()
 const emits = defineEmits(['toggle-file-list'])
 const showInput = computed(() => store.focusedPath === props.path && store.showInput)
+// 2 是两个svg的大小差距
+const TRIANGLE_SIZE = 12
+const PaddingLeft = computed(() => {
+  // level至少为1，因为level为0的根路径被隐藏了
+  const basic = TRIANGLE_SIZE + props.level * 12 - 12
+  return basic + (props.isDir ? 0 : 2)
+})
 const rotateSvg = ref(true)
 const isActive = computed(() => store.openedFile === props.path)
 const isFocused = computed(() => store.focusedPath === props.path)
@@ -156,13 +165,9 @@ li.file-item {
     align-items: center;
     margin-right: 4px;
     svg {
-      height: 16px;
-      width: 16px;
       transition: all 0.5s;
     }
     svg.triangle-down {
-      height: 12px;
-      width: 12px;
       margin-right: 4px;
       transition: all 0.5s;
     }

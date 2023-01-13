@@ -10,13 +10,6 @@
       <editor :side-bar-width="sideBarWidth"/>
     </main>
     <global />
-    <footer>
-      <!-- <ul>
-        <li>focus:{{useStore().focusedPath}}</li>
-        <li>openedFile {{useStore().openedFile}}</li>
-        <li>{{useStore().showInput}}</li>
-      </ul> -->
-    </footer>
   </div>
 </template>
 
@@ -49,10 +42,11 @@ onMounted(()=>{
   header {
     -webkit-app-region: drag;
     user-select: none;
-    height: 36px;
+    height: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 14px;
   }
   footer {
     position: fixed;
