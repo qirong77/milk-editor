@@ -1,0 +1,12 @@
+@import './variables.scss';
+@import './theme/theme-dark.scss';
+@import './normalize.scss';
+@import '../../components/Editor/style/index.scss';
+@import '../../components/Global/style/index.scss';
+@import '../../components/SideBar/style/index.scss';
+@import '../../components/Header/style/index.scss';
+@import './layout.scss';
+
+.container {
+  @include theme-dark;
+}

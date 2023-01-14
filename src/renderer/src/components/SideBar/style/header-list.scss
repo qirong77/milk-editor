@@ -1,0 +1,53 @@
+$title-height: 30px;
+.header-list {
+  overflow: scroll;
+  max-height: calc(100vh - 100px);
+  ul {
+    height: auto;
+    li {
+      display: flex;
+      padding-left: calc(10px * var(--i));
+      min-height: $title-height;
+      // 避免标题太长重叠
+      height: auto;
+      line-height: $title-height;
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(56, 62, 77);
+      }
+      div {
+        height: $title-height;
+        width: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 4px;
+      }
+      a {
+        //占满剩余部分
+        flex: auto;
+        text-decoration: none;
+        // text-decoration-color: $dark-color;
+        // color: white;
+      }
+      svg {
+        height: 8px;
+        width: 8px;
+        transition: all 0.5s;
+        opacity: 0%;
+      }
+    }
+  }
+  ul.show-list > li {
+    svg {
+      opacity: 100%;
+    }
+  }
+  ul.ul-close {
+    height: $title-height !important;
+    overflow: hidden;
+    svg {
+      transform: rotateZ(-90deg);
+    }
+  }
+}
