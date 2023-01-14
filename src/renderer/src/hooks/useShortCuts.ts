@@ -8,8 +8,10 @@ export const useShortCuts = () => {
     if (e.metaKey && e.key === 'p') {
       store.setShortCuts({ searchFile: true })
     }
+    // 删除文件
     if (e.metaKey && e.key === 'Backspace' && store.focusedPath) {
-      window.api.sendToMain(DELETE, store.focusedPath)
+      // 这里不断言为any的话，打包解析不到window的类型，不知道为什么
+      (window as any).api.sendToMain(DELETE, store.focusedPath)
     }
     if (e.metaKey && e.key === 'f' && !e.shiftKey) {
       store.setShortCuts({

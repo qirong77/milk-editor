@@ -51,7 +51,7 @@
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
-    "electron": "^20.3.1",
+    "electron": "^22.0.2",
     "electron-builder": "^23.0.2",
     "electron-notarize": "^1.2.1",
     "electron-vite": "^1.0.10",

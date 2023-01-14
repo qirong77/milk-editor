@@ -21,7 +21,7 @@ import { basename } from 'path-browserify'
 import { useStore } from './store'
 import { onMounted, ref } from 'vue'
 import { GET_DIR_TREE } from '../../common/eventType'
-import { useShortCuts } from './common/useShortCuts'
+import { useShortCuts } from './hooks/useShortCuts'
 const sideBarWidth = ref(200)
 const store = useStore()
 const handleWidthChange = (newWidth) => {
