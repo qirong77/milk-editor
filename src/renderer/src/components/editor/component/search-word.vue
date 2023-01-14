@@ -9,7 +9,11 @@
     <header @mousedown="handleMouseDown">
       查找
       <svg
-        @click="emits('close')"
+        @click="
+          store.setShortCuts({
+            searchWord: false
+          })
+        "
         xmlns="http://www.w3.org/2000/svg"
         width="16"
         height="16"
@@ -30,13 +34,13 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref, watch, watchEffect} from 'vue'
+import { nextTick, reactive, ref, watch } from 'vue'
 import debounce from 'debounce'
 import { useStore } from '../../../store'
+import eventBus from '../../../EventBus'
 const word = ref('')
-
-const emits = defineEmits(['search-change', 'close'])
-
+const store = useStore()
+const emits = defineEmits(['search-change'])
 // 搜索的字段更改，重新获取匹配字段
 watch(
   word,
@@ -50,11 +54,12 @@ watch(
     })
   }, 500)
 )
+
+// 拖动搜索框
 const position = reactive({
   x: 550,
   y: 100
 })
-// 拖动搜索框
 const handleMouseDown = (e: MouseEvent) => {
   const offsetX = e.offsetX
   const offsetY = e.offsetY
@@ -81,16 +86,10 @@ const handleKeyDown = (e: KeyboardEvent) => {
   }
 }
 const iptRef = ref<HTMLInputElement>()
-onMounted(() => {
-  iptRef.value?.focus()
-  document.addEventListener('keydown', (e) => {
-    if (e.metaKey && e.key === 'f' && !e.shiftKey) {
-      iptRef.value?.focus()
-    }
+eventBus.on('INPUT_FOCUS', () => {
+  nextTick(() => {
+    iptRef.value?.focus()
   })
-})
-watchEffect(() => {
-  useStore().searchInfo
 })
 </script>
 

@@ -2,31 +2,34 @@
   <div class="container">
     <header>
       <span>
-        {{basename(useStore().openedFile)}}
+        {{ basename(store.openedFile) }}
       </span>
     </header>
     <main>
-      <side-bar :side-bar-width="sideBarWidth" @update:width="handleWidthChange"/>
-      <editor :side-bar-width="sideBarWidth"/>
+      <side-bar :side-bar-width="sideBarWidth" @update:width="handleWidthChange" />
+      <editor :side-bar-width="sideBarWidth" />
     </main>
-    <global />
+    <search-file v-if="store.shortcuts.searchFile"/>
   </div>
 </template>
 
 <script setup lang="ts">
 import Editor from './components/editor/index.vue'
+import SearchFile from './components/global/search-file.vue'
 import SideBar from './components/sidebar/index.vue'
-import global from './components/global/index.vue'
 import { basename } from 'path-browserify'
 import { useStore } from './store'
 import { onMounted, ref } from 'vue'
 import { GET_DIR_TREE } from '../../common/eventType'
+import { useShortCuts } from './common/useShortCuts'
 const sideBarWidth = ref(200)
-const handleWidthChange = (newWidth) =>{
+const store = useStore()
+const handleWidthChange = (newWidth) => {
   sideBarWidth.value = newWidth
 }
-onMounted(()=>{
+onMounted(() => {
   window.api.sendToMain(GET_DIR_TREE)
+  useShortCuts()
 })
 </script>
 

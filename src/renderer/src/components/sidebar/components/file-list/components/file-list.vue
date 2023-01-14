@@ -43,7 +43,7 @@ const props = defineProps({
     }
   }
 })
-const isOpen = ref(true)
+const isOpen = ref(props.tree.level === 0 ? true : false)
 const isOnDrag = ref(false)
 const toggleFileList = () => {
   isOpen.value = !isOpen.value

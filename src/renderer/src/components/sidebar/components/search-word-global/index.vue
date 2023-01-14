@@ -34,11 +34,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, watchEffect } from 'vue'
+import { nextTick, onMounted, ref, watch, watchEffect } from 'vue'
 import { SearchWords } from '../../../../../../common/types'
 import { GET_SEARCH_RESULT } from '../../../../../../common/eventType'
 import SearchItem from './search-item.vue'
 import { useStore } from '../../../../store'
+import eventBus from '../../../../EventBus'
 const store = useStore()
 const iptRef = ref<HTMLInputElement>()
 const keyWord = ref('')
@@ -81,14 +82,13 @@ watchEffect(() => {
   })
   updateSearchResult()
 })
+eventBus.on('INPUT_FOCUS_G', () => {
+  nextTick(() => {
+    iptRef.value?.focus()
+  })
+})
 onMounted(() => {
   iptRef.value?.focus()
-  // 重复按键就聚焦
-  document.addEventListener('keydown', (e) => {
-    if (e.metaKey && e.key === 'f' && e.shiftKey) {
-      iptRef.value?.focus()
-    }
-  })
 })
 </script>
 

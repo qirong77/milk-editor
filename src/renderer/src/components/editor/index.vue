@@ -2,13 +2,13 @@
   <div
     class="editor-component"
     :class="{
-      toobar: showToolBar
+      toobar: store.shortcuts.toolBar
     }"
     :style="{
       'max-width': `calc(100vw - ${sideBarWidth}px)`
     }"
   >
-    <search-word @search-change="replaceSearch" v-show="showSearchWord" @close="closeSearch" />
+    <search-word @search-change="replaceSearch" v-show="store.shortcuts.searchWord" />
     <VueEditor :editor="editor" />
   </div>
 </template>
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { Editor } from '@milkdown/core'
 import { VueEditor, useEditor } from '@milkdown/vue'
-import { ref, watch } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import { useStore } from '../../store'
 import { useConfig } from './config/useConfig'
 import { usePlugins } from './config/usePlugins'
@@ -44,7 +44,7 @@ watch(markDown, () => {
 })
 // 打开文件
 const onOpenFile = () => {
-  return window.api
+  window.api
     .interProcess(GET_FILE_CONTENT, store.openedFile)
     .then((res) => {
       markDown.value = res
@@ -77,13 +77,14 @@ watch(
     jumpToWord(store.searchInfo.index)
   }
 )
-const showSearchWord = ref(false)
-const closeSearch = () => {
-  showSearchWord.value = false
-  const cleanRegex = /\\~|~~/g
-  const cleanContent = markDown.value.replaceAll(cleanRegex, '')
-  getInstance()?.action(replaceAll(cleanContent))
-}
+watchEffect(() => {
+  console.log('📕', 'watchEffect')
+  // if (!store.shortcuts.searchWord && !store.shortcuts.searchWordGlobal) {
+  //   const cleanRegex = /\\~|~~/g
+  //   const cleanContent = markDown.value.replaceAll(cleanRegex, '')
+  //   getInstance()?.action(replaceAll(cleanContent))
+  // }
+})
 // 处理大小写匹配是个麻烦事，暂时先模糊匹配
 const replaceSearch = (word, isCase = false, isBlank = false) => {
   console.log('📕', '替换字段')
@@ -99,16 +100,6 @@ const replaceSearch = (word, isCase = false, isBlank = false) => {
       : cleanContent
   getInstance()?.action(replaceAll(newContent))
 }
-const showToolBar = ref(false)
-
-document.addEventListener('keydown', (e: KeyboardEvent) => {
-  if (e.metaKey && e.key === 'f' && !e.shiftKey) {
-    showSearchWord.value = true
-  }
-  if (e.metaKey && e.key === 'm') {
-    showToolBar.value = !showToolBar.value
-  }
-})
 </script>
 
 <style lang="scss">
@@ -119,7 +110,7 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
   }
   .milkdown {
     overflow: scroll;
-    max-height: calc(100vh - 36px);
+    height: calc(100vh - 26px);
     .editor {
       padding: 50px 40px;
       min-height: 90vh;

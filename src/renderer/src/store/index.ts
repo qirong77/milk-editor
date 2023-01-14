@@ -22,6 +22,7 @@ export const useStore = defineStore('global', {
       shortcuts: {
         searchWord: false,
         searchWordGlobal: false,
+        searchFile:false,
         sideBar: true,
         toolBar: false
       }

@@ -58,7 +58,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .side-bar {
-  max-height: calc(100vh - 36px);
+  max-height: calc(100vh - 26px);
   overflow: scroll;
   position: relative;
 }

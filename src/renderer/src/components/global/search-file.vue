@@ -1,22 +1,22 @@
 <template>
-  <div class="search-file">
-    <div>
-      <span>{{ currentIndex }}</span>
-      <input v-model="searchContent" type="text" @keydown="handleKeyDown" />
+  <div class="search-file"> 
+      <div>
+        <span>{{ currentIndex }}</span>
+        <input v-model="searchContent" type="text" @keydown="handleKeyDown" />
+      </div>
+      <ul>
+        <template v-for="(path, index) in paths" :key="path">
+          <li
+            @click="handleClick"
+            :class="{
+              active: currentIndex === index
+            }"
+          >
+            <span>{{ basename(path) }}</span>
+          </li>
+        </template>
+      </ul>
     </div>
-    <ul>
-      <template v-for="(path, index) in paths" :key="path">
-        <li
-          @click="handleClick"
-          :class="{
-            active: currentIndex === index
-          }"
-        >
-          <span>{{ basename(path) }}</span>
-        </li>
-      </template>
-    </ul>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -30,13 +30,15 @@ const paths = computed(() => {
   return store.totalPaths.filter((path) => regex.test(basename(path)))
 })
 const currentIndex = ref(0)
-const emits = defineEmits(['update-path', 'open-file'])
 const key = ref<'down' | 'up'>('down')
 const handleClick = () => {
-  emits('open-file')
+  store.setShortCuts({
+    searchFile: false
+  })
 }
 watch(currentIndex, () => {
-  emits('update-path', paths.value[currentIndex.value])
+  const currentPath = paths.value[currentIndex.value]
+  console.log('📕', currentPath)
   nextTick(() => {
     const target = document.querySelector('.active')
     if (!target) throw new Error('not-active-file-item')
@@ -69,16 +71,9 @@ const handleKeyDown = (e: KeyboardEvent) => {
   if (e.key === 'Enter') {
     // 打开一个文件
     store.changeOpenedPath(paths.value[currentIndex.value])
-    // 打开上层的目录
-    nextTick(() => {
-      let target = document.getElementsByClassName('file-item-active')[0]
-      while (target?.parentElement instanceof HTMLUListElement) {
-        target.parentElement.classList.remove('file-list-close')
-        target = target.parentElement
-      }
+    store.setShortCuts({
+      searchFile: false
     })
-
-    emits('open-file')
   }
 }
 onMounted(() => {

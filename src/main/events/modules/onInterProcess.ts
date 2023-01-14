@@ -1,7 +1,7 @@
-import { ipcMain } from 'electron'
-import { existsSync, lstatSync, readFileSync, readdirSync } from 'fs'
-import { basename, resolve } from 'path'
-import { GET_FILE_CONTENT, GET_SEARCH_RESULT } from '../../../common/eventType'
+import { dialog, ipcMain } from 'electron'
+import { existsSync, lstatSync, readFileSync, readdirSync, renameSync } from 'fs'
+import { basename, dirname, resolve } from 'path'
+import { GET_FILE_CONTENT, GET_SEARCH_RESULT, RENAME_FILE } from '../../../common/eventType'
 import { SearchWords } from '../../../common/types'
 import { defaultPath, EXCEPT_FILE } from '../../config'
 
@@ -60,5 +60,19 @@ export const onInterProcess = () => {
     dfs(defaultPath)
     if (collections.length) return collections
     else return notFind
+  })
+  ipcMain.handle(RENAME_FILE, (_e, beforPath, newName) => {
+    if (!existsSync(beforPath)) throw new Error('未找到文件')
+    const dir = dirname(beforPath)
+    const newPath = resolve(dir, newName)
+    if(existsSync(newPath)) {
+      dialog.showMessageBoxSync({
+        type: 'info',
+        message: '文件已经存在'
+      })
+      return false
+    }
+    renameSync(beforPath, newPath)
+    return true
   })
 }

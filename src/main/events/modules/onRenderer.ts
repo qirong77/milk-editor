@@ -1,12 +1,11 @@
 import { dialog, ipcMain } from 'electron'
-import { existsSync, lstatSync, mkdirSync, renameSync, unlinkSync, writeFileSync } from 'fs'
-import { basename, dirname, resolve } from 'path'
+import { existsSync, lstatSync, mkdirSync,  unlinkSync, writeFileSync } from 'fs'
+import { basename, resolve } from 'path'
 import { move } from 'fs-extra'
 import {
   GET_DIR_TREE,
   SAVE_FILE,
   UPDATE_DIR_TREE,
-  RENAME_FILE,
   POP_FILE_ITEM_MENU,
   DELETE,
   POP_FILE_DIR_MENU,
@@ -36,12 +35,7 @@ export const onRenderer = () => {
   ipcMain.on(SAVE_FILE, (_e, path: string, newContent: string) => {
     existsSync(path) && writeFileSync(path, newContent)
   })
-  ipcMain.on(RENAME_FILE, (_e, beforPath, newName) => {
-    if (!existsSync(beforPath)) throw new Error('未找到文件')
-    const dir = dirname(beforPath)
-    const newPath = resolve(dir, newName)
-    renameSync(beforPath, newPath)
-  })
+
   ipcMain.on(DELETE, (e, path) => {
     try {
       if (lstatSync(path).isDirectory()) deleteDir(path)

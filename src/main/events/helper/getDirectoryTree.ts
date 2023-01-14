@@ -25,6 +25,10 @@ export const getDirectoryTree = (path: string, level = 0) => {
       const newNode = dfs(nextPath, level + 1)
       newNode && node.children.push(newNode)
     })
+    // 如果当前节点是文件夹就对里面的文件进行排序，文件排前面，文件夹排后面
+    const folders = node.children.filter((child) => lstatSync(child.path).isDirectory())
+    const files = node.children.filter((child) => !lstatSync(child.path).isDirectory())
+    node.children = [...files, ...folders]
     return node
   }
   const tree = dfs(path, level)

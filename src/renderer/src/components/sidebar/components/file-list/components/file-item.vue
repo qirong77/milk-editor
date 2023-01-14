@@ -108,10 +108,17 @@ const handleBlur = () => {
 
 const handleConfirm = (e: KeyboardEvent) => {
   if (e.key === 'Enter' && iptValue.value) {
-    store.setShowInput(false)
     if (iptValue.value !== props.fileName) {
-      window.api.sendToMain(RENAME_FILE, props.path, iptValue.value)
-      window.api.sendToMain(GET_DIR_TREE)
+      window.api.interProcess(RENAME_FILE, props.path, iptValue.value).then((status) => {
+        if (status) {
+          window.api.sendToMain(GET_DIR_TREE)
+          store.setShowInput(false)
+          // 重新命名不成功，需要重新设置输入状态
+        } else {
+          store.setFocusedPath(props.path)
+          store.setShowInput(true)
+        }
+      })
     }
   }
 }
